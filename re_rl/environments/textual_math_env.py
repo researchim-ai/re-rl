@@ -19,10 +19,10 @@ if __name__ == "__main__":
     result = env.get_task()
     print("Постановка задачи:")
     print(result["problem"])
-    print("\nПромт:")
+    print("\n Промт:")
     print(result["prompt"])
-    print("\nПошаговое решение:")
+    print("\n Пошаговое решение:")
     for step in result["solution_steps"]:
         print(step)
-    print("\nИтоговый ответ:")
+    print("\n Итоговый ответ:")
     print(result["final_answer"])

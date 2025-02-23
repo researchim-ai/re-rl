@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='re_rl',  # имя пакета, без дефисов (в Python принято использовать нижнее подчеркивание)
+    name='re_rl',
     version='0.0.1',
     description='Библиотека для решения математических задач и генерации заданий для обучения LLM с использованием reasoning RL',
     author='Tokarev Igor (Researchim AI)',
