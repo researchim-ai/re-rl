@@ -40,10 +40,9 @@ from re_rl.tasks.math_task import MathTask
 ```python
 task = MathTask.generate_random_task(only_valid=True)
 result = task.get_result()
-```
-
 print("Постановка задачи:", result["problem"])
 print("Пошаговое решение:")
 for step in result["solution_steps"]:
     print(step)
 print("Итоговый ответ:", result["final_answer"])
+```
