@@ -36,7 +36,7 @@ pip install -e .
 from re_rl.tasks.math_task import MathTask
 ```
 
-# Генерация случайной задачи с решаемым решением
+### Генерация случайной задачи с решаемым решением
 ```python
 task = MathTask.generate_random_task(only_valid=True)
 result = task.get_result()
