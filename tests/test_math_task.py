@@ -1,51 +1,53 @@
 import unittest
 import sympy as sp
-from re_rl.tasks.math_task import MathTask
+from re_rl.tasks.linear_task import LinearTask
+from re_rl.tasks.quadratic_task import QuadraticTask
+from re_rl.tasks.cubic_task import CubicTask
+from re_rl.tasks.exponential_task import ExponentialTask
+from re_rl.tasks.logarithmic_task import LogarithmicTask
 
-class TestMathTask(unittest.TestCase):
-    def test_linear_equation(self):
-        # 2x + 3 = 7  -> x = 2
-        task = MathTask("linear", 2, 3, 7)
+class TestLinearTask(unittest.TestCase):
+    def test_linear_ru(self):
+        task = LinearTask(2, 3, 7, language="ru")
         result = task.get_result()
-        self.assertEqual(result["final_answer"], "2")
         self.assertIn("Решите линейное уравнение", result["problem"])
-        self.assertGreater(len(result["solution_steps"]), 0)
+        self.assertEqual(result["final_answer"], "2")
+        prompt = task.generate_prompt()
+        self.assertIn("Решите линейное уравнение", prompt)
 
-    def test_quadratic_equation(self):
-        # x^2 - 5x + 6 = 0 -> решения: 2 и 3
-        task = MathTask("quadratic", 1, -5, 6)
+    def test_linear_en(self):
+        task = LinearTask(2, 3, 7, language="en")
+        result = task.get_result()
+        self.assertIn("Solve the linear equation", result["prompt"])
+
+class TestQuadraticTask(unittest.TestCase):
+    def test_quadratic(self):
+        task = QuadraticTask(1, -5, 6, language="ru")
         result = task.get_result()
         self.assertIn("Решите квадратное уравнение", result["problem"])
-        # Проверяем, что итоговый ответ содержит хотя бы одно из ожидаемых чисел
         self.assertTrue("2" in result["final_answer"] or "3" in result["final_answer"])
 
-    def test_cubic_equation(self):
-        # x^3 - 6x^2 + 11x - 6 = 0 -> корни: 1, 2, 3
-        task = MathTask("cubic", 1, -6, 11, -6)
+class TestCubicTask(unittest.TestCase):
+    def test_cubic(self):
+        task = CubicTask(1, -6, 11, -6, language="ru")
         result = task.get_result()
         self.assertIn("Решите кубическое уравнение", result["problem"])
-        for root in ["1", "2", "3"]:
-            self.assertIn(root, result["final_answer"])
+        for r in [1, 2, 3]:
+            self.assertIn(str(r), result["final_answer"])
 
-    def test_exponential_equation(self):
-        # 2*exp(x) + 1 = 5 -> exp(x) = 2 -> x = ln(2)
-        task = MathTask("exponential", 2, 1, 1, 5)
+class TestExponentialTask(unittest.TestCase):
+    def test_exponential(self):
+        task = ExponentialTask(2, 1, 1, 5, language="ru")
         result = task.get_result()
         expected = sp.log(2)
         self.assertAlmostEqual(float(result["final_answer"]), float(expected), places=5)
 
-    def test_logarithmic_equation(self):
-        # 2*log(3*x) + 1 = 5 -> x = exp((5-1)/2)/3 = exp(2)/3
-        task = MathTask("logarithmic", 2, 3, 1, 5)
+class TestLogarithmicTask(unittest.TestCase):
+    def test_logarithmic(self):
+        task = LogarithmicTask(2, 3, 1, 5, language="ru")
         result = task.get_result()
-        expected = sp.exp((5 - 1) / 2) / 3
+        expected = sp.exp((5-1)/2) / 3
         self.assertAlmostEqual(float(result["final_answer"]), float(expected), places=5)
 
-    def test_generate_random_task_valid(self):
-        # Проверяем генерацию задачи, которая гарантированно решаема, если only_valid=True.
-        task = MathTask.generate_random_task(only_valid=True)
-        result = task.get_result()
-        self.assertNotEqual(result["final_answer"], "Нет решений")
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

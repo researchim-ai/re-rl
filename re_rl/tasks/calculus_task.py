@@ -1,108 +1,60 @@
+# re_rl/tasks/calculus_task.py
+
 import random
 import sympy as sp
+from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
-class CalculusTask:
+class CalculusTask(BaseMathTask):
     """
-    Класс для генерации и решения задач по анализу:
-      - "differentiation": найти производную от случайной полиномиальной функции.
-      - "integration": найти неопределённый интеграл от случайной полиномиальной функции.
+    Класс для задач по анализу: дифференцирование и интегрирование полиномиальных функций.
+    task_type может быть "differentiation" или "integration".
     """
-
-    def __init__(self, task_type="differentiation", degree=2):
+    def __init__(self, task_type="differentiation", degree=2, language: str = "ru"):
         self.task_type = task_type.lower()
         self.degree = degree
         self.function = None
-        self.problem = ""
-        self.solution_steps = []
-        self.final_answer = None
+        super().__init__("", language)
 
     def generate_function(self):
-        """
-        Генерирует случайный полином вида:
-            a_n*x^n + a_(n-1)*x^(n-1) + ... + a_0,
-        где степень полинома равна self.degree, а коэффициенты случайны из диапазона [-5, 5].
-        """
         x = sp.symbols('x')
-        # Генерируем коэффициенты
-        coeffs = [random.randint(-5, 5) for _ in range(self.degree + 1)]
-        # Убедимся, что старший коэффициент не равен 0
+        coeffs = [random.randint(-5, 5) for _ in range(self.degree+1)]
         while coeffs[-1] == 0:
             coeffs[-1] = random.randint(-5, 5)
-        poly = sum(coeffs[i] * x**i for i in range(self.degree + 1))
+        poly = sum(coeffs[i]*x**i for i in range(self.degree+1))
         self.function = sp.simplify(poly)
 
-    def create_problem_description(self):
-        """
-        Формирует текст постановки задачи на основе типа (дифференцирование или интегрирование)
-        и сгенерированной функции.
-        """
+    def _create_problem_description(self):
         self.generate_function()
-        if self.task_type == "differentiation":
-            self.problem = f"Найди производную функции f(x) = {sp.pretty(self.function)}."
-        elif self.task_type == "integration":
-            self.problem = f"Найди неопределённый интеграл функции f(x) = {sp.pretty(self.function)}."
-        else:
-            self.problem = "Неизвестный тип задачи."
+        function_pretty = sp.pretty(self.function)
+        task_type_text = "производную" if self.task_type=="differentiation" else "неопределённый интеграл"
+        return PROMPT_TEMPLATES["calculus"]["problem"][self.language].format(task_type=task_type_text, function_pretty=function_pretty)
 
     def solve(self):
-        """
-        Решает задачу пошагово.
-        Для дифференцирования:
-          1. Записывается исходная функция.
-          2. Вычисляется производная.
-        Для интегрирования:
-          1. Записывается исходная функция.
-          2. Вычисляется неопределённый интеграл (с константой интегрирования).
-        """
         x = sp.symbols('x')
-        self.create_problem_description()
-        if self.task_type == "differentiation":
-            self.solution_steps.append(f"Шаг 1: Запишем функцию: f(x) = {sp.pretty(self.function)}.")
-            derivative = sp.diff(self.function, x)
-            self.solution_steps.append(f"Шаг 2: Вычисляем производную: f'(x) = {sp.pretty(derivative)}.")
-            self.final_answer = sp.pretty(derivative)
-        elif self.task_type == "integration":
-            self.solution_steps.append(f"Шаг 1: Запишем функцию: f(x) = {sp.pretty(self.function)}.")
-            integral = sp.integrate(self.function, x)
-            self.solution_steps.append(f"Шаг 2: Вычисляем неопределённый интеграл: ∫f(x)dx = {sp.pretty(integral)} + C.")
-            self.final_answer = sp.pretty(integral) + " + C"
+        self.description = self._create_problem_description()
+        function_pretty = sp.pretty(self.function)
+        step1 = PROMPT_TEMPLATES["calculus"]["step1"][self.language].format(function_pretty=function_pretty)
+        if self.task_type=="differentiation":
+            result_expr = sp.diff(self.function, x)
+            step2 = PROMPT_TEMPLATES["calculus"]["step2"][self.language].format(task_type="производную", result=sp.pretty(result_expr))
+            self.final_answer = sp.pretty(result_expr)
+        elif self.task_type=="integration":
+            result_expr = sp.integrate(self.function, x)
+            step2 = PROMPT_TEMPLATES["calculus"]["step2"][self.language].format(task_type="неопределённый интеграл", result=sp.pretty(result_expr)+" + C")
+            self.final_answer = sp.pretty(result_expr)+" + C"
         else:
-            self.solution_steps.append("Неизвестный тип задачи.")
+            step2 = "Неизвестный тип задачи."
             self.final_answer = "Нет решения"
+        self.solution_steps.extend([step1, step2])
 
-    def generate_prompt(self):
-        """
-        Формирует промт с постановкой задачи.
-        """
-        return f"Задача: {self.problem}\n Пожалуйста, решите задачу пошагово."
-
-    def get_result(self):
-        """
-        Возвращает словарь с информацией:
-          - постановка задачи,
-          - промт,
-          - пошаговое решение,
-          - итоговый ответ.
-        Если задача ещё не решена, вызывается метод solve().
-        """
-        if not self.solution_steps or self.final_answer is None:
-            self.solve()
-        return {
-            "problem": self.problem,
-            "prompt": self.generate_prompt(),
-            "solution_steps": self.solution_steps,
-            "final_answer": self.final_answer
-        }
+    def get_task_type(self):
+        return "calculus"
 
     @classmethod
-    def generate_random_task(cls, task_type="differentiation", degree=None):
-        """
-        Генерирует случайную задачу.
-        Если степень не задана, выбирается случайная степень от 1 до 3.
-        task_type может быть "differentiation" или "integration".
-        """
+    def generate_random_task(cls, task_type="differentiation", degree=None, language: str = "ru"):
         if degree is None:
-            degree = random.randint(1, 3)
-        task = cls(task_type=task_type, degree=degree)
+            degree = random.randint(1,3)
+        task = cls(task_type=task_type, degree=degree, language=language)
         task.solve()
         return task

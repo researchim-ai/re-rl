@@ -1,2 +1,4 @@
 sympy>=1.9
 networkx>=2.6
+numpy
+datasets

@@ -1,5 +1,6 @@
 import random
 import sympy as sp
+import numpy as np
 
 class MathTask:
     """
@@ -66,6 +67,7 @@ class MathTask:
             a, b, c = self.coeffs
             left = self._format_term(a, "x", first=True) + self._format_term(b)
             return f"Решите линейное уравнение: {left} = {c}"
+        
         elif self.equation_type == "quadratic":
             # Ожидаются коэффициенты a, b, c для уравнения a*x² + b*x + c = 0.
             a, b, c = self.coeffs
@@ -100,6 +102,23 @@ class MathTask:
             left = f"{sign_a}{a_str}log({b}*x)"
             left += self._format_term(c)
             return f"Решите логарифмическое уравнение: {left} = {d}"
+        elif self.equation_type == "system_linear":
+            # Коэффициенты хранятся как список уравнений: [[a11, a12, ..., b1], ...]
+            matrix = np.array(self.coeffs)
+            n = matrix.shape[0]
+            variables = [f"x{i+1}" for i in range(n)]
+            
+            equations = []
+            for row in matrix:
+                terms = []
+                for i in range(n):
+                    coeff = row[i]
+                    var = variables[i]
+                    terms.append(self._format_term(coeff, var, first=(i==0)))
+                eq = " + ".join(terms) + f" = {row[-1]}"
+                equations.append(eq)
+            
+            return "Решите систему уравнений:\n" + "\n".join(equations)        
         else:
             raise ValueError("Неподдерживаемый тип уравнения.")
 
@@ -138,6 +157,38 @@ class MathTask:
         solution = sp.solve(equation, x)
         self.solution_steps.append(f"Шаг 3: Делим обе части на {a}: x = {right_side} / {a} = {solution[0]}.")
         self.final_answer = str(solution[0])
+
+    def _solve_system_linear(self):
+        matrix = np.array(self.coeffs, dtype=float)
+        A = matrix[:, :-1]  # Матрица коэффициентов
+        B = matrix[:, -1]   # Свободные члены
+        n = A.shape[0]
+        
+        # Проверяем квадратность матрицы
+        if A.shape[0] != A.shape[1]:
+            raise ValueError("Матрица коэффициентов должна быть квадратной")
+        
+        # Вычисляем главный определитель
+        det_A = np.linalg.det(A)
+        self.solution_steps.append(f"Шаг 1: Вычисляем главный определитель системы: det(A) = {det_A:.2f}")
+        
+        if abs(det_A) < 1e-6:
+            self.solution_steps.append("Система либо несовместна, либо имеет бесконечно много решений")
+            self.final_answer = "Нет единственного решения"
+            return
+        
+        # Применяем метод Крамера
+        X = []
+        for i in range(n):
+            A_i = A.copy()
+            A_i[:, i] = B
+            det_Ai = np.linalg.det(A_i)
+            x_i = det_Ai / det_A
+            X.append(x_i)
+            self.solution_steps.append(f"Шаг {i+2}: Заменяем {i+1}-й столбец и находим det(A_{i+1}) = {det_Ai:.2f}")
+            self.solution_steps.append(f"x{i+1} = det(A_{i+1}) / det(A) = {x_i:.2f}")
+        
+        self.final_answer = ", ".join([f"x{i+1} = {x:.2f}" for i, x in enumerate(X)])
 
     def _solve_quadratic(self):
         # Решаем квадратное уравнение: a*x² + b*x + c = 0.
@@ -216,7 +267,7 @@ class MathTask:
         }
 
     @classmethod
-    def generate_random_task(cls, only_valid: bool = False, max_attempts: int = 10):
+    def generate_random_task(cls, only_valid: bool = False, max_attempts: int = 10, system_size: int = None):
         """
         Генерирует случайную задачу.
         Если only_valid=True, повторяет генерацию до тех пор, пока не будет получена задача,
@@ -232,6 +283,15 @@ class MathTask:
                 b = random.randint(-10, 10)
                 c = random.randint(-10, 10)
                 task = cls("linear", a, b, c)
+            if eq_type == "system_linear":
+                size = system_size or random.randint(2, 4)
+                # Генерируем невырожденную матрицу
+                while True:
+                    matrix = np.random.randint(-10, 10, size=(size, size+1))
+                    A = matrix[:, :-1]
+                    if np.linalg.det(A) != 0:
+                        break
+                task = cls("system_linear", matrix.tolist())                
             elif eq_type == "quadratic":
                 a = random.choice([i for i in range(-10, 11) if i != 0])
                 b = random.randint(-10, 10)
