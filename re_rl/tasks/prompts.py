@@ -627,7 +627,147 @@ PROMPT_TEMPLATES = {
             "Mountains can move from place to place like clouds.",
             "The Earth does not have an atmosphere, and air is an illusion."
         ]
-            }
         }
-}
+    },
+"knights_knaves": {
+        # Синонимы ролей, из которых мы случайно выбираем good_role / bad_role
+        "roles_synonyms": {
+            "ru": {
+                "good": ["рыцарь", "правдивый", "честный"],
+                "bad":  ["лжец", "обманщик", "лгун"]
+            },
+            "en": {
+                "good": ["knight", "truth teller", "honest one"],
+                "bad":  ["knave", "liar", "deceiver"]
+            }
+        },
 
+        "problem": {
+            "ru": (
+                "У нас есть три персонажа: {name1}, {name2}, {name3}. "
+                "Каждый из них может быть либо «{good_role}» (всегда говорит правду), либо «{bad_role}» (всегда лжет).\n"
+                "{name1} утверждает: \"{statement1}\"\n"
+                "{name2} утверждает: \"{statement2}\"\n"
+                "{name3} утверждает: \"{statement3}\"\n"
+                "Определите, кто из них {good_role}, а кто — {bad_role}."
+            ),
+            "en": (
+                "We have three characters: {name1}, {name2}, {name3}. "
+                "Each of them can be either \"{good_role}\" (always tells the truth) or \"{bad_role}\" (always lies).\n"
+                "{name1} says: \"{statement1}\"\n"
+                "{name2} says: \"{statement2}\"\n"
+                "{name3} says: \"{statement3}\"\n"
+                "Determine who is {good_role} and who is {bad_role}."
+            )
+        },
+
+        "scenario1": {
+            "statements": {
+                "ru": [
+                    "{name1} говорит, что {name2} — {bad_role}.",
+                    "{name2} говорит, что {name3} — {good_role}.",
+                    "{name3} говорит, что {name1} и {name2} принадлежат к разным группам."
+                ],
+                "en": [
+                    "{name1} says {name2} is a {bad_role}.",
+                    "{name2} says {name3} is a {good_role}.",
+                    "{name3} says {name1} and {name2} are of different types."
+                ]
+            },
+            "steps": {
+                "ru": [
+                    "Шаг 1: Предположим, что {name1} — {good_role}...",
+                    "Шаг 2: Тогда {name2} получается {bad_role}...",
+                    "Шаг 3: Проверяем утверждение {name2} о {name3}...",
+                    "Шаг 4: Согласуем это с утверждением {name3}...",
+                    "Шаг 5: Итог: {name1} — {bad_role}, {name2} и {name3} — {good_role}."
+                ],
+                "en": [
+                    "Step 1: Suppose {name1} is {good_role}...",
+                    "Step 2: Then {name2} must be {bad_role}...",
+                    "Step 3: Check {name2}'s statement about {name3}...",
+                    "Step 4: Reconcile it with {name3}'s statement...",
+                    "Step 5: Conclusion: {name1} is {bad_role}, while {name2} and {name3} are {good_role}."
+                ]
+            },
+            "final_answer": {
+                "ru": "{name1}: {bad_role}, {name2}: {good_role}, {name3}: {good_role}",
+                "en": "{name1}: {bad_role}, {name2}: {good_role}, {name3}: {good_role}"
+            },
+            # Список: [name1 -> bad, name2 -> good, name3 -> good]
+            "roles": ["bad", "good", "good"]
+        },
+
+        "scenario2": {
+            "statements": {
+                "ru": [
+                    "{name1} говорит, что {name3} — {bad_role}.",
+                    "{name2} говорит, что {name1} — {bad_role}.",
+                    "{name3} говорит, что {name2} — {good_role}."
+                ],
+                "en": [
+                    "{name1} says {name3} is a {bad_role}.",
+                    "{name2} says {name1} is a {bad_role}.",
+                    "{name3} says {name2} is a {good_role}."
+                ]
+            },
+            "steps": {
+                "ru": [
+                    "Шаг 1 (scenario2): Проверим, если {name1} — {good_role}...",
+                    "Шаг 2: Значит {name3} — {bad_role}, что влияет на...",
+                    "Шаг 3: Сопоставляем с утверждением {name2}...",
+                    "Шаг 4: Проверяем согласованность с {name3}...",
+                    "Шаг 5: Итог: {name1} — {good_role}, {name2} — {bad_role}, {name3} — {good_role}."
+                ],
+                "en": [
+                    "Step 1 (scenario2): Check if {name1} is {good_role}...",
+                    "Step 2: Then {name3} is {bad_role}, which affects...",
+                    "Step 3: Compare with {name2}'s statement...",
+                    "Step 4: Verify consistency with {name3}...",
+                    "Step 5: Conclusion: {name1} is {good_role}, {name2} is {bad_role}, {name3} is {good_role}."
+                ]
+            },
+            "final_answer": {
+                "ru": "{name1}: {good_role}, {name2}: {bad_role}, {name3}: {good_role}",
+                "en": "{name1}: {good_role}, {name2}: {bad_role}, {name3}: {good_role}"
+            },
+            "roles": ["good", "bad", "good"]
+        },
+
+        "scenario3": {
+            "statements": {
+                "ru": [
+                    "{name1} утверждает, что {name2} и {name3} оба {good_role}.",
+                    "{name2} утверждает, что {name1} не может быть {good_role}.",
+                    "{name3} утверждает, что {name2} лжёт."
+                ],
+                "en": [
+                    "{name1} claims that {name2} and {name3} are both {good_role}.",
+                    "{name2} claims that {name1} cannot be {good_role}.",
+                    "{name3} claims that {name2} is lying."
+                ]
+            },
+            "steps": {
+                "ru": [
+                    "Шаг 1 (scenario3): Предположим, {name1} — {good_role}...",
+                    "Шаг 2: Тогда {name2} и {name3} тоже {good_role}...",
+                    "Шаг 3: Утверждение {name2} нас приводит к...",
+                    "Шаг 4: Сравниваем с утверждением {name3}...",
+                    "Шаг 5: Итог: {name1} — {bad_role}, {name2} — {good_role}, {name3} — {bad_role}."
+                ],
+                "en": [
+                    "Step 1 (scenario3): Suppose {name1} is {good_role}...",
+                    "Step 2: Then {name2} and {name3} are also {good_role}...",
+                    "Step 3: {name2}'s statement leads to...",
+                    "Step 4: Compare with {name3}'s statement...",
+                    "Step 5: Conclusion: {name1} is {bad_role}, {name2} is {good_role}, {name3} is {bad_role}."
+                ]
+            },
+            "final_answer": {
+                "ru": "{name1}: {bad_role}, {name2}: {good_role}, {name3}: {bad_role}",
+                "en": "{name1}: {bad_role}, {name2}: {good_role}, {name3}: {bad_role}"
+            },
+            "roles": ["bad", "good", "bad"]
+        }
+    },
+}

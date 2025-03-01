@@ -10,6 +10,8 @@ from re_rl.tasks.logarithmic_task import LogarithmicTask
 from re_rl.tasks.calculus_task import CalculusTask
 from re_rl.tasks.graph_task import GraphTask
 from re_rl.tasks.analogical_task import AnalogicalTask
+from re_rl.tasks.analogical_task import AnalogicalTask
+from re_rl.tasks.knights_khaves_task import KnightsKnavesTask # <-- наш новый класс
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class MathTaskFactory:
@@ -73,5 +75,12 @@ class MathTaskFactory:
             ]
             desc = random.choice(descriptions)
             return AnalogicalTask(desc, language=language, detail_level=detail_level)
+        elif task_category == "knights_knaves":
+            # Создаём нашу задачу о рыцарях и лжецах
+            # detail_level - сколько шагов решения вывести
+            task = KnightsKnavesTask(language=language, detail_level=detail_level)
+            # only_valid можно игнорировать или обрабатывать, если логика нужна
+            # (KnightsKnavesTask всегда «валидна»)
+            return task
         else:
-            raise ValueError("Неподдерживаемая категория задачи.")
+            raise ValueError("Unsupported task category.")
