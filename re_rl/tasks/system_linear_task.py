@@ -2,18 +2,21 @@
 
 import numpy as np
 from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class SystemLinearTask(BaseMathTask):
     """
-    Класс для решения системы линейных уравнений методом Крамера.
+    Решает систему линейных уравнений методом Крамера.
     Коэффициенты задаются как список уравнений: [[a11, a12, ..., b1], ...].
+    detail_level определяет количество шагов решения.
     """
-    def __init__(self, matrix, language: str = "ru"):
+    def __init__(self, matrix, language: str = "ru", detail_level: int = 3):
         self.matrix = np.array(matrix, dtype=float)
-        description = self._create_problem_description()
-        super().__init__(description, language)
+        self.detail_level = detail_level
+        description = self._create_problem_description(language)
+        super().__init__(description, language, detail_level)
 
-    def _create_problem_description(self):
+    def _create_problem_description(self, language: str):
         n = self.matrix.shape[0]
         variables = [f"x{i+1}" for i in range(n)]
         equations = []
@@ -28,7 +31,11 @@ class SystemLinearTask(BaseMathTask):
                 terms.append(sign + term)
             eq = "".join(terms) + f" = {row[-1]}"
             equations.append(eq)
-        return "Решите систему уравнений:\n" + "\n".join(equations)
+        joined = "\n".join(equations)
+        if language.lower() == "ru":
+            return PROMPT_TEMPLATES["system_linear"]["problem"]["ru"].format(equations=joined)
+        else:
+            return PROMPT_TEMPLATES["system_linear"]["problem"]["en"].format(equations=joined)
 
     def solve(self):
         matrix = self.matrix
@@ -36,12 +43,20 @@ class SystemLinearTask(BaseMathTask):
         B = matrix[:, -1]
         n = A.shape[0]
         if A.shape[0] != A.shape[1]:
-            raise ValueError("Матрица коэффициентов должна быть квадратной")
+            error_str = PROMPT_TEMPLATES["default"]["error"]["en"].format(error="Матрица коэффициентов должна быть квадратной")
+            raise ValueError(error_str)
+        steps = []
         det_A = np.linalg.det(A)
-        self.solution_steps.append(f"Шаг 1: Вычисляем главный определитель системы: det(A) = {det_A:.2f}")
+        if self.detail_level >= 2:
+            if self.language == "ru":
+                steps.append(f"Шаг 1: Вычисляем главный определитель системы: det(A) = {det_A:.2f}")
+            else:
+                steps.append(f"Step 1: Compute det(A) = {det_A:.2f}")
         if abs(det_A) < 1e-6:
-            self.solution_steps.append("Система либо несовместна, либо имеет бесконечно много решений")
-            self.final_answer = "Нет единственного решения"
+            no_unique = PROMPT_TEMPLATES["system_linear"]["no_unique_solution"].get(self.language, PROMPT_TEMPLATES["system_linear"]["no_unique_solution"]["en"])
+            steps.append(no_unique)
+            self.solution_steps.extend(steps)
+            self.final_answer = no_unique
             return
         X = []
         for i in range(n):
@@ -50,9 +65,13 @@ class SystemLinearTask(BaseMathTask):
             det_Ai = np.linalg.det(A_i)
             x_i = det_Ai / det_A
             X.append(x_i)
-            self.solution_steps.append(f"Шаг {i+2}: Заменяем {i+1}-й столбец и находим det(A_{i+1}) = {det_Ai:.2f}")
-            self.solution_steps.append(f"x{i+1} = det(A_{i+1}) / det(A) = {x_i:.2f}")
+            if self.detail_level >= 3:
+                step_num = i*2 + 2
+                message1 = PROMPT_TEMPLATES["system_linear"]["step"].get(self.language, PROMPT_TEMPLATES["system_linear"]["step"]["en"]).format(step_num=step_num, message=f"Заменяем {i+1}-й столбец и вычисляем det(A_{i+1}) = {det_Ai:.2f}")
+                message2 = PROMPT_TEMPLATES["system_linear"]["step"].get(self.language, PROMPT_TEMPLATES["system_linear"]["step"]["en"]).format(step_num=step_num+1, message=f"x{i+1} = det(A_{i+1}) / det(A) = {x_i:.2f}")
+                steps.extend([message1, message2])
+        self.solution_steps.extend(steps)
         self.final_answer = ", ".join([f"x{i+1} = {x:.2f}" for i, x in enumerate(X)])
 
     def get_task_type(self):
-        return "math"
+        return "system_linear"

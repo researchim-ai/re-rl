@@ -5,7 +5,6 @@ from re_rl.tasks.prompts import PROMPT_TEMPLATES
 class BaseTask:
     """
     Базовый класс для текстовых задач.
-    Определяет общий интерфейс для постановки задачи, генерации промта и получения решения.
     """
     def __init__(self, description: str):
         self.description = description
@@ -13,10 +12,13 @@ class BaseTask:
         self.final_answer = None
 
     def generate_prompt(self) -> str:
-        return f"Задача: {self.description}\nПожалуйста, решите задачу пошагово."
+        default = PROMPT_TEMPLATES["default"]["prompt"]
+        lang = getattr(self, "language", "en").lower()
+        prompt_template = default.get(lang, default["en"])
+        return prompt_template.format(problem=self.description)
 
     def solve(self):
-        raise NotImplementedError("Метод solve должен быть реализован в подклассах.")
+        raise NotImplementedError("Метод solve() должен быть реализован в подклассах.")
 
     def get_result(self) -> dict:
         if not self.solution_steps or self.final_answer is None:
@@ -28,22 +30,19 @@ class BaseTask:
             "final_answer": self.final_answer
         }
 
-
 class BaseMathTask(BaseTask):
     """
-    Базовый класс для математических задач с поддержкой многоязычных промтов и LaTeX-обёртки.
-    Здесь метод generate_prompt переопределён так, чтобы в зависимости от языка
-    добавлять префикс «Задача: » (ru) или «Task: » (en) к описанию задачи.
+    Базовый класс для математических задач с поддержкой многоязычности и настраиваемой детализацией.
     """
-    def __init__(self, description: str, language: str = "ru"):
+    def __init__(self, description: str, language: str = "ru", detail_level: int = 3):
         super().__init__(description)
         self.language = language.lower()
+        self.detail_level = detail_level
 
     def generate_prompt(self) -> str:
-        if self.language == "ru":
-            return "Задача: " + self.description
-        else:
-            return "Task: " + self.description
+        default = PROMPT_TEMPLATES["default"]["prompt"]
+        prompt_template = default.get(self.language, default["en"])
+        return prompt_template.format(problem=self.description)
 
     def generate_latex_solution(self) -> str:
         import sympy as sp
