@@ -11,7 +11,7 @@ from re_rl.tasks.calculus_task import CalculusTask
 from re_rl.tasks.graph_task import GraphTask
 from re_rl.tasks.analogical_task import AnalogicalTask
 from re_rl.tasks.analogical_task import AnalogicalTask
-from re_rl.tasks.knights_khaves_task import KnightsKnavesTask
+from re_rl.tasks.knights_knaves_task import KnightsKnavesTask
 from re_rl.tasks.futoshiki_task import FutoshikiTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
