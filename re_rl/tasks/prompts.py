@@ -770,4 +770,45 @@ PROMPT_TEMPLATES = {
             "roles": ["bad", "good", "bad"]
         }
     },
+    "futoshiki": {
+        "problem": {
+            "ru": (
+                "Задача Futoshiki на поле {size}×{size}. "
+                "В каждой строке и каждом столбце нужно расставить числа от 1 до {size} без повторений. "
+                "Также даны неравенства между некоторыми клетками (формат (r1,c1) < (r2,c2)).\n"
+                "Нужно заполнить таблицу с учётом всех условий:\n"
+                "{inequalities}"
+            ),
+            "en": (
+                "Futoshiki puzzle on a {size}×{size} grid. "
+                "Each row and column must contain the numbers 1..{size} with no repeats. "
+                "Additionally, some pairs of cells have inequalities (format (r1,c1) < (r2,c2)).\n"
+                "Fill the grid respecting all constraints:\n"
+                "{inequalities}"
+            )
+        },
+
+        "step_explanations": {
+            # Можно добавить несколько шаблонов, которые мы будем использовать для имитации chain-of-thought
+            "ru": [
+                "Шаг 1: Проверяем ограничение в строке {row}. Некоторые числа исключаются.",
+                "Шаг 2: Учитывая неравенство ({r1},{c1}) < ({r2},{c2}), сужаем диапазон значений.",
+                "Шаг 3: Ищем коллизию в столбце {col}, убираем повторения.",
+                "Шаг 4: Применяем правило уникальности в строке {row}.",
+                "Шаг 5: Уточняем значения, основываясь на предыдущих шагах."
+            ],
+            "en": [
+                "Step 1: Check row {row} constraints. Some numbers are eliminated.",
+                "Step 2: Considering inequality ({r1},{c1}) < ({r2},{c2}), reduce possible values.",
+                "Step 3: Look for collision in column {col}, remove duplicates.",
+                "Step 4: Enforce uniqueness in row {row}.",
+                "Step 5: Refine values based on prior steps."
+            ]
+        },
+
+        "final_answer": {
+            "ru": "Итоговое решение Futoshiki:\n{grid_repr}",
+            "en": "Final Futoshiki solution:\n{grid_repr}"
+        }
+    },    
 }

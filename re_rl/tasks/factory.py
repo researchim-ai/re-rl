@@ -11,7 +11,8 @@ from re_rl.tasks.calculus_task import CalculusTask
 from re_rl.tasks.graph_task import GraphTask
 from re_rl.tasks.analogical_task import AnalogicalTask
 from re_rl.tasks.analogical_task import AnalogicalTask
-from re_rl.tasks.knights_khaves_task import KnightsKnavesTask # <-- наш новый класс
+from re_rl.tasks.knights_khaves_task import KnightsKnavesTask
+from re_rl.tasks.futoshiki_task import FutoshikiTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class MathTaskFactory:
@@ -60,7 +61,7 @@ class MathTaskFactory:
 
     @classmethod
     def generate_random_task(cls, only_valid: bool = False, language: str = "ru", detail_level: int = 3):
-        task_category = random.choice(["math", "graph", "calculus", "analogical"])
+        task_category = random.choice(["math", "graph", "calculus", "analogical", "futoshiki"])
         if task_category == "math":
             return cls.generate_random_math_task(only_valid=only_valid, language=language, detail_level=detail_level)
         elif task_category == "graph":
@@ -82,5 +83,7 @@ class MathTaskFactory:
             # only_valid можно игнорировать или обрабатывать, если логика нужна
             # (KnightsKnavesTask всегда «валидна»)
             return task
+        elif task_category == "futoshiki":
+            return FutoshikiTask(language=language, detail_level=detail_level)
         else:
             raise ValueError("Unsupported task category.")
