@@ -811,4 +811,62 @@ PROMPT_TEMPLATES = {
             "en": "Final Futoshiki solution:\n{grid_repr}"
         }
     },    
+    "urn_probability": {
+        "synonyms": {
+            "ru": {
+                "containers": ["коробка", "мешок", "ящик", "контейнер"],
+                "items": ["шар", "камушек", "предмет"],
+                "colors": ["красный", "синий", "зелёный", "белый", "чёрный"]
+            },
+            "en": {
+                "containers": ["box", "bag", "container", "bin"],
+                "items": ["ball", "marble", "object", "token"],
+                "colors": ["red", "blue", "green", "white", "black"]
+            }
+        },
+        "problem": {
+            "ru": (
+                "У нас есть {count_containers} {container_syn}. В каждом {container_syn} лежат {item_syn} разных цветов:\n"
+                "{details}\n"
+                "Выбираем один {container_syn} случайно (равновероятно), затем извлекаем {draws} {item_syn_2} (без возвращения). "
+                "Вопрос: {question}"
+            ),
+            "en": (
+                "We have {count_containers} {container_syn}. Each {container_syn} contains {item_syn} of different colors:\n"
+                "{details}\n"
+                "We pick one {container_syn} at random (equal probability) and then draw {draws} {item_syn_2} (without replacement). "
+                "Question: {question}"
+            )
+        },
+        "steps": {
+            "ru": [
+                "Шаг 1: Вероятность выбора каждого {container_syn} равна 1/{count_containers}.",
+                "Шаг 2: Для {container_syn} №{idx}, вычислим вероятность события с учётом количества {item_syn} каждого цвета.",
+                "Шаг 3: Суммируем взвешенные вероятности по всем {container_syn_2}.",
+                "Шаг 4: Упрощаем выражение и получаем итоговое значение."
+            ],
+            "en": [
+                "Step 1: The probability of choosing each {container_syn} is 1/{count_containers}.",
+                "Step 2: For {container_syn} #{idx}, compute the event probability based on the count of each color {item_syn}.",
+                "Step 3: Sum the weighted probabilities across all {container_syn_2}.",
+                "Step 4: Simplify the expression to get the final result."
+            ]
+        },
+        "final_answer": {
+            "ru": "Итоговая вероятность события: {prob_value}",
+            "en": "The final probability of the event is: {prob_value}"
+        },
+        "questions_pool": {
+            "ru": [
+                "все {draws} {item_syn} окажутся {color}",
+                "хотя бы один {item_syn} будет {color}",
+                "ровно {x} из {draws} {item_syn} будут {color}"
+            ],
+            "en": [
+                "all {draws} {item_syn} drawn are {color}",
+                "at least one {item_syn} is {color}",
+                "exactly {x} out of {draws} {item_syn} are {color}"
+            ]
+        }
+    },    
 }
