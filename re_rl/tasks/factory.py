@@ -15,6 +15,7 @@ from re_rl.tasks.contradiction_task import ContradictionTask
 from re_rl.tasks.graph_task import GraphTask
 from re_rl.tasks.futoshiki_task import FutoshikiTask
 from re_rl.tasks.urn_probability_task import UrnProbabilityTask
+from re_rl.tasks.text_stats_task import TextStatsTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -80,7 +81,8 @@ class MathTaskFactory:
             "contradiction",
             "knights_knaves",
             "futoshiki",
-            "urn_probability"
+            "urn_probability",
+            "text_stats"
         ]
         task_category = random.choice(categories)
 
@@ -115,6 +117,13 @@ class MathTaskFactory:
 
         elif task_category == "urn_probability":
             return UrnProbabilityTask(language=language)
-
+        elif task_category == "text_stats":
+            # Дополнительно, при желании, можно рандомить allow_overlapping
+            # или заданный текст, чтобы повысить вариативность
+            return TextStatsTask(
+                language=language, 
+                detail_level=detail_level, 
+                allow_overlapping=bool(random.getrandbits(1))
+            )
         else:
             raise ValueError("Unsupported task category.")

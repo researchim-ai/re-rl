@@ -869,4 +869,27 @@ PROMPT_TEMPLATES = {
             ]
         }
     },    
+    "text_stats": {
+        "problem": {
+            "ru": "Определите, сколько раз подстрока «{substring}» встречается в тексте:\n{text}",
+            "en": "Determine how many times the substring \"{substring}\" appears in the following text:\n{text}"
+        },
+        "steps": {
+            "ru": [
+                "Шаг 1: Перебираем все вхождения в тексте.",
+                "Шаг 2: Считаем, сколько раз встречается подстрока «{substring}».",
+                "Шаг 3: Проверяем граничные случаи, например, пересекающиеся вхождения."
+            ],
+            "en": [
+                "Step 1: Iterate over all possible occurrences in the text.",
+                "Step 2: Count how many times the substring \"{substring}\" appears.",
+                "Step 3: Consider edge cases, e.g. overlapping occurrences."
+            ]
+        },
+        "final_answer": {
+            "ru": "Итоговый ответ: количество вхождений подстроки «{substring}»: {count_value}",
+            "en": "Final answer: the number of occurrences of the substring \"{substring}\": {count_value}"
+        }
+    },
+
 }
