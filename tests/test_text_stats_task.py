@@ -1,71 +1,59 @@
-# tests/test_text_stats_task.py
+# tests/test_text_stats_generation.py
 
 import unittest
 from re_rl.tasks.text_stats_task import TextStatsTask
 
-class TestTextStatsTask(unittest.TestCase):
+class TestTextStatsGeneration(unittest.TestCase):
 
-    def test_simple_count(self):
+    def test_words_mode_ru(self):
+        task = TextStatsTask(language="ru", text_gen_mode="words", detail_level=2)
+        result = task.get_result()
+        # Проверяем, что сгенерированный текст НЕ состоит из сплошных букв (скорее из слов, разделённых пробелами)
+        self.assertIn(" ", task.text, "Текст в режиме words обычно содержит пробелы между словами")
+        self.assertTrue(len(result["solution_steps"]) > 0)
+        self.assertIn("Итоговый ответ:", result["final_answer"])
+
+    def test_letters_mode_en(self):
+        task = TextStatsTask(language="en", text_gen_mode="letters", detail_level=3)
+        result = task.get_result()
+        # В режиме letters текст - одна непрерывная строка случайных букв/цифр
+        self.assertNotIn(" ", task.text, "В letters mode обычно нет пробелов (или крайне мало)")
+        self.assertIn("Final answer:", result["final_answer"])
+
+    def test_mixed_mode(self):
+        task = TextStatsTask(language="en", text_gen_mode="mixed", mix_ratio=0.3, detail_level=1)
+        result = task.get_result()
+        # Ожидаем, что часть токенов будут «словами» из vocab, часть - рандомными буквами
+        # Простейшая проверка: текст содержит хотя бы один пробел (значит есть несколько chunk'ов)
+        self.assertIn(" ", task.text)
+
+    def test_substring_count_overlapping(self):
+        # вручную зададим text и substring, чтобы проверить количество пересечений
+        text = "aaaaa"
+        substring = "aa"
         task = TextStatsTask(
-            language="ru", 
-            detail_level=3, 
-            text="абракадабра", 
-            substring="ра",
+            language="ru",
+            text=text,
+            substring=substring,
+            allow_overlapping=True
+        )
+        result = task.get_result()
+        # "aaaaa" и "aa" => индексы: 0..1, 1..2, 2..3, 3..4 => 4 вхождения
+        self.assertIn("4", result["final_answer"])
+
+    def test_substring_count_no_overlap(self):
+        text = "aaaaa"
+        substring = "aa"
+        task = TextStatsTask(
+            language="ru",
+            text=text,
+            substring=substring,
             allow_overlapping=False
         )
         result = task.get_result()
-        
-        # Проверяем, что в описании задачи есть нужные фразы
-        self.assertIn("абракадабра", result["problem"])
-        self.assertIn("ра", result["problem"])
-        
-        # Проверяем решение
-        # в слове "абракадабра" подстрока "ра" встречается 2 раза (без пересечений):
-        # "абРАкадабРА"
-        # Сплит показывает: аб -> (ра) -> кадаб -> (ра)
-        
-        self.assertIn("Шаг", result["solution_steps"][0])
-        self.assertIn("итоговый ответ", result["final_answer"].lower())  # На всякий случай
-        
-        # Убедимся, что кол-во совпадений действительно 2.
+        # без пересечений: "aaaaa" -> "aa" + "aa" + "a" => 2 вхождения
         self.assertIn("2", result["final_answer"])
 
-    def test_overlapping_count(self):
-        # Проверим, что при allow_overlapping=True считаются пересечения
-        task = TextStatsTask(
-            language="ru",
-            detail_level=3,
-            text="aaaa",
-            substring="aa",
-            allow_overlapping=True
-        )
-        result = task.get_result()
-        
-        # Для "aaaa" + "aa" при разрешённых пересечениях получаем 3 вхождения:
-        # индексы вхождений: (0..1), (1..2), (2..3)
-        self.assertIn("3", result["final_answer"])
 
-    def test_english(self):
-        # проверка на английском
-        task = TextStatsTask(
-            language="en",
-            detail_level=2,
-            text="banana bandana",
-            substring="ana",
-            allow_overlapping=True
-        )
-        result = task.get_result()
-        self.assertIn("banana bandana", result["problem"])
-        # Подстрока 'ana' в "banana bandana" с пересечениями 
-        # banana => b(ana)na => 1й
-        # затем ana внутри n(ana) => 2й
-        # bandana => b(ana) => 3й
-        # d(ana) => 4й
-        # Итого 4. 
-        # (В зависимости от того, считаем ли мы 'banana bandana' за цельную строку 
-        #  и как Python ищет find(..., start), но да, проверим что 4 присутствует.)
-        self.assertIn("3", result["final_answer"])
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -1,4 +1,5 @@
 # re_rl/tasks/text_stats_task.py
+
 import random
 from re_rl.tasks.base_task import BaseTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
@@ -7,96 +8,126 @@ class TextStatsTask(BaseTask):
     """
     Задача: подсчитать количество вхождений некоторой подстроки в случайном тексте.
     
-    Можно расширять и усложнять: например, считать отдельные буквы или пересекающиеся подстроки, 
-    генерировать случайные тексты и т.д.
+    :param language: 'ru' или 'en'.
+    :param detail_level: сколько шагов показывать в chain-of-thought.
+    :param text: если None, генерируем случайный текст.
+    :param substring: если None, выберем случайный фрагмент из text.
+    :param allow_overlapping: учитывать ли пересечение вхождений.
+    :param text_gen_mode: 'words' | 'letters' | 'mixed'
+        - 'words': берем слова из PROMPT_TEMPLATES["text_stats"]["vocab"][lang]
+        - 'letters': берем случайные символы из PROMPT_TEMPLATES["text_stats"]["alphabet"][lang]
+        - 'mixed': часть слов, часть символов
+    :param mix_ratio: (float) при text_gen_mode='mixed' указывает,
+                      какую долю вставлять из слов (например, 0.5 => 50% слов, 50% случайных букв)
     """
-    def __init__(self, 
-                 language: str = "ru", 
+
+    def __init__(self,
+                 language: str = "ru",
                  detail_level: int = 3,
                  text: str = None,
                  substring: str = None,
-                 allow_overlapping: bool = False):
-        """
-        :param language: 'ru' или 'en'.
-        :param detail_level: сколько шагов показывать в chain-of-thought.
-        :param text: если None, сгенерируем случайный текст.
-        :param substring: если None, выберем случайную подстроку (1..3 символа).
-        :param allow_overlapping: учитывать ли пересечение вхождений, 
-               напр. в строке 'aaaa' подстрока 'aa' встречается 3 раза, если считать пересечения.
-        """
+                 allow_overlapping: bool = False,
+                 text_gen_mode: str = "words",
+                 mix_ratio: float = 0.5):
         self.language = language.lower()
         self.detail_level = detail_level
         self.allow_overlapping = allow_overlapping
+        self.text_gen_mode = text_gen_mode
+        self.mix_ratio = mix_ratio
         
-        # Если текст не задан — генерируем простой случайный текст
         if text is None:
             text = self._generate_random_text()
         self.text = text
         
-        # Если подстрока не задана — выберем случайно 1..3 символа из текста или алфавита
         if substring is None:
-            substring = self._choose_random_substring(text)
-        self.substring = substring
+            self.substring = self._choose_random_substring(self.text)
+        else:
+            self.substring = substring
         
         # Формируем описание задачи (problem)
         problem_templ = PROMPT_TEMPLATES["text_stats"]["problem"].get(
-            self.language, 
+            self.language,
             PROMPT_TEMPLATES["text_stats"]["problem"]["en"]
         )
-        description = problem_templ.format(
+        desc = problem_templ.format(
             substring=self.substring,
             text=self.text
         )
         
-        super().__init__(description=description)
+        super().__init__(desc)
 
     def _generate_random_text(self) -> str:
-        # Можно сделать более сложную генерацию. Для примера — 
-        # возьмём набор букв, слов или коротких фраз.
-        words = [
-            "стул", "стол", "ресторан", "робот", "радар", 
-            "рано", "ар", "aaa", "bb", "zzz", "привет", "сфера"
-        ]
-        # Сформируем случайную строку длиной 5..15 слов
-        length = random.randint(5, 15)
-        chosen = random.choices(words, k=length)
-        text = " ".join(chosen)
-        return text
+        """Генерируем текст в зависимости от text_gen_mode."""
+        # Достаём из prompts
+        vocab_list = PROMPT_TEMPLATES["text_stats"]["vocab"].get(
+            self.language,
+            PROMPT_TEMPLATES["text_stats"]["vocab"]["en"]
+        )
+        alphabet_str = PROMPT_TEMPLATES["text_stats"]["alphabet"].get(
+            self.language,
+            PROMPT_TEMPLATES["text_stats"]["alphabet"]["en"]
+        )
+
+        length = random.randint(6, 15)  # количество «элементов» (слов или кусков)
+        chunks = []
+
+        if self.text_gen_mode == "words":
+            # Генерируем только «слова» из vocab_list
+            chunks = random.choices(vocab_list, k=length)
+            return " ".join(chunks)
+
+        elif self.text_gen_mode == "letters":
+            # Генерируем одну строку полностью из случайных букв/цифр
+            # (Можно разрезать на слова, но пусть будет как единый «текст».)
+            total_chars = random.randint(15, 50)
+            return "".join(random.choices(alphabet_str, k=total_chars))
+
+        else:
+            # mixed: часть слов, часть рандомных букв
+            # mix_ratio отвечает за долю слов, всё остальное — буквы.
+            # Например, если mix_ratio=0.7, ~70% chunks будут «словами».
+            for _ in range(length):
+                if random.random() < self.mix_ratio:
+                    # слово
+                    chunks.append(random.choice(vocab_list))
+                else:
+                    # случайная буквенная подстрока, длиной 2..6
+                    sub_len = random.randint(2, 6)
+                    rnd_sub = "".join(random.choices(alphabet_str, k=sub_len))
+                    chunks.append(rnd_sub)
+            # Склеим через пробел (или можно через рандомные пробелы и т.д.)
+            return " ".join(chunks)
 
     def _choose_random_substring(self, text: str) -> str:
-        # Либо берём кусок из самого текста, либо рандомно
-        if len(text) > 0:
-            # Возьмём 1..3 символа в случайном месте
-            start_idx = random.randint(0, max(0, len(text)-1))
-            max_sub_len = min(3, len(text) - start_idx)
-            sub_len = random.randint(1, max_sub_len)
-            return text[start_idx:start_idx+sub_len]
-        else:
+        """Выбираем случайный кусок из текста, размером 1..3 символа."""
+        if not text:
             return "a"
+        start_idx = random.randint(0, len(text) - 1)
+        max_sub_len = min(3, len(text) - start_idx)
+        sub_len = random.randint(1, max_sub_len)
+        return text[start_idx : start_idx + sub_len]
 
     def solve(self):
-        """
-        Считаем количество вхождений подстроки. 
-        Формируем фейковую цепочку рассуждений (solution_steps).
-        """
-        st_steps = PROMPT_TEMPLATES["text_stats"]["steps"].get(
-            self.language, 
+        steps_templates = PROMPT_TEMPLATES["text_stats"]["steps"].get(
+            self.language,
             PROMPT_TEMPLATES["text_stats"]["steps"]["en"]
         )
-        # detail_level = сколько шагов хотим реально вывести
-        steps_count = min(self.detail_level, len(st_steps))
-        # Выбираем steps_count шагов
+        steps_count = min(self.detail_level, len(steps_templates))
         self.solution_steps = []
+
         for i in range(steps_count):
-            step_str = st_steps[i].format(substring=self.substring)
+            step_str = steps_templates[i].format(
+                substring=self.substring,
+                allow_overlapping=self.allow_overlapping
+            )
             self.solution_steps.append(step_str)
-        
+
         # Подсчитаем вхождения
         if self.allow_overlapping:
             count_val = self._count_overlapping(self.text, self.substring)
         else:
             count_val = self.text.count(self.substring)
-        
+
         final_templ = PROMPT_TEMPLATES["text_stats"]["final_answer"].get(
             self.language,
             PROMPT_TEMPLATES["text_stats"]["final_answer"]["en"]
@@ -107,10 +138,6 @@ class TextStatsTask(BaseTask):
         )
 
     def _count_overlapping(self, text: str, sub: str) -> int:
-        """
-        Подсчитывает вхождения подстроки (с учётом пересечений).
-        Пример: 'aaaa'.count('aa') = 2, а с пересечением будет 3 ('aa'aa, a'aa'a, aa'aa').
-        """
         if not sub:
             return 0
         count = 0
@@ -120,8 +147,8 @@ class TextStatsTask(BaseTask):
             if idx == -1:
                 break
             count += 1
-            start = idx + 1  # сдвигаемся всего на 1
+            start = idx + 1
         return count
 
-    def get_task_type(self):
+    def get_task_type(self) -> str:
         return "text_stats"

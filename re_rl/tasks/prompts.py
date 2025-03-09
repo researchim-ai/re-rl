@@ -870,25 +870,41 @@ PROMPT_TEMPLATES = {
         }
     },    
     "text_stats": {
-        "problem": {
+       "problem": {
             "ru": "Определите, сколько раз подстрока «{substring}» встречается в тексте:\n{text}",
             "en": "Determine how many times the substring \"{substring}\" appears in the following text:\n{text}"
         },
         "steps": {
             "ru": [
-                "Шаг 1: Перебираем все вхождения в тексте.",
-                "Шаг 2: Считаем, сколько раз встречается подстрока «{substring}».",
-                "Шаг 3: Проверяем граничные случаи, например, пересекающиеся вхождения."
+                "Шаг 1: Перебираем все вхождения в тексте (с учётом {allow_overlapping}).",
+                "Шаг 2: Подсчитываем, сколько раз встречается подстрока «{substring}».",
+                "Шаг 3: Обрабатываем случай пересечения, если allow_overlapping=True."
             ],
             "en": [
-                "Step 1: Iterate over all possible occurrences in the text.",
+                "Step 1: Traverse the text for all occurrences (consider {allow_overlapping}).",
                 "Step 2: Count how many times the substring \"{substring}\" appears.",
-                "Step 3: Consider edge cases, e.g. overlapping occurrences."
+                "Step 3: Handle overlapping occurrences if allow_overlapping=True."
             ]
         },
         "final_answer": {
             "ru": "Итоговый ответ: количество вхождений подстроки «{substring}»: {count_value}",
             "en": "Final answer: the number of occurrences of the substring \"{substring}\": {count_value}"
+        },
+        # Словарь «слов» (как прежде) — можно расширить
+        "vocab": {
+            "ru": [
+                "стол", "стул", "магазин", "программирование", "мир",
+                "книга", "пес", "автомобиль", "улица", "abc", "zzz"
+            ],
+            "en": [
+                "chair", "table", "store", "programming", "world",
+                "book", "dog", "car", "street", "abc", "zzz"
+            ]
+        },
+        # Алфавит для случайной генерации
+        "alphabet": {
+            "ru": "абвгдеёжзийклмнопрстуфхцчшщъыьэюя0123456789",
+            "en": "abcdefghijklmnopqrstuvwxyz0123456789"
         }
     },
 
