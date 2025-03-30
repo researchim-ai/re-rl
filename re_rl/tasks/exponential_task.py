@@ -3,6 +3,7 @@
 import sympy as sp
 from re_rl.tasks.base_task import BaseMathTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from typing import Optional, Dict, Any
 
 class ExponentialTask(BaseMathTask):
     """
@@ -27,8 +28,8 @@ class ExponentialTask(BaseMathTask):
         left_side_statement = f"{self.a}*exp({self.b}*x) = {self.d} - {self.c}"
         steps.append(PROMPT_TEMPLATES["exponential"]["step2"][self.language].format(c=self.c, left_side_statement=left_side_statement))
         right_side = self.d - self.c
-        steps.append(PROMPT_TEMPLATES["exponential"]["step3"][self.language].format(a=self.a, b=self.b, right_side=right_side))
         ratio = right_side / self.a
+        steps.append(PROMPT_TEMPLATES["exponential"]["step3"][self.language].format(a=self.a, b=self.b, right_side=right_side, ratio=ratio))
         if ratio <= 0:
             error_msg = PROMPT_TEMPLATES["default"]["no_solution"].get(self.language, PROMPT_TEMPLATES["default"]["no_solution"]["en"])
             steps.append(error_msg)
@@ -46,3 +47,25 @@ class ExponentialTask(BaseMathTask):
 
     def get_task_type(self):
         return "exponential"
+
+    def get_result(self, detail_level: Optional[int] = None) -> Dict[str, Any]:
+        """
+        Возвращает результат решения с заданным уровнем детализации.
+        
+        Args:
+            detail_level: Уровень детализации решения. Если не указан, используется self.detail_level
+            
+        Returns:
+            Dict[str, Any]: Результат решения
+        """
+        if detail_level is None:
+            detail_level = self.detail_level
+            
+        result = super().get_result()
+        
+        # Решаем уравнение, если еще не решено
+        if not self.solution_steps:
+            self.solve()
+            
+        result["final_answer"] = self.final_answer
+        return result

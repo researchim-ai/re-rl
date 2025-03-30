@@ -1,10 +1,10 @@
 # re_rl/tasks/text_stats_task.py
 
 import random
-from re_rl.tasks.base_task import BaseTask
+from re_rl.tasks.base_task import BaseMathTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
-class TextStatsTask(BaseTask):
+class TextStatsTask(BaseMathTask):
     """
     Задача: подсчитать количество вхождений некоторой подстроки в случайном тексте.
     
@@ -54,7 +54,7 @@ class TextStatsTask(BaseTask):
             text=self.text
         )
         
-        super().__init__(desc)
+        super().__init__(desc, language=language, detail_level=detail_level)
 
     def _generate_random_text(self) -> str:
         """Генерируем текст в зависимости от text_gen_mode."""

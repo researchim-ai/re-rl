@@ -60,7 +60,10 @@ class DatasetGenerator:
         task_class = self.task_types[task_type]
         
         # Генерация случайных параметров для задачи
-        params = self._generate_task_params(task_type)
+        try:
+            params = self._generate_task_params(task_type)
+        except NotImplementedError:
+            raise NotImplementedError(f"Генерация параметров для {task_type} не реализована")
         
         # Создание и решение задачи
         task = task_class(**params, language=language, detail_level=detail_level)
@@ -78,6 +81,9 @@ class DatasetGenerator:
         """
         Генерирует случайные параметры для конкретного типа задачи.
         """
+        if task_type not in self.task_types:
+            raise NotImplementedError(f"Тип задачи {task_type} не реализован")
+            
         if task_type == "linear":
             # Генерируем параметры так, чтобы уравнение имело решение
             a = random.randint(-10, 10)

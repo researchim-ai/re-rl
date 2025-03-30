@@ -19,8 +19,8 @@ class TestContradictionTask(unittest.TestCase):
         self.assertIn("solution_steps", result, "Результат должен содержать поле 'solution_steps'")
         self.assertIn("final_answer", result, "Результат должен содержать поле 'final_answer'")
     
-        # Проверяем, что в постановке задачи действительно есть фраза "Найдите ложное утверждение" (из prompts.py)
-        self.assertIn("Найдите ложное утверждение", result["problem"],
+        # Проверяем, что в постановке задачи действительно есть фраза "Среди следующих утверждений"
+        self.assertIn("Среди следующих утверждений", result["problem"],
                       "Постановка задачи (problem) должна содержать базовый текст на русском")
     
         # Проверяем, что solution_steps не пуст
@@ -51,8 +51,8 @@ class TestContradictionTask(unittest.TestCase):
         self.assertIn("solution_steps", result, "Результат должен содержать поле 'solution_steps'")
         self.assertIn("final_answer", result, "Результат должен содержать поле 'final_answer'")
     
-        # Проверяем, что в постановке задачи действительно есть фраза "Find the false statement" (из prompts.py)
-        self.assertIn("Find the false statement", result["problem"],
+        # Проверяем, что в постановке задачи действительно есть фраза "Among the following statements"
+        self.assertIn("Among the following statements", result["problem"],
                       "Постановка задачи (problem) должна содержать базовый текст на английском")
     
         # Проверяем, что solution_steps не пуст

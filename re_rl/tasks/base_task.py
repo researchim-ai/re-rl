@@ -21,14 +21,25 @@ class BaseTask:
         raise NotImplementedError("Метод solve() должен быть реализован в подклассах.")
 
     def get_result(self) -> dict:
+        """
+        Возвращает полный результат решения задачи, включая шаги, объяснения и валидации.
+        """
         if not self.solution_steps or self.final_answer is None:
             self.solve()
-        return {
+        
+        result = {
             "problem": self.description,
             "prompt": self.generate_prompt(),
             "solution_steps": self.solution_steps,
             "final_answer": self.final_answer
         }
+        
+        if self.explanation_steps:
+            result["explanations"] = self.explanation_steps
+        if self.validation_steps:
+            result["validations"] = self.validation_steps
+            
+        return result
 
 class BaseMathTask(BaseTask):
     """

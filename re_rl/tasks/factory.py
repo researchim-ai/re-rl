@@ -90,11 +90,11 @@ class MathTaskFactory:
             return cls.generate_random_math_task(only_valid=only_valid, language=language, detail_level=detail_level)
 
         elif task_category == "graph":
-            return GraphTask.generate_random_task(only_valid=only_valid, language=language, detail_level=detail_level)
+            task = GraphTask.generate_random_task(only_valid=only_valid, language=language, detail_level=detail_level)
 
         elif task_category == "calculus":
             task_type = random.choice(["differentiation", "integration"])
-            return CalculusTask.generate_random_task(task_type=task_type, language=language, detail_level=detail_level)
+            task = CalculusTask.generate_random_task(task_type=task_type, language=language, detail_level=detail_level)
 
         elif task_category == "analogical":
             descriptions = [
@@ -102,28 +102,38 @@ class MathTaskFactory:
                 "City planners often use the analogy of a living organism to understand urban development. How might this analogy be used to address traffic congestion in a growing city?"
             ]
             desc = random.choice(descriptions)
-            return AnalogicalTask(desc, language=language, detail_level=detail_level)
+            task = AnalogicalTask(desc, language=language, detail_level=detail_level)
 
         elif task_category == "contradiction":
             # Число утверждений можно выбрать случайно
             num_statements = random.randint(5, 12)
-            return ContradictionTask(language=language, num_statements=num_statements)
+            task = ContradictionTask(language=language, num_statements=num_statements)
 
         elif task_category == "knights_knaves":
-            return KnightsKnavesTask(language=language, detail_level=detail_level)
+            task = KnightsKnavesTask(language=language, detail_level=detail_level)
 
         elif task_category == "futoshiki":
-            return FutoshikiTask(language=language, detail_level=detail_level)
+            task = FutoshikiTask(language=language, detail_level=detail_level)
 
         elif task_category == "urn_probability":
-            return UrnProbabilityTask(language=language)
+            task = UrnProbabilityTask(language=language)
         elif task_category == "text_stats":
             # Дополнительно, при желании, можно рандомить allow_overlapping
             # или заданный текст, чтобы повысить вариативность
-            return TextStatsTask(
+            task = TextStatsTask(
                 language=language, 
                 detail_level=detail_level, 
                 allow_overlapping=bool(random.getrandbits(1))
             )
         else:
             raise ValueError("Unsupported task category.")
+
+        if not only_valid:
+            return task
+
+        no_solution_str = PROMPT_TEMPLATES["default"]["no_solution"].get(language, PROMPT_TEMPLATES["default"]["no_solution"]["en"])
+        result = task.get_result()
+        if result["final_answer"] != no_solution_str:
+            return task
+        else:
+            return cls.generate_random_task(only_valid=only_valid, language=language, detail_level=detail_level)

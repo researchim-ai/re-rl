@@ -4,6 +4,7 @@ import random
 import sympy as sp
 from re_rl.tasks.base_task import BaseMathTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from typing import Optional, Dict, Any
 
 class CalculusTask(BaseMathTask):
     """
@@ -11,19 +12,20 @@ class CalculusTask(BaseMathTask):
     task_type: "differentiation" или "integration".
     detail_level контролирует степень детализации.
     """
-    def __init__(self, task_type="differentiation", degree=2, language: str = "ru", detail_level: int = 3):
+    def __init__(self, task_type="differentiation", degree=2, function=None, language: str = "ru", detail_level: int = 3):
         self.task_type = task_type.lower()
         self.degree = degree
-        self.function = None
+        self.function = function
         super().__init__("", language, detail_level)
 
     def generate_function(self):
-        x = sp.symbols('x')
-        coeffs = [random.randint(-5, 5) for _ in range(self.degree+1)]
-        while coeffs[-1] == 0:
-            coeffs[-1] = random.randint(-5, 5)
-        poly = sum(coeffs[i]*x**i for i in range(self.degree+1))
-        self.function = sp.simplify(poly)
+        if self.function is None:
+            x = sp.symbols('x')
+            coeffs = [random.randint(-5, 5) for _ in range(self.degree+1)]
+            while coeffs[-1] == 0:
+                coeffs[-1] = random.randint(-5, 5)
+            poly = sum(coeffs[i]*x**i for i in range(self.degree+1))
+            self.function = sp.simplify(poly)
 
     def _create_problem_description(self):
         self.generate_function()
@@ -72,3 +74,25 @@ class CalculusTask(BaseMathTask):
         task = cls(task_type=task_type, degree=degree, language=language, detail_level=detail_level)
         task.solve()
         return task
+
+    def get_result(self, detail_level: Optional[int] = None) -> Dict[str, Any]:
+        """
+        Возвращает результат решения с заданным уровнем детализации.
+        
+        Args:
+            detail_level: Уровень детализации решения. Если не указан, используется self.detail_level
+            
+        Returns:
+            Dict[str, Any]: Результат решения
+        """
+        if detail_level is None:
+            detail_level = self.detail_level
+            
+        result = super().get_result()
+        
+        # Решаем задачу, если еще не решена
+        if not self.solution_steps:
+            self.solve()
+            
+        result["final_answer"] = self.final_answer
+        return result

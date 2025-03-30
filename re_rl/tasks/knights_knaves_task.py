@@ -2,10 +2,11 @@
 
 import random
 import z3
-from re_rl.tasks.base_task import BaseTask
+from re_rl.tasks.base_task import BaseMathTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from typing import Optional, Dict, Any
 
-class KnightsKnavesTask(BaseTask):
+class KnightsKnavesTask(BaseMathTask):
     """
     Генерирует задачу Knights & Knaves с параметрами:
       - language: 'ru' или 'en'
@@ -41,7 +42,7 @@ class KnightsKnavesTask(BaseTask):
 
         # Формируем текст задачи (problem)
         description = self._create_problem_text()
-        super().__init__(description)
+        super().__init__(description, language, detail_level)
 
     def _compute_params_by_complexity(self, lvl: int):
         """
@@ -88,41 +89,32 @@ class KnightsKnavesTask(BaseTask):
 
     def _create_problem_text(self):
         # Генерируем имена персонажей
-        names = self._generate_names()
+        self.names = self._generate_names()
         
         # Определяем роли персонажей
-        roles = self._generate_roles()
+        self.roles = self._generate_roles()
         
         # Генерируем высказывания
-        statements = self._generate_statements(names, roles)
-        
-        # Получаем шаблоны для текущего языка
-        templates = PROMPT_TEMPLATES["knights_knaves"].get(self.language, PROMPT_TEMPLATES["knights_knaves"]["en"])
-        
-        # Определяем правильное согласование для числа персонажей
-        num_persons_text = self._number_to_text(self.num_persons, self.language)
-        plural = "" if self.num_persons == 1 else "ей" if self.language == "ru" else "s"
+        self.statements = self._generate_random_statements(self.num_statements)
         
         # Формируем текст задачи с расширенными инструкциями
-        problem_text = templates["intro"].format(
-            num_persons=num_persons_text,
-            plural=plural,
-            names=", ".join(names)
-        )
+        templates = PROMPT_TEMPLATES["knights_knaves"]
         
         # Добавляем инструкции по решению
-        problem_text += "\n\n" + templates["instructions"]
+        problem_text = templates["instructions"][self.language]
         
-        # Добавляем пример решения
-        problem_text += "\n\n" + templates["example"]
-        
-        # Добавляем высказывания персонажей
-        problem_text += "\n\n" + templates["statements"].format(
-            statements="\n".join(statements)
+        # Добавляем представление персонажей
+        plural = "ы" if self.num_persons > 1 else ""
+        problem_text += "\n\n" + templates["intro"][self.language].format(
+            names=", ".join(self.names),
+            plural=plural,
+            num_persons=self.num_persons
         )
         
-        # Добавляем заключительную часть
-        problem_text += "\n\n" + templates["conclusion"]
+        # Добавляем высказывания персонажей
+        problem_text += "\n\n" + templates["problem"][self.language].format(
+            statements="\n".join(stmt["text"] for stmt in self.statements)
+        )
         
         return problem_text
 
@@ -138,7 +130,7 @@ class KnightsKnavesTask(BaseTask):
           }
         """
         forms_dict = PROMPT_TEMPLATES["knights_knaves"]["forms"][self.language]
-        possible_forms = list(forms_dict.keys())  # [y_is_liar, y_is_honest, ...]
+        possible_forms = ["about_self", "about_other", "and", "or", "same", "different", "at_least_one", "exactly_one"]
 
         statements = []
         for _ in range(m):
@@ -149,16 +141,16 @@ class KnightsKnavesTask(BaseTask):
             all_others = [i for i in range(self.num_persons) if i != speaker]
             if not all_others:
                 # fallback (если всего 1 персонаж - хотя такого не бывает по логике complexity)
-                form_key = "y_is_liar"
+                form_key = "about_self"
                 y_idx = speaker
                 z_idx = None
             else:
                 y_idx = random.choice(all_others)
                 z_idx = None
                 # Если форма требует двух distinct, пробуем взять z
-                if form_key in ("y_and_z_both_honest", "y_and_z_both_liars", "y_eq_z", "y_neq_z"):
+                if form_key in ("and", "or", "same", "different"):
                     if len(all_others) < 2:
-                        form_key = "y_is_liar"
+                        form_key = "about_other"
                     else:
                         remain = [x for x in all_others if x != y_idx]
                         z_idx = random.choice(remain)
@@ -175,7 +167,7 @@ class KnightsKnavesTask(BaseTask):
 
     def _build_statement_text(self, form_key, speaker, y_idx, z_idx):
         """
-        Берём шаблон 'forms'[form_key], подставляем {nameY}, {nameZ} и оборачиваем в
+        Берём шаблон 'forms'[form_key], подставляем параметры и оборачиваем в
         "{nameSpeaker} says: ..." (en) или "{nameSpeaker} говорит: ..." (ru)
         """
         kn_forms = PROMPT_TEMPLATES["knights_knaves"]["forms"][self.language]
@@ -185,12 +177,25 @@ class KnightsKnavesTask(BaseTask):
         name_y = self.names[y_idx] if y_idx is not None else ""
         name_z = self.names[z_idx] if z_idx is not None else ""
 
-        core_text = form_template.format(nameY=name_y, nameZ=name_z)
+        if form_key == "about_self":
+            core_text = form_template.format(role="knight" if random.random() < 0.5 else "knave")
+        elif form_key == "about_other":
+            core_text = form_template.format(name=name_y, role="knight" if random.random() < 0.5 else "knave")
+        elif form_key == "and":
+            core_text = form_template.format(name=name_y, other_name=name_z, role="knight" if random.random() < 0.5 else "knave")
+        elif form_key == "or":
+            core_text = form_template.format(name=name_y, other_name=name_z, role="knight" if random.random() < 0.5 else "knave")
+        elif form_key == "same":
+            core_text = form_template.format(name=name_y, other_name=name_z)
+        elif form_key == "different":
+            core_text = form_template.format(name=name_y, other_name=name_z)
+        elif form_key == "at_least_one":
+            core_text = form_template.format(role="knight" if random.random() < 0.5 else "knave")
+        else:  # exactly_one
+            core_text = form_template.format(role="knight" if random.random() < 0.5 else "knave")
 
-        if self.language == "ru":
-            return f"{name_speaker} говорит: {core_text}"
-        else:
-            return f"{name_speaker} says: {core_text}"
+        statement_template = kn_forms["statement"]
+        return statement_template.format(name=name_speaker, text=core_text)
 
     def solve(self):
         steps = []
@@ -204,6 +209,8 @@ class KnightsKnavesTask(BaseTask):
         
         # Анализ каждого персонажа
         for i, name in enumerate(self.names):
+            if len(steps) >= self.detail_level:
+                break
             if self.language == "ru":
                 step = f"Анализ высказывания {name}:\n"
                 step += f"- {self.statements[i]}\n"
@@ -217,24 +224,26 @@ class KnightsKnavesTask(BaseTask):
             steps.append(step)
         
         # Анализ противоречий
-        contradictions = self._find_contradictions()
-        if contradictions:
-            if self.language == "ru":
-                step = "Найденные противоречия:\n"
-                for c in contradictions:
-                    step += f"- {c}\n"
-            else:
-                step = "Found contradictions:\n"
-                for c in contradictions:
-                    step += f"- {c}\n"
-            steps.append(step)
+        if len(steps) < self.detail_level:
+            contradictions = self._find_contradictions()
+            if contradictions:
+                if self.language == "ru":
+                    step = "Найденные противоречия:\n"
+                    for c in contradictions:
+                        step += f"- {c}\n"
+                else:
+                    step = "Found contradictions:\n"
+                    for c in contradictions:
+                        step += f"- {c}\n"
+                steps.append(step)
         
         # Финальный вывод
-        final_step = PROMPT_TEMPLATES["knights_knaves"]["final_step"].get(
-            self.language,
-            PROMPT_TEMPLATES["knights_knaves"]["final_step"]["en"]
-        )
-        steps.append(final_step)
+        if len(steps) < self.detail_level:
+            final_step = PROMPT_TEMPLATES["knights_knaves"]["final_step"].get(
+                self.language,
+                PROMPT_TEMPLATES["knights_knaves"]["final_step"]["en"]
+            )
+            steps.append(final_step)
         
         # Если нужно больше шагов, повторяем последний
         while len(steps) < self.detail_level:
@@ -279,15 +288,85 @@ class KnightsKnavesTask(BaseTask):
         # Здесь можно добавить более сложную логику проверки противоречий
         return False  # Заглушка
 
-    def get_result(self):
-        if not self.solution_steps or self.final_answer is None:
+    def get_result(self, detail_level: Optional[int] = None) -> Dict[str, Any]:
+        """
+        Возвращает результат решения с заданным уровнем детализации.
+        
+        Args:
+            detail_level: Уровень детализации решения. Если не указан, используется self.detail_level
+            
+        Returns:
+            Dict[str, Any]: Результат решения
+        """
+        if detail_level is None:
+            detail_level = self.detail_level
+            
+        result = super().get_result()
+        
+        # Решаем задачу, если еще не решена
+        if not self.solution_steps:
             self.solve()
-        return {
-            "problem": self.description,
-            "prompt": self.generate_prompt(),
-            "solution_steps": self.solution_steps,
-            "final_answer": self.final_answer
-        }
+            
+        result["final_answer"] = self.final_answer
+        return result
 
     def get_task_type(self):
         return "knights_knaves"
+
+    def _generate_names(self):
+        """
+        Генерирует список имен персонажей.
+        
+        Returns:
+            List[str]: Список имен
+        """
+        # Берём пул имён из prompts
+        all_names = PROMPT_TEMPLATES["knights_knaves"]["names_pool"][self.language]
+        random.shuffle(all_names)
+        return all_names[:self.num_persons]
+
+    def _generate_roles(self):
+        """
+        Генерирует роли персонажей (knight/knave).
+        
+        Returns:
+            List[str]: Список ролей
+        """
+        roles = []
+        for _ in range(self.num_persons):
+            roles.append("knight" if random.random() < 0.5 else "knave")
+        return roles
+
+    def _generate_statements(self, names, roles):
+        """
+        Генерирует высказывания персонажей.
+        
+        Args:
+            names: Список имен персонажей
+            roles: Список ролей персонажей
+            
+        Returns:
+            List[str]: Список высказываний
+        """
+        statements = []
+        for i in range(self.num_statements):
+            speaker = random.randrange(self.num_persons)
+            form_key = random.choice(list(PROMPT_TEMPLATES["knights_knaves"]["forms"][self.language].keys()))
+            
+            # Выбираем y (и z) - разные от speaker
+            all_others = [j for j in range(self.num_persons) if j != speaker]
+            y_idx = random.choice(all_others)
+            z_idx = None
+            
+            # Если форма требует двух distinct, пробуем взять z
+            if form_key in ("y_and_z_both_honest", "y_and_z_both_liars", "y_eq_z", "y_neq_z"):
+                if len(all_others) >= 2:
+                    remain = [j for j in all_others if j != y_idx]
+                    z_idx = random.choice(remain)
+                else:
+                    form_key = "y_is_liar"
+            
+            statement = self._build_statement_text(form_key, speaker, y_idx, z_idx)
+            statements.append(statement)
+            
+        return statements

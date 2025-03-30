@@ -169,38 +169,40 @@ PROMPT_TEMPLATES = {
         "instructions": {
             "ru": (
                 "type: structured_text_with_tags\n"
-                "Описание: Решите квадратное уравнение. \n"
+                "Описание: Решите квадратное уравнение и выведите результат.\n"
                 "Формат ответа:\n"
-                "<reasoning>\n"
-                "  (Ваши рассуждения)\n"
-                "</reasoning>\n"
-                "<answer>\n"
-                "  (Корни уравнения)\n"
-                "</answer>\n"
+                "  <reasoning>\n"
+                "    (Шаги решения, можно по пунктам)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Корни уравнения)\n"
+                "  </answer>\n"
                 "Пример:\n"
                 "<reasoning>\n"
-                "  Шаг 1: Вычислили дискриминант...\n"
+                "  Шаг 1: Привели уравнение к виду ...\n"
+                "  Шаг 2: Нашли x=2\n"
                 "</reasoning>\n"
                 "<answer>\n"
-                "  x1=2, x2=3\n"
+                "  2\n"
                 "</answer>"
             ),
             "en": (
                 "type: structured_text_with_tags\n"
                 "Description: Solve the quadratic equation.\n"
                 "Answer format:\n"
-                "<reasoning>\n"
-                "  (your reasoning)\n"
-                "</reasoning>\n"
-                "<answer>\n"
-                "  (the roots)\n"
-                "</answer>\n"
+                "  <reasoning>\n"
+                "    (Step-by-step derivation)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (The roots)\n"
+                "  </answer>\n"
                 "Example:\n"
                 "<reasoning>\n"
-                "  Step 1: Found the discriminant...\n"
+                "  Step 1: We rearranged the equation...\n"
+                "  Step 2: Found x=2\n"
                 "</reasoning>\n"
                 "<answer>\n"
-                "  x1=2, x2=3\n"
+                "  2\n"
                 "</answer>"
             )
         },
@@ -209,16 +211,80 @@ PROMPT_TEMPLATES = {
             "en": "Solve the quadratic equation: {equation_pretty} = 0"
         },
         "step1": {
-            "ru": "Шаг 1: Запишем уравнение: {equation_pretty}.",
-            "en": "Step 1: Write the equation: {equation_pretty}."
+            "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty} = 0",
+            "en": "Step 1: Write the equation in standard form:\n{equation_pretty} = 0"
         },
         "step2": {
-            "ru": "Шаг 2: Вычисляем дискриминант: D = {b}² - 4*{a}*{c} = {discriminant}.",
-            "en": "Step 2: Compute the discriminant: D = {b}² - 4*{a}*{c} = {discriminant}."
+            "ru": "Шаг 2: Анализируем уравнение:\n- Коэффициент при x²: {a}\n- Коэффициент при x: {b}\n- Свободный член: {c}",
+            "en": "Step 2: Analyze the equation:\n- Coefficient of x²: {a}\n- Coefficient of x: {b}\n- Constant term: {c}"
         },
         "step3": {
-            "ru": "Шаг 3: Находим корни: x = {roots}.",
-            "en": "Step 3: Find the roots: x = {roots}."
+            "ru": "Шаг 3: Находим корни уравнения: {roots}",
+            "en": "Step 3: Find the roots of the equation: {roots}"
+        },
+        "step2_analysis": {
+            "ru": "Шаг 2: Анализируем уравнение:\n- Коэффициент при x²: {a}\n- Коэффициент при x: {b}\n- Свободный член: {c}",
+            "en": "Step 2: Analyze the equation:\n- Coefficient of x²: {a}\n- Coefficient of x: {b}\n- Constant term: {c}"
+        },
+        "step3_discriminant": {
+            "ru": "Шаг 3: Вычисляем дискриминант:\nD = b² - 4ac = {b}² - 4·{a}·{c} = {discriminant}",
+            "en": "Step 3: Calculate the discriminant:\nD = b² - 4ac = {b}² - 4·{a}·{c} = {discriminant}"
+        },
+        "step4_roots": {
+            "ru": "Шаг 4: Находим корни по формуле:\nx = (-b ± √D) / (2a)\nx = (-{b} ± √{discriminant}) / (2·{a})",
+            "en": "Step 4: Find roots using the formula:\nx = (-b ± √D) / (2a)\nx = (-{b} ± √{discriminant}) / (2·{a})"
+        },
+        "step5_verify": {
+            "ru": "Шаг 5: Проверяем корни, подставляя их в исходное уравнение:\n{equation_pretty} = 0",
+            "en": "Step 5: Verify the roots by substituting them into the original equation:\n{equation_pretty} = 0"
+        },
+        "step6_geom": {
+            "ru": "Шаг 6: Геометрическая интерпретация:\nУравнение {a}x² + {b}x + {c} = 0 представляет собой параболу, которая пересекает ось x в точках x = {roots}",
+            "en": "Step 6: Geometric interpretation:\nThe equation {a}x² + {b}x + {c} = 0 represents a parabola that intersects the x-axis at points x = {roots}"
+        },
+        "step7_alt": {
+            "ru": "Шаг 7: Альтернативный метод решения:\nМожно решить уравнение графически, построив график функции y = {a}x² + {b}x + {c}. Точки пересечения с осью x дадут корни x = {roots}",
+            "en": "Step 7: Alternative solution method:\nWe can solve the equation graphically by plotting the function y = {a}x² + {b}x + {c}. The x-intercepts give the roots x = {roots}"
+        },
+        "explanation": {
+            "ru": {
+                "step1": "Записываем уравнение в стандартной форме для дальнейшего решения",
+                "step2_analysis": "Анализируем структуру уравнения, определяя все его компоненты",
+                "step3_discriminant": "Вычисляем дискриминант для определения количества и типа корней",
+                "step4_roots": "Находим корни уравнения по формуле корней квадратного уравнения",
+                "step5_verify": "Проверяем корректность найденных корней подстановкой",
+                "step6_geom": "Рассматриваем геометрический смысл уравнения",
+                "step7_alt": "Рассматриваем альтернативный метод решения"
+            },
+            "en": {
+                "step1": "Write the equation in standard form for further solution",
+                "step2_analysis": "Analyze the structure of the equation, identifying all its components",
+                "step3_discriminant": "Calculate the discriminant to determine the number and type of roots",
+                "step4_roots": "Find the roots using the quadratic formula",
+                "step5_verify": "Verify the found roots by substitution",
+                "step6_geom": "Consider the geometric meaning of the equation",
+                "step7_alt": "Consider an alternative solution method"
+            }
+        },
+        "validation": {
+            "ru": {
+                "step1": "Уравнение записано корректно в стандартной форме",
+                "step2_analysis": "Анализ уравнения выполнен правильно",
+                "step3_discriminant": "Дискриминант вычислен верно",
+                "step4_roots": "Корни найдены по правильной формуле",
+                "step5_verify": "Проверка корней подтверждает их корректность",
+                "step6_geom": "Геометрическая интерпретация верна",
+                "step7_alt": "Альтернативный метод решения применим"
+            },
+            "en": {
+                "step1": "The equation is correctly written in standard form",
+                "step2_analysis": "Equation analysis is correct",
+                "step3_discriminant": "Discriminant is calculated correctly",
+                "step4_roots": "Roots are found using the correct formula",
+                "step5_verify": "Root verification confirms their correctness",
+                "step6_geom": "Geometric interpretation is correct",
+                "step7_alt": "Alternative solution method is applicable"
+            }
         }
     },
 
@@ -271,46 +337,130 @@ PROMPT_TEMPLATES = {
         "instructions": {
             "ru": (
                 "type: structured_text_with_tags\n"
-                "Описание: Решите экспоненциальное уравнение.\n"
-                "Формат:\n"
+                "Описание: Решите показательное уравнение и выведите результат.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Шаги решения, можно по пунктам)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Значение x)\n"
+                "  </answer>\n"
+                "Пример:\n"
                 "<reasoning>\n"
-                "  (Шаги: перенесли c, разделили и т.д.)\n"
+                "  Шаг 1: Привели уравнение к виду ...\n"
+                "  Шаг 2: Нашли x=2\n"
                 "</reasoning>\n"
                 "<answer>\n"
-                "  (Итоговое x)\n"
+                "  2\n"
                 "</answer>"
             ),
             "en": (
                 "type: structured_text_with_tags\n"
                 "Description: Solve the exponential equation.\n"
-                "Format:\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step derivation)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (The value of x)\n"
+                "  </answer>\n"
+                "Example:\n"
                 "<reasoning>\n"
-                "  (Steps: move c, divide by a, log, etc.)\n"
+                "  Step 1: We rearranged the equation...\n"
+                "  Step 2: Found x=2\n"
                 "</reasoning>\n"
                 "<answer>\n"
-                "  (Final x value)\n"
+                "  2\n"
                 "</answer>"
             )
         },
         "problem": {
-            "ru": "Решите экспоненциальное уравнение: {left} = {d}",
+            "ru": "Решите показательное уравнение: {left} = {d}",
             "en": "Solve the exponential equation: {left} = {d}"
         },
         "step1": {
-            "ru": "Шаг 1: Запишем уравнение: {equation_pretty}.",
-            "en": "Step 1: Write the equation: {equation_pretty}."
+            "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
+            "en": "Step 1: Write the equation in standard form:\n{equation_pretty}"
         },
         "step2": {
-            "ru": "Шаг 2: Переносим {c} на правую сторону: {left_side_statement}.",
-            "en": "Step 2: Move {c} to the right side: {left_side_statement}."
+            "ru": "Шаг 2: Переносим свободный член {c} в правую часть:\n{left_side_statement}",
+            "en": "Step 2: Move the constant term {c} to the right side:\n{left_side_statement}"
         },
         "step3": {
-            "ru": "Шаг 3: Делим обе части на {a}: exp({b}*x) = {right_side} / {a}.",
-            "en": "Step 3: Divide both sides by {a}: exp({b}*x) = {right_side} / {a}."
+            "ru": "Шаг 3: Делим обе части уравнения на {a}:\n{right_side} / {a} = {ratio}",
+            "en": "Step 3: Divide both sides by {a}:\n{right_side} / {a} = {ratio}"
         },
         "step4": {
-            "ru": "Шаг 4: Применяем логарифм: x = log({ratio}) / {b} = {solution}.",
-            "en": "Step 4: Apply log: x = log({ratio}) / {b} = {solution}."
+            "ru": "Шаг 4: Применяем логарифм к обеим частям:\nlog({ratio}) / {b} = {solution}",
+            "en": "Step 4: Apply logarithm to both sides:\nlog({ratio}) / {b} = {solution}"
+        },
+        "step5_exp": {
+            "ru": "Шаг 5: Применяем экспоненту к обеим частям:\n{equation}",
+            "en": "Step 5: Apply exponential function to both sides:\n{equation}"
+        },
+        "step6_solve": {
+            "ru": "Шаг 6: Решаем уравнение относительно x:\nx = e^{(d - c) / a} / b = {solution}",
+            "en": "Step 6: Solve for x:\nx = e^{(d - c) / a} / b = {solution}"
+        },
+        "step7_verify": {
+            "ru": "Шаг 7: Проверяем решение, подставляя x = {solution} в исходное уравнение:\n{equation_pretty}",
+            "en": "Step 7: Verify the solution by substituting x = {solution} into the original equation:\n{equation_pretty}"
+        },
+        "step8_geom": {
+            "ru": "Шаг 8: Геометрическая интерпретация:\nУравнение {a}*log({b}*x) + {c} = {d} представляет собой пересечение логарифмической и линейной функций",
+            "en": "Step 8: Geometric interpretation:\nThe equation {a}*log({b}*x) + {c} = {d} represents the intersection of logarithmic and linear functions"
+        },
+        "step9_domain": {
+            "ru": "Шаг 9: Проверяем область определения:\nАргумент логарифма {b}*x = {solution} должен быть положительным",
+            "en": "Step 9: Check the domain:\nThe logarithm argument {b}*x = {solution} must be positive"
+        },
+        "explanation": {
+            "ru": {
+                "step1": "Записываем уравнение в стандартной форме для дальнейшего решения",
+                "step2_analysis": "Анализируем структуру уравнения, определяя все его компоненты",
+                "step3_discriminant": "Вычисляем дискриминант для определения количества и типа корней",
+                "step4_roots": "Находим корни уравнения по формуле корней квадратного уравнения",
+                "step5_verify": "Проверяем корректность найденных корней подстановкой",
+                "step6_geom": "Рассматриваем геометрический смысл уравнения",
+                "step7_verify": "Проверяем корректность решения подстановкой",
+                "step8_geom": "Рассматриваем геометрический смысл уравнения",
+                "step9_domain": "Проверяем область определения логарифма"
+            },
+            "en": {
+                "step1": "Write the equation in standard form for further solution",
+                "step2_analysis": "Analyze the structure of the equation, identifying all its components",
+                "step3_discriminant": "Calculate the discriminant to determine the number and type of roots",
+                "step4_roots": "Find the roots using the quadratic formula",
+                "step5_verify": "Verify the found roots by substitution",
+                "step6_geom": "Consider the geometric meaning of the equation",
+                "step7_verify": "Verify the solution by substitution",
+                "step8_geom": "Consider the geometric meaning of the equation",
+                "step9_domain": "Check the domain of the logarithm"
+            }
+        },
+        "validation": {
+            "ru": {
+                "step1": "Уравнение записано корректно в стандартной форме",
+                "step2_analysis": "Анализ уравнения выполнен правильно",
+                "step3_discriminant": "Дискриминант вычислен верно",
+                "step4_roots": "Корни найдены по правильной формуле",
+                "step5_verify": "Проверка корней подтверждает их корректность",
+                "step6_geom": "Геометрическая интерпретация верна",
+                "step7_verify": "Проверка решения подтверждает его корректность",
+                "step8_geom": "Геометрическая интерпретация верна",
+                "step9_domain": "Проверка области определения выполнена корректно"
+            },
+            "en": {
+                "step1": "The equation is correctly written in standard form",
+                "step2_analysis": "Equation analysis is correct",
+                "step3_discriminant": "Discriminant is calculated correctly",
+                "step4_roots": "Roots are found using the correct formula",
+                "step5_verify": "Root verification confirms their correctness",
+                "step6_geom": "Geometric interpretation is correct",
+                "step7_verify": "Solution verification confirms its correctness",
+                "step8_geom": "Geometric interpretation is correct",
+                "step9_domain": "Domain check is performed correctly"
+            }
         }
     },
 
@@ -321,24 +471,40 @@ PROMPT_TEMPLATES = {
         "instructions": {
             "ru": (
                 "type: structured_text_with_tags\n"
-                "Описание: Решите логарифмическое уравнение.\n"
-                "Пример ответа:\n"
+                "Описание: Решите логарифмическое уравнение и выведите результат.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Шаги решения, можно по пунктам)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговое значение x)\n"
+                "  </answer>\n"
+                "Пример:\n"
                 "<reasoning>\n"
-                "  (Пошаговое решение)\n"
+                "  Шаг 1: Привели уравнение к виду ...\n"
+                "  Шаг 2: Нашли x=2\n"
                 "</reasoning>\n"
                 "<answer>\n"
-                "  (Итоговая формула x)\n"
+                "  2\n"
                 "</answer>"
             ),
             "en": (
                 "type: structured_text_with_tags\n"
                 "Description: Solve the logarithmic equation.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step derivation)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (The final value of x)\n"
+                "  </answer>\n"
                 "Example:\n"
                 "<reasoning>\n"
-                "  (Step by step)\n"
+                "  Step 1: We rearranged the equation...\n"
+                "  Step 2: Found x=2\n"
                 "</reasoning>\n"
                 "<answer>\n"
-                "  (Final expression for x)\n"
+                "  2\n"
                 "</answer>"
             )
         },
@@ -347,20 +513,88 @@ PROMPT_TEMPLATES = {
             "en": "Solve the logarithmic equation: {left} = {d}"
         },
         "step1": {
-            "ru": "Шаг 1: Запишем уравнение: {equation_pretty}.",
-            "en": "Step 1: Write the equation: {equation_pretty}."
+            "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
+            "en": "Step 1: Write the equation in standard form:\n{equation_pretty}"
         },
-        "step2": {
-            "ru": "Шаг 2: Переносим {c} на правую сторону: {left_side_statement}.",
-            "en": "Step 2: Transfer {c} to the right side: {left_side_statement}."
+        "step2_analysis": {
+            "ru": "Шаг 2: Анализируем уравнение:\n- Коэффициент при логарифме: {a}\n- Коэффициент при x в аргументе логарифма: {b}\n- Свободный член: {c}\n- Правая часть: {d}",
+            "en": "Step 2: Analyze the equation:\n- Coefficient of logarithm: {a}\n- Coefficient of x in logarithm argument: {b}\n- Constant term: {c}\n- Right side: {d}"
         },
-        "step3": {
-            "ru": "Шаг 3: Делим обе части на {a}: log({b}*x) = ({d} - {c}) / {a}.",
-            "en": "Step 3: Divide both sides by {a}: log({b}*x) = ({d} - {c}) / {a}."
+        "step3_transfer": {
+            "ru": "Шаг 3: Переносим свободный член в правую часть:\n{left_side_statement}",
+            "en": "Step 3: Move the constant term to the right side:\n{left_side_statement}"
         },
-        "step4": {
-            "ru": "Шаг 4: x = exp(({d} - {c})/{a})/{b} = {solution}.",
-            "en": "Step 4: x = exp(({d} - {c})/{a})/{b} = {solution}."
+        "step4_division": {
+            "ru": "Шаг 4: Делим на коэффициент при логарифме:\n{equation}",
+            "en": "Step 4: Divide by the coefficient of logarithm:\n{equation}"
+        },
+        "step5_exp": {
+            "ru": "Шаг 5: Применяем экспоненту к обеим частям:\n{equation}",
+            "en": "Step 5: Apply exponential function to both sides:\n{equation}"
+        },
+        "step6_solve": {
+            "ru": "Шаг 6: Решаем уравнение относительно x:\nx = e^{(d - c) / a} / b = {solution}",
+            "en": "Step 6: Solve for x:\nx = e^{(d - c) / a} / b = {solution}"
+        },
+        "step7_verify": {
+            "ru": "Шаг 7: Проверяем решение, подставляя x = {solution} в исходное уравнение:\n{equation_pretty}",
+            "en": "Step 7: Verify the solution by substituting x = {solution} into the original equation:\n{equation_pretty}"
+        },
+        "step8_geom": {
+            "ru": "Шаг 8: Геометрическая интерпретация:\nУравнение {a}*log({b}*x) + {c} = {d} представляет собой пересечение логарифмической и линейной функций",
+            "en": "Step 8: Geometric interpretation:\nThe equation {a}*log({b}*x) + {c} = {d} represents the intersection of logarithmic and linear functions"
+        },
+        "step9_domain": {
+            "ru": "Шаг 9: Проверяем область определения:\nАргумент логарифма {b}*x = {solution} должен быть положительным",
+            "en": "Step 9: Check the domain:\nThe logarithm argument {b}*x = {solution} must be positive"
+        },
+        "explanation": {
+            "ru": {
+                "step1": "Записываем уравнение в стандартной форме для дальнейшего решения",
+                "step2_analysis": "Анализируем структуру уравнения, определяя все его компоненты",
+                "step3_transfer": "Переносим свободный член в правую часть для изоляции логарифма",
+                "step4_division": "Делим обе части уравнения на коэффициент при логарифме",
+                "step5_exp": "Применяем экспоненту для избавления от логарифма",
+                "step6_solve": "Решаем уравнение относительно x",
+                "step7_verify": "Проверяем корректность решения подстановкой",
+                "step8_geom": "Рассматриваем геометрический смысл уравнения",
+                "step9_domain": "Проверяем область определения логарифма"
+            },
+            "en": {
+                "step1": "Write the equation in standard form for further solution",
+                "step2_analysis": "Analyze the structure of the equation, identifying all its components",
+                "step3_transfer": "Move the constant term to the right side to isolate the logarithm",
+                "step4_division": "Divide both sides by the coefficient of logarithm",
+                "step5_exp": "Apply exponential function to eliminate the logarithm",
+                "step6_solve": "Solve the equation for x",
+                "step7_verify": "Verify the solution by substitution",
+                "step8_geom": "Consider the geometric meaning of the equation",
+                "step9_domain": "Check the domain of the logarithm"
+            }
+        },
+        "validation": {
+            "ru": {
+                "step1": "Уравнение записано корректно в стандартной форме",
+                "step2_analysis": "Анализ уравнения выполнен правильно",
+                "step3_transfer": "Перенос слагаемых выполнен правильно",
+                "step4_division": "Деление на коэффициент выполнено правильно",
+                "step5_exp": "Применение экспоненты выполнено корректно",
+                "step6_solve": "Решение уравнения выполнено правильно",
+                "step7_verify": "Проверка решения подтверждает его корректность",
+                "step8_geom": "Геометрическая интерпретация верна",
+                "step9_domain": "Проверка области определения выполнена корректно"
+            },
+            "en": {
+                "step1": "The equation is correctly written in standard form",
+                "step2_analysis": "Equation analysis is correct",
+                "step3_transfer": "Term transfer is performed correctly",
+                "step4_division": "Division by coefficient is performed correctly",
+                "step5_exp": "Exponential application is correct",
+                "step6_solve": "Equation solving is performed correctly",
+                "step7_verify": "Solution verification confirms its correctness",
+                "step8_geom": "Geometric interpretation is correct",
+                "step9_domain": "Domain check is performed correctly"
+            }
         }
     },
 
@@ -839,89 +1073,45 @@ Analysis:
     # 11) KNIGHTS_KNAVES
     #----------------------------------------------------------------------------
     "knights_knaves": {
-        "intro": {
-            "ru": "У нас есть {num_persons} персонаж{plural}: {names}.",
-            "en": "We have {num_persons} character{plural}: {names}."
-        },
         "instructions": {
-            "ru": """Для решения этой задачи следуйте следующим шагам:
-1. Внимательно прочитайте каждое высказывание
-2. Проанализируйте логические следствия каждого высказывания
-3. Найдите противоречия между высказываниями
-4. Определите роли персонажей на основе анализа
-
-Стратегия решения:
-- Если персонаж говорит правду, он рыцарь
-- Если персонаж лжет, он лжец
-- Используйте логические следствия для определения ролей
-- Обратите внимание на противоречия между высказываниями""",
-            "en": """To solve this task, follow these steps:
-1. Read each statement carefully
-2. Analyze the logical implications of each statement
-3. Find contradictions between statements
-4. Determine roles based on analysis
-
-Solution strategy:
-- If a character tells the truth, they are a knight
-- If a character lies, they are a knave
-- Use logical implications to determine roles
-- Pay attention to contradictions between statements"""
+            "en": "We have three characters. Each character is either a Knight who always tells the truth, or a Knave who always lies. Determine who is a knight and who is a knave.",
+            "ru": "У нас есть три персонажей. Каждый персонаж является либо Рыцарем, который всегда говорит правду, либо Лжецом, который всегда лжет. Определите, кто из них рыцарь, а кто — лжец."
         },
-        "example": {
-            "ru": """Пример решения:
-У нас есть два персонажа: Алиса и Боб.
-
-Алиса говорит: "Боб - лжец"
-Боб говорит: "Алиса - рыцарь"
-
-Анализ:
-1. Если Алиса - рыцарь, то Боб - лжец
-2. Если Боб - лжец, то его утверждение ложно, значит Алиса - не рыцарь
-3. Это противоречие, значит Алиса - лжец
-4. Если Алиса - лжец, то Боб - не лжец, то есть рыцарь
-5. Если Боб - рыцарь, то его утверждение истинно, значит Алиса - рыцарь
-6. Это противоречие, значит Боб - лжец
-
-Ответ: Алиса - рыцарь, Боб - лжец""",
-            "en": """Example solution:
-We have two characters: Alice and Bob.
-
-Alice says: "Bob is a knave"
-Bob says: "Alice is a knight"
-
-Analysis:
-1. If Alice is a knight, then Bob is a knave
-2. If Bob is a knave, his statement is false, so Alice is not a knight
-3. This is a contradiction, so Alice is a knave
-4. If Alice is a knave, then Bob is not a knave, so he is a knight
-5. If Bob is a knight, his statement is true, so Alice is a knight
-6. This is a contradiction, so Bob is a knave
-
-Answer: Alice is a knight, Bob is a knave"""
+        "intro": {
+            "ru": "Вот наши персонажи: {names}.",
+            "en": "Here are our characters: {names}."
         },
-        "statements": {
-            "ru": "Высказывания персонажей:\n{statements}",
-            "en": "Character statements:\n{statements}"
+        "problem": {
+            "en": "Here are their statements:\n{statements}",
+            "ru": "Вот их высказывания:\n{statements}"
         },
-        "conclusion": {
-            "ru": "Определите, кто из них рыцарь, а кто — лжец.",
-            "en": "Determine who is a knight and who is a knave."
+        "names_pool": {
+            "en": ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Henry"],
+            "ru": ["Алиса", "Борис", "Виктор", "Григорий", "Дмитрий", "Елена", "Жанна", "Зинаида"]
         },
-        "step1": {
-            "ru": "Начнем с анализа высказываний каждого персонажа и их логических следствий.",
-            "en": "Let's start by analyzing each character's statements and their logical implications."
-        },
-        "final_step": {
-            "ru": "На основе проведенного анализа можно сделать вывод о ролях персонажей.",
-            "en": "Based on the analysis, we can draw conclusions about the characters' roles."
-        },
-        "final_answer": {
-            "ru": "Ответ: {roles}",
-            "en": "Answer: {roles}"
-        },
-        "explanation": {
-            "ru": "Это решение является единственно возможным, так как оно согласуется со всеми высказываниями и не содержит противоречий.",
-            "en": "This solution is the only possible one as it is consistent with all statements and contains no contradictions."
+        "forms": {
+            "en": {
+                "statement": "{name} says: \"{text}\"",
+                "about_self": "I am a {role}",
+                "about_other": "{name} is a {role}",
+                "and": "Both {name} and {other_name} are {role}s",
+                "or": "Either {name} or {other_name} is a {role}",
+                "same": "{name} and {other_name} are of the same type",
+                "different": "{name} and {other_name} are of different types",
+                "at_least_one": "At least one of us is a {role}",
+                "exactly_one": "Exactly one of us is a {role}"
+            },
+            "ru": {
+                "statement": "{name} говорит: \"{text}\"",
+                "about_self": "Я {role}",
+                "about_other": "{name} - {role}",
+                "and": "{name} и {other_name} оба {role}",
+                "or": "{name} или {other_name} - {role}",
+                "same": "{name} и {other_name} одного типа",
+                "different": "{name} и {other_name} разных типов",
+                "at_least_one": "Хотя бы один из нас - {role}",
+                "exactly_one": "Ровно один из нас - {role}"
+            }
         }
     },
 
@@ -1076,7 +1266,91 @@ Answer: Alice is a knight, Bob is a knave"""
     },
 
     #----------------------------------------------------------------------------
-    # 14) TEXT_STATS
+    # 14) KNIGHTS_KNAVES
+    #----------------------------------------------------------------------------
+    "knights_knaves": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Определите, кто из жителей острова рыцарь (всегда говорит правду), а кто лжец (всегда лжёт).\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Логические рассуждения по шагам)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Роль каждого жителя: рыцарь/лжец)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Determine which inhabitants are knights (always tell truth) and which are knaves (always lie).\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step logical reasoning)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Role of each inhabitant: knight/knave)\n"
+                "  </answer>"
+            )
+        },
+        "intro": {
+            "ru": "У нас есть три персонажей: {names}.",
+            "en": "We have three characters: {names}."
+        },
+        "names_pool": {
+            "ru": ["Алекс", "Борис", "Виктор", "Григорий", "Дмитрий", 
+                  "Елена", "Жанна", "Зоя", "Ирина", "Карина"],
+            "en": ["Alex", "Bob", "Charlie", "David", "Eve",
+                  "Frank", "George", "Helen", "Ivan", "Jack"]
+        },
+        "problem": {
+            "ru": "Известно, что {statements}. Определите, кто из них рыцарь, а кто — лжец",
+            "en": "It is known that {statements}. Determine who is a knight and who is a knave"
+        },
+        "forms": {
+            "ru": {
+                "statement": "{name} говорит: \"{text}\"",
+                "about_self": "Я {role}",
+                "about_other": "{name} - {role}",
+                "and": "{name} и {other_name} оба {role}",
+                "or": "{name} или {other_name} - {role}",
+                "same": "{name} и {other_name} одного типа",
+                "different": "{name} и {other_name} разных типов",
+                "at_least_one": "Хотя бы один из нас - {role}",
+                "exactly_one": "Ровно один из нас - {role}"
+            },
+            "en": {
+                "statement": "{name} says: \"{text}\"",
+                "about_self": "I am a {role}",
+                "about_other": "{name} is a {role}",
+                "and": "Both {name} and {other_name} are {role}s",
+                "or": "Either {name} or {other_name} is a {role}",
+                "same": "{name} and {other_name} are of the same type",
+                "different": "{name} and {other_name} are of different types",
+                "at_least_one": "At least one of us is a {role}",
+                "exactly_one": "Exactly one of us is a {role}"
+            }
+        },
+        "step1": {
+            "ru": "Шаг 1: Проанализируем высказывания каждого жителя, учитывая, что рыцари всегда говорят правду, а лжецы всегда лгут.",
+            "en": "Step 1: Let's analyze each inhabitant's statement, considering that knights always tell the truth and knaves always lie."
+        },
+        "final_step": {
+            "ru": "На основе анализа высказываний и их логических следствий, мы можем определить роль каждого жителя.",
+            "en": "Based on the analysis of statements and their logical implications, we can determine each inhabitant's role."
+        },
+        "final_answer": {
+            "ru": "Роли жителей:\n{roles}",
+            "en": "Inhabitants' roles:\n{roles}"
+        },
+        "explanation": {
+            "ru": "Это решение основано на том, что рыцари всегда говорят правду, а лжецы всегда лгут.",
+            "en": "This solution is based on the fact that knights always tell the truth and knaves always lie."
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 15) TEXT_STATS
     #----------------------------------------------------------------------------
     "text_stats": {
         "instructions": {

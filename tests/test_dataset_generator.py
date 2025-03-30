@@ -103,7 +103,7 @@ class TestDatasetGenerator(unittest.TestCase):
     def test_invalid_parameters(self):
         """Проверка обработки нереализованных параметров"""
         with self.assertRaises(NotImplementedError):
-            self.generator.generate_task("calculus", "ru", 1)
+            self.generator._generate_task_params("invalid_task_type")
 
     def test_generate_system_linear_params(self):
         """Проверка генерации параметров для системы линейных уравнений"""

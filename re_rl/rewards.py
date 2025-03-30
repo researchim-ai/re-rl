@@ -1,6 +1,6 @@
 import re
 import math
-from typing import Optional, List, Dict, Union
+from typing import Optional, List, Dict, Union, Any
 from rich import print
 ##############################################################################
 # 1) Утилиты для извлечения chain-of-thought (reasoning) и финального ответа #
@@ -99,18 +99,28 @@ def parse_urn_probability_answer(text: str) -> Optional[float]:
         return None
     return val
 
-def parse_knights_knaves_answer(text: str) -> Optional[Dict[str,str]]:
+def parse_knights_knaves_answer(answer_text: str) -> Optional[Dict[str, str]]:
     """
-    Пример: "Alice: liar, Bob: knight, Charlie: liar"
-    Вернём { 'alice':'liar', 'bob':'knight', ... }
+    Парсит ответ для задачи рыцарей и лжецов.
+    
+    Args:
+        answer_text: Текст ответа в формате "name1: role1, name2: role2, ..."
+        
+    Returns:
+        Optional[Dict[str, str]]: Словарь с ролями или None в случае ошибки
     """
-    pairs = re.findall(r"([\wА-яЁё]+)\s*:\s*([\wА-яЁё]+)", text)
-    if not pairs:
+    if not answer_text:
         return None
-    out = {}
-    for name, role in pairs:
-        out[name.lower()] = role.lower()
-    return out
+        
+    try:
+        roles = {}
+        pairs = answer_text.split(",")
+        for pair in pairs:
+            name, role = pair.strip().split(":")
+            roles[name.strip().lower()] = role.strip().lower()
+        return roles
+    except:
+        return None
 
 def parse_futoshiki_answer(text: str) -> Optional[List[List[int]]]:
     """
@@ -216,27 +226,28 @@ def reward_float(ref_val: Optional[float], pred_val: Optional[float], tol=1e-3) 
 def reward_knights_knaves(ref_answer: str, pred_answer: str) -> float:
     """
     Вычисляет награду для задачи рыцарей и лжецов.
-    Учитывает:
-    1. Точное совпадение ролей персонажей
-    2. Качество рассуждений (наличие ключевых слов)
-    3. Структуру ответа (наличие тегов reasoning и answer)
-    4. Частичное совпадение ролей
     
-    :param ref_answer: эталонный ответ
-    :param pred_answer: предсказанный ответ
-    :return: награда от 0 до 1
+    Args:
+        ref_answer: Строка с эталонным ответом в формате <reasoning>...</reasoning><answer>...</answer>
+        pred_answer: Строка с предсказанным ответом в формате <reasoning>...</reasoning><answer>...</answer>
+    
+    Returns:
+        float: Награда от 0 до 1
     """
     # Извлекаем рассуждения и ответы
     ref_reasoning, ref_answer = extract_reasoning_and_answer(ref_answer)
     pred_reasoning, pred_answer = extract_reasoning_and_answer(pred_answer)
     
+    if not ref_answer or not pred_answer:
+        return 0.0
+        
     # Парсим роли из ответов
     ref_roles = parse_knights_knaves_answer(ref_answer)
     pred_roles = parse_knights_knaves_answer(pred_answer)
     
-    if ref_roles is None or pred_roles is None:
+    if not ref_roles or not pred_roles:
         return 0.0
-    
+        
     # Проверяем точное совпадение ролей
     if ref_roles == pred_roles:
         return 1.0
@@ -246,21 +257,7 @@ def reward_knights_knaves(ref_answer: str, pred_answer: str) -> float:
                        if name in pred_roles and pred_roles[name] == role)
     role_score = correct_roles / len(ref_roles)
     
-    # Проверяем качество рассуждений
-    reasoning_score = 0.0
-    if ref_reasoning and pred_reasoning:
-        # Ключевые слова, которые должны быть в рассуждениях
-        key_words = {
-            "анализ", "противоречие", "следствие", "если", "то", "значит",
-            "analysis", "contradiction", "implication", "if", "then", "therefore"
-        }
-        ref_key_words = set(ref_reasoning.lower().split()) & key_words
-        pred_key_words = set(pred_reasoning.lower().split()) & key_words
-        reasoning_score = len(pred_key_words) / len(key_words)
-    
-    # Комбинируем оценки
-    final_score = 0.7 * role_score + 0.3 * reasoning_score
-    return min(1.0, max(0.0, final_score))
+    return role_score
 
 def reward_futoshiki(ref_matrix: Optional[List[List[int]]], pred_matrix: Optional[List[List[int]]]) -> float:
     if not ref_matrix or not pred_matrix:
@@ -282,40 +279,22 @@ def reward_futoshiki(ref_matrix: Optional[List[List[int]]], pred_matrix: Optiona
 def reward_contradiction(ref_answer: str, pred_answer: str) -> float:
     """
     Вычисляет награду для задачи противоречий.
-    Учитывает:
-    1. Точное совпадение ложного утверждения
-    2. Качество объяснения (наличие ключевых слов)
-    3. Структуру ответа (наличие тегов reasoning и answer)
     
-    :param ref_answer: эталонный ответ
-    :param pred_answer: предсказанный ответ
-    :return: награда от 0 до 1
+    Args:
+        ref_answer: Эталонное утверждение
+        pred_answer: Предсказанное утверждение
+    
+    Returns:
+        float: Награда от 0 до 1
     """
-    # Извлекаем рассуждения и ответы
-    ref_reasoning, ref_answer = extract_reasoning_and_answer(ref_answer)
-    pred_reasoning, pred_answer = extract_reasoning_and_answer(pred_answer)
+    if not ref_answer or not pred_answer:
+        return 0.0
+        
+    # Нормализуем строки
+    ref_answer = ref_answer.strip().lower()
+    pred_answer = pred_answer.strip().lower()
     
-    # Проверяем точное совпадение ответов
-    if ref_answer == pred_answer:
-        return 1.0
-    
-    # Проверяем частичное совпадение (по ключевым словам)
-    ref_words = set(ref_answer.lower().split())
-    pred_words = set(pred_answer.lower().split())
-    word_overlap = len(ref_words & pred_words) / len(ref_words)
-    
-    # Проверяем качество рассуждений
-    reasoning_score = 0.0
-    if ref_reasoning and pred_reasoning:
-        # Ключевые слова, которые должны быть в рассуждениях
-        key_words = {"анализ", "проверка", "сравнение", "противоречие", "ложное", "истинное"}
-        ref_key_words = set(ref_reasoning.lower().split()) & key_words
-        pred_key_words = set(pred_reasoning.lower().split()) & key_words
-        reasoning_score = len(pred_key_words) / len(key_words)
-    
-    # Комбинируем оценки
-    final_score = 0.6 * word_overlap + 0.4 * reasoning_score
-    return min(1.0, max(0.0, final_score))
+    return 1.0 if ref_answer == pred_answer else 0.0
 
 def reward_text_stats(ref_count: Optional[int], pred_count: Optional[int]) -> float:
     if ref_count is None or pred_count is None:
@@ -379,52 +358,105 @@ def parse_ref_answer(task_type: str, text: str):
         return parse_system_linear_answer(text)
     return text.strip()
 
-def compare_answers(task_type: str, ref_val, pred_val) -> float:
+def compare_answers(task_type: str, ref_val: Any, pred_val: Any) -> float:
     """
-    Выдаём reward за корректность конечного ответа
-    (не учитывая формат / chain-of-thought).
+    Сравнивает ответы в зависимости от типа задачи.
+    
+    Args:
+        task_type: Тип задачи
+        ref_val: Эталонное значение
+        pred_val: Предсказанное значение
+        
+    Returns:
+        float: Оценка корректности от 0 до 1
     """
-    tt = task_type.lower()
-    if tt=="linear":
-        return reward_linear(ref_val, pred_val)
-    elif tt in ["quadratic","cubic"]:
-        return reward_polynomial_roots(ref_val, pred_val)
-    elif tt=="urn_probability":
-        return reward_float(ref_val, pred_val, 1e-4)
-    elif tt=="knights_knaves":
-        return reward_knights_knaves(ref_val, pred_val)
-    elif tt=="futoshiki":
-        return reward_futoshiki(ref_val, pred_val)
-    elif tt=="graph":
-        return reward_default_str(str(ref_val), str(pred_val))
-    elif tt=="contradiction":
-        return reward_contradiction(str(ref_val), str(pred_val))
-    elif tt=="text_stats":
-        return reward_text_stats(ref_val, pred_val)
-    elif tt=="system_linear":
-        return reward_system_linear(ref_val, pred_val)
+    if ref_val is None or pred_val is None:
+        return 0.0
+        
+    if task_type == "linear":
+        # Для линейного уравнения сравниваем числа
+        try:
+            ref_num = float(ref_val)
+            pred_num = float(pred_val)
+            return 1.0 if abs(ref_num - pred_num) < 1e-6 else 0.0
+        except:
+            return 0.0
+    elif task_type == "knights_knaves":
+        # Для задачи рыцарей и лжецов сравниваем роли
+        ref_roles = parse_knights_knaves_answer(ref_val)
+        pred_roles = parse_knights_knaves_answer(pred_val)
+        if not ref_roles or not pred_roles:
+            return 0.0
+        return 1.0 if ref_roles == pred_roles else 0.0
+    elif task_type == "contradiction":
+        # Для задачи противоречий сравниваем утверждения
+        return 1.0 if ref_val.strip().lower() == pred_val.strip().lower() else 0.0
     else:
-        return reward_default_str(str(ref_val), str(pred_val))
+        return 1.0 if ref_val == pred_val else 0.0
 
 
-def compute_correctness_score(
-    task_type: str,
-    ref_final_answer: str,
-    model_output_text: str
-) -> float:
+def compute_correctness_score(task_type: str, ref_answer: str, pred_answer: str) -> float:
     """
-    1) Из model_output_text извлекаем final_answer_str,
-    2) Парсим pred_val,
-    3) Парсим ref_val,
-    4) compare_answers => возвращаем 0..1.
+    Вычисляет оценку корректности ответа.
+    
+    Args:
+        task_type: Тип задачи
+        ref_answer: Эталонный ответ
+        pred_answer: Предсказанный ответ
+        
+    Returns:
+        float: Оценка корректности от 0 до 1
     """
-    # вырезаем <reasoning> / <answer>
-    _, pred_answer_str = extract_reasoning_and_answer(model_output_text)
+    if task_type == "knights_knaves":
+        return reward_knights_knaves(ref_answer, pred_answer)
+        
+    # Извлекаем ответ из предсказания, если он в формате с reasoning
+    _, pred_final = extract_reasoning_and_answer(pred_answer)
+    if not pred_final:  # Если не нашли в формате reasoning, используем как есть
+        pred_final = pred_answer
+        
+    # Для противоречий используем весь текст ответа
+    if task_type == "contradiction":
+        ref_final = ref_answer
+    else:
+        # Для остальных задач пытаемся извлечь ответ из формата с reasoning
+        _, ref_final = extract_reasoning_and_answer(ref_answer)
+        if not ref_final:  # Если не нашли, используем как есть
+            ref_final = ref_answer
+            
+    return compare_answers(task_type, ref_final, pred_final)
 
-    ref_val  = parse_ref_answer(task_type, ref_final_answer)
-    pred_val = parse_ref_answer(task_type, pred_answer_str)
-
-    return compare_answers(task_type, ref_val, pred_val)
+def extract_answer_value(task_type: str, answer: str) -> Any:
+    """
+    Извлекает значение из ответа в зависимости от типа задачи.
+    
+    Args:
+        task_type: Тип задачи
+        answer: Ответ
+        
+    Returns:
+        Any: Извлеченное значение
+    """
+    if task_type == "linear":
+        # Для линейного уравнения извлекаем число
+        match = re.search(r"<answer>(\d+(?:\.\d+)?)</answer>", answer)
+        if match:
+            return float(match.group(1))
+        return None
+    elif task_type == "knights_knaves":
+        # Для задачи рыцарей и лжецов извлекаем роли
+        match = re.search(r"<answer>(.*?)</answer>", answer)
+        if match:
+            return match.group(1)
+        return None
+    elif task_type == "contradiction":
+        # Для задачи противоречий извлекаем утверждение
+        match = re.search(r"<answer>(.*?)</answer>", answer)
+        if match:
+            return match.group(1)
+        return None
+    else:
+        return answer
 
 ##############################################################################
 # 5) ОТДЕЛЬНЫЕ ФУНКЦИИ-РЕВАРДЫ
