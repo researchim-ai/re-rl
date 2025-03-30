@@ -26,37 +26,84 @@ class LinearTask(BaseMathTask):
         x = sp.symbols('x')
         eq = sp.Eq(self.a * x + self.b, self.c)
         eq_pretty = sp.pretty(eq)
-        steps = []
+        
         # Шаг 1: Запись уравнения
-        steps.append(PROMPT_TEMPLATES["linear"]["step1"][self.language].format(equation_pretty=eq_pretty))
+        step1 = PROMPT_TEMPLATES["linear"]["step1"][self.language].format(equation_pretty=eq_pretty)
+        explanation1 = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step1"]
+        validation1 = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step1"]
+        self.add_solution_step(step1, explanation1, validation1)
         
-        # Если detail_level >= 2, добавляем шаг вычисления правой части
-        if self.detail_level >= 2:
-            right_side = self.c - self.b
-            steps.append(PROMPT_TEMPLATES["linear"]["step2"][self.language].format(c=self.c, b=self.b, right_side=right_side))
-        else:
-            # Для detail_level 1 используем 0 как правую часть для дальнейшего решения (но этот шаг не выводится)
-            right_side = self.c - self.b
+        # Шаг 2: Анализ уравнения
+        step2_analysis = PROMPT_TEMPLATES["linear"]["step2_analysis"][self.language].format(
+            a=self.a, b=self.b, c=self.c
+        )
+        explanation2_analysis = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step2_analysis"]
+        validation2_analysis = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step2_analysis"]
+        self.add_solution_step(step2_analysis, explanation2_analysis, validation2_analysis)
         
+        # Шаг 3: Выделение слагаемых
+        step3_terms = PROMPT_TEMPLATES["linear"]["step3_terms"][self.language].format(
+            a=self.a, b=self.b, c=self.c
+        )
+        explanation3_terms = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step3_terms"]
+        validation3_terms = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step3_terms"]
+        self.add_solution_step(step3_terms, explanation3_terms, validation3_terms)
+        
+        # Шаг 4: Перенос слагаемых
+        right_side = self.c - self.b
+        step4_transfer = PROMPT_TEMPLATES["linear"]["step4_transfer"][self.language].format(
+            c=self.c, b=self.b, right_side=right_side
+        )
+        explanation4_transfer = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step4_transfer"]
+        validation4_transfer = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step4_transfer"]
+        self.add_solution_step(step4_transfer, explanation4_transfer, validation4_transfer)
+        
+        # Шаг 5: Проверка коэффициента при x
+        step5_coef = PROMPT_TEMPLATES["linear"]["step5_coef"][self.language].format(
+            a=self.a
+        )
+        explanation5_coef = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step5_coef"]
+        validation5_coef = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step5_coef"]
+        self.add_solution_step(step5_coef, explanation5_coef, validation5_coef)
+        
+        # Шаг 6: Деление на коэффициент
         solution = sp.solve(eq, x)
+        if not solution:
+            raise ValueError(f"Уравнение {eq} не имеет решений")
+            
+        step6_division = PROMPT_TEMPLATES["linear"]["step6_division"][self.language].format(
+            a=self.a, right_side=right_side, solution=solution[0]
+        )
+        explanation6_division = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step6_division"]
+        validation6_division = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step6_division"]
+        self.add_solution_step(step6_division, explanation6_division, validation6_division)
         
-        # Если detail_level >= 3, добавляем шаг деления
-        if self.detail_level >= 3:
-            # Если detail_level > 3, добавляем дополнительные шаги
-            if self.detail_level > 3:
-                extra = self.detail_level - 3  # число дополнительных шагов
-                # Разобьём right_side на extra равных частей
-                part = right_side / extra
-                parts = [round(part, 2)] * extra
-                sum_parts = round(sum(parts), 2)
-                # Если из-за округления сумма не совпадает, корректируем первое слагаемое
-                diff = round(right_side - sum_parts, 2)
-                if diff != 0 and extra > 0:
-                    parts[0] += diff
-                steps.append(PROMPT_TEMPLATES["linear"]["linear_extra_partition"][self.language].format(c=self.c, b=self.b, n=extra, parts=parts))
-                steps.append(PROMPT_TEMPLATES["linear"]["linear_extra_sum"][self.language].format(sum_value=round(sum(parts), 2)))
-            steps.append(PROMPT_TEMPLATES["linear"]["step3"][self.language].format(a=self.a, right_side=right_side, solution=solution[0]))
-        self.solution_steps = steps
+        # Шаг 7: Проверка решения
+        step7_check = PROMPT_TEMPLATES["linear"]["step7_check"][self.language].format(
+            solution=solution[0], equation=eq_pretty
+        )
+        explanation7_check = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step7_check"]
+        validation7_check = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step7_check"]
+        self.add_solution_step(step7_check, explanation7_check, validation7_check)
+        
+        # Если detail_level > 7, добавляем дополнительные шаги
+        if self.detail_level > 7:
+            # Шаг 8: Геометрическая интерпретация
+            step8_geom = PROMPT_TEMPLATES["linear"]["step8_geom"][self.language].format(
+                a=self.a, b=self.b, c=self.c, solution=solution[0]
+            )
+            explanation8_geom = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step8_geom"]
+            validation8_geom = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step8_geom"]
+            self.add_solution_step(step8_geom, explanation8_geom, validation8_geom)
+            
+            # Шаг 9: Альтернативный метод решения
+            step9_alt = PROMPT_TEMPLATES["linear"]["step9_alt"][self.language].format(
+                a=self.a, b=self.b, c=self.c, solution=solution[0]
+            )
+            explanation9_alt = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step9_alt"]
+            validation9_alt = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step9_alt"]
+            self.add_solution_step(step9_alt, explanation9_alt, validation9_alt)
+            
         self.final_answer = str(solution[0])
 
     def get_task_type(self):

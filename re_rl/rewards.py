@@ -213,15 +213,54 @@ def reward_float(ref_val: Optional[float], pred_val: Optional[float], tol=1e-3) 
         return 0.5
     return 0.0
 
-def reward_knights_knaves(ref_map: Optional[Dict[str,str]], pred_map: Optional[Dict[str,str]]) -> float:
-    if not ref_map or not pred_map:
+def reward_knights_knaves(ref_answer: str, pred_answer: str) -> float:
+    """
+    Вычисляет награду для задачи рыцарей и лжецов.
+    Учитывает:
+    1. Точное совпадение ролей персонажей
+    2. Качество рассуждений (наличие ключевых слов)
+    3. Структуру ответа (наличие тегов reasoning и answer)
+    4. Частичное совпадение ролей
+    
+    :param ref_answer: эталонный ответ
+    :param pred_answer: предсказанный ответ
+    :return: награда от 0 до 1
+    """
+    # Извлекаем рассуждения и ответы
+    ref_reasoning, ref_answer = extract_reasoning_and_answer(ref_answer)
+    pred_reasoning, pred_answer = extract_reasoning_and_answer(pred_answer)
+    
+    # Парсим роли из ответов
+    ref_roles = parse_knights_knaves_answer(ref_answer)
+    pred_roles = parse_knights_knaves_answer(pred_answer)
+    
+    if ref_roles is None or pred_roles is None:
         return 0.0
-    correct = 0
-    total = len(ref_map)
-    for nm, role in ref_map.items():
-        if pred_map.get(nm,"") == role:
-            correct += 1
-    return correct/total
+    
+    # Проверяем точное совпадение ролей
+    if ref_roles == pred_roles:
+        return 1.0
+    
+    # Проверяем частичное совпадение ролей
+    correct_roles = sum(1 for name, role in ref_roles.items() 
+                       if name in pred_roles and pred_roles[name] == role)
+    role_score = correct_roles / len(ref_roles)
+    
+    # Проверяем качество рассуждений
+    reasoning_score = 0.0
+    if ref_reasoning and pred_reasoning:
+        # Ключевые слова, которые должны быть в рассуждениях
+        key_words = {
+            "анализ", "противоречие", "следствие", "если", "то", "значит",
+            "analysis", "contradiction", "implication", "if", "then", "therefore"
+        }
+        ref_key_words = set(ref_reasoning.lower().split()) & key_words
+        pred_key_words = set(pred_reasoning.lower().split()) & key_words
+        reasoning_score = len(pred_key_words) / len(key_words)
+    
+    # Комбинируем оценки
+    final_score = 0.7 * role_score + 0.3 * reasoning_score
+    return min(1.0, max(0.0, final_score))
 
 def reward_futoshiki(ref_matrix: Optional[List[List[int]]], pred_matrix: Optional[List[List[int]]]) -> float:
     if not ref_matrix or not pred_matrix:
@@ -240,13 +279,43 @@ def reward_futoshiki(ref_matrix: Optional[List[List[int]]], pred_matrix: Optiona
                 correct_cells+=1
     return correct_cells/total
 
-def reward_contradiction(ref_str: str, pred_str: str) -> float:
+def reward_contradiction(ref_answer: str, pred_answer: str) -> float:
     """
-    1.0 если точное совпадение.
+    Вычисляет награду для задачи противоречий.
+    Учитывает:
+    1. Точное совпадение ложного утверждения
+    2. Качество объяснения (наличие ключевых слов)
+    3. Структуру ответа (наличие тегов reasoning и answer)
+    
+    :param ref_answer: эталонный ответ
+    :param pred_answer: предсказанный ответ
+    :return: награда от 0 до 1
     """
-    if not ref_str.strip() or not pred_str.strip():
-        return 0.0
-    return 1.0 if ref_str.strip().lower()==pred_str.strip().lower() else 0.0
+    # Извлекаем рассуждения и ответы
+    ref_reasoning, ref_answer = extract_reasoning_and_answer(ref_answer)
+    pred_reasoning, pred_answer = extract_reasoning_and_answer(pred_answer)
+    
+    # Проверяем точное совпадение ответов
+    if ref_answer == pred_answer:
+        return 1.0
+    
+    # Проверяем частичное совпадение (по ключевым словам)
+    ref_words = set(ref_answer.lower().split())
+    pred_words = set(pred_answer.lower().split())
+    word_overlap = len(ref_words & pred_words) / len(ref_words)
+    
+    # Проверяем качество рассуждений
+    reasoning_score = 0.0
+    if ref_reasoning and pred_reasoning:
+        # Ключевые слова, которые должны быть в рассуждениях
+        key_words = {"анализ", "проверка", "сравнение", "противоречие", "ложное", "истинное"}
+        ref_key_words = set(ref_reasoning.lower().split()) & key_words
+        pred_key_words = set(pred_reasoning.lower().split()) & key_words
+        reasoning_score = len(pred_key_words) / len(key_words)
+    
+    # Комбинируем оценки
+    final_score = 0.6 * word_overlap + 0.4 * reasoning_score
+    return min(1.0, max(0.0, final_score))
 
 def reward_text_stats(ref_count: Optional[int], pred_count: Optional[int]) -> float:
     if ref_count is None or pred_count is None:

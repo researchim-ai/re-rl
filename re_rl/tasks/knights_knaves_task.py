@@ -86,39 +86,45 @@ class KnightsKnavesTask(BaseTask):
             else:
                 return str(n)
 
-    def _create_problem_text(self) -> str:
-        """
-        Формируем строку с постановкой задачи:
-          - intro (сколько персонажей, какие имена)
-          - список высказываний
-          - footer
-        """
-        kn_templates = PROMPT_TEMPLATES["knights_knaves"]
-        intro_tmpl = kn_templates["intro"][self.language]
-        line_fmt = kn_templates["line_format"][self.language]
-        footer_tmpl = kn_templates["footer"][self.language]
-
-        names_joined = ", ".join(self.names)
-        num_persons_text = self._number_to_text(self.num_persons, self.language)
+    def _create_problem_text(self):
+        # Генерируем имена персонажей
+        names = self._generate_names()
         
-        # Добавляем правильное согласование
-        if self.language == "ru":
-            plural = "а" if self.num_persons == 1 else "ей"
-        else:
-            plural = "" if self.num_persons == 1 else "s"
-            
-        text = intro_tmpl.format(
+        # Определяем роли персонажей
+        roles = self._generate_roles()
+        
+        # Генерируем высказывания
+        statements = self._generate_statements(names, roles)
+        
+        # Получаем шаблоны для текущего языка
+        templates = PROMPT_TEMPLATES["knights_knaves"].get(self.language, PROMPT_TEMPLATES["knights_knaves"]["en"])
+        
+        # Определяем правильное согласование для числа персонажей
+        num_persons_text = self._number_to_text(self.num_persons, self.language)
+        plural = "" if self.num_persons == 1 else "ей" if self.language == "ru" else "s"
+        
+        # Формируем текст задачи с расширенными инструкциями
+        problem_text = templates["intro"].format(
             num_persons=num_persons_text,
-            names=names_joined,
-            plural=plural
+            plural=plural,
+            names=", ".join(names)
         )
-
-        # Добавляем каждое высказывание
-        for st in self.statements:
-            text += line_fmt.format(statement=st["text"]) + "\n"
-
-        text += footer_tmpl
-        return text
+        
+        # Добавляем инструкции по решению
+        problem_text += "\n\n" + templates["instructions"]
+        
+        # Добавляем пример решения
+        problem_text += "\n\n" + templates["example"]
+        
+        # Добавляем высказывания персонажей
+        problem_text += "\n\n" + templates["statements"].format(
+            statements="\n".join(statements)
+        )
+        
+        # Добавляем заключительную часть
+        problem_text += "\n\n" + templates["conclusion"]
+        
+        return problem_text
 
     def _generate_random_statements(self, m: int):
         """
@@ -187,74 +193,91 @@ class KnightsKnavesTask(BaseTask):
             return f"{name_speaker} says: {core_text}"
 
     def solve(self):
-        """
-        1) p[i]: True => knight, False => knave
-        2) Для каждого высказывания st: 
-             (p[speaker] => expr) AND (not p[speaker] => not expr)
-        3) Проверяем sat / no solution
-        4) Формируем chain-of-thought (solution_steps) согласно detail_level
-        5) Формируем final_answer — список, кто knight, кто knave
-        """
-        p = [z3.Bool(f"p{i}") for i in range(self.num_persons)]
-        solver = z3.Solver()
-
-        for st in self.statements:
-            expr = self._build_expr(st["form_key"], p, st["speaker"], st["y"], st["z"])
-            solver.add(z3.Implies(p[st["speaker"]], expr))
-            solver.add(z3.Implies(z3.Not(p[st["speaker"]]), z3.Not(expr)))
-
-        result = solver.check()
-        if result != z3.sat:
-            # Contradictory
-            no_sol_text = PROMPT_TEMPLATES["knights_knaves"]["no_solution"][self.language]
-            self.solution_steps = [no_sol_text]
-            self.final_answer = no_sol_text
-            return
-
-        # Считали модель
-        model = solver.model()
-
-        # Генерируем chain-of-thought (solution_steps)
-        all_steps = PROMPT_TEMPLATES["knights_knaves"]["solution_steps"][self.language]
-        steps_filled = []
-        for i, step_text in enumerate(all_steps, start=1):
-            replaced = step_text.format(n=self.num_persons, st_idx=i)
-            steps_filled.append(replaced)
-            
-        # Добавляем шаги решения до достижения detail_level
-        while len(steps_filled) < self.detail_level:
-            steps_filled.append(steps_filled[-1])  # Повторяем последний шаг
-            
-        self.solution_steps = steps_filled[:self.detail_level]
-
-        # Собираем финальный ответ (список ролей)
-        roles = []
-        for i in range(self.num_persons):
-            val = model[p[i]]
+        steps = []
+        
+        # Базовый шаг с общей стратегией
+        base_step = PROMPT_TEMPLATES["knights_knaves"]["step1"].get(
+            self.language, 
+            PROMPT_TEMPLATES["knights_knaves"]["step1"]["en"]
+        )
+        steps.append(base_step)
+        
+        # Анализ каждого персонажа
+        for i, name in enumerate(self.names):
             if self.language == "ru":
-                role_str = "рыцарь" if val else "лжец"
+                step = f"Анализ высказывания {name}:\n"
+                step += f"- {self.statements[i]}\n"
+                step += f"- Возможные роли: {', '.join(['рыцарь', 'лжец'])}\n"
+                step += f"- Логические следствия:"
             else:
-                role_str = "knight" if val else "knave"
-            roles.append(f"{self.names[i]}: {role_str}")
+                step = f"Analysis of {name}'s statement:\n"
+                step += f"- {self.statements[i]}\n"
+                step += f"- Possible roles: {', '.join(['knight', 'knave'])}\n"
+                step += f"- Logical implications:"
+            steps.append(step)
+        
+        # Анализ противоречий
+        contradictions = self._find_contradictions()
+        if contradictions:
+            if self.language == "ru":
+                step = "Найденные противоречия:\n"
+                for c in contradictions:
+                    step += f"- {c}\n"
+            else:
+                step = "Found contradictions:\n"
+                for c in contradictions:
+                    step += f"- {c}\n"
+            steps.append(step)
+        
+        # Финальный вывод
+        final_step = PROMPT_TEMPLATES["knights_knaves"]["final_step"].get(
+            self.language,
+            PROMPT_TEMPLATES["knights_knaves"]["final_step"]["en"]
+        )
+        steps.append(final_step)
+        
+        # Если нужно больше шагов, повторяем последний
+        while len(steps) < self.detail_level:
+            steps.append(steps[-1])
+        
+        self.solution_steps = steps
+        
+        # Формируем финальный ответ
+        final_answer = PROMPT_TEMPLATES["knights_knaves"]["final_answer"].get(
+            self.language,
+            PROMPT_TEMPLATES["knights_knaves"]["final_answer"]["en"]
+        )
+        
+        # Добавляем объяснение
+        explanation = PROMPT_TEMPLATES["knights_knaves"]["explanation"].get(
+            self.language,
+            PROMPT_TEMPLATES["knights_knaves"]["explanation"]["en"]
+        )
+        
+        # Формируем список ролей
+        roles_list = []
+        for name, role in zip(self.names, self.roles):
+            if self.language == "ru":
+                roles_list.append(f"{name}: {'рыцарь' if role == 'knight' else 'лжец'}")
+            else:
+                roles_list.append(f"{name}: {role}")
+        
+        self.final_answer = f"{final_answer.format(roles=', '.join(roles_list))}\n\n{explanation}"
 
-        self.final_answer = ", ".join(roles)
+    def _find_contradictions(self):
+        """Находит противоречия в высказываниях персонажей"""
+        contradictions = []
+        for i, (name1, stmt1) in enumerate(zip(self.names, self.statements)):
+            for j, (name2, stmt2) in enumerate(zip(self.names, self.statements)):
+                if i < j:  # Проверяем только уникальные пары
+                    if self._are_statements_contradictory(stmt1, stmt2):
+                        contradictions.append(f"{name1} и {name2} противоречат друг другу")
+        return contradictions
 
-    def _build_expr(self, form_key, p, speaker, y, z):
-        """Возвращает z3-выражение для содержимого высказывания."""
-        if form_key == "y_is_liar":
-            return z3.Not(p[y])
-        elif form_key == "y_is_honest":
-            return p[y]
-        elif form_key == "y_and_z_both_honest":
-            return z3.And(p[y], p[z])
-        elif form_key == "y_and_z_both_liars":
-            return z3.And(z3.Not(p[y]), z3.Not(p[z]))
-        elif form_key == "y_eq_z":
-            return p[y] == p[z]
-        elif form_key == "y_neq_z":
-            return p[y] != p[z]
-        else:
-            return z3.BoolVal(True)
+    def _are_statements_contradictory(self, stmt1, stmt2):
+        """Проверяет, противоречат ли два высказывания друг другу"""
+        # Здесь можно добавить более сложную логику проверки противоречий
+        return False  # Заглушка
 
     def get_result(self):
         if not self.solution_steps or self.final_answer is None:

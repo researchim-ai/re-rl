@@ -69,24 +69,96 @@ PROMPT_TEMPLATES = {
             "en": "Solve the linear equation: {equation}"
         },
         "step1": {
-            "ru": "Шаг 1: Запишем уравнение: {equation_pretty}.",
-            "en": "Step 1: Write the equation: {equation_pretty}."
+            "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
+            "en": "Step 1: Write the equation in standard form:\n{equation_pretty}"
         },
-        "step2": {
-            "ru": "Шаг 2: Вычисляем правую часть: {c} - {b} = {right_side}.",
-            "en": "Step 2: Compute the right-hand side: {c} - {b} = {right_side}."
+        "step2_analysis": {
+            "ru": "Шаг 2: Анализируем уравнение:\n- Коэффициент при x: {a}\n- Свободный член: {b}\n- Правая часть: {c}",
+            "en": "Step 2: Analyze the equation:\n- Coefficient of x: {a}\n- Constant term: {b}\n- Right side: {c}"
         },
-        "step3": {
-            "ru": "Шаг 3: Делим обе части на {a}: x = {right_side} / {a} = {solution}.",
-            "en": "Step 3: Divide both sides by {a}: x = {right_side} / {a} = {solution}."
+        "step3_terms": {
+            "ru": "Шаг 3: Выделяем слагаемые:\n- Слагаемое с x: {a}x\n- Свободное слагаемое: {b}\n- Правая часть: {c}",
+            "en": "Step 3: Identify terms:\n- Term with x: {a}x\n- Constant term: {b}\n- Right side: {c}"
+        },
+        "step4_transfer": {
+            "ru": "Шаг 4: Переносим свободное слагаемое в правую часть:\n{c} - {b} = {right_side}",
+            "en": "Step 4: Move the constant term to the right side:\n{c} - {b} = {right_side}"
+        },
+        "step5_coef": {
+            "ru": "Шаг 5: Проверяем коэффициент при x:\nКоэффициент {a} не равен нулю, поэтому можно разделить обе части уравнения на {a}",
+            "en": "Step 5: Check the coefficient of x:\nCoefficient {a} is not zero, so we can divide both sides by {a}"
+        },
+        "step6_division": {
+            "ru": "Шаг 6: Делим обе части уравнения на {a}:\n{right_side} / {a} = {solution}",
+            "en": "Step 6: Divide both sides by {a}:\n{right_side} / {a} = {solution}"
+        },
+        "step7_check": {
+            "ru": "Шаг 7: Проверяем решение, подставляя x = {solution} в исходное уравнение:\n{equation}",
+            "en": "Step 7: Verify the solution by substituting x = {solution} into the original equation:\n{equation}"
+        },
+        "step8_geom": {
+            "ru": "Шаг 8: Геометрическая интерпретация:\nУравнение {a}x + {b} = {c} представляет собой прямую линию, которая пересекает ось x в точке x = {solution}",
+            "en": "Step 8: Geometric interpretation:\nThe equation {a}x + {b} = {c} represents a straight line that intersects the x-axis at x = {solution}"
+        },
+        "step9_alt": {
+            "ru": "Шаг 9: Альтернативный метод решения:\nМожно решить уравнение графически, построив графики функций y = {a}x + {b} и y = {c}. Точка их пересечения даст решение x = {solution}",
+            "en": "Step 9: Alternative solution method:\nWe can solve the equation graphically by plotting the functions y = {a}x + {b} and y = {c}. Their intersection point gives the solution x = {solution}"
         },
         "linear_extra_partition": {
-            "ru": "Дополнительный шаг: разложим разность {c} - {b} на {n} частей: {parts}.",
-            "en": "Extra step: decompose {c} - {b} into {n} parts: {parts}."
+            "ru": "Шаг {n}: Разбиваем {c} - {b} на {n} равных частей:\n{parts}",
+            "en": "Step {n}: Partition {c} - {b} into {n} equal parts:\n{parts}"
         },
         "linear_extra_sum": {
-            "ru": "Дополнительный шаг: суммируем части: получаем {sum_value}.",
-            "en": "Extra step: sum the parts to get {sum_value}."
+            "ru": "Шаг {n+1}: Проверяем сумму частей:\n{sum_value}",
+            "en": "Step {n+1}: Verify the sum of parts:\n{sum_value}"
+        },
+        "explanation": {
+            "ru": {
+                "step1": "Записываем уравнение в стандартной форме для дальнейшего решения",
+                "step2_analysis": "Анализируем структуру уравнения, определяя все его компоненты",
+                "step3_terms": "Выделяем и называем каждое слагаемое в уравнении",
+                "step4_transfer": "Переносим свободное слагаемое в правую часть для изоляции x",
+                "step5_coef": "Проверяем возможность деления на коэффициент при x",
+                "step6_division": "Делим обе части уравнения на коэффициент при x для получения решения",
+                "step7_check": "Проверяем корректность решения подстановкой",
+                "step8_geom": "Рассматриваем геометрический смысл уравнения",
+                "step9_alt": "Рассматриваем альтернативный метод решения"
+            },
+            "en": {
+                "step1": "Write the equation in standard form for further solution",
+                "step2_analysis": "Analyze the structure of the equation, identifying all its components",
+                "step3_terms": "Identify and name each term in the equation",
+                "step4_transfer": "Move the constant term to the right side to isolate x",
+                "step5_coef": "Check if we can divide by the coefficient of x",
+                "step6_division": "Divide both sides by the coefficient of x to get the solution",
+                "step7_check": "Verify the solution by substitution",
+                "step8_geom": "Consider the geometric meaning of the equation",
+                "step9_alt": "Consider an alternative solution method"
+            }
+        },
+        "validation": {
+            "ru": {
+                "step1": "Уравнение записано корректно в стандартной форме",
+                "step2_analysis": "Анализ уравнения выполнен правильно",
+                "step3_terms": "Слагаемые выделены корректно",
+                "step4_transfer": "Перенос слагаемых выполнен правильно",
+                "step5_coef": "Проверка коэффициента выполнена корректно",
+                "step6_division": "Деление на коэффициент выполнено правильно",
+                "step7_check": "Проверка решения подтверждает его корректность",
+                "step8_geom": "Геометрическая интерпретация верна",
+                "step9_alt": "Альтернативный метод решения применим"
+            },
+            "en": {
+                "step1": "The equation is correctly written in standard form",
+                "step2_analysis": "Equation analysis is correct",
+                "step3_terms": "Terms are correctly identified",
+                "step4_transfer": "Term transfer is performed correctly",
+                "step5_coef": "Coefficient check is correct",
+                "step6_division": "Division by coefficient is performed correctly",
+                "step7_check": "Solution verification confirms its correctness",
+                "step8_geom": "Geometric interpretation is correct",
+                "step9_alt": "Alternative solution method is applicable"
+            }
         }
     },
 
@@ -488,41 +560,67 @@ PROMPT_TEMPLATES = {
     # 10) CONTRADICTION
     #----------------------------------------------------------------------------
     "contradiction": {
-        "instructions": {
-            "ru": (
-                "type: structured_text_with_tags\n"
-                "Описание: Найдите ложное утверждение.\n"
-                "Пример ответа:\n"
-                "<reasoning>\n"
-                "  (Как вы проверяли истинность каждого)\n"
-                "</reasoning>\n"
-                "<answer>\n"
-                "  (Ложное утверждение)\n"
-                "</answer>"
-            ),
-            "en": (
-                "type: structured_text_with_tags\n"
-                "Description: Find the false statement.\n"
-                "Example:\n"
-                "<reasoning>\n"
-                "  (How you checked each statement)\n"
-                "</reasoning>\n"
-                "<answer>\n"
-                "  (The false statement)\n"
-                "</answer>"
-            )
-        },
         "problem": {
-            "ru": "Найдите ложное утверждение в следующем наборе:\n{statements}",
-            "en": "Find the false statement in the following set:\n{statements}"
+            "ru": "Среди следующих утверждений одно является ложным. Найдите его:\n\n{statements}",
+            "en": "Among the following statements, one is false. Find it:\n\n{statements}"
+        },
+        "instructions": {
+            "ru": """Для решения этой задачи следуйте следующим шагам:
+1. Внимательно прочитайте каждое утверждение
+2. Проанализируйте каждое утверждение на предмет его истинности
+3. Найдите утверждение, которое противоречит общеизвестным фактам
+4. Объясните, почему выбранное утверждение является ложным
+
+Стратегия решения:
+- Разделите утверждения на логические группы
+- Сравните утверждения между собой
+- Используйте свои знания для проверки каждого утверждения
+- Обратите внимание на детали и формулировки""",
+            "en": """To solve this task, follow these steps:
+1. Read each statement carefully
+2. Analyze each statement for truthfulness
+3. Find the statement that contradicts common knowledge
+4. Explain why the chosen statement is false
+
+Solution strategy:
+- Divide statements into logical groups
+- Compare statements with each other
+- Use your knowledge to verify each statement
+- Pay attention to details and wording"""
+        },
+        "example": {
+            "ru": """Пример рассуждений:
+- Вода закипает при температуре 100 градусов Цельсия
+- Солнце восходит на востоке
+- Земля вращается вокруг своей оси
+- Луна светит своим собственным светом
+
+Анализ:
+1. Первые три утверждения являются общеизвестными фактами
+2. Четвертое утверждение противоречит научным знаниям - Луна отражает солнечный свет
+3. Следовательно, четвертое утверждение является ложным""",
+            "en": """Example reasoning:
+- Water boils at 100 degrees Celsius
+- The sun rises in the east
+- The Earth rotates on its axis
+- The Moon shines with its own light
+
+Analysis:
+1. The first three statements are common knowledge
+2. The fourth statement contradicts scientific knowledge - the Moon reflects sunlight
+3. Therefore, the fourth statement is false"""
         },
         "step1": {
-            "ru": "Шаг 1: Проанализируйте утверждения.",
-            "en": "Step 1: Analyze the statements."
+            "ru": "Начнем с общего анализа всех утверждений. Разделим их на логические группы для более эффективного поиска.",
+            "en": "Let's start with a general analysis of all statements. We'll divide them into logical groups for more efficient search."
         },
         "final_answer": {
             "ru": "Ложное утверждение: {false_statement}",
             "en": "False statement: {false_statement}"
+        },
+        "explanation": {
+            "ru": "Это утверждение является ложным, так как противоречит общеизвестным фактам и научным знаниям.",
+            "en": "This statement is false as it contradicts common knowledge and scientific facts."
         }
     },
 
@@ -741,93 +839,89 @@ PROMPT_TEMPLATES = {
     # 11) KNIGHTS_KNAVES
     #----------------------------------------------------------------------------
     "knights_knaves": {
-        "instructions": {
-            "ru": (
-                "type: structured_text_with_tags\n"
-                "Описание: Задача 'рыцари и лжецы'. Определить, кто рыцарь, кто лжец.\n"
-                "Пример:\n"
-                "<reasoning>\n"
-                "  (Шаги вывода)\n"
-                "</reasoning>\n"
-                "<answer>\n"
-                "  Alice: рыцарь, Bob: лжец...\n"
-                "</answer>"
-            ),
-            "en": (
-                "type: structured_text_with_tags\n"
-                "Description: Knights & Knaves puzzle. Determine who is knight or knave.\n"
-                "Example:\n"
-                "<reasoning>\n"
-                "  (Steps leading to the conclusion)\n"
-                "</reasoning>\n"
-                "<answer>\n"
-                "  Alice: knight, Bob: knave...\n"
-                "</answer>"
-            )
-        },
-        "names_pool": {
-            "ru": [
-                "Аня", "Борис", "Вася", "Галя", "Дима",
-                "Егор", "Женя", "Зоя", "Игорь", "Лера",
-                "Маша", "Никита", "Оля", "Петя", "Римма",
-                "Слава", "Толя", "Ульяна", "Федор", "Юля"
-            ],
-            "en": [
-                "Alice", "Bob", "Charlie", "Dave", "Eve",
-                "Frank", "Grace", "Hank", "Ivy", "Jack",
-                "Karen", "Leo", "Megan", "Nick", "Olivia",
-                "Paul", "Quinn", "Rose", "Steve", "Tina"
-            ]
-        },
         "intro": {
-            "ru": "У нас есть {num_persons} персонаж{plural}: {names}.\nКаждый может быть «рыцарем» (всегда говорит правду) или «лжецом» (всегда врёт).\nНиже приведены их утверждения:",
-            "en": "We have {num_persons} character{plural}: {names}.\nEach of them can be a knight (always tells the truth) or a knave (always lies).\nBelow are their statements:"
+            "ru": "У нас есть {num_persons} персонаж{plural}: {names}.",
+            "en": "We have {num_persons} character{plural}: {names}."
         },
-        "line_format": {
-            "ru": "- {statement}",
-            "en": "- {statement}"
+        "instructions": {
+            "ru": """Для решения этой задачи следуйте следующим шагам:
+1. Внимательно прочитайте каждое высказывание
+2. Проанализируйте логические следствия каждого высказывания
+3. Найдите противоречия между высказываниями
+4. Определите роли персонажей на основе анализа
+
+Стратегия решения:
+- Если персонаж говорит правду, он рыцарь
+- Если персонаж лжет, он лжец
+- Используйте логические следствия для определения ролей
+- Обратите внимание на противоречия между высказываниями""",
+            "en": """To solve this task, follow these steps:
+1. Read each statement carefully
+2. Analyze the logical implications of each statement
+3. Find contradictions between statements
+4. Determine roles based on analysis
+
+Solution strategy:
+- If a character tells the truth, they are a knight
+- If a character lies, they are a knave
+- Use logical implications to determine roles
+- Pay attention to contradictions between statements"""
         },
-        "footer": {
+        "example": {
+            "ru": """Пример решения:
+У нас есть два персонажа: Алиса и Боб.
+
+Алиса говорит: "Боб - лжец"
+Боб говорит: "Алиса - рыцарь"
+
+Анализ:
+1. Если Алиса - рыцарь, то Боб - лжец
+2. Если Боб - лжец, то его утверждение ложно, значит Алиса - не рыцарь
+3. Это противоречие, значит Алиса - лжец
+4. Если Алиса - лжец, то Боб - не лжец, то есть рыцарь
+5. Если Боб - рыцарь, то его утверждение истинно, значит Алиса - рыцарь
+6. Это противоречие, значит Боб - лжец
+
+Ответ: Алиса - рыцарь, Боб - лжец""",
+            "en": """Example solution:
+We have two characters: Alice and Bob.
+
+Alice says: "Bob is a knave"
+Bob says: "Alice is a knight"
+
+Analysis:
+1. If Alice is a knight, then Bob is a knave
+2. If Bob is a knave, his statement is false, so Alice is not a knight
+3. This is a contradiction, so Alice is a knave
+4. If Alice is a knave, then Bob is not a knave, so he is a knight
+5. If Bob is a knight, his statement is true, so Alice is a knight
+6. This is a contradiction, so Bob is a knave
+
+Answer: Alice is a knight, Bob is a knave"""
+        },
+        "statements": {
+            "ru": "Высказывания персонажей:\n{statements}",
+            "en": "Character statements:\n{statements}"
+        },
+        "conclusion": {
             "ru": "Определите, кто из них рыцарь, а кто — лжец.",
             "en": "Determine who is a knight and who is a knave."
         },
-        "forms": {
-            "ru": {
-                "y_is_liar": "\"{nameY} — лжец.\"",
-                "y_is_honest": "\"{nameY} — честный.\"",
-                "y_and_z_both_honest": "\"{nameY} и {nameZ} оба честные.\"",
-                "y_and_z_both_liars": "\"{nameY} и {nameZ} оба лжецы.\"",
-                "y_eq_z": "\"{nameY} и {nameZ} принадлежат к одной группе.\"",
-                "y_neq_z": "\"{nameY} и {nameZ} принадлежат к разным группам.\""
-            },
-            "en": {
-                "y_is_liar": "\"{nameY} is a liar.\"",
-                "y_is_honest": "\"{nameY} is honest.\"",
-                "y_and_z_both_honest": "\"{nameY} and {nameZ} are both honest.\"",
-                "y_and_z_both_liars": "\"{nameY} and {nameZ} are both liars.\"",
-                "y_eq_z": "\"{nameY} and {nameZ} are the same type.\"",
-                "y_neq_z": "\"{nameY} and {nameZ} are different types.\""
-            }
+        "step1": {
+            "ru": "Начнем с анализа высказываний каждого персонажа и их логических следствий.",
+            "en": "Let's start by analyzing each character's statements and their logical implications."
         },
-        "solution_steps": {
-            "ru": [
-                "Шаг 1: Вводим булевые переменные p0..p{{n-1}}, где True=рыцарь, False=лжец.",
-                "Шаг 2: Для каждого утверждения {st_idx} строим: p[speaker] => (высказывание), иначе ¬(высказывание).",
-                "Шаг 3: Вызываем решатель (Z3). Если результат SAT, решение есть.",
-                "Шаг 4: Смотрим модель: p[i]=True => рыцарь, p[i]=False => лжец.",
-                "Шаг 5: Итоговое распределение ролей."
-            ],
-            "en": [
-                "Step 1: Introduce boolean p0..p{{n-1}} (True=knight, False=knave).",
-                "Step 2: For each statement {st_idx}, p[speaker] => statement, else ¬statement.",
-                "Step 3: Call the solver (Z3). If SAT, a solution exists.",
-                "Step 4: Inspect model: p[i]=True => knight, p[i]=False => knave.",
-                "Step 5: Summarize final roles."
-            ]
+        "final_step": {
+            "ru": "На основе проведенного анализа можно сделать вывод о ролях персонажей.",
+            "en": "Based on the analysis, we can draw conclusions about the characters' roles."
         },
-        "no_solution": {
-            "ru": "Система противоречива: решения нет.",
-            "en": "Contradictory system: no solution."
+        "final_answer": {
+            "ru": "Ответ: {roles}",
+            "en": "Answer: {roles}"
+        },
+        "explanation": {
+            "ru": "Это решение является единственно возможным, так как оно согласуется со всеми высказываниями и не содержит противоречий.",
+            "en": "This solution is the only possible one as it is consistent with all statements and contains no contradictions."
         }
     },
 
