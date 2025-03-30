@@ -1070,53 +1070,7 @@ Analysis:
     },
 
     #----------------------------------------------------------------------------
-    # 11) KNIGHTS_KNAVES
-    #----------------------------------------------------------------------------
-    "knights_knaves": {
-        "instructions": {
-            "en": "We have three characters. Each character is either a Knight who always tells the truth, or a Knave who always lies. Determine who is a knight and who is a knave.",
-            "ru": "У нас есть три персонажей. Каждый персонаж является либо Рыцарем, который всегда говорит правду, либо Лжецом, который всегда лжет. Определите, кто из них рыцарь, а кто — лжец."
-        },
-        "intro": {
-            "ru": "Вот наши персонажи: {names}.",
-            "en": "Here are our characters: {names}."
-        },
-        "problem": {
-            "en": "Here are their statements:\n{statements}",
-            "ru": "Вот их высказывания:\n{statements}"
-        },
-        "names_pool": {
-            "en": ["Alice", "Bob", "Charlie", "David", "Eve", "Frank", "Grace", "Henry"],
-            "ru": ["Алиса", "Борис", "Виктор", "Григорий", "Дмитрий", "Елена", "Жанна", "Зинаида"]
-        },
-        "forms": {
-            "en": {
-                "statement": "{name} says: \"{text}\"",
-                "about_self": "I am a {role}",
-                "about_other": "{name} is a {role}",
-                "and": "Both {name} and {other_name} are {role}s",
-                "or": "Either {name} or {other_name} is a {role}",
-                "same": "{name} and {other_name} are of the same type",
-                "different": "{name} and {other_name} are of different types",
-                "at_least_one": "At least one of us is a {role}",
-                "exactly_one": "Exactly one of us is a {role}"
-            },
-            "ru": {
-                "statement": "{name} говорит: \"{text}\"",
-                "about_self": "Я {role}",
-                "about_other": "{name} - {role}",
-                "and": "{name} и {other_name} оба {role}",
-                "or": "{name} или {other_name} - {role}",
-                "same": "{name} и {other_name} одного типа",
-                "different": "{name} и {other_name} разных типов",
-                "at_least_one": "Хотя бы один из нас - {role}",
-                "exactly_one": "Ровно один из нас - {role}"
-            }
-        }
-    },
-
-    #----------------------------------------------------------------------------
-    # 12) FUTOSHIKI
+    # 11) FUTOSHIKI
     #----------------------------------------------------------------------------
     "futoshiki": {
         "instructions": {
@@ -1180,7 +1134,7 @@ Analysis:
     },
 
     #----------------------------------------------------------------------------
-    # 13) URN_PROBABILITY
+    # 12) URN_PROBABILITY
     #----------------------------------------------------------------------------
     "urn_probability": {
         "instructions": {
@@ -1266,7 +1220,7 @@ Analysis:
     },
 
     #----------------------------------------------------------------------------
-    # 14) KNIGHTS_KNAVES
+    # 13) KNIGHTS_KNAVES
     #----------------------------------------------------------------------------
     "knights_knaves": {
         "instructions": {
@@ -1299,9 +1253,25 @@ Analysis:
         },
         "names_pool": {
             "ru": ["Алекс", "Борис", "Виктор", "Григорий", "Дмитрий", 
-                  "Елена", "Жанна", "Зоя", "Ирина", "Карина"],
+                  "Елена", "Жанна", "Зоя", "Ирина", "Карина",
+                  "Леонид", "Мария", "Николай", "Ольга", "Павел",
+                  "Роман", "Светлана", "Тимофей", "Ульяна", "Федор",
+                  "Харитон", "Цветана", "Чеслав", "Шарлотта", "Эдуард",
+                  "Юрий", "Ярослав", "Анна", "Богдан", "Валентина",
+                  "Галина", "Даниил", "Евгений", "Жорж", "Зинаида",
+                  "Игорь", "Ксения", "Лев", "Маргарита", "Наталья",
+                  "Олег", "Петр", "Раиса", "Сергей", "Татьяна",
+                  "Устин", "Фаина", "Христина", "Цезарь", "Чарльз"],
             "en": ["Alex", "Bob", "Charlie", "David", "Eve",
-                  "Frank", "George", "Helen", "Ivan", "Jack"]
+                  "Frank", "George", "Helen", "Ivan", "Jack",
+                  "Kevin", "Lily", "Mike", "Nina", "Oliver",
+                  "Peter", "Quinn", "Rachel", "Sam", "Tom",
+                  "Uma", "Victor", "Wendy", "Xavier", "Yara",
+                  "Zack", "Alice", "Ben", "Clara", "Dan",
+                  "Emma", "Fred", "Gina", "Henry", "Iris",
+                  "James", "Kate", "Leo", "Maya", "Nate",
+                  "Oscar", "Penny", "Quinn", "Rose", "Steve",
+                  "Tina", "Uri", "Vera", "Wade", "Xena"]
         },
         "problem": {
             "ru": "Известно, что {statements}. Определите, кто из них рыцарь, а кто — лжец",
