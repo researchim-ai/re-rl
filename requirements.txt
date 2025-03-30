@@ -1,5 +1,6 @@
 sympy>=1.9
 networkx>=2.6
+rich
 numpy
 datasets
 z3-solver

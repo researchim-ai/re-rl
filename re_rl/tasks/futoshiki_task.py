@@ -67,6 +67,11 @@ class FutoshikiTask(BaseTask):
                 ineqs.add((r1,c1, r2,c2))
         return list(ineqs)
 
+    def get_task_type(self):
+        
+        return "futoshiki"
+
+
     def _solve_with_z3(self):
         """
         Строим модель Z3:
