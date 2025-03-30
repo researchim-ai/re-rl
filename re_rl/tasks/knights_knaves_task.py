@@ -61,6 +61,31 @@ class KnightsKnavesTask(BaseTask):
             # при больших значениях ещё увеличиваем
             return (5, 7)
 
+    def _number_to_text(self, n: int, language: str) -> str:
+        """Преобразует число в текстовый формат на нужном языке."""
+        if language == "ru":
+            if n == 2:
+                return "два"
+            elif n == 3:
+                return "три"
+            elif n == 4:
+                return "четыре"
+            elif n == 5:
+                return "пять"
+            else:
+                return str(n)
+        else:
+            if n == 2:
+                return "two"
+            elif n == 3:
+                return "three"
+            elif n == 4:
+                return "four"
+            elif n == 5:
+                return "five"
+            else:
+                return str(n)
+
     def _create_problem_text(self) -> str:
         """
         Формируем строку с постановкой задачи:
@@ -74,7 +99,19 @@ class KnightsKnavesTask(BaseTask):
         footer_tmpl = kn_templates["footer"][self.language]
 
         names_joined = ", ".join(self.names)
-        text = intro_tmpl.format(num_persons=self.num_persons, names=names_joined)
+        num_persons_text = self._number_to_text(self.num_persons, self.language)
+        
+        # Добавляем правильное согласование
+        if self.language == "ru":
+            plural = "а" if self.num_persons == 1 else "ей"
+        else:
+            plural = "" if self.num_persons == 1 else "s"
+            
+        text = intro_tmpl.format(
+            num_persons=num_persons_text,
+            names=names_joined,
+            plural=plural
+        )
 
         # Добавляем каждое высказывание
         for st in self.statements:
@@ -183,6 +220,11 @@ class KnightsKnavesTask(BaseTask):
         for i, step_text in enumerate(all_steps, start=1):
             replaced = step_text.format(n=self.num_persons, st_idx=i)
             steps_filled.append(replaced)
+            
+        # Добавляем шаги решения до достижения detail_level
+        while len(steps_filled) < self.detail_level:
+            steps_filled.append(steps_filled[-1])  # Повторяем последний шаг
+            
         self.solution_steps = steps_filled[:self.detail_level]
 
         # Собираем финальный ответ (список ролей)

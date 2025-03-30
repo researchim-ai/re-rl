@@ -13,13 +13,21 @@ class TestKnightsKnavesTask(unittest.TestCase):
         task = KnightsKnavesTask(language="ru", detail_level=5)
         result = task.get_result()
         
-        # Проверяем, что в постановке задачи действительно есть фраза "У нас есть три персонажа" (из prompts.py)
-        self.assertIn("У нас есть три персонажа", result["problem"], 
+        # Проверяем, что в постановке задачи действительно есть фраза "У нас есть три персонажей" (из prompts.py)
+        self.assertIn("У нас есть три персонажей", result["problem"],
                       "Постановка задачи (problem) должна содержать базовый текст на русском")
+        self.assertIn("говорит:", result["problem"],
+                      "Постановка задачи должна содержать высказывания персонажей")
+        self.assertIn("Определите, кто из них рыцарь, а кто — лжец", result["problem"],
+                      "Постановка задачи должна содержать инструкцию по решению")
         
-        # Проверяем, что итоги решения не пустые
-        self.assertTrue(result["solution_steps"], "solution_steps не должен быть пустым")
-        self.assertTrue(result["final_answer"], "final_answer не должен быть пустым")
+        # Проверяем, что solution_steps не пуст
+        self.assertTrue(len(result["solution_steps"]) > 0,
+                       "Поле solution_steps не должно быть пустым")
+        
+        # Проверяем, что final_answer не пуст
+        self.assertTrue(len(result["final_answer"]) > 0,
+                       "Поле final_answer не должно быть пустым")
         
         # Дополнительно можем проверить длину solution_steps
         self.assertLessEqual(len(result["solution_steps"]), 5, "Число шагов не должно превышать detail_level=5")
@@ -34,6 +42,10 @@ class TestKnightsKnavesTask(unittest.TestCase):
         # Проверяем, что постановка задачи содержит английский текст
         self.assertIn("We have three characters", result["problem"], 
                       "Постановка задачи (problem) должна содержать базовый текст на английском")
+        self.assertIn("says:", result["problem"],
+                      "Постановка задачи должна содержать высказывания персонажей")
+        self.assertIn("Determine who is a knight and who is a knave", result["problem"],
+                      "Постановка задачи должна содержать инструкцию по решению")
         
         # Проверяем наличие финального ответа
         self.assertTrue(result["final_answer"], "final_answer не должен быть пустым")

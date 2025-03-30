@@ -69,8 +69,16 @@ def parse_quadratic_answer(text: str) -> Optional[List[float]]:
     """
     Возвращаем список корней (0..2).
     """
-    vals = parse_list_of_floats(text)
-    return vals if vals else None
+    # Ищем числа в формате x1 = 1, x2 = -1 или просто 1, -1
+    pairs = re.findall(r"x\d+\s*=\s*([-+]?\d+(?:\.\d+)?)", text)
+    if pairs:
+        return [float(p) for p in pairs[:2]]
+    
+    # Если не нашли в формате x1=..., ищем просто числа
+    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", text)
+    if not nums:
+        return None
+    return [float(n) for n in nums[:2]]
 
 def parse_cubic_answer(text: str) -> Optional[List[float]]:
     """
@@ -94,14 +102,14 @@ def parse_urn_probability_answer(text: str) -> Optional[float]:
 def parse_knights_knaves_answer(text: str) -> Optional[Dict[str,str]]:
     """
     Пример: "Alice: liar, Bob: knight, Charlie: liar"
-    Вернём { 'Alice':'liar', 'Bob':'knight', ... }
+    Вернём { 'alice':'liar', 'bob':'knight', ... }
     """
     pairs = re.findall(r"([\wА-яЁё]+)\s*:\s*([\wА-яЁё]+)", text)
     if not pairs:
         return None
     out = {}
     for name, role in pairs:
-        out[name] = role.lower()
+        out[name.lower()] = role.lower()
     return out
 
 def parse_futoshiki_answer(text: str) -> Optional[List[List[int]]]:
@@ -164,7 +172,7 @@ def reward_linear(ref_val: Optional[float], pred_val: Optional[float]) -> float:
     diff = abs(ref_val - pred_val)
     if diff < 1e-4:
         return 1.0
-    elif diff < 0.1:
+    elif diff < 0.5:  # Увеличиваем порог для частичного совпадения
         return 0.5
     else:
         return 0.0
@@ -244,14 +252,12 @@ def reward_text_stats(ref_count: Optional[int], pred_count: Optional[int]) -> fl
     if ref_count is None or pred_count is None:
         return 0.0
     diff = abs(ref_count - pred_count)
-    if diff==0:
+    if diff == 0:
         return 1.0
-    elif diff==1:
+    elif diff == 1:
         return 0.7
-    elif diff==2:
-        return 0.3
     else:
-        return 0.0
+        return 0.0  # Возвращаем 0 для больших различий
 
 def reward_system_linear(ref_vec: Optional[List[float]], pred_vec: Optional[List[float]]) -> float:
     if not ref_vec or not pred_vec:

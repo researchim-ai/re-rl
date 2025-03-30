@@ -12,7 +12,15 @@ class ContradictionTask(BaseTask):
     
     Все текстовые строки получаются из шаблонов в PROMPT_TEMPLATES.
     """
-    def __init__(self, language: str = "en", num_statements: int = 100):
+    def __init__(
+        self,
+        language: str = "en",
+        num_statements: int = 25
+    ):
+        """
+        :param language: 'ru' или 'en'
+        :param num_statements: сколько утверждений использовать (по умолчанию 25)
+        """
         self.language = language.lower()
         self.num_statements = num_statements
         self.statements = []
@@ -23,9 +31,10 @@ class ContradictionTask(BaseTask):
     def _create_problem_description(self):
         facts_true = PROMPT_TEMPLATES["contradiction_facts"].get(self.language, {}).get("true", [])
         facts_false = PROMPT_TEMPLATES["contradiction_facts"].get(self.language, {}).get("false", [])
-        # Если базы меньше 100, можно расширить их (для простоты здесь предполагаем, что их ровно 100)
+        
+        # Проверяем, что у нас достаточно фактов
         if len(facts_true) < self.num_statements or len(facts_false) < self.num_statements:
-            raise ValueError("База фактов должна содержать не менее чем 100 истинных и 100 ложных утверждений.")
+            raise ValueError(f"База фактов должна содержать не менее чем {self.num_statements} истинных и {self.num_statements} ложных утверждений.")
         # Выбираем случайный набор из num_statements истинных утверждений без повторений
         selected = random.sample(facts_true, self.num_statements)
         # Выбираем случайный индекс для замены
