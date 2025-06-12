@@ -18,6 +18,9 @@ from re_rl.tasks.urn_probability_task import UrnProbabilityTask
 from re_rl.tasks.text_stats_task import TextStatsTask
 from re_rl.tasks.graph_task import GraphTask
 from re_rl.tasks.system_linear_task import SystemLinearTask
+from re_rl.tasks.analogical_task import AnalogicalTask
+from re_rl.tasks.group_theory_task import GroupTheoryTask
+from re_rl.tasks.category_theory_task import CategoryTheoryTask
 
 
 ##################################################
@@ -289,3 +292,85 @@ def generate_random_system_linear_task(
         if abs(detA) < 1e-3:
             continue
         return SystemLinearTask(mat.tolist(), language=language, detail_level=detail_level)
+
+
+##################################################
+# 14. AnalogicalTask
+##################################################
+
+def generate_random_analogical_task(
+    language: str = "ru",
+    detail_level: int = 3
+) -> AnalogicalTask:
+    """
+    Генерирует случайную аналогическую задачу.
+    
+    :param language: 'ru' или 'en'
+    :param detail_level: количество шагов в решении
+    :return: экземпляр AnalogicalTask
+    """
+    # Список предопределенных аналогий
+    analogies = [
+        # Математические аналогии
+        "2 * 3 = 6 -> 3 * 4 = 12",
+        "2^3 = 8 -> 3^2 = 9",
+        "5 + 3 = 8 -> 7 + 4 = 11",
+        
+        # Логические аналогии
+        "круг -> круглый -> квадрат -> квадратный",
+        "бежать -> бег -> плыть -> плавание",
+        "горячий -> холодный -> светлый -> темный",
+        
+        # Геометрические аналогии
+        "треугольник -> 3 стороны -> квадрат -> 4 стороны",
+        "круг -> 0 углов -> треугольник -> 3 угла",
+        
+        # Числовые аналогии
+        "2 -> 4 -> 3 -> 6",  # умножение на 2
+        "3 -> 9 -> 4 -> 16",  # возведение в квадрат
+        "2 -> 8 -> 3 -> 27",  # возведение в куб
+    ]
+    
+    # Выбираем случайную аналогию
+    analogy = random.choice(analogies)
+    
+    return AnalogicalTask(
+        description=analogy,
+        language=language,
+        detail_level=detail_level
+    )
+
+
+##################################################
+# 15. GroupTheoryTask
+##################################################
+
+def generate_random_group_theory_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    task_type=None,
+    group_type=None
+) -> GroupTheoryTask:
+    """Генерируем случайную задачу по теории групп."""
+    return GroupTheoryTask.generate_random_task(
+        task_type=task_type,
+        group_type=group_type,
+        language=language,
+        detail_level=detail_level
+    )
+
+##################################################
+# 16. CategoryTheoryTask
+##################################################
+
+def generate_random_category_theory_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    task_type=None
+) -> CategoryTheoryTask:
+    """Генерируем случайную задачу по теории категорий."""
+    return CategoryTheoryTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level
+    )
