@@ -1,7 +1,7 @@
 # re_rl/tasks/group_theory_task.py
 
 import random
-from sympy import mod_inverse, gcd, randprime
+from sympy import mod_inverse, gcd, randprime, totient, factorint
 from sympy.combinatorics import Permutation
 from sympy.combinatorics.permutations import Cycle
 from re_rl.tasks.base_task import BaseMathTask
@@ -126,13 +126,20 @@ class GroupTheoryTask(BaseMathTask):
             
             elif self.task_type == "element_order":
                 if "additive" in self.description:
+                    # Для (Z_n,+): порядок равен n / gcd(a,n)
                     order = self.modulus // gcd(self.element, self.modulus)
                 else:
-                    order = 1
-                    current = self.element
-                    while current != 1:
-                        current = (current * self.element) % self.modulus
-                        order += 1
+                    # Мультипликативная группа (Z_n)^*
+                    if gcd(self.element, self.modulus) != 1:
+                        # элемент не принадлежит группе, порядок не определён
+                        order = 0
+                    else:
+                        phi_n = totient(self.modulus)
+                        order = phi_n
+                        # сокращаем order, проверяя простые множители φ(n)
+                        for p in factorint(phi_n).keys():
+                            while order % p == 0 and pow(self.element, order // p, self.modulus) == 1:
+                                order //= p
                 steps.append(f"Порядок элемента вычислен через свойства циклической группы: {order}")
                 self.final_answer = str(order)
 

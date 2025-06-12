@@ -11,6 +11,8 @@ from re_rl.tasks.system_linear_task import SystemLinearTask
 from re_rl.tasks.analogical_task import AnalogicalTask
 from re_rl.tasks.factory import MathTaskFactory
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.group_theory_task import GroupTheoryTask
+from re_rl.tasks.category_theory_task import CategoryTheoryTask
 
 class TestLinearTask(unittest.TestCase):
     def test_linear_ru(self):
@@ -101,8 +103,6 @@ class TestGraphTask(unittest.TestCase):
         self.assertTrue(result["prompt"].startswith("Задача:") or result["prompt"].startswith("Используя аналогию"))
         self.assertNotEqual(result["final_answer"], PROMPT_TEMPLATES["default"]["no_solution"]["ru"])
 
-
-
 class TestFactory(unittest.TestCase):
     def test_factory_math(self):
         task = MathTaskFactory.generate_random_math_task(only_valid=True, language="en", detail_level=3)
@@ -125,6 +125,32 @@ class TestFactory(unittest.TestCase):
         self.assertNotEqual(prompt_ru, prompt_en)
         self.assertIn("Решите", prompt_ru)
         self.assertIn("Solve", prompt_en)
+
+class TestGroupTheoryTask(unittest.TestCase):
+    def test_specific_inverse(self):
+        task = GroupTheoryTask(task_type="inverse_element", group_type="cyclic", modulus=11, element=3, language="ru", detail_level=3)
+        result = task.get_result()
+        self.assertIn("обратный элемент", result["problem"])
+        self.assertEqual(result["final_answer"], str(pow(3, -1, 11)))
+
+    def test_random_generation(self):
+        task = GroupTheoryTask.generate_random_task(language="en", detail_level=2)
+        result = task.get_result()
+        self.assertTrue(result["problem"].strip())
+        self.assertTrue(result["final_answer"].strip())
+
+class TestCategoryTheoryTask(unittest.TestCase):
+    def test_composition(self):
+        task = CategoryTheoryTask(task_type="morphism_composition", language="en", detail_level=3)
+        result = task.get_result()
+        self.assertIn("composition", result["problem"].lower())
+        self.assertIn("∘", result["final_answer"])
+
+    def test_random_generation(self):
+        task = CategoryTheoryTask.generate_random_task(language="ru", detail_level=2)
+        result = task.get_result()
+        self.assertTrue(result["problem"].strip())
+        self.assertTrue(result["final_answer"].strip())
 
 if __name__ == '__main__':
     unittest.main()
