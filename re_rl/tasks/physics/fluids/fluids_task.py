@@ -14,7 +14,7 @@ FluidsTask — задачи по гидростатике и гидродина�
 import random
 import math
 from typing import Dict, Any, ClassVar
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from re_rl.tasks.physics.constants import get_constant
 
@@ -69,10 +69,12 @@ class FluidsTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         self.language = language
         
         self.g = get_constant("g")
@@ -92,7 +94,7 @@ class FluidsTask(BaseMathTask):
         self.F1 = F1 if F1 is not None else round(random.uniform(10, 1000), 1)
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _get_fluid_name(self) -> str:
         names = {

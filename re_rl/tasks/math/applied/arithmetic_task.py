@@ -17,7 +17,7 @@ from fractions import Fraction
 from typing import List, Dict, Any, Optional, Tuple, Union
 from dataclasses import dataclass, field
 
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -289,6 +289,7 @@ class ArithmeticTask(BaseMathTask):
         **config_overrides
     ):
         self.difficulty = difficulty
+        self._output_format = output_format
         self.language = language.lower()
         
         # Определяем конфигурацию
@@ -325,7 +326,7 @@ class ArithmeticTask(BaseMathTask):
         
         # Формируем описание задачи
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""

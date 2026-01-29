@@ -2,7 +2,7 @@
 
 import random
 import numpy as np
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from typing import Dict, Any, ClassVar, Optional, List
 
@@ -39,8 +39,11 @@ class SystemLinearTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = None,
         size: int = 2,
-        max_coef: int = 10
+        max_coef: int = 10,
+        output_format: OutputFormat = "text"
     ):
+        self._output_format = output_format
+        
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -55,7 +58,7 @@ class SystemLinearTask(BaseMathTask):
         self.difficulty = difficulty
         self.detail_level = detail_level
         description = self._create_problem_description(language)
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     @staticmethod
     def _generate_matrix(size: int, max_coef: int) -> List[List[float]]:

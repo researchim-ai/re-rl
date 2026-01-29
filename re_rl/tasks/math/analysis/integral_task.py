@@ -14,7 +14,7 @@ IntegralTask — задачи на интегрирование.
 import random
 import math
 from typing import List, Dict, Any, ClassVar, Tuple
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 try:
@@ -57,10 +57,12 @@ class IntegralTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)
@@ -80,7 +82,7 @@ class IntegralTask(BaseMathTask):
         self.trig_coef = random.randint(1, 3)
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _generate_coefficients(self) -> List[int]:
         """Генерирует коэффициенты многочлена."""
@@ -125,37 +127,63 @@ class IntegralTask(BaseMathTask):
     
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""
+        is_latex = self._output_format == "latex"
         templates = PROMPT_TEMPLATES.get("integral", {}).get("problem", {})
         
+        # Вспомогательная функция для форматирования полинома
+        def format_poly(coefficients):
+            powers = list(range(len(coefficients) - 1, -1, -1))
+            if is_latex:
+                x = sp.Symbol('x')
+                poly = sum(c * x**p for c, p in zip(coefficients, powers))
+                return sp.latex(poly)
+            return self._poly_to_str(coefficients, powers)
+        
+        # Форматируем интегральное выражение
         if self.task_type == "indefinite_polynomial":
-            powers = list(range(len(self.coefficients) - 1, -1, -1))
-            expr = self._poly_to_str(self.coefficients, powers)
-            template = templates.get("indefinite_polynomial", {}).get(self.language, "")
-            return template.format(expression=expr)
+            poly_str = format_poly(self.coefficients)
+            if is_latex:
+                integral_expr = f"$\\int ({poly_str}) \\, dx$"
+            else:
+                integral_expr = f"∫({poly_str}) dx"
         
         elif self.task_type == "definite_polynomial":
-            powers = list(range(len(self.coefficients) - 1, -1, -1))
-            expr = self._poly_to_str(self.coefficients, powers)
-            template = templates.get("definite_polynomial", {}).get(self.language, "")
-            return template.format(a=self.lower_bound, b=self.upper_bound, expression=expr)
+            poly_str = format_poly(self.coefficients)
+            if is_latex:
+                integral_expr = f"$\\int_{{{self.lower_bound}}}^{{{self.upper_bound}}} ({poly_str}) \\, dx$"
+            else:
+                integral_expr = f"∫[{self.lower_bound},{self.upper_bound}] ({poly_str}) dx"
         
         elif self.task_type == "indefinite_trig":
-            expr = f"{self.trig_coef}{self.trig_type}(x)" if self.trig_coef != 1 else f"{self.trig_type}(x)"
-            template = templates.get("indefinite_trig", {}).get(self.language, "")
-            return template.format(expression=expr)
+            if is_latex:
+                trig = "\\sin" if self.trig_type == "sin" else "\\cos"
+                coef = f"{self.trig_coef}" if self.trig_coef != 1 else ""
+                integral_expr = f"$\\int {coef}{trig}(x) \\, dx$"
+            else:
+                expr = f"{self.trig_coef}{self.trig_type}(x)" if self.trig_coef != 1 else f"{self.trig_type}(x)"
+                integral_expr = f"∫{expr} dx"
         
         elif self.task_type == "definite_trig":
-            expr = f"{self.trig_coef}{self.trig_type}(x)" if self.trig_coef != 1 else f"{self.trig_type}(x)"
-            template = templates.get("definite_trig", {}).get(self.language, "")
-            return template.format(a=0, b="π", expression=expr)
+            if is_latex:
+                trig = "\\sin" if self.trig_type == "sin" else "\\cos"
+                coef = f"{self.trig_coef}" if self.trig_coef != 1 else ""
+                integral_expr = f"$\\int_0^\\pi {coef}{trig}(x) \\, dx$"
+            else:
+                expr = f"{self.trig_coef}{self.trig_type}(x)" if self.trig_coef != 1 else f"{self.trig_type}(x)"
+                integral_expr = f"∫[0,π] {expr} dx"
         
         elif self.task_type == "area":
-            powers = list(range(len(self.coefficients) - 1, -1, -1))
-            expr = self._poly_to_str(self.coefficients, powers)
-            template = templates.get("area", {}).get(self.language, "")
-            return template.format(expression=expr, a=self.lower_bound, b=self.upper_bound)
+            poly_str = format_poly(self.coefficients)
+            if is_latex:
+                integral_expr = f"$y = {poly_str}$ от $x = {self.lower_bound}$ до $x = {self.upper_bound}$"
+            else:
+                integral_expr = f"y = {poly_str} на отрезке [{self.lower_bound}, {self.upper_bound}]"
+        else:
+            integral_expr = ""
         
-        return ""
+        # Используем шаблоны
+        template = templates.get(self.task_type, {}).get(self.language, "")
+        return template.format(integral_expression=integral_expr)
     
     def solve(self):
         """Решает задачу пошагово."""
@@ -324,7 +352,8 @@ class IntegralTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         """Генерирует случайную задачу на интегрирование."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
@@ -332,5 +361,6 @@ class IntegralTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )

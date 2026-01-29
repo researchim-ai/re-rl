@@ -14,7 +14,7 @@ SeriesTask — задачи на ряды и сходимость.
 import random
 import math
 from typing import List, Dict, Any, ClassVar
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -48,10 +48,12 @@ class SeriesTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)
@@ -69,7 +71,7 @@ class SeriesTask(BaseMathTask):
         self._generate_series_params()
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _generate_ratio(self) -> float:
         """Генерирует отношение для геометрического ряда."""
@@ -88,35 +90,56 @@ class SeriesTask(BaseMathTask):
     
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""
+        is_latex = self._output_format == "latex"
         templates = PROMPT_TEMPLATES.get("series", {}).get("problem", {})
         
+        # Форматируем выражение ряда
         if self.task_type == "geometric_sum":
             second_term = self.first_term * self.ratio
-            template = templates.get("geometric_sum", {}).get(self.language, "")
-            return template.format(first_term=self.first_term, second_term=f"{second_term:.4g}")
+            if is_latex:
+                series_expr = f"${self.first_term} + {second_term:.4g} + ...$"
+            else:
+                series_expr = f"{self.first_term} + {second_term:.4g} + ..."
         
         elif self.task_type == "convergence_test":
             if self.series_type == "p_series":
-                general_term = f"1/n^{self.p}"
+                if is_latex:
+                    series_expr = f"$\\sum_{{n=1}}^{{\\infty}} \\frac{{1}}{{n^{{{self.p}}}}}$"
+                else:
+                    series_expr = f"Σ(1/n^{self.p}), n = 1, 2, 3, ..."
             elif self.series_type == "harmonic":
-                general_term = "1/n"
+                if is_latex:
+                    series_expr = f"$\\sum_{{n=1}}^{{\\infty}} \\frac{{1}}{{n}}$"
+                else:
+                    series_expr = f"Σ(1/n), n = 1, 2, 3, ..."
             elif self.series_type == "geometric":
-                general_term = f"({self.ratio})^n"
+                if is_latex:
+                    series_expr = f"$\\sum_{{n=1}}^{{\\infty}} \\left({self.ratio}\\right)^n$"
+                else:
+                    series_expr = f"Σ(({self.ratio})^n), n = 1, 2, 3, ..."
             else:  # ratio_test
-                general_term = f"n!/{self.base}^n"
-            
-            template = templates.get("convergence_test", {}).get(self.language, "")
-            return template.format(general_term=general_term)
+                if is_latex:
+                    series_expr = f"$\\sum_{{n=1}}^{{\\infty}} \\frac{{n!}}{{{self.base}^n}}$"
+                else:
+                    series_expr = f"Σ(n!/{self.base}^n), n = 1, 2, 3, ..."
         
         elif self.task_type == "partial_sum":
-            template = templates.get("partial_sum", {}).get(self.language, "")
-            return template.format(n=self.n_terms, general_term=f"{self.first_term}·{self.ratio}^(n-1)")
+            if is_latex:
+                series_expr = f"$S_{{{self.n_terms}}} = \\sum_{{k=1}}^{{{self.n_terms}}} {self.first_term} \\cdot {self.ratio}^{{k-1}}$"
+            else:
+                series_expr = f"S_{self.n_terms} = Σ({self.first_term}·{self.ratio}^(k-1)), k = 1..{self.n_terms}"
         
         elif self.task_type == "telescoping":
-            template = templates.get("telescoping", {}).get(self.language, "")
-            return template.format(general_term="1/(n(n+1))")
+            if is_latex:
+                series_expr = f"$\\sum_{{n=1}}^{{\\infty}} \\frac{{1}}{{n(n+1)}}$"
+            else:
+                series_expr = f"Σ(1/(n(n+1))), n = 1 до ∞"
+        else:
+            series_expr = ""
         
-        return ""
+        # Используем шаблоны
+        template = templates.get(self.task_type, {}).get(self.language, "")
+        return template.format(series_expression=series_expr)
     
     def solve(self):
         """Решает задачу пошагово."""
@@ -254,7 +277,8 @@ class SeriesTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         """Генерирует случайную задачу на ряды."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
@@ -262,5 +286,6 @@ class SeriesTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )

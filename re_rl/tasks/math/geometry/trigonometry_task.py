@@ -17,7 +17,7 @@ from typing import List, Dict, Any, Optional, Tuple, ClassVar
 from dataclasses import dataclass
 from fractions import Fraction
 
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -89,11 +89,13 @@ class TrigonometryTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self.kwargs = kwargs
+        self._output_format = output_format
         
         # Получаем параметры из пресета
         preset = self._interpolate_difficulty(difficulty)
@@ -104,7 +106,7 @@ class TrigonometryTask(BaseMathTask):
         
         # Создаём описание
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _generate_task_params(self):
         """Генерирует параметры задачи."""
@@ -332,7 +334,8 @@ class TrigonometryTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         """Генерирует случайную тригонометрическую задачу."""
         if task_type is None:
@@ -341,5 +344,6 @@ class TrigonometryTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )

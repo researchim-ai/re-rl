@@ -20,7 +20,7 @@ import random
 import math
 from collections import Counter
 from typing import List, Dict, Any, ClassVar, Optional
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -58,10 +58,12 @@ class StatisticsTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)
@@ -93,7 +95,7 @@ class StatisticsTask(BaseMathTask):
                 self.std_given = math.sqrt(sum((x - mean)**2 for x in self.data) / len(self.data)) if self.data else 10
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _generate_data(self) -> List[float]:
         """Генерирует набор данных."""

@@ -1,159 +1,108 @@
 # re_rl/tasks/logarithmic_task.py
 
+import random
 import math
-from re_rl.tasks.base_task import BaseMathTask
+import sympy as sp
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, ClassVar
+
 
 class LogarithmicTask(BaseMathTask):
     """Класс для генерации и решения логарифмических уравнений вида a*log(b*x) + c = d"""
     
-    def __init__(self, a, b, c, d, language="ru", detail_level=3):
-        """
-        Инициализация логарифмического уравнения
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
+        1: {"max_coef": 3},
+        3: {"max_coef": 5},
+        5: {"max_coef": 10},
+        7: {"max_coef": 15},
+        10: {"max_coef": 20},
+    }
+    
+    def __init__(
+        self, 
+        a=None, 
+        b=None, 
+        c=None, 
+        d=None, 
+        language="ru", 
+        detail_level=3,
+        difficulty: int = None,
+        output_format: OutputFormat = "text"
+    ):
+        if difficulty is not None:
+            preset = self._interpolate_difficulty(difficulty)
+            max_coef = preset.get("max_coef", 10)
+            if a is None:
+                a = random.choice([i for i in range(-max_coef, max_coef+1) if i != 0])
+            if b is None:
+                b = random.randint(1, max_coef)  # b > 0 для области определения
+            if c is None:
+                c = random.randint(-max_coef, max_coef)
+            if d is None:
+                d = random.randint(-max_coef, max_coef)
         
-        Args:
-            a (float): Коэффициент при логарифме
-            b (float): Коэффициент при x в аргументе логарифма
-            c (float): Свободный член
-            d (float): Правая часть уравнения
-            language (str): Язык ("ru" или "en")
-            detail_level (int): Уровень детализации решения (1-9)
-        """
         self.a = a
         self.b = b
         self.c = c
         self.d = d
-        self.equation = f"{a}*log({b}*x) + {c} = {d}"
-        description = PROMPT_TEMPLATES["logarithmic"]["problem"][language].format(
-            left=f"{self.a}*log({self.b}*x) + {self.c}",
-            d=self.d
-        )
-        super().__init__(description, language, detail_level)
+        self._output_format = output_format
+        
+        # Формируем описание
+        equation = self._format_equation(a, b, c, d, output_format)
+        
+        # Всегда используем шаблоны из PROMPT_TEMPLATES
+        description = PROMPT_TEMPLATES["logarithmic"]["problem"][language].format(equation=equation)
+        
+        super().__init__(description, language, detail_level, output_format)
+    
+    @staticmethod
+    def _format_equation(a, b, c, d, output_format: OutputFormat = "text") -> str:
+        """Форматирует уравнение."""
+        if output_format == "latex":
+            x = sp.Symbol('x')
+            expr = a * sp.log(b * x) + c
+            return f"${sp.latex(expr)} = {d}$"
+        else:
+            return f"{a}*log({b}*x) + {c} = {d}"
         
     def solve(self):
-        """
-        Решает логарифмическое уравнение с заданным уровнем детализации.
-        Заполняет self.solution_steps, self.explanation_steps, self.validation_steps и self.final_answer.
-        """
-        detail_level = self.detail_level
+        is_latex = self._output_format == "latex"
+        step_tmpl = PROMPT_TEMPLATES["default"]["step"][self.language]
         
-        # Шаг 1: Записываем уравнение
-        if detail_level >= 1:
-            if self.language == "ru":
-                step = f"Записываем уравнение: {self.a} * log({self.b} * x) + {self.c} = {self.d}"
-                explanation = "Записываем исходное уравнение"
-                validation = "Уравнение записано корректно"
-            else:
-                step = f"Write the equation: {self.a} * log({self.b} * x) + {self.c} = {self.d}"
-                explanation = "Write down the original equation"
-                validation = "Equation is written correctly"
-            self.add_solution_step(step, explanation, validation)
-        
-        # Шаг 2: Анализируем уравнение
-        if detail_level >= 2:
-            if self.language == "ru":
-                step = f"Анализируем уравнение:\n- Коэффициент при логарифме: {self.a}\n- Коэффициент при x: {self.b}\n- Свободный член: {self.c}\n- Правая часть: {self.d}"
-                explanation = "Анализируем структуру уравнения"
-                validation = "Анализ выполнен правильно"
-            else:
-                step = f"Analyze the equation:\n- Coefficient of logarithm: {self.a}\n- Coefficient of x: {self.b}\n- Constant term: {self.c}\n- Right side: {self.d}"
-                explanation = "Analyze the equation structure"
-                validation = "Analysis is correct"
-            self.add_solution_step(step, explanation, validation)
-        
-        # Шаг 3: Переносим свободный член
+        # Шаг 1: Переносим c
         right_side = self.d - self.c
-        if detail_level >= 3:
-            if self.language == "ru":
-                step = f"Переносим свободный член {self.c} в правую часть:\n{self.a} * log({self.b} * x) = {self.d} - {self.c} = {right_side}"
-                explanation = "Переносим свободный член в правую часть"
-                validation = "Перенос выполнен правильно"
-            else:
-                step = f"Move constant term {self.c} to the right side:\n{self.a} * log({self.b} * x) = {self.d} - {self.c} = {right_side}"
-                explanation = "Move constant term to the right side"
-                validation = "Transfer is performed correctly"
-            self.add_solution_step(step, explanation, validation)
+        if is_latex:
+            text = f"${self.a} \\ln({self.b}x) = {self.d} - {self.c} = {right_side}$"
+        else:
+            text = f"{self.a}*log({self.b}*x) = {self.d} - {self.c} = {right_side}"
+        self.solution_steps.append(step_tmpl.format(n=1, text=text))
         
-        # Шаг 4: Делим обе части
+        # Шаг 2: Делим на a
         log_value = right_side / self.a
-        if detail_level >= 4:
-            if self.language == "ru":
-                step = f"Делим обе части на {self.a}:\nlog({self.b} * x) = {right_side} / {self.a} = {log_value}"
-                explanation = "Делим обе части на коэффициент при логарифме"
-                validation = "Деление выполнено правильно"
-            else:
-                step = f"Divide both sides by {self.a}:\nlog({self.b} * x) = {right_side} / {self.a} = {log_value}"
-                explanation = "Divide both sides by coefficient of logarithm"
-                validation = "Division is performed correctly"
-            self.add_solution_step(step, explanation, validation)
+        if is_latex:
+            text = f"$\\ln({self.b}x) = \\frac{{{right_side}}}{{{self.a}}} = {log_value:.4f}$"
+        else:
+            text = f"log({self.b}*x) = {right_side}/{self.a} = {log_value:.4f}"
+        self.solution_steps.append(step_tmpl.format(n=2, text=text))
         
-        # Шаг 5: Применяем экспоненту
+        # Шаг 3: Применяем exp
         exp_value = math.exp(log_value)
-        if detail_level >= 5:
-            if self.language == "ru":
-                step = f"Применяем экспоненту к обеим частям:\n{self.b} * x = e^{log_value} = {exp_value:.6f}"
-                explanation = "Применяем экспоненту для избавления от логарифма"
-                validation = "Экспонента применена правильно"
-            else:
-                step = f"Apply exponential to both sides:\n{self.b} * x = e^{log_value} = {exp_value:.6f}"
-                explanation = "Apply exponential to eliminate logarithm"
-                validation = "Exponential is applied correctly"
-            self.add_solution_step(step, explanation, validation)
+        if is_latex:
+            text = f"${self.b}x = e^{{{log_value:.4f}}} = {exp_value:.4f}$"
+        else:
+            text = f"{self.b}*x = e^{log_value:.4f} = {exp_value:.4f}"
+        self.solution_steps.append(step_tmpl.format(n=3, text=text))
         
-        # Вычисляем решение
+        # Шаг 4: Решение
         x = exp_value / self.b
-        
-        # Шаг 6: Решаем уравнение
-        if detail_level >= 6:
-            if self.language == "ru":
-                step = f"Решаем относительно x:\nx = {exp_value:.6f} / {self.b} = {x}"
-                explanation = "Решаем полученное уравнение"
-                validation = "Решение выполнено правильно"
-            else:
-                step = f"Solve for x:\nx = {exp_value:.6f} / {self.b} = {x}"
-                explanation = "Solve the resulting equation"
-                validation = "Solution is correct"
-            self.add_solution_step(step, explanation, validation)
-        
-        # Шаг 7: Проверяем решение
-        if detail_level >= 7:
-            check_value = self.a * math.log(self.b * x) + self.c
-            if self.language == "ru":
-                step = f"Проверяем решение:\n{self.a} * log({self.b} * {x}) + {self.c} = {check_value:.6f} ≈ {self.d}"
-                explanation = "Проверяем полученное решение"
-                validation = "Проверка подтверждает корректность решения"
-            else:
-                step = f"Verify the solution:\n{self.a} * log({self.b} * {x}) + {self.c} = {check_value:.6f} ≈ {self.d}"
-                explanation = "Verify the solution"
-                validation = "Verification confirms the solution is correct"
-            self.add_solution_step(step, explanation, validation)
-        
-        # Шаг 8: Геометрическая интерпретация
-        if detail_level >= 8:
-            if self.language == "ru":
-                step = "Геометрическая интерпретация: точка пересечения логарифмической функции y = a*log(b*x) + c с горизонтальной прямой y = d"
-                explanation = "Даем геометрическую интерпретацию решения"
-                validation = "Геометрическая интерпретация верна"
-            else:
-                step = "Geometric interpretation: intersection point of logarithmic function y = a*log(b*x) + c with horizontal line y = d"
-                explanation = "Provide geometric interpretation of the solution"
-                validation = "Geometric interpretation is correct"
-            self.add_solution_step(step, explanation, validation)
-        
-        # Шаг 9: Проверка области определения
-        if detail_level >= 9:
-            if self.language == "ru":
-                step = f"Проверяем область определения: {self.b} * x = {self.b * x:.6f} > 0 ✓"
-                explanation = "Проверяем область определения логарифмической функции"
-                validation = "Решение принадлежит области определения"
-            else:
-                step = f"Check the domain: {self.b} * x = {self.b * x:.6f} > 0 ✓"
-                explanation = "Check the domain of logarithmic function"
-                validation = "Solution belongs to the domain"
-            self.add_solution_step(step, explanation, validation)
-        
-        self.final_answer = x
+        if is_latex:
+            text = f"$x = \\frac{{{exp_value:.4f}}}{{{self.b}}} = {x:.4f}$"
+            self.final_answer = f"$x = {x:.4f}$"
+        else:
+            text = f"x = {exp_value:.4f}/{self.b} = {x:.4f}"
+            self.final_answer = f"{x:.4f}"
+        self.solution_steps.append(step_tmpl.format(n=4, text=text))
 
     def get_task_type(self):
         return "logarithmic"

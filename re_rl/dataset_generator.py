@@ -5,6 +5,10 @@
 - JSON (стандартный)
 - JSONL (для потоковой обработки)
 - SFT формат (instruction/input/output)
+
+Форматы математических выражений:
+- text: обычный текст (x² + 2x - 3)
+- latex: LaTeX формат ($x^{2} + 2x - 3$)
 """
 
 import json
@@ -12,6 +16,9 @@ import random
 from typing import List, Dict, Any, Optional, Literal
 from pathlib import Path
 from datetime import datetime
+
+# Тип формата вывода
+OutputFormat = Literal["text", "latex"]
 
 # Импорты из генераторов
 from re_rl.tasks.generators import ALL_TASK_GENERATORS
@@ -55,7 +62,8 @@ class DatasetGenerator:
         task_type: str,
         language: str = "ru",
         difficulty: int = 5,
-        detail_level: int = 5
+        detail_level: int = 5,
+        output_format: OutputFormat = "text"
     ) -> Dict[str, Any]:
         """
         Генерирует одну задачу.
@@ -65,6 +73,7 @@ class DatasetGenerator:
             language: Язык ("ru" или "en")
             difficulty: Сложность 1-10
             detail_level: Детализация решения 1-10
+            output_format: Формат вывода ("text" или "latex")
         
         Returns:
             Словарь с задачей и решением
@@ -75,10 +84,19 @@ class DatasetGenerator:
         generator = self.all_generators[task_type]
         
         try:
-            task = generator(language=language, difficulty=difficulty, detail_level=detail_level)
+            task = generator(
+                language=language, 
+                difficulty=difficulty, 
+                detail_level=detail_level,
+                output_format=output_format
+            )
         except TypeError:
-            # Некоторые старые задачи не поддерживают difficulty
-            task = generator(language=language, detail_level=detail_level)
+            # Не все задачи поддерживают output_format
+            try:
+                task = generator(language=language, difficulty=difficulty, detail_level=detail_level)
+            except TypeError:
+                # Некоторые старые задачи не поддерживают difficulty
+                task = generator(language=language, detail_level=detail_level)
         
         # Решаем задачу
         if hasattr(task, 'solve'):
@@ -90,6 +108,7 @@ class DatasetGenerator:
             "task_type": task_type,
             "language": language,
             "difficulty": difficulty,
+            "output_format": output_format,
             "problem": result["problem"],
             "solution_steps": result.get("solution_steps", []),
             "final_answer": result["final_answer"],
@@ -104,6 +123,7 @@ class DatasetGenerator:
         difficulties: Optional[List[int]] = None,
         detail_level: int = 5,
         include_cot: bool = True,
+        output_format: OutputFormat = "text",
     ) -> List[Dict[str, str]]:
         """
         Генерирует датасет в формате SFT (Supervised Fine-Tuning).
@@ -122,6 +142,7 @@ class DatasetGenerator:
             difficulties: Список сложностей для выборки (None = [1-10])
             detail_level: Детализация решения
             include_cot: Включать ли Chain-of-Thought (шаги решения)
+            output_format: Формат математических выражений ("text" или "latex")
         
         Returns:
             Список примеров в SFT формате
@@ -138,6 +159,13 @@ class DatasetGenerator:
             "en": "Solve the problem step by step, explaining each reasoning step.",
         }
         
+        # Дополнение для LaTeX формата
+        if output_format == "latex":
+            instructions = {
+                "ru": "Решите задачу пошагово, используя LaTeX для математических формул.",
+                "en": "Solve the problem step by step, using LaTeX for mathematical formulas.",
+            }
+        
         dataset = []
         samples_per_type = max(1, num_samples // len(task_types))
         
@@ -150,7 +178,8 @@ class DatasetGenerator:
                         task_type=task_type,
                         language=language,
                         difficulty=difficulty,
-                        detail_level=detail_level
+                        detail_level=detail_level,
+                        output_format=output_format
                     )
                     
                     # Формируем output
@@ -174,6 +203,7 @@ class DatasetGenerator:
                             "task_type": task_type,
                             "difficulty": difficulty,
                             "language": language,
+                            "output_format": output_format,
                         }
                     })
                     

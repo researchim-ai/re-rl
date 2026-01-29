@@ -25,7 +25,7 @@ import math
 from typing import List, Dict, Any, Optional, Tuple, ClassVar
 from dataclasses import dataclass
 
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -58,11 +58,13 @@ class GeometryTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self.kwargs = kwargs
+        self._output_format = output_format
         
         # Получаем параметры из пресета
         preset = self._interpolate_difficulty(difficulty)
@@ -74,7 +76,7 @@ class GeometryTask(BaseMathTask):
         
         # Создаём описание
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _rand_coord(self) -> int:
         """Генерирует случайную координату."""
@@ -440,7 +442,8 @@ class GeometryTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         """Генерирует случайную геометрическую задачу."""
         if task_type is None:
@@ -449,5 +452,6 @@ class GeometryTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )

@@ -9,7 +9,7 @@ CategoryTheoryTask — задачи по теории категорий.
 """
 
 import random
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from typing import List, Dict, Any
 
@@ -43,7 +43,7 @@ class CategoryTheoryTask(BaseMathTask):
         
         # Создаём описание
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
 
     def _generate_task_data(self):
         """Генерирует объекты и морфизмы."""

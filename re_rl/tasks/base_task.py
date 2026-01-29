@@ -3,10 +3,14 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Any, ClassVar, Dict, Optional, Type, TypeVar
+from typing import List, Any, ClassVar, Dict, Optional, Type, TypeVar, Literal
 
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from re_rl.tasks.registry import registry
+
+
+# Поддерживаемые форматы вывода математических выражений
+OutputFormat = Literal["text", "latex"]
 
 
 # Типовая переменная для from_difficulty
@@ -215,6 +219,7 @@ class BaseMathTask(BaseTask):
     """Добавляет `detail_level` и общие утилиты для математических задач."""
 
     detail_level: int = 3
+    output_format: OutputFormat = "text"  # "text" или "latex"
 
     # ------------------------------------------------------------------
     # Утилиты, специфичные для математики

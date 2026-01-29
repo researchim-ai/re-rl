@@ -6,7 +6,7 @@ WavesTask — задачи на волны.
 
 import random
 from typing import Dict, Any, ClassVar
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from re_rl.tasks.physics.units import format_with_units
 
@@ -40,10 +40,12 @@ class WavesTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         self.language = language
         
         preset = self._interpolate_difficulty(difficulty)
@@ -58,7 +60,7 @@ class WavesTask(BaseMathTask):
         self.lambda_ = lambda_ if lambda_ is not None else round(random.uniform(0.01, max_lambda), 4)
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _create_problem_description(self) -> str:
         templates = PROMPT_TEMPLATES.get("waves", {}).get("problem", {})

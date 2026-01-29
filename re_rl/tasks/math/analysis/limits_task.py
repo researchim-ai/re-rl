@@ -18,7 +18,7 @@ from typing import List, Dict, Any, Optional, Tuple, ClassVar
 from dataclasses import dataclass
 import sympy as sp
 
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -48,11 +48,13 @@ class LimitsTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self.kwargs = kwargs
+        self._output_format = output_format
         
         # Получаем параметры из пресета
         preset = self._interpolate_difficulty(difficulty)
@@ -67,7 +69,7 @@ class LimitsTask(BaseMathTask):
         
         # Создаём описание
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _rand_coef(self) -> int:
         """Генерирует случайный коэффициент."""
@@ -168,41 +170,34 @@ class LimitsTask(BaseMathTask):
     
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""
+        is_latex = self._output_format == "latex"
         templates = PROMPT_TEMPLATES.get("limits", {}).get("problem", {})
         
-        if self.task_type == "polynomial":
-            template = templates.get("polynomial", {}).get(self.language, "")
-            return template.format(point=self.point, expression=sp.pretty(self.expression))
+        # Форматируем выражение предела
+        if is_latex:
+            expr_latex = sp.latex(self.expression)
+            if self.task_type == "infinity":
+                limit_expr = f"$\\lim_{{x \\to \\infty}} {expr_latex}$"
+            elif self.task_type == "sequence":
+                limit_expr = f"$\\lim_{{n \\to \\infty}} {expr_latex}$"
+            else:
+                limit_expr = f"$\\lim_{{x \\to {self.point}}} {expr_latex}$"
+        else:
+            expr_str = sp.pretty(self.expression)
+            if self.task_type == "infinity":
+                limit_expr = f"lim(x→∞) ({expr_str})"
+            elif self.task_type == "sequence":
+                limit_expr = f"lim(n→∞) {expr_str}"
+            else:
+                limit_expr = f"lim(x→{self.point}) ({expr_str})"
         
-        elif self.task_type == "rational":
-            template = templates.get("rational", {}).get(self.language, "")
-            return template.format(
-                point=self.point,
-                numerator=sp.pretty(self.numerator),
-                denominator=sp.pretty(self.denominator)
-            )
+        # Используем шаблоны
+        template = templates.get(self.task_type, {}).get(self.language, "")
         
-        elif self.task_type == "infinity":
-            template = templates.get("infinity", {}).get(self.language, "")
-            return template.format(expression=sp.pretty(self.expression))
-        
-        elif self.task_type == "indeterminate":
-            template = templates.get("indeterminate", {}).get(self.language, "")
-            return template.format(
-                point=self.point,
-                expression=sp.pretty(self.expression),
-                type=self.indeterminate_type
-            )
-        
-        elif self.task_type == "sequence":
-            template = templates.get("sequence", {}).get(self.language, "")
-            return template.format(expression=sp.pretty(self.expression))
-        
-        elif self.task_type == "special":
-            template = templates.get("special", {}).get(self.language, "")
-            return template.format(point=self.point, expression=self.special_type)
-        
-        return ""
+        if self.task_type == "indeterminate":
+            return template.format(limit_expression=limit_expr, type=self.indeterminate_type)
+        else:
+            return template.format(limit_expression=limit_expr)
     
     def solve(self):
         """Решает задачу пошагово."""
@@ -332,7 +327,8 @@ class LimitsTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         """Генерирует случайную задачу на пределы."""
         if task_type is None:
@@ -341,5 +337,6 @@ class LimitsTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )

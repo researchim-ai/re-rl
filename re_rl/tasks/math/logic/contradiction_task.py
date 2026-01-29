@@ -50,6 +50,7 @@ class ContradictionTask(BaseTask):
         self.language = language.lower()
         self.num_statements = num_statements
         self.difficulty = difficulty
+        self._output_format = output_format
         self.statements = []
         self.false_statement_index = None
         description = self._create_problem_description()

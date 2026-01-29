@@ -2,7 +2,7 @@
 
 import random
 import networkx as nx
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from typing import Dict, Any, ClassVar
 
@@ -42,8 +42,11 @@ class GraphTask(BaseMathTask):
         edge_prob=None, 
         language: str = "ru", 
         detail_level: int = 3,
-        difficulty: int = None
+        difficulty: int = None,
+        output_format: OutputFormat = "text"
     ):
+        self._output_format = output_format
+        
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -60,7 +63,7 @@ class GraphTask(BaseMathTask):
         self.graph = None
         self.start = None
         self.end = None
-        super().__init__("", language, detail_level)
+        super().__init__("", language, detail_level, output_format)
 
     def generate_graph(self):
         self.graph = nx.gnp_random_graph(self.num_nodes, self.edge_prob, seed=random.randint(1, 1000), directed=False)

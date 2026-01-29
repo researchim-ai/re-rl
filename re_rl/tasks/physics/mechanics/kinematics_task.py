@@ -17,10 +17,11 @@ KinematicsTask — задачи по кинематике.
 import random
 import math
 from typing import Dict, Any, ClassVar
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from re_rl.tasks.physics.constants import get_constant
 from re_rl.tasks.physics.units import format_with_units
+from re_rl.tasks.formatting import MathFormatter
 
 
 class KinematicsTask(BaseMathTask):
@@ -59,11 +60,13 @@ class KinematicsTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
-        self.language = language  # Сохраняем язык до создания описания
+        self.language = language
+        self._output_format = output_format
         self.g = get_constant("g")
         
         # Параметры сложности
@@ -83,7 +86,7 @@ class KinematicsTask(BaseMathTask):
         self.angle = angle if angle is not None else random.choice([30, 45, 60])
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""
@@ -149,20 +152,40 @@ class KinematicsTask(BaseMathTask):
         if len(self.solution_steps) > self.detail_level:
             self.solution_steps = self.solution_steps[:self.detail_level]
     
+    def _format_value(self, value, unit):
+        """Форматирует значение с единицей измерения."""
+        if self._output_format == "latex":
+            return MathFormatter.format_physics_value(value, unit, "latex")
+        return format_with_units(value, unit, self.language)
+    
+    def _format_formula(self, formula_text, formula_latex):
+        """Форматирует формулу в зависимости от формата."""
+        if self._output_format == "latex":
+            return f"${formula_latex}$"
+        return formula_text
+    
     def _solve_uniform_motion(self, templates, formulas):
         """s = v * t"""
+        is_latex = self._output_format == "latex"
+        
+        # Шаг 1: Формула
+        formula = "$s = v \\cdot t$" if is_latex else formulas["uniform_motion"]
         step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula=formulas["uniform_motion"]))
+        self.solution_steps.append(step1.format(step=1, formula=formula))
         
         s = self.v * self.t
         
+        # Шаг 2: Подставляем
+        substitution = f"$s = {self.v} \\cdot {self.t}$" if is_latex else f"s = {self.v} × {self.t}"
         step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=f"s = {self.v} × {self.t}"))
+        self.solution_steps.append(step2.format(step=2, substitution=substitution))
         
+        # Шаг 3: Вычисляем
+        calculation = f"$s = {s}$ м" if is_latex else f"s = {s}"
         step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=f"s = {s}"))
+        self.solution_steps.append(step3.format(step=3, calculation=calculation))
         
-        self.final_answer = format_with_units(s, "m", self.language)
+        self.final_answer = self._format_value(s, "m")
     
     def _solve_find_velocity(self, templates, formulas):
         """v = s / t"""
@@ -280,12 +303,14 @@ class KinematicsTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )

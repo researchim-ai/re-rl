@@ -2,8 +2,9 @@
 
 import random
 import sympy as sp
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.formatting import MathFormatter
 from typing import Dict, Any, ClassVar
 
 class QuadraticTask(BaseMathTask):
@@ -40,7 +41,8 @@ class QuadraticTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = None,
         max_coef: int = 5,
-        ensure_integer_roots: bool = True
+        ensure_integer_roots: bool = True,
+        output_format: OutputFormat = "text"
     ):
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
@@ -56,15 +58,36 @@ class QuadraticTask(BaseMathTask):
         self.b = b
         self.c = c
         self.difficulty = difficulty
+        self._output_format = output_format
         
-        # Формируем уравнение в текстовом виде (без sympy pretty)
-        equation_str = self._format_equation(a, b, c)
+        # Формируем уравнение в нужном формате (всегда с "= 0")
+        equation_str = self._format_equation(a, b, c, output_format, include_equals_zero=True)
+        
+        # Всегда используем шаблоны из PROMPT_TEMPLATES
         description = PROMPT_TEMPLATES["quadratic"]["problem"][language].format(equation_pretty=equation_str)
-        super().__init__(description, language, detail_level)
+        
+        super().__init__(description, language, detail_level, output_format)
     
     @staticmethod
-    def _format_equation(a: int, b: int, c: int) -> str:
-        """Форматирует левую часть уравнения ax² + bx + c."""
+    def _format_equation(a: int, b: int, c: int, output_format: OutputFormat = "text", include_equals_zero: bool = False) -> str:
+        """
+        Форматирует уравнение ax² + bx + c.
+        
+        Args:
+            a, b, c: Коэффициенты
+            output_format: "text" или "latex"
+            include_equals_zero: Включать "= 0" в формулу
+        """
+        if output_format == "latex":
+            # Используем sympy для LaTeX
+            x = sp.Symbol('x')
+            expr = a*x**2 + b*x + c
+            latex_str = sp.latex(expr)
+            if include_equals_zero:
+                return f"${latex_str} = 0$"
+            return f"${latex_str}$"
+        
+        # Text формат
         parts = []
         
         # Член с x²
@@ -93,7 +116,10 @@ class QuadraticTask(BaseMathTask):
         elif c < 0:
             parts.append(f" - {abs(c)}")
         
-        return "".join(parts)
+        result = "".join(parts)
+        if include_equals_zero:
+            result += " = 0"
+        return result
     
     @staticmethod
     def _generate_coefficients(max_coef: int, ensure_integer_roots: bool) -> tuple:
@@ -118,23 +144,58 @@ class QuadraticTask(BaseMathTask):
     def solve(self):
         x = sp.symbols('x')
         eq = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
-        equation_str = self._format_equation(self.a, self.b, self.c)
+        equation_str = self._format_equation(self.a, self.b, self.c, self._output_format, include_equals_zero=True)
         
         steps = []
-        steps.append(PROMPT_TEMPLATES["quadratic"]["step1"][self.language].format(equation_pretty=equation_str))
+        
+        # Шаг 1: Записываем уравнение
+        if self._output_format == "latex":
+            if self.language == "ru":
+                steps.append(f"Шаг 1: Записываем уравнение в стандартной форме: {equation_str}")
+            else:
+                steps.append(f"Step 1: Write the equation in standard form: {equation_str}")
+        else:
+            steps.append(PROMPT_TEMPLATES["quadratic"]["step1"][self.language].format(
+                equation_pretty=self._format_equation(self.a, self.b, self.c, self._output_format)
+            ))
         
         discriminant = self.b**2 - 4*self.a*self.c
-        steps.append(PROMPT_TEMPLATES["quadratic"]["step2"][self.language].format(
-            a=self.a, b=self.b, c=self.c, discriminant=discriminant
-        ))
+        
+        # Шаг 2: Дискриминант
+        if self._output_format == "latex":
+            disc_formula = f"D = b^2 - 4ac = ({self.b})^2 - 4 \\cdot ({self.a}) \\cdot ({self.c}) = {discriminant}"
+            if self.language == "ru":
+                steps.append(f"Шаг 2: Вычисляем дискриминант: ${disc_formula}$")
+            else:
+                steps.append(f"Step 2: Calculate discriminant: ${disc_formula}$")
+        else:
+            steps.append(PROMPT_TEMPLATES["quadratic"]["step2"][self.language].format(
+                a=self.a, b=self.b, c=self.c, discriminant=discriminant
+            ))
         
         roots = sp.solve(eq, x)
-        # Форматируем корни
-        roots_str = ", ".join(str(r) for r in roots)
-        steps.append(PROMPT_TEMPLATES["quadratic"]["step3"][self.language].format(roots=roots_str))
+        
+        # Шаг 3: Корни
+        if self._output_format == "latex":
+            roots_latex = [sp.latex(r) for r in roots]
+            if len(roots) == 1:
+                roots_display = f"$x = {roots_latex[0]}$"
+            else:
+                roots_display = f"$x_1 = {roots_latex[0]}, x_2 = {roots_latex[1]}$"
+        else:
+            roots_str = ", ".join(str(r) for r in roots)
+            roots_display = roots_str
+            
+        if self._output_format == "latex":
+            if self.language == "ru":
+                steps.append(f"Шаг 3: Находим корни: {roots_display}")
+            else:
+                steps.append(f"Step 3: Find roots: {roots_display}")
+        else:
+            steps.append(PROMPT_TEMPLATES["quadratic"]["step3"][self.language].format(roots=roots_display))
         
         self.solution_steps.extend(steps)
-        self.final_answer = roots_str
+        self.final_answer = roots_display
 
     def get_task_type(self):
         return "quadratic"

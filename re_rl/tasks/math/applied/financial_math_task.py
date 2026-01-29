@@ -16,7 +16,7 @@ FinancialMathTask — задачи по финансовой математик�
 import random
 import math
 from typing import List, Dict, Any, ClassVar
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -53,10 +53,12 @@ class FinancialMathTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)
@@ -74,7 +76,7 @@ class FinancialMathTask(BaseMathTask):
         self.cash_flows = cash_flows if cash_flows else self._generate_cash_flows()
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _random_principal(self) -> int:
         """Генерирует округлённую сумму."""

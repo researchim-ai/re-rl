@@ -92,27 +92,27 @@ def generate_random_arithmetic_task(
 def generate_random_linear_task(
     language: str = "ru",
     detail_level: int = 3,
+    difficulty: int = 5,
+    output_format: str = "text",
     a_range=(-10, 10),
     b_range=(-10, 10),
     c_range=(-10, 10)
 ) -> LinearTask:
     """
-    Генерирует случайную линейную задачу вида a*x + b = c, 
-    где a != 0 и a, b, c - целые из заданных диапазонов.
-
-    :param language: 'ru' или 'en'
-    :param detail_level: сколько шагов решения показывать
-    :param a_range, b_range, c_range: диапазоны для a, b, c (кортежи (min, max))
-    :return: экземпляр LinearTask
+    Генерирует случайную линейную задачу вида a*x + b = c.
+    
+    Args:
+        language: Язык ("ru" или "en")
+        detail_level: Сколько шагов решения показывать
+        difficulty: Уровень сложности (1-10)
+        output_format: Формат вывода ("text" или "latex")
     """
-    while True:
-        a = random.randint(a_range[0], a_range[1])
-        if a == 0:
-            continue
-        b = random.randint(b_range[0], b_range[1])
-        c = random.randint(c_range[0], c_range[1])
-        # Окей, у нас есть a!=0 => задача "валидна"
-        return LinearTask(a, b, c, language=language, detail_level=detail_level)
+    return LinearTask(
+        difficulty=difficulty,
+        language=language,
+        detail_level=detail_level,
+        output_format=output_format
+    )
 
 
 ##################################################
@@ -122,20 +122,27 @@ def generate_random_linear_task(
 def generate_random_quadratic_task(
     language: str = "ru",
     detail_level: int = 3,
+    difficulty: int = 5,
+    output_format: str = "text",
     a_range=(-5, 5),
     b_range=(-10, 10),
     c_range=(-10, 10)
 ) -> QuadraticTask:
     """
     Генерирует случайную квадратную задачу a*x^2 + b*x + c = 0, a!=0.
+    
+    Args:
+        language: Язык ("ru" или "en")
+        detail_level: Детализация решения
+        difficulty: Уровень сложности (1-10)
+        output_format: Формат вывода ("text" или "latex")
     """
-    while True:
-        a = random.randint(a_range[0], a_range[1])
-        if a == 0:
-            continue
-        b = random.randint(b_range[0], b_range[1])
-        c = random.randint(c_range[0], c_range[1])
-        return QuadraticTask(a, b, c, language=language, detail_level=detail_level)
+    return QuadraticTask(
+        difficulty=difficulty,
+        language=language,
+        detail_level=detail_level,
+        output_format=output_format
+    )
 
 
 ##################################################
@@ -145,19 +152,15 @@ def generate_random_quadratic_task(
 def generate_random_cubic_task(
     language: str = "ru",
     detail_level: int = 3,
-    a_range=(-5,5),
-    b_range=(-10,10),
-    c_range=(-10,10),
-    d_range=(-10,10)
+    difficulty: int = 5,
+    output_format: str = "text"
 ) -> CubicTask:
-    while True:
-        a = random.randint(a_range[0], a_range[1])
-        if a == 0:
-            continue
-        b = random.randint(b_range[0], b_range[1])
-        c = random.randint(c_range[0], c_range[1])
-        d = random.randint(d_range[0], d_range[1])
-        return CubicTask(a, b, c, d, language=language, detail_level=detail_level)
+    return CubicTask(
+        difficulty=difficulty,
+        language=language,
+        detail_level=detail_level,
+        output_format=output_format
+    )
 
 
 ##################################################
@@ -167,17 +170,15 @@ def generate_random_cubic_task(
 def generate_random_exponential_task(
     language: str = "ru",
     detail_level: int = 3,
-    a_range=(-5,5),
-    b_range=(-5,5),
-    c_range=(-10,10),
-    d_range=(-10,10)
+    difficulty: int = 5,
+    output_format: str = "text"
 ) -> ExponentialTask:
-    while True:
-        a = random.choice([i for i in range(a_range[0], a_range[1]+1) if i != 0])
-        b = random.choice([i for i in range(b_range[0], b_range[1]+1) if i != 0])
-        c = random.randint(c_range[0], c_range[1])
-        d = random.randint(d_range[0], d_range[1])
-        return ExponentialTask(a, b, c, d, language=language, detail_level=detail_level)
+    return ExponentialTask(
+        difficulty=difficulty,
+        language=language,
+        detail_level=detail_level,
+        output_format=output_format
+    )
 
 
 ##################################################
@@ -187,22 +188,15 @@ def generate_random_exponential_task(
 def generate_random_logarithmic_task(
     language: str = "ru",
     detail_level: int = 3,
-    a_range=(-5,5),
-    b_range=(1,10),
-    c_range=(-10,10),
-    d_range=(-10,10)
+    difficulty: int = 5,
+    output_format: str = "text"
 ) -> LogarithmicTask:
-    """
-    b>0
-    """
-    while True:
-        a = random.choice([i for i in range(a_range[0], a_range[1]+1) if i != 0])
-        b = random.randint(b_range[0], b_range[1])
-        if b == 0:
-            continue
-        c = random.randint(c_range[0], c_range[1])
-        d = random.randint(d_range[0], d_range[1])
-        return LogarithmicTask(a, b, c, d, language=language, detail_level=detail_level)
+    return LogarithmicTask(
+        difficulty=difficulty,
+        language=language,
+        detail_level=detail_level,
+        output_format=output_format
+    )
 
 
 ##################################################
@@ -211,17 +205,18 @@ def generate_random_logarithmic_task(
 
 def generate_random_calculus_task(
     task_type="differentiation",
-    degree_range=(1,3),
     language="ru",
-    detail_level=3
+    detail_level=3,
+    difficulty: int = 5,
+    output_format: str = "text"
 ) -> CalculusTask:
-    """
-    Генерирует случайную функцию, степень от 1..3, затем 
-    создаёт CalculusTask (либо differentiation, либо integration).
-    """
-    import random
-    deg = random.randint(degree_range[0], degree_range[1])
-    return CalculusTask(task_type=task_type, degree=deg, language=language, detail_level=detail_level)
+    return CalculusTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        output_format=output_format
+    )
 
 
 ##################################################

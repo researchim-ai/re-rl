@@ -7,7 +7,7 @@ OpticsTask — задачи по оптике.
 import random
 import math
 from typing import Dict, Any, ClassVar
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -43,10 +43,12 @@ class OpticsTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         self.language = language
         
         preset = self._interpolate_difficulty(difficulty)
@@ -70,7 +72,7 @@ class OpticsTask(BaseMathTask):
         self.R = R if R is not None else random.randint(10, max_f * 2)
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _create_problem_description(self) -> str:
         templates = PROMPT_TEMPLATES.get("optics", {}).get("problem", {})

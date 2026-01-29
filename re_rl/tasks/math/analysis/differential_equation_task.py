@@ -13,8 +13,9 @@ DifferentialEquationTask — задачи на дифференциальные 
 
 import random
 import math
+import sympy as sp
 from typing import List, Dict, Any, ClassVar, Optional
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -47,10 +48,12 @@ class DifferentialEquationTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)
@@ -67,7 +70,7 @@ class DifferentialEquationTask(BaseMathTask):
             self.initial_conditions = {"y0": random.randint(1, 5), "x0": 0}
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _generate_coefficients(self) -> Dict[str, float]:
         """Генерирует коэффициенты уравнения."""
@@ -101,17 +104,24 @@ class DifferentialEquationTask(BaseMathTask):
     
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""
+        is_latex = self._output_format == "latex"
         templates = PROMPT_TEMPLATES.get("differential_equation", {}).get("problem", {})
         
         if self.task_type == "separable":
             a, b = self.coefficients["a"], self.coefficients["b"]
-            eq = f"dy/dx = {a}x / {b}y" if b != 1 else f"dy/dx = {a}x / y"
+            if is_latex:
+                eq = f"$\\frac{{dy}}{{dx}} = \\frac{{{a}x}}{{{b}y}}$"
+            else:
+                eq = f"dy/dx = {a}x / {b}y" if b != 1 else f"dy/dx = {a}x / y"
             template = templates.get("separable", {}).get(self.language, "")
             return template.format(equation=eq)
         
         elif self.task_type == "linear_first_order":
             p, q = self.coefficients["p"], self.coefficients["q"]
-            eq = f"y' + {p}y = {q}"
+            if is_latex:
+                eq = f"$y' + {p}y = {q}$"
+            else:
+                eq = f"y' + {p}y = {q}"
             template = templates.get("linear_first_order", {}).get(self.language, "")
             return template.format(equation=eq)
         
@@ -129,19 +139,31 @@ class DifferentialEquationTask(BaseMathTask):
                     terms.append(f" + {b}y" if b != 1 else " + y")
                 else:
                     terms.append(f" - {-b}y" if b != -1 else " - y")
-            eq = "".join(terms) + " = 0"
+            eq_str = "".join(terms) + " = 0"
+            eq = f"${eq_str}$" if is_latex else eq_str
             template = templates.get("homogeneous_second_order", {}).get(self.language, "")
             return template.format(equation=eq)
         
         elif self.task_type == "exponential_growth":
             k = self.coefficients["k"]
+            if is_latex:
+                eq = f"$\\frac{{dy}}{{dx}} = {k}y$"
+            else:
+                eq = f"dy/dx = {k}y"
+            # Шаблон использует {k}, но мы хотим использовать {equation}
             template = templates.get("exponential_growth", {}).get(self.language, "")
             return template.format(k=k)
         
         elif self.task_type == "cauchy_problem":
             a = self.coefficients["a"]
-            eq = f"dy/dx = {a}y"
-            cond = f"y({self.initial_conditions['x0']}) = {self.initial_conditions['y0']}"
+            x0 = self.initial_conditions['x0']
+            y0 = self.initial_conditions['y0']
+            if is_latex:
+                eq = f"$\\frac{{dy}}{{dx}} = {a}y$"
+                cond = f"$y({x0}) = {y0}$"
+            else:
+                eq = f"dy/dx = {a}y"
+                cond = f"y({x0}) = {y0}"
             template = templates.get("cauchy_problem", {}).get(self.language, "")
             return template.format(equation=eq, conditions=cond)
         
@@ -275,7 +297,8 @@ class DifferentialEquationTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         """Генерирует случайную задачу на ДУ."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
@@ -283,5 +306,6 @@ class DifferentialEquationTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )

@@ -2,7 +2,7 @@
 
 import random
 import sympy as sp
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from typing import Dict, Any, Optional, ClassVar
 
@@ -43,7 +43,8 @@ class LinearTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = None,
         max_coef: int = 10,
-        ensure_integer: bool = True
+        ensure_integer: bool = True,
+        output_format: OutputFormat = "text"
     ):
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
@@ -60,11 +61,38 @@ class LinearTask(BaseMathTask):
         self.c = c
         self.difficulty = difficulty
         self.detail_level = detail_level
+        self._output_format = output_format
         
-        # Формируем уравнение
-        equation = f"{a}x {'+' if b >= 0 else '-'} {abs(b)} = {c}"
+        # Формируем уравнение в нужном формате
+        equation = self._format_equation(a, b, c, output_format)
+        
+        # Всегда используем шаблоны из PROMPT_TEMPLATES
         description = PROMPT_TEMPLATES["linear"]["problem"][language].format(equation=equation)
-        super().__init__(description, language, detail_level)
+        
+        super().__init__(description, language, detail_level, output_format)
+    
+    @staticmethod
+    def _format_equation(a: int, b: int, c: int, output_format: OutputFormat = "text") -> str:
+        """Форматирует уравнение ax + b = c."""
+        if output_format == "latex":
+            # LaTeX формат
+            if a == 1:
+                ax = "x"
+            elif a == -1:
+                ax = "-x"
+            else:
+                ax = f"{a}x"
+            
+            if b > 0:
+                eq = f"{ax} + {b} = {c}"
+            elif b < 0:
+                eq = f"{ax} - {abs(b)} = {c}"
+            else:
+                eq = f"{ax} = {c}"
+            return f"${eq}$"
+        else:
+            # Text формат
+            return f"{a}x {'+' if b >= 0 else '-'} {abs(b)} = {c}"
     
     @staticmethod
     def _generate_coefficients(max_coef: int, ensure_integer: bool) -> tuple:
@@ -92,52 +120,44 @@ class LinearTask(BaseMathTask):
     def solve(self):
         x = sp.symbols('x')
         eq = sp.Eq(self.a * x + self.b, self.c)
-        eq_pretty = sp.pretty(eq)
         solution = sp.solve(eq, x)[0]
         right_side = self.c - self.b
         
+        is_latex = self._output_format == "latex"
+        step_tmpl = PROMPT_TEMPLATES["default"]["step"][self.language]
+        equation_label = PROMPT_TEMPLATES.get("linear", {}).get("equation_label", {"ru": "Уравнение", "en": "Equation"}).get(self.language, "Equation")
+        move_label = {"ru": "Переносим", "en": "Move"}.get(self.language, "Move")
+        
+        # Форматирование в зависимости от формата
+        eq_str = self._format_equation(self.a, self.b, self.c, self._output_format)
+        
         # Шаг 1: Запись уравнения
         if self.detail_level >= 1:
-            step1 = PROMPT_TEMPLATES["linear"]["step1"][self.language].format(equation_pretty=eq_pretty)
-            explanation1 = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step1"]
-            validation1 = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step1"]
-            self.add_solution_step(step1, explanation1, validation1)
+            text = f"{equation_label}: {eq_str}"
+            self.solution_steps.append(step_tmpl.format(n=1, text=text))
         
-        # Шаг 2: Анализ уравнения
+        # Шаг 2: Переносим b в правую часть
         if self.detail_level >= 2:
-            step2_analysis = PROMPT_TEMPLATES["linear"]["step2_analysis"][self.language].format(
-                a=self.a, b=self.b, c=self.c
-            )
-            explanation2_analysis = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step2_analysis"]
-            validation2_analysis = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step2_analysis"]
-            self.add_solution_step(step2_analysis, explanation2_analysis, validation2_analysis)
+            if is_latex:
+                text = f"{move_label} {self.b}: ${self.a}x = {self.c} - ({self.b}) = {right_side}$"
+            else:
+                text = f"{self.a}x = {self.c} - {self.b} = {right_side}"
+            self.solution_steps.append(step_tmpl.format(n=2, text=text))
         
-        # Шаг 3: Перенос свободного члена
+        # Шаг 3: Делим на коэффициент
         if self.detail_level >= 3:
-            step3_transfer = "Шаг 3: Переносим свободный член в правую часть:\n{c} - {b} = {right_side}".format(
-                c=self.c, b=self.b, right_side=right_side
-            )
-            explanation3_transfer = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step4_transfer"]
-            validation3_transfer = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step4_transfer"]
-            self.add_solution_step(step3_transfer, explanation3_transfer, validation3_transfer)
+            if is_latex:
+                sol_latex = sp.latex(solution)
+                text = f"$x = \\frac{{{right_side}}}{{{self.a}}} = {sol_latex}$"
+            else:
+                text = f"x = {right_side} / {self.a} = {solution}"
+            self.solution_steps.append(step_tmpl.format(n=3, text=text))
         
-        # Шаг 4: Делим на коэффициент
-        if self.detail_level >= 4:
-            step4_division = PROMPT_TEMPLATES["linear"]["step6_division"][self.language].format(
-                a=self.a, right_side=right_side, solution=solution
-            )
-            explanation4_division = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step6_division"]
-            validation4_division = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step6_division"]
-            self.add_solution_step(step4_division, explanation4_division, validation4_division)
-        
-        # Шаг 5: Решаем уравнение
-        if self.detail_level >= 5:
-            step5_solve = "Шаг 5: Решаем уравнение:\nx = {solution}".format(solution=solution)
-            explanation5_solve = PROMPT_TEMPLATES["linear"]["explanation"][self.language]["step7_check"]
-            validation5_solve = PROMPT_TEMPLATES["linear"]["validation"][self.language]["step7_check"]
-            self.add_solution_step(step5_solve, explanation5_solve, validation5_solve)
-        
-        self.final_answer = str(solution)
+        # Финальный ответ
+        if is_latex:
+            self.final_answer = f"$x = {sp.latex(solution)}$"
+        else:
+            self.final_answer = str(solution)
 
     def get_task_type(self):
         return "linear"

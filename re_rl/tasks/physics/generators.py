@@ -53,22 +53,27 @@ from re_rl.tasks.physics.astrophysics.astrophysics_task import AstrophysicsTask
 ##################################################
 
 def generate_random_kinematics_task(task_type: str = None, language: str = "ru",
-                                    detail_level: int = 3, difficulty: int = 5):
+                                    detail_level: int = 3, difficulty: int = 5,
+                                    output_format: str = "text"):
     return KinematicsTask.generate_random_task(task_type=task_type, language=language,
-                                               detail_level=detail_level, difficulty=difficulty)
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               output_format=output_format)
 
 def generate_random_dynamics_task(task_type: str = None, language: str = "ru",
-                                  detail_level: int = 3, difficulty: int = 5):
+                                  detail_level: int = 3, difficulty: int = 5,
+                                  output_format: str = "text"):
     return DynamicsTask.generate_random_task(task_type=task_type, language=language,
                                              detail_level=detail_level, difficulty=difficulty)
 
 def generate_random_energy_task(task_type: str = None, language: str = "ru",
-                                detail_level: int = 3, difficulty: int = 5):
+                                detail_level: int = 3, difficulty: int = 5,
+                                output_format: str = "text"):
     return EnergyTask.generate_random_task(task_type=task_type, language=language,
                                            detail_level=detail_level, difficulty=difficulty)
 
 def generate_random_momentum_task(task_type: str = None, language: str = "ru",
-                                  detail_level: int = 3, difficulty: int = 5):
+                                  detail_level: int = 3, difficulty: int = 5,
+                                  output_format: str = "text"):
     return MomentumTask.generate_random_task(task_type=task_type, language=language,
                                              detail_level=detail_level, difficulty=difficulty)
 

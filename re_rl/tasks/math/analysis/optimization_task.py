@@ -12,8 +12,9 @@ OptimizationTask — задачи на оптимизацию.
 
 import random
 import math
+import sympy as sp
 from typing import List, Dict, Any, ClassVar, Tuple, Optional
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -47,10 +48,12 @@ class OptimizationTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)
@@ -70,7 +73,7 @@ class OptimizationTask(BaseMathTask):
             self._generate_lp_problem()
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _generate_poly_coefficients(self) -> List[float]:
         """Генерирует коэффициенты многочлена с хорошими экстремумами."""
@@ -138,37 +141,66 @@ class OptimizationTask(BaseMathTask):
         
         return "".join(terms) if terms else "0"
     
+    def _poly_to_latex(self, coeffs: List[float]) -> str:
+        """Преобразует коэффициенты в LaTeX строку."""
+        x = sp.Symbol('x')
+        n = len(coeffs) - 1
+        poly = sum(c * x**(n-i) for i, c in enumerate(coeffs))
+        return sp.latex(poly)
+    
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""
+        is_latex = self._output_format == "latex"
         templates = PROMPT_TEMPLATES.get("optimization", {}).get("problem", {})
+        on_interval = PROMPT_TEMPLATES["default"]["on_interval"][self.language]
+        subject_to = PROMPT_TEMPLATES["default"]["subject_to"][self.language]
         
         if self.task_type == "find_extremum":
-            expr = self._poly_to_str(self.coefficients)
+            if is_latex:
+                expr_latex = self._poly_to_latex(self.coefficients)
+                func_expr = f"$f(x) = {expr_latex}$"
+            else:
+                expr = self._poly_to_str(self.coefficients)
+                func_expr = f"f(x) = {expr}"
             template = templates.get("find_extremum", {}).get(self.language, "")
-            return template.format(expression=expr)
+            return template.format(function_expression=func_expr)
         
         elif self.task_type == "max_min_interval":
-            expr = self._poly_to_str(self.coefficients)
+            if is_latex:
+                expr_latex = self._poly_to_latex(self.coefficients)
+                func_expr = f"$f(x) = {expr_latex}$ {on_interval} $[{self.interval[0]}, {self.interval[1]}]$"
+            else:
+                expr = self._poly_to_str(self.coefficients)
+                func_expr = f"f(x) = {expr} {on_interval} [{self.interval[0]}, {self.interval[1]}]"
             template = templates.get("max_min_interval", {}).get(self.language, "")
-            return template.format(expression=expr, a=self.interval[0], b=self.interval[1])
+            return template.format(function_expression=func_expr)
         
         elif self.task_type == "linear_programming":
-            # Формируем строку целевой функции
             var_names = ["x", "y", "z"][:self.lp_vars]
-            obj_terms = [f"{c}{v}" for c, v in zip(self.lp_objective, var_names)]
-            objective = " + ".join(obj_terms)
             
-            # Формируем ограничения
-            constraints_str = []
-            for coeffs, rhs in self.lp_constraints:
-                terms = [f"{c}{v}" for c, v in zip(coeffs, var_names)]
-                constraints_str.append(" + ".join(terms) + f" ≤ {rhs}")
-            
-            for v in var_names:
-                constraints_str.append(f"{v} ≥ 0")
+            if is_latex:
+                obj_terms = [f"{c}{v}" for c, v in zip(self.lp_objective, var_names)]
+                objective = " + ".join(obj_terms)
+                constraints_latex = []
+                for coeffs, rhs in self.lp_constraints:
+                    terms = [f"{c}{v}" for c, v in zip(coeffs, var_names)]
+                    constraints_latex.append(" + ".join(terms) + f" \\leq {rhs}")
+                for v in var_names:
+                    constraints_latex.append(f"{v} \\geq 0")
+                lp_expr = f"$\\max ({objective})$, {subject_to} ${', '.join(constraints_latex)}$"
+            else:
+                obj_terms = [f"{c}{v}" for c, v in zip(self.lp_objective, var_names)]
+                objective = " + ".join(obj_terms)
+                constraints_str = []
+                for coeffs, rhs in self.lp_constraints:
+                    terms = [f"{c}{v}" for c, v in zip(coeffs, var_names)]
+                    constraints_str.append(" + ".join(terms) + f" ≤ {rhs}")
+                for v in var_names:
+                    constraints_str.append(f"{v} ≥ 0")
+                lp_expr = f"max ({objective}), {subject_to}: {', '.join(constraints_str)}"
             
             template = templates.get("linear_programming", {}).get(self.language, "")
-            return template.format(objective=objective, constraints="\n".join(constraints_str))
+            return template.format(lp_expression=lp_expr)
         
         return ""
     
@@ -351,7 +383,8 @@ class OptimizationTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         """Генерирует случайную задачу на оптимизацию."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
@@ -359,5 +392,6 @@ class OptimizationTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )

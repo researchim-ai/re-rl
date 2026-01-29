@@ -1,11 +1,11 @@
 # re_rl/tasks/urn_probability_task.py
 import random
 import math
-from re_rl.tasks.base_task import BaseTask
+from re_rl.tasks.base_task import BaseTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class UrnProbabilityTask(BaseTask):
-    def __init__(self, language="en", count_containers=None, draws=None):
+    def __init__(self, language="en", count_containers=None, draws=None, output_format: OutputFormat = "text"):
         self.language = language.lower()
         syn = PROMPT_TEMPLATES["urn_probability"]["synonyms"][self.language]
 

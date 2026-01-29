@@ -1,6 +1,6 @@
 # re_rl/tasks/analogical_task.py
 
-from re_rl.tasks.base_task import BaseTask
+from re_rl.tasks.base_task import BaseTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class AnalogicalTask(BaseTask):
@@ -9,7 +9,7 @@ class AnalogicalTask(BaseTask):
     Все текстовые строки извлекаются из шаблонов.
     detail_level определяет число шагов рассуждений.
     """
-    def __init__(self, description: str, language: str = "en", detail_level: int = 3):
+    def __init__(self, description: str, language: str = "en", detail_level: int = 3, output_format: OutputFormat = "text"):
         self.language = language.lower()
         self.detail_level = detail_level
         problem_template = PROMPT_TEMPLATES["analogical"]["problem"].get(self.language, PROMPT_TEMPLATES["analogical"]["problem"]["en"])

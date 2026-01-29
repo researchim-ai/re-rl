@@ -58,6 +58,7 @@ class FutoshikiTask(BaseTask):
         self.language = language.lower()
         self.detail_level = detail_level
         self.difficulty = difficulty
+        self._output_format = output_format
         
         if size is None:
             size = random.randint(4, 5)

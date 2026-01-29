@@ -1,7 +1,7 @@
 # re_rl/tasks/text_stats_task.py
 
 import random
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class TextStatsTask(BaseMathTask):
@@ -28,9 +28,11 @@ class TextStatsTask(BaseMathTask):
                  substring: str = None,
                  allow_overlapping: bool = False,
                  text_gen_mode: str = "words",
-                 mix_ratio: float = 0.5):
+                 mix_ratio: float = 0.5,
+                 output_format: OutputFormat = "text"):
         self.language = language.lower()
         self.detail_level = detail_level
+        self._output_format = output_format
         self.allow_overlapping = allow_overlapping
         self.text_gen_mode = text_gen_mode
         self.mix_ratio = mix_ratio
@@ -54,7 +56,7 @@ class TextStatsTask(BaseMathTask):
             text=self.text
         )
         
-        super().__init__(desc, language=language, detail_level=detail_level)
+        super().__init__(desc, language=language, detail_level=detail_level, output_format=output_format)
 
     def _generate_random_text(self) -> str:
         """Генерируем текст в зависимости от text_gen_mode."""

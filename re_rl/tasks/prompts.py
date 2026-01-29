@@ -17,6 +17,44 @@ PROMPT_TEMPLATES = {
         "error": {
             "ru": "Ошибка: {error}",
             "en": "Error: {error}"
+        },
+        # Универсальные шаблоны для шагов решения
+        "step": {
+            "ru": "Шаг {n}: {text}",
+            "en": "Step {n}: {text}"
+        },
+        "answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        },
+        # Общие слова
+        "equation": {
+            "ru": "Уравнение",
+            "en": "Equation"
+        },
+        "function": {
+            "ru": "Функция",
+            "en": "Function"
+        },
+        "roots": {
+            "ru": "Корни",
+            "en": "Roots"
+        },
+        "derivative": {
+            "ru": "производную",
+            "en": "derivative"
+        },
+        "integral": {
+            "ru": "неопределённый интеграл",
+            "en": "indefinite integral"
+        },
+        "on_interval": {
+            "ru": "на отрезке",
+            "en": "on interval"
+        },
+        "subject_to": {
+            "ru": "при ограничениях",
+            "en": "subject to"
         }
     },
 
@@ -207,8 +245,8 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите квадратное уравнение: {equation_pretty} = 0",
-            "en": "Solve the quadratic equation: {equation_pretty} = 0"
+            "ru": "Решите квадратное уравнение: {equation_pretty}",
+            "en": "Solve the quadratic equation: {equation_pretty}"
         },
         "step1": {
             "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty} = 0",
@@ -317,8 +355,8 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите кубическое уравнение: {equation_pretty} = 0",
-            "en": "Solve the cubic equation: {equation_pretty} = 0"
+            "ru": "Решите кубическое уравнение: {equation_pretty}",
+            "en": "Solve the cubic equation: {equation_pretty}"
         },
         "step1": {
             "ru": "Шаг 1: Запишем уравнение: {equation_pretty}.",
@@ -375,8 +413,12 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите показательное уравнение: {left} = {d}",
-            "en": "Solve the exponential equation: {left} = {d}"
+            "ru": "Решите показательное уравнение: {equation}",
+            "en": "Solve the exponential equation: {equation}"
+        },
+        "equation_label": {
+            "ru": "Уравнение",
+            "en": "Equation"
         },
         "step1": {
             "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
@@ -509,8 +551,8 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите логарифмическое уравнение: {left} = {d}",
-            "en": "Solve the logarithmic equation: {left} = {d}"
+            "ru": "Решите логарифмическое уравнение: {equation}",
+            "en": "Solve the logarithmic equation: {equation}"
         },
         "step1": {
             "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
@@ -627,8 +669,24 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Найди {task_type} функции f(x) = {function_pretty}.",
+            "ru": "Найдите {task_type} функции f(x) = {function_pretty}.",
             "en": "Find the {task_type} of the function f(x) = {function_pretty}."
+        },
+        "problem_derivative": {
+            "ru": "Найдите производную: {expression}",
+            "en": "Find the derivative: {expression}"
+        },
+        "problem_integral": {
+            "ru": "Найдите неопределённый интеграл: {expression}",
+            "en": "Find the indefinite integral: {expression}"
+        },
+        "task_type_derivative": {
+            "ru": "производную",
+            "en": "derivative"
+        },
+        "task_type_integral": {
+            "ru": "неопределённый интеграл",
+            "en": "indefinite integral"
         },
         "step1": {
             "ru": "Шаг 1: Запишем функцию: f(x) = {function_pretty}.",
@@ -2541,28 +2599,28 @@ Analysis:
         },
         "problem": {
             "polynomial": {
-                "ru": "Найдите предел: lim(x→{point}) ({expression})",
-                "en": "Find the limit: lim(x→{point}) ({expression})"
+                "ru": "Вычислите предел: {limit_expression}",
+                "en": "Evaluate the limit: {limit_expression}"
             },
             "rational": {
-                "ru": "Найдите предел: lim(x→{point}) (({numerator})/({denominator}))",
-                "en": "Find the limit: lim(x→{point}) (({numerator})/({denominator}))"
+                "ru": "Вычислите предел: {limit_expression}",
+                "en": "Evaluate the limit: {limit_expression}"
             },
             "infinity": {
-                "ru": "Найдите предел: lim(x→∞) ({expression})",
-                "en": "Find the limit: lim(x→∞) ({expression})"
+                "ru": "Вычислите предел: {limit_expression}",
+                "en": "Evaluate the limit: {limit_expression}"
             },
             "indeterminate": {
-                "ru": "Найдите предел: lim(x→{point}) ({expression}). Указание: имеется неопределённость {type}.",
-                "en": "Find the limit: lim(x→{point}) ({expression}). Hint: this is an indeterminate form {type}."
+                "ru": "Вычислите предел (неопределённость {type}): {limit_expression}",
+                "en": "Evaluate the limit (indeterminate form {type}): {limit_expression}"
             },
             "sequence": {
-                "ru": "Найдите предел последовательности: lim(n→∞) {expression}",
-                "en": "Find the limit of the sequence: lim(n→∞) {expression}"
+                "ru": "Найдите предел последовательности: {limit_expression}",
+                "en": "Find the limit of the sequence: {limit_expression}"
             },
             "special": {
-                "ru": "Найдите предел, используя замечательный предел: lim(x→{point}) ({expression})",
-                "en": "Find the limit using a remarkable limit: lim(x→{point}) ({expression})"
+                "ru": "Вычислите замечательный предел: {limit_expression}",
+                "en": "Evaluate the remarkable limit: {limit_expression}"
             }
         },
         "steps": {
@@ -3235,32 +3293,32 @@ Analysis:
         },
         "problem": {
             "indefinite_polynomial": {
-                "ru": "Вычислите неопределённый интеграл: ∫({expression}) dx",
-                "en": "Compute the indefinite integral: ∫({expression}) dx"
+                "ru": "Найдите неопределённый интеграл: {integral_expression}",
+                "en": "Find indefinite integral: {integral_expression}"
             },
             "definite_polynomial": {
-                "ru": "Вычислите определённый интеграл: ∫[{a},{b}] ({expression}) dx",
-                "en": "Compute the definite integral: ∫[{a},{b}] ({expression}) dx"
+                "ru": "Вычислите определённый интеграл: {integral_expression}",
+                "en": "Evaluate definite integral: {integral_expression}"
             },
             "indefinite_trig": {
-                "ru": "Вычислите неопределённый интеграл: ∫{expression} dx",
-                "en": "Compute the indefinite integral: ∫{expression} dx"
+                "ru": "Найдите неопределённый интеграл: {integral_expression}",
+                "en": "Find indefinite integral: {integral_expression}"
             },
             "definite_trig": {
-                "ru": "Вычислите определённый интеграл: ∫[{a},{b}] {expression} dx",
-                "en": "Compute the definite integral: ∫[{a},{b}] {expression} dx"
+                "ru": "Вычислите определённый интеграл: {integral_expression}",
+                "en": "Evaluate definite integral: {integral_expression}"
             },
             "by_parts": {
-                "ru": "Вычислите интеграл методом интегрирования по частям: ∫{expression} dx",
-                "en": "Compute the integral using integration by parts: ∫{expression} dx"
+                "ru": "Вычислите интеграл методом интегрирования по частям: {integral_expression}",
+                "en": "Compute the integral using integration by parts: {integral_expression}"
             },
             "substitution": {
-                "ru": "Вычислите интеграл методом замены: ∫{expression} dx",
-                "en": "Compute the integral using substitution: ∫{expression} dx"
+                "ru": "Вычислите интеграл методом замены: {integral_expression}",
+                "en": "Compute the integral using substitution: {integral_expression}"
             },
             "area": {
-                "ru": "Найдите площадь под кривой y = {expression} на отрезке [{a}, {b}]",
-                "en": "Find the area under the curve y = {expression} on the interval [{a}, {b}]"
+                "ru": "Найдите площадь под кривой: {integral_expression}",
+                "en": "Find area under curve: {integral_expression}"
             }
         },
         "steps": {
@@ -3419,20 +3477,20 @@ Analysis:
         },
         "problem": {
             "find_extremum": {
-                "ru": "Найдите экстремумы функции f(x) = {expression}",
-                "en": "Find the extrema of the function f(x) = {expression}"
+                "ru": "Найдите экстремумы функции: {function_expression}",
+                "en": "Find the extrema of the function: {function_expression}"
             },
             "max_min_interval": {
-                "ru": "Найдите максимум и минимум функции f(x) = {expression} на отрезке [{a}, {b}]",
-                "en": "Find the maximum and minimum of f(x) = {expression} on [{a}, {b}]"
+                "ru": "Найдите максимум и минимум функции: {function_expression}",
+                "en": "Find the maximum and minimum of the function: {function_expression}"
             },
             "constrained": {
                 "ru": "Найдите экстремум f(x,y) = {objective} при ограничении {constraint}",
                 "en": "Find the extremum of f(x,y) = {objective} subject to {constraint}"
             },
             "linear_programming": {
-                "ru": "Решите задачу линейного программирования:\nМаксимизировать: {objective}\nПри ограничениях:\n{constraints}",
-                "en": "Solve the linear programming problem:\nMaximize: {objective}\nSubject to:\n{constraints}"
+                "ru": "Решите задачу линейного программирования: {lp_expression}",
+                "en": "Solve the linear programming problem: {lp_expression}"
             },
             "word_problem": {
                 "ru": "{problem_text}\nНайдите оптимальное решение.",
@@ -3726,28 +3784,28 @@ Analysis:
         },
         "problem": {
             "geometric_sum": {
-                "ru": "Найдите сумму геометрического ряда: {first_term} + {second_term} + ... (бесконечный ряд при |r| < 1)",
-                "en": "Find the sum of the geometric series: {first_term} + {second_term} + ... (infinite series where |r| < 1)"
+                "ru": "Найдите сумму бесконечного геометрического ряда: {series_expression}",
+                "en": "Find the sum of the infinite geometric series: {series_expression}"
             },
             "convergence_test": {
-                "ru": "Исследуйте сходимость ряда Σ({general_term}), n = 1, 2, 3, ...",
-                "en": "Test the convergence of the series Σ({general_term}), n = 1, 2, 3, ..."
+                "ru": "Исследуйте сходимость ряда: {series_expression}",
+                "en": "Test the convergence of the series: {series_expression}"
             },
             "partial_sum": {
-                "ru": "Найдите сумму первых {n} членов ряда с общим членом aₙ = {general_term}",
-                "en": "Find the sum of the first {n} terms of the series with general term aₙ = {general_term}"
+                "ru": "Найдите частичную сумму: {series_expression}",
+                "en": "Find the partial sum: {series_expression}"
             },
             "taylor_series": {
                 "ru": "Найдите ряд Тейлора функции f(x) = {function} в точке x = {a} (первые {n} членов)",
                 "en": "Find the Taylor series of f(x) = {function} at x = {a} (first {n} terms)"
             },
             "radius_convergence": {
-                "ru": "Найдите радиус сходимости степенного ряда Σ({general_term})xⁿ",
-                "en": "Find the radius of convergence of the power series Σ({general_term})xⁿ"
+                "ru": "Найдите радиус сходимости степенного ряда: {series_expression}",
+                "en": "Find the radius of convergence of the power series: {series_expression}"
             },
             "telescoping": {
-                "ru": "Найдите сумму телескопического ряда Σ({general_term}), n = 1 до ∞",
-                "en": "Find the sum of the telescoping series Σ({general_term}), n = 1 to ∞"
+                "ru": "Найдите сумму телескопического ряда: {series_expression}",
+                "en": "Find the sum of the telescoping series: {series_expression}"
             }
         },
         "steps": {

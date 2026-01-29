@@ -2,7 +2,7 @@
 
 import random
 import z3
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from typing import Optional, Dict, Any, ClassVar
 
@@ -56,6 +56,7 @@ class KnightsKnavesTask(BaseMathTask):
         self.detail_level = detail_level
         self.complexity = complexity
         self.difficulty = difficulty
+        self._output_format = output_format
 
         # Определяем число персонажей / высказываний по уровню сложности
         self.num_persons, self.num_statements = self._compute_params_by_complexity(self.complexity)
@@ -70,7 +71,7 @@ class KnightsKnavesTask(BaseMathTask):
 
         # Формируем текст задачи (problem)
         description = self._create_problem_text()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
 
     def _compute_params_by_complexity(self, lvl: int):
         """

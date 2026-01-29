@@ -16,7 +16,7 @@ Vector3DTask — задачи по векторной алгебре в 3D.
 import random
 import math
 from typing import List, Dict, Any, ClassVar, Tuple
-from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 
@@ -53,10 +53,12 @@ class Vector3DTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
+        output_format: OutputFormat = "text",
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
+        self._output_format = output_format
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)
@@ -71,7 +73,7 @@ class Vector3DTask(BaseMathTask):
         self.plane_coeffs = plane_coeffs if plane_coeffs else self._generate_plane()
         
         description = self._create_problem_description()
-        super().__init__(description, language, detail_level)
+        super().__init__(description, language, detail_level, output_format)
     
     def _generate_vector(self) -> Tuple[int, int, int]:
         """Генерирует случайный вектор."""
@@ -330,7 +332,8 @@ class Vector3DTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text"
     ):
         """Генерирует случайную задачу по векторам 3D."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
@@ -338,5 +341,6 @@ class Vector3DTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format
         )
