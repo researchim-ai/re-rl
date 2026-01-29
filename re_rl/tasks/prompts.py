@@ -3799,4 +3799,828 @@ Analysis:
         }
     },
 
+    # ============================================================================
+    # ФИЗИЧЕСКИЕ ЗАДАЧИ
+    # ============================================================================
+
+    #----------------------------------------------------------------------------
+    # KINEMATICS - Кинематика
+    #----------------------------------------------------------------------------
+    "kinematics": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по кинематике.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение с формулами)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Численный ответ с единицами измерения)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the kinematics problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution with formulas)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Numerical answer with units)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "uniform_motion": {
+                "ru": "Тело движется равномерно со скоростью {v} м/с. Какое расстояние оно пройдёт за {t} с?",
+                "en": "A body moves uniformly at {v} m/s. What distance will it travel in {t} s?"
+            },
+            "find_velocity": {
+                "ru": "Тело прошло расстояние {s} м за {t} с при равномерном движении. Найдите скорость.",
+                "en": "A body traveled {s} m in {t} s with uniform motion. Find the velocity."
+            },
+            "accelerated_distance": {
+                "ru": "Тело начинает движение из состояния покоя с ускорением {a} м/с². Какое расстояние оно пройдёт за {t} с?",
+                "en": "A body starts from rest with acceleration {a} m/s². What distance will it travel in {t} s?"
+            },
+            "accelerated_velocity": {
+                "ru": "Тело движется с начальной скоростью {v0} м/с и ускорением {a} м/с². Какова скорость через {t} с?",
+                "en": "A body moves with initial velocity {v0} m/s and acceleration {a} m/s². What is the velocity after {t} s?"
+            },
+            "projectile_max_height": {
+                "ru": "Тело брошено вертикально вверх со скоростью {v0} м/с. Найдите максимальную высоту подъёма. (g = {g} м/с²)",
+                "en": "A body is thrown vertically upward at {v0} m/s. Find the maximum height. (g = {g} m/s²)"
+            },
+            "projectile_range": {
+                "ru": "Тело брошено под углом {angle}° к горизонту со скоростью {v0} м/с. Найдите дальность полёта. (g = {g} м/с²)",
+                "en": "A body is thrown at angle {angle}° to the horizontal at {v0} m/s. Find the range. (g = {g} m/s²)"
+            },
+            "circular_velocity": {
+                "ru": "Тело движется по окружности радиусом {r} м с периодом {T} с. Найдите линейную скорость.",
+                "en": "A body moves in a circle of radius {r} m with period {T} s. Find the linear velocity."
+            },
+            "circular_acceleration": {
+                "ru": "Тело движется по окружности радиусом {r} м со скоростью {v} м/с. Найдите центростремительное ускорение.",
+                "en": "A body moves in a circle of radius {r} m at velocity {v} m/s. Find the centripetal acceleration."
+            }
+        },
+        "steps": {
+            "formula": {
+                "ru": "Шаг {step}: Используем формулу: {formula}",
+                "en": "Step {step}: Using formula: {formula}"
+            },
+            "substitute": {
+                "ru": "Шаг {step}: Подставляем значения: {substitution}",
+                "en": "Step {step}: Substituting values: {substitution}"
+            },
+            "calculate": {
+                "ru": "Шаг {step}: Вычисляем: {calculation}",
+                "en": "Step {step}: Calculating: {calculation}"
+            }
+        },
+        "formulas": {
+            "uniform_motion": "s = v·t",
+            "velocity_time": "v = v₀ + a·t",
+            "distance_accelerated": "s = v₀·t + (a·t²)/2",
+            "velocity_distance": "v² = v₀² + 2·a·s",
+            "max_height": "h = v₀²/(2g)",
+            "projectile_range": "R = (v₀²·sin(2θ))/g",
+            "circular_velocity": "v = 2πr/T",
+            "centripetal_acceleration": "a = v²/r"
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # DYNAMICS - Динамика
+    #----------------------------------------------------------------------------
+    "dynamics": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по динамике (законы Ньютона).\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ с единицами)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the dynamics problem (Newton's laws).\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer with units)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "newton_second": {
+                "ru": "На тело массой {m} кг действует сила {F} Н. Найдите ускорение тела.",
+                "en": "A force of {F} N acts on a body of mass {m} kg. Find the acceleration."
+            },
+            "find_force": {
+                "ru": "Тело массой {m} кг движется с ускорением {a} м/с². Найдите силу, действующую на тело.",
+                "en": "A body of mass {m} kg moves with acceleration {a} m/s². Find the force acting on it."
+            },
+            "weight": {
+                "ru": "Найдите вес тела массой {m} кг. (g = {g} м/с²)",
+                "en": "Find the weight of a body with mass {m} kg. (g = {g} m/s²)"
+            },
+            "friction": {
+                "ru": "Тело массой {m} кг движется по горизонтальной поверхности. Коэффициент трения μ = {mu}. Найдите силу трения. (g = {g} м/с²)",
+                "en": "A body of mass {m} kg moves on a horizontal surface. Friction coefficient μ = {mu}. Find the friction force. (g = {g} m/s²)"
+            },
+            "inclined_plane": {
+                "ru": "Тело массой {m} кг находится на наклонной плоскости с углом {angle}°. Найдите силу, действующую вдоль плоскости. (g = {g} м/с²)",
+                "en": "A body of mass {m} kg is on an inclined plane at angle {angle}°. Find the force along the plane. (g = {g} m/s²)"
+            },
+            "tension": {
+                "ru": "Два тела массами {m1} кг и {m2} кг соединены нитью через блок. Найдите натяжение нити. (g = {g} м/с²)",
+                "en": "Two bodies of masses {m1} kg and {m2} kg are connected by a string over a pulley. Find the tension. (g = {g} m/s²)"
+            }
+        },
+        "steps": {
+            "identify_forces": {
+                "ru": "Шаг 1: Определяем силы, действующие на тело: {forces}",
+                "en": "Step 1: Identify forces acting on the body: {forces}"
+            },
+            "apply_newton": {
+                "ru": "Шаг {step}: Применяем второй закон Ньютона: F = ma",
+                "en": "Step {step}: Apply Newton's second law: F = ma"
+            },
+            "calculate_result": {
+                "ru": "Шаг {step}: {calculation}",
+                "en": "Step {step}: {calculation}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # ENERGY - Работа, энергия, мощность
+    #----------------------------------------------------------------------------
+    "energy": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу на работу, энергию или мощность.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the work, energy, or power problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "work": {
+                "ru": "Сила {F} Н перемещает тело на {s} м в направлении действия силы. Найдите работу силы.",
+                "en": "A force of {F} N moves a body {s} m in the direction of the force. Find the work done."
+            },
+            "work_angle": {
+                "ru": "Сила {F} Н действует на тело под углом {angle}° к направлению перемещения {s} м. Найдите работу.",
+                "en": "A force of {F} N acts on a body at angle {angle}° to the displacement of {s} m. Find the work."
+            },
+            "kinetic_energy": {
+                "ru": "Найдите кинетическую энергию тела массой {m} кг, движущегося со скоростью {v} м/с.",
+                "en": "Find the kinetic energy of a body with mass {m} kg moving at {v} m/s."
+            },
+            "potential_energy": {
+                "ru": "Найдите потенциальную энергию тела массой {m} кг на высоте {h} м. (g = {g} м/с²)",
+                "en": "Find the potential energy of a body with mass {m} kg at height {h} m. (g = {g} m/s²)"
+            },
+            "power": {
+                "ru": "Сила совершает работу {W} Дж за время {t} с. Найдите мощность.",
+                "en": "A force does {W} J of work in {t} s. Find the power."
+            },
+            "conservation": {
+                "ru": "Тело массой {m} кг падает с высоты {h} м. Найдите скорость в момент удара о землю. (g = {g} м/с²)",
+                "en": "A body of mass {m} kg falls from height {h} m. Find the velocity at impact. (g = {g} m/s²)"
+            }
+        },
+        "steps": {
+            "work_formula": {
+                "ru": "Шаг 1: Работа A = F·s·cos(α)",
+                "en": "Step 1: Work W = F·s·cos(α)"
+            },
+            "kinetic_formula": {
+                "ru": "Шаг 1: Кинетическая энергия Eₖ = mv²/2",
+                "en": "Step 1: Kinetic energy Eₖ = mv²/2"
+            },
+            "potential_formula": {
+                "ru": "Шаг 1: Потенциальная энергия Eₚ = mgh",
+                "en": "Step 1: Potential energy Eₚ = mgh"
+            },
+            "power_formula": {
+                "ru": "Шаг 1: Мощность P = A/t",
+                "en": "Step 1: Power P = W/t"
+            },
+            "conservation_law": {
+                "ru": "Шаг 1: По закону сохранения энергии: mgh = mv²/2",
+                "en": "Step 1: By conservation of energy: mgh = mv²/2"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # MOMENTUM - Импульс
+    #----------------------------------------------------------------------------
+    "momentum": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу на импульс и столкновения.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the momentum and collision problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "momentum": {
+                "ru": "Найдите импульс тела массой {m} кг, движущегося со скоростью {v} м/с.",
+                "en": "Find the momentum of a body with mass {m} kg moving at {v} m/s."
+            },
+            "impulse": {
+                "ru": "Сила {F} Н действует на тело в течение {t} с. Найдите импульс силы.",
+                "en": "A force of {F} N acts on a body for {t} s. Find the impulse."
+            },
+            "inelastic_collision": {
+                "ru": "Тело массой {m1} кг со скоростью {v1} м/с сталкивается с неподвижным телом массой {m2} кг. После столкновения тела движутся вместе. Найдите скорость после столкновения.",
+                "en": "A body of mass {m1} kg moving at {v1} m/s collides with a stationary body of mass {m2} kg. After collision they move together. Find the velocity after collision."
+            },
+            "elastic_collision": {
+                "ru": "Тело массой {m1} кг со скоростью {v1} м/с упруго сталкивается с неподвижным телом массой {m2} кг. Найдите скорости тел после столкновения.",
+                "en": "A body of mass {m1} kg moving at {v1} m/s elastically collides with a stationary body of mass {m2} kg. Find velocities after collision."
+            }
+        },
+        "steps": {
+            "momentum_formula": {
+                "ru": "Шаг 1: Импульс p = mv",
+                "en": "Step 1: Momentum p = mv"
+            },
+            "conservation": {
+                "ru": "Шаг 1: По закону сохранения импульса: m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'",
+                "en": "Step 1: By conservation of momentum: m₁v₁ + m₂v₂ = m₁v₁' + m₂v₂'"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # CIRCUITS - Электрические цепи
+    #----------------------------------------------------------------------------
+    "circuits": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по электрическим цепям.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the electrical circuit problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "ohms_law": {
+                "ru": "В цепи с сопротивлением {R} Ом протекает ток {I} А. Найдите напряжение.",
+                "en": "A current of {I} A flows through a resistance of {R} Ω. Find the voltage."
+            },
+            "find_current": {
+                "ru": "К резистору сопротивлением {R} Ом приложено напряжение {U} В. Найдите силу тока.",
+                "en": "A voltage of {U} V is applied to a resistor of {R} Ω. Find the current."
+            },
+            "find_resistance": {
+                "ru": "При напряжении {U} В через проводник протекает ток {I} А. Найдите сопротивление.",
+                "en": "At voltage {U} V, a current of {I} A flows through a conductor. Find the resistance."
+            },
+            "series": {
+                "ru": "Резисторы {resistors} соединены последовательно. Найдите общее сопротивление.",
+                "en": "Resistors {resistors} are connected in series. Find the total resistance."
+            },
+            "parallel": {
+                "ru": "Резисторы {resistors} соединены параллельно. Найдите общее сопротивление.",
+                "en": "Resistors {resistors} are connected in parallel. Find the total resistance."
+            },
+            "power_circuit": {
+                "ru": "В цепи с напряжением {U} В и током {I} А найдите мощность.",
+                "en": "In a circuit with voltage {U} V and current {I} A, find the power."
+            },
+            "kirchhoff": {
+                "ru": "В узле сходятся токи: {currents}. Найдите неизвестный ток по первому закону Кирхгофа.",
+                "en": "Currents meet at a junction: {currents}. Find the unknown current using Kirchhoff's first law."
+            }
+        },
+        "steps": {
+            "ohms_law": {
+                "ru": "Шаг 1: По закону Ома: U = IR",
+                "en": "Step 1: By Ohm's law: U = IR"
+            },
+            "series_formula": {
+                "ru": "Шаг 1: При последовательном соединении: R = R₁ + R₂ + ...",
+                "en": "Step 1: For series connection: R = R₁ + R₂ + ..."
+            },
+            "parallel_formula": {
+                "ru": "Шаг 1: При параллельном соединении: 1/R = 1/R₁ + 1/R₂ + ...",
+                "en": "Step 1: For parallel connection: 1/R = 1/R₁ + 1/R₂ + ..."
+            },
+            "power_formula": {
+                "ru": "Шаг 1: Мощность P = UI = I²R = U²/R",
+                "en": "Step 1: Power P = UI = I²R = U²/R"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # ELECTROSTATICS - Электростатика
+    #----------------------------------------------------------------------------
+    "electrostatics": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по электростатике.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the electrostatics problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "coulomb": {
+                "ru": "Два точечных заряда {q1} Кл и {q2} Кл находятся на расстоянии {r} м. Найдите силу взаимодействия. (k = 9×10⁹ Н·м²/Кл²)",
+                "en": "Two point charges {q1} C and {q2} C are {r} m apart. Find the force. (k = 9×10⁹ N·m²/C²)"
+            },
+            "electric_field": {
+                "ru": "Точечный заряд {q} Кл создаёт электрическое поле. Найдите напряжённость поля на расстоянии {r} м от заряда.",
+                "en": "A point charge {q} C creates an electric field. Find the field strength at distance {r} m."
+            },
+            "potential": {
+                "ru": "Найдите потенциал электрического поля точечного заряда {q} Кл на расстоянии {r} м.",
+                "en": "Find the electric potential of a point charge {q} C at distance {r} m."
+            },
+            "work_in_field": {
+                "ru": "Заряд {q} Кл перемещается в однородном электрическом поле с напряжённостью {E} В/м на расстояние {d} м вдоль линий поля. Найдите работу поля.",
+                "en": "A charge {q} C moves in a uniform electric field of {E} V/m through distance {d} m along field lines. Find the work done."
+            }
+        },
+        "steps": {
+            "coulomb_law": {
+                "ru": "Шаг 1: По закону Кулона: F = k·|q₁·q₂|/r²",
+                "en": "Step 1: By Coulomb's law: F = k·|q₁·q₂|/r²"
+            },
+            "field_formula": {
+                "ru": "Шаг 1: Напряжённость поля: E = k·q/r²",
+                "en": "Step 1: Field strength: E = k·q/r²"
+            },
+            "potential_formula": {
+                "ru": "Шаг 1: Потенциал: φ = k·q/r",
+                "en": "Step 1: Potential: φ = k·q/r"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # CAPACITORS - Конденсаторы
+    #----------------------------------------------------------------------------
+    "capacitors": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу на конденсаторы.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the capacitor problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "charge": {
+                "ru": "Конденсатор ёмкостью {C} Ф заряжен до напряжения {U} В. Найдите заряд на обкладках.",
+                "en": "A capacitor of {C} F is charged to {U} V. Find the charge on the plates."
+            },
+            "energy": {
+                "ru": "Найдите энергию конденсатора ёмкостью {C} Ф, заряженного до напряжения {U} В.",
+                "en": "Find the energy of a capacitor of {C} F charged to {U} V."
+            },
+            "series": {
+                "ru": "Конденсаторы {capacitors} соединены последовательно. Найдите общую ёмкость.",
+                "en": "Capacitors {capacitors} are connected in series. Find the total capacitance."
+            },
+            "parallel": {
+                "ru": "Конденсаторы {capacitors} соединены параллельно. Найдите общую ёмкость.",
+                "en": "Capacitors {capacitors} are connected in parallel. Find the total capacitance."
+            }
+        },
+        "steps": {
+            "charge_formula": {
+                "ru": "Шаг 1: Заряд q = CU",
+                "en": "Step 1: Charge q = CU"
+            },
+            "energy_formula": {
+                "ru": "Шаг 1: Энергия W = CU²/2 = qU/2 = q²/(2C)",
+                "en": "Step 1: Energy W = CU²/2 = qU/2 = q²/(2C)"
+            },
+            "series_formula": {
+                "ru": "Шаг 1: При последовательном соединении: 1/C = 1/C₁ + 1/C₂ + ...",
+                "en": "Step 1: For series: 1/C = 1/C₁ + 1/C₂ + ..."
+            },
+            "parallel_formula": {
+                "ru": "Шаг 1: При параллельном соединении: C = C₁ + C₂ + ...",
+                "en": "Step 1: For parallel: C = C₁ + C₂ + ..."
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # GAS_LAWS - Газовые законы
+    #----------------------------------------------------------------------------
+    "gas_laws": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу на газовые законы.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the gas laws problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "ideal_gas": {
+                "ru": "{n} моль идеального газа при температуре {T} К занимает объём {V} л. Найдите давление. (R = 8.314 Дж/(моль·К))",
+                "en": "{n} mol of ideal gas at temperature {T} K occupies volume {V} L. Find the pressure. (R = 8.314 J/(mol·K))"
+            },
+            "isothermal": {
+                "ru": "Газ при давлении {P1} Па занимает объём {V1} л. При изотермическом процессе объём изменился до {V2} л. Найдите новое давление.",
+                "en": "A gas at pressure {P1} Pa occupies volume {V1} L. In an isothermal process, volume changed to {V2} L. Find the new pressure."
+            },
+            "isobaric": {
+                "ru": "Газ при температуре {T1} К занимает объём {V1} л. При изобарическом нагревании температура стала {T2} К. Найдите новый объём.",
+                "en": "A gas at temperature {T1} K occupies volume {V1} L. After isobaric heating to {T2} K, find the new volume."
+            },
+            "isochoric": {
+                "ru": "Газ при температуре {T1} К имеет давление {P1} Па. При изохорическом нагревании температура стала {T2} К. Найдите новое давление.",
+                "en": "A gas at temperature {T1} K has pressure {P1} Pa. After isochoric heating to {T2} K, find the new pressure."
+            },
+            "combined": {
+                "ru": "Газ в состоянии (P₁={P1} Па, V₁={V1} л, T₁={T1} К) переходит в состояние с V₂={V2} л, T₂={T2} К. Найдите P₂.",
+                "en": "A gas changes from state (P₁={P1} Pa, V₁={V1} L, T₁={T1} K) to V₂={V2} L, T₂={T2} K. Find P₂."
+            }
+        },
+        "steps": {
+            "ideal_gas_law": {
+                "ru": "Шаг 1: Уравнение Менделеева-Клапейрона: PV = nRT",
+                "en": "Step 1: Ideal gas law: PV = nRT"
+            },
+            "boyle_law": {
+                "ru": "Шаг 1: Закон Бойля-Мариотта (T=const): P₁V₁ = P₂V₂",
+                "en": "Step 1: Boyle's law (T=const): P₁V₁ = P₂V₂"
+            },
+            "charles_law": {
+                "ru": "Шаг 1: Закон Гей-Люссака (P=const): V₁/T₁ = V₂/T₂",
+                "en": "Step 1: Charles's law (P=const): V₁/T₁ = V₂/T₂"
+            },
+            "gay_lussac_law": {
+                "ru": "Шаг 1: Закон Шарля (V=const): P₁/T₁ = P₂/T₂",
+                "en": "Step 1: Gay-Lussac's law (V=const): P₁/T₁ = P₂/T₂"
+            },
+            "combined_law": {
+                "ru": "Шаг 1: Объединённый газовый закон: P₁V₁/T₁ = P₂V₂/T₂",
+                "en": "Step 1: Combined gas law: P₁V₁/T₁ = P₂V₂/T₂"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # HEAT_TRANSFER - Теплопередача
+    #----------------------------------------------------------------------------
+    "heat_transfer": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу на теплопередачу.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the heat transfer problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "heat_capacity": {
+                "ru": "Сколько теплоты нужно для нагревания {m} кг {substance} от {T1}°C до {T2}°C? (c = {c} Дж/(кг·°C))",
+                "en": "How much heat is needed to warm {m} kg of {substance} from {T1}°C to {T2}°C? (c = {c} J/(kg·°C))"
+            },
+            "mixing": {
+                "ru": "Смешивают {m1} кг воды при {T1}°C и {m2} кг воды при {T2}°C. Найдите температуру смеси.",
+                "en": "Mix {m1} kg of water at {T1}°C with {m2} kg of water at {T2}°C. Find the mixture temperature."
+            },
+            "phase_change": {
+                "ru": "Сколько теплоты нужно для плавления {m} кг льда при 0°C? (λ = {lambda_} Дж/кг)",
+                "en": "How much heat is needed to melt {m} kg of ice at 0°C? (λ = {lambda_} J/kg)"
+            },
+            "efficiency": {
+                "ru": "Тепловая машина получает {Q1} Дж теплоты и отдаёт {Q2} Дж. Найдите КПД.",
+                "en": "A heat engine receives {Q1} J of heat and releases {Q2} J. Find the efficiency."
+            }
+        },
+        "steps": {
+            "heat_formula": {
+                "ru": "Шаг 1: Количество теплоты Q = cm(T₂ - T₁)",
+                "en": "Step 1: Heat Q = cm(T₂ - T₁)"
+            },
+            "mixing_equation": {
+                "ru": "Шаг 1: Уравнение теплового баланса: Q_отд = Q_пол",
+                "en": "Step 1: Heat balance equation: Q_released = Q_absorbed"
+            },
+            "phase_formula": {
+                "ru": "Шаг 1: Теплота фазового перехода Q = λm",
+                "en": "Step 1: Latent heat Q = λm"
+            },
+            "efficiency_formula": {
+                "ru": "Шаг 1: КПД η = (Q₁ - Q₂)/Q₁ = A/Q₁",
+                "en": "Step 1: Efficiency η = (Q₁ - Q₂)/Q₁ = W/Q₁"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # WAVES - Волны
+    #----------------------------------------------------------------------------
+    "waves": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу на волны.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the wave problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "wavelength": {
+                "ru": "Волна с частотой {f} Гц распространяется со скоростью {v} м/с. Найдите длину волны.",
+                "en": "A wave with frequency {f} Hz travels at {v} m/s. Find the wavelength."
+            },
+            "frequency": {
+                "ru": "Волна длиной {lambda_} м распространяется со скоростью {v} м/с. Найдите частоту.",
+                "en": "A wave of length {lambda_} m travels at {v} m/s. Find the frequency."
+            },
+            "period": {
+                "ru": "Найдите период волны с частотой {f} Гц.",
+                "en": "Find the period of a wave with frequency {f} Hz."
+            },
+            "sound_speed": {
+                "ru": "Звук с частотой {f} Гц имеет длину волны {lambda_} м. Найдите скорость звука.",
+                "en": "Sound with frequency {f} Hz has wavelength {lambda_} m. Find the speed of sound."
+            },
+            "doppler": {
+                "ru": "Источник звука с частотой {f0} Гц движется к наблюдателю со скоростью {v_s} м/с. Скорость звука {v} м/с. Найдите воспринимаемую частоту.",
+                "en": "A sound source of frequency {f0} Hz moves toward the observer at {v_s} m/s. Speed of sound is {v} m/s. Find the perceived frequency."
+            }
+        },
+        "steps": {
+            "wave_equation": {
+                "ru": "Шаг 1: Уравнение волны: v = λf",
+                "en": "Step 1: Wave equation: v = λf"
+            },
+            "period_formula": {
+                "ru": "Шаг 1: Период T = 1/f",
+                "en": "Step 1: Period T = 1/f"
+            },
+            "doppler_formula": {
+                "ru": "Шаг 1: Эффект Доплера: f' = f₀·(v ± v_наб)/(v ∓ v_ист)",
+                "en": "Step 1: Doppler effect: f' = f₀·(v ± v_obs)/(v ∓ v_src)"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # OPTICS - Оптика
+    #----------------------------------------------------------------------------
+    "optics": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по оптике.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the optics problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "snell": {
+                "ru": "Луч света падает из среды с показателем преломления {n1} в среду с {n2} под углом {angle1}°. Найдите угол преломления.",
+                "en": "Light travels from a medium with refractive index {n1} to {n2} at angle {angle1}°. Find the refraction angle."
+            },
+            "critical_angle": {
+                "ru": "Найдите критический угол полного внутреннего отражения при переходе из среды с n = {n1} в среду с n = {n2}.",
+                "en": "Find the critical angle for total internal reflection from a medium with n = {n1} to n = {n2}."
+            },
+            "thin_lens": {
+                "ru": "Предмет находится на расстоянии {d} см от тонкой линзы с фокусным расстоянием {f} см. Найдите расстояние до изображения.",
+                "en": "An object is {d} cm from a thin lens with focal length {f} cm. Find the image distance."
+            },
+            "magnification": {
+                "ru": "Линза даёт изображение на расстоянии {f_img} см при расстоянии до предмета {d_obj} см. Найдите увеличение.",
+                "en": "A lens produces an image at {f_img} cm when object distance is {d_obj} cm. Find the magnification."
+            },
+            "mirror": {
+                "ru": "Предмет находится на расстоянии {d} см от вогнутого зеркала с радиусом кривизны {R} см. Найдите расстояние до изображения.",
+                "en": "An object is {d} cm from a concave mirror with radius {R} cm. Find the image distance."
+            }
+        },
+        "steps": {
+            "snell_law": {
+                "ru": "Шаг 1: Закон Снелла: n₁·sin(θ₁) = n₂·sin(θ₂)",
+                "en": "Step 1: Snell's law: n₁·sin(θ₁) = n₂·sin(θ₂)"
+            },
+            "lens_formula": {
+                "ru": "Шаг 1: Формула тонкой линзы: 1/f = 1/d + 1/f'",
+                "en": "Step 1: Thin lens formula: 1/f = 1/d + 1/f'"
+            },
+            "magnification_formula": {
+                "ru": "Шаг 1: Увеличение Г = f'/d = H'/H",
+                "en": "Step 1: Magnification M = f'/d = H'/H"
+            },
+            "mirror_formula": {
+                "ru": "Шаг 1: Формула зеркала: 1/d + 1/f' = 2/R",
+                "en": "Step 1: Mirror formula: 1/d + 1/f' = 2/R"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
 }

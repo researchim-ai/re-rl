@@ -4,45 +4,61 @@ import random
 import sympy
 from typing import Optional
 
-# Импорты классов задач:
-from re_rl.tasks.arithmetic_task import ArithmeticTask
-from re_rl.tasks.linear_task import LinearTask
-from re_rl.tasks.quadratic_task import QuadraticTask
-from re_rl.tasks.cubic_task import CubicTask
-from re_rl.tasks.exponential_task import ExponentialTask
-from re_rl.tasks.logarithmic_task import LogarithmicTask
-from re_rl.tasks.calculus_task import CalculusTask
-from re_rl.tasks.contradiction_task import ContradictionTask
-from re_rl.tasks.knights_knaves_task import KnightsKnavesTask
-from re_rl.tasks.futoshiki_task import FutoshikiTask
-from re_rl.tasks.urn_probability_task import UrnProbabilityTask
-from re_rl.tasks.text_stats_task import TextStatsTask
-from re_rl.tasks.graph_task import GraphTask
-from re_rl.tasks.system_linear_task import SystemLinearTask
-from re_rl.tasks.analogical_task import AnalogicalTask
-from re_rl.tasks.group_theory_task import GroupTheoryTask
-from re_rl.tasks.category_theory_task import CategoryTheoryTask
+# ============================================================================
+# ИМПОРТЫ МАТЕМАТИЧЕСКИХ ЗАДАЧ
+# ============================================================================
 
-# Новые задачи (первая волна):
-from re_rl.tasks.number_theory_task import NumberTheoryTask
-from re_rl.tasks.combinatorics_task import CombinatoricsTask
-from re_rl.tasks.sequence_task import SequenceTask
-from re_rl.tasks.geometry_task import GeometryTask
-from re_rl.tasks.matrix_task import MatrixTask
-from re_rl.tasks.trigonometry_task import TrigonometryTask
-from re_rl.tasks.inequality_task import InequalityTask
-from re_rl.tasks.complex_number_task import ComplexNumberTask
-from re_rl.tasks.limits_task import LimitsTask
-from re_rl.tasks.set_logic_task import SetLogicTask
+# Алгебра
+from re_rl.tasks.math.algebra.linear_task import LinearTask
+from re_rl.tasks.math.algebra.quadratic_task import QuadraticTask
+from re_rl.tasks.math.algebra.cubic_task import CubicTask
+from re_rl.tasks.math.algebra.system_linear_task import SystemLinearTask
+from re_rl.tasks.math.algebra.exponential_task import ExponentialTask
+from re_rl.tasks.math.algebra.logarithmic_task import LogarithmicTask
+from re_rl.tasks.math.algebra.inequality_task import InequalityTask
 
-# Новые задачи (вторая волна):
-from re_rl.tasks.statistics_task import StatisticsTask
-from re_rl.tasks.integral_task import IntegralTask
-from re_rl.tasks.differential_equation_task import DifferentialEquationTask
-from re_rl.tasks.optimization_task import OptimizationTask
-from re_rl.tasks.vector_3d_task import Vector3DTask
-from re_rl.tasks.financial_math_task import FinancialMathTask
-from re_rl.tasks.series_task import SeriesTask
+# Анализ
+from re_rl.tasks.math.analysis.calculus_task import CalculusTask
+from re_rl.tasks.math.analysis.limits_task import LimitsTask
+from re_rl.tasks.math.analysis.integral_task import IntegralTask
+from re_rl.tasks.math.analysis.differential_equation_task import DifferentialEquationTask
+from re_rl.tasks.math.analysis.series_task import SeriesTask
+from re_rl.tasks.math.analysis.optimization_task import OptimizationTask
+
+# Геометрия
+from re_rl.tasks.math.geometry.geometry_task import GeometryTask
+from re_rl.tasks.math.geometry.trigonometry_task import TrigonometryTask
+from re_rl.tasks.math.geometry.vector_3d_task import Vector3DTask
+
+# Линейная алгебра
+from re_rl.tasks.math.linear_algebra.matrix_task import MatrixTask
+from re_rl.tasks.math.linear_algebra.complex_number_task import ComplexNumberTask
+
+# Дискретная математика
+from re_rl.tasks.math.discrete.number_theory_task import NumberTheoryTask
+from re_rl.tasks.math.discrete.combinatorics_task import CombinatoricsTask
+from re_rl.tasks.math.discrete.sequence_task import SequenceTask
+from re_rl.tasks.math.discrete.set_logic_task import SetLogicTask
+from re_rl.tasks.math.discrete.graph_task import GraphTask
+
+# Абстрактная алгебра
+from re_rl.tasks.math.abstract_algebra.group_theory_task import GroupTheoryTask
+from re_rl.tasks.math.abstract_algebra.category_theory_task import CategoryTheoryTask
+
+# Вероятность и статистика
+from re_rl.tasks.math.probability.urn_probability_task import UrnProbabilityTask
+from re_rl.tasks.math.probability.statistics_task import StatisticsTask
+
+# Прикладная математика
+from re_rl.tasks.math.applied.financial_math_task import FinancialMathTask
+from re_rl.tasks.math.applied.arithmetic_task import ArithmeticTask
+
+# Логика
+from re_rl.tasks.math.logic.contradiction_task import ContradictionTask
+from re_rl.tasks.math.logic.knights_knaves_task import KnightsKnavesTask
+from re_rl.tasks.math.logic.futoshiki_task import FutoshikiTask
+from re_rl.tasks.math.logic.analogical_task import AnalogicalTask
+from re_rl.tasks.math.logic.text_stats_task import TextStatsTask
 
 
 ##################################################

@@ -4,21 +4,36 @@ from typing import List, Dict, Any, Optional
 from pathlib import Path
 from datetime import datetime
 
-from re_rl.tasks.linear_task import LinearTask
-from re_rl.tasks.quadratic_task import QuadraticTask
-from re_rl.tasks.cubic_task import CubicTask
-from re_rl.tasks.system_linear_task import SystemLinearTask
-from re_rl.tasks.exponential_task import ExponentialTask
-from re_rl.tasks.logarithmic_task import LogarithmicTask
-from re_rl.tasks.calculus_task import CalculusTask
-from re_rl.tasks.graph_task import GraphTask
-from re_rl.tasks.analogical_task import AnalogicalTask
-from re_rl.tasks.contradiction_task import ContradictionTask
-from re_rl.tasks.knights_knaves_task import KnightsKnavesTask
-from re_rl.tasks.futoshiki_task import FutoshikiTask
-from re_rl.tasks.urn_probability_task import UrnProbabilityTask
-from re_rl.tasks.text_stats_task import TextStatsTask
-from re_rl.tasks.arithmetic_task import ArithmeticTask
+# Импорты математических задач
+from re_rl.tasks import (
+    LinearTask,
+    QuadraticTask,
+    CubicTask,
+    SystemLinearTask,
+    ExponentialTask,
+    LogarithmicTask,
+    CalculusTask,
+    GraphTask,
+    AnalogicalTask,
+    ContradictionTask,
+    KnightsKnavesTask,
+    FutoshikiTask,
+    UrnProbabilityTask,
+    TextStatsTask,
+    ArithmeticTask,
+    # Физические задачи
+    KinematicsTask,
+    DynamicsTask,
+    EnergyTask,
+    MomentumTask,
+    CircuitsTask,
+    ElectrostaticsTask,
+    CapacitorsTask,
+    GasLawsTask,
+    HeatTransferTask,
+    WavesTask,
+    OpticsTask,
+)
 
 class DatasetGenerator:
     """
@@ -28,7 +43,7 @@ class DatasetGenerator:
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
-        # Словарь доступных типов задач
+        # Словарь доступных типов задач (математика)
         self.task_types = {
             "arithmetic": ArithmeticTask,
             "linear": LinearTask,
@@ -44,7 +59,19 @@ class DatasetGenerator:
             "knights_knaves": KnightsKnavesTask,
             "futoshiki": FutoshikiTask,
             "urn_probability": UrnProbabilityTask,
-            "text_stats": TextStatsTask
+            "text_stats": TextStatsTask,
+            # Физические задачи
+            "kinematics": KinematicsTask,
+            "dynamics": DynamicsTask,
+            "energy": EnergyTask,
+            "momentum": MomentumTask,
+            "circuits": CircuitsTask,
+            "electrostatics": ElectrostaticsTask,
+            "capacitors": CapacitorsTask,
+            "gas_laws": GasLawsTask,
+            "heat_transfer": HeatTransferTask,
+            "waves": WavesTask,
+            "optics": OpticsTask,
         }
         
         # Параметры генерации по умолчанию
