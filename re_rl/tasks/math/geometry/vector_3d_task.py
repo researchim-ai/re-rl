@@ -59,6 +59,7 @@ class Vector3DTask(BaseMathTask):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
+        self.language = language.lower()  # ВАЖНО: установить ДО _create_problem_description
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)

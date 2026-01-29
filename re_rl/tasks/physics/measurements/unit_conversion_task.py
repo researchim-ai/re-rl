@@ -97,8 +97,7 @@ class UnitConversionTask(BaseMathTask):
             steps.append(t["steps"]["calculate"][self.language].format(
                 value=self.value, factor=self.factor, result=f"{result:.6g}"))
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         
         if isinstance(self.factor, tuple):

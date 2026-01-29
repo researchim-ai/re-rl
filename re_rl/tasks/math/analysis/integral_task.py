@@ -81,6 +81,7 @@ class IntegralTask(BaseMathTask):
         self.trig_type = trig_type or random.choice(["sin", "cos"])
         self.trig_coef = random.randint(1, 3)
         
+        self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
     

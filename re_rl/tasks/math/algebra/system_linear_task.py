@@ -57,6 +57,7 @@ class SystemLinearTask(BaseMathTask):
         self.matrix = np.array(matrix, dtype=float)
         self.difficulty = difficulty
         self.detail_level = detail_level
+        self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description(language)
         super().__init__(description, language, detail_level, output_format)
     

@@ -17,6 +17,13 @@ from typing import List, Dict, Any, Optional, Literal
 from pathlib import Path
 from datetime import datetime
 
+try:
+    from tqdm import tqdm
+except ImportError:
+    # Fallback если tqdm не установлен
+    def tqdm(iterable, **kwargs):
+        return iterable
+
 # Тип формата вывода
 OutputFormat = Literal["text", "latex"]
 
@@ -124,6 +131,7 @@ class DatasetGenerator:
         detail_level: int = 5,
         include_cot: bool = True,
         output_format: OutputFormat = "text",
+        show_progress: bool = True,
     ) -> List[Dict[str, str]]:
         """
         Генерирует датасет в формате SFT (Supervised Fine-Tuning).
@@ -143,6 +151,7 @@ class DatasetGenerator:
             detail_level: Детализация решения
             include_cot: Включать ли Chain-of-Thought (шаги решения)
             output_format: Формат математических выражений ("text" или "latex")
+            show_progress: Показывать прогресс-бар (tqdm)
         
         Returns:
             Список примеров в SFT формате
@@ -168,48 +177,84 @@ class DatasetGenerator:
         
         dataset = []
         samples_per_type = max(1, num_samples // len(task_types))
+        total_iterations = len(task_types) * samples_per_type
         
+        # Создаём итератор с прогресс-баром
+        task_iterator = []
         for task_type in task_types:
             for _ in range(samples_per_type):
-                difficulty = random.choice(difficulties)
+                task_iterator.append(task_type)
+        
+        if show_progress:
+            task_iterator = tqdm(
+                task_iterator, 
+                desc="Генерация задач", 
+                unit="задач",
+                total=total_iterations
+            )
+        
+        for task_type in task_iterator:
+            difficulty = random.choice(difficulties)
+            
+            try:
+                task_data = self.generate_single_task(
+                    task_type=task_type,
+                    language=language,
+                    difficulty=difficulty,
+                    detail_level=detail_level,
+                    output_format=output_format
+                )
                 
-                try:
-                    task_data = self.generate_single_task(
-                        task_type=task_type,
-                        language=language,
-                        difficulty=difficulty,
-                        detail_level=detail_level,
-                        output_format=output_format
-                    )
-                    
-                    # Формируем output
-                    if include_cot and task_data["solution_steps"]:
-                        steps_text = "\n".join(task_data["solution_steps"])
-                        if language == "ru":
-                            output = f"{steps_text}\n\nОтвет: {task_data['final_answer']}"
-                        else:
-                            output = f"{steps_text}\n\nAnswer: {task_data['final_answer']}"
+                # Формируем output
+                final_ans = task_data['final_answer']
+                
+                # Проверяем, не начинается ли ответ уже с "Ответ:" / "Answer:"
+                already_has_prefix = (
+                    final_ans.startswith("Ответ:") or 
+                    final_ans.startswith("Answer:") or
+                    final_ans.startswith("Ответ ") or
+                    final_ans.startswith("Answer ")
+                )
+                
+                if include_cot and task_data["solution_steps"]:
+                    steps_text = "\n".join(task_data["solution_steps"])
+                    if already_has_prefix:
+                        output = f"{steps_text}\n\n{final_ans}"
+                    elif language == "ru":
+                        output = f"{steps_text}\n\nОтвет: {final_ans}"
                     else:
-                        if language == "ru":
-                            output = f"Ответ: {task_data['final_answer']}"
-                        else:
-                            output = f"Answer: {task_data['final_answer']}"
-                    
-                    dataset.append({
-                        "instruction": instructions[language],
-                        "input": task_data["problem"],
-                        "output": output,
-                        "metadata": {
-                            "task_type": task_type,
-                            "difficulty": difficulty,
-                            "language": language,
-                            "output_format": output_format,
-                        }
-                    })
-                    
-                except Exception as e:
-                    # Пропускаем ошибочные задачи
-                    continue
+                        output = f"{steps_text}\n\nAnswer: {final_ans}"
+                else:
+                    if already_has_prefix:
+                        output = final_ans
+                    elif language == "ru":
+                        output = f"Ответ: {final_ans}"
+                    else:
+                        output = f"Answer: {final_ans}"
+                
+                # Очищаем input от служебных меток
+                clean_input = task_data["problem"]
+                # Убираем "type: structured_text_with_tags\n" и подобные строки
+                if clean_input.startswith("type: "):
+                    lines = clean_input.split('\n')
+                    # Пропускаем первую строку с "type:"
+                    clean_input = '\n'.join(lines[1:]).strip()
+                
+                dataset.append({
+                    "instruction": instructions[language],
+                    "input": clean_input,
+                    "output": output,
+                    "metadata": {
+                        "task_type": task_type,
+                        "difficulty": difficulty,
+                        "language": language,
+                        "output_format": output_format,
+                    }
+                })
+                
+            except Exception as e:
+                # Пропускаем ошибочные задачи
+                continue
         
         random.shuffle(dataset)
         return dataset[:num_samples]
@@ -220,6 +265,7 @@ class DatasetGenerator:
         num_samples: int = 1000,
         language: str = "ru",
         difficulties: Optional[List[int]] = None,
+        show_progress: bool = True,
     ) -> List[Dict[str, Any]]:
         """
         Генерирует датасет в chat формате (messages).
@@ -237,6 +283,7 @@ class DatasetGenerator:
             num_samples=num_samples,
             language=language,
             difficulties=difficulties,
+            show_progress=show_progress,
         )
         
         chat_data = []
@@ -258,6 +305,7 @@ class DatasetGenerator:
         languages: Optional[List[str]] = None,
         difficulties: Optional[List[int]] = None,
         tasks_per_combination: int = 10,
+        show_progress: bool = True,
     ) -> List[Dict[str, Any]]:
         """
         Генерирует датасет со всеми комбинациями параметров.
@@ -267,6 +315,7 @@ class DatasetGenerator:
             languages: Языки ["ru", "en"]
             difficulties: Сложности [1-10]
             tasks_per_combination: Задач на комбинацию
+            show_progress: Показывать прогресс-бар (tqdm)
         """
         if task_types is None:
             task_types = list(self.all_generators.keys())
@@ -277,19 +326,30 @@ class DatasetGenerator:
         
         dataset = []
         
+        # Подсчёт общего количества итераций
+        total = len(task_types) * len(languages) * len(difficulties) * tasks_per_combination
+        
+        # Создаём итератор
+        iterations = []
         for task_type in task_types:
             for language in languages:
                 for difficulty in difficulties:
                     for _ in range(tasks_per_combination):
-                        try:
-                            task_data = self.generate_single_task(
-                                task_type=task_type,
-                                language=language,
-                                difficulty=difficulty,
-                            )
-                            dataset.append(task_data)
-                        except Exception:
-                            continue
+                        iterations.append((task_type, language, difficulty))
+        
+        if show_progress:
+            iterations = tqdm(iterations, desc="Генерация задач", unit="задач", total=total)
+        
+        for task_type, language, difficulty in iterations:
+            try:
+                task_data = self.generate_single_task(
+                    task_type=task_type,
+                    language=language,
+                    difficulty=difficulty,
+                )
+                dataset.append(task_data)
+            except Exception:
+                continue
         
         return dataset
     

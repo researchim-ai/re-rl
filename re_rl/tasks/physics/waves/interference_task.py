@@ -69,8 +69,7 @@ class InterferenceTask(BaseMathTask):
             steps.append(f"m_max = d/λ = {d_um}/{lambda_um:.3f} ≈ {m_max}")
             answer = f"m_max = {m_max}"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 

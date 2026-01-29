@@ -69,6 +69,7 @@ class DifferentialEquationTask(BaseMathTask):
         if self.task_type == "cauchy_problem" and not self.initial_conditions:
             self.initial_conditions = {"y0": random.randint(1, 5), "x0": 0}
         
+        self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
     

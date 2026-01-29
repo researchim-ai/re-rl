@@ -123,8 +123,7 @@ class MagneticForceTask(BaseMathTask):
             steps.append(f"T = 2πm/(qB) = 2π·{self.m:.3e}/({self.q:.3e}·{self.B}) = {T:.4e} с")
             answer = f"T = {T:.4e} с"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = templates["final_answer"][self.language].format(answer=answer)

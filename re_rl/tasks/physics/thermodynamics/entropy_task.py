@@ -81,8 +81,7 @@ class EntropyTask(BaseMathTask):
             steps.append(f"ΔS = {round(dS, 2)} Дж/К")
             answer = round(dS, 2)
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 

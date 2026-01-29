@@ -75,6 +75,7 @@ class FinancialMathTask(BaseMathTask):
         self.payment = payment if payment is not None else random.randint(100, 5000)
         self.cash_flows = cash_flows if cash_flows else self._generate_cash_flows()
         
+        self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
     

@@ -79,8 +79,7 @@ class DiffractionTask(BaseMathTask):
             steps.append(f"R = m·N = {self.m}·{self.N_total} = {R}")
             answer = f"R = {R}"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 

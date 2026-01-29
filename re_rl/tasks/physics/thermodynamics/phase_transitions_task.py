@@ -83,8 +83,7 @@ class PhaseTransitionsTask(BaseMathTask):
             steps.append(f"Q = {round(Q/1000, 2)} кДж")
             answer = f"{round(Q/1000, 2)} кДж"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 

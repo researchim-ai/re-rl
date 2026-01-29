@@ -65,8 +65,7 @@ class PolarizationTask(BaseMathTask):
             steps.append(f"I₂ = {round(I1, 2)}·cos²({self.angle}°) = {round(I2, 2)} Вт/м²")
             answer = f"I = {round(I2, 2)} Вт/м²"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 

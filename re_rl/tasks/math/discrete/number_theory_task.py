@@ -66,6 +66,7 @@ class NumberTheoryTask(BaseMathTask):
         self._generate_task_params()
         
         # Создаём описание
+        self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
     

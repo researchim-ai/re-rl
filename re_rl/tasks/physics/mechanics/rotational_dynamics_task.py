@@ -141,8 +141,7 @@ class RotationalDynamicsTask(BaseMathTask):
                 answer=f"L = {round(L, 2)} кг·м²/с"
             )
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         
         self.solution_steps = steps[:self.detail_level]
 

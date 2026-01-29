@@ -130,8 +130,7 @@ class ACCircuitsTask(BaseMathTask):
             self.result = round(cos_phi, 4)
             answer = f"cos(φ) = {self.result}"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = templates["final_answer"][self.language].format(answer=answer)

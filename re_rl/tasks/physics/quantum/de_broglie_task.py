@@ -78,8 +78,7 @@ class DeBroglieTask(BaseMathTask):
             steps.append(f"p = h/λ = {self.h:.3e}/{lambda_m:.3e} = {p:.4e} кг·м/с")
             answer = f"p = {p:.4e} кг·м/с"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 

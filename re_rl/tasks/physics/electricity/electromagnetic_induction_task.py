@@ -115,8 +115,7 @@ class ElectromagneticInductionTask(BaseMathTask):
             steps.append(f"ε_max = {self.N}·{self.B}·{self.A}·{round(omega, 2)} = {round(emf_max, 2)} В")
             self.emf = emf_max
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = templates["final_answer"][self.language].format(

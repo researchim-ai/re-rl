@@ -94,6 +94,7 @@ class StatisticsTask(BaseMathTask):
                 mean = self.mean_given
                 self.std_given = math.sqrt(sum((x - mean)**2 for x in self.data) / len(self.data)) if self.data else 10
         
+        self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
     

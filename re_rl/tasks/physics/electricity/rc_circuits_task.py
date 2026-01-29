@@ -127,8 +127,7 @@ class RCCircuitsTask(BaseMathTask):
             steps.append(f"τ = R·C = {self.R}·10³ · {self.C}·10⁻⁶ = {round(self.tau, 6)} с")
             answer = f"τ = {round(self.tau, 6)} с = {round(self.tau * 1000, 3)} мс"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = templates["final_answer"][self.language].format(answer=answer)

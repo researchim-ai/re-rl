@@ -71,8 +71,7 @@ class UncertaintyPrincipleTask(BaseMathTask):
             steps.append(f"r_min ≈ ħ²/(m_e·e²·k) ≈ a₀ = {a0*1e9:.4f} нм = 0.529 Å")
             answer = f"r ≈ 0.529 Å (боровский радиус)"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 

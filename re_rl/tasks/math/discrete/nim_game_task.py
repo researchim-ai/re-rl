@@ -181,8 +181,7 @@ class NimGameTask(BaseMathTask):
                 steps.append(step4)
         
         # Дополняем шаги при необходимости
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         
         self.solution_steps = steps
         

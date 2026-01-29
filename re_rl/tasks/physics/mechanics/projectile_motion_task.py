@@ -165,8 +165,7 @@ class ProjectileMotionTask(BaseMathTask):
                 answer=f"v = {result} м/с"
             )
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         
         self.solution_steps = steps[:self.detail_level]
 

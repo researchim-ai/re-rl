@@ -75,8 +75,7 @@ class ThermodynamicCyclesTask(BaseMathTask):
             steps.append(f"COP = {self.T2}/({self.T1} - {self.T2}) = {round(COP, 2)}")
             answer = f"COP = {round(COP, 2)}"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 

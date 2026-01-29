@@ -70,6 +70,7 @@ class SeriesTask(BaseMathTask):
         # Параметры для разных типов рядов
         self._generate_series_params()
         
+        self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
     

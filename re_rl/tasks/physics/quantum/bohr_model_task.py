@@ -81,8 +81,7 @@ class BohrModelTask(BaseMathTask):
             steps.append(f"E_ионизации = |E_{self.n}| = {round(E_ion, 4)} эВ")
             answer = f"E_ион = {round(E_ion, 4)} эВ"
         
-        while len(steps) < self.detail_level:
-            steps.append(steps[-1])
+        # Ограничиваем количество шагов (без дублирования)
         self.solution_steps = steps[:self.detail_level]
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 
