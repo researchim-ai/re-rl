@@ -8,11 +8,12 @@
 - analysis: анализ (пределы, производные, интегралы, ДУ)
 - geometry: геометрия и тригонометрия
 - linear_algebra: линейная алгебра (матрицы, комплексные числа)
-- discrete: дискретная математика (теория чисел, комбинаторика, графы)
+- discrete: дискретная математика (теория чисел, комбинаторика, графы, игры)
 - abstract_algebra: абстрактная алгебра (теория групп, категорий)
 - probability: вероятность и статистика
 - applied: прикладная математика (финансы, арифметика)
-- logic: логические задачи
+- logic: логические задачи (судоку, загадки Эйнштейна)
+- planning: задачи на планирование (переправы, Ханойская башня, кувшины)
 """
 
 # Алгебра
@@ -56,6 +57,7 @@ from re_rl.tasks.math.discrete import (
     SequenceTask,
     SetLogicTask,
     GraphTask,
+    NimGameTask,
 )
 
 # Абстрактная алгебра
@@ -83,6 +85,15 @@ from re_rl.tasks.math.logic import (
     FutoshikiTask,
     AnalogicalTask,
     TextStatsTask,
+    SudokuTask,
+    ZebraPuzzleTask,
+)
+
+# Планирование
+from re_rl.tasks.math.planning import (
+    RiverCrossingTask,
+    TowerOfHanoiTask,
+    WaterJugTask,
 )
 
 __all__ = [
@@ -114,6 +125,7 @@ __all__ = [
     "SequenceTask",
     "SetLogicTask",
     "GraphTask",
+    "NimGameTask",
     # Абстрактная алгебра
     "GroupTheoryTask",
     "CategoryTheoryTask",
@@ -129,4 +141,10 @@ __all__ = [
     "FutoshikiTask",
     "AnalogicalTask",
     "TextStatsTask",
+    "SudokuTask",
+    "ZebraPuzzleTask",
+    # Планирование
+    "RiverCrossingTask",
+    "TowerOfHanoiTask",
+    "WaterJugTask",
 ]

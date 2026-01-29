@@ -5074,4 +5074,569 @@ Analysis:
         "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
     },
 
+    #----------------------------------------------------------------------------
+    # SUDOKU - Судоку
+    #----------------------------------------------------------------------------
+    "sudoku": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите головоломку судоку.\n"
+                "Правила:\n"
+                "- Каждая строка должна содержать числа от 1 до N без повторений\n"
+                "- Каждый столбец должен содержать числа от 1 до N без повторений\n"
+                "- Каждый блок должен содержать числа от 1 до N без повторений\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Шаги решения)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Заполненная сетка)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the Sudoku puzzle.\n"
+                "Rules:\n"
+                "- Each row must contain numbers 1 to N without repetition\n"
+                "- Each column must contain numbers 1 to N without repetition\n"
+                "- Each block must contain numbers 1 to N without repetition\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution steps)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Filled grid)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "ru": "Решите судоку размера {size}x{size}:\n\n{grid}\n\nПустые клетки обозначены точкой (.).",
+            "en": "Solve the {size}x{size} Sudoku:\n\n{grid}\n\nEmpty cells are marked with a dot (.)."
+        },
+        "steps": {
+            "analyze_row": {
+                "ru": "Анализируем строку {row}: отсутствуют числа {missing}.",
+                "en": "Analyzing row {row}: missing numbers {missing}."
+            },
+            "analyze_col": {
+                "ru": "Анализируем столбец {col}: отсутствуют числа {missing}.",
+                "en": "Analyzing column {col}: missing numbers {missing}."
+            },
+            "analyze_block": {
+                "ru": "Анализируем блок ({block_row}, {block_col}): отсутствуют числа {missing}.",
+                "en": "Analyzing block ({block_row}, {block_col}): missing numbers {missing}."
+            },
+            "place_number": {
+                "ru": "Ставим {number} в клетку ({row}, {col}) — единственный возможный вариант.",
+                "en": "Placing {number} in cell ({row}, {col}) — the only possible option."
+            },
+            "naked_single": {
+                "ru": "Naked single: клетка ({row}, {col}) может содержать только {number}.",
+                "en": "Naked single: cell ({row}, {col}) can only contain {number}."
+            },
+            "hidden_single": {
+                "ru": "Hidden single: число {number} в строке {row} может быть только в столбце {col}.",
+                "en": "Hidden single: number {number} in row {row} can only be in column {col}."
+            }
+        },
+        "final_answer": {
+            "ru": "Решение судоку:\n{grid}",
+            "en": "Sudoku solution:\n{grid}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # ZEBRA PUZZLE - Загадка Эйнштейна
+    #----------------------------------------------------------------------------
+    "zebra_puzzle": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите логическую головоломку типа 'Загадка Эйнштейна'.\n"
+                "Используйте метод исключения и дедукцию для определения всех соответствий.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговые логические выводы)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Таблица соответствий)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the logic puzzle (Einstein's Riddle type).\n"
+                "Use elimination and deduction to determine all correspondences.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step logical deductions)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Correspondence table)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "ru": (
+                "Есть {n} домов в ряд, пронумерованных слева направо от 1 до {n}.\n"
+                "В каждом доме живёт человек с уникальными характеристиками.\n\n"
+                "Категории: {categories}\n\n"
+                "Подсказки:\n{clues}\n\n"
+                "Вопрос: {question}"
+            ),
+            "en": (
+                "There are {n} houses in a row, numbered from left to right from 1 to {n}.\n"
+                "Each house is occupied by a person with unique characteristics.\n\n"
+                "Categories: {categories}\n\n"
+                "Clues:\n{clues}\n\n"
+                "Question: {question}"
+            )
+        },
+        "clue_templates": {
+            "same_house": {
+                "ru": "Человек с {attr1} живёт в том же доме, что и человек с {attr2}.",
+                "en": "The person with {attr1} lives in the same house as the person with {attr2}."
+            },
+            "neighbor": {
+                "ru": "Человек с {attr1} живёт рядом с человеком с {attr2}.",
+                "en": "The person with {attr1} lives next to the person with {attr2}."
+            },
+            "left_of": {
+                "ru": "Человек с {attr1} живёт слева от человека с {attr2}.",
+                "en": "The person with {attr1} lives to the left of the person with {attr2}."
+            },
+            "position": {
+                "ru": "Человек с {attr} живёт в доме {pos}.",
+                "en": "The person with {attr} lives in house {pos}."
+            },
+            "middle": {
+                "ru": "Человек с {attr} живёт в центральном доме.",
+                "en": "The person with {attr} lives in the middle house."
+            },
+            "first": {
+                "ru": "Человек с {attr} живёт в первом доме.",
+                "en": "The person with {attr} lives in the first house."
+            },
+            "not_neighbor": {
+                "ru": "Человек с {attr1} НЕ живёт рядом с человеком с {attr2}.",
+                "en": "The person with {attr1} does NOT live next to the person with {attr2}."
+            }
+        },
+        "categories_pool": {
+            "nationality": {
+                "ru": ["англичанин", "швед", "датчанин", "норвежец", "немец"],
+                "en": ["Englishman", "Swede", "Dane", "Norwegian", "German"]
+            },
+            "color": {
+                "ru": ["красный", "зелёный", "белый", "жёлтый", "синий"],
+                "en": ["red", "green", "white", "yellow", "blue"]
+            },
+            "drink": {
+                "ru": ["чай", "кофе", "молоко", "пиво", "вода"],
+                "en": ["tea", "coffee", "milk", "beer", "water"]
+            },
+            "pet": {
+                "ru": ["собака", "птица", "кошка", "лошадь", "рыба"],
+                "en": ["dog", "bird", "cat", "horse", "fish"]
+            },
+            "cigarette": {
+                "ru": ["Pall Mall", "Dunhill", "Blend", "Blue Master", "Prince"],
+                "en": ["Pall Mall", "Dunhill", "Blend", "Blue Master", "Prince"]
+            }
+        },
+        "questions": {
+            "ru": ["Кто держит {pet}?", "Кто пьёт {drink}?", "Кто живёт в {color} доме?"],
+            "en": ["Who keeps the {pet}?", "Who drinks {drink}?", "Who lives in the {color} house?"]
+        },
+        "steps": {
+            "from_clue": {
+                "ru": "Из подсказки {n}: {deduction}",
+                "en": "From clue {n}: {deduction}"
+            },
+            "elimination": {
+                "ru": "Методом исключения: {deduction}",
+                "en": "By elimination: {deduction}"
+            },
+            "combination": {
+                "ru": "Комбинируя подсказки {n1} и {n2}: {deduction}",
+                "en": "Combining clues {n1} and {n2}: {deduction}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}\n\nПолная таблица:\n{table}",
+            "en": "Answer: {answer}\n\nFull table:\n{table}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # RIVER CROSSING - Задача о переправе
+    #----------------------------------------------------------------------------
+    "river_crossing": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу о переправе через реку.\n"
+                "Найдите последовательность действий, чтобы переправить всех на другой берег.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Анализ ограничений и план)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Последовательность переправ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the river crossing puzzle.\n"
+                "Find a sequence of actions to transport everyone to the other side.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Constraint analysis and plan)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Sequence of crossings)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "classic": {
+                "ru": (
+                    "Крестьянин должен переправить через реку волка, козу и капусту.\n"
+                    "Лодка вмещает только крестьянина и один предмет.\n"
+                    "Ограничения:\n"
+                    "- Волк съест козу, если оставить их одних\n"
+                    "- Коза съест капусту, если оставить их одних\n\n"
+                    "Найдите последовательность переправ."
+                ),
+                "en": (
+                    "A farmer must transport a wolf, a goat, and a cabbage across a river.\n"
+                    "The boat can only carry the farmer and one item.\n"
+                    "Constraints:\n"
+                    "- The wolf will eat the goat if left alone together\n"
+                    "- The goat will eat the cabbage if left alone together\n\n"
+                    "Find the sequence of crossings."
+                )
+            },
+            "jealous_husbands": {
+                "ru": (
+                    "{n} пар (мужья и жёны) должны переправиться через реку.\n"
+                    "Лодка вмещает {capacity} человек.\n"
+                    "Ограничение: жена не может находиться с чужим мужем без своего мужа.\n\n"
+                    "Найдите последовательность переправ."
+                ),
+                "en": (
+                    "{n} couples (husbands and wives) must cross a river.\n"
+                    "The boat can carry {capacity} people.\n"
+                    "Constraint: a wife cannot be with another husband without her own husband present.\n\n"
+                    "Find the sequence of crossings."
+                )
+            },
+            "missionaries": {
+                "ru": (
+                    "{missionaries} миссионеров и {cannibals} каннибалов должны переправиться через реку.\n"
+                    "Лодка вмещает {capacity} человек.\n"
+                    "Ограничение: на любом берегу каннибалов не должно быть больше, чем миссионеров\n"
+                    "(иначе каннибалы съедят миссионеров).\n\n"
+                    "Найдите последовательность переправ."
+                ),
+                "en": (
+                    "{missionaries} missionaries and {cannibals} cannibals must cross a river.\n"
+                    "The boat can carry {capacity} people.\n"
+                    "Constraint: cannibals must never outnumber missionaries on either bank\n"
+                    "(otherwise the cannibals will eat the missionaries).\n\n"
+                    "Find the sequence of crossings."
+                )
+            }
+        },
+        "steps": {
+            "initial_state": {
+                "ru": "Начальное состояние: левый берег = {left}, правый берег = {right}, лодка на {boat_side} берегу.",
+                "en": "Initial state: left bank = {left}, right bank = {right}, boat on {boat_side} bank."
+            },
+            "crossing": {
+                "ru": "Переправа {n}: {items} переправляются на {direction} берег.",
+                "en": "Crossing {n}: {items} cross to the {direction} bank."
+            },
+            "state_after": {
+                "ru": "После переправы: левый = {left}, правый = {right}.",
+                "en": "After crossing: left = {left}, right = {right}."
+            },
+            "check_safe": {
+                "ru": "Проверка: состояние безопасно — {reason}.",
+                "en": "Check: state is safe — {reason}."
+            }
+        },
+        "directions": {
+            "left": {"ru": "левый", "en": "left"},
+            "right": {"ru": "правый", "en": "right"}
+        },
+        "items": {
+            "farmer": {"ru": "крестьянин", "en": "farmer"},
+            "wolf": {"ru": "волк", "en": "wolf"},
+            "goat": {"ru": "коза", "en": "goat"},
+            "cabbage": {"ru": "капуста", "en": "cabbage"},
+            "missionary": {"ru": "миссионер", "en": "missionary"},
+            "cannibal": {"ru": "каннибал", "en": "cannibal"}
+        },
+        "final_answer": {
+            "ru": "Решение за {n} переправ:\n{crossings}",
+            "en": "Solution in {n} crossings:\n{crossings}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # TOWER OF HANOI - Ханойская башня
+    #----------------------------------------------------------------------------
+    "tower_of_hanoi": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу 'Ханойская башня'.\n"
+                "Переместите все диски с начального стержня на конечный.\n"
+                "Правила:\n"
+                "- Можно перемещать только один диск за раз\n"
+                "- Нельзя класть больший диск на меньший\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Стратегия решения)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Последовательность ходов)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the Tower of Hanoi puzzle.\n"
+                "Move all disks from the source peg to the target peg.\n"
+                "Rules:\n"
+                "- Only one disk can be moved at a time\n"
+                "- A larger disk cannot be placed on a smaller disk\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Solution strategy)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Sequence of moves)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "ru": (
+                "Дано {n} дисков разного размера на стержне A.\n"
+                "Диски расположены по убыванию размера снизу вверх (самый большой внизу).\n"
+                "Переместите все диски на стержень {target}, используя стержень {auxiliary} как вспомогательный.\n\n"
+                "Найдите оптимальную последовательность ходов."
+            ),
+            "en": (
+                "There are {n} disks of different sizes on peg A.\n"
+                "Disks are stacked in decreasing size from bottom to top (largest at bottom).\n"
+                "Move all disks to peg {target}, using peg {auxiliary} as auxiliary.\n\n"
+                "Find the optimal sequence of moves."
+            )
+        },
+        "steps": {
+            "move": {
+                "ru": "Ход {n}: переместить диск {disk} с {from_peg} на {to_peg}.",
+                "en": "Move {n}: move disk {disk} from {from_peg} to {to_peg}."
+            },
+            "recursive_explain": {
+                "ru": "Перемещаем {n} дисков с {from_peg} на {to_peg} через {aux_peg}.",
+                "en": "Moving {n} disks from {from_peg} to {to_peg} via {aux_peg}."
+            },
+            "base_case": {
+                "ru": "Базовый случай: перемещаем один диск напрямую.",
+                "en": "Base case: move single disk directly."
+            }
+        },
+        "pegs": {
+            "A": {"ru": "A", "en": "A"},
+            "B": {"ru": "B", "en": "B"},
+            "C": {"ru": "C", "en": "C"}
+        },
+        "final_answer": {
+            "ru": "Решение за {n} ходов (минимально возможное: 2^{disks} - 1 = {optimal}):\n{moves}",
+            "en": "Solution in {n} moves (minimum possible: 2^{disks} - 1 = {optimal}):\n{moves}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # WATER JUG - Задача о кувшинах
+    #----------------------------------------------------------------------------
+    "water_jug": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу о кувшинах с водой.\n"
+                "Используя кувшины заданных объёмов, отмерьте ровно нужное количество воды.\n"
+                "Доступные операции: наполнить, опустошить, перелить.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Стратегия и анализ)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Последовательность действий)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the water jug problem.\n"
+                "Using jugs of given capacities, measure exactly the required amount of water.\n"
+                "Available operations: fill, empty, pour.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Strategy and analysis)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Sequence of actions)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "ru": (
+                "Даны кувшины объёмом {capacities} литров.\n"
+                "Начальное состояние: все кувшины пусты.\n"
+                "Источник воды неограничен.\n\n"
+                "Цель: отмерить ровно {target} литров воды.\n\n"
+                "Найдите последовательность действий."
+            ),
+            "en": (
+                "You have jugs with capacities of {capacities} liters.\n"
+                "Initial state: all jugs are empty.\n"
+                "Water source is unlimited.\n\n"
+                "Goal: measure exactly {target} liters of water.\n\n"
+                "Find the sequence of actions."
+            )
+        },
+        "operations": {
+            "fill": {
+                "ru": "Наполнить кувшин {jug} ({capacity} л)",
+                "en": "Fill jug {jug} ({capacity} L)"
+            },
+            "empty": {
+                "ru": "Опустошить кувшин {jug}",
+                "en": "Empty jug {jug}"
+            },
+            "pour": {
+                "ru": "Перелить из кувшина {from_jug} в кувшин {to_jug}",
+                "en": "Pour from jug {from_jug} to jug {to_jug}"
+            }
+        },
+        "steps": {
+            "action": {
+                "ru": "Шаг {n}: {action}. Состояние: {state}.",
+                "en": "Step {n}: {action}. State: {state}."
+            },
+            "gcd_hint": {
+                "ru": "Подсказка: НОД({a}, {b}) = {gcd}. Цель {target} достижима, т.к. {target} делится на {gcd}.",
+                "en": "Hint: GCD({a}, {b}) = {gcd}. Target {target} is achievable since {target} is divisible by {gcd}."
+            },
+            "impossible": {
+                "ru": "Невозможно: {target} не делится на НОД кувшинов = {gcd}.",
+                "en": "Impossible: {target} is not divisible by GCD of jugs = {gcd}."
+            }
+        },
+        "final_answer": {
+            "ru": "Решение за {n} шагов:\n{actions}\n\nИтог: в кувшине {jug} ровно {target} литров.",
+            "en": "Solution in {n} steps:\n{actions}\n\nResult: jug {jug} contains exactly {target} liters."
+        },
+        "no_solution": {
+            "ru": "Решение невозможно: нельзя отмерить {target} литров с кувшинами {capacities}.",
+            "en": "No solution: cannot measure {target} liters with jugs {capacities}."
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # NIM GAME - Игра Ним
+    #----------------------------------------------------------------------------
+    "nim_game": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Проанализируйте позицию в игре Ним.\n"
+                "В игре Ним два игрока по очереди берут предметы из кучек.\n"
+                "За один ход можно взять любое количество предметов из одной кучки.\n"
+                "Проигрывает тот, кто берёт последний предмет (или не может сделать ход).\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Анализ с использованием XOR/Sprague-Grundy)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Выигрышный ход или вывод о позиции)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Analyze the position in Nim game.\n"
+                "In Nim, two players take turns removing objects from piles.\n"
+                "On each turn, a player can take any number of objects from one pile.\n"
+                "The player who takes the last object loses (or cannot move).\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Analysis using XOR/Sprague-Grundy)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Winning move or position assessment)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "find_winner": {
+                "ru": (
+                    "Игра Ним: есть кучки с {piles} предметами.\n"
+                    "Сейчас ход первого игрока.\n\n"
+                    "Кто победит при оптимальной игре? Если первый игрок побеждает, укажите выигрышный ход."
+                ),
+                "en": (
+                    "Nim game: there are piles with {piles} objects.\n"
+                    "It's the first player's turn.\n\n"
+                    "Who wins with optimal play? If the first player wins, specify the winning move."
+                )
+            },
+            "find_move": {
+                "ru": (
+                    "Игра Ним: есть кучки с {piles} предметами.\n"
+                    "Ваш ход.\n\n"
+                    "Найдите оптимальный ход (если он существует)."
+                ),
+                "en": (
+                    "Nim game: there are piles with {piles} objects.\n"
+                    "It's your turn.\n\n"
+                    "Find the optimal move (if one exists)."
+                )
+            }
+        },
+        "steps": {
+            "compute_xor": {
+                "ru": "Вычисляем XOR (ним-сумму): {xor_computation} = {xor_result}",
+                "en": "Computing XOR (nim-sum): {xor_computation} = {xor_result}"
+            },
+            "xor_zero": {
+                "ru": "Ним-сумма = 0, это проигрышная позиция для ходящего.",
+                "en": "Nim-sum = 0, this is a losing position for the player to move."
+            },
+            "xor_nonzero": {
+                "ru": "Ним-сумма ≠ 0 ({xor_result}), это выигрышная позиция для ходящего.",
+                "en": "Nim-sum ≠ 0 ({xor_result}), this is a winning position for the player to move."
+            },
+            "find_winning_move": {
+                "ru": "Ищем выигрышный ход: нужно сделать ним-сумму равной 0.",
+                "en": "Finding winning move: need to make nim-sum equal to 0."
+            },
+            "winning_move": {
+                "ru": "Выигрышный ход: взять {take} из кучки {pile} (было {before}, станет {after}).",
+                "en": "Winning move: take {take} from pile {pile} (was {before}, becomes {after})."
+            }
+        },
+        "final_answer": {
+            "winning": {
+                "ru": "Первый игрок побеждает.\nВыигрышный ход: взять {take} предмет(ов) из кучки {pile}.\nПосле хода: {new_piles}.",
+                "en": "First player wins.\nWinning move: take {take} object(s) from pile {pile}.\nAfter move: {new_piles}."
+            },
+            "losing": {
+                "ru": "Второй игрок побеждает при оптимальной игре.\nТекущая позиция проигрышная (ним-сумма = 0).",
+                "en": "Second player wins with optimal play.\nCurrent position is losing (nim-sum = 0)."
+            }
+        }
+    },
+
 }
