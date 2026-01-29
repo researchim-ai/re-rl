@@ -70,6 +70,9 @@ from re_rl.tasks.math.planning.water_jug_task import WaterJugTask
 # Теория игр
 from re_rl.tasks.math.discrete.nim_game_task import NimGameTask
 
+# Физические задачи (импортируем все генераторы)
+from re_rl.tasks.physics.generators import ALL_PHYSICS_TASK_GENERATORS
+
 
 ##################################################
 # 0. Арифметические задачи (цепочки операций)
@@ -1100,6 +1103,8 @@ ALL_TASK_GENERATORS = {
     "tower_of_hanoi": generate_random_tower_of_hanoi_task,
     "water_jug": generate_random_water_jug_task,
     "nim_game": generate_random_nim_game_task,
+    # Физические задачи (добавляем все из physics):
+    **ALL_PHYSICS_TASK_GENERATORS,
 }
 
 

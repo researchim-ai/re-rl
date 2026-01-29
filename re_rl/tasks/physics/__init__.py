@@ -22,28 +22,53 @@ from re_rl.tasks.physics.mechanics.kinematics_task import KinematicsTask
 from re_rl.tasks.physics.mechanics.dynamics_task import DynamicsTask
 from re_rl.tasks.physics.mechanics.energy_task import EnergyTask
 from re_rl.tasks.physics.mechanics.momentum_task import MomentumTask
+from re_rl.tasks.physics.mechanics.projectile_motion_task import ProjectileMotionTask
+from re_rl.tasks.physics.mechanics.rotational_dynamics_task import RotationalDynamicsTask
+from re_rl.tasks.physics.mechanics.center_of_mass_task import CenterOfMassTask
+from re_rl.tasks.physics.mechanics.atwood_machine_task import AtwoodMachineTask
+from re_rl.tasks.physics.mechanics.inclined_plane_task import InclinedPlaneTask
 
 # Электричество
 from re_rl.tasks.physics.electricity.circuits_task import CircuitsTask
 from re_rl.tasks.physics.electricity.electrostatics_task import ElectrostaticsTask
 from re_rl.tasks.physics.electricity.capacitors_task import CapacitorsTask
+from re_rl.tasks.physics.electricity.electromagnetic_induction_task import ElectromagneticInductionTask
+from re_rl.tasks.physics.electricity.ac_circuits_task import ACCircuitsTask
+from re_rl.tasks.physics.electricity.rc_circuits_task import RCCircuitsTask
 
 # Термодинамика
 from re_rl.tasks.physics.thermodynamics.gas_laws_task import GasLawsTask
 from re_rl.tasks.physics.thermodynamics.heat_transfer_task import HeatTransferTask
+from re_rl.tasks.physics.thermodynamics.thermodynamic_cycles_task import ThermodynamicCyclesTask
+from re_rl.tasks.physics.thermodynamics.entropy_task import EntropyTask
+from re_rl.tasks.physics.thermodynamics.phase_transitions_task import PhaseTransitionsTask
 
 # Волны и оптика
 from re_rl.tasks.physics.waves.waves_task import WavesTask
 from re_rl.tasks.physics.waves.optics_task import OpticsTask
+from re_rl.tasks.physics.waves.doppler_effect_task import DopplerEffectTask
+from re_rl.tasks.physics.waves.interference_task import InterferenceTask
+from re_rl.tasks.physics.waves.diffraction_task import DiffractionTask
+from re_rl.tasks.physics.waves.polarization_task import PolarizationTask
 
 # Квантовая механика
 from re_rl.tasks.physics.quantum.quantum_task import QuantumTask
+from re_rl.tasks.physics.quantum.bohr_model_task import BohrModelTask
+from re_rl.tasks.physics.quantum.de_broglie_task import DeBroglieTask
+from re_rl.tasks.physics.quantum.uncertainty_principle_task import UncertaintyPrincipleTask
+from re_rl.tasks.physics.quantum.radioactive_decay_task import RadioactiveDecayTask
 
 # Ядерная физика
 from re_rl.tasks.physics.nuclear.nuclear_task import NuclearTask
 
 # Магнетизм
 from re_rl.tasks.physics.magnetism.magnetism_task import MagnetismTask
+from re_rl.tasks.physics.magnetism.magnetic_force_task import MagneticForceTask
+
+# Измерения
+from re_rl.tasks.physics.measurements.dimensional_analysis_task import DimensionalAnalysisTask
+from re_rl.tasks.physics.measurements.error_propagation_task import ErrorPropagationTask
+from re_rl.tasks.physics.measurements.unit_conversion_task import UnitConversionTask
 
 # СТО
 from re_rl.tasks.physics.relativity.relativity_task import RelativityTask
@@ -91,22 +116,42 @@ __all__ = [
     "DynamicsTask",
     "EnergyTask",
     "MomentumTask",
+    "ProjectileMotionTask",
+    "RotationalDynamicsTask",
+    "CenterOfMassTask",
+    "AtwoodMachineTask",
+    "InclinedPlaneTask",
     # Электричество
     "CircuitsTask",
     "ElectrostaticsTask",
     "CapacitorsTask",
+    "ElectromagneticInductionTask",
+    "ACCircuitsTask",
+    "RCCircuitsTask",
     # Термодинамика
     "GasLawsTask",
     "HeatTransferTask",
+    "ThermodynamicCyclesTask",
+    "EntropyTask",
+    "PhaseTransitionsTask",
     # Волны
     "WavesTask",
     "OpticsTask",
+    "DopplerEffectTask",
+    "InterferenceTask",
+    "DiffractionTask",
+    "PolarizationTask",
     # Квантовая механика
     "QuantumTask",
+    "BohrModelTask",
+    "DeBroglieTask",
+    "UncertaintyPrincipleTask",
+    "RadioactiveDecayTask",
     # Ядерная физика
     "NuclearTask",
     # Магнетизм
     "MagnetismTask",
+    "MagneticForceTask",
     # СТО
     "RelativityTask",
     # Колебания
@@ -115,6 +160,10 @@ __all__ = [
     "FluidsTask",
     # Астрофизика
     "AstrophysicsTask",
+    # Измерения
+    "DimensionalAnalysisTask",
+    "ErrorPropagationTask",
+    "UnitConversionTask",
     # Утилиты
     "PHYSICS_CONSTANTS",
     "get_constant",

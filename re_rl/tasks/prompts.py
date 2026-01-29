@@ -5639,4 +5639,721 @@ Analysis:
         }
     },
 
+    #----------------------------------------------------------------------------
+    # PROJECTILE MOTION - Баллистика
+    #----------------------------------------------------------------------------
+    "projectile_motion": {
+        "instructions": {
+            "ru": "Решите задачу на движение тела, брошенного под углом к горизонту.",
+            "en": "Solve the projectile motion problem."
+        },
+        "problem": {
+            "range": {
+                "ru": "Тело брошено под углом {angle}° к горизонту с начальной скоростью {v0} м/с. Найдите дальность полёта.",
+                "en": "A body is thrown at angle {angle}° to the horizontal with initial velocity {v0} m/s. Find the range."
+            },
+            "max_height": {
+                "ru": "Тело брошено под углом {angle}° к горизонту с начальной скоростью {v0} м/с. Найдите максимальную высоту подъёма.",
+                "en": "A body is thrown at angle {angle}° to the horizontal with initial velocity {v0} m/s. Find the maximum height."
+            },
+            "flight_time": {
+                "ru": "Тело брошено под углом {angle}° к горизонту с начальной скоростью {v0} м/с. Найдите время полёта.",
+                "en": "A body is thrown at angle {angle}° to the horizontal with initial velocity {v0} m/s. Find the flight time."
+            },
+            "velocity_at_height": {
+                "ru": "Тело брошено под углом {angle}° к горизонту с начальной скоростью {v0} м/с. Найдите скорость на высоте {h} м.",
+                "en": "A body is thrown at angle {angle}° to the horizontal with initial velocity {v0} m/s. Find the velocity at height {h} m."
+            }
+        },
+        "steps": {
+            "decompose": {"ru": "Разложим скорость: v₀ₓ = v₀·cos(α) = {vx} м/с, v₀ᵧ = v₀·sin(α) = {vy} м/с", "en": "Decompose velocity: v₀ₓ = v₀·cos(α) = {vx} m/s, v₀ᵧ = v₀·sin(α) = {vy} m/s"},
+            "range_formula": {"ru": "Дальность: L = v₀²·sin(2α)/g", "en": "Range: L = v₀²·sin(2α)/g"},
+            "height_formula": {"ru": "Максимальная высота: H = v₀²·sin²(α)/(2g)", "en": "Maximum height: H = v₀²·sin²(α)/(2g)"},
+            "time_formula": {"ru": "Время полёта: T = 2·v₀·sin(α)/g", "en": "Flight time: T = 2·v₀·sin(α)/g"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # ROTATIONAL DYNAMICS - Вращательная динамика
+    #----------------------------------------------------------------------------
+    "rotational_dynamics": {
+        "instructions": {
+            "ru": "Решите задачу на вращательное движение.",
+            "en": "Solve the rotational dynamics problem."
+        },
+        "problem": {
+            "moment_of_inertia": {
+                "ru": "Найдите момент инерции {shape} массой {m} кг с {param_name} = {param_value} м относительно {axis}.",
+                "en": "Find the moment of inertia of a {shape} with mass {m} kg and {param_name} = {param_value} m about {axis}."
+            },
+            "angular_acceleration": {
+                "ru": "К телу с моментом инерции I = {I} кг·м² приложен момент силы M = {M} Н·м. Найдите угловое ускорение.",
+                "en": "A torque M = {M} N·m is applied to a body with moment of inertia I = {I} kg·m². Find the angular acceleration."
+            },
+            "rotational_energy": {
+                "ru": "Найдите кинетическую энергию вращения тела с моментом инерции I = {I} кг·м² и угловой скоростью ω = {omega} рад/с.",
+                "en": "Find the rotational kinetic energy of a body with moment of inertia I = {I} kg·m² and angular velocity ω = {omega} rad/s."
+            },
+            "angular_momentum": {
+                "ru": "Найдите момент импульса тела с моментом инерции I = {I} кг·м² и угловой скоростью ω = {omega} рад/с.",
+                "en": "Find the angular momentum of a body with moment of inertia I = {I} kg·m² and angular velocity ω = {omega} rad/s."
+            }
+        },
+        "shapes": {
+            "disk": {"ru": "диска", "en": "disk"},
+            "sphere": {"ru": "сферы", "en": "sphere"},
+            "rod": {"ru": "стержня", "en": "rod"},
+            "cylinder": {"ru": "цилиндра", "en": "cylinder"},
+            "ring": {"ru": "кольца", "en": "ring"}
+        },
+        "steps": {
+            "newton_rotation": {"ru": "Второй закон Ньютона для вращения: M = I·ε", "en": "Newton's second law for rotation: M = I·ε"},
+            "energy_formula": {"ru": "Кинетическая энергия вращения: E = I·ω²/2", "en": "Rotational kinetic energy: E = I·ω²/2"},
+            "momentum_formula": {"ru": "Момент импульса: L = I·ω", "en": "Angular momentum: L = I·ω"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # CENTER OF MASS - Центр масс
+    #----------------------------------------------------------------------------
+    "center_of_mass": {
+        "instructions": {
+            "ru": "Найдите координаты центра масс системы тел.",
+            "en": "Find the coordinates of the center of mass of the system."
+        },
+        "problem": {
+            "ru": "Даны {n} тел с массами {masses} кг в точках с координатами {positions}. Найдите центр масс системы.",
+            "en": "Given {n} bodies with masses {masses} kg at positions {positions}. Find the center of mass."
+        },
+        "steps": {
+            "formula": {"ru": "Центр масс: r_c = Σ(mᵢ·rᵢ)/Σmᵢ", "en": "Center of mass: r_c = Σ(mᵢ·rᵢ)/Σmᵢ"},
+            "total_mass": {"ru": "Общая масса: M = {total_mass} кг", "en": "Total mass: M = {total_mass} kg"},
+            "weighted_sum": {"ru": "Взвешенная сумма координат: {weighted}", "en": "Weighted sum of coordinates: {weighted}"}
+        },
+        "final_answer": {"ru": "Центр масс: ({x}, {y}) м", "en": "Center of mass: ({x}, {y}) m"}
+    },
+
+    #----------------------------------------------------------------------------
+    # ATWOOD MACHINE - Машина Атвуда
+    #----------------------------------------------------------------------------
+    "atwood_machine": {
+        "instructions": {
+            "ru": "Решите задачу на систему блоков (машина Атвуда).",
+            "en": "Solve the Atwood machine problem."
+        },
+        "problem": {
+            "basic": {
+                "ru": "Два груза массами m₁ = {m1} кг и m₂ = {m2} кг связаны нерастяжимой нитью, перекинутой через невесомый блок. Найдите ускорение системы и натяжение нити.",
+                "en": "Two masses m₁ = {m1} kg and m₂ = {m2} kg are connected by an inextensible string over a massless pulley. Find the acceleration and string tension."
+            },
+            "with_pulley_mass": {
+                "ru": "Два груза массами m₁ = {m1} кг и m₂ = {m2} кг связаны нитью через блок массой M = {M} кг и радиусом R = {R} м. Найдите ускорение системы.",
+                "en": "Two masses m₁ = {m1} kg and m₂ = {m2} kg are connected via a pulley of mass M = {M} kg and radius R = {R} m. Find the acceleration."
+            }
+        },
+        "steps": {
+            "equations": {"ru": "Уравнения движения: m₁g - T = m₁a, T - m₂g = m₂a", "en": "Equations of motion: m₁g - T = m₁a, T - m₂g = m₂a"},
+            "acceleration": {"ru": "Ускорение: a = (m₁ - m₂)g/(m₁ + m₂) = {a} м/с²", "en": "Acceleration: a = (m₁ - m₂)g/(m₁ + m₂) = {a} m/s²"},
+            "tension": {"ru": "Натяжение: T = 2m₁m₂g/(m₁ + m₂) = {T} Н", "en": "Tension: T = 2m₁m₂g/(m₁ + m₂) = {T} N"}
+        },
+        "final_answer": {"ru": "Ответ: a = {a} м/с², T = {T} Н", "en": "Answer: a = {a} m/s², T = {T} N"}
+    },
+
+    #----------------------------------------------------------------------------
+    # INCLINED PLANE - Наклонная плоскость
+    #----------------------------------------------------------------------------
+    "inclined_plane": {
+        "instructions": {
+            "ru": "Решите задачу на движение по наклонной плоскости.",
+            "en": "Solve the inclined plane problem."
+        },
+        "problem": {
+            "acceleration": {
+                "ru": "Тело массой {m} кг скользит по наклонной плоскости с углом {angle}° (коэффициент трения μ = {mu}). Найдите ускорение.",
+                "en": "A body of mass {m} kg slides down an inclined plane at angle {angle}° (friction coefficient μ = {mu}). Find the acceleration."
+            },
+            "min_angle": {
+                "ru": "При каком минимальном угле наклона тело начнёт скользить, если коэффициент трения μ = {mu}?",
+                "en": "What is the minimum angle for the body to start sliding if friction coefficient μ = {mu}?"
+            },
+            "velocity_at_bottom": {
+                "ru": "Тело скользит с вершины наклонной плоскости длиной {L} м и углом {angle}° (μ = {mu}). Найдите скорость внизу.",
+                "en": "A body slides from the top of an inclined plane of length {L} m at angle {angle}° (μ = {mu}). Find the velocity at the bottom."
+            }
+        },
+        "steps": {
+            "forces": {"ru": "Силы: Fт = mg·sin(α), Fтр = μ·mg·cos(α)", "en": "Forces: F_gravity = mg·sin(α), F_friction = μ·mg·cos(α)"},
+            "net_force": {"ru": "Результирующая: F = mg(sin(α) - μ·cos(α))", "en": "Net force: F = mg(sin(α) - μ·cos(α))"},
+            "acceleration": {"ru": "Ускорение: a = g(sin(α) - μ·cos(α)) = {a} м/с²", "en": "Acceleration: a = g(sin(α) - μ·cos(α)) = {a} m/s²"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # ELECTROMAGNETIC INDUCTION - Электромагнитная индукция
+    #----------------------------------------------------------------------------
+    "electromagnetic_induction": {
+        "instructions": {
+            "ru": "Решите задачу на электромагнитную индукцию.",
+            "en": "Solve the electromagnetic induction problem."
+        },
+        "problem": {
+            "emf_flux_change": {
+                "ru": "Магнитный поток через контур изменяется по закону Φ(t) = {flux_formula} Вб. Найдите ЭДС индукции в момент t = {t} с.",
+                "en": "Magnetic flux through a loop changes as Φ(t) = {flux_formula} Wb. Find the induced EMF at t = {t} s."
+            },
+            "emf_moving_rod": {
+                "ru": "Проводник длиной {L} м движется со скоростью {v} м/с перпендикулярно магнитному полю B = {B} Тл. Найдите ЭДС индукции.",
+                "en": "A conductor of length {L} m moves at {v} m/s perpendicular to magnetic field B = {B} T. Find the induced EMF."
+            },
+            "emf_rotating_coil": {
+                "ru": "Катушка из {N} витков площадью {A} м² вращается в поле B = {B} Тл с частотой {f} Гц. Найдите максимальную ЭДС.",
+                "en": "A coil of {N} turns with area {A} m² rotates in field B = {B} T at frequency {f} Hz. Find the maximum EMF."
+            }
+        },
+        "steps": {
+            "faraday_law": {"ru": "Закон Фарадея: ε = -dΦ/dt", "en": "Faraday's law: ε = -dΦ/dt"},
+            "motional_emf": {"ru": "ЭДС движущегося проводника: ε = BLv", "en": "Motional EMF: ε = BLv"},
+            "rotating_coil": {"ru": "Вращающаяся катушка: ε_max = NBAω = 2πNBAf", "en": "Rotating coil: ε_max = NBAω = 2πNBAf"}
+        },
+        "final_answer": {"ru": "Ответ: ε = {emf} В", "en": "Answer: ε = {emf} V"}
+    },
+
+    #----------------------------------------------------------------------------
+    # AC CIRCUITS - Цепи переменного тока
+    #----------------------------------------------------------------------------
+    "ac_circuits": {
+        "instructions": {
+            "ru": "Решите задачу на цепь переменного тока.",
+            "en": "Solve the AC circuit problem."
+        },
+        "problem": {
+            "impedance": {
+                "ru": "RLC-цепь: R = {R} Ом, L = {L} Гн, C = {C} мкФ, частота f = {f} Гц. Найдите импеданс.",
+                "en": "RLC circuit: R = {R} Ω, L = {L} H, C = {C} μF, frequency f = {f} Hz. Find the impedance."
+            },
+            "resonance": {
+                "ru": "RLC-цепь: L = {L} Гн, C = {C} мкФ. Найдите резонансную частоту.",
+                "en": "RLC circuit: L = {L} H, C = {C} μF. Find the resonant frequency."
+            },
+            "power_factor": {
+                "ru": "RLC-цепь: R = {R} Ом, X_L = {XL} Ом, X_C = {XC} Ом. Найдите коэффициент мощности.",
+                "en": "RLC circuit: R = {R} Ω, X_L = {XL} Ω, X_C = {XC} Ω. Find the power factor."
+            }
+        },
+        "steps": {
+            "reactances": {"ru": "Реактивные сопротивления: X_L = ωL = {XL} Ом, X_C = 1/(ωC) = {XC} Ом", "en": "Reactances: X_L = ωL = {XL} Ω, X_C = 1/(ωC) = {XC} Ω"},
+            "impedance_formula": {"ru": "Импеданс: Z = √(R² + (X_L - X_C)²)", "en": "Impedance: Z = √(R² + (X_L - X_C)²)"},
+            "resonance_formula": {"ru": "Резонансная частота: f₀ = 1/(2π√(LC))", "en": "Resonant frequency: f₀ = 1/(2π√(LC))"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # RC CIRCUITS - RC-цепи
+    #----------------------------------------------------------------------------
+    "rc_circuits": {
+        "instructions": {
+            "ru": "Решите задачу на RC-цепь.",
+            "en": "Solve the RC circuit problem."
+        },
+        "problem": {
+            "charging": {
+                "ru": "RC-цепь: R = {R} Ом, C = {C} мкФ, ЭДС = {E} В. Найдите заряд конденсатора через t = {t} с.",
+                "en": "RC circuit: R = {R} Ω, C = {C} μF, EMF = {E} V. Find the charge on capacitor after t = {t} s."
+            },
+            "discharging": {
+                "ru": "Конденсатор C = {C} мкФ с зарядом Q₀ = {Q0} мкКл разряжается через R = {R} Ом. Найдите заряд через t = {t} с.",
+                "en": "Capacitor C = {C} μF with charge Q₀ = {Q0} μC discharges through R = {R} Ω. Find charge after t = {t} s."
+            },
+            "time_constant": {
+                "ru": "RC-цепь: R = {R} кОм, C = {C} мкФ. Найдите постоянную времени.",
+                "en": "RC circuit: R = {R} kΩ, C = {C} μF. Find the time constant."
+            }
+        },
+        "steps": {
+            "time_constant": {"ru": "Постоянная времени: τ = RC = {tau} с", "en": "Time constant: τ = RC = {tau} s"},
+            "charging_formula": {"ru": "Заряд при зарядке: Q(t) = CE(1 - e^(-t/τ))", "en": "Charging: Q(t) = CE(1 - e^(-t/τ))"},
+            "discharging_formula": {"ru": "Заряд при разрядке: Q(t) = Q₀·e^(-t/τ)", "en": "Discharging: Q(t) = Q₀·e^(-t/τ)"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # MAGNETIC FORCE - Сила Лоренца
+    #----------------------------------------------------------------------------
+    "magnetic_force": {
+        "instructions": {
+            "ru": "Решите задачу на движение заряда в магнитном поле.",
+            "en": "Solve the problem on charge motion in magnetic field."
+        },
+        "problem": {
+            "lorentz_force": {
+                "ru": "Частица с зарядом q = {q} Кл движется со скоростью v = {v} м/с перпендикулярно полю B = {B} Тл. Найдите силу Лоренца.",
+                "en": "A particle with charge q = {q} C moves at v = {v} m/s perpendicular to field B = {B} T. Find the Lorentz force."
+            },
+            "radius": {
+                "ru": "Частица массой m = {m} кг и зарядом q = {q} Кл влетает в поле B = {B} Тл со скоростью v = {v} м/с. Найдите радиус траектории.",
+                "en": "A particle of mass m = {m} kg and charge q = {q} C enters field B = {B} T at v = {v} m/s. Find the orbit radius."
+            },
+            "period": {
+                "ru": "Частица массой m = {m} кг и зарядом q = {q} Кл движется в поле B = {B} Тл. Найдите период обращения.",
+                "en": "A particle of mass m = {m} kg and charge q = {q} C moves in field B = {B} T. Find the orbital period."
+            }
+        },
+        "steps": {
+            "lorentz": {"ru": "Сила Лоренца: F = qvB·sin(α)", "en": "Lorentz force: F = qvB·sin(α)"},
+            "radius_formula": {"ru": "Радиус: r = mv/(qB)", "en": "Radius: r = mv/(qB)"},
+            "period_formula": {"ru": "Период: T = 2πm/(qB)", "en": "Period: T = 2πm/(qB)"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # THERMODYNAMIC CYCLES - Термодинамические циклы
+    #----------------------------------------------------------------------------
+    "thermodynamic_cycles": {
+        "instructions": {
+            "ru": "Решите задачу на термодинамический цикл.",
+            "en": "Solve the thermodynamic cycle problem."
+        },
+        "problem": {
+            "carnot_efficiency": {
+                "ru": "Цикл Карно работает между температурами T₁ = {T1} К (нагреватель) и T₂ = {T2} К (холодильник). Найдите КПД.",
+                "en": "A Carnot cycle operates between T₁ = {T1} K (hot) and T₂ = {T2} K (cold). Find the efficiency."
+            },
+            "work_from_heat": {
+                "ru": "Тепловая машина с КПД η = {eta}% получает Q₁ = {Q1} Дж от нагревателя. Найдите работу и отданное тепло.",
+                "en": "A heat engine with efficiency η = {eta}% receives Q₁ = {Q1} J from hot reservoir. Find work and rejected heat."
+            },
+            "refrigerator_cop": {
+                "ru": "Холодильник работает между T₁ = {T1} К и T₂ = {T2} К. Найдите максимальный холодильный коэффициент.",
+                "en": "A refrigerator operates between T₁ = {T1} K and T₂ = {T2} K. Find the maximum COP."
+            }
+        },
+        "steps": {
+            "carnot_formula": {"ru": "КПД Карно: η = 1 - T₂/T₁", "en": "Carnot efficiency: η = 1 - T₂/T₁"},
+            "work_heat": {"ru": "Работа: A = η·Q₁, отданное тепло: Q₂ = Q₁ - A", "en": "Work: A = η·Q₁, rejected heat: Q₂ = Q₁ - A"},
+            "cop_formula": {"ru": "Холодильный коэффициент: COP = T₂/(T₁ - T₂)", "en": "COP: COP = T₂/(T₁ - T₂)"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # ENTROPY - Энтропия
+    #----------------------------------------------------------------------------
+    "entropy": {
+        "instructions": {
+            "ru": "Решите задачу на энтропию.",
+            "en": "Solve the entropy problem."
+        },
+        "problem": {
+            "isothermal": {
+                "ru": "При изотермическом расширении {n} моль газа при T = {T} К объём увеличился в {ratio} раз. Найдите изменение энтропии.",
+                "en": "{n} moles of gas expand isothermally at T = {T} K, volume increases {ratio} times. Find entropy change."
+            },
+            "heat_transfer": {
+                "ru": "Тело получает Q = {Q} Дж тепла при температуре T = {T} К. Найдите изменение энтропии.",
+                "en": "A body receives Q = {Q} J of heat at T = {T} K. Find the entropy change."
+            },
+            "mixing": {
+                "ru": "Смешиваются {m1} кг воды при {T1}°C и {m2} кг воды при {T2}°C. Найдите изменение энтропии.",
+                "en": "Mix {m1} kg of water at {T1}°C with {m2} kg at {T2}°C. Find the entropy change."
+            }
+        },
+        "steps": {
+            "definition": {"ru": "Изменение энтропии: ΔS = Q/T (обратимый процесс)", "en": "Entropy change: ΔS = Q/T (reversible process)"},
+            "isothermal": {"ru": "Изотермический: ΔS = nR·ln(V₂/V₁)", "en": "Isothermal: ΔS = nR·ln(V₂/V₁)"},
+            "mixing": {"ru": "Смешивание: ΔS = m₁c·ln(T_f/T₁) + m₂c·ln(T_f/T₂)", "en": "Mixing: ΔS = m₁c·ln(T_f/T₁) + m₂c·ln(T_f/T₂)"}
+        },
+        "final_answer": {"ru": "Ответ: ΔS = {answer} Дж/К", "en": "Answer: ΔS = {answer} J/K"}
+    },
+
+    #----------------------------------------------------------------------------
+    # PHASE TRANSITIONS - Фазовые переходы
+    #----------------------------------------------------------------------------
+    "phase_transitions": {
+        "instructions": {
+            "ru": "Решите задачу на фазовые переходы.",
+            "en": "Solve the phase transition problem."
+        },
+        "problem": {
+            "melting": {
+                "ru": "Сколько теплоты нужно для плавления {m} кг {substance} при температуре плавления? (λ = {lambda} кДж/кг)",
+                "en": "How much heat is needed to melt {m} kg of {substance} at melting point? (λ = {lambda} kJ/kg)"
+            },
+            "vaporization": {
+                "ru": "Сколько теплоты нужно для испарения {m} кг {substance} при температуре кипения? (L = {L} кДж/кг)",
+                "en": "How much heat is needed to vaporize {m} kg of {substance} at boiling point? (L = {L} kJ/kg)"
+            },
+            "heating_with_phase": {
+                "ru": "Сколько теплоты нужно для нагрева {m} кг льда от {T1}°C до {T2}°C воды? (c_лёд={c_ice}, c_вода={c_water}, λ={lambda} кДж/кг)",
+                "en": "How much heat to heat {m} kg ice from {T1}°C to {T2}°C water? (c_ice={c_ice}, c_water={c_water}, λ={lambda} kJ/kg)"
+            }
+        },
+        "steps": {
+            "melting_heat": {"ru": "Теплота плавления: Q = λ·m", "en": "Heat of fusion: Q = λ·m"},
+            "vaporization_heat": {"ru": "Теплота парообразования: Q = L·m", "en": "Heat of vaporization: Q = L·m"},
+            "total_heat": {"ru": "Полная теплота: Q = Q_нагрев + Q_плавление + Q_нагрев2", "en": "Total heat: Q = Q_heating + Q_melting + Q_heating2"}
+        },
+        "final_answer": {"ru": "Ответ: Q = {answer}", "en": "Answer: Q = {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # DOPPLER EFFECT - Эффект Доплера
+    #----------------------------------------------------------------------------
+    "doppler_effect": {
+        "instructions": {
+            "ru": "Решите задачу на эффект Доплера.",
+            "en": "Solve the Doppler effect problem."
+        },
+        "problem": {
+            "approaching": {
+                "ru": "Источник звука частотой f₀ = {f0} Гц приближается со скоростью v_s = {vs} м/с. Скорость звука c = {c} м/с. Найдите наблюдаемую частоту.",
+                "en": "A sound source at f₀ = {f0} Hz approaches at v_s = {vs} m/s. Sound speed c = {c} m/s. Find observed frequency."
+            },
+            "receding": {
+                "ru": "Источник звука частотой f₀ = {f0} Гц удаляется со скоростью v_s = {vs} м/с. Найдите наблюдаемую частоту.",
+                "en": "A sound source at f₀ = {f0} Hz recedes at v_s = {vs} m/s. Find observed frequency."
+            },
+            "light_redshift": {
+                "ru": "Галактика удаляется со скоростью v = {v} км/с. Найдите красное смещение линии с λ₀ = {lambda0} нм.",
+                "en": "A galaxy recedes at v = {v} km/s. Find the redshift of a line at λ₀ = {lambda0} nm."
+            }
+        },
+        "steps": {
+            "sound_formula": {"ru": "Эффект Доплера (звук): f = f₀·(c ± v_наб)/(c ∓ v_ист)", "en": "Doppler (sound): f = f₀·(c ± v_obs)/(c ∓ v_src)"},
+            "light_formula": {"ru": "Эффект Доплера (свет): Δλ/λ₀ = v/c", "en": "Doppler (light): Δλ/λ₀ = v/c"},
+            "approaching": {"ru": "Приближение: f = f₀·c/(c - v_s)", "en": "Approaching: f = f₀·c/(c - v_s)"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # INTERFERENCE - Интерференция
+    #----------------------------------------------------------------------------
+    "interference": {
+        "instructions": {
+            "ru": "Решите задачу на интерференцию света.",
+            "en": "Solve the light interference problem."
+        },
+        "problem": {
+            "double_slit": {
+                "ru": "Опыт Юнга: расстояние между щелями d = {d} мм, до экрана L = {L} м, длина волны λ = {lambda} нм. Найдите расстояние между соседними максимумами.",
+                "en": "Young's experiment: slit separation d = {d} mm, screen distance L = {L} m, wavelength λ = {lambda} nm. Find the fringe spacing."
+            },
+            "thin_film": {
+                "ru": "Тонкая плёнка толщиной t = {t} нм с показателем преломления n = {n}. Свет с λ = {lambda} нм. Найдите разность хода.",
+                "en": "Thin film of thickness t = {t} nm with refractive index n = {n}. Light λ = {lambda} nm. Find the path difference."
+            },
+            "max_order": {
+                "ru": "Какой максимальный порядок интерференции можно наблюдать при d = {d} мкм и λ = {lambda} нм?",
+                "en": "What is the maximum interference order observable with d = {d} μm and λ = {lambda} nm?"
+            }
+        },
+        "steps": {
+            "fringe_spacing": {"ru": "Расстояние между полосами: Δx = λL/d", "en": "Fringe spacing: Δx = λL/d"},
+            "path_difference": {"ru": "Разность хода: δ = 2nt (плёнка)", "en": "Path difference: δ = 2nt (film)"},
+            "max_condition": {"ru": "Условие максимума: d·sin(θ) = mλ", "en": "Maximum condition: d·sin(θ) = mλ"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # DIFFRACTION - Дифракция
+    #----------------------------------------------------------------------------
+    "diffraction": {
+        "instructions": {
+            "ru": "Решите задачу на дифракцию света.",
+            "en": "Solve the light diffraction problem."
+        },
+        "problem": {
+            "single_slit": {
+                "ru": "Дифракция на щели шириной a = {a} мкм, λ = {lambda} нм. Найдите угол первого минимума.",
+                "en": "Diffraction on slit of width a = {a} μm, λ = {lambda} nm. Find the angle of first minimum."
+            },
+            "grating": {
+                "ru": "Дифракционная решётка: {N} штрихов/мм, λ = {lambda} нм. Найдите угол максимума {m}-го порядка.",
+                "en": "Diffraction grating: {N} lines/mm, λ = {lambda} nm. Find the angle of {m}-order maximum."
+            },
+            "resolving_power": {
+                "ru": "Решётка с {N} штрихами. Найдите разрешающую способность в {m}-м порядке.",
+                "en": "Grating with {N} lines. Find the resolving power in {m}-th order."
+            }
+        },
+        "steps": {
+            "slit_minimum": {"ru": "Минимум одиночной щели: a·sin(θ) = mλ", "en": "Single slit minimum: a·sin(θ) = mλ"},
+            "grating_maximum": {"ru": "Максимум решётки: d·sin(θ) = mλ", "en": "Grating maximum: d·sin(θ) = mλ"},
+            "resolving": {"ru": "Разрешающая способность: R = mN", "en": "Resolving power: R = mN"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # POLARIZATION - Поляризация
+    #----------------------------------------------------------------------------
+    "polarization": {
+        "instructions": {
+            "ru": "Решите задачу на поляризацию света.",
+            "en": "Solve the light polarization problem."
+        },
+        "problem": {
+            "malus": {
+                "ru": "Поляризованный свет интенсивности I₀ = {I0} Вт/м² проходит через поляризатор, повёрнутый на угол {angle}°. Найдите интенсивность.",
+                "en": "Polarized light of intensity I₀ = {I0} W/m² passes through polarizer rotated by {angle}°. Find the intensity."
+            },
+            "brewster": {
+                "ru": "Найдите угол Брюстера для границы воздух-стекло (n = {n}).",
+                "en": "Find the Brewster angle for air-glass interface (n = {n})."
+            },
+            "two_polarizers": {
+                "ru": "Неполяризованный свет I₀ = {I0} проходит через два поляризатора с углом {angle}° между ними. Найдите конечную интенсивность.",
+                "en": "Unpolarized light I₀ = {I0} passes through two polarizers at angle {angle}°. Find final intensity."
+            }
+        },
+        "steps": {
+            "malus_law": {"ru": "Закон Малюса: I = I₀·cos²(θ)", "en": "Malus' law: I = I₀·cos²(θ)"},
+            "brewster_formula": {"ru": "Угол Брюстера: tan(θ_B) = n₂/n₁", "en": "Brewster angle: tan(θ_B) = n₂/n₁"},
+            "unpolarized": {"ru": "После первого поляризатора: I₁ = I₀/2", "en": "After first polarizer: I₁ = I₀/2"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # BOHR MODEL - Модель Бора
+    #----------------------------------------------------------------------------
+    "bohr_model": {
+        "instructions": {
+            "ru": "Решите задачу на модель атома Бора.",
+            "en": "Solve the Bohr model problem."
+        },
+        "problem": {
+            "energy_level": {
+                "ru": "Найдите энергию электрона на {n}-й орбите атома водорода.",
+                "en": "Find the electron energy on {n}-th orbit of hydrogen atom."
+            },
+            "transition": {
+                "ru": "Электрон в атоме водорода переходит с уровня n = {n1} на уровень n = {n2}. Найдите длину волны излучённого фотона.",
+                "en": "Electron in hydrogen transitions from n = {n1} to n = {n2}. Find the emitted photon wavelength."
+            },
+            "orbit_radius": {
+                "ru": "Найдите радиус {n}-й орбиты электрона в атоме водорода.",
+                "en": "Find the radius of {n}-th electron orbit in hydrogen atom."
+            },
+            "ionization": {
+                "ru": "Найдите энергию ионизации атома водорода из состояния n = {n}.",
+                "en": "Find the ionization energy of hydrogen atom from state n = {n}."
+            }
+        },
+        "steps": {
+            "energy_formula": {"ru": "Энергия уровня: E_n = -13.6/n² эВ", "en": "Energy level: E_n = -13.6/n² eV"},
+            "radius_formula": {"ru": "Радиус орбиты: r_n = n²·a₀ = n²·0.529 Å", "en": "Orbit radius: r_n = n²·a₀ = n²·0.529 Å"},
+            "transition_energy": {"ru": "Энергия перехода: ΔE = 13.6·(1/n₂² - 1/n₁²) эВ", "en": "Transition energy: ΔE = 13.6·(1/n₂² - 1/n₁²) eV"},
+            "wavelength": {"ru": "Длина волны: λ = hc/ΔE", "en": "Wavelength: λ = hc/ΔE"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # DE BROGLIE - Волна де Бройля
+    #----------------------------------------------------------------------------
+    "de_broglie": {
+        "instructions": {
+            "ru": "Решите задачу на волновые свойства частиц.",
+            "en": "Solve the de Broglie wave problem."
+        },
+        "problem": {
+            "wavelength": {
+                "ru": "Найдите длину волны де Бройля для {particle} с кинетической энергией E = {E} эВ.",
+                "en": "Find the de Broglie wavelength for {particle} with kinetic energy E = {E} eV."
+            },
+            "electron_velocity": {
+                "ru": "Электрон ускорен разностью потенциалов U = {U} В. Найдите длину волны де Бройля.",
+                "en": "Electron accelerated through potential U = {U} V. Find the de Broglie wavelength."
+            },
+            "momentum": {
+                "ru": "Фотон имеет длину волны λ = {lambda} нм. Найдите его импульс.",
+                "en": "A photon has wavelength λ = {lambda} nm. Find its momentum."
+            }
+        },
+        "steps": {
+            "de_broglie": {"ru": "Длина волны де Бройля: λ = h/p = h/√(2mE)", "en": "De Broglie wavelength: λ = h/p = h/√(2mE)"},
+            "electron_accelerated": {"ru": "Для электрона: λ = h/√(2m_e·eU) ≈ 1.226/√U нм", "en": "For electron: λ = h/√(2m_e·eU) ≈ 1.226/√U nm"},
+            "photon_momentum": {"ru": "Импульс фотона: p = h/λ", "en": "Photon momentum: p = h/λ"}
+        },
+        "particles": {
+            "electron": {"ru": "электрона", "en": "electron"},
+            "proton": {"ru": "протона", "en": "proton"},
+            "neutron": {"ru": "нейтрона", "en": "neutron"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # UNCERTAINTY PRINCIPLE - Принцип неопределённости
+    #----------------------------------------------------------------------------
+    "uncertainty_principle": {
+        "instructions": {
+            "ru": "Решите задачу на принцип неопределённости Гейзенберга.",
+            "en": "Solve the Heisenberg uncertainty principle problem."
+        },
+        "problem": {
+            "position_momentum": {
+                "ru": "Положение электрона определено с точностью Δx = {dx} нм. Найдите минимальную неопределённость импульса.",
+                "en": "Electron position is determined with accuracy Δx = {dx} nm. Find minimum momentum uncertainty."
+            },
+            "energy_time": {
+                "ru": "Время жизни возбуждённого состояния τ = {tau} с. Найдите естественную ширину спектральной линии.",
+                "en": "Excited state lifetime τ = {tau} s. Find the natural line width."
+            },
+            "atom_size": {
+                "ru": "Оцените минимальный размер атома водорода, используя принцип неопределённости.",
+                "en": "Estimate the minimum size of hydrogen atom using uncertainty principle."
+            }
+        },
+        "steps": {
+            "position_momentum": {"ru": "Принцип неопределённости: Δx·Δp ≥ ħ/2", "en": "Uncertainty principle: Δx·Δp ≥ ħ/2"},
+            "energy_time": {"ru": "Соотношение энергия-время: ΔE·Δt ≥ ħ/2", "en": "Energy-time relation: ΔE·Δt ≥ ħ/2"},
+            "min_uncertainty": {"ru": "Минимальная неопределённость: Δp ≥ ħ/(2Δx)", "en": "Minimum uncertainty: Δp ≥ ħ/(2Δx)"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # RADIOACTIVE DECAY - Радиоактивный распад
+    #----------------------------------------------------------------------------
+    "radioactive_decay": {
+        "instructions": {
+            "ru": "Решите задачу на радиоактивный распад.",
+            "en": "Solve the radioactive decay problem."
+        },
+        "problem": {
+            "remaining": {
+                "ru": "Период полураспада изотопа T₁/₂ = {T} лет. Какая доля останется через t = {t} лет?",
+                "en": "Half-life of isotope T₁/₂ = {T} years. What fraction remains after t = {t} years?"
+            },
+            "activity": {
+                "ru": "Начальная активность A₀ = {A0} Бк, T₁/₂ = {T} с. Найдите активность через t = {t} с.",
+                "en": "Initial activity A₀ = {A0} Bq, T₁/₂ = {T} s. Find activity after t = {t} s."
+            },
+            "age": {
+                "ru": "В образце осталось {percent}% исходного изотопа. T₁/₂ = {T} лет. Найдите возраст образца.",
+                "en": "Sample contains {percent}% of original isotope. T₁/₂ = {T} years. Find the sample age."
+            },
+            "decay_constant": {
+                "ru": "Период полураспада T₁/₂ = {T}. Найдите постоянную распада λ.",
+                "en": "Half-life T₁/₂ = {T}. Find the decay constant λ."
+            }
+        },
+        "steps": {
+            "decay_law": {"ru": "Закон распада: N(t) = N₀·e^(-λt) = N₀·(1/2)^(t/T₁/₂)", "en": "Decay law: N(t) = N₀·e^(-λt) = N₀·(1/2)^(t/T₁/₂)"},
+            "decay_constant": {"ru": "Постоянная распада: λ = ln(2)/T₁/₂", "en": "Decay constant: λ = ln(2)/T₁/₂"},
+            "activity": {"ru": "Активность: A = λN = A₀·e^(-λt)", "en": "Activity: A = λN = A₀·e^(-λt)"},
+            "age_formula": {"ru": "Возраст: t = T₁/₂·ln(N₀/N)/ln(2)", "en": "Age: t = T₁/₂·ln(N₀/N)/ln(2)"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # DIMENSIONAL ANALYSIS - Анализ размерностей
+    #----------------------------------------------------------------------------
+    "dimensional_analysis": {
+        "instructions": {
+            "ru": "Проверьте размерность формулы или выведите формулу методом размерностей.",
+            "en": "Check the formula dimensions or derive a formula using dimensional analysis."
+        },
+        "problem": {
+            "check_formula": {
+                "ru": "Проверьте размерность формулы: {formula}. Верна ли она?",
+                "en": "Check the dimensions of formula: {formula}. Is it correct?"
+            },
+            "derive_formula": {
+                "ru": "Период колебаний маятника T зависит от длины l и g. Выведите формулу методом размерностей.",
+                "en": "Pendulum period T depends on length l and g. Derive formula using dimensional analysis."
+            },
+            "find_units": {
+                "ru": "Найдите размерность величины, определённой формулой: {formula}.",
+                "en": "Find the dimensions of quantity defined by: {formula}."
+            }
+        },
+        "dimensions": {
+            "length": {"ru": "длина [L]", "en": "length [L]"},
+            "mass": {"ru": "масса [M]", "en": "mass [M]"},
+            "time": {"ru": "время [T]", "en": "time [T]"},
+            "current": {"ru": "сила тока [I]", "en": "current [I]"},
+            "temperature": {"ru": "температура [Θ]", "en": "temperature [Θ]"}
+        },
+        "steps": {
+            "write_dimensions": {"ru": "Запишем размерности: {dimensions}", "en": "Write dimensions: {dimensions}"},
+            "check_equality": {"ru": "Проверяем равенство размерностей слева и справа", "en": "Check dimension equality on both sides"},
+            "conclusion": {"ru": "Вывод: {result}", "en": "Conclusion: {result}"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # ERROR PROPAGATION - Распространение погрешностей
+    #----------------------------------------------------------------------------
+    "error_propagation": {
+        "instructions": {
+            "ru": "Рассчитайте погрешность результата измерений.",
+            "en": "Calculate the measurement error propagation."
+        },
+        "problem": {
+            "sum_difference": {
+                "ru": "A = {A} ± {dA}, B = {B} ± {dB}. Найдите погрешность суммы A + B.",
+                "en": "A = {A} ± {dA}, B = {B} ± {dB}. Find the error of sum A + B."
+            },
+            "product": {
+                "ru": "A = {A} ± {dA}, B = {B} ± {dB}. Найдите относительную погрешность произведения A·B.",
+                "en": "A = {A} ± {dA}, B = {B} ± {dB}. Find relative error of product A·B."
+            },
+            "power": {
+                "ru": "x = {x} ± {dx}. Найдите погрешность x^{n}.",
+                "en": "x = {x} ± {dx}. Find the error of x^{n}."
+            },
+            "formula": {
+                "ru": "Рассчитайте погрешность {formula}, если {variables}.",
+                "en": "Calculate error of {formula}, given {variables}."
+            }
+        },
+        "steps": {
+            "sum_rule": {"ru": "Для суммы/разности: Δ(A±B) = √(ΔA² + ΔB²)", "en": "For sum/difference: Δ(A±B) = √(ΔA² + ΔB²)"},
+            "product_rule": {"ru": "Для произведения: δ(A·B) = √(δA² + δB²), где δ = Δ/x", "en": "For product: δ(A·B) = √(δA² + δB²), where δ = Δ/x"},
+            "power_rule": {"ru": "Для степени: δ(x^n) = n·δx", "en": "For power: δ(x^n) = n·δx"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # UNIT CONVERSION - Перевод единиц
+    #----------------------------------------------------------------------------
+    "unit_conversion": {
+        "instructions": {
+            "ru": "Выполните перевод единиц измерения.",
+            "en": "Perform unit conversion."
+        },
+        "problem": {
+            "simple": {
+                "ru": "Переведите {value} {from_unit} в {to_unit}.",
+                "en": "Convert {value} {from_unit} to {to_unit}."
+            },
+            "compound": {
+                "ru": "Переведите {value} {from_unit} в единицы СИ.",
+                "en": "Convert {value} {from_unit} to SI units."
+            },
+            "derived": {
+                "ru": "Выразите {value} {from_unit} через основные единицы СИ.",
+                "en": "Express {value} {from_unit} in base SI units."
+            }
+        },
+        "steps": {
+            "conversion_factor": {"ru": "Коэффициент перевода: 1 {from_unit} = {factor} {to_unit}", "en": "Conversion factor: 1 {from_unit} = {factor} {to_unit}"},
+            "calculate": {"ru": "Расчёт: {value} × {factor} = {result}", "en": "Calculation: {value} × {factor} = {result}"}
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
 }
