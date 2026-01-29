@@ -57,11 +57,43 @@ class QuadraticTask(BaseMathTask):
         self.c = c
         self.difficulty = difficulty
         
-        x = sp.symbols('x')
-        eq_expr = self.a*x**2 + self.b*x + self.c
-        equation_pretty = sp.pretty(eq_expr)
-        description = PROMPT_TEMPLATES["quadratic"]["problem"][language].format(equation_pretty=equation_pretty)
+        # Формируем уравнение в текстовом виде (без sympy pretty)
+        equation_str = self._format_equation(a, b, c)
+        description = PROMPT_TEMPLATES["quadratic"]["problem"][language].format(equation_pretty=equation_str)
         super().__init__(description, language, detail_level)
+    
+    @staticmethod
+    def _format_equation(a: int, b: int, c: int) -> str:
+        """Форматирует левую часть уравнения ax² + bx + c."""
+        parts = []
+        
+        # Член с x²
+        if a == 1:
+            parts.append("x²")
+        elif a == -1:
+            parts.append("-x²")
+        else:
+            parts.append(f"{a}x²")
+        
+        # Член с x
+        if b > 0:
+            if b == 1:
+                parts.append(" + x")
+            else:
+                parts.append(f" + {b}x")
+        elif b < 0:
+            if b == -1:
+                parts.append(" - x")
+            else:
+                parts.append(f" - {abs(b)}x")
+        
+        # Свободный член
+        if c > 0:
+            parts.append(f" + {c}")
+        elif c < 0:
+            parts.append(f" - {abs(c)}")
+        
+        return "".join(parts)
     
     @staticmethod
     def _generate_coefficients(max_coef: int, ensure_integer_roots: bool) -> tuple:
@@ -86,15 +118,23 @@ class QuadraticTask(BaseMathTask):
     def solve(self):
         x = sp.symbols('x')
         eq = sp.Eq(self.a*x**2 + self.b*x + self.c, 0)
-        eq_pretty = sp.pretty(eq)
+        equation_str = self._format_equation(self.a, self.b, self.c)
+        
         steps = []
-        steps.append(PROMPT_TEMPLATES["quadratic"]["step1"][self.language].format(equation_pretty=eq_pretty))
+        steps.append(PROMPT_TEMPLATES["quadratic"]["step1"][self.language].format(equation_pretty=equation_str))
+        
         discriminant = self.b**2 - 4*self.a*self.c
-        steps.append(PROMPT_TEMPLATES["quadratic"]["step2"][self.language].format(a=self.a, b=self.b, c=self.c, discriminant=discriminant))
+        steps.append(PROMPT_TEMPLATES["quadratic"]["step2"][self.language].format(
+            a=self.a, b=self.b, c=self.c, discriminant=discriminant
+        ))
+        
         roots = sp.solve(eq, x)
-        steps.append(PROMPT_TEMPLATES["quadratic"]["step3"][self.language].format(roots=roots))
+        # Форматируем корни
+        roots_str = ", ".join(str(r) for r in roots)
+        steps.append(PROMPT_TEMPLATES["quadratic"]["step3"][self.language].format(roots=roots_str))
+        
         self.solution_steps.extend(steps)
-        self.final_answer = str(roots)
+        self.final_answer = roots_str
 
     def get_task_type(self):
         return "quadratic"
