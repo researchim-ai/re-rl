@@ -1,4 +1,4 @@
-# re_rl/examples/run_example.py
+#!/usr/bin/env python3
 """
 Примеры использования библиотеки re-rl для генерации задач.
 
@@ -6,7 +6,7 @@
 - Генерацию математических задач
 - Генерацию физических задач
 - Использование системы сложности (difficulty)
-- Генерацию датасетов
+- Генерацию датасетов для SFT
 """
 
 from re_rl.tasks import (
@@ -14,21 +14,23 @@ from re_rl.tasks import (
     ArithmeticTask,
     LinearTask,
     QuadraticTask,
-    NumberTheoryTask,
+    CombinatoricsTask,
     StatisticsTask,
+    IntegralTask,
     # Физические задачи
     KinematicsTask,
     CircuitsTask,
     GasLawsTask,
     WavesTask,
+    QuantumTask,
+    NuclearTask,
+    RelativityTask,
     # Генераторы
-    generate_random_task,
-    generate_random_physics_task,
     ALL_TASK_GENERATORS,
     ALL_PHYSICS_TASK_GENERATORS,
+    generate_random_physics_task,
     # Утилиты физики
     PHYSICS_CONSTANTS,
-    get_constant,
 )
 from re_rl.dataset_generator import DatasetGenerator
 
@@ -53,16 +55,23 @@ def example_math_tasks():
     print(f"Задача: {result['problem']}")
     print(f"Ответ: {result['final_answer']}")
     
-    # Теория чисел
-    print("\n--- Теория чисел ---")
-    task = NumberTheoryTask(task_type="gcd", language="ru", difficulty=5)
+    # Комбинаторика
+    print("\n--- Комбинаторика ---")
+    task = CombinatoricsTask(task_type="permutations", difficulty=5, language="ru")
     task.solve()
     print(f"Задача: {task.description}")
     print(f"Ответ: {task.final_answer}")
     
     # Статистика
     print("\n--- Статистика ---")
-    task = StatisticsTask(task_type="mean", language="ru", difficulty=5)
+    task = StatisticsTask(task_type="mean", difficulty=5, language="ru")
+    task.solve()
+    print(f"Задача: {task.description}")
+    print(f"Ответ: {task.final_answer}")
+    
+    # Интеграл
+    print("\n--- Интеграл ---")
+    task = IntegralTask(task_type="indefinite_polynomial", difficulty=3, language="ru", detail_level=5)
     task.solve()
     print(f"Задача: {task.description}")
     print(f"Ответ: {task.final_answer}")
@@ -104,6 +113,33 @@ def example_physics_tasks():
     task.solve()
     print(f"Задача: {task.description}")
     print(f"Ответ: {task.final_answer}")
+    
+    # Квантовая механика
+    print("\n--- Квантовая механика (фотоэффект) ---")
+    task = QuantumTask(task_type="photoelectric", freq=1e15, work_function=2.0, 
+                       language="ru", detail_level=5)
+    task.solve()
+    print(f"Задача: {task.description}")
+    print(f"Шаги решения:")
+    for step in task.solution_steps:
+        print(f"  {step}")
+    print(f"Ответ: {task.final_answer}")
+    
+    # Ядерная физика
+    print("\n--- Ядерная физика (энергия связи) ---")
+    task = NuclearTask(task_type="binding_energy", nucleus="He-4", 
+                       language="ru", detail_level=10)
+    task.solve()
+    print(f"Задача: {task.description}")
+    print(f"Ответ: {task.final_answer}")
+    
+    # СТО
+    print("\n--- СТО (замедление времени) ---")
+    task = RelativityTask(task_type="time_dilation", beta=0.8, t0=10, 
+                          language="ru", detail_level=5)
+    task.solve()
+    print(f"Задача: {task.description}")
+    print(f"Ответ: {task.final_answer}")
 
 
 def example_random_generation():
@@ -133,7 +169,7 @@ def example_physics_constants():
     print("Пример 4: Физические константы")
     print("=" * 60)
     
-    constants_to_show = ["g", "c", "R", "k_e", "h", "N_A"]
+    constants_to_show = ["g", "c", "R", "k_e", "h", "N_A", "G"]
     
     for const_name in constants_to_show:
         const = PHYSICS_CONSTANTS[const_name]
@@ -147,7 +183,7 @@ def example_all_task_types():
     print("=" * 60)
     
     print("\nМатематические задачи:")
-    for i, name in enumerate(ALL_TASK_GENERATORS.keys(), 1):
+    for i, name in enumerate(sorted(ALL_TASK_GENERATORS.keys()), 1):
         print(f"  {i:2}. {name}")
     
     print(f"\nВсего математических типов: {len(ALL_TASK_GENERATORS)}")
@@ -181,6 +217,29 @@ def example_bilingual():
     print(f"Answer: {task.final_answer}")
 
 
+def example_sft_dataset():
+    """Пример генерации SFT датасета."""
+    print("\n" + "=" * 60)
+    print("Пример 7: Генерация SFT датасета")
+    print("=" * 60)
+    
+    generator = DatasetGenerator()
+    
+    dataset = generator.generate_sft_dataset(
+        task_types=["quadratic", "kinematics", "quantum"],
+        num_samples=10,
+        language="ru",
+        difficulties=[5],
+    )
+    
+    print(f"\nСгенерировано: {len(dataset)} примеров")
+    print("\nПример записи:")
+    ex = dataset[0]
+    print(f"  instruction: {ex['instruction']}")
+    print(f"  input: {ex['input'][:60]}...")
+    print(f"  output: {ex['output'][:100]}...")
+
+
 def main():
     """Запуск всех примеров."""
     example_math_tasks()
@@ -189,6 +248,7 @@ def main():
     example_physics_constants()
     example_all_task_types()
     example_bilingual()
+    example_sft_dataset()
     
     print("\n" + "=" * 60)
     print("Все примеры выполнены успешно!")

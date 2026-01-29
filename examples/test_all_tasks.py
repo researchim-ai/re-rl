@@ -11,11 +11,10 @@
 
 import sys
 import os
-import traceback
 
 # Добавляем корневую директорию проекта в PYTHONPATH
 project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.append(project_root)
+sys.path.insert(0, project_root)
 
 from re_rl.tasks.generators import ALL_TASK_GENERATORS
 from re_rl.tasks.physics.generators import ALL_PHYSICS_TASK_GENERATORS
@@ -50,7 +49,8 @@ def test_task(task_generator, task_name, num_tests=3, language="ru", **kwargs):
                 steps = result.get("solution_steps", [])
             
             print(f"\n  Тест {i+1}: ✓")
-            print(f"    Задача: {problem[:70]}...")
+            problem_preview = str(problem)[:70].replace('\n', ' ')
+            print(f"    Задача: {problem_preview}...")
             print(f"    Ответ: {answer}")
             success += 1
             

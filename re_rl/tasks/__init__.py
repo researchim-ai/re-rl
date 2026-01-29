@@ -91,6 +91,27 @@ from re_rl.tasks.physics.thermodynamics.heat_transfer_task import HeatTransferTa
 from re_rl.tasks.physics.waves.waves_task import WavesTask
 from re_rl.tasks.physics.waves.optics_task import OpticsTask
 
+# Квантовая механика
+from re_rl.tasks.physics.quantum.quantum_task import QuantumTask
+
+# Ядерная физика
+from re_rl.tasks.physics.nuclear.nuclear_task import NuclearTask
+
+# Магнетизм
+from re_rl.tasks.physics.magnetism.magnetism_task import MagnetismTask
+
+# СТО
+from re_rl.tasks.physics.relativity.relativity_task import RelativityTask
+
+# Колебания
+from re_rl.tasks.physics.oscillations.oscillations_task import OscillationsTask
+
+# Гидростатика
+from re_rl.tasks.physics.fluids.fluids_task import FluidsTask
+
+# Астрофизика
+from re_rl.tasks.physics.astrophysics.astrophysics_task import AstrophysicsTask
+
 # Физические утилиты
 from re_rl.tasks.physics.constants import PHYSICS_CONSTANTS, get_constant
 from re_rl.tasks.physics.units import convert_units, format_with_units
@@ -109,6 +130,13 @@ from re_rl.tasks.physics.generators import (
     generate_random_heat_transfer_task,
     generate_random_waves_task,
     generate_random_optics_task,
+    generate_random_quantum_task,
+    generate_random_nuclear_task,
+    generate_random_magnetism_task,
+    generate_random_relativity_task,
+    generate_random_oscillations_task,
+    generate_random_fluids_task,
+    generate_random_astrophysics_task,
     ALL_PHYSICS_TASK_GENERATORS,
 )
 
@@ -234,6 +262,27 @@ __all__ = [
     "WavesTask",
     "OpticsTask",
     
+    # Физика - Квантовая механика
+    "QuantumTask",
+    
+    # Физика - Ядерная
+    "NuclearTask",
+    
+    # Физика - Магнетизм
+    "MagnetismTask",
+    
+    # Физика - СТО
+    "RelativityTask",
+    
+    # Физика - Колебания
+    "OscillationsTask",
+    
+    # Физика - Гидростатика
+    "FluidsTask",
+    
+    # Физика - Астрофизика
+    "AstrophysicsTask",
+    
     # Физические утилиты
     "PHYSICS_CONSTANTS",
     "get_constant",
@@ -291,5 +340,12 @@ __all__ = [
     "generate_random_heat_transfer_task",
     "generate_random_waves_task",
     "generate_random_optics_task",
+    "generate_random_quantum_task",
+    "generate_random_nuclear_task",
+    "generate_random_magnetism_task",
+    "generate_random_relativity_task",
+    "generate_random_oscillations_task",
+    "generate_random_fluids_task",
+    "generate_random_astrophysics_task",
     "ALL_PHYSICS_TASK_GENERATORS",
 ]
