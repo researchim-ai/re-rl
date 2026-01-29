@@ -4623,4 +4623,397 @@ Analysis:
         }
     },
 
+    #----------------------------------------------------------------------------
+    # QUANTUM - Квантовая механика
+    #----------------------------------------------------------------------------
+    "quantum": {
+        "instructions": {
+            "ru": "Решите задачу по квантовой механике.",
+            "en": "Solve the quantum mechanics problem."
+        },
+        "problem": {
+            "photoelectric": {
+                "ru": "Фотон с частотой {freq} Гц падает на металл с работой выхода {work_function} эВ. Найдите кинетическую энергию фотоэлектрона.",
+                "en": "A photon with frequency {freq} Hz strikes a metal with work function {work_function} eV. Find the kinetic energy of the photoelectron."
+            },
+            "compton": {
+                "ru": "Фотон с длиной волны {wavelength} м рассеивается на свободном электроне под углом {angle}°. Найдите изменение длины волны.",
+                "en": "A photon with wavelength {wavelength} m scatters off a free electron at angle {angle}°. Find the change in wavelength."
+            },
+            "de_broglie": {
+                "ru": "Частица массой {mass} кг движется со скоростью {velocity} м/с. Найдите длину волны де Бройля.",
+                "en": "A particle with mass {mass} kg moves at velocity {velocity} m/s. Find the de Broglie wavelength."
+            },
+            "hydrogen_atom": {
+                "ru": "Электрон в атоме водорода переходит с уровня n={n1} на уровень n={n2}. Найдите энергию и длину волны излучённого фотона.",
+                "en": "An electron in a hydrogen atom transitions from level n={n1} to n={n2}. Find the energy and wavelength of the emitted photon."
+            },
+            "uncertainty": {
+                "ru": "Положение электрона измерено с точностью Δx = {delta_x} м. Найдите минимальную неопределённость импульса.",
+                "en": "An electron's position is measured with accuracy Δx = {delta_x} m. Find the minimum uncertainty in momentum."
+            },
+            "particle_in_box": {
+                "ru": "Электрон находится в потенциальной яме шириной L = {L} м. Найдите энергию на уровне n = {n}.",
+                "en": "An electron is in a potential well of width L = {L} m. Find the energy at level n = {n}."
+            }
+        },
+        "steps": {
+            "einstein_equation": {
+                "ru": "Шаг 1: Уравнение Эйнштейна для фотоэффекта: hν = A + Eₖ",
+                "en": "Step 1: Einstein's photoelectric equation: hν = A + Eₖ"
+            },
+            "compton_formula": {
+                "ru": "Шаг 1: Формула Комптона: Δλ = λc(1 - cos θ), где λc = h/(m_e·c)",
+                "en": "Step 1: Compton formula: Δλ = λc(1 - cos θ), where λc = h/(m_e·c)"
+            },
+            "de_broglie_formula": {
+                "ru": "Шаг 1: Формула де Бройля: λ = h/p = h/(mv)",
+                "en": "Step 1: de Broglie formula: λ = h/p = h/(mv)"
+            },
+            "hydrogen_energy": {
+                "ru": "Шаг 1: Энергия уровня: Eₙ = -13.6/n² эВ",
+                "en": "Step 1: Energy level: Eₙ = -13.6/n² eV"
+            },
+            "uncertainty_formula": {
+                "ru": "Шаг 1: Принцип неопределённости: Δx·Δp ≥ ℏ/2",
+                "en": "Step 1: Uncertainty principle: Δx·Δp ≥ ℏ/2"
+            },
+            "particle_box_formula": {
+                "ru": "Шаг 1: Энергия частицы в яме: Eₙ = n²h²/(8mL²)",
+                "en": "Step 1: Particle in box energy: Eₙ = n²h²/(8mL²)"
+            }
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # NUCLEAR - Ядерная физика
+    #----------------------------------------------------------------------------
+    "nuclear": {
+        "instructions": {
+            "ru": "Решите задачу по ядерной физике.",
+            "en": "Solve the nuclear physics problem."
+        },
+        "problem": {
+            "radioactive_decay": {
+                "ru": "Начальное число атомов N₀ = {N0}. Период полураспада T½ = {t_half}. Найдите число атомов через время t = {t}.",
+                "en": "Initial number of atoms N₀ = {N0}. Half-life T½ = {t_half}. Find the number of atoms after time t = {t}."
+            },
+            "half_life": {
+                "ru": "Число атомов уменьшилось от N₀ = {N0} до N = {N} за время t = {t}. Найдите период полураспада.",
+                "en": "Number of atoms decreased from N₀ = {N0} to N = {N} in time t = {t}. Find the half-life."
+            },
+            "binding_energy": {
+                "ru": "Найдите энергию связи ядра {nucleus} (A = {A}, Z = {Z}).",
+                "en": "Find the binding energy of {nucleus} nucleus (A = {A}, Z = {Z})."
+            },
+            "mass_defect": {
+                "ru": "Найдите дефект массы ядра {nucleus} (A = {A}, Z = {Z}, масса = {mass} а.е.м.).",
+                "en": "Find the mass defect of {nucleus} nucleus (A = {A}, Z = {Z}, mass = {mass} amu)."
+            },
+            "activity": {
+                "ru": "Найдите активность источника с N₀ = {N0} атомами и периодом полураспада T½ = {t_half}.",
+                "en": "Find the activity of a source with N₀ = {N0} atoms and half-life T½ = {t_half}."
+            }
+        },
+        "steps": {
+            "decay_law": {
+                "ru": "Шаг 1: Закон радиоактивного распада: N(t) = N₀·e^(-λt), где λ = ln(2)/T½",
+                "en": "Step 1: Radioactive decay law: N(t) = N₀·e^(-λt), where λ = ln(2)/T½"
+            },
+            "half_life_formula": {
+                "ru": "Шаг 1: N = N₀·(1/2)^(t/T½) => T½ = t/log₂(N₀/N)",
+                "en": "Step 1: N = N₀·(1/2)^(t/T½) => T½ = t/log₂(N₀/N)"
+            },
+            "binding_formula": {
+                "ru": "Шаг 1: Eсв = Δm·c² = [Z·m_p + (A-Z)·m_n - M]·931.5 МэВ",
+                "en": "Step 1: E_b = Δm·c² = [Z·m_p + (A-Z)·m_n - M]·931.5 MeV"
+            },
+            "mass_defect_formula": {
+                "ru": "Шаг 1: Δm = Z·m_p + (A-Z)·m_n - M",
+                "en": "Step 1: Δm = Z·m_p + (A-Z)·m_n - M"
+            },
+            "activity_formula": {
+                "ru": "Шаг 1: Активность A = λN = (ln2/T½)·N",
+                "en": "Step 1: Activity A = λN = (ln2/T½)·N"
+            }
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # MAGNETISM - Магнетизм
+    #----------------------------------------------------------------------------
+    "magnetism": {
+        "instructions": {
+            "ru": "Решите задачу по магнетизму.",
+            "en": "Solve the magnetism problem."
+        },
+        "problem": {
+            "lorentz_force": {
+                "ru": "Заряд q = {q} Кл движется со скоростью v = {v} м/с в магнитном поле B = {B} Тл под углом {angle}° к линиям поля. Найдите силу Лоренца.",
+                "en": "A charge q = {q} C moves at v = {v} m/s in a magnetic field B = {B} T at angle {angle}° to field lines. Find the Lorentz force."
+            },
+            "cyclotron": {
+                "ru": "Частица массой m = {m} кг и зарядом q = {q} Кл движется со скоростью v = {v} м/с в магнитном поле B = {B} Тл. Найдите радиус траектории и период обращения.",
+                "en": "A particle with mass m = {m} kg and charge q = {q} C moves at v = {v} m/s in magnetic field B = {B} T. Find the trajectory radius and period."
+            },
+            "solenoid": {
+                "ru": "Соленоид имеет N = {n} витков, длину L = {L} м, по нему течёт ток I = {I} А. Найдите магнитное поле внутри.",
+                "en": "A solenoid has N = {n} turns, length L = {L} m, current I = {I} A. Find the magnetic field inside."
+            },
+            "ampere_force": {
+                "ru": "Проводник длиной L = {L} м с током I = {I} А находится в магнитном поле B = {B} Тл под углом {angle}°. Найдите силу Ампера.",
+                "en": "A conductor of length L = {L} m with current I = {I} A is in magnetic field B = {B} T at angle {angle}°. Find the Ampere force."
+            },
+            "magnetic_flux": {
+                "ru": "Найдите магнитный поток через площадку S = {S} м² в поле B = {B} Тл, если нормаль к площадке составляет угол {angle}° с полем.",
+                "en": "Find the magnetic flux through area S = {S} m² in field B = {B} T, if the normal makes angle {angle}° with the field."
+            }
+        },
+        "steps": {
+            "lorentz_formula": {
+                "ru": "Шаг 1: Сила Лоренца: F = qvB·sin(α)",
+                "en": "Step 1: Lorentz force: F = qvB·sin(α)"
+            },
+            "cyclotron_formula": {
+                "ru": "Шаг 1: Радиус: r = mv/(qB), Период: T = 2πm/(qB)",
+                "en": "Step 1: Radius: r = mv/(qB), Period: T = 2πm/(qB)"
+            },
+            "solenoid_formula": {
+                "ru": "Шаг 1: Поле соленоида: B = μ₀nI, где n = N/L",
+                "en": "Step 1: Solenoid field: B = μ₀nI, where n = N/L"
+            },
+            "ampere_formula": {
+                "ru": "Шаг 1: Сила Ампера: F = BIL·sin(α)",
+                "en": "Step 1: Ampere force: F = BIL·sin(α)"
+            },
+            "flux_formula": {
+                "ru": "Шаг 1: Магнитный поток: Φ = BS·cos(α)",
+                "en": "Step 1: Magnetic flux: Φ = BS·cos(α)"
+            }
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # RELATIVITY - Специальная теория относительности
+    #----------------------------------------------------------------------------
+    "relativity": {
+        "instructions": {
+            "ru": "Решите задачу по специальной теории относительности.",
+            "en": "Solve the special relativity problem."
+        },
+        "problem": {
+            "time_dilation": {
+                "ru": "В системе отсчёта, движущейся со скоростью β = {beta}c, прошло собственное время t₀ = {t0} с. Найдите время в неподвижной системе.",
+                "en": "In a reference frame moving at β = {beta}c, proper time t₀ = {t0} s has passed. Find the time in the stationary frame."
+            },
+            "length_contraction": {
+                "ru": "Стержень длиной L₀ = {L0} м движется со скоростью β = {beta}c. Найдите его длину в неподвижной системе.",
+                "en": "A rod of length L₀ = {L0} m moves at β = {beta}c. Find its length in the stationary frame."
+            },
+            "mass_energy": {
+                "ru": "Найдите энергию покоя тела массой m = {m} кг.",
+                "en": "Find the rest energy of a body with mass m = {m} kg."
+            },
+            "relativistic_momentum": {
+                "ru": "Тело массой m = {m} кг движется со скоростью β = {beta}c. Найдите релятивистский импульс.",
+                "en": "A body with mass m = {m} kg moves at β = {beta}c. Find the relativistic momentum."
+            },
+            "lorentz_factor": {
+                "ru": "Найдите фактор Лоренца γ для скорости β = {beta}c.",
+                "en": "Find the Lorentz factor γ for velocity β = {beta}c."
+            }
+        },
+        "steps": {
+            "time_formula": {
+                "ru": "Шаг 1: Замедление времени: t = t₀·γ, где γ = 1/√(1-β²)",
+                "en": "Step 1: Time dilation: t = t₀·γ, where γ = 1/√(1-β²)"
+            },
+            "length_formula": {
+                "ru": "Шаг 1: Сокращение длины: L = L₀/γ",
+                "en": "Step 1: Length contraction: L = L₀/γ"
+            },
+            "mass_energy_formula": {
+                "ru": "Шаг 1: Энергия покоя: E = mc²",
+                "en": "Step 1: Rest energy: E = mc²"
+            },
+            "momentum_formula": {
+                "ru": "Шаг 1: Релятивистский импульс: p = γmv",
+                "en": "Step 1: Relativistic momentum: p = γmv"
+            },
+            "lorentz_formula": {
+                "ru": "Шаг 1: Фактор Лоренца: γ = 1/√(1-β²)",
+                "en": "Step 1: Lorentz factor: γ = 1/√(1-β²)"
+            }
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # OSCILLATIONS - Колебания
+    #----------------------------------------------------------------------------
+    "oscillations": {
+        "instructions": {
+            "ru": "Решите задачу на колебания.",
+            "en": "Solve the oscillation problem."
+        },
+        "problem": {
+            "harmonic": {
+                "ru": "Гармонические колебания имеют амплитуду A = {A} м и циклическую частоту ω = {omega} рад/с. Найдите период и максимальную скорость.",
+                "en": "Harmonic oscillations have amplitude A = {A} m and angular frequency ω = {omega} rad/s. Find the period and maximum velocity."
+            },
+            "pendulum": {
+                "ru": "Математический маятник имеет длину L = {L} м. Найдите период колебаний. (g = {g} м/с²)",
+                "en": "A simple pendulum has length L = {L} m. Find the period of oscillation. (g = {g} m/s²)"
+            },
+            "spring": {
+                "ru": "Пружинный маятник: жёсткость пружины k = {k} Н/м, масса груза m = {m} кг. Найдите период и частоту колебаний.",
+                "en": "Spring pendulum: spring constant k = {k} N/m, mass m = {m} kg. Find the period and frequency."
+            },
+            "lc_circuit": {
+                "ru": "LC-контур: индуктивность L = {L} мГн, ёмкость C = {C} мкФ. Найдите частоту собственных колебаний.",
+                "en": "LC circuit: inductance L = {L} mH, capacitance C = {C} µF. Find the natural frequency."
+            },
+            "resonance": {
+                "ru": "Найдите резонансную частоту LC-контура с L = {L} мГн и C = {C} мкФ.",
+                "en": "Find the resonant frequency of an LC circuit with L = {L} mH and C = {C} µF."
+            }
+        },
+        "steps": {
+            "harmonic_formula": {
+                "ru": "Шаг 1: x = A·cos(ωt + φ), T = 2π/ω, v_max = Aω",
+                "en": "Step 1: x = A·cos(ωt + φ), T = 2π/ω, v_max = Aω"
+            },
+            "pendulum_formula": {
+                "ru": "Шаг 1: Период маятника: T = 2π√(L/g)",
+                "en": "Step 1: Pendulum period: T = 2π√(L/g)"
+            },
+            "spring_formula": {
+                "ru": "Шаг 1: ω = √(k/m), T = 2π/ω = 2π√(m/k)",
+                "en": "Step 1: ω = √(k/m), T = 2π/ω = 2π√(m/k)"
+            },
+            "lc_formula": {
+                "ru": "Шаг 1: Частота LC-контура: ω = 1/√(LC), f = 1/(2π√(LC))",
+                "en": "Step 1: LC circuit frequency: ω = 1/√(LC), f = 1/(2π√(LC))"
+            },
+            "resonance_formula": {
+                "ru": "Шаг 1: Резонансная частота: f_рез = 1/(2π√(LC))",
+                "en": "Step 1: Resonant frequency: f_res = 1/(2π√(LC))"
+            }
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # FLUIDS - Гидростатика и гидродинамика
+    #----------------------------------------------------------------------------
+    "fluids": {
+        "instructions": {
+            "ru": "Решите задачу по гидростатике.",
+            "en": "Solve the fluid mechanics problem."
+        },
+        "problem": {
+            "pressure": {
+                "ru": "Найдите давление {fluid} на глубине h = {h} м. (ρ = {rho} кг/м³, g = {g} м/с²)",
+                "en": "Find the pressure of {fluid} at depth h = {h} m. (ρ = {rho} kg/m³, g = {g} m/s²)"
+            },
+            "archimedes": {
+                "ru": "Тело объёмом V = {V} м³ погружено в {fluid} (ρ = {rho} кг/м³). Найдите силу Архимеда.",
+                "en": "A body of volume V = {V} m³ is submerged in {fluid} (ρ = {rho} kg/m³). Find the buoyant force."
+            },
+            "bernoulli": {
+                "ru": "Жидкость (ρ = {rho} кг/м³) течёт со скоростью v₁ = {v1} м/с на высоте h = {h} м. Найдите скорость на уровне земли.",
+                "en": "Fluid (ρ = {rho} kg/m³) flows at v₁ = {v1} m/s at height h = {h} m. Find the velocity at ground level."
+            },
+            "continuity": {
+                "ru": "Жидкость течёт по трубе. Площадь сечения A₁ = {A1} см², скорость v₁ = {v1} м/с. Найдите скорость при A₂ = {A2} см².",
+                "en": "Fluid flows through a pipe. Cross-section A₁ = {A1} cm², velocity v₁ = {v1} m/s. Find velocity at A₂ = {A2} cm²."
+            },
+            "pascal": {
+                "ru": "В гидравлическом прессе: сила F₁ = {F1} Н, площадь A₁ = {A1} см², площадь A₂ = {A2} см². Найдите силу F₂.",
+                "en": "In a hydraulic press: force F₁ = {F1} N, area A₁ = {A1} cm², area A₂ = {A2} cm². Find force F₂."
+            }
+        },
+        "steps": {
+            "pressure_formula": {
+                "ru": "Шаг 1: Давление жидкости: P = ρgh",
+                "en": "Step 1: Fluid pressure: P = ρgh"
+            },
+            "archimedes_formula": {
+                "ru": "Шаг 1: Сила Архимеда: F_A = ρgV",
+                "en": "Step 1: Buoyant force: F_A = ρgV"
+            },
+            "bernoulli_formula": {
+                "ru": "Шаг 1: Уравнение Бернулли: P + ρv²/2 + ρgh = const",
+                "en": "Step 1: Bernoulli equation: P + ρv²/2 + ρgh = const"
+            },
+            "continuity_formula": {
+                "ru": "Шаг 1: Уравнение непрерывности: A₁v₁ = A₂v₂",
+                "en": "Step 1: Continuity equation: A₁v₁ = A₂v₂"
+            },
+            "pascal_formula": {
+                "ru": "Шаг 1: Закон Паскаля: P₁ = P₂ => F₁/A₁ = F₂/A₂",
+                "en": "Step 1: Pascal's law: P₁ = P₂ => F₁/A₁ = F₂/A₂"
+            }
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
+    #----------------------------------------------------------------------------
+    # ASTROPHYSICS - Астрофизика
+    #----------------------------------------------------------------------------
+    "astrophysics": {
+        "instructions": {
+            "ru": "Решите задачу по астрофизике.",
+            "en": "Solve the astrophysics problem."
+        },
+        "problem": {
+            "orbital_velocity": {
+                "ru": "Найдите орбитальную скорость спутника {body} на расстоянии r = {r} м от центра (M = {M} кг).",
+                "en": "Find the orbital velocity of a {body} satellite at distance r = {r} m from center (M = {M} kg)."
+            },
+            "escape_velocity": {
+                "ru": "Найдите вторую космическую скорость для {body} (M = {M} кг, R = {R} м).",
+                "en": "Find the escape velocity for {body} (M = {M} kg, R = {R} m)."
+            },
+            "kepler_third": {
+                "ru": "Спутник {body} имеет период обращения T = {T} часов. Найдите радиус орбиты (M = {M} кг).",
+                "en": "A {body} satellite has orbital period T = {T} hours. Find the orbital radius (M = {M} kg)."
+            },
+            "gravitational_force": {
+                "ru": "Найдите силу гравитационного притяжения между телами массами M = {M} кг и m = {m} кг на расстоянии r = {r} м.",
+                "en": "Find the gravitational force between bodies of masses M = {M} kg and m = {m} kg at distance r = {r} m."
+            },
+            "schwarzschild": {
+                "ru": "Найдите радиус Шварцшильда (горизонт событий) для объекта массой M = {M} кг.",
+                "en": "Find the Schwarzschild radius (event horizon) for an object of mass M = {M} kg."
+            }
+        },
+        "steps": {
+            "orbital_formula": {
+                "ru": "Шаг 1: Орбитальная скорость: v = √(GM/r)",
+                "en": "Step 1: Orbital velocity: v = √(GM/r)"
+            },
+            "escape_formula": {
+                "ru": "Шаг 1: Вторая космическая скорость: v₂ = √(2GM/R)",
+                "en": "Step 1: Escape velocity: v₂ = √(2GM/R)"
+            },
+            "kepler_formula": {
+                "ru": "Шаг 1: Третий закон Кеплера: T² = (4π²/GM)·r³ => r = ∛(GMT²/4π²)",
+                "en": "Step 1: Kepler's third law: T² = (4π²/GM)·r³ => r = ∛(GMT²/4π²)"
+            },
+            "gravity_formula": {
+                "ru": "Шаг 1: Закон всемирного тяготения: F = GMm/r²",
+                "en": "Step 1: Newton's law of gravitation: F = GMm/r²"
+            },
+            "schwarzschild_formula": {
+                "ru": "Шаг 1: Радиус Шварцшильда: r_s = 2GM/c²",
+                "en": "Step 1: Schwarzschild radius: r_s = 2GM/c²"
+            }
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
+    },
+
 }

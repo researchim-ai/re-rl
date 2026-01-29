@@ -3,19 +3,20 @@
 import random
 import numpy as np
 
-from re_rl.tasks.linear_task import LinearTask
-from re_rl.tasks.quadratic_task import QuadraticTask
-from re_rl.tasks.cubic_task import CubicTask
-from re_rl.tasks.exponential_task import ExponentialTask
-from re_rl.tasks.logarithmic_task import LogarithmicTask
-from re_rl.tasks.calculus_task import CalculusTask
-from re_rl.tasks.analogical_task import AnalogicalTask
-from re_rl.tasks.knights_knaves_task import KnightsKnavesTask
-from re_rl.tasks.contradiction_task import ContradictionTask
-from re_rl.tasks.graph_task import GraphTask
-from re_rl.tasks.futoshiki_task import FutoshikiTask
-from re_rl.tasks.urn_probability_task import UrnProbabilityTask
-from re_rl.tasks.text_stats_task import TextStatsTask
+# Импорты из новой структуры
+from re_rl.tasks.math.algebra.linear_task import LinearTask
+from re_rl.tasks.math.algebra.quadratic_task import QuadraticTask
+from re_rl.tasks.math.algebra.cubic_task import CubicTask
+from re_rl.tasks.math.algebra.exponential_task import ExponentialTask
+from re_rl.tasks.math.algebra.logarithmic_task import LogarithmicTask
+from re_rl.tasks.math.analysis.calculus_task import CalculusTask
+from re_rl.tasks.math.logic.analogical_task import AnalogicalTask
+from re_rl.tasks.math.logic.knights_knaves_task import KnightsKnavesTask
+from re_rl.tasks.math.logic.contradiction_task import ContradictionTask
+from re_rl.tasks.math.discrete.graph_task import GraphTask
+from re_rl.tasks.math.logic.futoshiki_task import FutoshikiTask
+from re_rl.tasks.math.probability.urn_probability_task import UrnProbabilityTask
+from re_rl.tasks.math.logic.text_stats_task import TextStatsTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 

@@ -8,6 +8,13 @@
 - electricity: электричество (цепи, электростатика, конденсаторы)
 - thermodynamics: термодинамика (газовые законы, теплопередача)
 - waves: волны и оптика
+- quantum: квантовая механика
+- nuclear: ядерная физика
+- magnetism: магнетизм
+- relativity: специальная теория относительности
+- oscillations: колебания
+- fluids: гидростатика и гидродинамика
+- astrophysics: астрофизика
 """
 
 # Механика
@@ -29,6 +36,27 @@ from re_rl.tasks.physics.thermodynamics.heat_transfer_task import HeatTransferTa
 from re_rl.tasks.physics.waves.waves_task import WavesTask
 from re_rl.tasks.physics.waves.optics_task import OpticsTask
 
+# Квантовая механика
+from re_rl.tasks.physics.quantum.quantum_task import QuantumTask
+
+# Ядерная физика
+from re_rl.tasks.physics.nuclear.nuclear_task import NuclearTask
+
+# Магнетизм
+from re_rl.tasks.physics.magnetism.magnetism_task import MagnetismTask
+
+# СТО
+from re_rl.tasks.physics.relativity.relativity_task import RelativityTask
+
+# Колебания
+from re_rl.tasks.physics.oscillations.oscillations_task import OscillationsTask
+
+# Гидростатика
+from re_rl.tasks.physics.fluids.fluids_task import FluidsTask
+
+# Астрофизика
+from re_rl.tasks.physics.astrophysics.astrophysics_task import AstrophysicsTask
+
 # Утилиты
 from re_rl.tasks.physics.constants import PHYSICS_CONSTANTS, get_constant, format_constant_info
 from re_rl.tasks.physics.units import convert_units, format_with_units, auto_scale_unit
@@ -47,6 +75,13 @@ from re_rl.tasks.physics.generators import (
     generate_random_heat_transfer_task,
     generate_random_waves_task,
     generate_random_optics_task,
+    generate_random_quantum_task,
+    generate_random_nuclear_task,
+    generate_random_magnetism_task,
+    generate_random_relativity_task,
+    generate_random_oscillations_task,
+    generate_random_fluids_task,
+    generate_random_astrophysics_task,
     ALL_PHYSICS_TASK_GENERATORS,
 )
 
@@ -66,6 +101,20 @@ __all__ = [
     # Волны
     "WavesTask",
     "OpticsTask",
+    # Квантовая механика
+    "QuantumTask",
+    # Ядерная физика
+    "NuclearTask",
+    # Магнетизм
+    "MagnetismTask",
+    # СТО
+    "RelativityTask",
+    # Колебания
+    "OscillationsTask",
+    # Гидростатика
+    "FluidsTask",
+    # Астрофизика
+    "AstrophysicsTask",
     # Утилиты
     "PHYSICS_CONSTANTS",
     "get_constant",
@@ -86,5 +135,12 @@ __all__ = [
     "generate_random_heat_transfer_task",
     "generate_random_waves_task",
     "generate_random_optics_task",
+    "generate_random_quantum_task",
+    "generate_random_nuclear_task",
+    "generate_random_magnetism_task",
+    "generate_random_relativity_task",
+    "generate_random_oscillations_task",
+    "generate_random_fluids_task",
+    "generate_random_astrophysics_task",
     "ALL_PHYSICS_TASK_GENERATORS",
 ]
