@@ -23,7 +23,7 @@ from re_rl.tasks.analogical_task import AnalogicalTask
 from re_rl.tasks.group_theory_task import GroupTheoryTask
 from re_rl.tasks.category_theory_task import CategoryTheoryTask
 
-# Новые задачи:
+# Новые задачи (первая волна):
 from re_rl.tasks.number_theory_task import NumberTheoryTask
 from re_rl.tasks.combinatorics_task import CombinatoricsTask
 from re_rl.tasks.sequence_task import SequenceTask
@@ -34,6 +34,15 @@ from re_rl.tasks.inequality_task import InequalityTask
 from re_rl.tasks.complex_number_task import ComplexNumberTask
 from re_rl.tasks.limits_task import LimitsTask
 from re_rl.tasks.set_logic_task import SetLogicTask
+
+# Новые задачи (вторая волна):
+from re_rl.tasks.statistics_task import StatisticsTask
+from re_rl.tasks.integral_task import IntegralTask
+from re_rl.tasks.differential_equation_task import DifferentialEquationTask
+from re_rl.tasks.optimization_task import OptimizationTask
+from re_rl.tasks.vector_3d_task import Vector3DTask
+from re_rl.tasks.financial_math_task import FinancialMathTask
+from re_rl.tasks.series_task import SeriesTask
 
 
 ##################################################
@@ -719,6 +728,208 @@ def generate_random_set_logic_task(
 
 
 ##################################################
+# 18. Статистика
+##################################################
+
+def generate_random_statistics_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> StatisticsTask:
+    """
+    Генерирует случайную задачу по статистике.
+    
+    Типы задач:
+    - mean: среднее арифметическое
+    - median: медиана
+    - mode: мода
+    - variance: дисперсия
+    - std_deviation: стандартное отклонение
+    - correlation: корреляция Пирсона
+    - linear_regression: линейная регрессия
+    - percentile: перцентиль
+    - quartiles: квартили
+    - z_score: z-оценка
+    """
+    return StatisticsTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 19. Интегралы
+##################################################
+
+def generate_random_integral_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> IntegralTask:
+    """
+    Генерирует случайную задачу на интегрирование.
+    
+    Типы задач:
+    - indefinite_polynomial: неопределённый интеграл от многочлена
+    - definite_polynomial: определённый интеграл от многочлена
+    - indefinite_trig: неопределённый интеграл от тригонометрии
+    - definite_trig: определённый интеграл от тригонометрии
+    - area: площадь под кривой
+    """
+    return IntegralTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 20. Дифференциальные уравнения
+##################################################
+
+def generate_random_differential_equation_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> DifferentialEquationTask:
+    """
+    Генерирует случайную задачу на дифференциальные уравнения.
+    
+    Типы задач:
+    - separable: с разделяющимися переменными
+    - linear_first_order: линейные первого порядка
+    - homogeneous_second_order: однородные второго порядка
+    - exponential_growth: экспоненциальный рост
+    - cauchy_problem: задача Коши
+    """
+    return DifferentialEquationTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 21. Оптимизация
+##################################################
+
+def generate_random_optimization_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> OptimizationTask:
+    """
+    Генерирует случайную задачу на оптимизацию.
+    
+    Типы задач:
+    - find_extremum: поиск экстремумов
+    - max_min_interval: max/min на отрезке
+    - linear_programming: линейное программирование
+    """
+    return OptimizationTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 22. Векторы 3D
+##################################################
+
+def generate_random_vector_3d_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> Vector3DTask:
+    """
+    Генерирует случайную задачу по векторам в 3D.
+    
+    Типы задач:
+    - cross_product: векторное произведение
+    - triple_scalar: смешанное произведение
+    - plane_equation: уравнение плоскости
+    - distance_point_plane: расстояние от точки до плоскости
+    - angle_vectors: угол между векторами
+    - projection: проекция вектора
+    - parallelpiped_volume: объём параллелепипеда
+    """
+    return Vector3DTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 23. Финансовая математика
+##################################################
+
+def generate_random_financial_math_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> FinancialMathTask:
+    """
+    Генерирует случайную задачу по финансовой математике.
+    
+    Типы задач:
+    - simple_interest: простые проценты
+    - compound_interest: сложные проценты
+    - present_value: текущая стоимость
+    - annuity_pv: текущая стоимость аннуитета
+    - annuity_fv: будущая стоимость аннуитета
+    - loan_payment: платёж по кредиту
+    - npv: чистая приведённая стоимость
+    """
+    return FinancialMathTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 24. Ряды и сходимость
+##################################################
+
+def generate_random_series_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> SeriesTask:
+    """
+    Генерирует случайную задачу на ряды.
+    
+    Типы задач:
+    - geometric_sum: сумма геометрического ряда
+    - convergence_test: исследование сходимости
+    - partial_sum: частичная сумма
+    - telescoping: телескопический ряд
+    """
+    return SeriesTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
 # Универсальный генератор всех типов задач
 ##################################################
 
@@ -751,6 +962,14 @@ ALL_TASK_GENERATORS = {
     "complex_number": generate_random_complex_number_task,
     "limits": generate_random_limits_task,
     "set_logic": generate_random_set_logic_task,
+    # Новые задачи (вторая волна):
+    "statistics": generate_random_statistics_task,
+    "integral": generate_random_integral_task,
+    "differential_equation": generate_random_differential_equation_task,
+    "optimization": generate_random_optimization_task,
+    "vector_3d": generate_random_vector_3d_task,
+    "financial_math": generate_random_financial_math_task,
+    "series": generate_random_series_task,
 }
 
 

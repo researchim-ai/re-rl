@@ -26,7 +26,7 @@ from re_rl.tasks.group_theory_task import GroupTheoryTask
 from re_rl.tasks.category_theory_task import CategoryTheoryTask
 from re_rl.tasks.registry import registry
 
-# Новые задачи
+# Новые задачи (первая волна)
 from re_rl.tasks.number_theory_task import NumberTheoryTask
 from re_rl.tasks.combinatorics_task import CombinatoricsTask
 from re_rl.tasks.sequence_task import SequenceTask
@@ -37,6 +37,15 @@ from re_rl.tasks.inequality_task import InequalityTask
 from re_rl.tasks.complex_number_task import ComplexNumberTask
 from re_rl.tasks.limits_task import LimitsTask
 from re_rl.tasks.set_logic_task import SetLogicTask
+
+# Новые задачи (вторая волна)
+from re_rl.tasks.statistics_task import StatisticsTask
+from re_rl.tasks.integral_task import IntegralTask
+from re_rl.tasks.differential_equation_task import DifferentialEquationTask
+from re_rl.tasks.optimization_task import OptimizationTask
+from re_rl.tasks.vector_3d_task import Vector3DTask
+from re_rl.tasks.financial_math_task import FinancialMathTask
+from re_rl.tasks.series_task import SeriesTask
 
 # Генераторы
 from re_rl.tasks.generators import (
@@ -68,6 +77,13 @@ from re_rl.tasks.generators import (
     generate_random_complex_number_task,
     generate_random_limits_task,
     generate_random_set_logic_task,
+    generate_random_statistics_task,
+    generate_random_integral_task,
+    generate_random_differential_equation_task,
+    generate_random_optimization_task,
+    generate_random_vector_3d_task,
+    generate_random_financial_math_task,
+    generate_random_series_task,
     ALL_TASK_GENERATORS,
 )
 
@@ -124,6 +140,21 @@ __all__ = [
     # Вероятность и статистика
     "UrnProbabilityTask",
     "TextStatsTask",
+    "StatisticsTask",
+    
+    # Интегралы и дифф. уравнения
+    "IntegralTask",
+    "DifferentialEquationTask",
+    "SeriesTask",
+    
+    # Оптимизация
+    "OptimizationTask",
+    
+    # Векторы 3D
+    "Vector3DTask",
+    
+    # Финансовая математика
+    "FinancialMathTask",
     
     # Генераторы
     "generate_random_task",
@@ -154,6 +185,13 @@ __all__ = [
     "generate_random_complex_number_task",
     "generate_random_limits_task",
     "generate_random_set_logic_task",
+    "generate_random_statistics_task",
+    "generate_random_integral_task",
+    "generate_random_differential_equation_task",
+    "generate_random_optimization_task",
+    "generate_random_vector_3d_task",
+    "generate_random_financial_math_task",
+    "generate_random_series_task",
     "ALL_TASK_GENERATORS",
     
     # Реестр

@@ -3063,4 +3063,740 @@ Analysis:
         }
     },
 
+    #----------------------------------------------------------------------------
+    # 30) STATISTICS - Статистика
+    #----------------------------------------------------------------------------
+    "statistics": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по статистике.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the statistics problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "mean": {
+                "ru": "Найдите среднее арифметическое для набора данных: {data}",
+                "en": "Find the arithmetic mean of the data set: {data}"
+            },
+            "median": {
+                "ru": "Найдите медиану для набора данных: {data}",
+                "en": "Find the median of the data set: {data}"
+            },
+            "mode": {
+                "ru": "Найдите моду для набора данных: {data}",
+                "en": "Find the mode of the data set: {data}"
+            },
+            "variance": {
+                "ru": "Найдите дисперсию для набора данных: {data}",
+                "en": "Find the variance of the data set: {data}"
+            },
+            "std_deviation": {
+                "ru": "Найдите стандартное отклонение для набора данных: {data}",
+                "en": "Find the standard deviation of the data set: {data}"
+            },
+            "correlation": {
+                "ru": "Найдите коэффициент корреляции Пирсона между X = {x_data} и Y = {y_data}",
+                "en": "Find Pearson correlation coefficient between X = {x_data} and Y = {y_data}"
+            },
+            "linear_regression": {
+                "ru": "Найдите уравнение линейной регрессии для X = {x_data} и Y = {y_data}",
+                "en": "Find the linear regression equation for X = {x_data} and Y = {y_data}"
+            },
+            "percentile": {
+                "ru": "Найдите {p}-й перцентиль для набора данных: {data}",
+                "en": "Find the {p}th percentile of the data set: {data}"
+            },
+            "quartiles": {
+                "ru": "Найдите квартили (Q1, Q2, Q3) для набора данных: {data}",
+                "en": "Find the quartiles (Q1, Q2, Q3) of the data set: {data}"
+            },
+            "z_score": {
+                "ru": "Найдите z-оценку для значения {x} при среднем {mean} и стандартном отклонении {std}",
+                "en": "Find the z-score for value {x} given mean {mean} and standard deviation {std}"
+            }
+        },
+        "steps": {
+            "sum_values": {
+                "ru": "Шаг 1: Сумма значений: {values} = {sum}",
+                "en": "Step 1: Sum of values: {values} = {sum}"
+            },
+            "count_values": {
+                "ru": "Шаг 2: Количество значений: n = {n}",
+                "en": "Step 2: Number of values: n = {n}"
+            },
+            "mean_formula": {
+                "ru": "Шаг 3: Среднее = Σx / n = {sum} / {n} = {mean}",
+                "en": "Step 3: Mean = Σx / n = {sum} / {n} = {mean}"
+            },
+            "sort_data": {
+                "ru": "Шаг 1: Сортируем данные: {sorted_data}",
+                "en": "Step 1: Sort data: {sorted_data}"
+            },
+            "median_odd": {
+                "ru": "Шаг 2: n = {n} (нечётное), медиана = элемент [{pos}] = {median}",
+                "en": "Step 2: n = {n} (odd), median = element [{pos}] = {median}"
+            },
+            "median_even": {
+                "ru": "Шаг 2: n = {n} (чётное), медиана = ({a} + {b}) / 2 = {median}",
+                "en": "Step 2: n = {n} (even), median = ({a} + {b}) / 2 = {median}"
+            },
+            "mode_count": {
+                "ru": "Шаг 1: Подсчёт частот: {freq}",
+                "en": "Step 1: Frequency count: {freq}"
+            },
+            "mode_result": {
+                "ru": "Шаг 2: Мода (наиболее частое значение): {mode}",
+                "en": "Step 2: Mode (most frequent value): {mode}"
+            },
+            "variance_deviations": {
+                "ru": "Шаг 1: Отклонения от среднего: {deviations}",
+                "en": "Step 1: Deviations from mean: {deviations}"
+            },
+            "variance_squared": {
+                "ru": "Шаг 2: Квадраты отклонений: {squared}",
+                "en": "Step 2: Squared deviations: {squared}"
+            },
+            "variance_formula": {
+                "ru": "Шаг 3: Дисперсия = Σ(x-μ)² / n = {sum_sq} / {n} = {variance}",
+                "en": "Step 3: Variance = Σ(x-μ)² / n = {sum_sq} / {n} = {variance}"
+            },
+            "std_formula": {
+                "ru": "Шаг 4: Стандартное отклонение = √{variance} = {std}",
+                "en": "Step 4: Standard deviation = √{variance} = {std}"
+            },
+            "correlation_formula": {
+                "ru": "Шаг {step}: r = Σ(x-x̄)(y-ȳ) / √[Σ(x-x̄)²·Σ(y-ȳ)²] = {r}",
+                "en": "Step {step}: r = Σ(x-x̄)(y-ȳ) / √[Σ(x-x̄)²·Σ(y-ȳ)²] = {r}"
+            },
+            "regression_slope": {
+                "ru": "Шаг {step}: Наклон b = Σ(x-x̄)(y-ȳ) / Σ(x-x̄)² = {b}",
+                "en": "Step {step}: Slope b = Σ(x-x̄)(y-ȳ) / Σ(x-x̄)² = {b}"
+            },
+            "regression_intercept": {
+                "ru": "Шаг {step}: Свободный член a = ȳ - b·x̄ = {a}",
+                "en": "Step {step}: Intercept a = ȳ - b·x̄ = {a}"
+            },
+            "z_score_formula": {
+                "ru": "Шаг 1: z = (x - μ) / σ = ({x} - {mean}) / {std} = {z}",
+                "en": "Step 1: z = (x - μ) / σ = ({x} - {mean}) / {std} = {z}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 31) INTEGRAL - Интегралы
+    #----------------------------------------------------------------------------
+    "integral": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Вычислите интеграл.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Compute the integral.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "indefinite_polynomial": {
+                "ru": "Вычислите неопределённый интеграл: ∫({expression}) dx",
+                "en": "Compute the indefinite integral: ∫({expression}) dx"
+            },
+            "definite_polynomial": {
+                "ru": "Вычислите определённый интеграл: ∫[{a},{b}] ({expression}) dx",
+                "en": "Compute the definite integral: ∫[{a},{b}] ({expression}) dx"
+            },
+            "indefinite_trig": {
+                "ru": "Вычислите неопределённый интеграл: ∫{expression} dx",
+                "en": "Compute the indefinite integral: ∫{expression} dx"
+            },
+            "definite_trig": {
+                "ru": "Вычислите определённый интеграл: ∫[{a},{b}] {expression} dx",
+                "en": "Compute the definite integral: ∫[{a},{b}] {expression} dx"
+            },
+            "by_parts": {
+                "ru": "Вычислите интеграл методом интегрирования по частям: ∫{expression} dx",
+                "en": "Compute the integral using integration by parts: ∫{expression} dx"
+            },
+            "substitution": {
+                "ru": "Вычислите интеграл методом замены: ∫{expression} dx",
+                "en": "Compute the integral using substitution: ∫{expression} dx"
+            },
+            "area": {
+                "ru": "Найдите площадь под кривой y = {expression} на отрезке [{a}, {b}]",
+                "en": "Find the area under the curve y = {expression} on the interval [{a}, {b}]"
+            }
+        },
+        "steps": {
+            "power_rule": {
+                "ru": "Шаг {step}: ∫x^n dx = x^(n+1)/(n+1) + C",
+                "en": "Step {step}: ∫x^n dx = x^(n+1)/(n+1) + C"
+            },
+            "apply_power": {
+                "ru": "Шаг {step}: ∫{coef}x^{n} dx = {coef}·x^{new_n}/{new_n} = {result}",
+                "en": "Step {step}: ∫{coef}x^{n} dx = {coef}·x^{new_n}/{new_n} = {result}"
+            },
+            "constant_rule": {
+                "ru": "Шаг {step}: ∫{c} dx = {c}x",
+                "en": "Step {step}: ∫{c} dx = {c}x"
+            },
+            "combine_terms": {
+                "ru": "Шаг {step}: Объединяем: {result} + C",
+                "en": "Step {step}: Combine: {result} + C"
+            },
+            "evaluate_definite": {
+                "ru": "Шаг {step}: F({b}) - F({a}) = {fb} - {fa} = {result}",
+                "en": "Step {step}: F({b}) - F({a}) = {fb} - {fa} = {result}"
+            },
+            "trig_integral": {
+                "ru": "Шаг {step}: ∫{func} dx = {result}",
+                "en": "Step {step}: ∫{func} dx = {result}"
+            },
+            "by_parts_formula": {
+                "ru": "Шаг {step}: ∫u dv = uv - ∫v du, где u = {u}, dv = {dv}",
+                "en": "Step {step}: ∫u dv = uv - ∫v du, where u = {u}, dv = {dv}"
+            },
+            "substitution_let": {
+                "ru": "Шаг {step}: Пусть u = {u}, тогда du = {du}",
+                "en": "Step {step}: Let u = {u}, then du = {du}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 32) DIFFERENTIAL_EQUATION - Дифференциальные уравнения
+    #----------------------------------------------------------------------------
+    "differential_equation": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите дифференциальное уравнение.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Общее или частное решение)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the differential equation.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (General or particular solution)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "separable": {
+                "ru": "Решите дифференциальное уравнение с разделяющимися переменными: {equation}",
+                "en": "Solve the separable differential equation: {equation}"
+            },
+            "linear_first_order": {
+                "ru": "Решите линейное ДУ первого порядка: {equation}",
+                "en": "Solve the first-order linear ODE: {equation}"
+            },
+            "homogeneous_second_order": {
+                "ru": "Решите однородное ДУ второго порядка: {equation}",
+                "en": "Solve the second-order homogeneous ODE: {equation}"
+            },
+            "cauchy_problem": {
+                "ru": "Решите задачу Коши: {equation} при {conditions}",
+                "en": "Solve the Cauchy problem: {equation} with {conditions}"
+            },
+            "exponential_growth": {
+                "ru": "Решите уравнение экспоненциального роста: dy/dx = {k}y",
+                "en": "Solve the exponential growth equation: dy/dx = {k}y"
+            }
+        },
+        "steps": {
+            "separate_variables": {
+                "ru": "Шаг 1: Разделяем переменные: {separated}",
+                "en": "Step 1: Separate variables: {separated}"
+            },
+            "integrate_both": {
+                "ru": "Шаг 2: Интегрируем обе части: ∫{left} = ∫{right}",
+                "en": "Step 2: Integrate both sides: ∫{left} = ∫{right}"
+            },
+            "general_solution": {
+                "ru": "Шаг {step}: Общее решение: {solution}",
+                "en": "Step {step}: General solution: {solution}"
+            },
+            "characteristic_equation": {
+                "ru": "Шаг 1: Характеристическое уравнение: {char_eq}",
+                "en": "Step 1: Characteristic equation: {char_eq}"
+            },
+            "find_roots": {
+                "ru": "Шаг 2: Корни: {roots}",
+                "en": "Step 2: Roots: {roots}"
+            },
+            "apply_initial": {
+                "ru": "Шаг {step}: Применяем начальные условия: {conditions}",
+                "en": "Step {step}: Apply initial conditions: {conditions}"
+            },
+            "particular_solution": {
+                "ru": "Шаг {step}: Частное решение: {solution}",
+                "en": "Step {step}: Particular solution: {solution}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 33) OPTIMIZATION - Оптимизация
+    #----------------------------------------------------------------------------
+    "optimization": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу оптимизации.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Оптимальное значение)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the optimization problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Optimal value)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "find_extremum": {
+                "ru": "Найдите экстремумы функции f(x) = {expression}",
+                "en": "Find the extrema of the function f(x) = {expression}"
+            },
+            "max_min_interval": {
+                "ru": "Найдите максимум и минимум функции f(x) = {expression} на отрезке [{a}, {b}]",
+                "en": "Find the maximum and minimum of f(x) = {expression} on [{a}, {b}]"
+            },
+            "constrained": {
+                "ru": "Найдите экстремум f(x,y) = {objective} при ограничении {constraint}",
+                "en": "Find the extremum of f(x,y) = {objective} subject to {constraint}"
+            },
+            "linear_programming": {
+                "ru": "Решите задачу линейного программирования:\nМаксимизировать: {objective}\nПри ограничениях:\n{constraints}",
+                "en": "Solve the linear programming problem:\nMaximize: {objective}\nSubject to:\n{constraints}"
+            },
+            "word_problem": {
+                "ru": "{problem_text}\nНайдите оптимальное решение.",
+                "en": "{problem_text}\nFind the optimal solution."
+            }
+        },
+        "steps": {
+            "find_derivative": {
+                "ru": "Шаг 1: Находим производную: f'(x) = {derivative}",
+                "en": "Step 1: Find derivative: f'(x) = {derivative}"
+            },
+            "critical_points": {
+                "ru": "Шаг 2: Критические точки (f'(x) = 0): {points}",
+                "en": "Step 2: Critical points (f'(x) = 0): {points}"
+            },
+            "second_derivative": {
+                "ru": "Шаг 3: Вторая производная: f''(x) = {second_deriv}",
+                "en": "Step 3: Second derivative: f''(x) = {second_deriv}"
+            },
+            "classify_point": {
+                "ru": "Шаг {step}: В точке x = {x}: f''({x}) = {value} → {type}",
+                "en": "Step {step}: At x = {x}: f''({x}) = {value} → {type}"
+            },
+            "check_endpoints": {
+                "ru": "Шаг {step}: Проверяем концы: f({a}) = {fa}, f({b}) = {fb}",
+                "en": "Step {step}: Check endpoints: f({a}) = {fa}, f({b}) = {fb}"
+            },
+            "lagrange_setup": {
+                "ru": "Шаг 1: Лагранжиан L = {lagrangian}",
+                "en": "Step 1: Lagrangian L = {lagrangian}"
+            },
+            "lp_vertices": {
+                "ru": "Шаг {step}: Вершины допустимой области: {vertices}",
+                "en": "Step {step}: Vertices of feasible region: {vertices}"
+            },
+            "evaluate_objective": {
+                "ru": "Шаг {step}: Значения целевой функции в вершинах: {values}",
+                "en": "Step {step}: Objective function values at vertices: {values}"
+            }
+        },
+        "types": {
+            "maximum": {"ru": "максимум", "en": "maximum"},
+            "minimum": {"ru": "минимум", "en": "minimum"},
+            "saddle": {"ru": "точка перегиба", "en": "saddle point"}
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 34) VECTOR_3D - Векторы в 3D
+    #----------------------------------------------------------------------------
+    "vector_3d": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по векторной алгебре в 3D.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the 3D vector algebra problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "cross_product": {
+                "ru": "Найдите векторное произведение a⃗ × b⃗, где a⃗ = {a} и b⃗ = {b}",
+                "en": "Find the cross product a⃗ × b⃗, where a⃗ = {a} and b⃗ = {b}"
+            },
+            "triple_scalar": {
+                "ru": "Найдите смешанное произведение (a⃗, b⃗, c⃗), где a⃗ = {a}, b⃗ = {b}, c⃗ = {c}",
+                "en": "Find the scalar triple product (a⃗, b⃗, c⃗), where a⃗ = {a}, b⃗ = {b}, c⃗ = {c}"
+            },
+            "plane_equation": {
+                "ru": "Найдите уравнение плоскости, проходящей через точки A{a}, B{b}, C{c}",
+                "en": "Find the equation of the plane passing through points A{a}, B{b}, C{c}"
+            },
+            "line_equation_3d": {
+                "ru": "Найдите параметрическое уравнение прямой через точки A{a} и B{b}",
+                "en": "Find the parametric equation of the line through points A{a} and B{b}"
+            },
+            "distance_point_plane": {
+                "ru": "Найдите расстояние от точки P{p} до плоскости {plane}",
+                "en": "Find the distance from point P{p} to the plane {plane}"
+            },
+            "angle_vectors": {
+                "ru": "Найдите угол между векторами a⃗ = {a} и b⃗ = {b}",
+                "en": "Find the angle between vectors a⃗ = {a} and b⃗ = {b}"
+            },
+            "projection": {
+                "ru": "Найдите проекцию вектора a⃗ = {a} на вектор b⃗ = {b}",
+                "en": "Find the projection of vector a⃗ = {a} onto vector b⃗ = {b}"
+            },
+            "parallelpiped_volume": {
+                "ru": "Найдите объём параллелепипеда, построенного на векторах a⃗ = {a}, b⃗ = {b}, c⃗ = {c}",
+                "en": "Find the volume of the parallelepiped spanned by vectors a⃗ = {a}, b⃗ = {b}, c⃗ = {c}"
+            }
+        },
+        "steps": {
+            "cross_formula": {
+                "ru": "Шаг 1: a⃗ × b⃗ = |i  j  k |\n              |{a1} {a2} {a3}|\n              |{b1} {b2} {b3}|",
+                "en": "Step 1: a⃗ × b⃗ = |i  j  k |\n              |{a1} {a2} {a3}|\n              |{b1} {b2} {b3}|"
+            },
+            "cross_compute": {
+                "ru": "Шаг 2: = ({a2}·{b3} - {a3}·{b2})i - ({a1}·{b3} - {a3}·{b1})j + ({a1}·{b2} - {a2}·{b1})k = {result}",
+                "en": "Step 2: = ({a2}·{b3} - {a3}·{b2})i - ({a1}·{b3} - {a3}·{b1})j + ({a1}·{b2} - {a2}·{b1})k = {result}"
+            },
+            "triple_product": {
+                "ru": "Шаг {step}: (a⃗, b⃗, c⃗) = a⃗ · (b⃗ × c⃗) = {result}",
+                "en": "Step {step}: (a⃗, b⃗, c⃗) = a⃗ · (b⃗ × c⃗) = {result}"
+            },
+            "plane_normal": {
+                "ru": "Шаг {step}: Нормаль к плоскости n⃗ = AB⃗ × AC⃗ = {normal}",
+                "en": "Step {step}: Normal to plane n⃗ = AB⃗ × AC⃗ = {normal}"
+            },
+            "plane_result": {
+                "ru": "Шаг {step}: Уравнение плоскости: {a}x + {b}y + {c}z + {d} = 0",
+                "en": "Step {step}: Plane equation: {a}x + {b}y + {c}z + {d} = 0"
+            },
+            "distance_formula": {
+                "ru": "Шаг {step}: d = |Ax₀ + By₀ + Cz₀ + D| / √(A² + B² + C²) = {distance}",
+                "en": "Step {step}: d = |Ax₀ + By₀ + Cz₀ + D| / √(A² + B² + C²) = {distance}"
+            },
+            "dot_product": {
+                "ru": "Шаг {step}: a⃗ · b⃗ = {a1}·{b1} + {a2}·{b2} + {a3}·{b3} = {result}",
+                "en": "Step {step}: a⃗ · b⃗ = {a1}·{b1} + {a2}·{b2} + {a3}·{b3} = {result}"
+            },
+            "magnitudes": {
+                "ru": "Шаг {step}: |a⃗| = {mag_a}, |b⃗| = {mag_b}",
+                "en": "Step {step}: |a⃗| = {mag_a}, |b⃗| = {mag_b}"
+            },
+            "angle_formula": {
+                "ru": "Шаг {step}: cos θ = (a⃗ · b⃗) / (|a⃗| · |b⃗|) = {cos_val}, θ = {angle}°",
+                "en": "Step {step}: cos θ = (a⃗ · b⃗) / (|a⃗| · |b⃗|) = {cos_val}, θ = {angle}°"
+            },
+            "projection_formula": {
+                "ru": "Шаг {step}: proj_b⃗(a⃗) = (a⃗ · b⃗ / |b⃗|²) · b⃗ = {result}",
+                "en": "Step {step}: proj_b⃗(a⃗) = (a⃗ · b⃗ / |b⃗|²) · b⃗ = {result}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 35) FINANCIAL_MATH - Финансовая математика
+    #----------------------------------------------------------------------------
+    "financial_math": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по финансовой математике.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the financial mathematics problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "simple_interest": {
+                "ru": "Вычислите простой процент на сумму {P} при ставке {r}% годовых за {t} лет",
+                "en": "Calculate simple interest on principal {P} at {r}% annual rate for {t} years"
+            },
+            "compound_interest": {
+                "ru": "Вычислите сложный процент на сумму {P} при ставке {r}% годовых за {t} лет (начисление {n} раз в год)",
+                "en": "Calculate compound interest on principal {P} at {r}% annual rate for {t} years (compounded {n} times per year)"
+            },
+            "present_value": {
+                "ru": "Найдите текущую стоимость {FV}, которая будет получена через {t} лет при ставке {r}%",
+                "en": "Find the present value of {FV} to be received in {t} years at {r}% rate"
+            },
+            "annuity_pv": {
+                "ru": "Найдите текущую стоимость аннуитета с платежами {PMT} в течение {n} периодов при ставке {r}%",
+                "en": "Find the present value of an annuity with payments {PMT} for {n} periods at {r}% rate"
+            },
+            "annuity_fv": {
+                "ru": "Найдите будущую стоимость аннуитета с платежами {PMT} в течение {n} периодов при ставке {r}%",
+                "en": "Find the future value of an annuity with payments {PMT} for {n} periods at {r}% rate"
+            },
+            "loan_payment": {
+                "ru": "Рассчитайте ежемесячный платёж по кредиту {P} на {t} лет под {r}% годовых",
+                "en": "Calculate monthly payment for a loan of {P} for {t} years at {r}% annual rate"
+            },
+            "npv": {
+                "ru": "Рассчитайте NPV проекта с начальной инвестицией {I0} и денежными потоками {cash_flows} при ставке дисконтирования {r}%",
+                "en": "Calculate NPV of a project with initial investment {I0} and cash flows {cash_flows} at discount rate {r}%"
+            }
+        },
+        "steps": {
+            "simple_interest_formula": {
+                "ru": "Шаг 1: I = P × r × t = {P} × {r} × {t} = {I}",
+                "en": "Step 1: I = P × r × t = {P} × {r} × {t} = {I}"
+            },
+            "simple_interest_total": {
+                "ru": "Шаг 2: Итого: A = P + I = {P} + {I} = {A}",
+                "en": "Step 2: Total: A = P + I = {P} + {I} = {A}"
+            },
+            "compound_formula": {
+                "ru": "Шаг 1: A = P(1 + r/n)^(nt) = {P}(1 + {r}/{n})^({n}×{t})",
+                "en": "Step 1: A = P(1 + r/n)^(nt) = {P}(1 + {r}/{n})^({n}×{t})"
+            },
+            "compound_result": {
+                "ru": "Шаг 2: A = {A}, процент = {interest}",
+                "en": "Step 2: A = {A}, interest = {interest}"
+            },
+            "pv_formula": {
+                "ru": "Шаг 1: PV = FV / (1 + r)^t = {FV} / (1 + {r})^{t} = {PV}",
+                "en": "Step 1: PV = FV / (1 + r)^t = {FV} / (1 + {r})^{t} = {PV}"
+            },
+            "annuity_pv_formula": {
+                "ru": "Шаг 1: PV = PMT × [(1 - (1+r)^(-n)) / r] = {PMT} × [(1 - (1+{r})^(-{n})) / {r}] = {PV}",
+                "en": "Step 1: PV = PMT × [(1 - (1+r)^(-n)) / r] = {PMT} × [(1 - (1+{r})^(-{n})) / {r}] = {PV}"
+            },
+            "loan_formula": {
+                "ru": "Шаг 1: PMT = P × [r(1+r)^n] / [(1+r)^n - 1]",
+                "en": "Step 1: PMT = P × [r(1+r)^n] / [(1+r)^n - 1]"
+            },
+            "npv_formula": {
+                "ru": "Шаг 1: NPV = -I₀ + Σ(CFₜ / (1+r)^t)",
+                "en": "Step 1: NPV = -I₀ + Σ(CFₜ / (1+r)^t)"
+            },
+            "npv_calculation": {
+                "ru": "Шаг {step}: CF_{t} / (1+r)^{t} = {cf} / (1+{r})^{t} = {pv}",
+                "en": "Step {step}: CF_{t} / (1+r)^{t} = {cf} / (1+{r})^{t} = {pv}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 36) SERIES - Ряды и сходимость
+    #----------------------------------------------------------------------------
+    "series": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Исследуйте ряд на сходимость или найдите его сумму.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Investigate series convergence or find its sum.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "geometric_sum": {
+                "ru": "Найдите сумму геометрического ряда: {first_term} + {second_term} + ... (бесконечный ряд при |r| < 1)",
+                "en": "Find the sum of the geometric series: {first_term} + {second_term} + ... (infinite series where |r| < 1)"
+            },
+            "convergence_test": {
+                "ru": "Исследуйте сходимость ряда Σ({general_term}), n = 1, 2, 3, ...",
+                "en": "Test the convergence of the series Σ({general_term}), n = 1, 2, 3, ..."
+            },
+            "partial_sum": {
+                "ru": "Найдите сумму первых {n} членов ряда с общим членом aₙ = {general_term}",
+                "en": "Find the sum of the first {n} terms of the series with general term aₙ = {general_term}"
+            },
+            "taylor_series": {
+                "ru": "Найдите ряд Тейлора функции f(x) = {function} в точке x = {a} (первые {n} членов)",
+                "en": "Find the Taylor series of f(x) = {function} at x = {a} (first {n} terms)"
+            },
+            "radius_convergence": {
+                "ru": "Найдите радиус сходимости степенного ряда Σ({general_term})xⁿ",
+                "en": "Find the radius of convergence of the power series Σ({general_term})xⁿ"
+            },
+            "telescoping": {
+                "ru": "Найдите сумму телескопического ряда Σ({general_term}), n = 1 до ∞",
+                "en": "Find the sum of the telescoping series Σ({general_term}), n = 1 to ∞"
+            }
+        },
+        "steps": {
+            "identify_type": {
+                "ru": "Шаг 1: Определяем тип ряда: {type}",
+                "en": "Step 1: Identify series type: {type}"
+            },
+            "geometric_ratio": {
+                "ru": "Шаг {step}: Отношение r = {second}/{first} = {ratio}",
+                "en": "Step {step}: Ratio r = {second}/{first} = {ratio}"
+            },
+            "geometric_sum_formula": {
+                "ru": "Шаг {step}: S = a / (1 - r) = {a} / (1 - {r}) = {sum}",
+                "en": "Step {step}: S = a / (1 - r) = {a} / (1 - {r}) = {sum}"
+            },
+            "ratio_test": {
+                "ru": "Шаг {step}: Признак Даламбера: L = lim|aₙ₊₁/aₙ| = {limit}",
+                "en": "Step {step}: Ratio test: L = lim|aₙ₊₁/aₙ| = {limit}"
+            },
+            "ratio_conclusion": {
+                "ru": "Шаг {step}: L = {limit} {comparison} 1 → ряд {conclusion}",
+                "en": "Step {step}: L = {limit} {comparison} 1 → series {conclusion}"
+            },
+            "root_test": {
+                "ru": "Шаг {step}: Признак Коши: L = lim ⁿ√|aₙ| = {limit}",
+                "en": "Step {step}: Root test: L = lim ⁿ√|aₙ| = {limit}"
+            },
+            "comparison_test": {
+                "ru": "Шаг {step}: Сравниваем с рядом {comparison_series}",
+                "en": "Step {step}: Compare with series {comparison_series}"
+            },
+            "taylor_coefficient": {
+                "ru": "Шаг {step}: f⁽{n}⁾({a})/{n}! = {coef}",
+                "en": "Step {step}: f⁽{n}⁾({a})/{n}! = {coef}"
+            },
+            "radius_formula": {
+                "ru": "Шаг {step}: R = lim|aₙ/aₙ₊₁| = {radius}",
+                "en": "Step {step}: R = lim|aₙ/aₙ₊₁| = {radius}"
+            }
+        },
+        "conclusions": {
+            "converges": {"ru": "сходится", "en": "converges"},
+            "diverges": {"ru": "расходится", "en": "diverges"},
+            "inconclusive": {"ru": "признак не применим", "en": "inconclusive"}
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
 }
