@@ -82,6 +82,8 @@ def generate_random_arithmetic_task(
     language: str = "ru",
     detail_level: int = 3,
     difficulty: int = 5
+,
+    **kwargs
 ) -> ArithmeticTask:
     """
     Генерирует случайную арифметическую задачу с цепочками операций.
@@ -167,6 +169,8 @@ def generate_random_cubic_task(
     detail_level: int = 3,
     difficulty: int = 5,
     output_format: str = "text"
+,
+    **kwargs
 ) -> CubicTask:
     return CubicTask(
         difficulty=difficulty,
@@ -185,6 +189,8 @@ def generate_random_exponential_task(
     detail_level: int = 3,
     difficulty: int = 5,
     output_format: str = "text"
+,
+    **kwargs
 ) -> ExponentialTask:
     return ExponentialTask(
         difficulty=difficulty,
@@ -203,6 +209,8 @@ def generate_random_logarithmic_task(
     detail_level: int = 3,
     difficulty: int = 5,
     output_format: str = "text"
+,
+    **kwargs
 ) -> LogarithmicTask:
     return LogarithmicTask(
         difficulty=difficulty,
@@ -222,6 +230,8 @@ def generate_random_calculus_task(
     detail_level=3,
     difficulty: int = 5,
     output_format: str = "text"
+,
+    **kwargs
 ) -> CalculusTask:
     return CalculusTask.generate_random_task(
         task_type=task_type,
@@ -238,7 +248,8 @@ def generate_random_calculus_task(
 
 def generate_random_contradiction_task(
     language="ru",
-    num_statements=10
+    num_statements=10,
+    **kwargs  # игнорируем difficulty и другие
 ) -> ContradictionTask:
     return ContradictionTask(language=language, num_statements=num_statements)
 
@@ -249,7 +260,8 @@ def generate_random_contradiction_task(
 
 def generate_random_knights_knaves_task(
     language="ru",
-    detail_level=5
+    detail_level=5,
+    **kwargs
 ) -> KnightsKnavesTask:
     return KnightsKnavesTask(language=language, detail_level=detail_level)
 
@@ -262,7 +274,8 @@ def generate_random_futoshiki_task(
     language="ru",
     detail_level=5,
     size_range=(4,5),
-    ineq_factor=2
+    ineq_factor=2,
+    **kwargs
 ) -> FutoshikiTask:
     """
     size_range=(4,5) => выбираем случайный size=4 или 5.
@@ -282,7 +295,8 @@ def generate_random_futoshiki_task(
 def generate_random_urn_probability_task(
     language="ru",
     count_containers_range=(2,4),
-    draws_range=(1,3)
+    draws_range=(1,3),
+    **kwargs
 ) -> UrnProbabilityTask:
     count_containers = random.randint(count_containers_range[0], count_containers_range[1])
     draws = random.randint(draws_range[0], draws_range[1])
@@ -298,6 +312,8 @@ def generate_random_text_stats_task(
     detail_level=3,
     allow_overlapping=None,
     text_gen_mode="mixed"
+,
+    **kwargs
 ) -> TextStatsTask:
     """
     Генерируем случайную задачу на поиск подстроки в тексте.
@@ -326,6 +342,8 @@ def generate_random_graph_task(
     edge_prob=0.4,
     language="ru",
     detail_level=3
+,
+    **kwargs
 ) -> GraphTask:
     return GraphTask(
         task_type=task_type,
@@ -371,6 +389,8 @@ def generate_random_system_linear_task(
 def generate_random_analogical_task(
     language: str = "ru",
     detail_level: int = 3
+,
+    **kwargs
 ) -> AnalogicalTask:
     """
     Генерирует случайную аналогическую задачу.
@@ -420,6 +440,8 @@ def generate_random_group_theory_task(
     detail_level: int = 3,
     task_type=None,
     group_type=None
+,
+    **kwargs
 ) -> GroupTheoryTask:
     """Генерируем случайную задачу по теории групп."""
     return GroupTheoryTask.generate_random_task(
@@ -437,6 +459,8 @@ def generate_random_category_theory_task(
     language: str = "ru",
     detail_level: int = 3,
     task_type=None
+,
+    **kwargs
 ) -> CategoryTheoryTask:
     """Генерируем случайную задачу по теории категорий."""
     return CategoryTheoryTask.generate_random_task(
@@ -455,6 +479,8 @@ def generate_random_number_theory_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> NumberTheoryTask:
     """
     Генерирует случайную задачу по теории чисел.
@@ -485,6 +511,8 @@ def generate_random_combinatorics_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> CombinatoricsTask:
     """
     Генерирует случайную комбинаторную задачу.
@@ -516,6 +544,8 @@ def generate_random_sequence_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> SequenceTask:
     """
     Генерирует случайную задачу на последовательности.
@@ -546,6 +576,8 @@ def generate_random_geometry_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> GeometryTask:
     """
     Генерирует случайную геометрическую задачу.
@@ -578,6 +610,8 @@ def generate_random_matrix_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> MatrixTask:
     """
     Генерирует случайную задачу с матрицами.
@@ -610,6 +644,8 @@ def generate_random_trigonometry_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> TrigonometryTask:
     """
     Генерирует случайную тригонометрическую задачу.
@@ -638,6 +674,8 @@ def generate_random_inequality_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> InequalityTask:
     """
     Генерирует случайную задачу на неравенства.
@@ -666,6 +704,8 @@ def generate_random_complex_number_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> ComplexNumberTask:
     """
     Генерирует случайную задачу с комплексными числами.
@@ -697,6 +737,8 @@ def generate_random_limits_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> LimitsTask:
     """
     Генерирует случайную задачу на пределы.
@@ -726,6 +768,8 @@ def generate_random_set_logic_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> SetLogicTask:
     """
     Генерирует случайную задачу на множества и логику.
@@ -760,6 +804,8 @@ def generate_random_statistics_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> StatisticsTask:
     """
     Генерирует случайную задачу по статистике.
@@ -793,6 +839,8 @@ def generate_random_integral_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> IntegralTask:
     """
     Генерирует случайную задачу на интегрирование.
@@ -821,6 +869,8 @@ def generate_random_differential_equation_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> DifferentialEquationTask:
     """
     Генерирует случайную задачу на дифференциальные уравнения.
@@ -849,6 +899,8 @@ def generate_random_optimization_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> OptimizationTask:
     """
     Генерирует случайную задачу на оптимизацию.
@@ -875,6 +927,8 @@ def generate_random_vector_3d_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> Vector3DTask:
     """
     Генерирует случайную задачу по векторам в 3D.
@@ -905,6 +959,8 @@ def generate_random_financial_math_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> FinancialMathTask:
     """
     Генерирует случайную задачу по финансовой математике.
@@ -935,6 +991,8 @@ def generate_random_series_task(
     detail_level: int = 3,
     difficulty: int = 5,
     task_type: str = None
+,
+    **kwargs
 ) -> SeriesTask:
     """
     Генерирует случайную задачу на ряды.
@@ -961,6 +1019,8 @@ def generate_random_sudoku_task(
     language: str = "ru",
     detail_level: int = 3,
     difficulty: int = 5
+,
+    **kwargs
 ) -> SudokuTask:
     """Генерирует случайную задачу судоку."""
     return SudokuTask(
@@ -978,6 +1038,8 @@ def generate_random_zebra_puzzle_task(
     language: str = "ru",
     detail_level: int = 3,
     difficulty: int = 5
+,
+    **kwargs
 ) -> ZebraPuzzleTask:
     """Генерирует случайную загадку Эйнштейна."""
     return ZebraPuzzleTask(
@@ -995,6 +1057,8 @@ def generate_random_river_crossing_task(
     language: str = "ru",
     detail_level: int = 3,
     difficulty: int = 5
+,
+    **kwargs
 ) -> RiverCrossingTask:
     """Генерирует случайную задачу о переправе."""
     return RiverCrossingTask(
@@ -1012,6 +1076,8 @@ def generate_random_tower_of_hanoi_task(
     language: str = "ru",
     detail_level: int = 3,
     difficulty: int = 5
+,
+    **kwargs
 ) -> TowerOfHanoiTask:
     """Генерирует случайную задачу Ханойской башни."""
     return TowerOfHanoiTask(
@@ -1029,6 +1095,8 @@ def generate_random_water_jug_task(
     language: str = "ru",
     detail_level: int = 3,
     difficulty: int = 5
+,
+    **kwargs
 ) -> WaterJugTask:
     """Генерирует случайную задачу о кувшинах."""
     return WaterJugTask(
@@ -1046,6 +1114,8 @@ def generate_random_nim_game_task(
     language: str = "ru",
     detail_level: int = 3,
     difficulty: int = 5
+,
+    **kwargs
 ) -> NimGameTask:
     """Генерирует случайную задачу игры Ним."""
     return NimGameTask(

@@ -29,7 +29,12 @@ class DimensionalAnalysisTask(BaseMathTask):
         self._output_format = output_format
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
-        self.formula_key = random.choice(list(self.FORMULAS.keys()))
+        # Для find_units выбираем только формулы с ключом "dims"
+        if self.task_type == "find_units":
+            valid_formulas = [k for k, v in self.FORMULAS.items() if "dims" in v]
+            self.formula_key = random.choice(valid_formulas)
+        else:
+            self.formula_key = random.choice(list(self.FORMULAS.keys()))
         self.formula_data = self.FORMULAS[self.formula_key]
         
         problem_text = self._create_problem_text()

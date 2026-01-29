@@ -105,10 +105,7 @@ class DatasetGenerator:
                 # Некоторые старые задачи не поддерживают difficulty
                 task = generator(language=language, detail_level=detail_level)
         
-        # Решаем задачу
-        if hasattr(task, 'solve'):
-            task.solve()
-        
+        # get_result() автоматически вызывает solve() если нужно
         result = task.get_result()
         
         return {
