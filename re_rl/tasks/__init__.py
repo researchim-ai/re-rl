@@ -48,6 +48,7 @@ from re_rl.tasks.math.discrete.combinatorics_task import CombinatoricsTask
 from re_rl.tasks.math.discrete.sequence_task import SequenceTask
 from re_rl.tasks.math.discrete.set_logic_task import SetLogicTask
 from re_rl.tasks.math.discrete.graph_task import GraphTask
+from re_rl.tasks.math.discrete.nim_game_task import NimGameTask
 
 # Абстрактная алгебра
 from re_rl.tasks.math.abstract_algebra.group_theory_task import GroupTheoryTask
@@ -67,6 +68,13 @@ from re_rl.tasks.math.logic.knights_knaves_task import KnightsKnavesTask
 from re_rl.tasks.math.logic.futoshiki_task import FutoshikiTask
 from re_rl.tasks.math.logic.analogical_task import AnalogicalTask
 from re_rl.tasks.math.logic.text_stats_task import TextStatsTask
+from re_rl.tasks.math.logic.sudoku_task import SudokuTask
+from re_rl.tasks.math.logic.zebra_puzzle_task import ZebraPuzzleTask
+
+# Планирование
+from re_rl.tasks.math.planning.river_crossing_task import RiverCrossingTask
+from re_rl.tasks.math.planning.tower_of_hanoi_task import TowerOfHanoiTask
+from re_rl.tasks.math.planning.water_jug_task import WaterJugTask
 
 # ============================================================================
 # ФИЗИЧЕСКИЕ ЗАДАЧИ (из physics/)
@@ -222,6 +230,7 @@ __all__ = [
     "SequenceTask",
     "SetLogicTask",
     "GraphTask",
+    "NimGameTask",
     
     # Абстрактная алгебра
     "GroupTheoryTask",
@@ -242,6 +251,13 @@ __all__ = [
     "FutoshikiTask",
     "AnalogicalTask",
     "TextStatsTask",
+    "SudokuTask",
+    "ZebraPuzzleTask",
+    
+    # Планирование
+    "RiverCrossingTask",
+    "TowerOfHanoiTask",
+    "WaterJugTask",
     
     # Физика - Механика
     "KinematicsTask",

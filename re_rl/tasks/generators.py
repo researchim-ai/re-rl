@@ -59,6 +59,16 @@ from re_rl.tasks.math.logic.knights_knaves_task import KnightsKnavesTask
 from re_rl.tasks.math.logic.futoshiki_task import FutoshikiTask
 from re_rl.tasks.math.logic.analogical_task import AnalogicalTask
 from re_rl.tasks.math.logic.text_stats_task import TextStatsTask
+from re_rl.tasks.math.logic.sudoku_task import SudokuTask
+from re_rl.tasks.math.logic.zebra_puzzle_task import ZebraPuzzleTask
+
+# Планирование
+from re_rl.tasks.math.planning.river_crossing_task import RiverCrossingTask
+from re_rl.tasks.math.planning.tower_of_hanoi_task import TowerOfHanoiTask
+from re_rl.tasks.math.planning.water_jug_task import WaterJugTask
+
+# Теория игр
+from re_rl.tasks.math.discrete.nim_game_task import NimGameTask
 
 
 ##################################################
@@ -941,6 +951,108 @@ def generate_random_series_task(
 
 
 ##################################################
+# 25. SudokuTask - Судоку
+##################################################
+
+def generate_random_sudoku_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5
+) -> SudokuTask:
+    """Генерирует случайную задачу судоку."""
+    return SudokuTask(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 26. ZebraPuzzleTask - Загадка Эйнштейна
+##################################################
+
+def generate_random_zebra_puzzle_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5
+) -> ZebraPuzzleTask:
+    """Генерирует случайную загадку Эйнштейна."""
+    return ZebraPuzzleTask(
+        language=language,
+        detail_level=detail_level,
+        difficulty=min(difficulty, 8)  # Ограничиваем для стабильности
+    )
+
+
+##################################################
+# 27. RiverCrossingTask - Задача о переправе
+##################################################
+
+def generate_random_river_crossing_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5
+) -> RiverCrossingTask:
+    """Генерирует случайную задачу о переправе."""
+    return RiverCrossingTask(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 28. TowerOfHanoiTask - Ханойская башня
+##################################################
+
+def generate_random_tower_of_hanoi_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5
+) -> TowerOfHanoiTask:
+    """Генерирует случайную задачу Ханойской башни."""
+    return TowerOfHanoiTask(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 29. WaterJugTask - Задача о кувшинах
+##################################################
+
+def generate_random_water_jug_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5
+) -> WaterJugTask:
+    """Генерирует случайную задачу о кувшинах."""
+    return WaterJugTask(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 30. NimGameTask - Игра Ним
+##################################################
+
+def generate_random_nim_game_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5
+) -> NimGameTask:
+    """Генерирует случайную задачу игры Ним."""
+    return NimGameTask(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
 # Универсальный генератор всех типов задач
 ##################################################
 
@@ -981,6 +1093,13 @@ ALL_TASK_GENERATORS = {
     "vector_3d": generate_random_vector_3d_task,
     "financial_math": generate_random_financial_math_task,
     "series": generate_random_series_task,
+    # Новые reasoning задачи:
+    "sudoku": generate_random_sudoku_task,
+    "zebra_puzzle": generate_random_zebra_puzzle_task,
+    "river_crossing": generate_random_river_crossing_task,
+    "tower_of_hanoi": generate_random_tower_of_hanoi_task,
+    "water_jug": generate_random_water_jug_task,
+    "nim_game": generate_random_nim_game_task,
 }
 
 
