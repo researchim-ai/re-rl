@@ -5,6 +5,7 @@ import sympy
 from typing import Optional
 
 # Импорты классов задач:
+from re_rl.tasks.arithmetic_task import ArithmeticTask
 from re_rl.tasks.linear_task import LinearTask
 from re_rl.tasks.quadratic_task import QuadraticTask
 from re_rl.tasks.cubic_task import CubicTask
@@ -21,6 +22,30 @@ from re_rl.tasks.system_linear_task import SystemLinearTask
 from re_rl.tasks.analogical_task import AnalogicalTask
 from re_rl.tasks.group_theory_task import GroupTheoryTask
 from re_rl.tasks.category_theory_task import CategoryTheoryTask
+
+
+##################################################
+# 0. Арифметические задачи (цепочки операций)
+##################################################
+
+def generate_random_arithmetic_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5
+) -> ArithmeticTask:
+    """
+    Генерирует случайную арифметическую задачу с цепочками операций.
+    
+    :param language: 'ru' или 'en'
+    :param detail_level: сколько шагов решения показывать
+    :param difficulty: уровень сложности (1-10)
+    :return: экземпляр ArithmeticTask
+    """
+    return ArithmeticTask(
+        difficulty=difficulty,
+        language=language,
+        detail_level=detail_level
+    )
 
 
 ##################################################
