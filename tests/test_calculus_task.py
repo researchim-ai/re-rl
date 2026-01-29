@@ -1,5 +1,5 @@
 import unittest
-from re_rl.tasks.calculus_task import CalculusTask
+from re_rl.tasks.math.analysis.calculus_task import CalculusTask
 
 class TestCalculusTask(unittest.TestCase):
     def test_differentiation(self):

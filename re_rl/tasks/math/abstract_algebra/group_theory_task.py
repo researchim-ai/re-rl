@@ -41,7 +41,8 @@ class GroupTheoryTask(BaseMathTask):
         element=None,
         property_type: str = None,
         language: str = "ru",
-        detail_level: int = 3
+        detail_level: int = 3,
+        output_format: str = "text"
     ):
         self.task_type = task_type.lower()
         self.group_type = group_type.lower()
@@ -49,6 +50,7 @@ class GroupTheoryTask(BaseMathTask):
         self.degree = degree
         self.element = element
         self.property_type = property_type
+        self._output_format = output_format
         
         # Сначала генерируем данные задачи
         self._generate_group()

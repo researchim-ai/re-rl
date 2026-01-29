@@ -32,12 +32,14 @@ class ContradictionTask(BaseTask):
         self,
         language: str = "en",
         num_statements: int = None,
-        difficulty: int = None
+        difficulty: int = None,
+        output_format: str = "text"
     ):
         """
         :param language: 'ru' или 'en'
         :param num_statements: сколько утверждений использовать
         :param difficulty: уровень сложности (1-10)
+        :param output_format: формат вывода ('text' или 'latex')
         """
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:

@@ -1,5 +1,5 @@
 import unittest
-from re_rl.tasks.contradiction_task import ContradictionTask
+from re_rl.tasks.math.logic.contradiction_task import ContradictionTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class TestContradictionTask(unittest.TestCase):

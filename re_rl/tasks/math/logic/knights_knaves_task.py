@@ -36,13 +36,15 @@ class KnightsKnavesTask(BaseMathTask):
         language: str = "en",
         detail_level: int = 3,
         complexity: int = None,
-        difficulty: int = None
+        difficulty: int = None,
+        output_format: str = "text"
     ):
         """
         :param language: 'ru' или 'en'
         :param detail_level: сколько шагов chain-of-thought
         :param complexity: уровень сложности (задаёт num_persons, num_statements)
         :param difficulty: уровень сложности (1-10), альтернатива complexity
+        :param output_format: формат вывода ('text' или 'latex')
         """
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:

@@ -37,7 +37,8 @@ class FutoshikiTask(BaseTask):
         detail_level=5, 
         size=None, 
         num_inequalities=None,
-        difficulty: int = None
+        difficulty: int = None,
+        output_format: str = "text"
     ):
         """
         :param language: 'ru' или 'en'
@@ -45,6 +46,7 @@ class FutoshikiTask(BaseTask):
         :param size: размер поля (None -> случайно 4..5)
         :param num_inequalities: сколько неравенств генерировать (None -> случайно)
         :param difficulty: уровень сложности (1-10)
+        :param output_format: формат вывода ('text' или 'latex')
         """
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:

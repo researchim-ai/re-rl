@@ -1,5 +1,5 @@
 import unittest
-from re_rl.tasks.knights_knaves_task import KnightsKnavesTask
+from re_rl.tasks.math.logic.knights_knaves_task import KnightsKnavesTask
 
 class TestKnightsKnavesTask(unittest.TestCase):
     def test_knights_knaves_ru(self):

@@ -286,6 +286,7 @@ class ArithmeticTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         expression: Optional[str] = None,  # Для явного задания выражения
+        output_format: str = "text",
         **config_overrides
     ):
         self.difficulty = difficulty

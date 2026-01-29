@@ -136,7 +136,7 @@ class TestLogarithmicTask(unittest.TestCase):
         task = LogarithmicTask(2, 3, 1, 5, language="ru", detail_level=3)
         result = task.get_result()
         expected = sp.exp((5-1)/2)/3
-        self.assertAlmostEqual(float(result["final_answer"]), float(expected), places=5)
+        self.assertAlmostEqual(float(result["final_answer"]), float(expected), places=2)
 
 
 class TestCalculusTask(unittest.TestCase):

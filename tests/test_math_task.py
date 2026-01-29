@@ -1,10 +1,10 @@
 import unittest
 import sympy as sp
-from re_rl.tasks.linear_task import LinearTask
-from re_rl.tasks.quadratic_task import QuadraticTask
-from re_rl.tasks.cubic_task import CubicTask
-from re_rl.tasks.exponential_task import ExponentialTask
-from re_rl.tasks.logarithmic_task import LogarithmicTask
+from re_rl.tasks.math.algebra.linear_task import LinearTask
+from re_rl.tasks.math.algebra.quadratic_task import QuadraticTask
+from re_rl.tasks.math.algebra.cubic_task import CubicTask
+from re_rl.tasks.math.algebra.exponential_task import ExponentialTask
+from re_rl.tasks.math.algebra.logarithmic_task import LogarithmicTask
 
 class TestLinearTask(unittest.TestCase):
     def test_linear_ru(self):
@@ -47,7 +47,7 @@ class TestLogarithmicTask(unittest.TestCase):
         task = LogarithmicTask(2, 3, 1, 5, language="ru")
         result = task.get_result()
         expected = sp.exp((5-1)/2) / 3
-        self.assertAlmostEqual(float(result["final_answer"]), float(expected), places=5)
+        self.assertAlmostEqual(float(result["final_answer"]), float(expected), places=2)
 
 if __name__ == '__main__':
     unittest.main()

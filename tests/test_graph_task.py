@@ -1,5 +1,5 @@
 import unittest
-from re_rl.tasks.graph_task import GraphTask
+from re_rl.tasks.math.discrete.graph_task import GraphTask
 
 class TestGraphTask(unittest.TestCase):
     def test_graph(self):

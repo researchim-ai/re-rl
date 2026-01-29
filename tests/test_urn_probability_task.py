@@ -1,7 +1,7 @@
 # tests/test_urn_probability_task.py
 
 import unittest
-from re_rl.tasks.urn_probability_task import UrnProbabilityTask
+from re_rl.tasks.math.probability.urn_probability_task import UrnProbabilityTask
 
 class TestUrnProbabilityTask(unittest.TestCase):
     def test_urn_prob_en_all_red(self):

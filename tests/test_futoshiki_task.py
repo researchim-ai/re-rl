@@ -1,6 +1,6 @@
 # tests/test_futoshiki_task.py
 import unittest
-from re_rl.tasks.futoshiki_task import FutoshikiTask
+from re_rl.tasks.math.logic.futoshiki_task import FutoshikiTask
 
 class TestFutoshikiTask(unittest.TestCase):
     def test_futoshiki_ru(self):

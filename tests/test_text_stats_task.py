@@ -1,7 +1,7 @@
 # tests/test_text_stats_generation.py
 
 import unittest
-from re_rl.tasks.text_stats_task import TextStatsTask
+from re_rl.tasks.math.logic.text_stats_task import TextStatsTask
 
 class TestTextStatsGeneration(unittest.TestCase):
 

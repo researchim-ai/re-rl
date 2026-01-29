@@ -30,13 +30,15 @@ class CategoryTheoryTask(BaseMathTask):
         task_type: str = "morphism_composition",
         category_type: str = "set",
         language: str = "ru",
-        detail_level: int = 3
+        detail_level: int = 3,
+        output_format: str = "text"
     ):
         self.task_type = task_type.lower()
         self.category_type = category_type.lower()
         self.objects: List[str] = []
         self.morphisms: List[Dict[str, Any]] = []
         self.is_commutative: bool = False
+        self._output_format = output_format
         
         # Генерируем данные задачи
         self._generate_task_data()
