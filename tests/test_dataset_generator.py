@@ -109,14 +109,14 @@ class TestDatasetGenerator(unittest.TestCase):
         """Проверка генерации параметров для системы линейных уравнений"""
         params = self.generator._generate_task_params("system_linear")
         
-        self.assertIn("size", params)
-        self.assertIn("coefficients", params)
-        self.assertIn("constants", params)
+        self.assertIn("matrix", params)
         
-        size = params["size"]
-        self.assertTrue(2 <= size <= 3)
-        self.assertEqual(len(params["coefficients"]), size)
-        self.assertEqual(len(params["constants"]), size)
+        matrix = params["matrix"]
+        self.assertTrue(2 <= len(matrix) <= 3)  # 2x2 или 3x3
+        # Проверяем, что матрица расширенная (n строк, n+1 столбцов)
+        n = len(matrix)
+        for row in matrix:
+            self.assertEqual(len(row), n + 1)
 
     def test_generate_exponential_params(self):
         """Проверка генерации параметров для экспоненциального уравнения"""
@@ -137,53 +137,45 @@ class TestDatasetGenerator(unittest.TestCase):
         params = self.generator._generate_task_params("calculus")
         
         self.assertIn("task_type", params)
+        self.assertIn("degree", params)
         self.assertIn("function", params)
         
-        self.assertIn(params["task_type"], ["derivative", "integral"])
-        self.assertIsInstance(params["function"], str)
+        self.assertIn(params["task_type"], ["differentiation", "integration"])
+        self.assertTrue(1 <= params["degree"] <= 3)
 
     def test_generate_graph_params(self):
         """Проверка генерации параметров для задач на графах"""
         params = self.generator._generate_task_params("graph")
         
-        self.assertIn("graph_type", params)
-        self.assertIn("vertices", params)
-        self.assertIn("edges", params)
+        self.assertIn("task_type", params)
+        self.assertIn("num_nodes", params)
+        self.assertIn("edge_prob", params)
         
-        self.assertIn(params["graph_type"], ["shortest_path", "mst", "diameter", "clustering"])
-        self.assertTrue(4 <= params["vertices"] <= 8)
-        self.assertTrue(6 <= params["edges"] <= 12)
+        self.assertIn(params["task_type"], ["shortest_path", "minimum_spanning_tree", "diameter", "clustering_coefficient"])
+        self.assertTrue(5 <= params["num_nodes"] <= 10)
+        self.assertTrue(0.3 <= params["edge_prob"] <= 0.6)
 
     def test_generate_analogical_params(self):
         """Проверка генерации параметров для задач на аналогии"""
         params = self.generator._generate_task_params("analogical")
         
-        self.assertIn("source_domain", params)
-        self.assertIn("target_domain", params)
-        self.assertIn("complexity", params)
-        
-        self.assertIn(params["source_domain"], ["математика", "физика", "химия"])
-        self.assertIn(params["target_domain"], ["биология", "экономика", "социология"])
-        self.assertTrue(1 <= params["complexity"] <= 3)
+        self.assertIn("description", params)
+        # description будет выбран при создании задачи с учётом языка
 
     def test_generate_contradiction_params(self):
         """Проверка генерации параметров для задач на противоречия"""
         params = self.generator._generate_task_params("contradiction")
         
         self.assertIn("num_statements", params)
-        self.assertIn("domain", params)
         
-        self.assertTrue(4 <= params["num_statements"] <= 6)
-        self.assertIn(params["domain"], ["наука", "история", "география", "биология"])
+        self.assertTrue(10 <= params["num_statements"] <= 25)
 
     def test_generate_knights_knaves_params(self):
         """Проверка генерации параметров для задач о рыцарях и лжецах"""
         params = self.generator._generate_task_params("knights_knaves")
         
-        self.assertIn("num_persons", params)
         self.assertIn("complexity", params)
         
-        self.assertTrue(2 <= params["num_persons"] <= 3)
         self.assertTrue(1 <= params["complexity"] <= 3)
 
     def test_generate_futoshiki_params(self):
@@ -191,37 +183,57 @@ class TestDatasetGenerator(unittest.TestCase):
         params = self.generator._generate_task_params("futoshiki")
         
         self.assertIn("size", params)
-        self.assertIn("initial_grid", params)
-        self.assertIn("inequalities", params)
+        self.assertIn("num_inequalities", params)
         
         size = params["size"]
-        self.assertTrue(3 <= size <= 4)
-        self.assertEqual(len(params["initial_grid"]), size)
-        self.assertEqual(len(params["initial_grid"][0]), size)
+        self.assertTrue(4 <= size <= 5)
+        self.assertTrue(size <= params["num_inequalities"] <= size * 2)
 
     def test_generate_urn_probability_params(self):
         """Проверка генерации параметров для задач с вероятностями"""
         params = self.generator._generate_task_params("urn_probability")
         
         self.assertIn("count_containers", params)
-        self.assertIn("items_per_container", params)
-        self.assertIn("colors", params)
+        self.assertIn("draws", params)
         
-        self.assertTrue(2 <= params["count_containers"] <= 3)
-        self.assertTrue(3 <= params["items_per_container"] <= 5)
-        self.assertEqual(len(params["colors"]), 3)
+        self.assertTrue(2 <= params["count_containers"] <= 4)
+        self.assertTrue(1 <= params["draws"] <= 3)
 
     def test_generate_text_stats_params(self):
         """Проверка генерации параметров для задач со статистикой текста"""
         params = self.generator._generate_task_params("text_stats")
         
-        self.assertIn("text_length", params)
-        self.assertIn("substring_length", params)
+        self.assertIn("text", params)
+        self.assertIn("substring", params)
         self.assertIn("allow_overlapping", params)
+        self.assertIn("text_gen_mode", params)
+        self.assertIn("mix_ratio", params)
         
-        self.assertTrue(100 <= params["text_length"] <= 200)
-        self.assertTrue(2 <= params["substring_length"] <= 4)
         self.assertIsInstance(params["allow_overlapping"], bool)
+        self.assertIn(params["text_gen_mode"], ["words", "letters", "mixed"])
+        self.assertTrue(0.3 <= params["mix_ratio"] <= 0.7)
+
+    def test_generate_cubic_params(self):
+        """Проверка генерации параметров для кубического уравнения"""
+        params = self.generator._generate_task_params("cubic")
+        
+        self.assertIn("a", params)
+        self.assertIn("b", params)
+        self.assertIn("c", params)
+        self.assertIn("d", params)
+        
+        self.assertNotEqual(params["a"], 0)  # a не должен быть нулём
+
+    def test_generate_all_task_types(self):
+        """Проверка генерации всех типов задач"""
+        for task_type in self.generator.task_types.keys():
+            try:
+                task = self.generator.generate_task(task_type, "ru", 3)
+                self.assertEqual(task["task_type"], task_type)
+                self.assertIn("result", task)
+                self.assertIn("problem", task["result"])
+            except Exception as e:
+                self.fail(f"Ошибка при генерации задачи типа {task_type}: {e}")
 
 if __name__ == '__main__':
-    unittest.main() 
+    unittest.main()

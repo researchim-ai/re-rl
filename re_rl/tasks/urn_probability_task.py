@@ -43,7 +43,7 @@ class UrnProbabilityTask(BaseTask):
         self.question_str = self._choose_question()
 
         desc = self._create_problem_text()
-        super().__init__(desc)
+        super().__init__(desc, language=self.language)
 
     def _choose_question(self):
         questions_list = PROMPT_TEMPLATES["urn_probability"]["questions_pool"][self.language]

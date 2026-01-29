@@ -26,7 +26,7 @@ class ContradictionTask(BaseTask):
         self.statements = []
         self.false_statement_index = None
         description = self._create_problem_description()
-        super().__init__(description)
+        super().__init__(description, language=self.language)
 
     def _create_problem_description(self):
         facts_true = PROMPT_TEMPLATES["contradiction_facts"].get(self.language, {}).get("true", [])

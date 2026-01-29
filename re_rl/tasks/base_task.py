@@ -1,68 +1,119 @@
 # re_rl/tasks/base_task.py
 
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from __future__ import annotations
 
-class BaseTask:
-    """
-    Базовый класс для текстовых задач.
-    """
-    def __init__(self, description: str):
-        self.description = description
-        self.solution_steps = []
-        self.final_answer = None
+from dataclasses import dataclass, field
+from typing import List, Any, ClassVar
+
+from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.registry import registry
+
+
+class TaskMeta(type):
+    """Метакласс, автоматически добавляющий Task-классы в общий реестр."""
+
+    def __init__(cls, name: str, bases: tuple[type, ...], namespace: dict[str, Any]):  # type: ignore[name-defined]
+        super().__init__(name, bases, namespace)
+
+        # Пропускаем абстрактные базовые классы
+        if name in {"BaseTask", "BaseMathTask"}:
+            return
+
+        # Определяем task_type. По умолчанию преобразуем CamelCase в snake_case
+        def _camel_to_snake(s: str) -> str:
+            import re
+            return re.sub(r"(?<!^)(?=[A-Z])", "_", s).lower()
+
+        default_type = _camel_to_snake(name.replace("Task", ""))
+        task_type: str = getattr(cls, "TASK_TYPE", default_type)
+        registry[task_type] = cls  # регистрация
+
+        # Сохраняем как class attr для удобства
+        cls.TASK_TYPE = task_type  # type: ignore[attr-defined]
+
+
+@dataclass
+class BaseTask(metaclass=TaskMeta):
+    """Базовый класс для всех типов задач (не только математических)."""
+
+    description: str
+    language: str = "en"
+
+    # Итоги решения
+    solution_steps: List[str] = field(default_factory=list, init=False)
+    explanation_steps: List[str] = field(default_factory=list, init=False)
+    validation_steps: List[str] = field(default_factory=list, init=False)
+    final_answer: Any = field(default=None, init=False)
+
+    # Должен быть переопределён автоматически TaskMeta, но объявляем для type-checker
+    TASK_TYPE: ClassVar[str]
+
+    # ---------------------------------------------------------------------
+    # Методы, общие для всех задач
+    # ---------------------------------------------------------------------
 
     def generate_prompt(self) -> str:
+        """Шаблонный промпт, может быть переопределён."""
         default = PROMPT_TEMPLATES["default"]["prompt"]
-        lang = getattr(self, "language", "en").lower()
+        lang = self.language.lower()
         prompt_template = default.get(lang, default["en"])
         return prompt_template.format(problem=self.description)
 
-    def solve(self):
-        raise NotImplementedError("Метод solve() должен быть реализован в подклассах.")
+    # Конкретная задача обязана реализовать solve()
+    def solve(self):  # noqa: D401  (human-readable comment style)
+        """Выполняет пошаговое решение, заполняя solution_steps и final_answer."""
+        raise NotImplementedError
 
-    def get_result(self) -> dict:
-        """
-        Возвращает полный результат решения задачи, включая шаги, объяснения и валидации.
-        """
-        if not self.solution_steps or self.final_answer is None:
+    # ------------------------------------------------------------------
+    # Унифицированный вывод результата
+    # ------------------------------------------------------------------
+    def get_result(self) -> dict[str, Any]:
+        """Возвращает структуру результата для обучения/оценки."""
+        if (not self.solution_steps) or (self.final_answer is None):
             self.solve()
-        
-        result = {
+
+        result: dict[str, Any] = {
+            "task_type": self.TASK_TYPE,
             "problem": self.description,
+            "language": self.language,
             "prompt": self.generate_prompt(),
             "solution_steps": self.solution_steps,
-            "final_answer": self.final_answer
+            "final_answer": self.final_answer,
         }
-        
+
         if self.explanation_steps:
             result["explanations"] = self.explanation_steps
         if self.validation_steps:
             result["validations"] = self.validation_steps
-            
+
         return result
 
-class BaseMathTask(BaseTask):
-    """
-    Базовый класс для математических задач с поддержкой многоязычности и настраиваемой детализацией.
-    """
-    def __init__(self, description: str, language: str = "ru", detail_level: int = 3):
-        super().__init__(description)
-        self.language = language.lower()
-        self.detail_level = detail_level
-        self.solution_steps = []
-        self.validation_steps = []
-        self.explanation_steps = []
-        self.final_answer = None
+# -----------------------------------------------------------------------------
+# Базовый математический таск
+# -----------------------------------------------------------------------------
 
-    def generate_prompt(self) -> str:
+
+@dataclass
+class BaseMathTask(BaseTask):
+    """Добавляет `detail_level` и общие утилиты для математических задач."""
+
+    detail_level: int = 3
+
+    # ------------------------------------------------------------------
+    # Утилиты, специфичные для математики
+    # ------------------------------------------------------------------
+
+    def generate_prompt(self) -> str:  # type: ignore[override]
         default = PROMPT_TEMPLATES["default"]["prompt"]
         prompt_template = default.get(self.language, default["en"])
         return prompt_template.format(problem=self.description)
 
-    def add_solution_step(self, step: str, explanation: str = None, validation: str = None):
-        """
-        Добавляет шаг решения с опциональным объяснением и валидацией.
-        """
+    def add_solution_step(
+        self,
+        step: str,
+        explanation: str | None = None,
+        validation: str | None = None,
+    ) -> None:
         self.solution_steps.append(step)
         if explanation:
             self.explanation_steps.append(explanation)
@@ -109,26 +160,6 @@ class BaseMathTask(BaseTask):
                 latex_steps.append(r"\text{" + safe_step + "}")
         return r"\begin{align*}" + " \\\\\n".join(latex_steps) + r"\end{align*}"
 
-    def get_task_type(self):
-        raise NotImplementedError("Метод get_task_type() должен быть реализован в подклассах.")
-
-    def get_result(self) -> dict:
-        """
-        Возвращает полный результат решения задачи, включая шаги, объяснения и валидации.
-        """
-        if not self.solution_steps or self.final_answer is None:
-            self.solve()
-        
-        result = {
-            "problem": self.description,
-            "prompt": self.generate_prompt(),
-            "solution_steps": self.solution_steps,
-            "final_answer": self.final_answer
-        }
-        
-        if self.explanation_steps:
-            result["explanations"] = self.explanation_steps
-        if self.validation_steps:
-            result["validations"] = self.validation_steps
-            
-        return result
+    # ------------------------------------------------------------------
+    # task_type уже определяется метаклассом, поэтому заглушка не нужна
+    # ------------------------------------------------------------------

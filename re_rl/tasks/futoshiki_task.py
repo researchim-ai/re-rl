@@ -45,7 +45,7 @@ class FutoshikiTask(BaseTask):
             inequalities=ineq_str
         )
         
-        super().__init__(problem_text)
+        super().__init__(problem_text, language=self.language)
 
     def _generate_random_inequalities(self, num_ineq):
         """

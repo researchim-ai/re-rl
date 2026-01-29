@@ -6,6 +6,7 @@ from datetime import datetime
 
 from re_rl.tasks.linear_task import LinearTask
 from re_rl.tasks.quadratic_task import QuadraticTask
+from re_rl.tasks.cubic_task import CubicTask
 from re_rl.tasks.system_linear_task import SystemLinearTask
 from re_rl.tasks.exponential_task import ExponentialTask
 from re_rl.tasks.logarithmic_task import LogarithmicTask
@@ -30,6 +31,7 @@ class DatasetGenerator:
         self.task_types = {
             "linear": LinearTask,
             "quadratic": QuadraticTask,
+            "cubic": CubicTask,
             "system_linear": SystemLinearTask,
             "exponential": ExponentialTask,
             "logarithmic": LogarithmicTask,
@@ -65,8 +67,36 @@ class DatasetGenerator:
         except NotImplementedError:
             raise NotImplementedError(f"Генерация параметров для {task_type} не реализована")
         
-        # Создание и решение задачи
-        task = task_class(**params, language=language, detail_level=detail_level)
+        # Специальная обработка для задач с особыми требованиями к параметрам
+        if task_type == "analogical":
+            # AnalogicalTask требует description
+            descriptions = {
+                "ru": [
+                    "Если река течёт, то вода движется. Аналогично, если электрический ток течёт, что происходит с электронами?",
+                    "Дерево растёт из семени. По аналогии, из чего развивается бизнес?",
+                    "Мозг обрабатывает информацию. Что аналогично делает компьютер?",
+                    "Сердце качает кровь по телу. Какой механизм аналогично работает в системе отопления?",
+                    "Корни питают дерево. Что аналогично питает компанию?"
+                ],
+                "en": [
+                    "If a river flows, water moves. Similarly, if electric current flows, what happens to electrons?",
+                    "A tree grows from a seed. By analogy, from what does a business develop?",
+                    "The brain processes information. What does a computer analogously do?",
+                    "The heart pumps blood through the body. What mechanism works similarly in a heating system?",
+                    "Roots nourish the tree. What analogously nourishes a company?"
+                ]
+            }
+            params["description"] = random.choice(descriptions.get(language, descriptions["en"]))
+            task = task_class(**params, language=language, detail_level=detail_level)
+            
+        elif task_type in ("contradiction", "urn_probability"):
+            # Эти задачи НЕ принимают detail_level
+            task = task_class(**params, language=language)
+            
+        else:
+            # Стандартное создание задачи
+            task = task_class(**params, language=language, detail_level=detail_level)
+        
         result = task.get_result()
         
         return {
@@ -80,107 +110,140 @@ class DatasetGenerator:
     def _generate_task_params(self, task_type: str) -> Dict[str, Any]:
         """
         Генерирует случайные параметры для конкретного типа задачи.
+        Возвращает словарь параметров, соответствующих конструктору задачи.
         """
         if task_type not in self.task_types:
             raise NotImplementedError(f"Тип задачи {task_type} не реализован")
             
         if task_type == "linear":
-            # Генерируем параметры так, чтобы уравнение имело решение
+            # LinearTask(a, b, c, language, detail_level)
             a = random.randint(-10, 10)
             while a == 0:  # Избегаем деления на ноль
                 a = random.randint(-10, 10)
             b = random.randint(-10, 10)
             c = random.randint(-10, 10)
-            return {
-                "a": a,
-                "b": b,
-                "c": c
-            }
+            return {"a": a, "b": b, "c": c}
+            
         elif task_type == "quadratic":
-            # Генерируем параметры так, чтобы уравнение имело решение
+            # QuadraticTask(a, b, c, language, detail_level)
             a = random.randint(-5, 5)
-            while a == 0:  # Избегаем деления на ноль
+            while a == 0:
                 a = random.randint(-5, 5)
             b = random.randint(-5, 5)
             c = random.randint(-5, 5)
-            return {
-                "a": a,
-                "b": b,
-                "c": c
-            }
+            return {"a": a, "b": b, "c": c}
+            
+        elif task_type == "cubic":
+            # CubicTask(a, b, c, d, language, detail_level)
+            a = random.randint(-3, 3)
+            while a == 0:
+                a = random.randint(-3, 3)
+            b = random.randint(-5, 5)
+            c = random.randint(-5, 5)
+            d = random.randint(-5, 5)
+            return {"a": a, "b": b, "c": c, "d": d}
+            
         elif task_type == "system_linear":
-            size = random.randint(2, 3)  # Системы 2x2 или 3x3
-            return {
-                "size": size,
-                "coefficients": [[random.randint(-5, 5) for _ in range(size)] for _ in range(size)],
-                "constants": [random.randint(-10, 10) for _ in range(size)]
-            }
+            # SystemLinearTask(matrix, language, detail_level)
+            # matrix - расширенная матрица [A|b] размером n x (n+1)
+            size = random.randint(2, 3)
+            matrix = []
+            for _ in range(size):
+                row = [random.randint(-5, 5) for _ in range(size)]
+                # Добавляем свободный член
+                row.append(random.randint(-10, 10))
+                matrix.append(row)
+            return {"matrix": matrix}
+            
         elif task_type == "exponential":
+            # ExponentialTask(a, b, c, d, language, detail_level)
             return {
                 "a": random.randint(1, 5),
                 "b": random.randint(1, 3),
                 "c": random.randint(-5, 5),
                 "d": random.randint(1, 10)
             }
+            
         elif task_type == "logarithmic":
+            # LogarithmicTask(a, b, c, d, language, detail_level)
             return {
                 "a": random.randint(1, 5),
                 "b": random.randint(1, 3),
                 "c": random.randint(-5, 5),
                 "d": random.randint(1, 10)
             }
+            
         elif task_type == "calculus":
-            task_types = ["derivative", "integral"]
-            functions = [
-                "x^2", "x^3", "sin(x)", "cos(x)", "exp(x)",
-                "log(x)", "x^2 + 2*x + 1", "x^3 - 3*x^2 + 3*x - 1"
-            ]
+            # CalculusTask(task_type, degree, function, language, detail_level)
+            calc_types = ["differentiation", "integration"]
             return {
-                "task_type": random.choice(task_types),
-                "function": random.choice(functions)
+                "task_type": random.choice(calc_types),
+                "degree": random.randint(1, 3),
+                "function": None  # Будет сгенерирована автоматически
             }
+            
         elif task_type == "graph":
-            graph_types = ["shortest_path", "mst", "diameter", "clustering"]
+            # GraphTask(task_type, num_nodes, edge_prob, language, detail_level)
+            graph_types = ["shortest_path", "minimum_spanning_tree", "diameter", "clustering_coefficient"]
             return {
-                "graph_type": random.choice(graph_types),
-                "vertices": random.randint(4, 8),
-                "edges": random.randint(6, 12)
+                "task_type": random.choice(graph_types),
+                "num_nodes": random.randint(5, 10),
+                "edge_prob": random.uniform(0.3, 0.6)
             }
+            
         elif task_type == "analogical":
-            return {
-                "source_domain": random.choice(["математика", "физика", "химия"]),
-                "target_domain": random.choice(["биология", "экономика", "социология"]),
-                "complexity": random.randint(1, 3)
+            # AnalogicalTask(description, language, detail_level)
+            descriptions = {
+                "ru": [
+                    "Если река течёт, то вода движется. Аналогично, если электрический ток течёт, что происходит с электронами?",
+                    "Дерево растёт из семени. По аналогии, из чего развивается бизнес?",
+                    "Мозг обрабатывает информацию. Что аналогично делает компьютер?",
+                    "Сердце качает кровь по телу. Какой механизм аналогично работает в системе отопления?",
+                    "Корни питают дерево. Что аналогично питает компанию?"
+                ],
+                "en": [
+                    "If a river flows, water moves. Similarly, if electric current flows, what happens to electrons?",
+                    "A tree grows from a seed. By analogy, from what does a business develop?",
+                    "The brain processes information. What does a computer analogously do?",
+                    "The heart pumps blood through the body. What mechanism works similarly in a heating system?",
+                    "Roots nourish the tree. What analogously nourishes a company?"
+                ]
             }
+            return {"description": None}  # Будет выбрано при создании с учётом языка
+            
         elif task_type == "contradiction":
-            return {
-                "num_statements": random.randint(4, 6),
-                "domain": random.choice(["наука", "история", "география", "биология"])
-            }
+            # ContradictionTask(language, num_statements) - БЕЗ detail_level!
+            return {"num_statements": random.randint(10, 25)}
+            
         elif task_type == "knights_knaves":
-            return {
-                "num_persons": random.randint(2, 3),
-                "complexity": random.randint(1, 3)
-            }
+            # KnightsKnavesTask(language, detail_level, complexity)
+            return {"complexity": random.randint(1, 3)}
+            
         elif task_type == "futoshiki":
-            size = random.randint(3, 4)
+            # FutoshikiTask(language, detail_level, size, num_inequalities)
+            size = random.randint(4, 5)
             return {
                 "size": size,
-                "initial_grid": [[0 for _ in range(size)] for _ in range(size)],
-                "inequalities": self._generate_futoshiki_inequalities(size)
+                "num_inequalities": random.randint(size, size * 2)
             }
+            
         elif task_type == "urn_probability":
+            # UrnProbabilityTask(language, count_containers, draws) - БЕЗ detail_level!
             return {
-                "count_containers": random.randint(2, 3),
-                "items_per_container": random.randint(3, 5),
-                "colors": random.sample(["красный", "синий", "зелёный", "белый", "чёрный"], 3)
+                "count_containers": random.randint(2, 4),
+                "draws": random.randint(1, 3)
             }
+            
         elif task_type == "text_stats":
+            # TextStatsTask(language, detail_level, text, substring, allow_overlapping, text_gen_mode, mix_ratio)
             return {
-                "text_length": random.randint(100, 200),
-                "substring_length": random.randint(2, 4),
-                "allow_overlapping": random.choice([True, False])
+                "text": None,  # Будет сгенерирован автоматически
+                "substring": None,  # Будет выбрана автоматически
+                "allow_overlapping": random.choice([True, False]),
+                "text_gen_mode": random.choice(["words", "letters", "mixed"]),
+                "mix_ratio": random.uniform(0.3, 0.7)
             }
+            
         else:
             raise NotImplementedError(f"Генерация параметров для {task_type} не реализована")
 

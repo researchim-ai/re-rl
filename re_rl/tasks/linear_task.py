@@ -19,17 +19,14 @@ class LinearTask(BaseMathTask):
         self.b = b
         self.c = c
         self.detail_level = detail_level
-        self.solution_steps = []
-        self.explanations = []
-        self.validations = []
+        # BaseMathTask already initialises lists; мы просто используем
         equation = f"{a}x {'+' if b >= 0 else '-'} {abs(b)} = {c}"
         description = PROMPT_TEMPLATES["linear"]["problem"][language].format(equation=equation)
         super().__init__(description, language, detail_level)
 
-    def add_solution_step(self, step, explanation, validation):
-        self.solution_steps.append(step)
-        self.explanations.append(explanation)
-        self.validations.append(validation)
+    # Мы просто проксируем к базовому методу, чтобы не дублировать логику
+    def add_solution_step(self, step, explanation, validation):  # type: ignore[override]
+        super().add_solution_step(step, explanation, validation)
 
     def solve(self):
         x = sp.symbols('x')
@@ -97,9 +94,9 @@ class LinearTask(BaseMathTask):
         if detail_level is not None:
             old_detail_level = self.detail_level
             self.detail_level = detail_level
-            self.solution_steps = []
-            self.explanations = []
-            self.validations = []
+            self.solution_steps.clear()
+            self.explanation_steps.clear()
+            self.validation_steps.clear()
             
         # Получаем базовый результат от родительского класса, но без вызова solve()
         result = {
@@ -115,9 +112,9 @@ class LinearTask(BaseMathTask):
         # Обновляем результат с новыми шагами
         result.update({
             "solution_steps": self.solution_steps,
-            "explanations": self.explanations,
-            "validations": self.validations,
-            "final_answer": self.final_answer
+            "explanations": self.explanation_steps,
+            "validations": self.validation_steps,
+            "final_answer": self.final_answer,
         })
         
         if detail_level is not None:
