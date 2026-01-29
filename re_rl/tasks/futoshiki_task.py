@@ -1,32 +1,70 @@
 import random
 from re_rl.tasks.base_task import BaseTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from typing import Dict, Any, ClassVar
 
 # Подключаем Z3
 from z3 import Solver, Int, And, Distinct, sat
 
 class FutoshikiTask(BaseTask):
     """
-    Задача Futoshiki (неравенства) на N×N поле, 
-    решается с помощью Z3. 
+    Задача Futoshiki (неравенства) на N×N поле.
+    
+    Параметры сложности:
+      - difficulty 1-2: поле 3x3
+      - difficulty 3-4: поле 4x4
+      - difficulty 5-6: поле 5x5
+      - difficulty 7-8: поле 6x6
+      - difficulty 9-10: поле 7x7
     """
+    
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
+        1: {"size": 3, "num_inequalities_ratio": 0.5},
+        2: {"size": 3, "num_inequalities_ratio": 0.7},
+        3: {"size": 4, "num_inequalities_ratio": 0.5},
+        4: {"size": 4, "num_inequalities_ratio": 0.7},
+        5: {"size": 5, "num_inequalities_ratio": 0.5},
+        6: {"size": 5, "num_inequalities_ratio": 0.7},
+        7: {"size": 6, "num_inequalities_ratio": 0.5},
+        8: {"size": 6, "num_inequalities_ratio": 0.7},
+        9: {"size": 7, "num_inequalities_ratio": 0.5},
+        10: {"size": 7, "num_inequalities_ratio": 0.7},
+    }
 
-    def __init__(self, language="ru", detail_level=5, size=None, num_inequalities=None):
+    def __init__(
+        self, 
+        language="ru", 
+        detail_level=5, 
+        size=None, 
+        num_inequalities=None,
+        difficulty: int = None
+    ):
         """
         :param language: 'ru' или 'en'
         :param detail_level: сколько шагов (chain-of-thought) выводить
-        :param size: размер поля (None -> случайно 4..5, например)
+        :param size: размер поля (None -> случайно 4..5)
         :param num_inequalities: сколько неравенств генерировать (None -> случайно)
+        :param difficulty: уровень сложности (1-10)
         """
+        # Если указан difficulty, берём параметры из пресета
+        if difficulty is not None:
+            preset = self._interpolate_difficulty(difficulty)
+            if size is None:
+                size = preset.get("size", 4)
+            ratio = preset.get("num_inequalities_ratio", 0.6)
+            if num_inequalities is None:
+                num_inequalities = int(size * size * ratio)
+        
         self.language = language.lower()
         self.detail_level = detail_level
+        self.difficulty = difficulty
         
         if size is None:
-            size = random.randint(4, 5)  # для примера возьмём 4 или 5
+            size = random.randint(4, 5)
         self.size = size
         
         if num_inequalities is None:
-            num_inequalities = random.randint(size, size*2)  # кол-во неравенств
+            num_inequalities = random.randint(size, size * 2)
         
         self.inequalities = self._generate_random_inequalities(num_inequalities)
         

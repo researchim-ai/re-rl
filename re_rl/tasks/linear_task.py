@@ -1,28 +1,89 @@
 # re_rl/tasks/linear_task.py
 
+import random
 import sympy as sp
 from re_rl.tasks.base_task import BaseMathTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, ClassVar
 
 class LinearTask(BaseMathTask):
     """
     Решает линейное уравнение вида a*x + b = c.
-    Параметр detail_level задаёт степень детализации:
-      - 1: только шаг 1 (запись уравнения)
-      - 2: шаги 1 и 2 (запись уравнения и вычисление правой части)
-      - 3: шаги 1, 2 и 3 (базовый алгоритм)
-      - >3: дополнительные шаги для разбиения разности (c - b)
+    
+    Параметры сложности:
+      - difficulty 1-2: коэффициенты 1-5, целые решения
+      - difficulty 3-4: коэффициенты 1-10
+      - difficulty 5-6: коэффициенты 1-20
+      - difficulty 7-8: коэффициенты 1-50
+      - difficulty 9-10: коэффициенты до 100, дробные решения
+      
+    detail_level задаёт степень детализации решения.
     """
-    def __init__(self, a, b, c, language: str = "ru", detail_level: int = 3):
+    
+    # Пресеты сложности: определяют диапазоны коэффициентов
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
+        1: {"max_coef": 5, "ensure_integer": True},
+        2: {"max_coef": 5, "ensure_integer": True},
+        3: {"max_coef": 10, "ensure_integer": True},
+        4: {"max_coef": 10, "ensure_integer": True},
+        5: {"max_coef": 20, "ensure_integer": True},
+        6: {"max_coef": 20, "ensure_integer": True},
+        7: {"max_coef": 50, "ensure_integer": True},
+        8: {"max_coef": 50, "ensure_integer": False},
+        9: {"max_coef": 100, "ensure_integer": False},
+        10: {"max_coef": 100, "ensure_integer": False},
+    }
+    
+    def __init__(
+        self, 
+        a=None, 
+        b=None, 
+        c=None, 
+        language: str = "ru", 
+        detail_level: int = 3,
+        difficulty: int = None,
+        max_coef: int = 10,
+        ensure_integer: bool = True
+    ):
+        # Если указан difficulty, берём параметры из пресета
+        if difficulty is not None:
+            preset = self._interpolate_difficulty(difficulty)
+            max_coef = preset.get("max_coef", max_coef)
+            ensure_integer = preset.get("ensure_integer", ensure_integer)
+        
+        # Генерируем коэффициенты, если не заданы
+        if a is None or b is None or c is None:
+            a, b, c = self._generate_coefficients(max_coef, ensure_integer)
+        
         self.a = a
         self.b = b
         self.c = c
+        self.difficulty = difficulty
         self.detail_level = detail_level
-        # BaseMathTask already initialises lists; мы просто используем
+        
+        # Формируем уравнение
         equation = f"{a}x {'+' if b >= 0 else '-'} {abs(b)} = {c}"
         description = PROMPT_TEMPLATES["linear"]["problem"][language].format(equation=equation)
         super().__init__(description, language, detail_level)
+    
+    @staticmethod
+    def _generate_coefficients(max_coef: int, ensure_integer: bool) -> tuple:
+        """Генерирует коэффициенты a, b, c для уравнения a*x + b = c."""
+        # a не должен быть нулём
+        a = random.randint(1, max_coef)
+        if random.random() < 0.5:
+            a = -a
+        
+        if ensure_integer:
+            # Генерируем x и вычисляем c = a*x + b
+            x = random.randint(-max_coef, max_coef)
+            b = random.randint(-max_coef, max_coef)
+            c = a * x + b
+        else:
+            b = random.randint(-max_coef, max_coef)
+            c = random.randint(-max_coef, max_coef)
+        
+        return a, b, c
 
     # Мы просто проксируем к базовому методу, чтобы не дублировать логику
     def add_solution_step(self, step, explanation, validation):  # type: ignore[override]

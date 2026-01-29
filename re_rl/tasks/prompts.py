@@ -1383,4 +1383,96 @@ Analysis:
         }
     },
 
+    #----------------------------------------------------------------------------
+    # 16) ARITHMETIC
+    #----------------------------------------------------------------------------
+    "arithmetic": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Вычислите арифметическое выражение.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговые вычисления)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый результат)\n"
+                "  </answer>\n"
+                "Пример:\n"
+                "<reasoning>\n"
+                "  Шаг 1: Вычисляем выражение в скобках: (3 + 5) = 8\n"
+                "  Шаг 2: Умножаем: 8 × 2 = 16\n"
+                "</reasoning>\n"
+                "<answer>\n"
+                "  16\n"
+                "</answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Calculate the arithmetic expression.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step calculations)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final result)\n"
+                "  </answer>\n"
+                "Example:\n"
+                "<reasoning>\n"
+                "  Step 1: Calculate the expression in parentheses: (3 + 5) = 8\n"
+                "  Step 2: Multiply: 8 * 2 = 16\n"
+                "</reasoning>\n"
+                "<answer>\n"
+                "  16\n"
+                "</answer>"
+            )
+        },
+        "problem": {
+            "ru": "Вычислите: {expression}",
+            "en": "Calculate: {expression}"
+        },
+        "step_evaluate": {
+            "ru": "Шаг {step}: Вычисляем {operation}: {left} {op} {right} = {result}",
+            "en": "Step {step}: Calculate {operation}: {left} {op} {right} = {result}"
+        },
+        "step_parentheses": {
+            "ru": "Шаг {step}: Вычисляем выражение в скобках: {expr} = {result}",
+            "en": "Step {step}: Calculate the expression in parentheses: {expr} = {result}"
+        },
+        "step_sqrt": {
+            "ru": "Шаг {step}: Вычисляем квадратный корень: √({value}) = {result}",
+            "en": "Step {step}: Calculate square root: sqrt({value}) = {result}"
+        },
+        "step_power": {
+            "ru": "Шаг {step}: Возводим в степень: {base}^{exp} = {result}",
+            "en": "Step {step}: Raise to power: {base}^{exp} = {result}"
+        },
+        "step_percentage": {
+            "ru": "Шаг {step}: Вычисляем процент: {percent}% от {value} = {result}",
+            "en": "Step {step}: Calculate percentage: {percent}% of {value} = {result}"
+        },
+        "final_answer": {
+            "ru": "Итоговый ответ: {result}",
+            "en": "Final answer: {result}"
+        },
+        "operations": {
+            "ru": {
+                "+": "сложение",
+                "-": "вычитание",
+                "*": "умножение",
+                "/": "деление",
+                "^": "возведение в степень",
+                "sqrt": "извлечение корня"
+            },
+            "en": {
+                "+": "addition",
+                "-": "subtraction",
+                "*": "multiplication",
+                "/": "division",
+                "^": "exponentiation",
+                "sqrt": "square root"
+            }
+        }
+    },
+
 }

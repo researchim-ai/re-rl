@@ -3,10 +3,127 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Any, ClassVar
+from typing import List, Any, ClassVar, Dict, Optional, Type, TypeVar
 
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from re_rl.tasks.registry import registry
+
+
+# Типовая переменная для from_difficulty
+T = TypeVar('T', bound='BaseTask')
+
+
+class DifficultyMixin:
+    """
+    Миксин для унифицированной системы сложности задач.
+    
+    Классы-наследники должны определить:
+    - DIFFICULTY_PRESETS: Dict[int, Dict[str, Any]] — пресеты параметров для уровней 1-10
+    
+    Пример использования:
+        class MyTask(DifficultyMixin, BaseMathTask):
+            DIFFICULTY_PRESETS = {
+                1: {"param1": 1, "param2": 5},
+                5: {"param1": 5, "param2": 25},
+                10: {"param1": 10, "param2": 100},
+            }
+            
+        task = MyTask.from_difficulty(7, language="ru")
+    """
+    
+    # Переопределяется в каждом классе-наследнике
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {}
+    
+    @classmethod
+    def from_difficulty(
+        cls: Type[T],
+        difficulty: int,
+        language: str = "ru",
+        detail_level: int = 3,
+        **overrides
+    ) -> T:
+        """
+        Создаёт задачу с заданным уровнем сложности.
+        
+        Args:
+            difficulty: Уровень сложности (1-10)
+            language: Язык ("ru" или "en")
+            detail_level: Уровень детализации решения
+            **overrides: Параметры для переопределения пресета
+            
+        Returns:
+            Экземпляр задачи с настроенными параметрами
+        """
+        params = cls._interpolate_difficulty(difficulty)
+        params.update(overrides)
+        
+        # Добавляем language и detail_level
+        params['language'] = language
+        if hasattr(cls, 'detail_level') or 'detail_level' in cls.__init__.__code__.co_varnames:
+            params['detail_level'] = detail_level
+            
+        return cls(**params)
+    
+    @classmethod
+    def _interpolate_difficulty(cls, difficulty: int) -> Dict[str, Any]:
+        """
+        Интерполирует параметры между пресетами сложности.
+        
+        Если точного пресета нет, интерполирует между ближайшими.
+        """
+        presets = cls.DIFFICULTY_PRESETS
+        if not presets:
+            return {}
+        
+        difficulty = max(1, min(10, difficulty))  # Ограничиваем 1-10
+        
+        # Точное совпадение
+        if difficulty in presets:
+            return presets[difficulty].copy()
+        
+        # Находим ближайшие пресеты
+        lower_levels = [l for l in presets.keys() if l < difficulty]
+        upper_levels = [l for l in presets.keys() if l > difficulty]
+        
+        if not lower_levels:
+            return presets[min(presets.keys())].copy()
+        if not upper_levels:
+            return presets[max(presets.keys())].copy()
+        
+        lower = max(lower_levels)
+        upper = min(upper_levels)
+        
+        # Интерполяция
+        ratio = (difficulty - lower) / (upper - lower)
+        lower_params = presets[lower]
+        upper_params = presets[upper]
+        
+        result = {}
+        for key in lower_params:
+            lower_val = lower_params[key]
+            upper_val = upper_params.get(key, lower_val)
+            
+            if isinstance(lower_val, (int, float)) and isinstance(upper_val, (int, float)):
+                # Числовая интерполяция
+                interpolated = lower_val + (upper_val - lower_val) * ratio
+                result[key] = int(interpolated) if isinstance(lower_val, int) else interpolated
+            else:
+                # Для нечисловых параметров выбираем ближайший
+                result[key] = lower_val if ratio < 0.5 else upper_val
+        
+        # Добавляем параметры, которые есть только в upper
+        for key in upper_params:
+            if key not in result:
+                result[key] = upper_params[key]
+        
+        return result
+    
+    @classmethod
+    def get_difficulty_range(cls) -> tuple[int, int]:
+        """Возвращает диапазон поддерживаемых уровней сложности."""
+        if not cls.DIFFICULTY_PRESETS:
+            return (1, 10)
+        return (min(cls.DIFFICULTY_PRESETS.keys()), max(cls.DIFFICULTY_PRESETS.keys()))
 
 
 class TaskMeta(type):
@@ -33,7 +150,7 @@ class TaskMeta(type):
 
 
 @dataclass
-class BaseTask(metaclass=TaskMeta):
+class BaseTask(DifficultyMixin, metaclass=TaskMeta):
     """Базовый класс для всех типов задач (не только математических)."""
 
     description: str

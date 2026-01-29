@@ -58,7 +58,8 @@ class TestDatasetGenerator(unittest.TestCase):
             task_types=["linear"],
             languages=["ru"],
             detail_levels=[1, 2],
-            tasks_per_type=2
+            tasks_per_type=2,
+            use_difficulty=False  # Используем старый способ генерации
         )
         
         self.assertEqual(len(dataset), 4)  # 2 задачи * 2 уровня детализации
@@ -77,7 +78,8 @@ class TestDatasetGenerator(unittest.TestCase):
             task_types=["linear"],
             languages=["ru"],
             detail_levels=[1],
-            tasks_per_type=1
+            tasks_per_type=1,
+            use_difficulty=False  # Используем старый способ генерации
         )
         
         filename = "test_dataset.json"

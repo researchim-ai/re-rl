@@ -4,30 +4,58 @@ import random
 import z3
 from re_rl.tasks.base_task import BaseMathTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
-from typing import Optional, Dict, Any
+from typing import Optional, Dict, Any, ClassVar
 
 class KnightsKnavesTask(BaseMathTask):
     """
-    Генерирует задачу Knights & Knaves с параметрами:
-      - language: 'ru' или 'en'
-      - detail_level: сколько шагов решения выводить
-      - complexity: управляет числом персонажей и высказываний
+    Генерирует задачу Knights & Knaves.
+    
+    Параметры сложности:
+      - difficulty 1-2: 2 персонажа, простые высказывания
+      - difficulty 3-4: 3 персонажа
+      - difficulty 5-6: 4 персонажа
+      - difficulty 7-8: 5 персонажей
+      - difficulty 9-10: 6+ персонажей, сложные высказывания
     """
+    
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
+        1: {"complexity": 1},
+        2: {"complexity": 1},
+        3: {"complexity": 2},
+        4: {"complexity": 2},
+        5: {"complexity": 3},
+        6: {"complexity": 3},
+        7: {"complexity": 4},
+        8: {"complexity": 4},
+        9: {"complexity": 5},
+        10: {"complexity": 5},
+    }
 
     def __init__(
         self,
         language: str = "en",
         detail_level: int = 3,
-        complexity: int = 2
+        complexity: int = None,
+        difficulty: int = None
     ):
         """
         :param language: 'ru' или 'en'
         :param detail_level: сколько шагов chain-of-thought
-        :param complexity: уровень сложности (задаёт num_persons, num_statements и т.п.)
+        :param complexity: уровень сложности (задаёт num_persons, num_statements)
+        :param difficulty: уровень сложности (1-10), альтернатива complexity
         """
+        # Если указан difficulty, берём параметры из пресета
+        if difficulty is not None:
+            preset = self._interpolate_difficulty(difficulty)
+            if complexity is None:
+                complexity = preset.get("complexity", 2)
+        elif complexity is None:
+            complexity = 2
+        
         self.language = language.lower()
         self.detail_level = detail_level
         self.complexity = complexity
+        self.difficulty = difficulty
 
         # Определяем число персонажей / высказываний по уровню сложности
         self.num_persons, self.num_statements = self._compute_params_by_complexity(self.complexity)

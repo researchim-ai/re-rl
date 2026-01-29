@@ -1,20 +1,89 @@
 # re_rl/tasks/system_linear_task.py
 
+import random
 import numpy as np
 from re_rl.tasks.base_task import BaseMathTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from typing import Dict, Any, ClassVar, Optional, List
 
 class SystemLinearTask(BaseMathTask):
     """
     Решает систему линейных уравнений методом Крамера.
-    Коэффициенты задаются как список уравнений: [[a11, a12, ..., b1], ...].
+    
+    Параметры сложности:
+      - difficulty 1-3: система 2x2
+      - difficulty 4-6: система 3x3
+      - difficulty 7-8: система 4x4
+      - difficulty 9-10: система 5x5
+      
     detail_level определяет количество шагов решения.
     """
-    def __init__(self, matrix, language: str = "ru", detail_level: int = 3):
+    
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
+        1: {"size": 2, "max_coef": 5},
+        2: {"size": 2, "max_coef": 10},
+        3: {"size": 2, "max_coef": 10},
+        4: {"size": 3, "max_coef": 5},
+        5: {"size": 3, "max_coef": 10},
+        6: {"size": 3, "max_coef": 10},
+        7: {"size": 4, "max_coef": 5},
+        8: {"size": 4, "max_coef": 10},
+        9: {"size": 5, "max_coef": 5},
+        10: {"size": 5, "max_coef": 10},
+    }
+    
+    def __init__(
+        self, 
+        matrix: Optional[List[List[float]]] = None, 
+        language: str = "ru", 
+        detail_level: int = 3,
+        difficulty: int = None,
+        size: int = 2,
+        max_coef: int = 10
+    ):
+        # Если указан difficulty, берём параметры из пресета
+        if difficulty is not None:
+            preset = self._interpolate_difficulty(difficulty)
+            size = preset.get("size", size)
+            max_coef = preset.get("max_coef", max_coef)
+        
+        # Генерируем матрицу, если не задана
+        if matrix is None:
+            matrix = self._generate_matrix(size, max_coef)
+        
         self.matrix = np.array(matrix, dtype=float)
+        self.difficulty = difficulty
         self.detail_level = detail_level
         description = self._create_problem_description(language)
         super().__init__(description, language, detail_level)
+    
+    @staticmethod
+    def _generate_matrix(size: int, max_coef: int) -> List[List[float]]:
+        """Генерирует систему с единственным решением."""
+        max_attempts = 100
+        
+        for _ in range(max_attempts):
+            # Генерируем решение
+            x = [random.randint(-max_coef, max_coef) for _ in range(size)]
+            
+            # Генерируем коэффициенты A
+            A = [[random.randint(-max_coef, max_coef) for _ in range(size)] for _ in range(size)]
+            
+            # Проверяем определитель
+            A_np = np.array(A, dtype=float)
+            det = np.linalg.det(A_np)
+            
+            if abs(det) > 0.1:  # Система имеет единственное решение
+                # Вычисляем правую часть b = A * x
+                matrix = []
+                for i in range(size):
+                    b_i = sum(A[i][j] * x[j] for j in range(size))
+                    row = A[i] + [b_i]
+                    matrix.append(row)
+                return matrix
+        
+        # Fallback: простая система
+        return [[1, 0, 1], [0, 1, 2]] if size == 2 else [[1, 0, 0, 1], [0, 1, 0, 2], [0, 0, 1, 3]]
 
     def _create_problem_description(self, language: str):
         n = self.matrix.shape[0]

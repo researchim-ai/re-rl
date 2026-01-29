@@ -1,28 +1,55 @@
 import random
 from re_rl.tasks.base_task import BaseTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from typing import Dict, Any, ClassVar
 
 class ContradictionTask(BaseTask):
     """
     Задача на выявление ложного утверждения.
     
-    Генерируется длинный список утверждений (не менее num_statements),
-    взятых из базы истинных фактов (ключ "true"). Затем одно случайное утверждение заменяется
-    на ложное, взятое из базы ложных фактов (ключ "false").
-    
-    Все текстовые строки получаются из шаблонов в PROMPT_TEMPLATES.
+    Параметры сложности:
+      - difficulty 1-2: 5-8 утверждений
+      - difficulty 3-4: 10-15 утверждений
+      - difficulty 5-6: 15-20 утверждений
+      - difficulty 7-8: 20-30 утверждений
+      - difficulty 9-10: 30-40 утверждений
     """
+    
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
+        1: {"num_statements": 5},
+        2: {"num_statements": 8},
+        3: {"num_statements": 10},
+        4: {"num_statements": 15},
+        5: {"num_statements": 18},
+        6: {"num_statements": 20},
+        7: {"num_statements": 25},
+        8: {"num_statements": 30},
+        9: {"num_statements": 35},
+        10: {"num_statements": 40},
+    }
+    
     def __init__(
         self,
         language: str = "en",
-        num_statements: int = 25
+        num_statements: int = None,
+        difficulty: int = None
     ):
         """
         :param language: 'ru' или 'en'
-        :param num_statements: сколько утверждений использовать (по умолчанию 25)
+        :param num_statements: сколько утверждений использовать
+        :param difficulty: уровень сложности (1-10)
         """
+        # Если указан difficulty, берём параметры из пресета
+        if difficulty is not None:
+            preset = self._interpolate_difficulty(difficulty)
+            if num_statements is None:
+                num_statements = preset.get("num_statements", 25)
+        elif num_statements is None:
+            num_statements = 25
+        
         self.language = language.lower()
         self.num_statements = num_statements
+        self.difficulty = difficulty
         self.statements = []
         self.false_statement_index = None
         description = self._create_problem_description()

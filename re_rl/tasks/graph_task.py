@@ -4,14 +4,56 @@ import random
 import networkx as nx
 from re_rl.tasks.base_task import BaseMathTask
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from typing import Dict, Any, ClassVar
 
 class GraphTask(BaseMathTask):
     """
     Генерирует и решает графовые задачи.
+    
     Поддерживаемые типы: "shortest_path", "minimum_spanning_tree", "diameter", "clustering_coefficient".
+    
+    Параметры сложности:
+      - difficulty 1-2: 4-5 узлов, разреженный граф
+      - difficulty 3-4: 6-8 узлов
+      - difficulty 5-6: 8-12 узлов
+      - difficulty 7-8: 12-16 узлов
+      - difficulty 9-10: 16-25 узлов, плотный граф
+      
     detail_level управляет количеством шагов решения.
     """
-    def __init__(self, task_type="shortest_path", num_nodes=10, edge_prob=0.5, language: str = "ru", detail_level: int = 3):
+    
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
+        1: {"num_nodes": 4, "edge_prob": 0.4},
+        2: {"num_nodes": 5, "edge_prob": 0.4},
+        3: {"num_nodes": 6, "edge_prob": 0.45},
+        4: {"num_nodes": 8, "edge_prob": 0.45},
+        5: {"num_nodes": 10, "edge_prob": 0.5},
+        6: {"num_nodes": 12, "edge_prob": 0.5},
+        7: {"num_nodes": 14, "edge_prob": 0.55},
+        8: {"num_nodes": 16, "edge_prob": 0.55},
+        9: {"num_nodes": 20, "edge_prob": 0.6},
+        10: {"num_nodes": 25, "edge_prob": 0.6},
+    }
+    
+    def __init__(
+        self, 
+        task_type="shortest_path", 
+        num_nodes=None, 
+        edge_prob=None, 
+        language: str = "ru", 
+        detail_level: int = 3,
+        difficulty: int = None
+    ):
+        # Если указан difficulty, берём параметры из пресета
+        if difficulty is not None:
+            preset = self._interpolate_difficulty(difficulty)
+            if num_nodes is None:
+                num_nodes = preset.get("num_nodes", 10)
+            if edge_prob is None:
+                edge_prob = preset.get("edge_prob", 0.5)
+        else:
+            num_nodes = num_nodes or 10
+            edge_prob = edge_prob or 0.5
         self.task_type = task_type.lower()
         self.num_nodes = num_nodes
         self.edge_prob = edge_prob

@@ -18,6 +18,7 @@ from re_rl.tasks.knights_knaves_task import KnightsKnavesTask
 from re_rl.tasks.futoshiki_task import FutoshikiTask
 from re_rl.tasks.urn_probability_task import UrnProbabilityTask
 from re_rl.tasks.text_stats_task import TextStatsTask
+from re_rl.tasks.arithmetic_task import ArithmeticTask
 
 class DatasetGenerator:
     """
@@ -29,6 +30,7 @@ class DatasetGenerator:
         
         # Словарь доступных типов задач
         self.task_types = {
+            "arithmetic": ArithmeticTask,
             "linear": LinearTask,
             "quadratic": QuadraticTask,
             "cubic": CubicTask,
@@ -49,53 +51,99 @@ class DatasetGenerator:
         self.default_params = {
             "languages": ["ru", "en"],
             "detail_levels": [1, 2, 3, 4, 5],
+            "difficulties": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
             "tasks_per_type": 100
         }
 
-    def generate_task(self, task_type: str, language: str, detail_level: int) -> Dict[str, Any]:
+    def generate_task(
+        self, 
+        task_type: str, 
+        language: str, 
+        detail_level: int,
+        difficulty: int = None
+    ) -> Dict[str, Any]:
         """
         Генерирует одну задачу заданного типа.
+        
+        Args:
+            task_type: Тип задачи
+            language: Язык ("ru" или "en")
+            detail_level: Уровень детализации решения
+            difficulty: Уровень сложности (1-10). Если указан, параметры генерируются автоматически.
         """
         if task_type not in self.task_types:
             raise ValueError(f"Неизвестный тип задачи: {task_type}")
             
         task_class = self.task_types[task_type]
         
-        # Генерация случайных параметров для задачи
-        try:
-            params = self._generate_task_params(task_type)
-        except NotImplementedError:
-            raise NotImplementedError(f"Генерация параметров для {task_type} не реализована")
-        
-        # Специальная обработка для задач с особыми требованиями к параметрам
-        if task_type == "analogical":
-            # AnalogicalTask требует description
-            descriptions = {
-                "ru": [
-                    "Если река течёт, то вода движется. Аналогично, если электрический ток течёт, что происходит с электронами?",
-                    "Дерево растёт из семени. По аналогии, из чего развивается бизнес?",
-                    "Мозг обрабатывает информацию. Что аналогично делает компьютер?",
-                    "Сердце качает кровь по телу. Какой механизм аналогично работает в системе отопления?",
-                    "Корни питают дерево. Что аналогично питает компанию?"
-                ],
-                "en": [
-                    "If a river flows, water moves. Similarly, if electric current flows, what happens to electrons?",
-                    "A tree grows from a seed. By analogy, from what does a business develop?",
-                    "The brain processes information. What does a computer analogously do?",
-                    "The heart pumps blood through the body. What mechanism works similarly in a heating system?",
-                    "Roots nourish the tree. What analogously nourishes a company?"
-                ]
-            }
-            params["description"] = random.choice(descriptions.get(language, descriptions["en"]))
-            task = task_class(**params, language=language, detail_level=detail_level)
+        # Если указан difficulty, создаём задачу через from_difficulty или с параметром difficulty
+        if difficulty is not None:
+            # Специальная обработка для задач с особыми требованиями
+            if task_type == "analogical":
+                descriptions = {
+                    "ru": [
+                        "Если река течёт, то вода движется. Аналогично, если электрический ток течёт, что происходит с электронами?",
+                        "Дерево растёт из семени. По аналогии, из чего развивается бизнес?",
+                        "Мозг обрабатывает информацию. Что аналогично делает компьютер?",
+                        "Сердце качает кровь по телу. Какой механизм аналогично работает в системе отопления?",
+                        "Корни питают дерево. Что аналогично питает компанию?"
+                    ],
+                    "en": [
+                        "If a river flows, water moves. Similarly, if electric current flows, what happens to electrons?",
+                        "A tree grows from a seed. By analogy, from what does a business develop?",
+                        "The brain processes information. What does a computer analogously do?",
+                        "The heart pumps blood through the body. What mechanism works similarly in a heating system?",
+                        "Roots nourish the tree. What analogously nourishes a company?"
+                    ]
+                }
+                description = random.choice(descriptions.get(language, descriptions["en"]))
+                task = task_class(description=description, language=language, detail_level=detail_level)
+            elif task_type in ("contradiction",):
+                # Эти задачи НЕ принимают detail_level
+                task = task_class(language=language, difficulty=difficulty)
+            elif task_type in ("urn_probability",):
+                # UrnProbabilityTask не поддерживает difficulty пока
+                task = task_class(language=language)
+            else:
+                # Большинство задач поддерживают difficulty
+                task = task_class(language=language, detail_level=detail_level, difficulty=difficulty)
             
-        elif task_type in ("contradiction", "urn_probability"):
-            # Эти задачи НЕ принимают detail_level
-            task = task_class(**params, language=language)
-            
+            params = {"difficulty": difficulty}
         else:
-            # Стандартное создание задачи
-            task = task_class(**params, language=language, detail_level=detail_level)
+            # Генерация через старые параметры
+            try:
+                params = self._generate_task_params(task_type)
+            except NotImplementedError:
+                raise NotImplementedError(f"Генерация параметров для {task_type} не реализована")
+            
+            # Специальная обработка для задач с особыми требованиями к параметрам
+            if task_type == "analogical":
+                descriptions = {
+                    "ru": [
+                        "Если река течёт, то вода движется. Аналогично, если электрический ток течёт, что происходит с электронами?",
+                        "Дерево растёт из семени. По аналогии, из чего развивается бизнес?",
+                        "Мозг обрабатывает информацию. Что аналогично делает компьютер?",
+                        "Сердце качает кровь по телу. Какой механизм аналогично работает в системе отопления?",
+                        "Корни питают дерево. Что аналогично питает компанию?"
+                    ],
+                    "en": [
+                        "If a river flows, water moves. Similarly, if electric current flows, what happens to electrons?",
+                        "A tree grows from a seed. By analogy, from what does a business develop?",
+                        "The brain processes information. What does a computer analogously do?",
+                        "The heart pumps blood through the body. What mechanism works similarly in a heating system?",
+                        "Roots nourish the tree. What analogously nourishes a company?"
+                    ]
+                }
+                params["description"] = random.choice(descriptions.get(language, descriptions["en"]))
+                task = task_class(**params, language=language, detail_level=detail_level)
+                
+            elif task_type in ("contradiction", "urn_probability"):
+                # Эти задачи НЕ принимают detail_level
+                task = task_class(**params, language=language)
+                
+            else:
+                # Стандартное создание задачи
+                task = task_class(**params, language=language, detail_level=detail_level)
         
         result = task.get_result()
         
@@ -103,6 +151,7 @@ class DatasetGenerator:
             "task_type": task_type,
             "language": language,
             "detail_level": detail_level,
+            "difficulty": difficulty,
             "parameters": params,
             "result": result
         }
@@ -114,8 +163,12 @@ class DatasetGenerator:
         """
         if task_type not in self.task_types:
             raise NotImplementedError(f"Тип задачи {task_type} не реализован")
+        
+        if task_type == "arithmetic":
+            # ArithmeticTask использует difficulty напрямую
+            return {"difficulty": random.randint(1, 10)}
             
-        if task_type == "linear":
+        elif task_type == "linear":
             # LinearTask(a, b, c, language, detail_level)
             a = random.randint(-10, 10)
             while a == 0:  # Избегаем деления на ноль
@@ -273,9 +326,22 @@ class DatasetGenerator:
                         task_types: Optional[List[str]] = None,
                         languages: Optional[List[str]] = None,
                         detail_levels: Optional[List[int]] = None,
-                        tasks_per_type: int = 100) -> List[Dict[str, Any]]:
+                        difficulties: Optional[List[int]] = None,
+                        tasks_per_type: int = 100,
+                        use_difficulty: bool = True) -> List[Dict[str, Any]]:
         """
         Генерирует полный датасет задач.
+        
+        Args:
+            task_types: Список типов задач (по умолчанию все)
+            languages: Список языков (по умолчанию ["ru", "en"])
+            detail_levels: Уровни детализации решения (по умолчанию [1-5])
+            difficulties: Уровни сложности (по умолчанию [1-10])
+            tasks_per_type: Количество задач для каждой комбинации параметров
+            use_difficulty: Использовать ли difficulty для генерации (True) или старый способ (False)
+            
+        Returns:
+            Список сгенерированных задач
         """
         if task_types is None:
             task_types = list(self.task_types.keys())
@@ -283,15 +349,31 @@ class DatasetGenerator:
             languages = self.default_params["languages"]
         if detail_levels is None:
             detail_levels = self.default_params["detail_levels"]
+        if difficulties is None:
+            difficulties = self.default_params.get("difficulties", [5])
             
         dataset = []
         
-        for task_type in task_types:
-            for language in languages:
-                for detail_level in detail_levels:
-                    for _ in range(tasks_per_type):
-                        task = self.generate_task(task_type, language, detail_level)
-                        dataset.append(task)
+        if use_difficulty:
+            # Новый способ: генерация по уровням сложности
+            for task_type in task_types:
+                for language in languages:
+                    for difficulty in difficulties:
+                        for detail_level in detail_levels:
+                            for _ in range(tasks_per_type):
+                                task = self.generate_task(
+                                    task_type, language, detail_level, 
+                                    difficulty=difficulty
+                                )
+                                dataset.append(task)
+        else:
+            # Старый способ: генерация через параметры
+            for task_type in task_types:
+                for language in languages:
+                    for detail_level in detail_levels:
+                        for _ in range(tasks_per_type):
+                            task = self.generate_task(task_type, language, detail_level)
+                            dataset.append(task)
                         
         return dataset
 
