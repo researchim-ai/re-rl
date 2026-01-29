@@ -472,17 +472,17 @@ class ArithmeticTask(BaseMathTask):
     def solve(self):
         """Решает задачу пошагово."""
         steps = []
+        misc = PROMPT_TEMPLATES.get("arithmetic", {}).get("misc", {})
         
         if self.expression_tree is not None:
             steps = self._solve_tree(self.expression_tree, 0)
         else:
             # Для явно заданного выражения - простое решение
-            if self.language == "ru":
-                steps.append(f"Шаг 1: Вычисляем выражение {self.expression_str}")
-                steps.append(f"Шаг 2: Результат = {self._format_answer()}")
-            else:
-                steps.append(f"Step 1: Calculate the expression {self.expression_str}")
-                steps.append(f"Step 2: Result = {self._format_answer()}")
+            step1 = misc.get("step_calculate_expr", {}).get(self.language, "")
+            steps.append(step1.format(expression=self.expression_str))
+            
+            step2 = misc.get("step_result", {}).get(self.language, "")
+            steps.append(step2.format(result=self._format_answer()))
         
         # Ограничиваем по detail_level
         self.solution_steps = steps[:self.detail_level] if self.detail_level < len(steps) else steps
@@ -491,6 +491,8 @@ class ArithmeticTask(BaseMathTask):
     def _solve_tree(self, node: ExpressionNode, step_num: int) -> List[str]:
         """Рекурсивно решает дерево выражения."""
         steps = []
+        misc = PROMPT_TEMPLATES.get("arithmetic", {}).get("misc", {})
+        operations = PROMPT_TEMPLATES.get("arithmetic", {}).get("operations", {})
         
         if isinstance(node, NumberNode):
             return steps
@@ -503,12 +505,9 @@ class ArithmeticTask(BaseMathTask):
             operand_val = node.operand.evaluate()
             result = node.evaluate()
             
-            if self.language == "ru":
-                if node.op == 'sqrt':
-                    steps.append(f"Шаг {step_num + 1}: Вычисляем √({operand_val}) = {result:.4g}")
-            else:
-                if node.op == 'sqrt':
-                    steps.append(f"Step {step_num + 1}: Calculate sqrt({operand_val}) = {result:.4g}")
+            if node.op == 'sqrt':
+                step_template = misc.get("step_sqrt", {}).get(self.language, "")
+                steps.append(step_template.format(step=step_num + 1, value=operand_val, result=f"{result:.4g}"))
             return steps
         
         if isinstance(node, BinaryOpNode):
@@ -525,20 +524,18 @@ class ArithmeticTask(BaseMathTask):
             right_val = node.right.evaluate()
             result = node.evaluate()
             
-            op_name = {
-                '+': ('Складываем', 'Add'),
-                '-': ('Вычитаем', 'Subtract'),
-                '*': ('Умножаем', 'Multiply'),
-                '/': ('Делим', 'Divide'),
-                '^': ('Возводим в степень', 'Raise to power'),
-            }
+            # Получаем имя операции из шаблонов
+            operation_name = operations.get(self.language, {}).get(node.op, node.op)
             
-            ru_name, en_name = op_name.get(node.op, ('Вычисляем', 'Calculate'))
-            
-            if self.language == "ru":
-                steps.append(f"Шаг {step_num + 1}: {ru_name} {left_val:.4g} {node.op} {right_val:.4g} = {result:.4g}")
-            else:
-                steps.append(f"Step {step_num + 1}: {en_name} {left_val:.4g} {node.op} {right_val:.4g} = {result:.4g}")
+            step_template = misc.get("step_operation", {}).get(self.language, "")
+            steps.append(step_template.format(
+                step=step_num + 1,
+                operation=operation_name,
+                left=f"{left_val:.4g}",
+                op=node.op,
+                right=f"{right_val:.4g}",
+                result=f"{result:.4g}"
+            ))
             
             return steps
         

@@ -111,22 +111,32 @@ class SystemLinearTask(BaseMathTask):
         A = matrix[:, :-1]
         B = matrix[:, -1]
         n = A.shape[0]
+        
         if A.shape[0] != A.shape[1]:
-            error_str = PROMPT_TEMPLATES["default"]["error"]["en"].format(error="Матрица коэффициентов должна быть квадратной")
+            error_str = PROMPT_TEMPLATES["default"]["error"][self.language].format(
+                error="Матрица коэффициентов должна быть квадратной" if self.language == "ru" 
+                else "Coefficient matrix must be square"
+            )
             raise ValueError(error_str)
+        
         steps = []
+        steps_templates = PROMPT_TEMPLATES.get("system_linear", {}).get("steps", {})
         det_A = np.linalg.det(A)
+        
         if self.detail_level >= 2:
-            if self.language == "ru":
-                steps.append(f"Шаг 1: Вычисляем главный определитель системы: det(A) = {det_A:.2f}")
-            else:
-                steps.append(f"Step 1: Compute det(A) = {det_A:.2f}")
+            template = steps_templates.get("compute_det", {}).get(self.language, "")
+            steps.append(template.format(det=f"{det_A:.2f}"))
+        
         if abs(det_A) < 1e-6:
-            no_unique = PROMPT_TEMPLATES["system_linear"]["no_unique_solution"].get(self.language, PROMPT_TEMPLATES["system_linear"]["no_unique_solution"]["en"])
+            no_unique = PROMPT_TEMPLATES["system_linear"]["no_unique_solution"].get(
+                self.language, 
+                PROMPT_TEMPLATES["system_linear"]["no_unique_solution"]["en"]
+            )
             steps.append(no_unique)
             self.solution_steps.extend(steps)
             self.final_answer = no_unique
             return
+        
         X = []
         for i in range(n):
             A_i = A.copy()
@@ -134,11 +144,16 @@ class SystemLinearTask(BaseMathTask):
             det_Ai = np.linalg.det(A_i)
             x_i = det_Ai / det_A
             X.append(x_i)
+            
             if self.detail_level >= 3:
-                step_num = i*2 + 2
-                message1 = PROMPT_TEMPLATES["system_linear"]["step"].get(self.language, PROMPT_TEMPLATES["system_linear"]["step"]["en"]).format(step_num=step_num, message=f"Заменяем {i+1}-й столбец и вычисляем det(A_{i+1}) = {det_Ai:.2f}")
-                message2 = PROMPT_TEMPLATES["system_linear"]["step"].get(self.language, PROMPT_TEMPLATES["system_linear"]["step"]["en"]).format(step_num=step_num+1, message=f"x{i+1} = det(A_{i+1}) / det(A) = {x_i:.2f}")
-                steps.extend([message1, message2])
+                step_num = i * 2 + 2
+                
+                template1 = steps_templates.get("replace_column", {}).get(self.language, "")
+                steps.append(template1.format(step_num=step_num, col=i+1, det=f"{det_Ai:.2f}"))
+                
+                template2 = steps_templates.get("compute_variable", {}).get(self.language, "")
+                steps.append(template2.format(step_num=step_num+1, var=i+1, value=f"{x_i:.2f}"))
+        
         self.solution_steps.extend(steps)
         self.final_answer = ", ".join([f"x{i+1} = {x:.2f}" for i, x in enumerate(X)])
 

@@ -726,6 +726,20 @@ PROMPT_TEMPLATES = {
             "ru": "Решите систему уравнений:\n{equations}",
             "en": "Solve the following system of equations:\n{equations}"
         },
+        "steps": {
+            "compute_det": {
+                "ru": "Шаг 1: Вычисляем главный определитель системы: det(A) = {det}",
+                "en": "Step 1: Compute main determinant: det(A) = {det}"
+            },
+            "replace_column": {
+                "ru": "Шаг {step_num}: Заменяем {col}-й столбец и вычисляем det(A_{col}) = {det}",
+                "en": "Step {step_num}: Replace column {col} and compute det(A_{col}) = {det}"
+            },
+            "compute_variable": {
+                "ru": "Шаг {step_num}: x{var} = det(A_{var}) / det(A) = {value}",
+                "en": "Step {step_num}: x{var} = det(A_{var}) / det(A) = {value}"
+            }
+        },
         "step": {
             "ru": "Шаг {step_num}: {message}",
             "en": "Step {step_num}: {message}"
@@ -1387,6 +1401,24 @@ Analysis:
     # 16) ARITHMETIC
     #----------------------------------------------------------------------------
     "arithmetic": {
+        "misc": {
+            "step_calculate_expr": {
+                "ru": "Шаг 1: Вычисляем выражение {expression}",
+                "en": "Step 1: Calculate the expression {expression}"
+            },
+            "step_result": {
+                "ru": "Шаг 2: Результат = {result}",
+                "en": "Step 2: Result = {result}"
+            },
+            "step_sqrt": {
+                "ru": "Шаг {step}: Вычисляем √({value}) = {result}",
+                "en": "Step {step}: Calculate sqrt({value}) = {result}"
+            },
+            "step_operation": {
+                "ru": "Шаг {step}: {operation} {left} {op} {right} = {result}",
+                "en": "Step {step}: {operation} {left} {op} {right} = {result}"
+            }
+        },
         "instructions": {
             "ru": (
                 "type: structured_text_with_tags\n"
@@ -1472,6 +1504,1562 @@ Analysis:
                 "^": "exponentiation",
                 "sqrt": "square root"
             }
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 17) NUMBER_THEORY - Теория чисел
+    #----------------------------------------------------------------------------
+    "number_theory": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по теории чисел.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the number theory problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "gcd_lcm": {
+                "ru": "Найдите НОД и НОК чисел {a} и {b}.",
+                "en": "Find the GCD and LCM of {a} and {b}."
+            },
+            "prime_factorization": {
+                "ru": "Разложите число {n} на простые множители.",
+                "en": "Find the prime factorization of {n}."
+            },
+            "modular_arithmetic": {
+                "ru": "Вычислите {a}^{b} mod {m}.",
+                "en": "Calculate {a}^{b} mod {m}."
+            },
+            "chinese_remainder": {
+                "ru": "Решите систему сравнений:\n{equations}\nНайдите x.",
+                "en": "Solve the system of congruences:\n{equations}\nFind x."
+            },
+            "divisibility": {
+                "ru": "Определите, делится ли число {n} на {d}. Объясните ответ.",
+                "en": "Determine whether {n} is divisible by {d}. Explain your answer."
+            },
+            "diophantine": {
+                "ru": "Найдите все целые решения уравнения {a}x + {b}y = {c}.",
+                "en": "Find all integer solutions to the equation {a}x + {b}y = {c}."
+            },
+            "euler_totient": {
+                "ru": "Вычислите функцию Эйлера φ({n}).",
+                "en": "Calculate Euler's totient function φ({n})."
+            }
+        },
+        "steps": {
+            "gcd_euclidean": {
+                "ru": "Шаг {step}: Применяем алгоритм Евклида: {a} = {b} × {q} + {r}",
+                "en": "Step {step}: Apply Euclidean algorithm: {a} = {b} × {q} + {r}"
+            },
+            "gcd_found": {
+                "ru": "НОД({a}, {b}) = {gcd}",
+                "en": "GCD({a}, {b}) = {gcd}"
+            },
+            "lcm_formula": {
+                "ru": "НОК({a}, {b}) = {a} × {b} / НОД({a}, {b}) = {lcm}",
+                "en": "LCM({a}, {b}) = {a} × {b} / GCD({a}, {b}) = {lcm}"
+            },
+            "factor_found": {
+                "ru": "Шаг {step}: {n} = {factor} × {quotient}",
+                "en": "Step {step}: {n} = {factor} × {quotient}"
+            },
+            "factorization_result": {
+                "ru": "Разложение: {n} = {factorization}",
+                "en": "Factorization: {n} = {factorization}"
+            },
+            "mod_exp_step": {
+                "ru": "Шаг {step}: {base}^{exp} ≡ {result} (mod {m})",
+                "en": "Step {step}: {base}^{exp} ≡ {result} (mod {m})"
+            },
+            "crt_step": {
+                "ru": "Шаг {step}: x ≡ {a} (mod {m}), M_{i} = {M_i}, y_{i} = {y_i}",
+                "en": "Step {step}: x ≡ {a} (mod {m}), M_i = {M_i}, y_i = {y_i}"
+            },
+            "diophantine_gcd": {
+                "ru": "Шаг 1: НОД({a}, {b}) = {gcd}. Уравнение имеет решения, т.к. {gcd} | {c}.",
+                "en": "Step 1: GCD({a}, {b}) = {gcd}. The equation has solutions since {gcd} | {c}."
+            },
+            "diophantine_particular": {
+                "ru": "Шаг 2: Частное решение: x₀ = {x0}, y₀ = {y0}",
+                "en": "Step 2: Particular solution: x₀ = {x0}, y₀ = {y0}"
+            },
+            "diophantine_general": {
+                "ru": "Шаг 3: Общее решение: x = {x0} + {b_div}t, y = {y0} - {a_div}t, где t ∈ ℤ",
+                "en": "Step 3: General solution: x = {x0} + {b_div}t, y = {y0} - {a_div}t, where t ∈ ℤ"
+            },
+            "euler_factorize": {
+                "ru": "Шаг 1: Разложение {n} = {factorization}",
+                "en": "Step 1: Factorization {n} = {factorization}"
+            },
+            "euler_formula": {
+                "ru": "Шаг 2: φ({n}) = {n} × {product_terms} = {result}",
+                "en": "Step 2: φ({n}) = {n} × {product_terms} = {result}"
+            },
+            "divisibility_divide": {
+                "ru": "Шаг 1: Делим {n} на {d}: {n} ÷ {d} = {quotient}",
+                "en": "Step 1: Divide {n} by {d}: {n} ÷ {d} = {quotient}"
+            },
+            "divisibility_remainder": {
+                "ru": "Шаг 1: Делим {n} на {d}: {n} = {d} × {quotient} + {remainder}",
+                "en": "Step 1: Divide {n} by {d}: {n} = {d} × {quotient} + {remainder}"
+            },
+            "divisibility_yes": {
+                "ru": "Шаг 2: Остаток равен 0, следовательно {n} делится на {d}.",
+                "en": "Step 2: Remainder is 0, therefore {n} is divisible by {d}."
+            },
+            "divisibility_no": {
+                "ru": "Шаг 2: Остаток равен {remainder} ≠ 0, следовательно {n} не делится на {d}.",
+                "en": "Step 2: Remainder is {remainder} ≠ 0, therefore {n} is not divisible by {d}."
+            }
+        },
+        "answers": {
+            "divisible_yes": {
+                "ru": "Да, {n} делится на {d}",
+                "en": "Yes, {n} is divisible by {d}"
+            },
+            "divisible_no": {
+                "ru": "Нет, остаток = {remainder}",
+                "en": "No, remainder = {remainder}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 18) COMBINATORICS - Комбинаторика
+    #----------------------------------------------------------------------------
+    "combinatorics": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите комбинаторную задачу.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение с формулами)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Числовой ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the combinatorics problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution with formulas)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Numerical answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "permutations": {
+                "ru": "Сколькими способами можно расположить {n} различных предметов в ряд?",
+                "en": "In how many ways can {n} distinct objects be arranged in a row?"
+            },
+            "permutations_k": {
+                "ru": "Сколькими способами можно выбрать и расположить {k} предметов из {n} различных?",
+                "en": "In how many ways can we select and arrange {k} objects from {n} distinct objects?"
+            },
+            "combinations": {
+                "ru": "Сколькими способами можно выбрать {k} предметов из {n} различных (порядок не важен)?",
+                "en": "In how many ways can we choose {k} objects from {n} distinct objects (order doesn't matter)?"
+            },
+            "combinations_repetition": {
+                "ru": "Сколькими способами можно выбрать {k} предметов из {n} видов с повторениями?",
+                "en": "In how many ways can we choose {k} objects from {n} types with repetition allowed?"
+            },
+            "binomial": {
+                "ru": "Вычислите биномиальный коэффициент C({n}, {k}).",
+                "en": "Calculate the binomial coefficient C({n}, {k})."
+            },
+            "multinomial": {
+                "ru": "Сколькими способами можно разбить {n} предметов на группы размеров {groups}?",
+                "en": "In how many ways can {n} objects be divided into groups of sizes {groups}?"
+            },
+            "pigeonhole": {
+                "ru": "В ящике {n} носков {k} разных цветов. Какое минимальное число носков нужно достать, чтобы гарантированно получить {m} носков одного цвета?",
+                "en": "A drawer contains {n} socks of {k} different colors. What is the minimum number of socks to pick to guarantee {m} socks of the same color?"
+            },
+            "inclusion_exclusion": {
+                "ru": "Используя формулу включения-исключения, найдите количество целых чисел от 1 до {n}, которые делятся хотя бы на одно из чисел: {divisors}.",
+                "en": "Using inclusion-exclusion, find the count of integers from 1 to {n} divisible by at least one of: {divisors}."
+            },
+            "derangements": {
+                "ru": "Сколько существует беспорядков (перестановок без неподвижных точек) для {n} элементов?",
+                "en": "How many derangements (permutations with no fixed points) exist for {n} elements?"
+            },
+            "stars_and_bars": {
+                "ru": "Сколькими способами можно разложить {n} одинаковых шаров по {k} различным ящикам?",
+                "en": "In how many ways can {n} identical balls be distributed into {k} distinct boxes?"
+            },
+            "circular_permutation": {
+                "ru": "Сколькими способами можно рассадить {n} человек за круглый стол?",
+                "en": "In how many ways can {n} people be seated around a circular table?"
+            }
+        },
+        "steps": {
+            "factorial": {
+                "ru": "Шаг {step}: {n}! = {result}",
+                "en": "Step {step}: {n}! = {result}"
+            },
+            "permutation_formula": {
+                "ru": "Шаг {step}: P({n}, {k}) = {n}! / ({n}-{k})! = {result}",
+                "en": "Step {step}: P({n}, {k}) = {n}! / ({n}-{k})! = {result}"
+            },
+            "combination_formula": {
+                "ru": "Шаг {step}: C({n}, {k}) = {n}! / ({k}! × ({n}-{k})!) = {result}",
+                "en": "Step {step}: C({n}, {k}) = {n}! / ({k}! × ({n}-{k})!) = {result}"
+            },
+            "combination_rep_formula": {
+                "ru": "Шаг {step}: C({n}+{k}-1, {k}) = C({n_plus_k_minus_1}, {k}) = {result}",
+                "en": "Step {step}: C({n}+{k}-1, {k}) = C({n_plus_k_minus_1}, {k}) = {result}"
+            },
+            "multinomial_formula": {
+                "ru": "Шаг {step}: Мультиномиальный коэффициент = {n}! / ({factorials}) = {result}",
+                "en": "Step {step}: Multinomial coefficient = {n}! / ({factorials}) = {result}"
+            },
+            "pigeonhole_formula": {
+                "ru": "Шаг {step}: По принципу Дирихле: ({m}-1) × {k} + 1 = {result}",
+                "en": "Step {step}: By pigeonhole principle: ({m}-1) × {k} + 1 = {result}"
+            },
+            "inclusion_exclusion_step": {
+                "ru": "Шаг {step}: |A_{sets}| = {count}",
+                "en": "Step {step}: |A_{sets}| = {count}"
+            },
+            "derangement_formula": {
+                "ru": "Шаг {step}: D({n}) = {n}! × Σ((-1)^k / k!) = {result}",
+                "en": "Step {step}: D({n}) = {n}! × Σ((-1)^k / k!) = {result}"
+            },
+            "circular_formula": {
+                "ru": "Шаг {step}: Круговые перестановки = ({n}-1)! = {result}",
+                "en": "Step {step}: Circular permutations = ({n}-1)! = {result}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 19) SEQUENCE - Последовательности
+    #----------------------------------------------------------------------------
+    "sequence": {
+        "misc": {
+            "sum_arithmetic": {
+                "ru": "Шаг 1: Сумма 1 + 2 + ... + n = n(n+1)/2 = {n}×{n_plus_1}/2 = {result}",
+                "en": "Step 1: Sum 1 + 2 + ... + n = n(n+1)/2 = {n}×{n_plus_1}/2 = {result}"
+            },
+            "sum_squares": {
+                "ru": "Шаг 1: Сумма квадратов = n(n+1)(2n+1)/6 = {result}",
+                "en": "Step 1: Sum of squares = n(n+1)(2n+1)/6 = {result}"
+            }
+        },
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу на последовательности.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Анализ закономерности и вычисления)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the sequence problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Pattern analysis and calculations)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "arithmetic_nth": {
+                "ru": "Найдите {n}-й член арифметической прогрессии с первым членом {a1} и разностью {d}.",
+                "en": "Find the {n}th term of an arithmetic sequence with first term {a1} and common difference {d}."
+            },
+            "arithmetic_sum": {
+                "ru": "Найдите сумму первых {n} членов арифметической прогрессии с первым членом {a1} и разностью {d}.",
+                "en": "Find the sum of the first {n} terms of an arithmetic sequence with first term {a1} and common difference {d}."
+            },
+            "geometric_nth": {
+                "ru": "Найдите {n}-й член геометрической прогрессии с первым членом {a1} и знаменателем {r}.",
+                "en": "Find the {n}th term of a geometric sequence with first term {a1} and common ratio {r}."
+            },
+            "geometric_sum": {
+                "ru": "Найдите сумму первых {n} членов геометрической прогрессии с первым членом {a1} и знаменателем {r}.",
+                "en": "Find the sum of the first {n} terms of a geometric sequence with first term {a1} and common ratio {r}."
+            },
+            "fibonacci_nth": {
+                "ru": "Найдите {n}-е число Фибоначчи (F₁ = 1, F₂ = 1).",
+                "en": "Find the {n}th Fibonacci number (F₁ = 1, F₂ = 1)."
+            },
+            "recurrence": {
+                "ru": "Дана рекуррентная формула: a_{n} = {formula}, a₁ = {a1}. Найдите a_{target}.",
+                "en": "Given the recurrence: a_n = {formula}, a₁ = {a1}. Find a_{target}."
+            },
+            "pattern": {
+                "ru": "Найдите закономерность и следующий член последовательности: {sequence}, ?",
+                "en": "Find the pattern and the next term of the sequence: {sequence}, ?"
+            },
+            "series_sum": {
+                "ru": "Найдите сумму ряда: {series}",
+                "en": "Find the sum of the series: {series}"
+            }
+        },
+        "steps": {
+            "arithmetic_formula": {
+                "ru": "Шаг {step}: a_n = a₁ + (n-1)d = {a1} + ({n}-1)×{d} = {result}",
+                "en": "Step {step}: a_n = a₁ + (n-1)d = {a1} + ({n}-1)×{d} = {result}"
+            },
+            "arithmetic_sum_formula": {
+                "ru": "Шаг {step}: S_n = n(a₁ + a_n)/2 = {n}×({a1} + {an})/2 = {result}",
+                "en": "Step {step}: S_n = n(a₁ + a_n)/2 = {n}×({a1} + {an})/2 = {result}"
+            },
+            "geometric_formula": {
+                "ru": "Шаг {step}: a_n = a₁ × r^(n-1) = {a1} × {r}^({n}-1) = {result}",
+                "en": "Step {step}: a_n = a₁ × r^(n-1) = {a1} × {r}^({n}-1) = {result}"
+            },
+            "geometric_sum_formula": {
+                "ru": "Шаг {step}: S_n = a₁(r^n - 1)/(r - 1) = {result}",
+                "en": "Step {step}: S_n = a₁(r^n - 1)/(r - 1) = {result}"
+            },
+            "fibonacci_step": {
+                "ru": "Шаг {step}: F_{n} = F_{n_minus_1} + F_{n_minus_2} = {f1} + {f2} = {result}",
+                "en": "Step {step}: F_{n} = F_{n_minus_1} + F_{n_minus_2} = {f1} + {f2} = {result}"
+            },
+            "recurrence_step": {
+                "ru": "Шаг {step}: a_{n} = {formula_applied} = {result}",
+                "en": "Step {step}: a_{n} = {formula_applied} = {result}"
+            },
+            "pattern_identified": {
+                "ru": "Шаг {step}: Обнаружена закономерность: {pattern_description}",
+                "en": "Step {step}: Pattern identified: {pattern_description}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 20) GEOMETRY - Геометрия
+    #----------------------------------------------------------------------------
+    "geometry": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите геометрическую задачу.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение с формулами)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the geometry problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution with formulas)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "triangle_area_coords": {
+                "ru": "Найдите площадь треугольника с вершинами A({x1}, {y1}), B({x2}, {y2}), C({x3}, {y3}).",
+                "en": "Find the area of the triangle with vertices A({x1}, {y1}), B({x2}, {y2}), C({x3}, {y3})."
+            },
+            "triangle_area_sides": {
+                "ru": "Найдите площадь треугольника со сторонами a = {a}, b = {b}, c = {c}.",
+                "en": "Find the area of the triangle with sides a = {a}, b = {b}, c = {c}."
+            },
+            "distance_2d": {
+                "ru": "Найдите расстояние между точками A({x1}, {y1}) и B({x2}, {y2}).",
+                "en": "Find the distance between points A({x1}, {y1}) and B({x2}, {y2})."
+            },
+            "distance_3d": {
+                "ru": "Найдите расстояние между точками A({x1}, {y1}, {z1}) и B({x2}, {y2}, {z2}).",
+                "en": "Find the distance between points A({x1}, {y1}, {z1}) and B({x2}, {y2}, {z2})."
+            },
+            "circle_area": {
+                "ru": "Найдите площадь круга с радиусом {r}.",
+                "en": "Find the area of a circle with radius {r}."
+            },
+            "circle_circumference": {
+                "ru": "Найдите длину окружности с радиусом {r}.",
+                "en": "Find the circumference of a circle with radius {r}."
+            },
+            "rectangle_area": {
+                "ru": "Найдите площадь прямоугольника со сторонами {a} и {b}.",
+                "en": "Find the area of a rectangle with sides {a} and {b}."
+            },
+            "sphere_volume": {
+                "ru": "Найдите объём шара с радиусом {r}.",
+                "en": "Find the volume of a sphere with radius {r}."
+            },
+            "cylinder_volume": {
+                "ru": "Найдите объём цилиндра с радиусом основания {r} и высотой {h}.",
+                "en": "Find the volume of a cylinder with base radius {r} and height {h}."
+            },
+            "cone_volume": {
+                "ru": "Найдите объём конуса с радиусом основания {r} и высотой {h}.",
+                "en": "Find the volume of a cone with base radius {r} and height {h}."
+            },
+            "angle_between_vectors": {
+                "ru": "Найдите угол между векторами a = ({ax}, {ay}) и b = ({bx}, {by}).",
+                "en": "Find the angle between vectors a = ({ax}, {ay}) and b = ({bx}, {by})."
+            },
+            "dot_product": {
+                "ru": "Найдите скалярное произведение векторов a = ({ax}, {ay}, {az}) и b = ({bx}, {by}, {bz}).",
+                "en": "Find the dot product of vectors a = ({ax}, {ay}, {az}) and b = ({bx}, {by}, {bz})."
+            },
+            "cross_product": {
+                "ru": "Найдите векторное произведение векторов a = ({ax}, {ay}, {az}) и b = ({bx}, {by}, {bz}).",
+                "en": "Find the cross product of vectors a = ({ax}, {ay}, {az}) and b = ({bx}, {by}, {bz})."
+            },
+            "line_equation": {
+                "ru": "Напишите уравнение прямой, проходящей через точки A({x1}, {y1}) и B({x2}, {y2}).",
+                "en": "Write the equation of the line passing through points A({x1}, {y1}) and B({x2}, {y2})."
+            },
+            "midpoint": {
+                "ru": "Найдите координаты середины отрезка AB, где A({x1}, {y1}) и B({x2}, {y2}).",
+                "en": "Find the coordinates of the midpoint of segment AB, where A({x1}, {y1}) and B({x2}, {y2})."
+            }
+        },
+        "steps": {
+            "triangle_area_formula": {
+                "ru": "Шаг {step}: S = ½|x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)| = {result}",
+                "en": "Step {step}: S = ½|x₁(y₂-y₃) + x₂(y₃-y₁) + x₃(y₁-y₂)| = {result}"
+            },
+            "heron_formula": {
+                "ru": "Шаг {step}: Полупериметр p = (a+b+c)/2 = {p}. S = √(p(p-a)(p-b)(p-c)) = {result}",
+                "en": "Step {step}: Semi-perimeter p = (a+b+c)/2 = {p}. S = √(p(p-a)(p-b)(p-c)) = {result}"
+            },
+            "distance_formula_2d": {
+                "ru": "Шаг {step}: d = √((x₂-x₁)² + (y₂-y₁)²) = √(({dx})² + ({dy})²) = {result}",
+                "en": "Step {step}: d = √((x₂-x₁)² + (y₂-y₁)²) = √(({dx})² + ({dy})²) = {result}"
+            },
+            "distance_formula_3d": {
+                "ru": "Шаг {step}: d = √((x₂-x₁)² + (y₂-y₁)² + (z₂-z₁)²) = {result}",
+                "en": "Step {step}: d = √((x₂-x₁)² + (y₂-y₁)² + (z₂-z₁)²) = {result}"
+            },
+            "circle_area_formula": {
+                "ru": "Шаг {step}: S = πr² = π × {r}² = {result}",
+                "en": "Step {step}: S = πr² = π × {r}² = {result}"
+            },
+            "circumference_formula": {
+                "ru": "Шаг {step}: C = 2πr = 2π × {r} = {result}",
+                "en": "Step {step}: C = 2πr = 2π × {r} = {result}"
+            },
+            "sphere_volume_formula": {
+                "ru": "Шаг {step}: V = (4/3)πr³ = (4/3)π × {r}³ = {result}",
+                "en": "Step {step}: V = (4/3)πr³ = (4/3)π × {r}³ = {result}"
+            },
+            "cylinder_volume_formula": {
+                "ru": "Шаг {step}: V = πr²h = π × {r}² × {h} = {result}",
+                "en": "Step {step}: V = πr²h = π × {r}² × {h} = {result}"
+            },
+            "cone_volume_formula": {
+                "ru": "Шаг {step}: V = (1/3)πr²h = (1/3)π × {r}² × {h} = {result}",
+                "en": "Step {step}: V = (1/3)πr²h = (1/3)π × {r}² × {h} = {result}"
+            },
+            "dot_product_formula": {
+                "ru": "Шаг {step}: a·b = ax×bx + ay×by + az×bz = {result}",
+                "en": "Step {step}: a·b = ax×bx + ay×by + az×bz = {result}"
+            },
+            "cross_product_formula": {
+                "ru": "Шаг {step}: a×b = ({i_comp}, {j_comp}, {k_comp})",
+                "en": "Step {step}: a×b = ({i_comp}, {j_comp}, {k_comp})"
+            },
+            "angle_formula": {
+                "ru": "Шаг {step}: cos(θ) = (a·b)/(|a||b|) = {cos_val}, θ = {angle}°",
+                "en": "Step {step}: cos(θ) = (a·b)/(|a||b|) = {cos_val}, θ = {angle}°"
+            },
+            "line_slope": {
+                "ru": "Шаг {step}: Угловой коэффициент k = (y₂-y₁)/(x₂-x₁) = {slope}",
+                "en": "Step {step}: Slope k = (y₂-y₁)/(x₂-x₁) = {slope}"
+            },
+            "line_equation_result": {
+                "ru": "Шаг {step}: Уравнение прямой: y = {slope}x + {intercept}",
+                "en": "Step {step}: Line equation: y = {slope}x + {intercept}"
+            },
+            "vertical_line": {
+                "ru": "Шаг 1: Прямая вертикальная, уравнение: x = {x}",
+                "en": "Step 1: Vertical line, equation: x = {x}"
+            },
+            "midpoint_formula": {
+                "ru": "Шаг {step}: M = ((x₁+x₂)/2, (y₁+y₂)/2) = ({mx}, {my})",
+                "en": "Step {step}: M = ((x₁+x₂)/2, (y₁+y₂)/2) = ({mx}, {my})"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 21) MATRIX - Матрицы
+    #----------------------------------------------------------------------------
+    "matrix": {
+        "misc": {
+            "singular_matrix": {
+                "ru": "Матрица вырождена",
+                "en": "Matrix is singular"
+            },
+            "det_step": {
+                "ru": "Шаг 2: det(A) = {det}",
+                "en": "Step 2: det(A) = {det}"
+            },
+            "reduce_to_echelon": {
+                "ru": "Шаг 1: Приводим матрицу к ступенчатому виду",
+                "en": "Step 1: Reduce matrix to row echelon form"
+            },
+            "count_nonzero_rows": {
+                "ru": "Шаг 2: Считаем ненулевые строки: {rank}",
+                "en": "Step 2: Count non-zero rows: {rank}"
+            },
+            "trace_formula": {
+                "ru": "Шаг 1: tr(A) = {diag_str} = {trace}",
+                "en": "Step 1: tr(A) = {diag_str} = {trace}"
+            },
+            "add_elements": {
+                "ru": "Шаг 1: Складываем соответствующие элементы матриц",
+                "en": "Step 1: Add corresponding elements of matrices"
+            },
+            "scalar_multiply": {
+                "ru": "Шаг 1: Умножаем каждый элемент на {scalar}",
+                "en": "Step 1: Multiply each element by {scalar}"
+            }
+        },
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу с матрицами.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговая матрица или число)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the matrix problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final matrix or number)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "determinant": {
+                "ru": "Найдите определитель матрицы:\n{matrix}",
+                "en": "Find the determinant of the matrix:\n{matrix}"
+            },
+            "inverse": {
+                "ru": "Найдите обратную матрицу для:\n{matrix}",
+                "en": "Find the inverse of the matrix:\n{matrix}"
+            },
+            "multiplication": {
+                "ru": "Найдите произведение матриц A × B:\nA = {matrix_a}\nB = {matrix_b}",
+                "en": "Find the product of matrices A × B:\nA = {matrix_a}\nB = {matrix_b}"
+            },
+            "transpose": {
+                "ru": "Найдите транспонированную матрицу:\n{matrix}",
+                "en": "Find the transpose of the matrix:\n{matrix}"
+            },
+            "rank": {
+                "ru": "Найдите ранг матрицы:\n{matrix}",
+                "en": "Find the rank of the matrix:\n{matrix}"
+            },
+            "eigenvalues": {
+                "ru": "Найдите собственные значения матрицы:\n{matrix}",
+                "en": "Find the eigenvalues of the matrix:\n{matrix}"
+            },
+            "trace": {
+                "ru": "Найдите след (сумму диагональных элементов) матрицы:\n{matrix}",
+                "en": "Find the trace (sum of diagonal elements) of the matrix:\n{matrix}"
+            },
+            "add": {
+                "ru": "Найдите сумму матриц A + B:\nA = {matrix_a}\nB = {matrix_b}",
+                "en": "Find the sum of matrices A + B:\nA = {matrix_a}\nB = {matrix_b}"
+            },
+            "scalar_mult": {
+                "ru": "Найдите произведение скаляра {scalar} на матрицу:\n{matrix}",
+                "en": "Find the product of scalar {scalar} and the matrix:\n{matrix}"
+            }
+        },
+        "steps": {
+            "det_2x2": {
+                "ru": "Шаг {step}: det(A) = a₁₁×a₂₂ - a₁₂×a₂₁ = {a11}×{a22} - {a12}×{a21} = {result}",
+                "en": "Step {step}: det(A) = a₁₁×a₂₂ - a₁₂×a₂₁ = {a11}×{a22} - {a12}×{a21} = {result}"
+            },
+            "det_expansion": {
+                "ru": "Шаг {step}: Разложение по {row_col} {index}: det = {expansion} = {result}",
+                "en": "Step {step}: Expansion along {row_col} {index}: det = {expansion} = {result}"
+            },
+            "cofactor": {
+                "ru": "Шаг {step}: Алгебраическое дополнение A_{i}{j} = (-1)^({i}+{j}) × M_{i}{j} = {result}",
+                "en": "Step {step}: Cofactor A_{i}{j} = (-1)^({i}+{j}) × M_{i}{j} = {result}"
+            },
+            "inverse_formula": {
+                "ru": "Шаг {step}: A⁻¹ = (1/det(A)) × adj(A)",
+                "en": "Step {step}: A⁻¹ = (1/det(A)) × adj(A)"
+            },
+            "multiplication_element": {
+                "ru": "Шаг {step}: C_{i}{j} = Σ(A_{i}k × B_k{j}) = {result}",
+                "en": "Step {step}: C_{i}{j} = Σ(A_{i}k × B_k{j}) = {result}"
+            },
+            "transpose_result": {
+                "ru": "Шаг {step}: Aᵀ[{i}][{j}] = A[{j}][{i}] = {result}",
+                "en": "Step {step}: Aᵀ[{i}][{j}] = A[{j}][{i}] = {result}"
+            },
+            "eigenvalue_char_poly": {
+                "ru": "Шаг {step}: Характеристический многочлен: det(A - λI) = {poly}",
+                "en": "Step {step}: Characteristic polynomial: det(A - λI) = {poly}"
+            },
+            "eigenvalue_roots": {
+                "ru": "Шаг {step}: Собственные значения (корни): λ = {eigenvalues}",
+                "en": "Step {step}: Eigenvalues (roots): λ = {eigenvalues}"
+            },
+            "row_operation": {
+                "ru": "Шаг {step}: R{i} → {operation}",
+                "en": "Step {step}: R{i} → {operation}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 22) TRIGONOMETRY - Тригонометрия
+    #----------------------------------------------------------------------------
+    "trigonometry": {
+        "misc": {
+            "triangle_step2": {
+                "ru": "Шаг 2: c² = {a}² + {b}² - 2×{a}×{b}×cos({angle}°)",
+                "en": "Step 2: c² = {a}² + {b}² - 2×{a}×{b}×cos({angle}°)"
+            },
+            "triangle_step3": {
+                "ru": "Шаг 3: c = {result}",
+                "en": "Step 3: c = {result}"
+            }
+        },
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите тригонометрическую задачу.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the trigonometry problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "basic_value": {
+                "ru": "Вычислите {func}({angle}).",
+                "en": "Calculate {func}({angle})."
+            },
+            "equation": {
+                "ru": "Решите уравнение {equation} на интервале {interval}.",
+                "en": "Solve the equation {equation} on the interval {interval}."
+            },
+            "identity": {
+                "ru": "Упростите выражение: {expression}",
+                "en": "Simplify the expression: {expression}"
+            },
+            "triangle_solve": {
+                "ru": "В треугольнике ABC известно: {given}. Найдите {find}.",
+                "en": "In triangle ABC, given: {given}. Find {find}."
+            },
+            "inverse": {
+                "ru": "Вычислите {func}({value}).",
+                "en": "Calculate {func}({value})."
+            }
+        },
+        "steps": {
+            "angle_conversion": {
+                "ru": "Шаг {step}: Переводим угол: {angle_deg}° = {angle_rad} рад",
+                "en": "Step {step}: Convert angle: {angle_deg}° = {angle_rad} rad"
+            },
+            "basic_value_result": {
+                "ru": "Шаг {step}: {func}({angle}) = {result}",
+                "en": "Step {step}: {func}({angle}) = {result}"
+            },
+            "identity_apply": {
+                "ru": "Шаг {step}: Применяем тождество: {identity}",
+                "en": "Step {step}: Apply identity: {identity}"
+            },
+            "equation_transform": {
+                "ru": "Шаг {step}: Преобразуем уравнение: {transformed}",
+                "en": "Step {step}: Transform equation: {transformed}"
+            },
+            "equation_solutions": {
+                "ru": "Шаг {step}: Решения: x = {solutions}",
+                "en": "Step {step}: Solutions: x = {solutions}"
+            },
+            "law_of_cosines": {
+                "ru": "Шаг {step}: По теореме косинусов: c² = a² + b² - 2ab·cos(C)",
+                "en": "Step {step}: By the law of cosines: c² = a² + b² - 2ab·cos(C)"
+            },
+            "law_of_sines": {
+                "ru": "Шаг {step}: По теореме синусов: a/sin(A) = b/sin(B) = c/sin(C)",
+                "en": "Step {step}: By the law of sines: a/sin(A) = b/sin(B) = c/sin(C)"
+            }
+        },
+        "identities": {
+            "ru": {
+                "pythagorean": "sin²(x) + cos²(x) = 1",
+                "double_angle_sin": "sin(2x) = 2sin(x)cos(x)",
+                "double_angle_cos": "cos(2x) = cos²(x) - sin²(x)",
+                "sum_sin": "sin(a+b) = sin(a)cos(b) + cos(a)sin(b)",
+                "sum_cos": "cos(a+b) = cos(a)cos(b) - sin(a)sin(b)"
+            },
+            "en": {
+                "pythagorean": "sin²(x) + cos²(x) = 1",
+                "double_angle_sin": "sin(2x) = 2sin(x)cos(x)",
+                "double_angle_cos": "cos(2x) = cos²(x) - sin²(x)",
+                "sum_sin": "sin(a+b) = sin(a)cos(b) + cos(a)sin(b)",
+                "sum_cos": "cos(a+b) = cos(a)cos(b) - sin(a)sin(b)"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 23) INEQUALITY - Неравенства
+    #----------------------------------------------------------------------------
+    "inequality": {
+        "misc": {
+            "system_first_ineq": {
+                "ru": "Шаг 1: Из первого неравенства: x {sign} {value}",
+                "en": "Step 1: From first inequality: x {sign} {value}"
+            },
+            "system_second_ineq": {
+                "ru": "Шаг 2: Из второго неравенства: x {sign} {value}",
+                "en": "Step 2: From second inequality: x {sign} {value}"
+            }
+        },
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите неравенство.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Множество решений в интервальной записи)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the inequality.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Solution set in interval notation)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "linear": {
+                "ru": "Решите неравенство: {a}x + {b} {sign} {c}",
+                "en": "Solve the inequality: {a}x + {b} {sign} {c}"
+            },
+            "quadratic": {
+                "ru": "Решите неравенство: {a}x² + {b}x + {c} {sign} 0",
+                "en": "Solve the inequality: {a}x² + {b}x + {c} {sign} 0"
+            },
+            "rational": {
+                "ru": "Решите неравенство: ({numerator}) / ({denominator}) {sign} 0",
+                "en": "Solve the inequality: ({numerator}) / ({denominator}) {sign} 0"
+            },
+            "absolute": {
+                "ru": "Решите неравенство: |{expression}| {sign} {value}",
+                "en": "Solve the inequality: |{expression}| {sign} {value}"
+            },
+            "system": {
+                "ru": "Решите систему неравенств:\n{inequalities}",
+                "en": "Solve the system of inequalities:\n{inequalities}"
+            }
+        },
+        "steps": {
+            "linear_solve": {
+                "ru": "Шаг {step}: {a}x {sign} {c} - {b} = {rhs}",
+                "en": "Step {step}: {a}x {sign} {c} - {b} = {rhs}"
+            },
+            "divide_positive": {
+                "ru": "Шаг {step}: Делим на {a} (положительное число), знак сохраняется: x {sign} {result}",
+                "en": "Step {step}: Divide by {a} (positive), sign preserved: x {sign} {result}"
+            },
+            "divide_negative": {
+                "ru": "Шаг {step}: Делим на {a} (отрицательное число), знак меняется: x {new_sign} {result}",
+                "en": "Step {step}: Divide by {a} (negative), sign flips: x {new_sign} {result}"
+            },
+            "quadratic_roots": {
+                "ru": "Шаг {step}: Корни уравнения: x₁ = {x1}, x₂ = {x2}",
+                "en": "Step {step}: Roots of equation: x₁ = {x1}, x₂ = {x2}"
+            },
+            "sign_analysis": {
+                "ru": "Шаг {step}: Анализ знаков на интервалах: {intervals}",
+                "en": "Step {step}: Sign analysis on intervals: {intervals}"
+            },
+            "critical_points": {
+                "ru": "Шаг {step}: Критические точки: {points}",
+                "en": "Step {step}: Critical points: {points}"
+            },
+            "absolute_split": {
+                "ru": "Шаг {step}: Разбиваем на случаи: {expression} ≥ 0 и {expression} < 0",
+                "en": "Step {step}: Split into cases: {expression} ≥ 0 and {expression} < 0"
+            },
+            "system_intersection": {
+                "ru": "Шаг {step}: Пересечение решений: {intersection}",
+                "en": "Step {step}: Intersection of solutions: {intersection}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 24) COMPLEX_NUMBER - Комплексные числа
+    #----------------------------------------------------------------------------
+    "complex_number": {
+        "misc": {
+            "conjugate_step": {
+                "ru": "Шаг 1: Сопряжённое к {z} есть {conjugate}",
+                "en": "Step 1: Conjugate of {z} is {conjugate}"
+            },
+            "discriminant_step": {
+                "ru": "Шаг 1: Дискриминант D = {a}² - 4×{b} = {discriminant}",
+                "en": "Step 1: Discriminant D = {a}² - 4×{b} = {discriminant}"
+            },
+            "roots_step": {
+                "ru": "Шаг 2: Корни уравнения: {roots}",
+                "en": "Step 2: Roots: {roots}"
+            }
+        },
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу с комплексными числами.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ в алгебраической или тригонометрической форме)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the complex numbers problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer in algebraic or polar form)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "arithmetic": {
+                "ru": "Вычислите: ({a1} + {b1}i) {op} ({a2} + {b2}i)",
+                "en": "Calculate: ({a1} + {b1}i) {op} ({a2} + {b2}i)"
+            },
+            "modulus": {
+                "ru": "Найдите модуль комплексного числа z = {a} + {b}i.",
+                "en": "Find the modulus of the complex number z = {a} + {b}i."
+            },
+            "argument": {
+                "ru": "Найдите аргумент комплексного числа z = {a} + {b}i.",
+                "en": "Find the argument of the complex number z = {a} + {b}i."
+            },
+            "polar_form": {
+                "ru": "Запишите комплексное число z = {a} + {b}i в тригонометрической форме.",
+                "en": "Write the complex number z = {a} + {b}i in polar form."
+            },
+            "power": {
+                "ru": "Вычислите ({a} + {b}i)^{n} с помощью формулы Муавра.",
+                "en": "Calculate ({a} + {b}i)^{n} using De Moivre's formula."
+            },
+            "roots": {
+                "ru": "Найдите все корни {n}-й степени из комплексного числа z = {a} + {b}i.",
+                "en": "Find all {n}th roots of the complex number z = {a} + {b}i."
+            },
+            "conjugate": {
+                "ru": "Найдите сопряжённое к комплексному числу z = {a} + {b}i.",
+                "en": "Find the conjugate of the complex number z = {a} + {b}i."
+            },
+            "equation": {
+                "ru": "Решите уравнение: {equation}",
+                "en": "Solve the equation: {equation}"
+            }
+        },
+        "steps": {
+            "add": {
+                "ru": "Шаг {step}: ({a1}+{b1}i) + ({a2}+{b2}i) = ({a1}+{a2}) + ({b1}+{b2})i = {result}",
+                "en": "Step {step}: ({a1}+{b1}i) + ({a2}+{b2}i) = ({a1}+{a2}) + ({b1}+{b2})i = {result}"
+            },
+            "subtract": {
+                "ru": "Шаг {step}: ({a1}+{b1}i) - ({a2}+{b2}i) = ({a1}-{a2}) + ({b1}-{b2})i = {result}",
+                "en": "Step {step}: ({a1}+{b1}i) - ({a2}+{b2}i) = ({a1}-{a2}) + ({b1}-{b2})i = {result}"
+            },
+            "multiply": {
+                "ru": "Шаг {step}: ({a1}+{b1}i)×({a2}+{b2}i) = {a1}×{a2} + {a1}×{b2}i + {b1}i×{a2} + {b1}×{b2}×i² = {result}",
+                "en": "Step {step}: ({a1}+{b1}i)×({a2}+{b2}i) = {a1}×{a2} + {a1}×{b2}i + {b1}i×{a2} + {b1}×{b2}×i² = {result}"
+            },
+            "divide": {
+                "ru": "Шаг {step}: Умножаем на сопряжённое: ({a1}+{b1}i)/({a2}+{b2}i) × ({a2}-{b2}i)/({a2}-{b2}i) = {result}",
+                "en": "Step {step}: Multiply by conjugate: ({a1}+{b1}i)/({a2}+{b2}i) × ({a2}-{b2}i)/({a2}-{b2}i) = {result}"
+            },
+            "modulus_formula": {
+                "ru": "Шаг {step}: |z| = √(a² + b²) = √({a}² + {b}²) = {result}",
+                "en": "Step {step}: |z| = √(a² + b²) = √({a}² + {b}²) = {result}"
+            },
+            "argument_formula": {
+                "ru": "Шаг {step}: arg(z) = arctan(b/a) = arctan({b}/{a}) = {result}",
+                "en": "Step {step}: arg(z) = arctan(b/a) = arctan({b}/{a}) = {result}"
+            },
+            "polar_form_result": {
+                "ru": "Шаг {step}: z = |z|(cos(φ) + i·sin(φ)) = {r}(cos({phi}) + i·sin({phi}))",
+                "en": "Step {step}: z = |z|(cos(φ) + i·sin(φ)) = {r}(cos({phi}) + i·sin({phi}))"
+            },
+            "de_moivre": {
+                "ru": "Шаг {step}: По формуле Муавра: z^n = r^n(cos(nφ) + i·sin(nφ)) = {result}",
+                "en": "Step {step}: By De Moivre's formula: z^n = r^n(cos(nφ) + i·sin(nφ)) = {result}"
+            },
+            "root_formula": {
+                "ru": "Шаг {step}: w_k = ⁿ√r(cos((φ+2πk)/n) + i·sin((φ+2πk)/n)), k = 0, 1, ..., {n}-1",
+                "en": "Step {step}: w_k = ⁿ√r(cos((φ+2πk)/n) + i·sin((φ+2πk)/n)), k = 0, 1, ..., {n}-1"
+            },
+            "root_k": {
+                "ru": "Шаг {step}: w_{k} = {result}",
+                "en": "Step {step}: w_{k} = {result}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 25) LIMITS - Пределы
+    #----------------------------------------------------------------------------
+    "limits": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Найдите предел.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое вычисление предела)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Значение предела или ±∞)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Find the limit.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step calculation of the limit)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Value of the limit or ±∞)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "polynomial": {
+                "ru": "Найдите предел: lim(x→{point}) ({expression})",
+                "en": "Find the limit: lim(x→{point}) ({expression})"
+            },
+            "rational": {
+                "ru": "Найдите предел: lim(x→{point}) (({numerator})/({denominator}))",
+                "en": "Find the limit: lim(x→{point}) (({numerator})/({denominator}))"
+            },
+            "infinity": {
+                "ru": "Найдите предел: lim(x→∞) ({expression})",
+                "en": "Find the limit: lim(x→∞) ({expression})"
+            },
+            "indeterminate": {
+                "ru": "Найдите предел: lim(x→{point}) ({expression}). Указание: имеется неопределённость {type}.",
+                "en": "Find the limit: lim(x→{point}) ({expression}). Hint: this is an indeterminate form {type}."
+            },
+            "sequence": {
+                "ru": "Найдите предел последовательности: lim(n→∞) {expression}",
+                "en": "Find the limit of the sequence: lim(n→∞) {expression}"
+            },
+            "special": {
+                "ru": "Найдите предел, используя замечательный предел: lim(x→{point}) ({expression})",
+                "en": "Find the limit using a remarkable limit: lim(x→{point}) ({expression})"
+            }
+        },
+        "steps": {
+            "direct_substitution": {
+                "ru": "Шаг {step}: Подставляем x = {point}: {expression} = {result}",
+                "en": "Step {step}: Direct substitution x = {point}: {expression} = {result}"
+            },
+            "indeterminate_found": {
+                "ru": "Шаг {step}: Получили неопределённость {type}",
+                "en": "Step {step}: Found indeterminate form {type}"
+            },
+            "factorize": {
+                "ru": "Шаг {step}: Раскладываем на множители: {factorization}",
+                "en": "Step {step}: Factor: {factorization}"
+            },
+            "simplify": {
+                "ru": "Шаг {step}: Сокращаем: {simplified}",
+                "en": "Step {step}: Simplify: {simplified}"
+            },
+            "lhopital": {
+                "ru": "Шаг {step}: Применяем правило Лопиталя: lim = lim(f'(x)/g'(x)) = lim({derivative})",
+                "en": "Step {step}: Apply L'Hôpital's rule: lim = lim(f'(x)/g'(x)) = lim({derivative})"
+            },
+            "multiply_conjugate": {
+                "ru": "Шаг {step}: Умножаем на сопряжённое: {expression}",
+                "en": "Step {step}: Multiply by conjugate: {expression}"
+            },
+            "divide_highest_power": {
+                "ru": "Шаг {step}: Делим на старшую степень x^{power}: {expression}",
+                "en": "Step {step}: Divide by highest power x^{power}: {expression}"
+            },
+            "remarkable_limit": {
+                "ru": "Шаг {step}: Используем замечательный предел: {limit_formula}",
+                "en": "Step {step}: Use remarkable limit: {limit_formula}"
+            },
+            "squeeze_theorem": {
+                "ru": "Шаг {step}: По теореме о сжатии: {lower} ≤ {expression} ≤ {upper}",
+                "en": "Step {step}: By squeeze theorem: {lower} ≤ {expression} ≤ {upper}"
+            }
+        },
+        "remarkable_limits": {
+            "ru": {
+                "sin_x_over_x": "lim(x→0) sin(x)/x = 1",
+                "one_plus_one_over_x": "lim(x→∞) (1 + 1/x)^x = e",
+                "ln_one_plus_x": "lim(x→0) ln(1+x)/x = 1",
+                "e_x_minus_one": "lim(x→0) (e^x - 1)/x = 1"
+            },
+            "en": {
+                "sin_x_over_x": "lim(x→0) sin(x)/x = 1",
+                "one_plus_one_over_x": "lim(x→∞) (1 + 1/x)^x = e",
+                "ln_one_plus_x": "lim(x→0) ln(1+x)/x = 1",
+                "e_x_minus_one": "lim(x→0) (e^x - 1)/x = 1"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 26) SET_LOGIC - Множества и логика
+    #----------------------------------------------------------------------------
+    "set_logic": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по множествам и логике.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the sets and logic problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "union": {
+                "ru": "Найдите A ∪ B, где A = {set_a} и B = {set_b}.",
+                "en": "Find A ∪ B, where A = {set_a} and B = {set_b}."
+            },
+            "intersection": {
+                "ru": "Найдите A ∩ B, где A = {set_a} и B = {set_b}.",
+                "en": "Find A ∩ B, where A = {set_a} and B = {set_b}."
+            },
+            "difference": {
+                "ru": "Найдите A \\ B (разность), где A = {set_a} и B = {set_b}.",
+                "en": "Find A \\ B (difference), where A = {set_a} and B = {set_b}."
+            },
+            "symmetric_difference": {
+                "ru": "Найдите A △ B (симметрическую разность), где A = {set_a} и B = {set_b}.",
+                "en": "Find A △ B (symmetric difference), where A = {set_a} and B = {set_b}."
+            },
+            "complement": {
+                "ru": "Найдите дополнение Aᶜ, где A = {set_a} и универсальное множество U = {universal}.",
+                "en": "Find the complement Aᶜ, where A = {set_a} and the universal set U = {universal}."
+            },
+            "cardinality": {
+                "ru": "Найдите |A ∪ B|, если |A| = {card_a}, |B| = {card_b}, |A ∩ B| = {card_intersection}.",
+                "en": "Find |A ∪ B|, given |A| = {card_a}, |B| = {card_b}, |A ∩ B| = {card_intersection}."
+            },
+            "power_set": {
+                "ru": "Найдите мощность степени множества P(A), где |A| = {n}.",
+                "en": "Find the cardinality of the power set P(A), where |A| = {n}."
+            },
+            "cartesian_product": {
+                "ru": "Найдите A × B, где A = {set_a} и B = {set_b}.",
+                "en": "Find A × B, where A = {set_a} and B = {set_b}."
+            },
+            "boolean_simplify": {
+                "ru": "Упростите логическое выражение: {expression}",
+                "en": "Simplify the boolean expression: {expression}"
+            },
+            "truth_table": {
+                "ru": "Постройте таблицу истинности для выражения: {expression}",
+                "en": "Construct a truth table for the expression: {expression}"
+            },
+            "venn_problem": {
+                "ru": "В опросе участвовало {total} человек. {desc} Сколько человек {question}?",
+                "en": "{total} people were surveyed. {desc} How many people {question}?"
+            }
+        },
+        "steps": {
+            "union_result": {
+                "ru": "Шаг {step}: A ∪ B = {set_a} ∪ {set_b} = {result}",
+                "en": "Step {step}: A ∪ B = {set_a} ∪ {set_b} = {result}"
+            },
+            "intersection_result": {
+                "ru": "Шаг {step}: A ∩ B = {set_a} ∩ {set_b} = {result}",
+                "en": "Step {step}: A ∩ B = {set_a} ∩ {set_b} = {result}"
+            },
+            "difference_result": {
+                "ru": "Шаг {step}: A \\ B = {result}",
+                "en": "Step {step}: A \\ B = {result}"
+            },
+            "symmetric_diff_result": {
+                "ru": "Шаг {step}: A △ B = (A \\ B) ∪ (B \\ A) = {result}",
+                "en": "Step {step}: A △ B = (A \\ B) ∪ (B \\ A) = {result}"
+            },
+            "complement_result": {
+                "ru": "Шаг {step}: Aᶜ = U \\ A = {result}",
+                "en": "Step {step}: Aᶜ = U \\ A = {result}"
+            },
+            "cardinality_formula": {
+                "ru": "Шаг {step}: |A ∪ B| = |A| + |B| - |A ∩ B| = {card_a} + {card_b} - {card_intersection} = {result}",
+                "en": "Step {step}: |A ∪ B| = |A| + |B| - |A ∩ B| = {card_a} + {card_b} - {card_intersection} = {result}"
+            },
+            "power_set_formula": {
+                "ru": "Шаг {step}: |P(A)| = 2^|A| = 2^{n} = {result}",
+                "en": "Step {step}: |P(A)| = 2^|A| = 2^{n} = {result}"
+            },
+            "cartesian_pairs": {
+                "ru": "Шаг {step}: A × B = {result}",
+                "en": "Step {step}: A × B = {result}"
+            },
+            "boolean_law": {
+                "ru": "Шаг {step}: Применяем закон {law}: {result}",
+                "en": "Step {step}: Apply {law} law: {result}"
+            },
+            "venn_calculate": {
+                "ru": "Шаг {step}: {calculation}",
+                "en": "Step {step}: {calculation}"
+            }
+        },
+        "boolean_laws": {
+            "ru": {
+                "de_morgan_1": "¬(A ∧ B) = ¬A ∨ ¬B",
+                "de_morgan_2": "¬(A ∨ B) = ¬A ∧ ¬B",
+                "idempotent": "A ∧ A = A, A ∨ A = A",
+                "absorption": "A ∧ (A ∨ B) = A, A ∨ (A ∧ B) = A",
+                "distributive": "A ∧ (B ∨ C) = (A ∧ B) ∨ (A ∧ C)"
+            },
+            "en": {
+                "de_morgan_1": "¬(A ∧ B) = ¬A ∨ ¬B",
+                "de_morgan_2": "¬(A ∨ B) = ¬A ∧ ¬B",
+                "idempotent": "A ∧ A = A, A ∨ A = A",
+                "absorption": "A ∧ (A ∨ B) = A, A ∨ (A ∧ B) = A",
+                "distributive": "A ∧ (B ∨ C) = (A ∧ B) ∨ (A ∧ C)"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 27) GROUP_THEORY - Теория групп
+    #----------------------------------------------------------------------------
+    "group_theory": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по теории групп.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the group theory problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "inverse_element": {
+                "ru": "Найдите обратный элемент для элемента {element} в {group_desc}.",
+                "en": "Find the inverse element for {element} in {group_desc}."
+            },
+            "element_order": {
+                "ru": "Определите порядок элемента {element} в {group_desc}.",
+                "en": "Determine the order of element {element} in {group_desc}."
+            },
+            "is_abelian": {
+                "ru": "Является ли {group_desc} абелевой группой? Обоснуйте свой ответ.",
+                "en": "Is the group {group_desc} abelian? Justify your answer."
+            },
+            "group_order": {
+                "ru": "Какой порядок у группы {group_desc}?",
+                "en": "What is the order of the group {group_desc}?"
+            }
+        },
+        "group_names": {
+            "multiplicative_cyclic": {
+                "ru": "мультипликативной группе по модулю {n}",
+                "en": "multiplicative group modulo {n}"
+            },
+            "additive_cyclic": {
+                "ru": "аддитивной группе по модулю {n}",
+                "en": "additive group modulo {n}"
+            },
+            "symmetric": {
+                "ru": "симметрической группе S_{n}",
+                "en": "symmetric group S_{n}"
+            }
+        },
+        "steps": {
+            "gcd_check": {
+                "ru": "Шаг 1: Находим НОД({a}, {b}) = {gcd}",
+                "en": "Step 1: Find GCD({a}, {b}) = {gcd}"
+            },
+            "extended_euclidean": {
+                "ru": "Шаг 2: Применяем расширенный алгоритм Евклида для нахождения обратного элемента: {inverse}",
+                "en": "Step 2: Apply extended Euclidean algorithm to find inverse: {inverse}"
+            },
+            "inverse_permutation": {
+                "ru": "Шаг 1: Находим обратную перестановку для {element}",
+                "en": "Step 1: Find inverse permutation for {element}"
+            },
+            "verify_composition": {
+                "ru": "Шаг 2: Проверяем композицию: {element} ∘ {inverse} = {result}",
+                "en": "Step 2: Verify composition: {element} ∘ {inverse} = {result}"
+            },
+            "cycle_structure": {
+                "ru": "Шаг 1: Цикловая структура: {structure}",
+                "en": "Step 1: Cycle structure: {structure}"
+            },
+            "lcm_cycles": {
+                "ru": "Шаг 2: Вычисляем НОК длин циклов: {order}",
+                "en": "Step 2: Compute LCM of cycle lengths: {order}"
+            },
+            "order_computed": {
+                "ru": "Порядок элемента вычислен через свойства циклической группы: {order}",
+                "en": "Element order computed via cyclic group properties: {order}"
+            },
+            "property_check": {
+                "ru": "Свойство: {property}",
+                "en": "Property: {property}"
+            },
+            "answer_with_reason": {
+                "ru": "Ответ: {answer}\nОбоснование: {reason}",
+                "en": "Answer: {answer}\nJustification: {reason}"
+            }
+        },
+        "reasons": {
+            "cyclic_abelian": {
+                "ru": "Все циклические группы являются абелевыми.",
+                "en": "All cyclic groups are abelian."
+            },
+            "symmetric_not_abelian": {
+                "ru": "Симметрическая группа S_n является абелевой только при n ≤ 2.",
+                "en": "Symmetric group S_n is abelian only when n ≤ 2."
+            },
+            "additive_order": {
+                "ru": "Порядок аддитивной группы по модулю n равен n.",
+                "en": "Order of additive group modulo n equals n."
+            },
+            "multiplicative_order": {
+                "ru": "Порядок мультипликативной группы по модулю n равен φ(n).",
+                "en": "Order of multiplicative group modulo n equals φ(n)."
+            },
+            "symmetric_order": {
+                "ru": "Порядок симметрической группы S_n равен n! = {factorial}.",
+                "en": "Order of symmetric group S_n equals n! = {factorial}."
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 28) CATEGORY_THEORY - Теория категорий
+    #----------------------------------------------------------------------------
+    "category_theory": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по теории категорий.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Итоговый ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the category theory problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Final answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "morphism_composition": {
+                "ru": "Даны морфизмы:\n{morphisms}\n\nНайдите композицию h ∘ g ∘ f.",
+                "en": "Given the morphisms:\n{morphisms}\n\nFind the composition h ∘ g ∘ f."
+            },
+            "commutative_diagram": {
+                "ru": "Дана диаграмма морфизмов:\n{morphisms}\n\nКоммутирует ли эта диаграмма (т.е. верно ли, что h ∘ f = k ∘ g)?",
+                "en": "Given the diagram of morphisms:\n{morphisms}\n\nDoes this diagram commute (i.e., is it true that h ∘ f = k ∘ g)?"
+            }
+        },
+        "steps": {
+            "identify_domains": {
+                "ru": "Шаг 1: Определяем область и кообласть каждого морфизма.",
+                "en": "Step 1: Identify the domain and codomain of each morphism."
+            },
+            "morphism_list": {
+                "ru": "f: A → B, g: B → C, h: C → D",
+                "en": "f: A → B, g: B → C, h: C → D"
+            },
+            "apply_morphisms": {
+                "ru": "Шаг 2: Применяем морфизмы последовательно, начиная справа.",
+                "en": "Step 2: Apply morphisms sequentially, starting from the right."
+            },
+            "composition_result": {
+                "ru": "Композиция (h ∘ g ∘ f) отображает область первого морфизма (f) в кообласть последнего (h).",
+                "en": "The composition (h ∘ g ∘ f) maps the domain of the first morphism (f) to the codomain of the last (h)."
+            },
+            "check_paths": {
+                "ru": "Проверяем равенство двух путей из A в D.",
+                "en": "Check equality of two paths from A to D."
+            },
+            "two_paths": {
+                "ru": "Путь 1: h ∘ f. Путь 2: k ∘ g.",
+                "en": "Path 1: h ∘ f. Path 2: k ∘ g."
+            },
+            "commutes": {
+                "ru": "Диаграмма коммутирует, так как h ∘ f = k ∘ g.",
+                "en": "The diagram commutes since h ∘ f = k ∘ g."
+            },
+            "not_commutes": {
+                "ru": "Диаграмма не коммутирует, так как h ∘ f ≠ k ∘ g.",
+                "en": "The diagram does not commute since h ∘ f ≠ k ∘ g."
+            }
+        },
+        "final_answer": {
+            "ru": "Результат: {answer}",
+            "en": "Result: {answer}"
+        }
+    },
+
+    #----------------------------------------------------------------------------
+    # 29) PROBABILITY_ADVANCED - Расширенная вероятность
+    #----------------------------------------------------------------------------
+    "probability_advanced": {
+        "instructions": {
+            "ru": (
+                "type: structured_text_with_tags\n"
+                "Описание: Решите задачу по теории вероятностей.\n"
+                "Формат ответа:\n"
+                "  <reasoning>\n"
+                "    (Пошаговое решение с формулами)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Числовой ответ)\n"
+                "  </answer>"
+            ),
+            "en": (
+                "type: structured_text_with_tags\n"
+                "Description: Solve the probability problem.\n"
+                "Answer format:\n"
+                "  <reasoning>\n"
+                "    (Step-by-step solution with formulas)\n"
+                "  </reasoning>\n"
+                "  <answer>\n"
+                "    (Numerical answer)\n"
+                "  </answer>"
+            )
+        },
+        "problem": {
+            "bayes": {
+                "ru": "По условию задачи:\n{conditions}\nИспользуя формулу Байеса, найдите P({event}|{given}).",
+                "en": "Given:\n{conditions}\nUsing Bayes' theorem, find P({event}|{given})."
+            },
+            "conditional": {
+                "ru": "Если P(A) = {pa}, P(B) = {pb}, P(A ∩ B) = {pab}, найдите P(A|B).",
+                "en": "If P(A) = {pa}, P(B) = {pb}, P(A ∩ B) = {pab}, find P(A|B)."
+            },
+            "expected_value": {
+                "ru": "Случайная величина X имеет распределение:\n{distribution}\nНайдите математическое ожидание E(X).",
+                "en": "Random variable X has the distribution:\n{distribution}\nFind the expected value E(X)."
+            },
+            "variance": {
+                "ru": "Случайная величина X имеет распределение:\n{distribution}\nНайдите дисперсию Var(X).",
+                "en": "Random variable X has the distribution:\n{distribution}\nFind the variance Var(X)."
+            },
+            "binomial": {
+                "ru": "Монета подбрасывается {n} раз. Вероятность выпадения орла = {p}. Какова вероятность получить ровно {k} орлов?",
+                "en": "A coin is flipped {n} times. Probability of heads = {p}. What is the probability of getting exactly {k} heads?"
+            },
+            "geometric": {
+                "ru": "Вероятность успеха в одном испытании = {p}. Найдите вероятность того, что первый успех произойдёт на {k}-м испытании.",
+                "en": "Probability of success in one trial = {p}. Find the probability that the first success occurs on the {k}th trial."
+            },
+            "poisson": {
+                "ru": "Число событий подчиняется распределению Пуассона с λ = {lambda_}. Найдите P(X = {k}).",
+                "en": "Number of events follows Poisson distribution with λ = {lambda_}. Find P(X = {k})."
+            }
+        },
+        "steps": {
+            "bayes_formula": {
+                "ru": "Шаг {step}: По формуле Байеса: P(A|B) = P(B|A)P(A) / P(B)",
+                "en": "Step {step}: By Bayes' theorem: P(A|B) = P(B|A)P(A) / P(B)"
+            },
+            "total_probability": {
+                "ru": "Шаг {step}: По формуле полной вероятности: P(B) = ΣP(B|Aᵢ)P(Aᵢ) = {result}",
+                "en": "Step {step}: By total probability formula: P(B) = ΣP(B|Aᵢ)P(Aᵢ) = {result}"
+            },
+            "conditional_formula": {
+                "ru": "Шаг {step}: P(A|B) = P(A ∩ B) / P(B) = {pab} / {pb} = {result}",
+                "en": "Step {step}: P(A|B) = P(A ∩ B) / P(B) = {pab} / {pb} = {result}"
+            },
+            "expected_value_formula": {
+                "ru": "Шаг {step}: E(X) = Σxᵢ·P(X=xᵢ) = {calculation} = {result}",
+                "en": "Step {step}: E(X) = Σxᵢ·P(X=xᵢ) = {calculation} = {result}"
+            },
+            "variance_formula": {
+                "ru": "Шаг {step}: Var(X) = E(X²) - [E(X)]² = {ex2} - {ex}² = {result}",
+                "en": "Step {step}: Var(X) = E(X²) - [E(X)]² = {ex2} - {ex}² = {result}"
+            },
+            "binomial_formula": {
+                "ru": "Шаг {step}: P(X={k}) = C({n},{k}) × {p}^{k} × (1-{p})^({n}-{k}) = {result}",
+                "en": "Step {step}: P(X={k}) = C({n},{k}) × {p}^{k} × (1-{p})^({n}-{k}) = {result}"
+            },
+            "geometric_formula": {
+                "ru": "Шаг {step}: P(X={k}) = (1-{p})^({k}-1) × {p} = {result}",
+                "en": "Step {step}: P(X={k}) = (1-{p})^({k}-1) × {p} = {result}"
+            },
+            "poisson_formula": {
+                "ru": "Шаг {step}: P(X={k}) = (λ^{k} × e^(-λ)) / {k}! = ({lambda_}^{k} × e^(-{lambda_})) / {k}! = {result}",
+                "en": "Step {step}: P(X={k}) = (λ^{k} × e^(-λ)) / {k}! = ({lambda_}^{k} × e^(-{lambda_})) / {k}! = {result}"
+            }
+        },
+        "final_answer": {
+            "ru": "Ответ: {answer}",
+            "en": "Answer: {answer}"
         }
     },
 

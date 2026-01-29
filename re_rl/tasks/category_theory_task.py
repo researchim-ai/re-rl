@@ -1,33 +1,59 @@
 # re_rl/tasks/category_theory_task.py
 
+"""
+CategoryTheoryTask — задачи по теории категорий.
+
+Поддерживаемые типы:
+- morphism_composition: композиция морфизмов
+- commutative_diagram: коммутативность диаграммы
+"""
+
 import random
 from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from typing import List, Dict, Any
+
 
 class CategoryTheoryTask(BaseMathTask):
     """
-    Генератор задач по теории категорий: композиция морфизмов, коммутативность диаграмм.
+    Генератор задач по теории категорий.
+    
     Параметры:
     - task_type: "morphism_composition", "commutative_diagram"
-    - category_type: "set", "group", "topology"  # NOTE: currently unused, tasks are abstract
+    - category_type: "set", "group", "topology" (пока не используется)
     """
-    def __init__(self, task_type="morphism_composition", category_type="set", 
-                 language: str = "ru", detail_level: int = 3):
+    
+    TASK_TYPES = ["morphism_composition", "commutative_diagram"]
+    
+    def __init__(
+        self,
+        task_type: str = "morphism_composition",
+        category_type: str = "set",
+        language: str = "ru",
+        detail_level: int = 3
+    ):
         self.task_type = task_type.lower()
-        self.category_type = category_type.lower() # TODO: Implement concrete categories
+        self.category_type = category_type.lower()
         self.objects: List[str] = []
         self.morphisms: List[Dict[str, Any]] = []
         self.is_commutative: bool = False
-        super().__init__("", language, detail_level)
+        
+        # Генерируем данные задачи
+        self._generate_task_data()
+        
+        # Создаём описание
+        description = self._create_problem_description()
+        super().__init__(description, language, detail_level)
 
-    def generate_task_data(self):
-        """Generates objects and morphisms based on the task type."""
+    def _generate_task_data(self):
+        """Генерирует объекты и морфизмы."""
         if self.task_type == "morphism_composition":
             self._generate_composition_problem()
         elif self.task_type == "commutative_diagram":
             self._generate_diagram_problem()
 
     def _generate_composition_problem(self):
+        """Генерирует задачу на композицию."""
         self.objects = ["A", "B", "C", "D"]
         self.morphisms = [
             {'name': 'f', 'source': 'A', 'target': 'B'},
@@ -36,7 +62,7 @@ class CategoryTheoryTask(BaseMathTask):
         ]
 
     def _generate_diagram_problem(self):
-        # Using a square diagram for more interest
+        """Генерирует задачу на коммутативную диаграмму."""
         self.objects = ["A", "B", "C", "D"]
         self.morphisms = [
             {'name': 'f', 'source': 'A', 'target': 'B'},
@@ -47,54 +73,86 @@ class CategoryTheoryTask(BaseMathTask):
         self.is_commutative = random.choice([True, False])
 
     def _create_problem_description(self) -> str:
-        self.generate_task_data()
+        """Создаёт текст задачи."""
+        templates = PROMPT_TEMPLATES.get("category_theory", {}).get("problem", {})
         
-        morphism_descs = "\n".join([f"{m['name']}: {m['source']} → {m['target']}" 
-                                  for m in self.morphisms])
-
+        morphism_descs = "\n".join([
+            f"{m['name']}: {m['source']} → {m['target']}"
+            for m in self.morphisms
+        ])
+        
         if self.task_type == "morphism_composition":
-            question_ru = "Даны морфизмы:\n{morphisms}\n\nНайдите композицию h ∘ g ∘ f."
-            question_en = "Given the morphisms:\n{morphisms}\n\nFind the composition h ∘ g ∘ f."
-            return question_ru.format(morphisms=morphism_descs) if self.language == "ru" else question_en.format(morphisms=morphism_descs)
-
-        elif self.task_type == "commutative_diagram":
-            question_ru = "Дана диаграмма морфизмов:\n{morphisms}\n\nКоммутирует ли эта диаграмма (т.е. верно ли, что h ∘ f = k ∘ g)?"
-            question_en = "Given the diagram of morphisms:\n{morphisms}\n\nDoes this diagram commute (i.e., is it true that h ∘ f = k ∘ g)?"
-            return question_ru.format(morphisms=morphism_descs) if self.language == "ru" else question_en.format(morphisms=morphism_descs)
+            template = templates.get("morphism_composition", {}).get(self.language, "")
+        else:
+            template = templates.get("commutative_diagram", {}).get(self.language, "")
         
-        return "" # Should not happen
+        return template.format(morphisms=morphism_descs)
 
     def solve(self):
-        self.description = self._create_problem_description()
-        steps = []
+        """Решает задачу пошагово."""
+        self.solution_steps = []
+        templates = PROMPT_TEMPLATES.get("category_theory", {}).get("steps", {})
         
         if self.task_type == "morphism_composition":
-            # f: A -> B, g: B -> C, h: C -> D
-            # composition h o g o f : A -> D
-            self.final_answer = "h ∘ g ∘ f: A → D"
-            steps.append("Шаг 1: Определяем область и кообласть каждого морфизма.")
-            steps.append("f: A → B, g: B → C, h: C → D")
-            steps.append("Шаг 2: Применяем морфизмы последовательно, начиная справа.")
-            steps.append("Композиция (h ∘ g ∘ f) отображает область первого морфизма (f) в кообласть последнего (h).")
-            steps.append(f"Результат: {self.final_answer}")
-
+            self._solve_composition(templates)
         elif self.task_type == "commutative_diagram":
-            if self.is_commutative:
-                self.final_answer = "Да"
-                reason = "Диаграмма коммутирует, так как h ∘ f = k ∘ g."
-            else:
-                self.final_answer = "Нет"
-                reason = "Диаграмма не коммутирует, так как h ∘ f ≠ k ∘ g."
-            steps.append("Проверяем равенство двух путей из A в D.")
-            steps.append(f"Путь 1: h ∘ f. Путь 2: k ∘ g.")
-            steps.append(reason)
+            self._solve_diagram(templates)
         
-        self.solution_steps.extend(steps)
+        # Ограничиваем по detail_level
+        if len(self.solution_steps) > self.detail_level:
+            self.solution_steps = self.solution_steps[:self.detail_level]
+
+    def _solve_composition(self, templates):
+        """Решает задачу на композицию морфизмов."""
+        self.final_answer = "h ∘ g ∘ f: A → D"
+        
+        step1 = templates.get("identify_domains", {}).get(self.language, "")
+        self.solution_steps.append(step1)
+        
+        step2 = templates.get("morphism_list", {}).get(self.language, "")
+        self.solution_steps.append(step2)
+        
+        step3 = templates.get("apply_morphisms", {}).get(self.language, "")
+        self.solution_steps.append(step3)
+        
+        step4 = templates.get("composition_result", {}).get(self.language, "")
+        self.solution_steps.append(step4)
+        
+        final_template = PROMPT_TEMPLATES.get("category_theory", {}).get("final_answer", {}).get(self.language, "")
+        self.solution_steps.append(final_template.format(answer=self.final_answer))
+
+    def _solve_diagram(self, templates):
+        """Решает задачу на коммутативную диаграмму."""
+        if self.is_commutative:
+            self.final_answer = "Да" if self.language == "ru" else "Yes"
+            reason_key = "commutes"
+        else:
+            self.final_answer = "Нет" if self.language == "ru" else "No"
+            reason_key = "not_commutes"
+        
+        step1 = templates.get("check_paths", {}).get(self.language, "")
+        self.solution_steps.append(step1)
+        
+        step2 = templates.get("two_paths", {}).get(self.language, "")
+        self.solution_steps.append(step2)
+        
+        reason = templates.get(reason_key, {}).get(self.language, "")
+        self.solution_steps.append(reason)
+
+    def get_task_type(self) -> str:
+        return "category_theory"
 
     @classmethod
-    def generate_random_task(cls, task_type=None,
-                           language: str = "ru", detail_level: int = 3):
-        task_type = task_type or random.choice(["morphism_composition", "commutative_diagram"])
-        # category_type is currently unused, so not passing it here.
-        return cls(task_type=task_type, language=language, 
-                 detail_level=detail_level)
+    def generate_random_task(
+        cls,
+        task_type: str = None,
+        language: str = "ru",
+        detail_level: int = 3
+    ):
+        """Генерирует случайную задачу по теории категорий."""
+        task_type = task_type or random.choice(cls.TASK_TYPES)
+        return cls(
+            task_type=task_type,
+            language=language,
+            detail_level=detail_level
+        )

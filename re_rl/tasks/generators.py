@@ -23,6 +23,18 @@ from re_rl.tasks.analogical_task import AnalogicalTask
 from re_rl.tasks.group_theory_task import GroupTheoryTask
 from re_rl.tasks.category_theory_task import CategoryTheoryTask
 
+# Новые задачи:
+from re_rl.tasks.number_theory_task import NumberTheoryTask
+from re_rl.tasks.combinatorics_task import CombinatoricsTask
+from re_rl.tasks.sequence_task import SequenceTask
+from re_rl.tasks.geometry_task import GeometryTask
+from re_rl.tasks.matrix_task import MatrixTask
+from re_rl.tasks.trigonometry_task import TrigonometryTask
+from re_rl.tasks.inequality_task import InequalityTask
+from re_rl.tasks.complex_number_task import ComplexNumberTask
+from re_rl.tasks.limits_task import LimitsTask
+from re_rl.tasks.set_logic_task import SetLogicTask
+
 
 ##################################################
 # 0. Арифметические задачи (цепочки операций)
@@ -399,3 +411,374 @@ def generate_random_category_theory_task(
         language=language,
         detail_level=detail_level
     )
+
+
+##################################################
+# 17. NumberTheoryTask - Теория чисел
+##################################################
+
+def generate_random_number_theory_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> NumberTheoryTask:
+    """
+    Генерирует случайную задачу по теории чисел.
+    
+    Типы задач:
+    - gcd_lcm: НОД и НОК
+    - prime_factorization: разложение на простые множители
+    - modular_arithmetic: вычисления по модулю
+    - chinese_remainder: китайская теорема об остатках
+    - divisibility: делимость
+    - diophantine: диофантовы уравнения
+    - euler_totient: функция Эйлера
+    """
+    return NumberTheoryTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 18. CombinatoricsTask - Комбинаторика
+##################################################
+
+def generate_random_combinatorics_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> CombinatoricsTask:
+    """
+    Генерирует случайную комбинаторную задачу.
+    
+    Типы задач:
+    - permutations: перестановки
+    - combinations: сочетания
+    - binomial: биномиальные коэффициенты
+    - pigeonhole: принцип Дирихле
+    - inclusion_exclusion: формула включения-исключения
+    - derangements: беспорядки
+    - stars_and_bars: шары и перегородки
+    - circular_permutation: круговые перестановки
+    """
+    return CombinatoricsTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 19. SequenceTask - Последовательности
+##################################################
+
+def generate_random_sequence_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> SequenceTask:
+    """
+    Генерирует случайную задачу на последовательности.
+    
+    Типы задач:
+    - arithmetic_nth: n-й член арифметической прогрессии
+    - arithmetic_sum: сумма арифметической прогрессии
+    - geometric_nth: n-й член геометрической прогрессии
+    - geometric_sum: сумма геометрической прогрессии
+    - fibonacci_nth: числа Фибоначчи
+    - recurrence: рекуррентные соотношения
+    - pattern: найти закономерность
+    """
+    return SequenceTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 20. GeometryTask - Геометрия
+##################################################
+
+def generate_random_geometry_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> GeometryTask:
+    """
+    Генерирует случайную геометрическую задачу.
+    
+    Типы задач:
+    - triangle_area_coords: площадь треугольника по координатам
+    - triangle_area_sides: площадь по формуле Герона
+    - distance_2d/3d: расстояние между точками
+    - circle_area, circle_circumference: площадь/окружность
+    - sphere_volume, cylinder_volume, cone_volume: объёмы тел
+    - angle_between_vectors: угол между векторами
+    - dot_product, cross_product: произведения векторов
+    - line_equation: уравнение прямой
+    - midpoint: середина отрезка
+    """
+    return GeometryTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 21. MatrixTask - Матрицы
+##################################################
+
+def generate_random_matrix_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> MatrixTask:
+    """
+    Генерирует случайную задачу с матрицами.
+    
+    Типы задач:
+    - determinant: вычисление определителя
+    - inverse: обратная матрица
+    - multiplication: умножение матриц
+    - transpose: транспонирование
+    - rank: ранг матрицы
+    - eigenvalues: собственные значения
+    - trace: след матрицы
+    - add: сложение матриц
+    - scalar_mult: умножение на скаляр
+    """
+    return MatrixTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 22. TrigonometryTask - Тригонометрия
+##################################################
+
+def generate_random_trigonometry_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> TrigonometryTask:
+    """
+    Генерирует случайную тригонометрическую задачу.
+    
+    Типы задач:
+    - basic_value: значения тригонометрических функций
+    - equation: тригонометрические уравнения
+    - identity: упрощение тождеств
+    - triangle_solve: решение треугольников
+    - inverse: обратные тригонометрические функции
+    """
+    return TrigonometryTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 23. InequalityTask - Неравенства
+##################################################
+
+def generate_random_inequality_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> InequalityTask:
+    """
+    Генерирует случайную задачу на неравенства.
+    
+    Типы задач:
+    - linear: линейные неравенства
+    - quadratic: квадратные неравенства
+    - rational: дробно-рациональные
+    - absolute: с модулем
+    - system: системы неравенств
+    """
+    return InequalityTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 24. ComplexNumberTask - Комплексные числа
+##################################################
+
+def generate_random_complex_number_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> ComplexNumberTask:
+    """
+    Генерирует случайную задачу с комплексными числами.
+    
+    Типы задач:
+    - arithmetic: арифметические операции
+    - modulus: модуль
+    - argument: аргумент
+    - polar_form: тригонометрическая форма
+    - power: возведение в степень (формула Муавра)
+    - roots: корни n-й степени
+    - conjugate: сопряжённое число
+    - equation: уравнения
+    """
+    return ComplexNumberTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 25. LimitsTask - Пределы
+##################################################
+
+def generate_random_limits_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> LimitsTask:
+    """
+    Генерирует случайную задачу на пределы.
+    
+    Типы задач:
+    - polynomial: пределы полиномов
+    - rational: пределы рациональных функций
+    - infinity: пределы на бесконечности
+    - indeterminate: неопределённости (0/0, ∞/∞)
+    - sequence: пределы последовательностей
+    - special: замечательные пределы
+    """
+    return LimitsTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# 26. SetLogicTask - Множества и логика
+##################################################
+
+def generate_random_set_logic_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    task_type: str = None
+) -> SetLogicTask:
+    """
+    Генерирует случайную задачу на множества и логику.
+    
+    Типы задач:
+    - union: объединение множеств
+    - intersection: пересечение
+    - difference: разность
+    - symmetric_difference: симметрическая разность
+    - complement: дополнение
+    - cardinality: мощность объединения
+    - power_set: степень множества
+    - cartesian_product: декартово произведение
+    - boolean_simplify: упрощение логических выражений
+    - truth_table: таблица истинности
+    - venn_problem: задачи на диаграммы Венна
+    """
+    return SetLogicTask.generate_random_task(
+        task_type=task_type,
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty
+    )
+
+
+##################################################
+# Универсальный генератор всех типов задач
+##################################################
+
+ALL_TASK_GENERATORS = {
+    "arithmetic": generate_random_arithmetic_task,
+    "linear": generate_random_linear_task,
+    "quadratic": generate_random_quadratic_task,
+    "cubic": generate_random_cubic_task,
+    "exponential": generate_random_exponential_task,
+    "logarithmic": generate_random_logarithmic_task,
+    "calculus": generate_random_calculus_task,
+    "contradiction": generate_random_contradiction_task,
+    "knights_knaves": generate_random_knights_knaves_task,
+    "futoshiki": generate_random_futoshiki_task,
+    "urn_probability": generate_random_urn_probability_task,
+    "text_stats": generate_random_text_stats_task,
+    "graph": generate_random_graph_task,
+    "system_linear": generate_random_system_linear_task,
+    "analogical": generate_random_analogical_task,
+    "group_theory": generate_random_group_theory_task,
+    "category_theory": generate_random_category_theory_task,
+    # Новые задачи:
+    "number_theory": generate_random_number_theory_task,
+    "combinatorics": generate_random_combinatorics_task,
+    "sequence": generate_random_sequence_task,
+    "geometry": generate_random_geometry_task,
+    "matrix": generate_random_matrix_task,
+    "trigonometry": generate_random_trigonometry_task,
+    "inequality": generate_random_inequality_task,
+    "complex_number": generate_random_complex_number_task,
+    "limits": generate_random_limits_task,
+    "set_logic": generate_random_set_logic_task,
+}
+
+
+def generate_random_task(
+    task_type: str = None,
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    **kwargs
+):
+    """
+    Универсальный генератор случайной задачи.
+    
+    Если task_type не указан, выбирается случайный тип.
+    
+    :param task_type: тип задачи (см. ALL_TASK_GENERATORS.keys())
+    :param language: 'ru' или 'en'
+    :param detail_level: уровень детализации решения
+    :param difficulty: уровень сложности (1-10)
+    :param kwargs: дополнительные параметры для конкретного генератора
+    :return: экземпляр задачи
+    """
+    if task_type is None:
+        task_type = random.choice(list(ALL_TASK_GENERATORS.keys()))
+    
+    generator = ALL_TASK_GENERATORS.get(task_type)
+    if generator is None:
+        raise ValueError(f"Неизвестный тип задачи: {task_type}. Доступные: {list(ALL_TASK_GENERATORS.keys())}")
+    
+    # Передаём параметры, которые поддерживает генератор
+    return generator(language=language, detail_level=detail_level, **kwargs)
