@@ -29,10 +29,12 @@ class TextStatsTask(BaseMathTask):
                  allow_overlapping: bool = False,
                  text_gen_mode: str = "words",
                  mix_ratio: float = 0.5,
-                 output_format: OutputFormat = "text"):
+                 output_format: OutputFormat = "text",
+                 reasoning_mode: bool = False):
         self.language = language.lower()
         self.detail_level = detail_level
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.allow_overlapping = allow_overlapping
         self.text_gen_mode = text_gen_mode
         self.mix_ratio = mix_ratio
@@ -57,6 +59,7 @@ class TextStatsTask(BaseMathTask):
         )
         
         super().__init__(desc, language=language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _generate_random_text(self) -> str:
         """Генерируем текст в зависимости от text_gen_mode."""
@@ -114,10 +117,9 @@ class TextStatsTask(BaseMathTask):
             self.language,
             PROMPT_TEMPLATES["text_stats"]["steps"]["en"]
         )
-        steps_count = min(self.detail_level, len(steps_templates))
         self.solution_steps = []
 
-        for i in range(steps_count):
+        for i in range(len(steps_templates)):
             step_str = steps_templates[i].format(
                 substring=self.substring,
                 allow_overlapping=self.allow_overlapping

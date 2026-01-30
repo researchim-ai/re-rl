@@ -44,7 +44,8 @@ class MagneticForceTask(BaseMathTask):
         B: float = None,
         v: float = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -58,6 +59,7 @@ class MagneticForceTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         self.particle = particle or random.choice(list(self.PARTICLES.keys()))
@@ -73,6 +75,7 @@ class MagneticForceTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self) -> str:
         templates = PROMPT_TEMPLATES["magnetic_force"]
@@ -123,14 +126,12 @@ class MagneticForceTask(BaseMathTask):
             steps.append(f"T = 2πm/(qB) = 2π·{self.m:.3e}/({self.q:.3e}·{self.B}) = {T:.4e} с")
             answer = f"T = {T:.4e} с"
         
-        # Ограничиваем количество шагов (без дублирования)
-        
-        self.solution_steps = steps[:self.detail_level]
+        self.solution_steps = steps
         self.final_answer = templates["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "magnetic_force"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

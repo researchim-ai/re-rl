@@ -5,8 +5,10 @@ from re_rl.tasks.base_task import BaseTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class UrnProbabilityTask(BaseTask):
-    def __init__(self, language="en", count_containers=None, draws=None, output_format: OutputFormat = "text"):
+    def __init__(self, language="en", count_containers=None, draws=None, output_format: OutputFormat = "text", reasoning_mode: bool = False):
         self.language = language.lower()
+        self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         syn = PROMPT_TEMPLATES["urn_probability"]["synonyms"][self.language]
 
         if count_containers is None:
@@ -44,6 +46,7 @@ class UrnProbabilityTask(BaseTask):
 
         desc = self._create_problem_text()
         super().__init__(desc, language=self.language)
+        self.reasoning_mode = reasoning_mode
 
     def _choose_question(self):
         questions_list = PROMPT_TEMPLATES["urn_probability"]["questions_pool"][self.language]

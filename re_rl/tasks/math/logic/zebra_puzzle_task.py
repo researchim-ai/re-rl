@@ -43,7 +43,8 @@ class ZebraPuzzleTask(BaseMathTask):
         num_categories: int = None,
         num_clues: int = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -71,6 +72,7 @@ class ZebraPuzzleTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.num_houses = num_houses
         self.num_categories = min(num_categories, len(self.CATEGORY_NAMES))
@@ -92,6 +94,7 @@ class ZebraPuzzleTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _get_category_values(self, category: str) -> List[str]:
         """Получает значения для категории на нужном языке."""
@@ -272,7 +275,7 @@ class ZebraPuzzleTask(BaseMathTask):
         steps = []
         
         # Генерируем шаги на основе подсказок
-        for i, clue in enumerate(self.clues[:self.detail_level]):
+        for i, clue in enumerate(self.clues):
             deduction = self._describe_deduction(clue)
             step = templates["steps"]["from_clue"][self.language].format(
                 n=i + 1, deduction=deduction
@@ -280,7 +283,7 @@ class ZebraPuzzleTask(BaseMathTask):
             steps.append(step)
         
         # Добавляем шаги с методом исключения
-        while len(steps) < self.detail_level:
+        for _ in range(len(self.clues), len(self.clues) + 3):  # Добавляем несколько шагов исключения
             deduction = self._generate_elimination_step()
             step = templates["steps"]["elimination"][self.language].format(deduction=deduction)
             steps.append(step)

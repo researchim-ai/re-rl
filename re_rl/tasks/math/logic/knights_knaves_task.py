@@ -37,7 +37,8 @@ class KnightsKnavesTask(BaseMathTask):
         detail_level: int = 3,
         complexity: int = None,
         difficulty: int = None,
-        output_format: str = "text"
+        output_format: str = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -59,6 +60,7 @@ class KnightsKnavesTask(BaseMathTask):
         self.complexity = complexity
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
 
         # Определяем число персонажей / высказываний по уровню сложности
         self.num_persons, self.num_statements = self._compute_params_by_complexity(self.complexity)
@@ -74,6 +76,7 @@ class KnightsKnavesTask(BaseMathTask):
         # Формируем текст задачи (problem)
         description = self._create_problem_text()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _compute_params_by_complexity(self, lvl: int):
         """
@@ -240,8 +243,6 @@ class KnightsKnavesTask(BaseMathTask):
         
         # Анализ каждого персонажа
         for i, name in enumerate(self.names):
-            if len(steps) >= self.detail_level:
-                break
             if self.language == "ru":
                 step = f"Анализ высказывания {name}:\n"
                 step += f"- {self.statements[i]}\n"
@@ -255,29 +256,24 @@ class KnightsKnavesTask(BaseMathTask):
             steps.append(step)
         
         # Анализ противоречий
-        if len(steps) < self.detail_level:
-            contradictions = self._find_contradictions()
-            if contradictions:
-                if self.language == "ru":
-                    step = "Найденные противоречия:\n"
-                    for c in contradictions:
-                        step += f"- {c}\n"
-                else:
-                    step = "Found contradictions:\n"
-                    for c in contradictions:
-                        step += f"- {c}\n"
-                steps.append(step)
+        contradictions = self._find_contradictions()
+        if contradictions:
+            if self.language == "ru":
+                step = "Найденные противоречия:\n"
+                for c in contradictions:
+                    step += f"- {c}\n"
+            else:
+                step = "Found contradictions:\n"
+                for c in contradictions:
+                    step += f"- {c}\n"
+            steps.append(step)
         
         # Финальный вывод
-        if len(steps) < self.detail_level:
-            final_step = PROMPT_TEMPLATES["knights_knaves"]["final_step"].get(
-                self.language,
-                PROMPT_TEMPLATES["knights_knaves"]["final_step"]["en"]
-            )
-            steps.append(final_step)
-        
-        # Если нужно больше шагов, повторяем последний
-        # Ограничиваем количество шагов (без дублирования)
+        final_step = PROMPT_TEMPLATES["knights_knaves"]["final_step"].get(
+            self.language,
+            PROMPT_TEMPLATES["knights_knaves"]["final_step"]["en"]
+        )
+        steps.append(final_step)
         
         self.solution_steps = steps
         

@@ -59,6 +59,7 @@ class Vector3DTask(BaseMathTask):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.language = language.lower()  # ВАЖНО: установить ДО _create_problem_description
         
         # Получаем параметры сложности
@@ -75,6 +76,7 @@ class Vector3DTask(BaseMathTask):
         
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _generate_vector(self) -> Tuple[int, int, int]:
         """Генерирует случайный вектор."""
@@ -162,10 +164,6 @@ class Vector3DTask(BaseMathTask):
             self._solve_projection(templates)
         elif self.task_type == "parallelpiped_volume":
             self._solve_parallelpiped_volume(templates)
-        
-        # Ограничиваем по detail_level
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def _cross_product(self, a: Tuple, b: Tuple) -> Tuple[float, float, float]:
         """Вычисляет векторное произведение."""
@@ -334,7 +332,8 @@ class Vector3DTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """Генерирует случайную задачу по векторам 3D."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
@@ -343,5 +342,6 @@ class Vector3DTask(BaseMathTask):
             language=language,
             detail_level=detail_level,
             difficulty=difficulty,
-            output_format=output_format
+            output_format=output_format,
+            reasoning_mode=reasoning_mode
         )

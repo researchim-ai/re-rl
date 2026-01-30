@@ -61,12 +61,14 @@ class KinematicsTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self.language = language
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.g = get_constant("g")
         
         # Параметры сложности
@@ -87,6 +89,7 @@ class KinematicsTask(BaseMathTask):
         
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""
@@ -149,8 +152,8 @@ class KinematicsTask(BaseMathTask):
         elif self.task_type == "circular_acceleration":
             self._solve_circular_acceleration(templates, formulas)
         
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
+        # НЕ обрезаем шаги — в reasoning_mode нужны все шаги
+        # detail_level теперь контролирует уровень детализации, а не обрезку
     
     def _format_value(self, value, unit):
         """Форматирует значение с единицей измерения."""
@@ -166,24 +169,32 @@ class KinematicsTask(BaseMathTask):
     
     def _solve_uniform_motion(self, templates, formulas):
         """s = v * t"""
-        is_latex = self._output_format == "latex"
-        
-        # Шаг 1: Формула
-        formula = "$s = v \\cdot t$" if is_latex else formulas["uniform_motion"]
-        step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula=formula))
-        
         s = self.v * self.t
         
-        # Шаг 2: Подставляем
-        substitution = f"$s = {self.v} \\cdot {self.t}$" if is_latex else f"s = {self.v} × {self.t}"
-        step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=substitution))
+        # Reasoning mode: добавляем "Дано" и анализ
+        if self.reasoning_mode:
+            self.add_given(
+                {"v": self.v, "t": self.t},
+                {"v": "м/с", "t": "с"}
+            )
+            self.add_find("s", "пройденный путь" if self.language == "ru" else "distance traveled")
+            self.add_analysis(
+                "Равномерное движение — скорость постоянна." if self.language == "ru" 
+                else "Uniform motion — velocity is constant."
+            )
         
-        # Шаг 3: Вычисляем
-        calculation = f"$s = {s}$ м" if is_latex else f"s = {s}"
-        step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=calculation))
+        # Формула (ВСЕГДА)
+        self.add_formula("s = v × t")
+        
+        # Подстановка
+        self.add_substitution(f"s = {self.v} × {self.t}")
+        
+        # Вычисление
+        self.add_calculation(f"{self.v} × {self.t}", s, "м")
+        
+        # Проверка размерности (только reasoning mode)
+        if self.reasoning_mode:
+            self.add_dimension_check("[м/с] × [с] = [м] ✓")
         
         self.final_answer = self._format_value(s, "m")
     
@@ -191,14 +202,19 @@ class KinematicsTask(BaseMathTask):
         """v = s / t"""
         v = self.s / self.t
         
-        step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula="v = s/t"))
+        if self.reasoning_mode:
+            self.add_given(
+                {"s": self.s, "t": self.t},
+                {"s": "м", "t": "с"}
+            )
+            self.add_find("v", "скорость" if self.language == "ru" else "velocity")
         
-        step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=f"v = {self.s} / {self.t}"))
+        self.add_formula("v = s/t")
+        self.add_substitution(f"v = {self.s} / {self.t}")
+        self.add_calculation(f"{self.s}/{self.t}", round(v, 4), "м/с")
         
-        step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=f"v = {v:.4f}"))
+        if self.reasoning_mode:
+            self.add_dimension_check("[м]/[с] = [м/с] ✓")
         
         self.final_answer = format_with_units(v, "m/s", self.language)
     
@@ -206,14 +222,24 @@ class KinematicsTask(BaseMathTask):
         """s = at²/2 (из покоя)"""
         s = self.a * self.t ** 2 / 2
         
-        step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula=formulas["distance_accelerated"]))
+        if self.reasoning_mode:
+            self.add_given(
+                {"a": self.a, "t": self.t, "v₀": 0},
+                {"a": "м/с²", "t": "с", "v₀": "м/с"}
+            )
+            self.add_find("s", "пройденный путь" if self.language == "ru" else "distance")
+            self.add_analysis(
+                "Движение из состояния покоя (v₀ = 0) с постоянным ускорением."
+                if self.language == "ru" else
+                "Motion from rest (v₀ = 0) with constant acceleration."
+            )
         
-        step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=f"s = 0 + ({self.a} × {self.t}²)/2"))
+        self.add_formula("s = v₀t + at²/2 = at²/2")
+        self.add_substitution(f"s = {self.a} × {self.t}² / 2")
+        self.add_calculation(f"{self.a} × {self.t**2} / 2", round(s, 4), "м")
         
-        step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=f"s = {s:.4f}"))
+        if self.reasoning_mode:
+            self.add_dimension_check("[м/с²] × [с²] = [м] ✓")
         
         self.final_answer = format_with_units(s, "m", self.language)
     
@@ -221,14 +247,19 @@ class KinematicsTask(BaseMathTask):
         """v = v0 + at"""
         v = self.v0 + self.a * self.t
         
-        step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula=formulas["velocity_time"]))
+        if self.reasoning_mode:
+            self.add_given(
+                {"v₀": self.v0, "a": self.a, "t": self.t},
+                {"v₀": "м/с", "a": "м/с²", "t": "с"}
+            )
+            self.add_find("v", "конечная скорость" if self.language == "ru" else "final velocity")
         
-        step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=f"v = {self.v0} + {self.a} × {self.t}"))
+        self.add_formula("v = v₀ + at")
+        self.add_substitution(f"v = {self.v0} + {self.a} × {self.t}")
+        self.add_calculation(f"{self.v0} + {self.a * self.t}", round(v, 4), "м/с")
         
-        step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=f"v = {v:.4f}"))
+        if self.reasoning_mode:
+            self.add_dimension_check("[м/с] + [м/с²]×[с] = [м/с] + [м/с] = [м/с] ✓")
         
         self.final_answer = format_with_units(v, "m/s", self.language)
     
@@ -237,14 +268,35 @@ class KinematicsTask(BaseMathTask):
         v0 = self.v0 if self.v0 else self.v
         h = v0 ** 2 / (2 * self.g)
         
-        step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula=formulas["max_height"]))
+        # Reasoning mode: добавляем "Дано" и анализ
+        if self.reasoning_mode:
+            self.add_given(
+                {"v₀": v0, "g": self.g},
+                {"v₀": "м/с", "g": "м/с²"}
+            )
+            self.add_find("h", "максимальная высота подъёма" if self.language == "ru" else "maximum height")
+            self.add_analysis(
+                "На максимальной высоте скорость равна нулю (v = 0).\n"
+                "Используем связь скорости и перемещения: v² = v₀² - 2gh"
+                if self.language == "ru" else
+                "At maximum height velocity equals zero (v = 0).\n"
+                "Use velocity-displacement relation: v² = v₀² - 2gh"
+            )
         
-        step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=f"h = {v0}² / (2 × {self.g})"))
+        # Формула (ВСЕГДА)
+        self.add_formula("h = v₀²/(2g)")
         
-        step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=f"h = {h:.4f}"))
+        # Подстановка
+        self.add_substitution(f"h = ({v0})²/(2 × {self.g})")
+        
+        # Вычисление
+        v0_squared = v0 ** 2
+        two_g = 2 * self.g
+        self.add_calculation(f"{v0_squared}/{two_g:.2f}", round(h, 4), "м")
+        
+        # Проверка размерности (только reasoning mode)
+        if self.reasoning_mode:
+            self.add_dimension_check("[м/с]²/[м/с²] = [м²/с²]/[м/с²] = [м] ✓")
         
         self.final_answer = format_with_units(h, "m", self.language)
     
@@ -253,14 +305,26 @@ class KinematicsTask(BaseMathTask):
         angle_rad = math.radians(2 * self.angle)
         R = self.v ** 2 * math.sin(angle_rad) / self.g
         
-        step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula=formulas["projectile_range"]))
+        if self.reasoning_mode:
+            self.add_given(
+                {"v₀": self.v, "θ": self.angle, "g": self.g},
+                {"v₀": "м/с", "θ": "°", "g": "м/с²"}
+            )
+            self.add_find("R", "дальность полёта" if self.language == "ru" else "range")
+            self.add_analysis(
+                "Баллистическая задача. Дальность полёта максимальна при угле 45°."
+                if self.language == "ru" else
+                "Projectile motion problem. Maximum range is achieved at 45° angle."
+            )
         
-        step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=f"R = {self.v}² × sin(2×{self.angle}°) / {self.g}"))
+        self.add_formula("R = v₀² × sin(2θ) / g")
+        self.add_substitution(f"R = {self.v}² × sin(2×{self.angle}°) / {self.g}")
+        sin_2theta = round(math.sin(angle_rad), 4)
+        self.solution_steps.append(f"sin(2×{self.angle}°) = sin({2*self.angle}°) = {sin_2theta}")
+        self.add_calculation(f"{self.v**2} × {sin_2theta} / {self.g}", round(R, 4), "м")
         
-        step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=f"R = {R:.4f}"))
+        if self.reasoning_mode:
+            self.add_dimension_check("[м/с]² × [1] / [м/с²] = [м] ✓")
         
         self.final_answer = format_with_units(R, "m", self.language)
     
@@ -268,14 +332,24 @@ class KinematicsTask(BaseMathTask):
         """v = 2πr / T"""
         v = 2 * math.pi * self.r / self.T
         
-        step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula=formulas["circular_velocity"]))
+        if self.reasoning_mode:
+            self.add_given(
+                {"r": self.r, "T": self.T},
+                {"r": "м", "T": "с"}
+            )
+            self.add_find("v", "линейная скорость" if self.language == "ru" else "linear velocity")
+            self.add_analysis(
+                "За один период T тело проходит длину окружности 2πr."
+                if self.language == "ru" else
+                "In one period T the body travels the circumference 2πr."
+            )
         
-        step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=f"v = 2π × {self.r} / {self.T}"))
+        self.add_formula("v = 2πr/T")
+        self.add_substitution(f"v = 2π × {self.r} / {self.T}")
+        self.add_calculation(f"2 × 3.1416 × {self.r} / {self.T}", round(v, 4), "м/с")
         
-        step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=f"v = {v:.4f}"))
+        if self.reasoning_mode:
+            self.add_dimension_check("[м]/[с] = [м/с] ✓")
         
         self.final_answer = format_with_units(v, "m/s", self.language)
     
@@ -283,14 +357,24 @@ class KinematicsTask(BaseMathTask):
         """a = v² / r"""
         a = self.v ** 2 / self.r
         
-        step1 = templates.get("formula", {}).get(self.language, "")
-        self.solution_steps.append(step1.format(step=1, formula=formulas["centripetal_acceleration"]))
+        if self.reasoning_mode:
+            self.add_given(
+                {"v": self.v, "r": self.r},
+                {"v": "м/с", "r": "м"}
+            )
+            self.add_find("a", "центростремительное ускорение" if self.language == "ru" else "centripetal acceleration")
+            self.add_analysis(
+                "При движении по окружности возникает центростремительное ускорение, направленное к центру."
+                if self.language == "ru" else
+                "Circular motion produces centripetal acceleration directed toward the center."
+            )
         
-        step2 = templates.get("substitute", {}).get(self.language, "")
-        self.solution_steps.append(step2.format(step=2, substitution=f"a = {self.v}² / {self.r}"))
+        self.add_formula("a = v²/r")
+        self.add_substitution(f"a = {self.v}² / {self.r}")
+        self.add_calculation(f"{self.v**2}/{self.r}", round(a, 4), "м/с²")
         
-        step3 = templates.get("calculate", {}).get(self.language, "")
-        self.solution_steps.append(step3.format(step=3, calculation=f"a = {a:.4f}"))
+        if self.reasoning_mode:
+            self.add_dimension_check("[м/с]²/[м] = [м²/с²]/[м] = [м/с²] ✓")
         
         self.final_answer = format_with_units(a, "m/s^2", self.language)
     
@@ -304,7 +388,8 @@ class KinematicsTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(
@@ -312,5 +397,6 @@ class KinematicsTask(BaseMathTask):
             language=language,
             detail_level=detail_level,
             difficulty=difficulty,
-            output_format=output_format
+            output_format=output_format,
+            reasoning_mode=reasoning_mode
         )

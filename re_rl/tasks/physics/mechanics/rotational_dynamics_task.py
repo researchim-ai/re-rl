@@ -44,7 +44,8 @@ class RotationalDynamicsTask(BaseMathTask):
         detail_level: int = 3,
         task_type: str = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -58,6 +59,7 @@ class RotationalDynamicsTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
@@ -73,6 +75,7 @@ class RotationalDynamicsTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self) -> str:
         templates = PROMPT_TEMPLATES["rotational_dynamics"]
@@ -107,47 +110,58 @@ class RotationalDynamicsTask(BaseMathTask):
         return problem_text
 
     def solve(self):
-        templates = PROMPT_TEMPLATES["rotational_dynamics"]
-        steps = []
+        self.solution_steps = []
         
         if self.task_type == "moment_of_inertia":
             factor = self.SHAPES[self.shape]["factor"]
             I_calc = factor * self.mass * self.radius ** 2
             formula = self.SHAPES[self.shape]["formula"]
-            steps.append(f"Формула: {formula}")
-            steps.append(f"I = {factor}·{self.mass}·{self.radius}² = {round(I_calc, 4)} кг·м²")
-            self.final_answer = templates["final_answer"][self.language].format(
-                answer=f"I = {round(I_calc, 4)} кг·м²"
-            )
+            if self.reasoning_mode:
+                self.add_given({"M": self.mass, "R": self.radius}, {"M": "кг", "R": "м"})
+                self.add_find("I", "момент инерции" if self.language == "ru" else "moment of inertia")
+            self.add_formula(formula)
+            self.add_substitution(f"I = {factor}·{self.mass}·{self.radius}²")
+            self.add_calculation(f"{factor}×{self.mass}×{self.radius**2}", round(I_calc, 4), "кг·м²")
+            if self.reasoning_mode:
+                self.add_dimension_check("[кг]×[м²] = [кг·м²] ✓")
+            self.final_answer = f"I = {round(I_calc, 4)} кг·м²"
+            
         elif self.task_type == "angular_acceleration":
-            steps.append(templates["steps"]["newton_rotation"][self.language])
             epsilon = self.M_torque / self.I
-            steps.append(f"ε = M/I = {self.M_torque}/{self.I} = {round(epsilon, 3)} рад/с²")
-            self.final_answer = templates["final_answer"][self.language].format(
-                answer=f"ε = {round(epsilon, 3)} рад/с²"
-            )
+            if self.reasoning_mode:
+                self.add_given({"I": self.I, "M": self.M_torque}, {"I": "кг·м²", "M": "Н·м"})
+                self.add_find("ε", "угловое ускорение" if self.language == "ru" else "angular acceleration")
+                self.add_analysis("Второй закон Ньютона для вращения: M = Iε" if self.language == "ru" else "Newton's second law for rotation: M = Iε")
+            self.add_formula("M = Iε → ε = M/I")
+            self.add_substitution(f"ε = {self.M_torque} / {self.I}")
+            self.add_calculation(f"{self.M_torque}/{self.I}", round(epsilon, 3), "рад/с²")
+            self.final_answer = f"ε = {round(epsilon, 3)} рад/с²"
+            
         elif self.task_type == "rotational_energy":
-            steps.append(templates["steps"]["energy_formula"][self.language])
             E = 0.5 * self.I * self.omega ** 2
-            steps.append(f"E = {self.I}·{self.omega}²/2 = {round(E, 2)} Дж")
-            self.final_answer = templates["final_answer"][self.language].format(
-                answer=f"E = {round(E, 2)} Дж"
-            )
+            if self.reasoning_mode:
+                self.add_given({"I": self.I, "ω": self.omega}, {"I": "кг·м²", "ω": "рад/с"})
+                self.add_find("E", "кинетическая энергия вращения" if self.language == "ru" else "rotational kinetic energy")
+            self.add_formula("E = Iω²/2")
+            self.add_substitution(f"E = {self.I}·{self.omega}²/2")
+            self.add_calculation(f"{self.I}×{self.omega**2}/2", round(E, 2), "Дж")
+            if self.reasoning_mode:
+                self.add_dimension_check("[кг·м²]×[рад/с]² = [Дж] ✓")
+            self.final_answer = f"E = {round(E, 2)} Дж"
+            
         else:  # angular_momentum
-            steps.append(templates["steps"]["momentum_formula"][self.language])
             L = self.I * self.omega
-            steps.append(f"L = {self.I}·{self.omega} = {round(L, 2)} кг·м²/с")
-            self.final_answer = templates["final_answer"][self.language].format(
-                answer=f"L = {round(L, 2)} кг·м²/с"
-            )
-        
-        # Ограничиваем количество шагов (без дублирования)
-        
-        self.solution_steps = steps[:self.detail_level]
+            if self.reasoning_mode:
+                self.add_given({"I": self.I, "ω": self.omega}, {"I": "кг·м²", "ω": "рад/с"})
+                self.add_find("L", "момент импульса" if self.language == "ru" else "angular momentum")
+            self.add_formula("L = Iω")
+            self.add_substitution(f"L = {self.I}·{self.omega}")
+            self.add_calculation(f"{self.I}×{self.omega}", round(L, 2), "кг·м²/с")
+            self.final_answer = f"L = {round(L, 2)} кг·м²/с"
 
     def get_task_type(self):
         return "rotational_dynamics"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

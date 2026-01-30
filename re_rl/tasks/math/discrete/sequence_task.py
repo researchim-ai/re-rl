@@ -63,11 +63,13 @@ class SequenceTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.kwargs = kwargs
         
         # Получаем параметры из пресета
@@ -82,6 +84,7 @@ class SequenceTask(BaseMathTask):
         self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _generate_task_params(self):
         """Генерирует параметры задачи."""
@@ -233,9 +236,6 @@ class SequenceTask(BaseMathTask):
         elif self.task_type == "series_sum":
             self._solve_series_sum(steps_templates)
         
-        # Ограничиваем по detail_level
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def _solve_arithmetic_nth(self, templates):
         """a_n = a1 + (n-1)*d"""
@@ -362,7 +362,8 @@ class SequenceTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        reasoning_mode: bool = False
     ):
         """Генерирует случайную задачу на последовательности."""
         if task_type is None:
@@ -371,5 +372,6 @@ class SequenceTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            reasoning_mode=reasoning_mode
         )

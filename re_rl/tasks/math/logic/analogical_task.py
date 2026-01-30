@@ -9,15 +9,18 @@ class AnalogicalTask(BaseTask):
     Все текстовые строки извлекаются из шаблонов.
     detail_level определяет число шагов рассуждений.
     """
-    def __init__(self, description: str, language: str = "en", detail_level: int = 3, output_format: OutputFormat = "text"):
+    def __init__(self, description: str, language: str = "en", detail_level: int = 3, output_format: OutputFormat = "text", reasoning_mode: bool = False):
         self.language = language.lower()
         self.detail_level = detail_level
+        self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         problem_template = PROMPT_TEMPLATES["analogical"]["problem"].get(self.language, PROMPT_TEMPLATES["analogical"]["problem"]["en"])
         full_description = problem_template.format(description=description)
         # Сохраняем описание напрямую
         self.description = full_description
         self.solution_steps = []
         self.final_answer = None
+        self.reasoning_mode = reasoning_mode
 
     def generate_prompt(self) -> str:
         # Возвращаем описание как есть, без оборачивания
@@ -40,8 +43,7 @@ class AnalogicalTask(BaseTask):
                 PROMPT_TEMPLATES["analogical"]["step3"]["en"],
                 PROMPT_TEMPLATES["analogical"]["step4"]["en"]
             ]
-        num_steps = min(self.detail_level, len(steps_full))
-        self.solution_steps = steps_full[:num_steps]
+        self.solution_steps = steps_full
         final_template = PROMPT_TEMPLATES["analogical"]["final_answer"].get(lang, PROMPT_TEMPLATES["analogical"]["final_answer"]["en"])
         self.final_answer = final_template
 

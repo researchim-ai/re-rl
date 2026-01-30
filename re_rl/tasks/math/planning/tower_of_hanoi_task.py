@@ -41,7 +41,8 @@ class TowerOfHanoiTask(BaseMathTask):
         target: str = "C",
         auxiliary: str = "B",
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -64,6 +65,7 @@ class TowerOfHanoiTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.num_disks = num_disks
         self.source = source
@@ -78,6 +80,7 @@ class TowerOfHanoiTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self) -> str:
         """Создаёт текст задачи."""
@@ -131,16 +134,7 @@ class TowerOfHanoiTask(BaseMathTask):
                 to_peg=to_peg
             )
             moves_text.append(move)
-            
-            if len(steps) < self.detail_level:
-                steps.append(move)
-        
-        # Дополняем шаги
-        while len(steps) < self.detail_level:
-            if moves_text:
-                steps.append(moves_text[len(steps) % len(moves_text)])
-            else:
-                steps.append(templates["steps"]["base_case"][self.language])
+            steps.append(move)
         
         self.solution_steps = steps
         

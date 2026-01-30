@@ -37,7 +37,8 @@ class AtwoodMachineTask(BaseMathTask):
         M_pulley: float = None,
         R_pulley: float = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -51,6 +52,7 @@ class AtwoodMachineTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type
         
         # Генерируем массы (m1 > m2 для определённости)
@@ -71,6 +73,7 @@ class AtwoodMachineTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _calculate(self):
         """Вычисляет ускорение и натяжение."""
@@ -106,33 +109,26 @@ class AtwoodMachineTask(BaseMathTask):
         return problem_text
 
     def solve(self):
-        templates = PROMPT_TEMPLATES["atwood_machine"]
-        steps = []
+        self.solution_steps = []
         
-        # Уравнения движения
-        steps.append(templates["steps"]["equations"][self.language])
+        if self.reasoning_mode:
+            self.add_given({"m₁": self.m1, "m₂": self.m2, "g": self.g}, {"m₁": "кг", "m₂": "кг", "g": "м/с²"})
+            self.add_find("a, T", "ускорение и натяжение нити" if self.language == "ru" else "acceleration and tension")
+            self.add_analysis("Записываем уравнения движения для каждого груза:\nm₁g - T = m₁a\nT - m₂g = m₂a" if self.language == "ru" else "Write equations of motion for each mass:\nm₁g - T = m₁a\nT - m₂g = m₂a")
         
-        # Ускорение
-        steps.append(templates["steps"]["acceleration"][self.language].format(
-            a=round(self.acceleration, 3)
-        ))
+        self.add_formula("a = (m₁-m₂)g/(m₁+m₂)")
+        self.add_substitution(f"a = ({self.m1}-{self.m2})×{self.g}/({self.m1}+{self.m2})")
+        self.add_calculation(f"{(self.m1-self.m2)*self.g}/{self.m1+self.m2}", round(self.acceleration, 3), "м/с²")
         
-        # Натяжение
-        steps.append(templates["steps"]["tension"][self.language].format(
-            T=round(self.tension, 2)
-        ))
+        self.add_formula("T = 2m₁m₂g/(m₁+m₂)")
+        self.add_substitution(f"T = 2×{self.m1}×{self.m2}×{self.g}/({self.m1}+{self.m2})")
+        self.add_calculation(f"{2*self.m1*self.m2*self.g}/{self.m1+self.m2}", round(self.tension, 2), "Н")
         
-        # Ограничиваем количество шагов (без дублирования)
-        
-        self.solution_steps = steps[:self.detail_level]
-        self.final_answer = templates["final_answer"][self.language].format(
-            a=round(self.acceleration, 3),
-            T=round(self.tension, 2)
-        )
+        self.final_answer = f"a = {round(self.acceleration, 2)} м/с², T = {round(self.tension, 2)} Н"
 
     def get_task_type(self):
         return "atwood_machine"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

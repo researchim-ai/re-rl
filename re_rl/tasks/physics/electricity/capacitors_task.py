@@ -123,9 +123,6 @@ class CapacitorsTask(BaseMathTask):
             self.solution_steps.append(step1)
             self.solution_steps.append(f"C = {C_total:.4e} Ф = {self._format_capacitance(C_total)}")
             self.final_answer = self._format_capacitance(C_total)
-        
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def get_task_type(self) -> str:
         return "capacitors"

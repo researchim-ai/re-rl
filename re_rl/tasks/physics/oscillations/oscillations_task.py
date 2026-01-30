@@ -54,11 +54,13 @@ class OscillationsTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.language = language
         
         self.g = get_constant("g")
@@ -76,6 +78,7 @@ class OscillationsTask(BaseMathTask):
         
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _create_problem_description(self) -> str:
         templates = PROMPT_TEMPLATES.get("oscillations", {}).get("problem", {})
@@ -148,16 +151,13 @@ class OscillationsTask(BaseMathTask):
             self.solution_steps.append(step1)
             self.solution_steps.append(f"f_рез = 1/(2π√(LC)) = {f_res:.4f} Гц")
             self.final_answer = f"f_рез = {f_res:.4f} Гц"
-        
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def get_task_type(self) -> str:
         return "oscillations"
     
     @classmethod
     def generate_random_task(cls, task_type: str = None, language: str = "ru",
-                            detail_level: int = 3, difficulty: int = 5):
+                            detail_level: int = 3, difficulty: int = 5, reasoning_mode: bool = False):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(task_type=task_type, language=language,
-                  detail_level=detail_level, difficulty=difficulty)
+                  detail_level=detail_level, difficulty=difficulty, reasoning_mode=reasoning_mode)

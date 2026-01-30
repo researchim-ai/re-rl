@@ -13,11 +13,12 @@ class ErrorPropagationTask(BaseMathTask):
     
     TASK_TYPES = ["sum_difference", "product", "power", "formula"]
 
-    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text"):
+    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text", reasoning_mode=False):
         self.language = language.lower()
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
         # Генерируем измерения с погрешностями
@@ -31,6 +32,7 @@ class ErrorPropagationTask(BaseMathTask):
         
         problem_text = self._create_problem_text()
         super().__init__(problem_text, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self):
         t = PROMPT_TEMPLATES["error_propagation"]
@@ -99,13 +101,12 @@ class ErrorPropagationTask(BaseMathTask):
             steps.append(f"ΔS = {round(S, 3)}·{round(rel_S, 4)} = {round(dS, 3)} м²")
             answer = f"S = ({round(S, 3)} ± {round(dS, 3)}) м²"
         
-        # Ограничиваем количество шагов (без дублирования)
-        self.solution_steps = steps[:self.detail_level]
+        self.solution_steps = steps
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "error_propagation"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

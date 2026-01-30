@@ -44,7 +44,8 @@ class LinearTask(BaseMathTask):
         difficulty: int = None,
         max_coef: int = 10,
         ensure_integer: bool = True,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
@@ -62,6 +63,7 @@ class LinearTask(BaseMathTask):
         self.difficulty = difficulty
         self.detail_level = detail_level
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Формируем уравнение в нужном формате
         equation = self._format_equation(a, b, c, output_format)
@@ -70,6 +72,7 @@ class LinearTask(BaseMathTask):
         description = PROMPT_TEMPLATES["linear"]["problem"][language].format(equation=equation)
         
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     @staticmethod
     def _format_equation(a: int, b: int, c: int, output_format: OutputFormat = "text") -> str:

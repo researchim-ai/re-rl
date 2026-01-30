@@ -29,7 +29,8 @@ class ExponentialTask(BaseMathTask):
         language: str = "ru", 
         detail_level: int = 3,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -48,6 +49,7 @@ class ExponentialTask(BaseMathTask):
         self.c = c
         self.d = d
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Формируем описание
         equation = self._format_equation(a, b, c, d, output_format)
@@ -56,6 +58,7 @@ class ExponentialTask(BaseMathTask):
         description = PROMPT_TEMPLATES["exponential"]["problem"][language].format(equation=equation)
         
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     @staticmethod
     def _format_equation(a, b, c, d, output_format: OutputFormat = "text") -> str:

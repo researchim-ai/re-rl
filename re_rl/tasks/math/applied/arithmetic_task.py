@@ -287,10 +287,12 @@ class ArithmeticTask(BaseMathTask):
         detail_level: int = 3,
         expression: Optional[str] = None,  # Для явного задания выражения
         output_format: str = "text",
+        reasoning_mode: bool = False,
         **config_overrides
     ):
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.language = language.lower()
         
         # Определяем конфигурацию
@@ -328,6 +330,7 @@ class ArithmeticTask(BaseMathTask):
         # Формируем описание задачи
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _create_problem_description(self) -> str:
         """Создаёт текст задачи."""
@@ -486,8 +489,7 @@ class ArithmeticTask(BaseMathTask):
             step2 = misc.get("step_result", {}).get(self.language, "")
             steps.append(step2.format(result=self._format_answer()))
         
-        # Ограничиваем по detail_level
-        self.solution_steps = steps[:self.detail_level] if self.detail_level < len(steps) else steps
+        self.solution_steps = steps
         self.final_answer = self._format_answer()
     
     def _solve_tree(self, node: ExpressionNode, step_num: int) -> List[str]:

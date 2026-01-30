@@ -48,7 +48,8 @@ class NimGameTask(BaseMathTask):
         max_size: int = None,
         task_type: str = "find_winner",
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -74,6 +75,7 @@ class NimGameTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type
         
         # Генерируем или используем переданные кучки
@@ -92,6 +94,7 @@ class NimGameTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _generate_piles(self, num_piles: int, max_size: int) -> List[int]:
         """Генерирует случайные кучки."""

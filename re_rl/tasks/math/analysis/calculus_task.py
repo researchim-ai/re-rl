@@ -29,7 +29,8 @@ class CalculusTask(BaseMathTask):
         language: str = "ru", 
         detail_level: int = 3,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -39,7 +40,9 @@ class CalculusTask(BaseMathTask):
         self.degree = degree
         self.function = function
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         super().__init__("", language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def generate_function(self):
         if self.function is None:

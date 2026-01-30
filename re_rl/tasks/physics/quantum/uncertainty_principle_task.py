@@ -18,11 +18,12 @@ class UncertaintyPrincipleTask(BaseMathTask):
     m_e = 9.109e-31  # кг
     eV = 1.602e-19  # Дж
 
-    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text"):
+    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text", reasoning_mode: bool = False):
         self.language = language.lower()
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
         self.dx = round(random.uniform(0.01, 1), 3)  # нм
@@ -30,6 +31,7 @@ class UncertaintyPrincipleTask(BaseMathTask):
         
         problem_text = self._create_problem_text()
         super().__init__(problem_text, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self):
         t = PROMPT_TEMPLATES["uncertainty_principle"]
@@ -71,13 +73,12 @@ class UncertaintyPrincipleTask(BaseMathTask):
             steps.append(f"r_min ≈ ħ²/(m_e·e²·k) ≈ a₀ = {a0*1e9:.4f} нм = 0.529 Å")
             answer = f"r ≈ 0.529 Å (боровский радиус)"
         
-        # Ограничиваем количество шагов (без дублирования)
-        self.solution_steps = steps[:self.detail_level]
+        self.solution_steps = steps
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "uncertainty_principle"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

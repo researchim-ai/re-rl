@@ -40,9 +40,11 @@ class SystemLinearTask(BaseMathTask):
         difficulty: int = None,
         size: int = 2,
         max_coef: int = 10,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
@@ -60,6 +62,7 @@ class SystemLinearTask(BaseMathTask):
         self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description(language)
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     @staticmethod
     def _generate_matrix(size: int, max_coef: int) -> List[List[float]]:

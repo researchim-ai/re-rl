@@ -33,7 +33,8 @@ class ContradictionTask(BaseTask):
         language: str = "en",
         num_statements: int = None,
         difficulty: int = None,
-        output_format: str = "text"
+        output_format: str = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -53,10 +54,12 @@ class ContradictionTask(BaseTask):
         self.num_statements = num_statements
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.statements = []
         self.false_statement_index = None
         description = self._create_problem_description()
         super().__init__(description, language=self.language)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_description(self):
         facts_true = PROMPT_TEMPLATES["contradiction_facts"].get(self.language, {}).get("true", [])

@@ -153,9 +153,6 @@ class NuclearTask(BaseMathTask):
             self._solve_mass_defect(templates)
         elif self.task_type == "activity":
             self._solve_activity(templates)
-        
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def _solve_radioactive_decay(self, templates):
         """N(t) = N₀ · e^(-λt) = N₀ · (1/2)^(t/T½)"""
@@ -239,7 +236,7 @@ class NuclearTask(BaseMathTask):
     
     @classmethod
     def generate_random_task(cls, task_type: str = None, language: str = "ru",
-                            detail_level: int = 3, difficulty: int = 5):
+                            detail_level: int = 3, difficulty: int = 5, reasoning_mode: bool = False):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(task_type=task_type, language=language,
-                  detail_level=detail_level, difficulty=difficulty)
+                  detail_level=detail_level, difficulty=difficulty, reasoning_mode=reasoning_mode)

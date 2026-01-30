@@ -20,7 +20,7 @@ class ThermodynamicCyclesTask(BaseMathTask):
     
     TASK_TYPES = ["carnot_efficiency", "work_from_heat", "refrigerator_cop"]
 
-    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text"):
+    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text", reasoning_mode=False):
         if difficulty:
             preset = self._interpolate_difficulty(difficulty)
             T_range = preset.get("T_range", (400, 800))
@@ -31,6 +31,7 @@ class ThermodynamicCyclesTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
         self.T1 = round(random.uniform(*T_range), 0)  # горячий
@@ -40,6 +41,7 @@ class ThermodynamicCyclesTask(BaseMathTask):
         
         problem_text = self._create_problem_text()
         super().__init__(problem_text, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self):
         t = PROMPT_TEMPLATES["thermodynamic_cycles"]
@@ -75,13 +77,13 @@ class ThermodynamicCyclesTask(BaseMathTask):
             steps.append(f"COP = {self.T2}/({self.T1} - {self.T2}) = {round(COP, 2)}")
             answer = f"COP = {round(COP, 2)}"
         
-        # Ограничиваем количество шагов (без дублирования)
-        self.solution_steps = steps[:self.detail_level]
+        # НЕ обрезаем шаги — в reasoning_mode нужны все шаги
+        self.solution_steps = steps
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "thermodynamic_cycles"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode=False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

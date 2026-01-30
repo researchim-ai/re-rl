@@ -39,7 +39,8 @@ class RCCircuitsTask(BaseMathTask):
         t: float = None,  # с
         Q0: float = None,  # мкКл
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -53,6 +54,7 @@ class RCCircuitsTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
@@ -71,6 +73,7 @@ class RCCircuitsTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self) -> str:
         templates = PROMPT_TEMPLATES["rc_circuits"]
@@ -129,12 +132,12 @@ class RCCircuitsTask(BaseMathTask):
         
         # Ограничиваем количество шагов (без дублирования)
         
-        self.solution_steps = steps[:self.detail_level]
+        self.solution_steps = steps
         self.final_answer = templates["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "rc_circuits"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

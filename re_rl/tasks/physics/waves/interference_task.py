@@ -13,11 +13,12 @@ class InterferenceTask(BaseMathTask):
     
     TASK_TYPES = ["double_slit", "thin_film", "max_order"]
 
-    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text"):
+    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text", reasoning_mode=False):
         self.language = language.lower()
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
         self.d = round(random.uniform(0.1, 1.0), 2)  # мм
@@ -28,6 +29,7 @@ class InterferenceTask(BaseMathTask):
         
         problem_text = self._create_problem_text()
         super().__init__(problem_text, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self):
         t = PROMPT_TEMPLATES["interference"]
@@ -77,5 +79,5 @@ class InterferenceTask(BaseMathTask):
         return "interference"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode=False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

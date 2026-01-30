@@ -40,7 +40,8 @@ class SudokuTask(BaseMathTask):
         size: int = None,
         hints_ratio: float = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -65,6 +66,7 @@ class SudokuTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.size = size
         self.block_size = int(size ** 0.5)  # 2 для 4x4, 3 для 9x9
@@ -85,6 +87,7 @@ class SudokuTask(BaseMathTask):
         )
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _generate_complete_grid(self) -> List[List[int]]:
         """Генерирует полностью заполненную корректную сетку судоку через Z3."""
@@ -253,9 +256,6 @@ class SudokuTask(BaseMathTask):
                        if working_grid[r][c] is None]
         
         for r, c in empty_cells:
-            if len(steps) >= self.detail_level:
-                break
-            
             # Анализируем строку
             missing_row = self._get_missing_in_row(working_grid, r)
             missing_col = self._get_missing_in_col(working_grid, c)
@@ -273,28 +273,12 @@ class SudokuTask(BaseMathTask):
                 )
                 steps.append(step)
                 working_grid[r][c] = val
-            elif len(steps) < self.detail_level:
+            else:
                 # Добавляем аналитический шаг
                 step = templates["steps"]["analyze_row"][self.language].format(
                     row=r + 1, missing=missing_row
                 )
                 steps.append(step)
-        
-        # Добавляем шаги до нужного уровня детализации
-        while len(steps) < self.detail_level:
-            # Добавляем анализ случайной строки/столбца
-            r = random.randint(0, self.size - 1)
-            c = random.randint(0, self.size - 1)
-            missing = self._get_missing_in_row(self.puzzle, r)
-            if missing:
-                step = templates["steps"]["analyze_row"][self.language].format(
-                    row=r + 1, missing=missing
-                )
-            else:
-                step = templates["steps"]["analyze_col"][self.language].format(
-                    col=c + 1, missing=self._get_missing_in_col(self.puzzle, c)
-                )
-            steps.append(step)
         
         self.solution_steps = steps
         self.final_answer = templates["final_answer"][self.language].format(

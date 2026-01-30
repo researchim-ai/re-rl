@@ -49,11 +49,13 @@ class OptimizationTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Получаем параметры сложности
         preset = self._interpolate_difficulty(difficulty)
@@ -75,6 +77,7 @@ class OptimizationTask(BaseMathTask):
         self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _generate_poly_coefficients(self) -> List[float]:
         """Генерирует коэффициенты многочлена с хорошими экстремумами."""
@@ -217,10 +220,6 @@ class OptimizationTask(BaseMathTask):
             self._solve_max_min_interval(templates, types)
         elif self.task_type == "linear_programming":
             self._solve_linear_programming(templates)
-        
-        # Ограничиваем по detail_level
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def _derivative(self, coeffs: List[float]) -> List[float]:
         """Вычисляет производную многочлена."""
@@ -385,7 +384,8 @@ class OptimizationTask(BaseMathTask):
         language: str = "ru",
         detail_level: int = 3,
         difficulty: int = 5,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """Генерирует случайную задачу на оптимизацию."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
@@ -394,5 +394,6 @@ class OptimizationTask(BaseMathTask):
             language=language,
             detail_level=detail_level,
             difficulty=difficulty,
-            output_format=output_format
+            output_format=output_format,
+            reasoning_mode=reasoning_mode
         )

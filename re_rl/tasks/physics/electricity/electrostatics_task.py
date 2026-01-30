@@ -44,11 +44,13 @@ class ElectrostaticsTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.language = language
         self.k = get_constant("k_e")
         
@@ -67,6 +69,7 @@ class ElectrostaticsTask(BaseMathTask):
         
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _format_charge(self, q: float) -> str:
         """Форматирует заряд в удобные единицы."""
@@ -135,16 +138,15 @@ class ElectrostaticsTask(BaseMathTask):
             A = self.q * self.E * self.d
             self.solution_steps.append(f"A = qEd = {self.q:.2e} × {self.E} × {self.d} = {A:.4e} Дж")
             self.final_answer = f"{A:.4e} Дж"
-        
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def get_task_type(self) -> str:
         return "electrostatics"
     
     @classmethod
     def generate_random_task(cls, task_type: str = None, language: str = "ru",
-                            detail_level: int = 3, difficulty: int = 5):
+                            detail_level: int = 3, difficulty: int = 5,
+                            reasoning_mode: bool = False):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(task_type=task_type, language=language,
-                  detail_level=detail_level, difficulty=difficulty)
+                  detail_level=detail_level, difficulty=difficulty,
+                  reasoning_mode=reasoning_mode)

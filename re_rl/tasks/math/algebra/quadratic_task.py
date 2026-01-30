@@ -42,7 +42,8 @@ class QuadraticTask(BaseMathTask):
         difficulty: int = None,
         max_coef: int = 5,
         ensure_integer_roots: bool = True,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
@@ -59,6 +60,7 @@ class QuadraticTask(BaseMathTask):
         self.c = c
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Формируем уравнение в нужном формате (всегда с "= 0")
         equation_str = self._format_equation(a, b, c, output_format, include_equals_zero=True)
@@ -67,6 +69,7 @@ class QuadraticTask(BaseMathTask):
         description = PROMPT_TEMPLATES["quadratic"]["problem"][language].format(equation_pretty=equation_str)
         
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     @staticmethod
     def _format_equation(a: int, b: int, c: int, output_format: OutputFormat = "text", include_equals_zero: bool = False) -> str:

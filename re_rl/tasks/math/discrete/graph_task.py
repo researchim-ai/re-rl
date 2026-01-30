@@ -43,9 +43,11 @@ class GraphTask(BaseMathTask):
         language: str = "ru", 
         detail_level: int = 3,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
@@ -64,6 +66,7 @@ class GraphTask(BaseMathTask):
         self.start = None
         self.end = None
         super().__init__("", language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def generate_graph(self):
         self.graph = nx.gnp_random_graph(self.num_nodes, self.edge_prob, seed=random.randint(1, 1000), directed=False)
@@ -184,12 +187,12 @@ class GraphTask(BaseMathTask):
         return "graph"
 
     @classmethod
-    def generate_random_task(cls, only_valid=False, num_nodes=10, edge_prob=0.5, language: str = "ru", detail_level: int = 3):
+    def generate_random_task(cls, only_valid=False, num_nodes=10, edge_prob=0.5, language: str = "ru", detail_level: int = 3, reasoning_mode: bool = False):
         task_types = ["shortest_path", "minimum_spanning_tree", "diameter", "clustering_coefficient"]
         task_type = random.choice(task_types)
-        task = cls(task_type=task_type, num_nodes=num_nodes, edge_prob=edge_prob, language=language, detail_level=detail_level)
+        task = cls(task_type=task_type, num_nodes=num_nodes, edge_prob=edge_prob, language=language, detail_level=detail_level, reasoning_mode=reasoning_mode)
         task.solve()
         no_solution_str = PROMPT_TEMPLATES["default"]["no_solution"].get(language, PROMPT_TEMPLATES["default"]["no_solution"]["en"])
         if only_valid and task.final_answer == no_solution_str:
-            return cls.generate_random_task(only_valid=only_valid, num_nodes=num_nodes, edge_prob=edge_prob, language=language, detail_level=detail_level)
+            return cls.generate_random_task(only_valid=only_valid, num_nodes=num_nodes, edge_prob=edge_prob, language=language, detail_level=detail_level, reasoning_mode=reasoning_mode)
         return task

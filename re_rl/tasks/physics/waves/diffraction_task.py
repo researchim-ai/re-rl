@@ -13,11 +13,12 @@ class DiffractionTask(BaseMathTask):
     
     TASK_TYPES = ["single_slit", "grating", "resolving_power"]
 
-    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text"):
+    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text", reasoning_mode=False):
         self.language = language.lower()
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
         self.a = round(random.uniform(1, 50), 1)  # мкм (ширина щели)
@@ -28,6 +29,7 @@ class DiffractionTask(BaseMathTask):
         
         problem_text = self._create_problem_text()
         super().__init__(problem_text, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self):
         t = PROMPT_TEMPLATES["diffraction"]
@@ -79,13 +81,12 @@ class DiffractionTask(BaseMathTask):
             steps.append(f"R = m·N = {self.m}·{self.N_total} = {R}")
             answer = f"R = {R}"
         
-        # Ограничиваем количество шагов (без дублирования)
-        self.solution_steps = steps[:self.detail_level]
+        self.solution_steps = steps
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "diffraction"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode=False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

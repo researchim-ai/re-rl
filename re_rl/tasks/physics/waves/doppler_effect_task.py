@@ -12,11 +12,12 @@ class DopplerEffectTask(BaseMathTask):
     
     TASK_TYPES = ["approaching", "receding", "light_redshift"]
 
-    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text"):
+    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text", reasoning_mode=False):
         self.language = language.lower()
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
         self.f0 = round(random.uniform(200, 2000), 0)  # Гц
@@ -28,6 +29,7 @@ class DopplerEffectTask(BaseMathTask):
         
         problem_text = self._create_problem_text()
         super().__init__(problem_text, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self):
         t = PROMPT_TEMPLATES["doppler_effect"]
@@ -67,13 +69,12 @@ class DopplerEffectTask(BaseMathTask):
             steps.append(f"λ = {self.lambda0} + {round(delta_lambda, 4)} = {round(lambda_obs, 4)} нм")
             answer = f"Δλ = {round(delta_lambda, 4)} нм, λ = {round(lambda_obs, 4)} нм"
         
-        # Ограничиваем количество шагов (без дублирования)
-        self.solution_steps = steps[:self.detail_level]
+        self.solution_steps = steps
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "doppler_effect"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode=False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

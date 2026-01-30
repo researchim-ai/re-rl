@@ -13,11 +13,12 @@ class RadioactiveDecayTask(BaseMathTask):
     
     TASK_TYPES = ["remaining", "activity", "age", "decay_constant"]
 
-    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text"):
+    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text", reasoning_mode: bool = False):
         self.language = language.lower()
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
         # Разные единицы времени
@@ -42,6 +43,7 @@ class RadioactiveDecayTask(BaseMathTask):
         
         problem_text = self._create_problem_text()
         super().__init__(problem_text, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _get_time_unit_name(self):
         units = {
@@ -98,13 +100,12 @@ class RadioactiveDecayTask(BaseMathTask):
             steps.append(f"λ = ln(2)/T₁/₂ = 0.693/{self.T} = {lam:.6f} {unit}⁻¹")
             answer = f"λ = {lam:.6f} {unit}⁻¹"
         
-        # Ограничиваем количество шагов (без дублирования)
-        self.solution_steps = steps[:self.detail_level]
+        self.solution_steps = steps
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "radioactive_decay"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

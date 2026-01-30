@@ -249,9 +249,10 @@ def generate_random_calculus_task(
 def generate_random_contradiction_task(
     language="ru",
     num_statements=10,
+    reasoning_mode: bool = False,
     **kwargs  # игнорируем difficulty и другие
 ) -> ContradictionTask:
-    return ContradictionTask(language=language, num_statements=num_statements)
+    return ContradictionTask(language=language, num_statements=num_statements, reasoning_mode=reasoning_mode)
 
 
 ##################################################
@@ -261,9 +262,10 @@ def generate_random_contradiction_task(
 def generate_random_knights_knaves_task(
     language="ru",
     detail_level=5,
+    reasoning_mode: bool = False,
     **kwargs
 ) -> KnightsKnavesTask:
-    return KnightsKnavesTask(language=language, detail_level=detail_level)
+    return KnightsKnavesTask(language=language, detail_level=detail_level, reasoning_mode=reasoning_mode)
 
 
 ##################################################
@@ -275,6 +277,7 @@ def generate_random_futoshiki_task(
     detail_level=5,
     size_range=(4,5),
     ineq_factor=2,
+    reasoning_mode: bool = False,
     **kwargs
 ) -> FutoshikiTask:
     """
@@ -285,7 +288,7 @@ def generate_random_futoshiki_task(
     import random
     size = random.randint(size_range[0], size_range[1])
     num_ineq = random.randint(size, size*ineq_factor)
-    return FutoshikiTask(language=language, detail_level=detail_level, size=size, num_inequalities=num_ineq)
+    return FutoshikiTask(language=language, detail_level=detail_level, size=size, num_inequalities=num_ineq, reasoning_mode=reasoning_mode)
 
 
 ##################################################
@@ -311,8 +314,8 @@ def generate_random_text_stats_task(
     language="ru",
     detail_level=3,
     allow_overlapping=None,
-    text_gen_mode="mixed"
-,
+    text_gen_mode="mixed",
+    reasoning_mode: bool = False,
     **kwargs
 ) -> TextStatsTask:
     """
@@ -329,6 +332,7 @@ def generate_random_text_stats_task(
         detail_level=detail_level,
         allow_overlapping=allow_overlapping,
         text_gen_mode=text_gen_mode,
+        reasoning_mode=reasoning_mode,
     )
 
 
@@ -388,8 +392,8 @@ def generate_random_system_linear_task(
 
 def generate_random_analogical_task(
     language: str = "ru",
-    detail_level: int = 3
-,
+    detail_level: int = 3,
+    reasoning_mode: bool = False,
     **kwargs
 ) -> AnalogicalTask:
     """
@@ -397,6 +401,7 @@ def generate_random_analogical_task(
     
     :param language: 'ru' или 'en'
     :param detail_level: количество шагов в решении
+    :param reasoning_mode: режим рассуждений
     :return: экземпляр AnalogicalTask
     """
     # Список предопределенных аналогий
@@ -427,7 +432,8 @@ def generate_random_analogical_task(
     return AnalogicalTask(
         description=analogy,
         language=language,
-        detail_level=detail_level
+        detail_level=detail_level,
+        reasoning_mode=reasoning_mode
     )
 
 
@@ -1018,15 +1024,16 @@ def generate_random_series_task(
 def generate_random_sudoku_task(
     language: str = "ru",
     detail_level: int = 3,
-    difficulty: int = 5
-,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
     **kwargs
 ) -> SudokuTask:
     """Генерирует случайную задачу судоку."""
     return SudokuTask(
         language=language,
         detail_level=detail_level,
-        difficulty=difficulty
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode
     )
 
 
@@ -1037,15 +1044,16 @@ def generate_random_sudoku_task(
 def generate_random_zebra_puzzle_task(
     language: str = "ru",
     detail_level: int = 3,
-    difficulty: int = 5
-,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
     **kwargs
 ) -> ZebraPuzzleTask:
     """Генерирует случайную загадку Эйнштейна."""
     return ZebraPuzzleTask(
         language=language,
         detail_level=detail_level,
-        difficulty=min(difficulty, 8)  # Ограничиваем для стабильности
+        difficulty=min(difficulty, 8),  # Ограничиваем для стабильности
+        reasoning_mode=reasoning_mode
     )
 
 

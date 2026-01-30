@@ -170,16 +170,13 @@ class FluidsTask(BaseMathTask):
             self.solution_steps.append(f"F₂/F₁ = A₂/A₁ => F₂ = F₁·A₂/A₁")
             self.solution_steps.append(f"F₂ = {self.F1} × {self.A2*1e4}/{self.A1*1e4} = {F2:.4f} Н")
             self.final_answer = f"F₂ = {F2:.4f} Н"
-        
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def get_task_type(self) -> str:
         return "fluids"
     
     @classmethod
     def generate_random_task(cls, task_type: str = None, language: str = "ru",
-                            detail_level: int = 3, difficulty: int = 5):
+                            detail_level: int = 3, difficulty: int = 5, reasoning_mode: bool = False):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(task_type=task_type, language=language,
-                  detail_level=detail_level, difficulty=difficulty)
+                  detail_level=detail_level, difficulty=difficulty, reasoning_mode=reasoning_mode)

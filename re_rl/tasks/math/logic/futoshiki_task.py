@@ -38,7 +38,8 @@ class FutoshikiTask(BaseTask):
         size=None, 
         num_inequalities=None,
         difficulty: int = None,
-        output_format: str = "text"
+        output_format: str = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -61,6 +62,7 @@ class FutoshikiTask(BaseTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         if size is None:
             size = random.randint(4, 5)
@@ -87,6 +89,7 @@ class FutoshikiTask(BaseTask):
         )
         
         super().__init__(problem_text, language=self.language)
+        self.reasoning_mode = reasoning_mode
 
     def _generate_random_inequalities(self, num_ineq):
         """
@@ -171,10 +174,9 @@ class FutoshikiTask(BaseTask):
         """
         steps_templates = PROMPT_TEMPLATES["futoshiki"]["step_explanations"][self.language]
         
-        max_steps = min(self.detail_level, len(steps_templates))
         self.solution_steps = []
         
-        for i in range(max_steps):
+        for i in range(len(steps_templates)):
             tpl = steps_templates[i]
             row = random.randint(0, self.size-1)
             col = random.randint(0, self.size-1)

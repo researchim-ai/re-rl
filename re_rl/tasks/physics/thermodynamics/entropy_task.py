@@ -20,7 +20,7 @@ class EntropyTask(BaseMathTask):
     TASK_TYPES = ["isothermal", "heat_transfer", "mixing"]
     R = 8.314  # Дж/(моль·К)
 
-    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text"):
+    def __init__(self, language="ru", detail_level=3, task_type=None, difficulty=None, output_format="text", reasoning_mode=False):
         if difficulty:
             preset = self._interpolate_difficulty(difficulty)
             n_range = preset.get("n_range", (1, 10))
@@ -31,6 +31,7 @@ class EntropyTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         
         self.n = round(random.uniform(*n_range), 2)
@@ -44,6 +45,7 @@ class EntropyTask(BaseMathTask):
         
         problem_text = self._create_problem_text()
         super().__init__(problem_text, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self):
         t = PROMPT_TEMPLATES["entropy"]
@@ -81,13 +83,13 @@ class EntropyTask(BaseMathTask):
             steps.append(f"ΔS = {round(dS, 2)} Дж/К")
             answer = round(dS, 2)
         
-        # Ограничиваем количество шагов (без дублирования)
-        self.solution_steps = steps[:self.detail_level]
+        # НЕ обрезаем шаги — в reasoning_mode нужны все шаги
+        self.solution_steps = steps
         self.final_answer = t["final_answer"][self.language].format(answer=answer)
 
     def get_task_type(self):
         return "entropy"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode=False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

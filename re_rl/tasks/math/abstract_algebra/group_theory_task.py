@@ -42,7 +42,8 @@ class GroupTheoryTask(BaseMathTask):
         property_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        output_format: str = "text"
+        output_format: str = "text",
+        reasoning_mode: bool = False
     ):
         self.task_type = task_type.lower()
         self.group_type = group_type.lower()
@@ -51,6 +52,7 @@ class GroupTheoryTask(BaseMathTask):
         self.element = element
         self.property_type = property_type
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Сначала генерируем данные задачи
         self._generate_group()
@@ -59,6 +61,7 @@ class GroupTheoryTask(BaseMathTask):
         self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _generate_group(self):
         """Генерирует данные группы."""
@@ -129,9 +132,6 @@ class GroupTheoryTask(BaseMathTask):
         elif self.group_type == "symmetric":
             self._solve_symmetric(steps_templates)
         
-        # Ограничиваем по detail_level
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
 
     def _solve_group_properties(self, templates, reasons):
         """Решает задачу на свойства группы."""
@@ -223,7 +223,8 @@ class GroupTheoryTask(BaseMathTask):
         task_type: str = None,
         group_type: str = None,
         language: str = "ru",
-        detail_level: int = 3
+        detail_level: int = 3,
+        reasoning_mode: bool = False
     ):
         """Генерирует случайную задачу по теории групп."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
@@ -238,5 +239,6 @@ class GroupTheoryTask(BaseMathTask):
             group_type=group_type,
             language=language,
             detail_level=detail_level,
-            property_type=property_type
+            property_type=property_type,
+            reasoning_mode=reasoning_mode
         )

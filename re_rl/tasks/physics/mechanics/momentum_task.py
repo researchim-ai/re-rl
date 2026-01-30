@@ -43,12 +43,14 @@ class MomentumTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
         self.language = language
+        self._reasoning_mode = reasoning_mode
         
         preset = self._interpolate_difficulty(difficulty)
         
@@ -62,6 +64,7 @@ class MomentumTask(BaseMathTask):
         
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _create_problem_description(self) -> str:
         templates = PROMPT_TEMPLATES.get("momentum", {}).get("problem", {})
@@ -82,56 +85,65 @@ class MomentumTask(BaseMathTask):
     
     def solve(self):
         self.solution_steps = []
-        templates = PROMPT_TEMPLATES.get("momentum", {}).get("steps", {})
         
         if self.task_type == "momentum":
             p = self.m * self.v
-            step1 = templates.get("momentum_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"p = {self.m} × {self.v} = {p}")
-            self.final_answer = format_with_units(p, "kg", self.language) + "·м/с"
+            if self.reasoning_mode:
+                self.add_given({"m": self.m, "v": self.v}, {"m": "кг", "v": "м/с"})
+                self.add_find("p", "импульс тела" if self.language == "ru" else "momentum")
+            self.add_formula("p = mv")
+            self.add_substitution(f"p = {self.m} × {self.v}")
+            self.add_calculation(f"{self.m} × {self.v}", p, "кг·м/с")
+            if self.reasoning_mode:
+                self.add_dimension_check("[кг] × [м/с] = [кг·м/с] ✓")
+            self.final_answer = f"{p} кг·м/с"
         
         elif self.task_type == "impulse":
             J = self.F * self.t
-            self.solution_steps.append(f"J = F·t = {self.F} × {self.t} = {J}")
+            if self.reasoning_mode:
+                self.add_given({"F": self.F, "t": self.t}, {"F": "Н", "t": "с"})
+                self.add_find("J", "импульс силы" if self.language == "ru" else "impulse")
+            self.add_formula("J = F·t")
+            self.add_substitution(f"J = {self.F} × {self.t}")
+            self.add_calculation(f"{self.F} × {self.t}", J, "Н·с")
+            if self.reasoning_mode:
+                self.add_dimension_check("[Н] × [с] = [Н·с] = [кг·м/с] ✓")
             self.final_answer = f"{J} Н·с"
         
         elif self.task_type == "inelastic_collision":
-            # m1*v1 = (m1+m2)*v'
             v_final = self.m1 * self.v1 / (self.m1 + self.m2)
-            step1 = templates.get("conservation", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(
-                f"v' = m₁v₁/(m₁+m₂) = {self.m1}×{self.v1}/({self.m1}+{self.m2}) = {v_final:.4f}"
-            )
+            if self.reasoning_mode:
+                self.add_given({"m₁": self.m1, "v₁": self.v1, "m₂": self.m2, "v₂": 0}, 
+                              {"m₁": "кг", "v₁": "м/с", "m₂": "кг", "v₂": "м/с"})
+                self.add_find("v'", "скорость после столкновения" if self.language == "ru" else "velocity after collision")
+                self.add_analysis("Неупругое столкновение: тела слипаются. По закону сохранения импульса:" if self.language == "ru" else "Inelastic collision: bodies stick together. By momentum conservation:")
+            self.add_formula("m₁v₁ + m₂v₂ = (m₁+m₂)v' → v' = m₁v₁/(m₁+m₂)")
+            self.add_substitution(f"v' = {self.m1} × {self.v1} / ({self.m1} + {self.m2})")
+            self.add_calculation(f"{self.m1 * self.v1}/{self.m1 + self.m2}", round(v_final, 4), "м/с")
             self.final_answer = format_with_units(v_final, "m/s", self.language)
         
         elif self.task_type == "elastic_collision":
-            # Для упругого столкновения с неподвижным телом:
-            # v1' = (m1-m2)/(m1+m2) * v1
-            # v2' = 2*m1/(m1+m2) * v1
             v1_final = (self.m1 - self.m2) / (self.m1 + self.m2) * self.v1
             v2_final = 2 * self.m1 / (self.m1 + self.m2) * self.v1
-            
-            step1 = templates.get("conservation", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(
-                f"v₁' = (m₁-m₂)/(m₁+m₂)·v₁ = ({self.m1}-{self.m2})/({self.m1}+{self.m2})×{self.v1} = {v1_final:.4f}"
-            )
-            self.solution_steps.append(
-                f"v₂' = 2m₁/(m₁+m₂)·v₁ = 2×{self.m1}/({self.m1}+{self.m2})×{self.v1} = {v2_final:.4f}"
-            )
-            self.final_answer = f"v₁' = {v1_final:.4f} м/с, v₂' = {v2_final:.4f} м/с"
-        
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
+            if self.reasoning_mode:
+                self.add_given({"m₁": self.m1, "v₁": self.v1, "m₂": self.m2, "v₂": 0},
+                              {"m₁": "кг", "v₁": "м/с", "m₂": "кг", "v₂": "м/с"})
+                self.add_find("v₁', v₂'", "скорости после столкновения" if self.language == "ru" else "velocities after collision")
+                self.add_analysis("Упругое столкновение: сохраняются импульс и энергия." if self.language == "ru" else "Elastic collision: both momentum and energy are conserved.")
+            self.add_formula("v₁' = (m₁-m₂)/(m₁+m₂)·v₁")
+            self.add_substitution(f"v₁' = ({self.m1}-{self.m2})/({self.m1}+{self.m2}) × {self.v1}")
+            self.add_calculation(f"({self.m1-self.m2}/{self.m1+self.m2}) × {self.v1}", round(v1_final, 4), "м/с")
+            self.add_formula("v₂' = 2m₁/(m₁+m₂)·v₁")
+            self.add_substitution(f"v₂' = 2×{self.m1}/({self.m1}+{self.m2}) × {self.v1}")
+            self.add_calculation(f"(2×{self.m1}/{self.m1+self.m2}) × {self.v1}", round(v2_final, 4), "м/с")
+            self.final_answer = f"v₁' = {round(v1_final, 4)} м/с, v₂' = {round(v2_final, 4)} м/с"
     
     def get_task_type(self) -> str:
         return "momentum"
     
     @classmethod
     def generate_random_task(cls, task_type: str = None, language: str = "ru",
-                            detail_level: int = 3, difficulty: int = 5):
+                            detail_level: int = 3, difficulty: int = 5, reasoning_mode: bool = False):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(task_type=task_type, language=language,
-                  detail_level=detail_level, difficulty=difficulty)
+                  detail_level=detail_level, difficulty=difficulty, reasoning_mode=reasoning_mode)

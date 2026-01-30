@@ -55,11 +55,13 @@ class CombinatoricsTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.kwargs = kwargs
         
         # Получаем параметры из пресета
@@ -74,6 +76,7 @@ class CombinatoricsTask(BaseMathTask):
         self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _generate_task_params(self):
         """Генерирует параметры задачи."""
@@ -205,9 +208,6 @@ class CombinatoricsTask(BaseMathTask):
         elif self.task_type == "circular_permutation":
             self._solve_circular_permutation(steps_templates)
         
-        # Ограничиваем по detail_level
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def _solve_permutations(self, templates):
         """P(n) = n!"""
@@ -351,7 +351,8 @@ class CombinatoricsTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        reasoning_mode: bool = False
     ):
         """Генерирует случайную комбинаторную задачу."""
         if task_type is None:
@@ -360,5 +361,6 @@ class CombinatoricsTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            reasoning_mode=reasoning_mode
         )

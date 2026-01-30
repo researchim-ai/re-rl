@@ -47,7 +47,8 @@ class RiverCrossingTask(BaseMathTask):
         num_couples: int = 3,
         capacity: int = 2,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -75,6 +76,7 @@ class RiverCrossingTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.problem_type = problem_type
         self.missionaries = missionaries
@@ -89,6 +91,7 @@ class RiverCrossingTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self) -> str:
         """Создаёт текст задачи."""
@@ -296,21 +299,14 @@ class RiverCrossingTask(BaseMathTask):
                 n=i, items=items, direction=dir_text
             )
             crossings.append(crossing)
-            
-            if len(steps) < self.detail_level:
-                steps.append(crossing)
+            steps.append(crossing)
                 
-                # Состояние после переправы
-                left, right = self._format_state(state)
-                state_step = templates["steps"]["state_after"][self.language].format(
-                    left=left, right=right
-                )
-                if len(steps) < self.detail_level:
-                    steps.append(state_step)
-        
-        # Дополняем шаги
-        while len(steps) < self.detail_level and crossings:
-            steps.append(crossings[len(steps) % len(crossings)])
+            # Состояние после переправы
+            left, right = self._format_state(state)
+            state_step = templates["steps"]["state_after"][self.language].format(
+                left=left, right=right
+            )
+            steps.append(state_step)
         
         self.solution_steps = steps
         self.final_answer = templates["final_answer"][self.language].format(

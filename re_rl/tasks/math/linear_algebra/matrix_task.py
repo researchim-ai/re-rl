@@ -53,12 +53,14 @@ class MatrixTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self.kwargs = kwargs
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Получаем параметры из пресета
         preset = self._interpolate_difficulty(difficulty)
@@ -72,6 +74,7 @@ class MatrixTask(BaseMathTask):
         self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _generate_random_matrix(self, rows: int, cols: int) -> List[List[int]]:
         """Генерирует случайную матрицу."""
@@ -208,10 +211,6 @@ class MatrixTask(BaseMathTask):
             self._solve_add(steps_templates)
         elif self.task_type == "scalar_mult":
             self._solve_scalar_mult(steps_templates)
-        
-        # Ограничиваем по detail_level
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def _solve_determinant(self, templates):
         """Вычисление определителя."""
@@ -363,7 +362,9 @@ class MatrixTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """Генерирует случайную задачу с матрицами."""
         if task_type is None:
@@ -372,5 +373,7 @@ class MatrixTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format,
+            reasoning_mode=reasoning_mode
         )

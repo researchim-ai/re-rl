@@ -54,12 +54,14 @@ class ComplexNumberTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self.kwargs = kwargs
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Получаем параметры из пресета
         preset = self._interpolate_difficulty(difficulty)
@@ -73,6 +75,7 @@ class ComplexNumberTask(BaseMathTask):
         self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _rand_part(self) -> int:
         """Генерирует случайную часть комплексного числа."""
@@ -201,10 +204,6 @@ class ComplexNumberTask(BaseMathTask):
             self._solve_conjugate(steps_templates)
         elif self.task_type == "equation":
             self._solve_equation(steps_templates)
-        
-        # Ограничиваем по detail_level
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def _solve_arithmetic(self, templates):
         """Арифметические операции с комплексными числами."""
@@ -352,7 +351,9 @@ class ComplexNumberTask(BaseMathTask):
         task_type: str = None,
         language: str = "ru",
         detail_level: int = 3,
-        difficulty: int = 5
+        difficulty: int = 5,
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """Генерирует случайную задачу с комплексными числами."""
         if task_type is None:
@@ -361,5 +362,7 @@ class ComplexNumberTask(BaseMathTask):
             task_type=task_type,
             language=language,
             detail_level=detail_level,
-            difficulty=difficulty
+            difficulty=difficulty,
+            output_format=output_format,
+            reasoning_mode=reasoning_mode
         )

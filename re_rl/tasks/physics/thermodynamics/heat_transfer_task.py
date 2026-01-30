@@ -60,11 +60,13 @@ class HeatTransferTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         self.language = language
         
         preset = self._interpolate_difficulty(difficulty)
@@ -86,6 +88,7 @@ class HeatTransferTask(BaseMathTask):
         
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _get_substance_name(self) -> str:
         name_key = "name_ru" if self.language == "ru" else "name_en"
@@ -153,15 +156,14 @@ class HeatTransferTask(BaseMathTask):
             self.solution_steps.append(f"η = {eta:.2f}%")
             self.final_answer = f"{eta:.2f}%"
         
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
+        # НЕ обрезаем шаги — в reasoning_mode нужны все шаги
     
     def get_task_type(self) -> str:
         return "heat_transfer"
     
     @classmethod
     def generate_random_task(cls, task_type: str = None, language: str = "ru",
-                            detail_level: int = 3, difficulty: int = 5):
+                            detail_level: int = 3, difficulty: int = 5, reasoning_mode: bool = False):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(task_type=task_type, language=language,
-                  detail_level=detail_level, difficulty=difficulty)
+                  detail_level=detail_level, difficulty=difficulty, reasoning_mode=reasoning_mode)

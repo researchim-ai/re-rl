@@ -43,7 +43,8 @@ class ProjectileMotionTask(BaseMathTask):
         v0: float = None,
         angle: float = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -57,6 +58,7 @@ class ProjectileMotionTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         self.v0 = v0 or random.uniform(*v0_range)
@@ -77,6 +79,7 @@ class ProjectileMotionTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _calculate(self):
         """Вычисляет все параметры движения."""
@@ -126,52 +129,60 @@ class ProjectileMotionTask(BaseMathTask):
         return problem_text
 
     def solve(self):
-        templates = PROMPT_TEMPLATES["projectile_motion"]
-        steps = []
+        self.solution_steps = []
         
-        # Шаг 1: разложение скорости
-        step1 = templates["steps"]["decompose"][self.language].format(
-            vx=round(self.vx, 2),
-            vy=round(self.vy, 2)
-        )
-        steps.append(step1)
+        if self.reasoning_mode:
+            self.add_given(
+                {"v₀": round(self.v0, 1), "α": round(self.angle, 1), "g": self.g},
+                {"v₀": "м/с", "α": "°", "g": "м/с²"}
+            )
+        
+        # Разложение скорости на составляющие
+        if self.reasoning_mode:
+            self.add_analysis("Разложим начальную скорость на горизонтальную и вертикальную составляющие." if self.language == "ru" else "Decompose initial velocity into horizontal and vertical components.")
+        self.add_formula("vₓ = v₀·cos(α), vᵧ = v₀·sin(α)")
+        self.add_substitution(f"vₓ = {round(self.v0, 1)}·cos({round(self.angle, 1)}°) = {round(self.vx, 2)} м/с")
+        self.add_substitution(f"vᵧ = {round(self.v0, 1)}·sin({round(self.angle, 1)}°) = {round(self.vy, 2)} м/с")
         
         if self.task_type == "range":
-            step2 = templates["steps"]["range_formula"][self.language]
-            steps.append(step2)
-            result = round(self.range_val, 2)
-            self.final_answer = templates["final_answer"][self.language].format(
-                answer=f"L = {result} м"
-            )
+            if self.reasoning_mode:
+                self.add_find("L", "дальность полёта" if self.language == "ru" else "range")
+            self.add_formula("L = v₀²·sin(2α)/g")
+            self.add_substitution(f"L = {round(self.v0, 1)}²·sin(2×{round(self.angle, 1)}°)/{self.g}")
+            self.add_calculation(f"{round(self.v0**2, 2)}×{round(math.sin(math.radians(2*self.angle)), 4)}/{self.g}", round(self.range_val, 2), "м")
+            self.final_answer = f"L = {round(self.range_val, 2)} м"
+            
         elif self.task_type == "max_height":
-            step2 = templates["steps"]["height_formula"][self.language]
-            steps.append(step2)
-            result = round(self.max_height, 2)
-            self.final_answer = templates["final_answer"][self.language].format(
-                answer=f"H = {result} м"
-            )
+            if self.reasoning_mode:
+                self.add_find("H", "максимальная высота" if self.language == "ru" else "maximum height")
+            self.add_formula("H = v₀²·sin²(α)/(2g)")
+            self.add_substitution(f"H = {round(self.v0, 1)}²·sin²({round(self.angle, 1)}°)/(2×{self.g})")
+            self.add_calculation(f"{round(self.v0**2 * math.sin(math.radians(self.angle))**2, 2)}/{2*self.g}", round(self.max_height, 2), "м")
+            self.final_answer = f"H = {round(self.max_height, 2)} м"
+            
         elif self.task_type == "flight_time":
-            step2 = templates["steps"]["time_formula"][self.language]
-            steps.append(step2)
-            result = round(self.flight_time, 2)
-            self.final_answer = templates["final_answer"][self.language].format(
-                answer=f"T = {result} с"
-            )
+            if self.reasoning_mode:
+                self.add_find("T", "время полёта" if self.language == "ru" else "flight time")
+            self.add_formula("T = 2v₀·sin(α)/g")
+            self.add_substitution(f"T = 2×{round(self.v0, 1)}·sin({round(self.angle, 1)}°)/{self.g}")
+            self.add_calculation(f"2×{round(self.v0 * math.sin(math.radians(self.angle)), 2)}/{self.g}", round(self.flight_time, 2), "с")
+            self.final_answer = f"T = {round(self.flight_time, 2)} с"
+            
         else:  # velocity_at_height
-            # v² = v₀² - 2gh
             v_at_h = math.sqrt(self.v0**2 - 2 * self.g * self.height_query)
-            result = round(v_at_h, 2)
-            self.final_answer = templates["final_answer"][self.language].format(
-                answer=f"v = {result} м/с"
-            )
+            if self.reasoning_mode:
+                self.add_find("v", f"скорость на высоте {self.height_query} м" if self.language == "ru" else f"velocity at height {self.height_query} m")
+            self.add_formula("v² = v₀² - 2gh → v = √(v₀² - 2gh)")
+            self.add_substitution(f"v = √({round(self.v0, 1)}² - 2×{self.g}×{self.height_query})")
+            self.add_calculation(f"√({round(self.v0**2 - 2*self.g*self.height_query, 2)})", round(v_at_h, 2), "м/с")
+            self.final_answer = f"v = {round(v_at_h, 2)} м/с"
         
-        # Ограничиваем количество шагов (без дублирования)
-        
-        self.solution_steps = steps[:self.detail_level]
+        if self.reasoning_mode:
+            self.add_dimension_check("[м/с]²/[м/с²] = [м] ✓" if "м" in self.final_answer else "[м/с] ✓")
 
     def get_task_type(self):
         return "projectile_motion"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

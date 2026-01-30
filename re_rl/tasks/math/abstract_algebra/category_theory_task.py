@@ -31,7 +31,8 @@ class CategoryTheoryTask(BaseMathTask):
         category_type: str = "set",
         language: str = "ru",
         detail_level: int = 3,
-        output_format: str = "text"
+        output_format: str = "text",
+        reasoning_mode: bool = False
     ):
         self.task_type = task_type.lower()
         self.category_type = category_type.lower()
@@ -39,6 +40,7 @@ class CategoryTheoryTask(BaseMathTask):
         self.morphisms: List[Dict[str, Any]] = []
         self.is_commutative: bool = False
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Генерируем данные задачи
         self._generate_task_data()
@@ -47,6 +49,7 @@ class CategoryTheoryTask(BaseMathTask):
         self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _generate_task_data(self):
         """Генерирует объекты и морфизмы."""
@@ -101,9 +104,6 @@ class CategoryTheoryTask(BaseMathTask):
         elif self.task_type == "commutative_diagram":
             self._solve_diagram(templates)
         
-        # Ограничиваем по detail_level
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
 
     def _solve_composition(self, templates):
         """Решает задачу на композицию морфизмов."""
@@ -150,12 +150,14 @@ class CategoryTheoryTask(BaseMathTask):
         cls,
         task_type: str = None,
         language: str = "ru",
-        detail_level: int = 3
+        detail_level: int = 3,
+        reasoning_mode: bool = False
     ):
         """Генерирует случайную задачу по теории категорий."""
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(
             task_type=task_type,
             language=language,
-            detail_level=detail_level
+            detail_level=detail_level,
+            reasoning_mode=reasoning_mode
         )

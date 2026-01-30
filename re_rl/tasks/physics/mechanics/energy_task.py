@@ -49,12 +49,14 @@ class EnergyTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
         self.difficulty = difficulty
         self._output_format = output_format
         self.language = language
+        self._reasoning_mode = reasoning_mode
         self.g = get_constant("g")
         
         preset = self._interpolate_difficulty(difficulty)
@@ -70,6 +72,7 @@ class EnergyTask(BaseMathTask):
         
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
+        self.reasoning_mode = reasoning_mode
     
     def _create_problem_description(self) -> str:
         templates = PROMPT_TEMPLATES.get("energy", {}).get("problem", {})
@@ -96,60 +99,83 @@ class EnergyTask(BaseMathTask):
     
     def solve(self):
         self.solution_steps = []
-        templates = PROMPT_TEMPLATES.get("energy", {}).get("steps", {})
         
         if self.task_type == "work":
             W = self.F * self.s
-            step1 = templates.get("work_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"A = {self.F} × {self.s} × cos(0°) = {W}")
+            if self.reasoning_mode:
+                self.add_given({"F": self.F, "s": self.s}, {"F": "Н", "s": "м"})
+                self.add_find("A", "работа силы" if self.language == "ru" else "work done")
+            self.add_formula("A = F·s·cos(α)")
+            self.add_substitution(f"A = {self.F} × {self.s} × cos(0°)")
+            self.add_calculation(f"{self.F} × {self.s} × 1", W, "Дж")
+            if self.reasoning_mode:
+                self.add_dimension_check("[Н] × [м] = [Дж] ✓")
             self.final_answer = format_with_units(W, "J", self.language)
         
         elif self.task_type == "work_angle":
-            W = self.F * self.s * math.cos(math.radians(self.angle))
-            step1 = templates.get("work_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"A = {self.F} × {self.s} × cos({self.angle}°) = {W:.4f}")
+            cos_angle = math.cos(math.radians(self.angle))
+            W = self.F * self.s * cos_angle
+            if self.reasoning_mode:
+                self.add_given({"F": self.F, "s": self.s, "α": self.angle}, {"F": "Н", "s": "м", "α": "°"})
+                self.add_find("A", "работа силы" if self.language == "ru" else "work done")
+            self.add_formula("A = F·s·cos(α)")
+            self.add_substitution(f"A = {self.F} × {self.s} × cos({self.angle}°)")
+            self.add_calculation(f"{self.F} × {self.s} × {round(cos_angle, 4)}", round(W, 4), "Дж")
             self.final_answer = format_with_units(W, "J", self.language)
         
         elif self.task_type == "kinetic_energy":
             Ek = self.m * self.v ** 2 / 2
-            step1 = templates.get("kinetic_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"Eₖ = {self.m} × {self.v}² / 2 = {Ek:.4f}")
+            if self.reasoning_mode:
+                self.add_given({"m": self.m, "v": self.v}, {"m": "кг", "v": "м/с"})
+                self.add_find("Eₖ", "кинетическая энергия" if self.language == "ru" else "kinetic energy")
+            self.add_formula("Eₖ = mv²/2")
+            self.add_substitution(f"Eₖ = {self.m} × {self.v}² / 2")
+            self.add_calculation(f"{self.m} × {self.v**2} / 2", round(Ek, 4), "Дж")
+            if self.reasoning_mode:
+                self.add_dimension_check("[кг] × [м/с]² = [кг·м²/с²] = [Дж] ✓")
             self.final_answer = format_with_units(Ek, "J", self.language)
         
         elif self.task_type == "potential_energy":
             Ep = self.m * self.g * self.h
-            step1 = templates.get("potential_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"Eₚ = {self.m} × {self.g} × {self.h} = {Ep:.4f}")
+            if self.reasoning_mode:
+                self.add_given({"m": self.m, "g": self.g, "h": self.h}, {"m": "кг", "g": "м/с²", "h": "м"})
+                self.add_find("Eₚ", "потенциальная энергия" if self.language == "ru" else "potential energy")
+            self.add_formula("Eₚ = mgh")
+            self.add_substitution(f"Eₚ = {self.m} × {self.g} × {self.h}")
+            self.add_calculation(f"{self.m} × {self.g} × {self.h}", round(Ep, 4), "Дж")
+            if self.reasoning_mode:
+                self.add_dimension_check("[кг] × [м/с²] × [м] = [Дж] ✓")
             self.final_answer = format_with_units(Ep, "J", self.language)
         
         elif self.task_type == "power":
             P = self.W / self.t
-            step1 = templates.get("power_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"P = {self.W} / {self.t} = {P:.4f}")
+            if self.reasoning_mode:
+                self.add_given({"A": self.W, "t": self.t}, {"A": "Дж", "t": "с"})
+                self.add_find("P", "мощность" if self.language == "ru" else "power")
+            self.add_formula("P = A/t")
+            self.add_substitution(f"P = {self.W} / {self.t}")
+            self.add_calculation(f"{self.W}/{self.t}", round(P, 4), "Вт")
+            if self.reasoning_mode:
+                self.add_dimension_check("[Дж]/[с] = [Вт] ✓")
             self.final_answer = format_with_units(P, "W", self.language)
         
         elif self.task_type == "conservation":
-            # mgh = mv²/2 => v = sqrt(2gh)
             v = math.sqrt(2 * self.g * self.h)
-            step1 = templates.get("conservation_law", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"v = √(2gh) = √(2 × {self.g} × {self.h}) = {v:.4f}")
+            if self.reasoning_mode:
+                self.add_given({"m": self.m, "h": self.h, "g": self.g}, {"m": "кг", "h": "м", "g": "м/с²"})
+                self.add_find("v", "скорость при падении" if self.language == "ru" else "velocity when falling")
+                self.add_analysis("По закону сохранения энергии: mgh = mv²/2" if self.language == "ru" else "By energy conservation: mgh = mv²/2")
+            self.add_formula("mgh = mv²/2 → v = √(2gh)")
+            self.add_substitution(f"v = √(2 × {self.g} × {self.h})")
+            self.add_calculation(f"√({2 * self.g * self.h:.2f})", round(v, 4), "м/с")
             self.final_answer = format_with_units(v, "m/s", self.language)
-        
-        if len(self.solution_steps) > self.detail_level:
-            self.solution_steps = self.solution_steps[:self.detail_level]
     
     def get_task_type(self) -> str:
         return "energy"
     
     @classmethod
     def generate_random_task(cls, task_type: str = None, language: str = "ru",
-                            detail_level: int = 3, difficulty: int = 5):
+                            detail_level: int = 3, difficulty: int = 5, reasoning_mode: bool = False):
         task_type = task_type or random.choice(cls.TASK_TYPES)
         return cls(task_type=task_type, language=language,
-                  detail_level=detail_level, difficulty=difficulty)
+                  detail_level=detail_level, difficulty=difficulty, reasoning_mode=reasoning_mode)

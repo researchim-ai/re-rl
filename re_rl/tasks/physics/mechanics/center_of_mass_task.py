@@ -27,7 +27,8 @@ class CenterOfMassTask(BaseMathTask):
         masses: List[float] = None,
         positions: List[Tuple[float, float]] = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -43,6 +44,7 @@ class CenterOfMassTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         # Генерируем или используем переданные данные
         if masses is not None and positions is not None:
@@ -63,6 +65,7 @@ class CenterOfMassTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _calculate(self):
         """Вычисляет координаты центра масс."""
@@ -92,36 +95,27 @@ class CenterOfMassTask(BaseMathTask):
         return problem_text
 
     def solve(self):
-        templates = PROMPT_TEMPLATES["center_of_mass"]
-        steps = []
+        self.solution_steps = []
         
-        # Шаг 1: формула
-        steps.append(templates["steps"]["formula"][self.language])
-        
-        # Шаг 2: общая масса
-        steps.append(templates["steps"]["total_mass"][self.language].format(
-            total_mass=round(self.total_mass, 2)
-        ))
-        
-        # Шаг 3: взвешенные суммы
         weighted_x = sum(m * pos[0] for m, pos in zip(self.masses, self.positions))
         weighted_y = sum(m * pos[1] for m, pos in zip(self.masses, self.positions))
-        weighted_str = f"Σmx = {round(weighted_x, 2)}, Σmy = {round(weighted_y, 2)}"
-        steps.append(templates["steps"]["weighted_sum"][self.language].format(
-            weighted=weighted_str
-        ))
         
-        # Ограничиваем количество шагов (без дублирования)
+        if self.reasoning_mode:
+            masses_str = ", ".join(f"m{i+1}={m}" for i, m in enumerate(self.masses))
+            self.add_given({"массы": masses_str}, {"массы": "кг"})
+            self.add_find("(x_c, y_c)", "координаты центра масс" if self.language == "ru" else "center of mass coordinates")
         
-        self.solution_steps = steps[:self.detail_level]
-        self.final_answer = templates["final_answer"][self.language].format(
-            x=self.x_cm,
-            y=self.y_cm
-        )
+        self.add_formula("x_c = Σ(mᵢxᵢ)/Σmᵢ, y_c = Σ(mᵢyᵢ)/Σmᵢ")
+        self.add_substitution(f"M = Σmᵢ = {round(self.total_mass, 2)} кг")
+        self.add_substitution(f"Σmx = {round(weighted_x, 2)}, Σmy = {round(weighted_y, 2)}")
+        self.add_calculation(f"x_c = {round(weighted_x, 2)}/{round(self.total_mass, 2)}", self.x_cm, "м")
+        self.add_calculation(f"y_c = {round(weighted_y, 2)}/{round(self.total_mass, 2)}", self.y_cm, "м")
+        
+        self.final_answer = f"Центр масс: ({self.x_cm}, {self.y_cm}) м"
 
     def get_task_type(self):
         return "center_of_mass"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

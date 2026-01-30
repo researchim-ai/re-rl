@@ -70,7 +70,8 @@ class DatasetGenerator:
         language: str = "ru",
         difficulty: int = 5,
         detail_level: int = 5,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ) -> Dict[str, Any]:
         """
         Генерирует одну задачу.
@@ -81,6 +82,7 @@ class DatasetGenerator:
             difficulty: Сложность 1-10
             detail_level: Детализация решения 1-10
             output_format: Формат вывода ("text" или "latex")
+            reasoning_mode: Если True — выводит <think>/<answer> теги
         
         Returns:
             Словарь с задачей и решением
@@ -95,15 +97,28 @@ class DatasetGenerator:
                 language=language, 
                 difficulty=difficulty, 
                 detail_level=detail_level,
-                output_format=output_format
+                output_format=output_format,
+                reasoning_mode=reasoning_mode
             )
         except TypeError:
-            # Не все задачи поддерживают output_format
+            # Не все задачи поддерживают все параметры
             try:
-                task = generator(language=language, difficulty=difficulty, detail_level=detail_level)
+                task = generator(
+                    language=language, 
+                    difficulty=difficulty, 
+                    detail_level=detail_level,
+                    output_format=output_format
+                )
             except TypeError:
-                # Некоторые старые задачи не поддерживают difficulty
-                task = generator(language=language, detail_level=detail_level)
+                try:
+                    task = generator(language=language, difficulty=difficulty, detail_level=detail_level)
+                except TypeError:
+                    # Некоторые старые задачи не поддерживают difficulty
+                    task = generator(language=language, detail_level=detail_level)
+            
+            # Установим reasoning_mode вручную, если задача его поддерживает
+            if hasattr(task, 'reasoning_mode'):
+                task.reasoning_mode = reasoning_mode
         
         # get_result() автоматически вызывает solve() если нужно
         result = task.get_result()
@@ -113,6 +128,7 @@ class DatasetGenerator:
             "language": language,
             "difficulty": difficulty,
             "output_format": output_format,
+            "reasoning_mode": reasoning_mode,
             "problem": result["problem"],
             "solution_steps": result.get("solution_steps", []),
             "final_answer": result["final_answer"],
@@ -128,16 +144,24 @@ class DatasetGenerator:
         detail_level: int = 5,
         include_cot: bool = True,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         show_progress: bool = True,
     ) -> List[Dict[str, str]]:
         """
         Генерирует датасет в формате SFT (Supervised Fine-Tuning).
         
-        Формат выхода:
+        Формат выхода (reasoning_mode=False):
         {
             "instruction": "Решите задачу пошагово.",
             "input": "Условие задачи...",
-            "output": "Шаг 1: ...\nШаг 2: ...\n\nОтвет: ..."
+            "output": "Формула: ...\nПодстановка: ...\n\nОтвет: ..."
+        }
+        
+        Формат выхода (reasoning_mode=True):
+        {
+            "instruction": "Решите задачу.",
+            "input": "Условие задачи...",
+            "output": "<think>\nДано: ...\nФормула: ...\n</think>\n<answer>...</answer>"
         }
         
         Args:
@@ -148,6 +172,7 @@ class DatasetGenerator:
             detail_level: Детализация решения
             include_cot: Включать ли Chain-of-Thought (шаги решения)
             output_format: Формат математических выражений ("text" или "latex")
+            reasoning_mode: Если True — выводит <think>/<answer> теги
             show_progress: Показывать прогресс-бар (tqdm)
         
         Returns:
@@ -160,13 +185,19 @@ class DatasetGenerator:
             difficulties = list(range(1, 11))
         
         # Инструкции на разных языках
-        instructions = {
-            "ru": "Решите задачу пошагово, объясняя каждый шаг рассуждения.",
-            "en": "Solve the problem step by step, explaining each reasoning step.",
-        }
+        if reasoning_mode:
+            instructions = {
+                "ru": "Решите задачу. Запишите рассуждения в <think></think>, ответ в <answer></answer>.",
+                "en": "Solve the problem. Write reasoning in <think></think>, answer in <answer></answer>.",
+            }
+        else:
+            instructions = {
+                "ru": "Решите задачу пошагово, объясняя каждый шаг рассуждения.",
+                "en": "Solve the problem step by step, explaining each reasoning step.",
+            }
         
         # Дополнение для LaTeX формата
-        if output_format == "latex":
+        if output_format == "latex" and not reasoning_mode:
             instructions = {
                 "ru": "Решите задачу пошагово, используя LaTeX для математических формул.",
                 "en": "Solve the problem step by step, using LaTeX for mathematical formulas.",
@@ -199,35 +230,45 @@ class DatasetGenerator:
                     language=language,
                     difficulty=difficulty,
                     detail_level=detail_level,
-                    output_format=output_format
+                    output_format=output_format,
+                    reasoning_mode=reasoning_mode
                 )
                 
                 # Формируем output
                 final_ans = task_data['final_answer']
                 
-                # Проверяем, не начинается ли ответ уже с "Ответ:" / "Answer:"
-                already_has_prefix = (
-                    final_ans.startswith("Ответ:") or 
-                    final_ans.startswith("Answer:") or
-                    final_ans.startswith("Ответ ") or
-                    final_ans.startswith("Answer ")
-                )
-                
-                if include_cot and task_data["solution_steps"]:
-                    steps_text = "\n".join(task_data["solution_steps"])
-                    if already_has_prefix:
-                        output = f"{steps_text}\n\n{final_ans}"
-                    elif language == "ru":
-                        output = f"{steps_text}\n\nОтвет: {final_ans}"
+                # Если reasoning_mode — формируем <think>/<answer> теги
+                if reasoning_mode:
+                    if include_cot and task_data["solution_steps"]:
+                        steps_text = "\n".join(task_data["solution_steps"])
+                        output = f"<think>\n{steps_text}\n</think>\n<answer>{final_ans}</answer>"
                     else:
-                        output = f"{steps_text}\n\nAnswer: {final_ans}"
+                        output = f"<think>\n\n</think>\n<answer>{final_ans}</answer>"
                 else:
-                    if already_has_prefix:
-                        output = final_ans
-                    elif language == "ru":
-                        output = f"Ответ: {final_ans}"
+                    # Обычный режим без тегов
+                    # Проверяем, не начинается ли ответ уже с "Ответ:" / "Answer:"
+                    already_has_prefix = (
+                        str(final_ans).startswith("Ответ:") or 
+                        str(final_ans).startswith("Answer:") or
+                        str(final_ans).startswith("Ответ ") or
+                        str(final_ans).startswith("Answer ")
+                    )
+                    
+                    if include_cot and task_data["solution_steps"]:
+                        steps_text = "\n".join(task_data["solution_steps"])
+                        if already_has_prefix:
+                            output = f"{steps_text}\n\n{final_ans}"
+                        elif language == "ru":
+                            output = f"{steps_text}\n\nОтвет: {final_ans}"
+                        else:
+                            output = f"{steps_text}\n\nAnswer: {final_ans}"
                     else:
-                        output = f"Answer: {final_ans}"
+                        if already_has_prefix:
+                            output = str(final_ans)
+                        elif language == "ru":
+                            output = f"Ответ: {final_ans}"
+                        else:
+                            output = f"Answer: {final_ans}"
                 
                 # Очищаем input от служебных меток
                 clean_input = task_data["problem"]
@@ -246,6 +287,7 @@ class DatasetGenerator:
                         "difficulty": difficulty,
                         "language": language,
                         "output_format": output_format,
+                        "reasoning_mode": reasoning_mode,
                     }
                 })
                 

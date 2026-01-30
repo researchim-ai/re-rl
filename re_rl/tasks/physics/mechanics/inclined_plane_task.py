@@ -39,7 +39,8 @@ class InclinedPlaneTask(BaseMathTask):
         mass: float = None,
         length: float = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -53,6 +54,7 @@ class InclinedPlaneTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.task_type = task_type or random.choice(self.TASK_TYPES)
         self.angle = angle or round(random.uniform(*angle_range), 1)
@@ -69,6 +71,7 @@ class InclinedPlaneTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _calculate(self):
         """Вычисляет параметры движения."""
@@ -111,39 +114,42 @@ class InclinedPlaneTask(BaseMathTask):
         return problem_text
 
     def solve(self):
-        templates = PROMPT_TEMPLATES["inclined_plane"]
-        steps = []
-        
-        # Шаг 1: силы
-        steps.append(templates["steps"]["forces"][self.language])
-        
-        # Шаг 2: результирующая сила
-        steps.append(templates["steps"]["net_force"][self.language])
+        self.solution_steps = []
         
         if self.task_type == "acceleration":
-            steps.append(templates["steps"]["acceleration"][self.language].format(
-                a=round(self.acceleration, 3)
-            ))
-            answer = f"a = {round(self.acceleration, 3)} м/с²"
+            if self.reasoning_mode:
+                self.add_given({"m": self.mass, "α": self.angle, "μ": self.mu}, {"m": "кг", "α": "°", "μ": ""})
+                self.add_find("a", "ускорение" if self.language == "ru" else "acceleration")
+                self.add_analysis("Силы на тело: mg·sin(α) вниз по склону, μmg·cos(α) — сила трения против движения." if self.language == "ru" else "Forces: mg·sin(α) down the slope, μmg·cos(α) — friction opposing motion.")
+            self.add_formula("a = g(sin(α) - μ·cos(α))")
+            self.add_substitution(f"a = {self.g}(sin({self.angle}°) - {self.mu}·cos({self.angle}°))")
+            self.add_calculation(f"{self.g}×({round(math.sin(math.radians(self.angle)), 4)} - {self.mu}×{round(math.cos(math.radians(self.angle)), 4)})", round(self.acceleration, 3), "м/с²")
+            self.final_answer = f"a = {round(self.acceleration, 3)} м/с²"
+            
         elif self.task_type == "min_angle":
-            steps.append(f"tan(α_min) = μ = {self.mu}")
-            steps.append(f"α_min = arctg({self.mu}) = {round(self.min_angle, 2)}°")
-            answer = f"α_min = {round(self.min_angle, 2)}°"
+            if self.reasoning_mode:
+                self.add_given({"μ": self.mu}, {"μ": ""})
+                self.add_find("α_min", "минимальный угол скольжения" if self.language == "ru" else "minimum sliding angle")
+                self.add_analysis("Тело начинает скользить когда mg·sin(α) = μmg·cos(α)" if self.language == "ru" else "Body starts sliding when mg·sin(α) = μmg·cos(α)")
+            self.add_formula("tan(α_min) = μ → α_min = arctg(μ)")
+            self.add_substitution(f"α_min = arctg({self.mu})")
+            self.add_calculation(f"arctg({self.mu})", round(self.min_angle, 2), "°")
+            self.final_answer = f"α_min = {round(self.min_angle, 2)}°"
+            
         else:  # velocity_at_bottom
-            steps.append(templates["steps"]["acceleration"][self.language].format(
-                a=round(self.acceleration, 3)
-            ))
-            steps.append(f"v = √(2aL) = √(2·{round(self.acceleration, 3)}·{self.length}) = {round(self.velocity_at_bottom, 2)} м/с")
-            answer = f"v = {round(self.velocity_at_bottom, 2)} м/с"
-        
-        # Ограничиваем количество шагов (без дублирования)
-        
-        self.solution_steps = steps[:self.detail_level]
-        self.final_answer = templates["final_answer"][self.language].format(answer=answer)
+            if self.reasoning_mode:
+                self.add_given({"L": self.length, "α": self.angle, "μ": self.mu}, {"L": "м", "α": "°", "μ": ""})
+                self.add_find("v", "скорость внизу" if self.language == "ru" else "velocity at bottom")
+            self.add_formula("a = g(sin(α) - μ·cos(α))")
+            self.add_calculation(f"a", round(self.acceleration, 3), "м/с²")
+            self.add_formula("v = √(2aL)")
+            self.add_substitution(f"v = √(2×{round(self.acceleration, 3)}×{self.length})")
+            self.add_calculation(f"√({2*self.acceleration*self.length:.2f})", round(self.velocity_at_bottom, 2), "м/с")
+            self.final_answer = f"v = {round(self.velocity_at_bottom, 2)} м/с"
 
     def get_task_type(self):
         return "inclined_plane"
     
     @classmethod
-    def generate_random_task(cls, **kwargs):
-        return cls(**kwargs)
+    def generate_random_task(cls, reasoning_mode: bool = False, **kwargs):
+        return cls(reasoning_mode=reasoning_mode, **kwargs)

@@ -41,7 +41,8 @@ class WaterJugTask(BaseMathTask):
         capacities: Tuple[int, ...] = None,
         target: int = None,
         difficulty: int = None,
-        output_format: OutputFormat = "text"
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False
     ):
         """
         :param language: 'ru' или 'en'
@@ -50,6 +51,7 @@ class WaterJugTask(BaseMathTask):
         :param target: целевое количество воды
         :param difficulty: уровень сложности (1-10)
         :param output_format: формат вывода
+        :param reasoning_mode: режим рассуждения
         """
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -65,6 +67,7 @@ class WaterJugTask(BaseMathTask):
         self.detail_level = detail_level
         self.difficulty = difficulty
         self._output_format = output_format
+        self._reasoning_mode = reasoning_mode
         
         self.capacities = capacities
         self.target = target
@@ -78,6 +81,7 @@ class WaterJugTask(BaseMathTask):
         problem_text = self._create_problem_text()
         
         super().__init__(problem_text, language=self.language, detail_level=detail_level, output_format=output_format)
+        self.reasoning_mode = reasoning_mode
 
     def _create_problem_text(self) -> str:
         """Создаёт текст задачи."""
@@ -208,16 +212,7 @@ class WaterJugTask(BaseMathTask):
                 state=state_text
             )
             actions_text.append(step)
-            
-            if len(steps) < self.detail_level:
-                steps.append(step)
-        
-        # Дополняем шаги
-        while len(steps) < self.detail_level:
-            if actions_text:
-                steps.append(actions_text[len(steps) % len(actions_text)])
-            else:
-                break
+            steps.append(step)
         
         self.solution_steps = steps
         
