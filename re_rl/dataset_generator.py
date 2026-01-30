@@ -82,7 +82,8 @@ class DatasetGenerator:
         difficulty: int = 5,
         detail_level: int = 5,
         output_format: OutputFormat = "text",
-        reasoning_mode: bool = False
+        reasoning_mode: bool = False,
+        augment: bool = True
     ) -> Dict[str, Any]:
         """
         Генерирует одну задачу.
@@ -94,6 +95,7 @@ class DatasetGenerator:
             detail_level: Детализация решения 1-10
             output_format: Формат вывода ("text" или "latex")
             reasoning_mode: Если True — выводит <think>/<answer> теги
+            augment: Если True — использует случайные варианты формулировок
         
         Returns:
             Словарь с задачей и решением
@@ -109,7 +111,8 @@ class DatasetGenerator:
                 difficulty=difficulty, 
                 detail_level=detail_level,
                 output_format=output_format,
-                reasoning_mode=reasoning_mode
+                reasoning_mode=reasoning_mode,
+                augment=augment
             )
         except TypeError:
             # Не все задачи поддерживают все параметры
@@ -118,14 +121,23 @@ class DatasetGenerator:
                     language=language, 
                     difficulty=difficulty, 
                     detail_level=detail_level,
-                    output_format=output_format
+                    output_format=output_format,
+                    augment=augment
                 )
             except TypeError:
                 try:
-                    task = generator(language=language, difficulty=difficulty, detail_level=detail_level)
+                    task = generator(
+                        language=language, 
+                        difficulty=difficulty, 
+                        detail_level=detail_level,
+                        augment=augment
+                    )
                 except TypeError:
-                    # Некоторые старые задачи не поддерживают difficulty
-                    task = generator(language=language, detail_level=detail_level)
+                    try:
+                        task = generator(language=language, difficulty=difficulty, detail_level=detail_level)
+                    except TypeError:
+                        # Некоторые старые задачи не поддерживают difficulty
+                        task = generator(language=language, detail_level=detail_level)
             
             # Установим reasoning_mode вручную, если задача его поддерживает
             if hasattr(task, 'reasoning_mode'):
@@ -156,6 +168,7 @@ class DatasetGenerator:
         include_cot: bool = True,
         output_format: OutputFormat = "text",
         reasoning_mode: bool = False,
+        augment: bool = True,
         show_progress: bool = True,
     ) -> List[Dict[str, str]]:
         """
@@ -184,6 +197,7 @@ class DatasetGenerator:
             include_cot: Включать ли Chain-of-Thought (шаги решения)
             output_format: Формат математических выражений ("text" или "latex")
             reasoning_mode: Если True — выводит <think>/<answer> теги
+            augment: Если True — использует случайные варианты формулировок задач
             show_progress: Показывать прогресс-бар (tqdm)
         
         Returns:
@@ -242,7 +256,8 @@ class DatasetGenerator:
                     difficulty=difficulty,
                     detail_level=detail_level,
                     output_format=output_format,
-                    reasoning_mode=reasoning_mode
+                    reasoning_mode=reasoning_mode,
+                    augment=augment
                 )
                 
                 # Формируем output

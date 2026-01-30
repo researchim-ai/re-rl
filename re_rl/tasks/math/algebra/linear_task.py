@@ -3,7 +3,7 @@
 import random
 import sympy as sp
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from typing import Dict, Any, Optional, ClassVar
 
 class LinearTask(BaseMathTask):
@@ -45,7 +45,8 @@ class LinearTask(BaseMathTask):
         max_coef: int = 10,
         ensure_integer: bool = True,
         output_format: OutputFormat = "text",
-        reasoning_mode: bool = False
+        reasoning_mode: bool = False,
+        augment: bool = True
     ):
         # Если указан difficulty, берём параметры из пресета
         if difficulty is not None:
@@ -64,12 +65,14 @@ class LinearTask(BaseMathTask):
         self.detail_level = detail_level
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
+        self.augment = augment
         
         # Формируем уравнение в нужном формате
         equation = self._format_equation(a, b, c, output_format)
         
-        # Всегда используем шаблоны из PROMPT_TEMPLATES
-        description = PROMPT_TEMPLATES["linear"]["problem"][language].format(equation=equation)
+        # Используем get_template для аугментации формулировок
+        templates = PROMPT_TEMPLATES["linear"]
+        description = get_template(templates, "problem", language, augment=augment, equation=equation)
         
         super().__init__(description, language, detail_level, output_format)
         self.reasoning_mode = reasoning_mode

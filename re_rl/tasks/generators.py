@@ -81,8 +81,8 @@ from re_rl.tasks.physics.generators import ALL_PHYSICS_TASK_GENERATORS
 def generate_random_arithmetic_task(
     language: str = "ru",
     detail_level: int = 3,
-    difficulty: int = 5
-,
+    difficulty: int = 5,
+    augment: bool = True,
     **kwargs
 ) -> ArithmeticTask:
     """
@@ -91,12 +91,15 @@ def generate_random_arithmetic_task(
     :param language: 'ru' или 'en'
     :param detail_level: сколько шагов решения показывать
     :param difficulty: уровень сложности (1-10)
+    :param augment: если True — использует случайные варианты формулировок
     :return: экземпляр ArithmeticTask
     """
     return ArithmeticTask(
         difficulty=difficulty,
         language=language,
-        detail_level=detail_level
+        detail_level=detail_level,
+        augment=augment,
+        **kwargs
     )
 
 
@@ -109,9 +112,11 @@ def generate_random_linear_task(
     detail_level: int = 3,
     difficulty: int = 5,
     output_format: str = "text",
+    augment: bool = True,
     a_range=(-10, 10),
     b_range=(-10, 10),
-    c_range=(-10, 10)
+    c_range=(-10, 10),
+    **kwargs
 ) -> LinearTask:
     """
     Генерирует случайную линейную задачу вида a*x + b = c.
@@ -121,12 +126,15 @@ def generate_random_linear_task(
         detail_level: Сколько шагов решения показывать
         difficulty: Уровень сложности (1-10)
         output_format: Формат вывода ("text" или "latex")
+        augment: Если True — использует случайные варианты формулировок
     """
     return LinearTask(
         difficulty=difficulty,
         language=language,
         detail_level=detail_level,
-        output_format=output_format
+        output_format=output_format,
+        augment=augment,
+        **kwargs
     )
 
 
@@ -139,9 +147,11 @@ def generate_random_quadratic_task(
     detail_level: int = 3,
     difficulty: int = 5,
     output_format: str = "text",
+    augment: bool = True,
     a_range=(-5, 5),
     b_range=(-10, 10),
-    c_range=(-10, 10)
+    c_range=(-10, 10),
+    **kwargs
 ) -> QuadraticTask:
     """
     Генерирует случайную квадратную задачу a*x^2 + b*x + c = 0, a!=0.
@@ -151,12 +161,15 @@ def generate_random_quadratic_task(
         detail_level: Детализация решения
         difficulty: Уровень сложности (1-10)
         output_format: Формат вывода ("text" или "latex")
+        augment: Если True — использует случайные варианты формулировок
     """
     return QuadraticTask(
         difficulty=difficulty,
         language=language,
         detail_level=detail_level,
-        output_format=output_format
+        output_format=output_format,
+        augment=augment,
+        **kwargs
     )
 
 

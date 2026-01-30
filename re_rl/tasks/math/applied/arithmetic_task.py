@@ -18,7 +18,7 @@ from typing import List, Dict, Any, Optional, Tuple, Union
 from dataclasses import dataclass, field
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 @dataclass
@@ -286,12 +286,14 @@ class ArithmeticTask(BaseMathTask):
         expression: Optional[str] = None,  # Для явного задания выражения
         output_format: str = "text",
         reasoning_mode: bool = False,
+        augment: bool = True,  # Аугментация формулировок задачи
         **config_overrides
     ):
         self.difficulty = difficulty
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
         self.language = language.lower()
+        self.augment = augment
         
         # Определяем конфигурацию
         if config is not None:
@@ -325,19 +327,26 @@ class ArithmeticTask(BaseMathTask):
             self.expression_str = self.expression_tree.to_string(self.language)
             self.answer = self.expression_tree.evaluate()
         
-        # Формируем описание задачи
-        description = self._create_problem_description()
+        # Формируем описание задачи (с аугментацией или без)
+        description = self._create_problem_description(augment=self.augment)
         super().__init__(description, language, detail_level, output_format)
         self.reasoning_mode = reasoning_mode
     
-    def _create_problem_description(self) -> str:
-        """Создаёт текст задачи."""
+    def _create_problem_description(self, augment: bool = True) -> str:
+        """
+        Создаёт текст задачи.
+        
+        Args:
+            augment: Если True — использует случайный вариант формулировки
+        """
         templates = PROMPT_TEMPLATES.get("arithmetic", {})
-        problem_template = templates.get("problem", {}).get(
+        return get_template(
+            templates, 
+            "problem", 
             self.language, 
-            {"ru": "Вычислите: {expression}", "en": "Calculate: {expression}"}[self.language]
+            augment=augment,
+            expression=self.expression_str
         )
-        return problem_template.format(expression=self.expression_str)
     
     def _generate_expression(self) -> ExpressionNode:
         """Генерирует случайное арифметическое выражение."""

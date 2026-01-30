@@ -3,7 +3,7 @@
 import random
 import sympy as sp
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from typing import Optional, Dict, Any, ClassVar
 
 
@@ -30,7 +30,8 @@ class ExponentialTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = None,
         output_format: OutputFormat = "text",
-        reasoning_mode: bool = False
+        reasoning_mode: bool = False,
+        augment: bool = True
     ):
         if difficulty is not None:
             preset = self._interpolate_difficulty(difficulty)
@@ -50,12 +51,14 @@ class ExponentialTask(BaseMathTask):
         self.d = d
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
+        self.augment = augment
         
         # Формируем описание
         equation = self._format_equation(a, b, c, d, output_format)
         
-        # Всегда используем шаблоны из PROMPT_TEMPLATES
-        description = PROMPT_TEMPLATES["exponential"]["problem"][language].format(equation=equation)
+        # Используем get_template для аугментации формулировок
+        templates = PROMPT_TEMPLATES["exponential"]
+        description = get_template(templates, "problem", language, augment=augment, equation=equation)
         
         super().__init__(description, language, detail_level, output_format)
         self.reasoning_mode = reasoning_mode

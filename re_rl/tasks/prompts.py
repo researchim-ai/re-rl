@@ -1,5 +1,103 @@
 # re_rl/tasks/prompts.py
 
+import random
+from typing import Any, Dict, List, Union
+
+
+def get_template(
+    templates: Dict[str, Any],
+    key: str,
+    language: str,
+    augment: bool = True,
+    **kwargs
+) -> str:
+    """
+    Получает шаблон из словаря с поддержкой аугментации.
+    
+    Если значение — список, выбирает случайный вариант (при augment=True)
+    или первый (при augment=False).
+    Если значение — строка, возвращает её.
+    
+    Args:
+        templates: Словарь шаблонов (например, PROMPT_TEMPLATES["arithmetic"])
+        key: Ключ шаблона (например, "problem")
+        language: Язык ("ru" или "en")
+        augment: Если True — выбирает случайный вариант из списка
+        **kwargs: Параметры для форматирования шаблона
+        
+    Returns:
+        Отформатированная строка
+        
+    Example:
+        >>> templates = PROMPT_TEMPLATES["arithmetic"]
+        >>> get_template(templates, "problem", "ru", expression="2 + 2")
+        "Вычислите: 2 + 2"  # или другой случайный вариант
+    """
+    template_data = templates.get(key, {})
+    
+    # Получаем значение для языка
+    value = template_data.get(language, template_data.get("en", ""))
+    
+    # Если это список — выбираем вариант
+    if isinstance(value, list):
+        if not value:
+            return ""
+        if augment:
+            template = random.choice(value)
+        else:
+            template = value[0]  # Первый вариант как дефолтный
+    else:
+        template = value
+    
+    # Форматируем если есть kwargs
+    if kwargs:
+        try:
+            return template.format(**kwargs)
+        except KeyError:
+            return template
+    return template
+
+
+def get_random_system_prompt(language: str = "ru", style: str = None) -> str:
+    """
+    Возвращает случайный системный промпт для разнообразия.
+    
+    Args:
+        language: Язык
+        style: Стиль (None = случайный, или "formal", "casual", "teacher", "tutor")
+    """
+    prompts = SYSTEM_PROMPT_VARIATIONS.get(language, SYSTEM_PROMPT_VARIATIONS["en"])
+    
+    if style and style in prompts:
+        return prompts[style]
+    
+    # Возвращаем случайный
+    all_prompts = list(prompts.values())
+    return random.choice(all_prompts)
+
+
+# =============================================================================
+# Вариации системных промптов для аугментации
+# =============================================================================
+
+SYSTEM_PROMPT_VARIATIONS = {
+    "ru": {
+        "formal": "Ты — математический ассистент. Решай задачи пошагово, объясняя каждое действие.",
+        "casual": "Привет! Я помогу тебе с математикой. Давай разберём задачу вместе.",
+        "teacher": "Я — учитель математики. Покажу тебе, как решать такие задачи правильно.",
+        "tutor": "Я — твой репетитор по математике. Объясню всё подробно и понятно.",
+        "concise": "Решаю математические задачи. Отвечаю кратко и по делу.",
+    },
+    "en": {
+        "formal": "You are a mathematical assistant. Solve problems step by step, explaining each action.",
+        "casual": "Hi! I'll help you with math. Let's work through this problem together.",
+        "teacher": "I am a math teacher. I'll show you how to solve these problems correctly.",
+        "tutor": "I'm your math tutor. I'll explain everything in detail.",
+        "concise": "I solve math problems. I answer briefly and to the point.",
+    }
+}
+
+
 PROMPT_TEMPLATES = {
     "default": {
         "prompt": {
@@ -103,8 +201,24 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите линейное уравнение: {equation}",
-            "en": "Solve the linear equation: {equation}"
+            "ru": [
+                "Решите линейное уравнение: {equation}",
+                "Найдите x: {equation}",
+                "Решите уравнение: {equation}",
+                "Определите значение x в уравнении: {equation}",
+                "Найдите корень уравнения: {equation}",
+                "Для какого x верно равенство {equation}?",
+                "Вычислите x из уравнения: {equation}",
+            ],
+            "en": [
+                "Solve the linear equation: {equation}",
+                "Find x: {equation}",
+                "Solve: {equation}",
+                "Determine the value of x in: {equation}",
+                "Find the root of: {equation}",
+                "For what x is {equation} true?",
+                "Calculate x from: {equation}",
+            ]
         },
         "step1": {
             "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
@@ -245,8 +359,24 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите квадратное уравнение: {equation_pretty}",
-            "en": "Solve the quadratic equation: {equation_pretty}"
+            "ru": [
+                "Решите квадратное уравнение: {equation_pretty}",
+                "Найдите корни уравнения: {equation_pretty}",
+                "Решите уравнение: {equation_pretty}",
+                "Определите значения x: {equation_pretty}",
+                "Найдите x: {equation_pretty}",
+                "Для каких x выполняется {equation_pretty}?",
+                "Вычислите корни: {equation_pretty}",
+            ],
+            "en": [
+                "Solve the quadratic equation: {equation_pretty}",
+                "Find the roots of: {equation_pretty}",
+                "Solve: {equation_pretty}",
+                "Determine the values of x: {equation_pretty}",
+                "Find x: {equation_pretty}",
+                "For what values of x is {equation_pretty} satisfied?",
+                "Calculate the roots: {equation_pretty}",
+            ]
         },
         "step1": {
             "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty} = 0",
@@ -355,8 +485,20 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите кубическое уравнение: {equation_pretty}",
-            "en": "Solve the cubic equation: {equation_pretty}"
+            "ru": [
+                "Решите кубическое уравнение: {equation_pretty}",
+                "Найдите корни кубического уравнения: {equation_pretty}",
+                "Решите уравнение: {equation_pretty}",
+                "Найдите все значения x: {equation_pretty}",
+                "Определите корни: {equation_pretty}",
+            ],
+            "en": [
+                "Solve the cubic equation: {equation_pretty}",
+                "Find the roots of the cubic equation: {equation_pretty}",
+                "Solve: {equation_pretty}",
+                "Find all values of x: {equation_pretty}",
+                "Determine the roots: {equation_pretty}",
+            ]
         },
         "step1": {
             "ru": "Шаг 1: Запишем уравнение: {equation_pretty}.",
@@ -413,8 +555,20 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите показательное уравнение: {equation}",
-            "en": "Solve the exponential equation: {equation}"
+            "ru": [
+                "Решите показательное уравнение: {equation}",
+                "Найдите x в показательном уравнении: {equation}",
+                "Решите уравнение: {equation}",
+                "Определите x: {equation}",
+                "Найдите значение x: {equation}",
+            ],
+            "en": [
+                "Solve the exponential equation: {equation}",
+                "Find x in the exponential equation: {equation}",
+                "Solve: {equation}",
+                "Determine x: {equation}",
+                "Find the value of x: {equation}",
+            ]
         },
         "equation_label": {
             "ru": "Уравнение",
@@ -551,8 +705,20 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите логарифмическое уравнение: {equation}",
-            "en": "Solve the logarithmic equation: {equation}"
+            "ru": [
+                "Решите логарифмическое уравнение: {equation}",
+                "Найдите x в логарифмическом уравнении: {equation}",
+                "Решите уравнение: {equation}",
+                "Определите значение x: {equation}",
+                "Найдите x: {equation}",
+            ],
+            "en": [
+                "Solve the logarithmic equation: {equation}",
+                "Find x in the logarithmic equation: {equation}",
+                "Solve: {equation}",
+                "Determine the value of x: {equation}",
+                "Find x: {equation}",
+            ]
         },
         "step1": {
             "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
@@ -669,8 +835,18 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Найдите {task_type} функции f(x) = {function_pretty}.",
-            "en": "Find the {task_type} of the function f(x) = {function_pretty}."
+            "ru": [
+                "Найдите {task_type} функции f(x) = {function_pretty}.",
+                "Вычислите {task_type} функции f(x) = {function_pretty}.",
+                "Определите {task_type} для f(x) = {function_pretty}.",
+                "Дана функция f(x) = {function_pretty}. Найдите её {task_type}.",
+            ],
+            "en": [
+                "Find the {task_type} of the function f(x) = {function_pretty}.",
+                "Calculate the {task_type} of f(x) = {function_pretty}.",
+                "Determine the {task_type} for f(x) = {function_pretty}.",
+                "Given f(x) = {function_pretty}, find its {task_type}.",
+            ]
         },
         "problem_derivative": {
             "ru": "Найдите производную: {expression}",
@@ -781,8 +957,20 @@ PROMPT_TEMPLATES = {
             )
         },
         "problem": {
-            "ru": "Решите систему уравнений:\n{equations}",
-            "en": "Solve the following system of equations:\n{equations}"
+            "ru": [
+                "Решите систему уравнений:\n{equations}",
+                "Найдите решение системы:\n{equations}",
+                "Решите систему линейных уравнений:\n{equations}",
+                "Определите значения переменных в системе:\n{equations}",
+                "Найдите x и y из системы:\n{equations}",
+            ],
+            "en": [
+                "Solve the following system of equations:\n{equations}",
+                "Find the solution of the system:\n{equations}",
+                "Solve the system of linear equations:\n{equations}",
+                "Determine the values of variables in:\n{equations}",
+                "Find x and y from the system:\n{equations}",
+            ]
         },
         "steps": {
             "compute_det": {
@@ -1518,8 +1706,26 @@ Analysis:
             )
         },
         "problem": {
-            "ru": "Вычислите: {expression}",
-            "en": "Calculate: {expression}"
+            "ru": [
+                "Вычислите: {expression}",
+                "Найдите значение выражения: {expression}",
+                "Чему равно {expression}?",
+                "Посчитайте: {expression}",
+                "Определите результат: {expression}",
+                "Какой результат даёт выражение {expression}?",
+                "Вычислите значение: {expression}",
+                "Найдите: {expression}",
+            ],
+            "en": [
+                "Calculate: {expression}",
+                "Find the value of: {expression}",
+                "What is {expression}?",
+                "Compute: {expression}",
+                "Evaluate: {expression}",
+                "Determine the result of: {expression}",
+                "What does {expression} equal?",
+                "Find: {expression}",
+            ]
         },
         "step_evaluate": {
             "ru": "Шаг {step}: Вычисляем {operation}: {left} {op} {right} = {result}",
