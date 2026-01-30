@@ -159,7 +159,8 @@ class NumberNode(ExpressionNode):
         if self.is_percentage:
             return f"{self.value}%"
         if isinstance(self.value, Fraction):
-            return f"{self.value.numerator}/{self.value.denominator}"
+            # Оборачиваем в скобки чтобы не путать с делением
+            return f"({self.value.numerator}/{self.value.denominator})"
         if isinstance(self.value, float) and self.value == int(self.value):
             return str(int(self.value))
         return str(self.value)
@@ -204,12 +205,9 @@ class BinaryOpNode(ExpressionNode):
             if self._needs_parentheses(self.right.op, self.op, is_left=False):
                 right_str = f"({right_str})"
         
+        # Всегда используем ASCII символы (* /) — такие же как пользователь вводит с клавиатуры
         op_symbol = self.op
-        if self.op == '*':
-            op_symbol = '×' if language == 'ru' else '*'
-        elif self.op == '/':
-            op_symbol = '÷' if language == 'ru' else '/'
-        elif self.op == '^':
+        if self.op == '^':
             return f"{left_str}^{right_str}"
             
         return f"{left_str} {op_symbol} {right_str}"

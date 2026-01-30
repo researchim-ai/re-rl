@@ -6356,4 +6356,303 @@ Analysis:
         "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"}
     },
 
+    #----------------------------------------------------------------------------
+    # MULTITURN - Шаблоны для многошаговых диалогов
+    #----------------------------------------------------------------------------
+    "multiturn": {
+        # =====================================================================
+        # CHAIN — Последовательные задачи (результат предыдущей используется в следующей)
+        # =====================================================================
+        "chain": {
+            "instructions": {
+                "ru": "Решите последовательность связанных задач.",
+                "en": "Solve a sequence of related tasks."
+            },
+            # Первая задача в цепочке
+            "first_task": {
+                "ru": "Вычислите: {expression}",
+                "en": "Calculate: {expression}"
+            },
+            # Продолжение с использованием предыдущего результата
+            "continue_add": {
+                "ru": "Теперь прибавьте к результату {value}.",
+                "en": "Now add {value} to the result."
+            },
+            "continue_subtract": {
+                "ru": "Теперь вычтите из результата {value}.",
+                "en": "Now subtract {value} from the result."
+            },
+            "continue_multiply": {
+                "ru": "Теперь умножьте результат на {value}.",
+                "en": "Now multiply the result by {value}."
+            },
+            "continue_divide": {
+                "ru": "Теперь разделите результат на {value}.",
+                "en": "Now divide the result by {value}."
+            },
+            "continue_square": {
+                "ru": "Теперь возведите результат в квадрат.",
+                "en": "Now square the result."
+            },
+            "continue_sqrt": {
+                "ru": "Теперь извлеките квадратный корень из результата.",
+                "en": "Now take the square root of the result."
+            },
+            "continue_percent": {
+                "ru": "Теперь найдите {value}% от результата.",
+                "en": "Now find {value}% of the result."
+            },
+            # Для уравнений
+            "chain_equation_first": {
+                "ru": "Решите уравнение: {equation}",
+                "en": "Solve the equation: {equation}"
+            },
+            "chain_equation_substitute": {
+                "ru": "Подставьте найденное значение в выражение: {expression}",
+                "en": "Substitute the found value into the expression: {expression}"
+            },
+            "chain_equation_new": {
+                "ru": "Теперь решите новое уравнение с этим результатом: {equation}",
+                "en": "Now solve a new equation with this result: {equation}"
+            },
+            # Для физики
+            "chain_physics_first": {
+                "ru": "{problem}",
+                "en": "{problem}"
+            },
+            "chain_physics_continue": {
+                "ru": "Используя полученный результат, найдите {quantity}.",
+                "en": "Using the obtained result, find {quantity}."
+            },
+            "chain_physics_what_if": {
+                "ru": "Что будет, если {parameter} изменится до {new_value}?",
+                "en": "What happens if {parameter} changes to {new_value}?"
+            },
+        },
+
+        # =====================================================================
+        # FOLLOWUP — Уточняющие вопросы (объяснения, альтернативные методы)
+        # =====================================================================
+        "followup": {
+            "instructions": {
+                "ru": "Ответьте на вопросы о решении задачи.",
+                "en": "Answer questions about the problem solution."
+            },
+            # Вопросы о методе решения
+            "why_method": {
+                "ru": "Почему ты использовал именно этот метод?",
+                "en": "Why did you use this particular method?"
+            },
+            "explain_step": {
+                "ru": "Объясни подробнее шаг {step_num}.",
+                "en": "Explain step {step_num} in more detail."
+            },
+            "alternative_method": {
+                "ru": "Можно ли решить эту задачу другим способом?",
+                "en": "Is there an alternative way to solve this problem?"
+            },
+            "why_formula": {
+                "ru": "Почему здесь применима эта формула?",
+                "en": "Why is this formula applicable here?"
+            },
+            "check_answer": {
+                "ru": "Как можно проверить правильность ответа?",
+                "en": "How can we verify the answer is correct?"
+            },
+            # Вопросы о понимании
+            "what_means": {
+                "ru": "Что означает {term} в этом контексте?",
+                "en": "What does {term} mean in this context?"
+            },
+            "physical_meaning": {
+                "ru": "Какой физический смысл у этого результата?",
+                "en": "What is the physical meaning of this result?"
+            },
+            "geometric_meaning": {
+                "ru": "Какой геометрический смысл у этого решения?",
+                "en": "What is the geometric meaning of this solution?"
+            },
+            # Вопросы о граничных случаях
+            "edge_cases": {
+                "ru": "Какие особые случаи нужно учитывать?",
+                "en": "What edge cases should we consider?"
+            },
+            "when_no_solution": {
+                "ru": "При каких условиях задача не имеет решения?",
+                "en": "Under what conditions does the problem have no solution?"
+            },
+            "when_multiple_solutions": {
+                "ru": "Когда у задачи несколько решений?",
+                "en": "When does the problem have multiple solutions?"
+            },
+            # Ответы-шаблоны (заполняются генератором)
+            "answer_why_method": {
+                "ru": "Я использовал {method}, потому что {reason}.",
+                "en": "I used {method} because {reason}."
+            },
+            "answer_explain_step": {
+                "ru": "{explanation}",
+                "en": "{explanation}"
+            },
+            "answer_alternative": {
+                "ru": "Да, можно также использовать {alternative_method}. {alternative_explanation}",
+                "en": "Yes, we can also use {alternative_method}. {alternative_explanation}"
+            },
+            "answer_no_alternative": {
+                "ru": "Этот метод является наиболее подходящим для данной задачи, так как {reason}.",
+                "en": "This method is most suitable for this problem because {reason}."
+            },
+            "answer_check": {
+                "ru": "Можно проверить подстановкой: {verification}",
+                "en": "We can verify by substitution: {verification}"
+            },
+        },
+
+        # =====================================================================
+        # VARIATIONS — Вариации задачи (изменение параметров)
+        # =====================================================================
+        "variations": {
+            "instructions": {
+                "ru": "Решите вариации исходной задачи.",
+                "en": "Solve variations of the original problem."
+            },
+            # Изменение параметров
+            "what_if_param": {
+                "ru": "А если {param_name} будет равен {new_value}?",
+                "en": "What if {param_name} equals {new_value}?"
+            },
+            "what_if_double": {
+                "ru": "А если {param_name} увеличить вдвое?",
+                "en": "What if we double {param_name}?"
+            },
+            "what_if_half": {
+                "ru": "А если {param_name} уменьшить вдвое?",
+                "en": "What if we halve {param_name}?"
+            },
+            "what_if_negative": {
+                "ru": "А если {param_name} будет отрицательным?",
+                "en": "What if {param_name} is negative?"
+            },
+            "what_if_zero": {
+                "ru": "А если {param_name} равен нулю?",
+                "en": "What if {param_name} equals zero?"
+            },
+            # Изменение условий
+            "what_if_opposite": {
+                "ru": "А если изменить знак в условии?",
+                "en": "What if we change the sign in the condition?"
+            },
+            "what_if_larger": {
+                "ru": "А если работать с бóльшими числами, например {example}?",
+                "en": "What if we work with larger numbers, say {example}?"
+            },
+            "generalize": {
+                "ru": "Можешь обобщить решение для произвольного {param_name}?",
+                "en": "Can you generalize the solution for arbitrary {param_name}?"
+            },
+            # Ответы
+            "answer_variation": {
+                "ru": "При {param_name} = {new_value}: {new_solution}",
+                "en": "When {param_name} = {new_value}: {new_solution}"
+            },
+            "answer_generalized": {
+                "ru": "В общем случае: {general_formula}",
+                "en": "In general: {general_formula}"
+            },
+            "answer_no_solution_case": {
+                "ru": "При {param_name} = {value} решения не существует, так как {reason}.",
+                "en": "When {param_name} = {value} there is no solution because {reason}."
+            },
+        },
+
+        # =====================================================================
+        # CORRECTION — Исправление ошибок (для RLHF)
+        # =====================================================================
+        "correction": {
+            "instructions": {
+                "ru": "Исправьте ошибку в решении.",
+                "en": "Correct the error in the solution."
+            },
+            # Указания на ошибку
+            "wrong_answer": {
+                "ru": "Это неверный ответ. Попробуй ещё раз.",
+                "en": "That's incorrect. Try again."
+            },
+            "wrong_answer_hint": {
+                "ru": "Неверно. Подсказка: {hint}",
+                "en": "Incorrect. Hint: {hint}"
+            },
+            "check_calculation": {
+                "ru": "Проверь вычисления — кажется, есть ошибка.",
+                "en": "Check your calculations — there seems to be an error."
+            },
+            "check_step": {
+                "ru": "Ошибка в шаге {step_num}. Исправь его.",
+                "en": "There's an error in step {step_num}. Please correct it."
+            },
+            "sign_error": {
+                "ru": "Кажется, ты перепутал знак. Проверь.",
+                "en": "It looks like you made a sign error. Please check."
+            },
+            "order_of_operations": {
+                "ru": "Проверь порядок действий.",
+                "en": "Check the order of operations."
+            },
+            "units_error": {
+                "ru": "Проверь единицы измерения.",
+                "en": "Check the units."
+            },
+            "forgot_something": {
+                "ru": "Ты что-то упустил. Подумай, что именно.",
+                "en": "You missed something. Think about what it could be."
+            },
+            # Подсказки по типам задач
+            "hint_quadratic": {
+                "ru": "Вспомни формулу дискриминанта.",
+                "en": "Remember the discriminant formula."
+            },
+            "hint_physics_formula": {
+                "ru": "Убедись, что используешь правильную формулу.",
+                "en": "Make sure you're using the correct formula."
+            },
+            "hint_check_substitution": {
+                "ru": "Проверь, правильно ли подставлены значения.",
+                "en": "Check if the values are substituted correctly."
+            },
+            # Ответы с исправлением
+            "correction_acknowledgment": {
+                "ru": "Вы правы, я ошибся. Исправляю:",
+                "en": "You're right, I made a mistake. Correcting:"
+            },
+            "correction_found_error": {
+                "ru": "Нашёл ошибку: {error_description}. Правильное решение:",
+                "en": "Found the error: {error_description}. The correct solution:"
+            },
+        },
+
+        # =====================================================================
+        # Общие шаблоны для всех типов multi-turn
+        # =====================================================================
+        "common": {
+            # Системные сообщения
+            "system_reasoning": {
+                "ru": "Решите задачу. Запишите рассуждения в <think></think>, ответ в <answer></answer>.",
+                "en": "Solve the problem. Write reasoning in <think></think>, answer in <answer></answer>."
+            },
+            "system_step_by_step": {
+                "ru": "Решите задачу пошагово, объясняя каждый шаг рассуждения.",
+                "en": "Solve the problem step by step, explaining each reasoning step."
+            },
+            # Завершение диалога
+            "final_summary": {
+                "ru": "Итого, мы решили {num_tasks} задач(и).",
+                "en": "In total, we solved {num_tasks} task(s)."
+            },
+            "any_questions": {
+                "ru": "Есть ли ещё вопросы по этой теме?",
+                "en": "Do you have any more questions on this topic?"
+            },
+        },
+    },
+
 }

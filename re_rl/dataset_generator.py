@@ -5,10 +5,17 @@
 - JSON (стандартный)
 - JSONL (для потоковой обработки)
 - SFT формат (instruction/input/output)
+- Multi-turn chat формат (messages)
 
 Форматы математических выражений:
 - text: обычный текст (x² + 2x - 3)
 - latex: LaTeX формат ($x^{2} + 2x - 3$)
+
+Multi-turn режимы:
+- chain: Последовательные задачи
+- followup: Уточняющие вопросы
+- variations: Вариации параметров
+- correction: Исправление ошибок (для RLHF)
 """
 
 import json
@@ -30,6 +37,10 @@ OutputFormat = Literal["text", "latex"]
 # Импорты из генераторов
 from re_rl.tasks.generators import ALL_TASK_GENERATORS
 from re_rl.tasks.physics.generators import ALL_PHYSICS_TASK_GENERATORS
+from re_rl.tasks.prompts import PROMPT_TEMPLATES
+
+# Тип multi-turn режима
+MultiturnMode = Literal["chain", "followup", "variations", "correction", "mixed"]
 
 
 class DatasetGenerator:
@@ -420,6 +431,230 @@ class DatasetGenerator:
         
         split_idx = int(len(shuffled) * train_ratio)
         return shuffled[:split_idx], shuffled[split_idx:]
+    
+    # =========================================================================
+    # Multi-turn генерация
+    # =========================================================================
+    
+    def generate_multiturn_dataset(
+        self,
+        modes: Optional[List[MultiturnMode]] = None,
+        task_types: Optional[List[str]] = None,
+        num_samples: int = 1000,
+        language: str = "ru",
+        difficulties: Optional[List[int]] = None,
+        reasoning_mode: bool = True,
+        turns: int = 3,
+        show_progress: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Генерирует multi-turn датасет для обучения диалоговым навыкам.
+        
+        Args:
+            modes: Типы диалогов. Доступные:
+                - "chain": Последовательные задачи (результат предыдущей в следующей)
+                - "followup": Уточняющие вопросы (почему, как ещё можно)
+                - "variations": Вариации задачи (что если изменить параметр)
+                - "correction": Исправление ошибок (для RLHF)
+                - None = все типы
+            task_types: Типы задач (None = подходящие для каждого mode)
+            num_samples: Общее количество диалогов
+            language: Язык ("ru" или "en")
+            difficulties: Уровни сложности 1-10 (None = все)
+            reasoning_mode: Использовать <think>/<answer> теги
+            turns: Количество turns в диалоге
+            show_progress: Показывать прогресс-бар
+        
+        Returns:
+            Список диалогов в формате:
+            {
+                "messages": [
+                    {"role": "system", "content": "..."},
+                    {"role": "user", "content": "..."},
+                    {"role": "assistant", "content": "..."},
+                    ...
+                ],
+                "metadata": {"mode": "chain", "task_type": "arithmetic", ...}
+            }
+        
+        Пример использования:
+            generator = DatasetGenerator()
+            
+            # Смешанный multi-turn датасет
+            dataset = generator.generate_multiturn_dataset(
+                modes=["chain", "followup"],
+                num_samples=1000,
+                language="ru",
+                reasoning_mode=True,
+            )
+            
+            # Только correction для RLHF
+            rlhf_data = generator.generate_multiturn_dataset(
+                modes=["correction"],
+                task_types=["arithmetic", "quadratic"],
+                num_samples=500,
+            )
+            
+            generator.save_jsonl(dataset, "multiturn_train.jsonl")
+        """
+        from re_rl.multiturn_generator import MultiturnGenerator
+        
+        mt_generator = MultiturnGenerator()
+        return mt_generator.generate_multiturn_dataset(
+            modes=modes,
+            task_types=task_types,
+            num_samples=num_samples,
+            language=language,
+            difficulties=difficulties,
+            reasoning_mode=reasoning_mode,
+            turns=turns,
+            show_progress=show_progress,
+        )
+    
+    def generate_chain_dataset(
+        self,
+        task_type: str = "arithmetic",
+        num_samples: int = 100,
+        turns: int = 3,
+        language: str = "ru",
+        difficulties: Optional[List[int]] = None,
+        reasoning_mode: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Генерирует датасет chain-диалогов (последовательные задачи).
+        
+        Каждый диалог — цепочка связанных задач, где результат 
+        предыдущей используется в следующей.
+        
+        Args:
+            task_type: Тип задач ("arithmetic", "linear", "quadratic", "kinematics", "dynamics")
+            num_samples: Количество диалогов
+            turns: Количество задач в цепочке
+            language: Язык
+            difficulties: Уровни сложности
+            reasoning_mode: Использовать <think>/<answer>
+        """
+        from re_rl.multiturn_generator import MultiturnGenerator
+        
+        mt_generator = MultiturnGenerator()
+        return mt_generator.generate_chain_dialogues(
+            task_type=task_type,
+            num_dialogues=num_samples,
+            turns=turns,
+            language=language,
+            difficulties=difficulties,
+            reasoning_mode=reasoning_mode,
+        )
+    
+    def generate_followup_dataset(
+        self,
+        task_type: str = "quadratic",
+        num_samples: int = 100,
+        num_followups: int = 2,
+        language: str = "ru",
+        difficulties: Optional[List[int]] = None,
+        reasoning_mode: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Генерирует датасет с уточняющими вопросами.
+        
+        После решения задачи следуют вопросы:
+        - "Почему ты использовал этот метод?"
+        - "Можно ли решить по-другому?"
+        - "Как проверить ответ?"
+        
+        Args:
+            task_type: Тип задач
+            num_samples: Количество диалогов
+            num_followups: Количество уточняющих вопросов
+            language: Язык
+            difficulties: Уровни сложности
+            reasoning_mode: Использовать <think>/<answer>
+        """
+        from re_rl.multiturn_generator import MultiturnGenerator
+        
+        mt_generator = MultiturnGenerator()
+        return mt_generator.generate_followup_dialogues(
+            task_type=task_type,
+            num_dialogues=num_samples,
+            num_followups=num_followups,
+            language=language,
+            difficulties=difficulties,
+            reasoning_mode=reasoning_mode,
+        )
+    
+    def generate_variation_dataset(
+        self,
+        task_type: str = "arithmetic",
+        num_samples: int = 100,
+        num_variations: int = 2,
+        language: str = "ru",
+        difficulties: Optional[List[int]] = None,
+        reasoning_mode: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Генерирует датасет с вариациями задач.
+        
+        После решения задачи следуют вопросы:
+        - "А если удвоить параметр?"
+        - "А если значение будет отрицательным?"
+        - "Обобщи решение для произвольного X"
+        
+        Args:
+            task_type: Тип задач
+            num_samples: Количество диалогов
+            num_variations: Количество вариаций
+            language: Язык
+            difficulties: Уровни сложности
+            reasoning_mode: Использовать <think>/<answer>
+        """
+        from re_rl.multiturn_generator import MultiturnGenerator
+        
+        mt_generator = MultiturnGenerator()
+        return mt_generator.generate_variation_dialogues(
+            task_type=task_type,
+            num_dialogues=num_samples,
+            num_variations=num_variations,
+            language=language,
+            difficulties=difficulties,
+            reasoning_mode=reasoning_mode,
+        )
+    
+    def generate_correction_dataset(
+        self,
+        task_type: str = "arithmetic",
+        num_samples: int = 100,
+        language: str = "ru",
+        difficulties: Optional[List[int]] = None,
+        reasoning_mode: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Генерирует датасет для RLHF с исправлением ошибок.
+        
+        Диалог: задача → неправильный ответ → feedback → исправление.
+        
+        Полезно для обучения модели:
+        - Признавать ошибки
+        - Исправляться после feedback
+        - Перепроверять решения
+        
+        Args:
+            task_type: Тип задач
+            num_samples: Количество диалогов
+            language: Язык
+            difficulties: Уровни сложности
+            reasoning_mode: Использовать <think>/<answer>
+        """
+        from re_rl.multiturn_generator import MultiturnGenerator
+        
+        mt_generator = MultiturnGenerator()
+        return mt_generator.generate_correction_dialogues(
+            task_type=task_type,
+            num_dialogues=num_samples,
+            language=language,
+            difficulties=difficulties,
+            reasoning_mode=reasoning_mode,
+        )
 
 
 def main():
