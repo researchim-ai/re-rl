@@ -7,9 +7,8 @@ def read_requirements():
 setup(
     name='re_rl',
     version='0.0.1',
-    description='Библиотека для решения математических задач и генерации заданий для обучения LLM с использованием reasoning RL',
+    description='Библиотека для генерации искусственных задач для обучения LLM с использованием reasoning RL',
     author='Tokarev Igor (Researchim AI)',
-    author_email='your_email@example.com',
     packages=find_packages(),
     install_requires=read_requirements(),
     classifiers=[

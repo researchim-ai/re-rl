@@ -73,6 +73,13 @@ from re_rl.tasks.math.discrete.nim_game_task import NimGameTask
 # Физические задачи (импортируем все генераторы)
 from re_rl.tasks.physics.generators import ALL_PHYSICS_TASK_GENERATORS
 
+# Формальная математика (Lean 4 доказательства)
+from re_rl.tasks.formal.lean_proof_task import (
+    LeanProofTask,
+    generate_lean_proof_task,
+    generate_lean_proof_batch,
+)
+
 
 ##################################################
 # 0. Арифметические задачи (цепочки операций)
@@ -1147,6 +1154,44 @@ def generate_random_nim_game_task(
 
 
 ##################################################
+# 31. LeanProofTask - Формальные доказательства
+##################################################
+
+def generate_random_lean_proof_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    category: str = None,
+    **kwargs
+) -> LeanProofTask:
+    """
+    Генерирует случайную задачу на формальное доказательство в Lean 4.
+    
+    Категории теорем:
+    - propositional: пропозициональная логика (∧, ∨, →, ¬)
+    - predicate: предикатная логика (∀, ∃)
+    - nat_arithmetic: арифметика натуральных чисел
+    - list: операции над списками
+    - equality: свойства равенства
+    
+    Args:
+        language: Язык ("ru" или "en")
+        detail_level: Уровень детализации
+        difficulty: Уровень сложности (1-10)
+        category: Категория теоремы (если None — выбирается по сложности)
+        
+    Returns:
+        LeanProofTask с теоремой и доказательством
+    """
+    return generate_lean_proof_task(
+        difficulty=difficulty,
+        language=language,
+        category=category,
+        detail_level=detail_level,
+    )
+
+
+##################################################
 # Универсальный генератор всех типов задач
 ##################################################
 
@@ -1194,6 +1239,8 @@ ALL_TASK_GENERATORS = {
     "tower_of_hanoi": generate_random_tower_of_hanoi_task,
     "water_jug": generate_random_water_jug_task,
     "nim_game": generate_random_nim_game_task,
+    # Формальная математика (Lean 4):
+    "lean_proof": generate_random_lean_proof_task,
     # Физические задачи (добавляем все из physics):
     **ALL_PHYSICS_TASK_GENERATORS,
 }

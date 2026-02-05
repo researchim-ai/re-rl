@@ -120,6 +120,16 @@ from re_rl.tasks.physics.fluids.fluids_task import FluidsTask
 # Астрофизика
 from re_rl.tasks.physics.astrophysics.astrophysics_task import AstrophysicsTask
 
+# ============================================================================
+# ФОРМАЛЬНАЯ МАТЕМАТИКА (из formal/)
+# ============================================================================
+from re_rl.tasks.formal import (
+    LeanProofTask,
+    generate_lean_proof_task,
+    THEOREM_TEMPLATES,
+    get_theorem_categories,
+)
+
 # Физические утилиты
 from re_rl.tasks.physics.constants import PHYSICS_CONSTANTS, get_constant
 from re_rl.tasks.physics.units import convert_units, format_with_units
@@ -298,6 +308,12 @@ __all__ = [
     
     # Физика - Астрофизика
     "AstrophysicsTask",
+    
+    # Формальная математика (Lean 4)
+    "LeanProofTask",
+    "generate_lean_proof_task",
+    "THEOREM_TEMPLATES",
+    "get_theorem_categories",
     
     # Физические утилиты
     "PHYSICS_CONSTANTS",
