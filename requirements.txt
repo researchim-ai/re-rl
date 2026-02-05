@@ -5,3 +5,7 @@ numpy
 datasets
 z3-solver
 pytest
+
+# Formal Math (LeanNavigator-style)
+lean-dojo>=4.0.0  # Lean 4 interaction
+loguru            # Logging
