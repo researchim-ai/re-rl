@@ -92,6 +92,16 @@ from re_rl.tasks.formal.ml_tactic_generator import (
     create_ml_generator,
 )
 
+# === Утилиты установки ===
+from re_rl.tasks.formal.setup_lean_repos import (
+    REPOS as LEAN_REPOS,
+    add_custom_mathlib4,
+    trace_repo,
+    list_cached_repos,
+    check_elan_installed,
+    _apply_extractor_fix,
+)
+
 __all__ = [
     # Шаблонная генерация
     "LeanProofTask",
@@ -143,4 +153,11 @@ __all__ = [
     "EmbeddingTacticRetriever",
     "HybridTacticGenerator",
     "create_ml_generator",
+    
+    # Утилиты установки
+    "LEAN_REPOS",
+    "add_custom_mathlib4",
+    "trace_repo",
+    "list_cached_repos",
+    "check_elan_installed",
 ]

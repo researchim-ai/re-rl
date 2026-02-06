@@ -82,6 +82,32 @@ pip install lean-dojo
 curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh
 ```
 
+### Скачивание репозиториев (tracing)
+
+Используйте скрипт `setup_lean_repos.py`:
+
+```bash
+# Проверить статус
+python -m re_rl.tasks.formal.setup_lean_repos --check
+
+# Список доступных репозиториев
+python -m re_rl.tasks.formal.setup_lean_repos --list
+
+# Быстрый тест (1-2 минуты, 2 теоремы)
+python -m re_rl.tasks.formal.setup_lean_repos --repo lean4-example
+
+# MiniF2F - олимпиадные задачи (30-60 минут, 493 теоремы)
+python -m re_rl.tasks.formal.setup_lean_repos --repo minif2f
+
+# Mathlib4 - полная библиотека (2-4 часа, 100K+ теорем)
+python -m re_rl.tasks.formal.setup_lean_repos --repo mathlib4
+
+# Все репозитории
+python -m re_rl.tasks.formal.setup_lean_repos --repo all
+```
+
+**Важно**: Tracing делается один раз и кэшируется в `~/.cache/lean_dojo/`.
+
 ### Базовый пример
 
 ```python

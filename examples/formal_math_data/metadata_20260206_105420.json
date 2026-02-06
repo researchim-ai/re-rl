@@ -1,0 +1,20 @@
+{
+  "repo_name": "lean4-example",
+  "repo_url": "https://github.com/yangky11/lean4-example",
+  "repo_commit": "7b6ecb9ad4829e4e73600a3329baeb3b5df8d23f",
+  "generation_date": "2026-02-06T10:54:20.841144",
+  "config": {
+    "max_theorems": 10,
+    "max_steps_per_theorem": 500,
+    "max_time_per_theorem": 60,
+    "max_depth": 8
+  },
+  "summary": {
+    "total_theorems": 2,
+    "successful_explorations": 2,
+    "proofs_found": 2,
+    "total_pairs": 846,
+    "total_time": 79.8203022480011,
+    "avg_time_per_theorem": 39.91015112400055
+  }
+}

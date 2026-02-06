@@ -181,6 +181,69 @@ datasets:
 # Формат уже совместим с alpaca (instruction/input/output)
 ```
 
+## Formal Math: генерация данных для Theorem Proving (LeanNavigator)
+
+Помимо текстовых задач, RE-RL поддерживает генерацию данных из **формальных доказательств Lean 4** по подходу [LeanNavigator](https://arxiv.org/abs/2502.10000) (Yin & Gao, 2025).
+
+### Идея
+
+В Lean 4 доказательство — это последовательность **переходов между состояниями**. Тактика трансформирует текущее состояние (гипотезы + цель) в новое, пока не достигнуто `ProofFinished`. LeanNavigator рассматривает это как **граф** и обходит его через BFS:
+
+```
+State₀ (goal теоремы)
+  ├── omega       → ProofFinished ✓   ← training pair (distance=0)
+  ├── norm_cast   → ProofFinished ✓   ← training pair (distance=0)
+  ├── induction a → SubGoal₁, SubGoal₂ ← training pair (distance=2)
+  │     └── simp  → ProofFinished ✓
+  └── congr       → сложные подцели   ← training pair (branch)
+```
+
+Каждый успешный переход `(state, tactic) → next_state` записывается как **training pair**. Из одной теоремы получаются десятки пар — модель учится не только "как доказать", но и "какие тактики вообще применимы".
+
+### Масштаб оригинала
+
+| Метрика | LeanNavigator |
+|---|---|
+| Репозиторий | Mathlib4 (100K+ теорем) |
+| Результат | 4.7M теорем, 1B токенов |
+| Модель | Flan-T5 (350M) → превосходит ReProver |
+
+### Быстрый старт
+
+```bash
+# Зависимости
+pip install lean-dojo
+curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh
+```
+
+```python
+from lean_dojo import LeanGitRepo, Theorem, Dojo, trace
+from re_rl.tasks.formal import StateExplorer, LEAN_REPOS
+
+# Скачиваем и трейсим репозиторий
+repo_info = LEAN_REPOS["lean4-example"]
+repo = LeanGitRepo(repo_info["url"], repo_info["commit"])
+traced_repo = trace(repo)
+
+# Извлекаем теоремы
+for tf in traced_repo.traced_files:
+    for thm in tf.get_traced_theorems():
+        theorem = Theorem(repo, str(tf.lean_file.path), thm.theorem.full_name)
+        break
+    break
+
+# BFS генерация
+explorer = StateExplorer(max_steps=500, max_time=60, max_depth=8)
+with Dojo(theorem) as (dojo, state_0):
+    result, pairs, stats = explorer.explore(dojo, state_0, theorem.full_name)
+
+print(f"Training pairs: {len(pairs)}, Proof found: {stats.proof_found}")
+```
+
+Полный pipeline — в notebook [`examples/Formal_Math_Generation.ipynb`](examples/Formal_Math_Generation.ipynb).
+
+Подробная документация модуля — [`re_rl/tasks/formal/README.md`](re_rl/tasks/formal/README.md).
+
 ## Структура проекта
 
 ```
@@ -204,6 +267,13 @@ re_rl/
 │   │   ├── oscillations/
 │   │   ├── fluids/
 │   │   └── astrophysics/
+│   ├── formal/            # Formal Math (LeanNavigator)
+│   │   ├── state_explorer.py      # BFS по графу состояний
+│   │   ├── tactic_generator.py    # Rule-based генерация тактик
+│   │   ├── lean_utils.py          # Парсинг Lean состояний
+│   │   ├── dataset_generator.py   # Оркестрация генерации
+│   │   ├── ml_tactic_generator.py # ML-ускорение (опционально)
+│   │   └── setup_lean_repos.py    # Управление Lean репозиториями
 │   ├── prompts.py         # Все текстовые шаблоны (ru/en)
 │   ├── generators.py      # Генераторы математических задач
 │   └── base_task.py       # Базовые классы
