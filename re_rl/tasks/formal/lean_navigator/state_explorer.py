@@ -19,7 +19,7 @@ from enum import Enum
 import logging
 
 from .lean_utils import PriorityQueue, state_complexity
-from .tactic_generator import TacticGenerator, generate_tactics
+from re_rl.tasks.formal.tactic_generator import TacticGenerator, generate_tactics
 
 
 logger = logging.getLogger(__name__)

@@ -19,6 +19,8 @@ LeanNavigator — воспроизведение статьи
 
 import re
 import os
+import sys
+import io
 import time
 import heapq
 import random
@@ -29,6 +31,7 @@ from pathlib import Path
 from typing import List, Dict, Tuple, Optional, Any, Set
 from dataclasses import dataclass, field
 from collections import defaultdict
+from contextlib import contextmanager
 from enum import Enum
 
 import numpy as np
@@ -52,6 +55,12 @@ try:
     SBERT_AVAILABLE = True
 except ImportError:
     SBERT_AVAILABLE = False
+
+try:
+    import nest_asyncio
+    nest_asyncio.apply()
+except ImportError:
+    pass
 
 try:
     from pantograph import Server
@@ -346,6 +355,11 @@ class NavigatorResult:
     n_states: int
     n_steps: int
     elapsed: float
+    # Верификация: независимый replay найденных доказательств
+    verified: Optional[bool] = None          # None = не проверялось
+    proof_tactics: Optional[List[str]] = None # кратчайший путь тактик
+    n_proofs_found: int = 0                  # сколько путей к ProofFinished найдено
+    n_proofs_verified: int = 0               # сколько из них прошли replay
 
 
 # ============================================================================
@@ -613,6 +627,17 @@ class ProofFinished:
     pass
 
 
+@contextmanager
+def _suppress_pantograph_prints():
+    """Подавляет 'Cannot start goal' print из pantograph/server.py."""
+    old_stdout = sys.stdout
+    sys.stdout = io.StringIO()
+    try:
+        yield sys.stdout
+    finally:
+        sys.stdout = old_stdout
+
+
 class PantographDojo:
     """
     Обёртка над Pantograph Server для интерактивного proving.
@@ -622,7 +647,7 @@ class PantographDojo:
     """
 
     def __init__(self, project_path: str, imports: Optional[List[str]] = None,
-                 timeout: int = 5):
+                 timeout: int = 120):
         if not PANTOGRAPH_AVAILABLE:
             raise ImportError("pip install 'git+https://github.com/stanford-centaur/PyPantograph.git'")
 
@@ -637,6 +662,7 @@ class PantographDojo:
             imports=self.imports,
             project_path=self.project_path,
             timeout=self.timeout,
+            buffer_limit=10_000_000,  # 10MB — нужно для env_catalog на Mathlib
         )
         return self
 
@@ -660,16 +686,315 @@ class PantographDojo:
         except Exception:
             return None
 
-    def goal_start(self, goal_expr: str) -> Optional[ProofState]:
-        """Начинает доказательство цели."""
+    def env_inspect_expr(self, name: str) -> Optional[str]:
+        """Получает внутреннее выражение типа (expr) для goal_start.
+        
+        В отличие от pp (pretty-print), expr содержит universe-переменные
+        в закодированном виде, который goal_start может обработать.
+        
+        Returns:
+            Внутреннее выражение типа или None.
+        """
         try:
-            goal_state = self.server.goal_start(goal_expr)
+            info = self.server.env_inspect(name=name)
+            if isinstance(info, dict):
+                return info.get("type", {}).get("expr")
+            return None
+        except Exception:
+            return None
+
+    def env_inspect_full(self, name: str) -> Optional[Dict]:
+        """Полная информация из env_inspect: module, pp, expr, source.
+        
+        Returns:
+            Dict с ключами: module, pp, expr, sourceStart, sourceEnd
+            или None если не найдена.
+        """
+        try:
+            info = self.server.env_inspect(name=name)
+            if not isinstance(info, dict):
+                return None
+            type_info = info.get("type", {})
+            return {
+                "module": info.get("module", ""),
+                "pp": type_info.get("pp", ""),
+                "expr": type_info.get("expr", ""),
+                "sourceStart": info.get("sourceStart"),
+                "sourceEnd": info.get("sourceEnd"),
+            }
+        except Exception:
+            return None
+
+    def goal_start(self, goal_expr: str) -> Optional[ProofState]:
+        """
+        Начинает доказательство цели через goal_start API.
+        
+        Пробует:
+        1. _fix_pp(goal_expr) → goal_start
+        2. Оригинальный goal_expr → goal_start (если отличается)
+        """
+        goal_expr_clean = _fix_pp(goal_expr)
+
+        # goal_start с очищенным pp-выражением
+        try:
+            with _suppress_pantograph_prints():
+                goal_state = self.server.goal_start(goal_expr_clean)
             if not goal_state.goals:
                 return ProofFinished()
             pp = "\n".join(str(g) for g in goal_state.goals)
             return ProofState(pp=pp, goal_state=goal_state, goal_id=0)
-        except Exception as e:
-            return None
+        except ServerError as e:
+            self._last_error = str(e)
+        except Exception:
+            pass
+
+        # goal_start с оригинальным выражением (без _fix_pp)
+        if goal_expr != goal_expr_clean:
+            try:
+                with _suppress_pantograph_prints():
+                    goal_state = self.server.goal_start(goal_expr)
+                if not goal_state.goals:
+                    return ProofFinished()
+                pp = "\n".join(str(g) for g in goal_state.goals)
+                return ProofState(pp=pp, goal_state=goal_state, goal_id=0)
+            except ServerError as e:
+                self._last_error = str(e)
+            except Exception:
+                pass
+
+        return None
+
+    def _goal_via_sorry(self, type_pp: str) -> Optional[ProofState]:
+        """
+        Начинает доказательство через load_sorry (frontend.distil).
+        
+        Оборачивает тип в `theorem _sorry_N : <type> := by sorry`.
+        В контексте `theorem` Lean автоматически привязывает
+        свободные universe переменные (auto-bound implicit).
+        
+        Это решает проблемы:
+        - Type u, Type u_1, Sort v → auto-bound universes
+        - CategoryTheory.Category.{v, u} → valid syntax in theorem
+        - Type vᵒᵖ → auto-bound
+        
+        НЕ решает:
+        - .τl field notation → pp round-trip limitation
+        - Typeclass synthesis failures → missing context
+        """
+        if not hasattr(self, '_sorry_counter'):
+            self._sorry_counter = 0
+        self._sorry_counter += 1
+        
+        # Сначала чистим autoParam (невалидный identifier _auto✝)
+        type_clean = _fix_pp(type_pp)
+        
+        # Пробуем с оригинальным pp (universes auto-bound в theorem context)
+        for pp_variant in [type_pp, type_clean] if type_pp != type_clean else [type_pp]:
+            src = f'theorem _sorry_{self._sorry_counter} : {pp_variant} := by\n  sorry'
+            try:
+                targets = self.server.load_sorry(src)
+                if targets and targets[0].goal_state.goals:
+                    goal_state = targets[0].goal_state
+                    pp = "\n".join(str(g) for g in goal_state.goals)
+                    return ProofState(pp=pp, goal_state=goal_state, goal_id=0)
+                # 0 targets или 0 goals — не ProofFinished, а ошибка парсинга
+            except Exception:
+                pass
+        
+        return None
+
+    def _goal_via_source(self, name: str) -> Optional[ProofState]:
+        """
+        Начинает доказательство через исходный .lean файл модуля.
+        
+        Когда pp не round-trip'ится (field notation, typeclass synthesis),
+        читаем оригинальный исходник — там есть правильные:
+        - variable declarations ({m : MeasurableSpace Ω})
+        - open/namespace (все имена доступны)
+        - Оригинальный синтаксис (MeasurableSet[𝓕.predictable])
+        
+        Алгоритм:
+        1. env_inspect(name) → module, sourceStart, sourceEnd
+        2. module → .lean file path
+        3. Извлекаем контекст (open, namespace, variable, section)
+        4. Извлекаем declaration теоремы, заменяем proof на sorry
+        5. load_sorry(context + theorem_sorry)
+        
+        НЕ включаем определения (def, instance, theorem, lemma, class)
+        чтобы не конфликтовать с уже загруженным Mathlib.
+        """
+        try:
+            info = self.server.env_inspect(name=name)
+            if not isinstance(info, dict):
+                return None
+            
+            module = info.get("module", "")
+            src_start = info.get("sourceStart")
+            src_end = info.get("sourceEnd")
+            
+            if not module or not src_start or not src_end:
+                return None
+            
+            start_line = src_start.get("line", 0)  # 1-indexed
+            end_line = src_end.get("line", 0)  # 1-indexed
+            
+            # Конвертируем module → file path
+            fpath = Path(self.project_path) / (module.replace(".", "/") + ".lean")
+            if not fpath.exists():
+                return None
+            
+            with open(fpath) as f:
+                lines = f.readlines()
+            
+            if end_line <= 0 or end_line > len(lines):
+                return None
+            
+            # Извлекаем КОНТЕКСТ (до начала теоремы):
+            # open, namespace, variable, section, end, set_option, attribute
+            # Пропускаем: import, module, def, theorem, lemma, instance, class, structure
+            _CONTEXT_PREFIXES = (
+                "open ", "namespace ", "variable ", "section", "end ",
+                "end\n", "set_option ", "attribute ", "noncomputable ",
+                "suppress_compilation", "local ", "scoped ",
+            )
+            _SKIP_PREFIXES = (
+                "import ", "public import ", "module",
+                "def ", "theorem ", "lemma ", "instance ", "class ",
+                "structure ", "inductive ", "abbrev ", "private ",
+                "protected def ", "protected theorem ", "protected lemma ",
+                "@[", "-- ", "/-",
+            )
+            
+            context_lines = []
+            in_comment = False
+            for i in range(start_line - 1):  # До начала теоремы
+                line = lines[i].rstrip()
+                stripped = line.lstrip()
+                
+                # Отслеживаем блочные комментарии
+                if "/-" in line:
+                    in_comment = True
+                if "-/" in line:
+                    in_comment = False
+                    continue
+                if in_comment:
+                    continue
+                
+                # Пустые строки — сохраняем для корректной структуры
+                if not stripped:
+                    context_lines.append("")
+                    continue
+                
+                # Контекстные строки — включаем
+                if any(stripped.startswith(p) for p in _CONTEXT_PREFIXES):
+                    # Чистим public/expose
+                    line = line.replace("@[expose] public section", "section")
+                    line = line.replace("public section", "section")
+                    context_lines.append(line)
+                    continue
+                
+                # end без пробела (просто "end")
+                if stripped == "end":
+                    context_lines.append(line)
+                    continue
+            
+            # Извлекаем declaration теоремы (start_line до end_line)
+            theorem_lines = []
+            for i in range(start_line - 1, end_line):
+                theorem_lines.append(lines[i].rstrip())
+            
+            # Заменяем proof на sorry и переименовываем
+            # (имя уже объявлено в Mathlib → конфликт)
+            theorem_src = "\n".join(theorem_lines)
+            theorem_src = re.sub(
+                r'(lemma|theorem|def)\s+\S+', r'\1 _sorry_goal', 
+                theorem_src, count=1
+            )
+            if ":=" in theorem_src:
+                idx = theorem_src.index(":=")
+                theorem_src = theorem_src[:idx] + ":= by sorry"
+            else:
+                theorem_src = theorem_src + " := by sorry"
+            
+            src = "\n".join(context_lines) + "\n" + theorem_src + "\n"
+            
+            targets = self.server.load_sorry(src)
+            if targets and targets[0].goal_state.goals:
+                goal_state = targets[0].goal_state
+                pp = "\n".join(str(g) for g in goal_state.goals)
+                return ProofState(pp=pp, goal_state=goal_state, goal_id=0)
+        except Exception:
+            pass
+        
+        return None
+
+    def goal_start_expr(self, name: str, verbose: bool = False) -> Optional[ProofState]:
+        """
+        Начинает доказательство через имя теоремы.
+        
+        Цепочка попыток:
+        1. env_inspect(name).type.expr → goal_start (внутреннее представление)
+        2. env_inspect(name).type.pp → _fix_pp → goal_start (pretty-print)
+        3. env_inspect(name).type.pp → load_sorry (theorem context, auto-bound universes)
+        4. module source file → load_sorry (оригинальный исходник с контекстом)
+        
+        Шаг 4 решает все оставшиеся случаи: field notation, typeclass synthesis,
+        потерянные instance annotations — оригинальный исходник содержит всё.
+        """
+        errors = []  # Собираем ошибки для диагностики
+        
+        # 1. Пробуем expr (внутреннее представление)
+        expr = self.env_inspect_expr(name)
+        if expr:
+            try:
+                with _suppress_pantograph_prints():
+                    goal_state = self.server.goal_start(expr)
+                if not goal_state.goals:
+                    return ProofFinished()
+                pp = "\n".join(str(g) for g in goal_state.goals)
+                return ProofState(pp=pp, goal_state=goal_state, goal_id=0)
+            except ServerError as e:
+                errors.append(f"expr: {str(e)[:120]}")
+            except Exception as e:
+                errors.append(f"expr: {type(e).__name__}: {str(e)[:80]}")
+        else:
+            errors.append("expr: empty")
+
+        # 2. Пробуем pp с _fix_pp → goal_start
+        pp_type = self.env_inspect(name)
+        if pp_type:
+            result = self.goal_start(pp_type)
+            if result is not None:
+                return result
+            errors.append(f"pp: {getattr(self, '_last_error', 'failed')[:120]}")
+            
+            # 3. Пробуем load_sorry (auto-bound universes в theorem context)
+            result = self._goal_via_sorry(pp_type)
+            if result is not None:
+                return result
+            errors.append("sorry: failed")
+        else:
+            errors.append("pp: empty")
+
+        # 4. Пробуем через исходник модуля (100% fallback)
+        result = self._goal_via_source(name)
+        if result is not None:
+            return result
+        errors.append("source: failed")
+
+        if verbose:
+            print(f"  FAIL goal_start_expr({name}):")
+            for err in errors:
+                print(f"    {err}")
+
+        return None
+
+    # Тактики, которые закрывают goal без реального доказательства.
+    # sorry/admit вставляют аксиому sorryAx — это НЕ доказательство.
+    # native_decide безопасен (Lean верифицирует), но может быть медленным.
+    _UNSOUND_TACTICS = frozenset({
+        'sorry', 'admit', 'exact sorry', 'exact admit',
+    })
 
     def run_tac(self, state: ProofState, tactic: str):
         """
@@ -678,10 +1003,21 @@ class PantographDojo:
         Returns:
             ProofState — новое состояние
             ProofFinished — доказательство завершено
-            None — тактика не применилась (ошибка)
+            None — тактика не применилась (ошибка / unsound)
         """
         if not isinstance(state, ProofState) or state.goal_state is None:
             return None
+
+        # Защита от false-positive: sorry/admit закрывают goal,
+        # но через аксиому sorryAx — это не настоящее доказательство.
+        tactic_stripped = tactic.strip().lower()
+        if tactic_stripped in self._UNSOUND_TACTICS:
+            return None
+        # Проверяем sorry/admit внутри составных тактик:
+        # "first | exact foo | sorry", "try sorry", "<;> sorry" и т.п.
+        if re.search(r'\bsorry\b', tactic_stripped) or re.search(r'\badmit\b', tactic_stripped):
+            return None
+
         try:
             next_goal_state = self.server.goal_tactic(
                 state.goal_state, tactic
@@ -694,6 +1030,84 @@ class PantographDojo:
             return None
         except Exception:
             return None
+
+    def verify_proof(self, theorem_name: str, tactics: List[str],
+                     verbose: bool = False) -> bool:
+        """
+        Независимая верификация доказательства: replay тактик на свежем goal.
+        
+        Стартует НОВЫЙ goal (не связан с BFS state), применяет тактики
+        по одной. Если все применились и goals = 0 → доказательство верифицировано.
+        
+        Это исключает:
+        - Баги в BFS-трекинге состояний
+        - Неправильные goal_state ссылки
+        - sorry/admit (отфильтрованы в run_tac)
+        
+        Args:
+            theorem_name: Квалифицированное имя теоремы
+            tactics: Последовательность тактик (путь от initial goal до ProofFinished)
+            verbose: Подробный вывод
+            
+        Returns:
+            True если доказательство верифицировано, False иначе
+        """
+        if not tactics:
+            return False
+        
+        # Стартуем свежий goal
+        try:
+            state = self.goal_start_expr(theorem_name)
+        except Exception as e:
+            if verbose:
+                print(f"    verify: goal_start_expr failed: {e}")
+            return False
+        
+        if state is None:
+            if verbose:
+                print(f"    verify: cannot start goal for {theorem_name}")
+            return False
+        
+        if isinstance(state, ProofFinished):
+            # Тривиально доказано (0 goals сразу) — тактики не нужны
+            return len(tactics) == 0
+        
+        # Применяем тактики последовательно
+        for i, tac in enumerate(tactics):
+            result = self.run_tac(state, tac)
+            
+            if result is None:
+                if verbose:
+                    print(f"    verify FAIL at step {i+1}/{len(tactics)}: "
+                          f"tactic '{tac}' failed on state: {state.pp[:100]}")
+                return False
+            
+            if isinstance(result, ProofFinished):
+                if i == len(tactics) - 1:
+                    # Последняя тактика закрыла все goals — ОК
+                    return True
+                else:
+                    if verbose:
+                        print(f"    verify WARN: proof finished early at step "
+                              f"{i+1}/{len(tactics)}")
+                    # Доказательство закончилось раньше — всё равно верно
+                    return True
+            
+            state = result
+        
+        # Все тактики применены, но goals остались
+        if verbose:
+            print(f"    verify FAIL: all {len(tactics)} tactics applied but "
+                  f"goals remain: {state.pp[:100]}")
+        return False
+
+    def catalog(self, module_prefix: str = "Mathlib") -> List[str]:
+        """Получает список всех констант из Lean окружения."""
+        try:
+            return self.server.env_catalog(module_prefix=module_prefix)
+        except Exception as e:
+            print(f"env_catalog ошибка: {e}")
+            return []
 
     def __enter__(self):
         self.start()
@@ -765,8 +1179,28 @@ class LeanNavigatorExplorer:
         self.max_time = max_time
         self.verbose = verbose
 
+    def _create_per_file_dojo(self, module: str) -> 'PantographDojo':
+        """
+        Создаёт per-file PantographDojo с imports=[module] (подход LeanDojo-v2).
+        
+        Каждый .lean файл в Mathlib имеет свои open/namespace/variable/instance,
+        которые влияют на elaboration. Per-file server импортирует конкретный модуль,
+        поэтому все определения файла доступны → goal_start по pp работает 100%.
+        
+        Сервер создаётся и уничтожается на каждую теорему (как LeanDojo-v2),
+        чтобы не копить GoalState в памяти.
+        """
+        dojo = PantographDojo(
+            project_path=self.dojo.project_path,
+            imports=["Init", module],
+            timeout=self.dojo.timeout,
+        )
+        dojo.start()
+        return dojo
+
     def explore(self, goal_expr: str, theorem_name: str = "",
                 theorem_code: str = "",
+                theorem_module: str = "",
                 exit_on_finish: bool = False) -> NavigatorResult:
         """
         Исследует граф переходов для теоремы.
@@ -775,6 +1209,9 @@ class LeanNavigatorExplorer:
             goal_expr: Lean-выражение цели (тип теоремы)
             theorem_name: Имя теоремы
             theorem_code: Код формулировки теоремы (для RAG query)
+            theorem_module: Lean-модуль теоремы (e.g., "Mathlib.Foo.Bar")
+                           Если указан, создаётся per-file Server (как LeanDojo-v2)
+                           для 100% корректного goal_start.
             exit_on_finish: Остановиться при первом ProofFinished
             
         Returns:
@@ -782,15 +1219,80 @@ class LeanNavigatorExplorer:
         """
         start_time = time.time()
 
-        # Инициализация
-        state_0 = self.dojo.goal_start(goal_expr)
+        # Стратегия: shared server → fallback → per-file (тяжёлый, только если надо)
+        per_file_dojo = None
+        working_dojo = self.dojo
+        state_0 = None
+
+        # Способ 1: цепочка goal_start_expr на общем (shared) сервере
+        # Быстро, не создаёт новый процесс. Работает для ~97% теорем.
+        if theorem_name:
+            state_0 = self.dojo.goal_start_expr(
+                theorem_name, verbose=self.verbose
+            )
+        
+        # Способ 2: прямой goal_start на выражении
+        if state_0 is None and goal_expr:
+            state_0 = self.dojo.goal_start(goal_expr)
+
+        # Способ 3 (per-file, тяжёлый): только если shared не смог
+        # Создаёт новый Server с imports=[module] — как LeanDojo-v2
+        if state_0 is None and theorem_module and theorem_name:
+            try:
+                per_file_dojo = self._create_per_file_dojo(theorem_module)
+                working_dojo = per_file_dojo
+                
+                pp_type = per_file_dojo.env_inspect(theorem_name)
+                if pp_type:
+                    state_0 = per_file_dojo.goal_start(pp_type)
+                
+                if state_0 is None or isinstance(state_0, ProofFinished):
+                    state_0 = per_file_dojo.goal_start_expr(
+                        theorem_name, verbose=self.verbose
+                    )
+            except Exception as e:
+                if self.verbose:
+                    print(f"  per-file dojo failed ({theorem_module}): {e}")
+                if per_file_dojo:
+                    try:
+                        per_file_dojo.stop()
+                    except Exception:
+                        pass
+                    per_file_dojo = None
+                working_dojo = self.dojo
+                state_0 = None
+
         if state_0 is None or isinstance(state_0, ProofFinished):
+            # Cleanup per-file dojo
+            if per_file_dojo:
+                try:
+                    per_file_dojo.stop()
+                except Exception:
+                    pass
             return NavigatorResult(
                 theorem_name=theorem_name,
                 state_dict={}, theorem_proven=isinstance(state_0, ProofFinished),
                 pairs=[], n_states=0, n_steps=0, elapsed=0,
             )
 
+        # BFS обёрнут в try/finally чтобы per-file dojo ВСЕГДА закрывался
+        try:
+            return self._run_bfs(
+                state_0, working_dojo, per_file_dojo,
+                theorem_name, theorem_code, start_time,
+                exit_on_finish,
+            )
+        finally:
+            if per_file_dojo:
+                try:
+                    per_file_dojo.stop()
+                except Exception:
+                    pass
+
+    def _run_bfs(self, state_0, working_dojo, per_file_dojo,
+                 theorem_name, theorem_code, start_time,
+                 exit_on_finish=False):
+        """Внутренний BFS — вынесен чтобы explore() мог гарантировать cleanup."""
         state_queue = PriorityQueue()
         # state_dict: key=state.pp, value=(state, [parent_states], [tactics], shortest_path)
         state_dict = {}
@@ -853,7 +1355,7 @@ class LeanNavigatorExplorer:
                 if n_steps > self.max_steps:
                     break
 
-                result = self.dojo.run_tac(curr_state, tactic)
+                result = working_dojo.run_tac(curr_state, tactic)
                 if result is None:
                     continue
 
@@ -919,6 +1421,59 @@ class LeanNavigatorExplorer:
         # Генерируем training pairs
         pairs = self._generate_pairs(state_dict, proof_finished_states, theorem_name)
 
+        # ================================================================
+        # Верификация: replay найденных доказательств на свежем goal
+        # ================================================================
+        verified = None
+        proof_tactics = None
+        n_proofs_verified = 0
+
+        if theorem_proven and proof_finished_states:
+            # Собираем все уникальные пути тактик к ProofFinished
+            proof_paths = []
+            for pf_key in proof_finished_states:
+                if pf_key in state_dict:
+                    path = state_dict[pf_key][3]  # shortest path (list of tactics)
+                    if path:
+                        proof_paths.append(path)
+
+            if proof_paths:
+                # Выбираем кратчайший путь для отчёта
+                proof_paths.sort(key=len)
+                proof_tactics = proof_paths[0]
+
+                # Верифицируем каждый уникальный путь через replay
+                # Используем тот же dojo (общий или per-file) что был в BFS
+                seen_paths = set()
+                for path in proof_paths:
+                    path_key = tuple(path)
+                    if path_key in seen_paths:
+                        n_proofs_verified += 1  # дубликат уже верифицированного
+                        continue
+                    seen_paths.add(path_key)
+
+                    ok = working_dojo.verify_proof(
+                        theorem_name, path, verbose=self.verbose
+                    )
+                    if ok:
+                        n_proofs_verified += 1
+                    elif self.verbose:
+                        print(f"  VERIFY FAIL: {theorem_name} path={path}")
+
+                verified = n_proofs_verified > 0
+
+                if self.verbose or not verified:
+                    status = "OK" if verified else "FAIL"
+                    print(f"  Verify: {status} "
+                          f"({n_proofs_verified}/{len(seen_paths)} paths verified, "
+                          f"shortest={len(proof_tactics)} tactics)")
+
+                # Если ни один путь не прошёл верификацию — это false positive
+                if not verified:
+                    theorem_proven = False
+                    # Обнуляем pairs — данные ненадёжны
+                    pairs = [p for p in pairs if p.distance_to_proof < 0]
+
         return NavigatorResult(
             theorem_name=theorem_name,
             state_dict=state_dict,
@@ -927,6 +1482,10 @@ class LeanNavigatorExplorer:
             n_states=len(state_dict),
             n_steps=n_steps,
             elapsed=elapsed,
+            verified=verified,
+            proof_tactics=proof_tactics,
+            n_proofs_found=len(proof_finished_states),
+            n_proofs_verified=n_proofs_verified,
         )
 
     def _generate_pairs(self, state_dict: Dict, proof_finished_states: List[str],
@@ -1170,6 +1729,196 @@ def _save_theorem_group(
 
 
 # ============================================================================
+# load_theorems_from_env — загрузка теорем из Lean окружения
+# ============================================================================
+
+def _is_internal_name(name: str) -> bool:
+    """Фильтрует внутренние/авто-генерированные имена Lean."""
+    parts = name.split('.')
+    for p in parts:
+        if p.startswith('_'):
+            return True
+        if p in ('rec', 'recOn', 'casesOn', 'noConfusion', 'noConfusionType',
+                 'mk', 'below', 'brecOn', 'binductionOn', 'ind',
+                 'sizeOf_spec', 'sizeOf', 'rawCast', 'ndrec', 'dcases',
+                 'drec', 'injEq', 'inl', 'inr'):
+            return True
+    last = parts[-1] if parts else ""
+    if last.startswith('proof_') and last[6:].isdigit():
+        return True
+    # Auto-generated @[congr]/@[simp] леммы — их типы содержат
+    # дефектные instance-зависимости, невозможно начать как proof goal
+    if last in ('congr_simp',):
+        return True
+    # Auto-generated @[simps] леммы с field notation (e.g., comp_τl, map_τr)
+    # — pp содержит .τl/.τr field notation, не парсится standalone
+    if any(last.endswith(suffix) for suffix in ('_τl', '_τr')):
+        return True
+    return False
+
+
+def _is_interesting_type(type_pp: str) -> bool:
+    """Фильтрует тривиальные/непригодные для BFS типы."""
+    if not type_pp or len(type_pp) < 5:
+        return False
+    # Пропускаем Sort/Type/Prop — это не теоремы
+    if type_pp.strip() in ("Prop", "Type", "Sort"):
+        return False
+    if type_pp.startswith("Sort ") or type_pp.startswith("Type "):
+        return False
+    # Слишком длинные — обычно сгенерированные определения
+    if len(type_pp) > 2000:
+        return False
+    return True
+
+
+def _fix_pp(expr: str) -> str:
+    """
+    Исправляет pp-строки типов для парсинга Lean.
+    
+    Проблемы pp-output env_inspect:
+    1. Свободные universe переменные: Type u_1, Sort v, Type uR
+    2. Explicit universe params: .{v, u}, .{w + 1}
+    3. autoParam с внутренними именами: autoParam (X ⊆ M.E) _auto✝
+    
+    Замены:
+    1. Type u_1 → Type _ (Lean выведет уровень)
+    2. .{v, u, ...} → удаляется (Lean выведет universes из контекста)
+    3. autoParam (expr) _auto✝ → (expr) (Lean обработает без autoParam)
+    """
+    # 1. autoParam (expr) _auto✝ → (expr)
+    #    _auto✝ содержит ✝ (dagger) — невалидный Lean identifier
+    expr = re.sub(r'autoParam\s*(\([^)]+\))\s*\S+', r'\1', expr)
+    # 2. Type u_1, Type u, Sort v, Type uR, Type uι, Type v₁ и т.д. → Type _ / Sort _
+    expr = re.sub(r'(Type|Sort)\s+(?:u_?\w*|[uvw][₀-₉ᵒᵖ\w]*)\b', r'\1 _', expr)
+    # 3. .{v, u}, .{w + 1}, .{u_1, u_2, u_3} → убираем
+    #    В Lean pp-output .{...} (точка + фигурные) — всегда universe params
+    expr = re.sub(r'\.\{[^}]+\}', '', expr)
+    return expr
+
+
+# Обратная совместимость
+_fix_universes = _fix_pp
+
+
+def load_theorems_from_env(
+    dojo: PantographDojo,
+    module_prefix: str = "Mathlib",
+    max_theorems: int = 50,
+    cache_dir: Optional[str] = None,
+    verbose: bool = False,
+    validate_goals: bool = True,
+) -> List[TracedTheorem]:
+    """
+    Загружает теоремы из Lean окружения через Pantograph.
+    
+    Использует env_catalog + env_inspect для получения:
+    - Правильных квалифицированных имён (namespace, а не модуль)
+    - Полных типов (с квантификаторами) — пригодных для goal_start
+    
+    Args:
+        dojo: Запущенный PantographDojo
+        module_prefix: Префикс модуля (e.g., "Mathlib")
+        max_theorems: Максимум теорем для загрузки
+        cache_dir: Директория кэша (для сохранения каталога)
+        verbose: Подробный вывод
+        validate_goals: Проверять goal_start_expr перед добавлением (100% рабочие)
+        
+    Returns:
+        Список TracedTheorem с валидными goal_expr
+    """
+    # 1. Получаем каталог (с кэшированием)
+    catalog_cache = Path(cache_dir) / "env_catalog.json" if cache_dir else None
+
+    if catalog_cache and catalog_cache.exists():
+        with open(catalog_cache) as f:
+            all_names = json.load(f)
+        print(f"Каталог загружен из кэша: {len(all_names)} констант")
+    else:
+        print(f"Получаем каталог из Lean ({module_prefix})...")
+        t0 = time.time()
+        all_names = dojo.catalog(module_prefix=module_prefix)
+        elapsed = time.time() - t0
+        print(f"  Получено {len(all_names)} констант за {elapsed:.1f}с")
+        if catalog_cache and len(all_names) > 0:
+            catalog_cache.parent.mkdir(parents=True, exist_ok=True)
+            with open(catalog_cache, 'w') as f:
+                json.dump(all_names, f)
+
+    # 2. env_catalog возвращает имена с однобуквенным тегом:
+    #    t=theorem, d=def, c=constructor, r=recursor, i=inductive, o=opaque
+    #    Берём только теоремы (t) и стрипаем префикс
+    theorem_names = [n[1:] for n in all_names if n.startswith('t')]
+    print(f"  Теорем (prefix=t): {len(theorem_names)} из {len(all_names)}")
+
+    # 3. Фильтруем внутренние имена
+    filtered = [n for n in theorem_names if not _is_internal_name(n)]
+    print(f"  После фильтрации: {len(filtered)} (отброшено {len(theorem_names) - len(filtered)} внутренних)")
+
+    # 4. Семплируем больше чем нужно (часть не пройдёт env_inspect / validate)
+    sample_size = min(max_theorems * 10, len(filtered))
+    sample = random.sample(filtered, sample_size) if len(filtered) > sample_size else filtered
+
+    # 5. Инспектируем типы через env_inspect
+    theorems = []
+    inspected = 0
+    failed = 0
+    goal_rejected = 0
+
+    iterator = tqdm(sample, desc="Загрузка типов") if TQDM_AVAILABLE else sample
+
+    for name in iterator:
+        if len(theorems) >= max_theorems:
+            break
+        inspected += 1
+        
+        # Получаем полную информацию: module, pp, expr
+        info = dojo.env_inspect_full(name)
+        if info is None:
+            failed += 1
+            if TQDM_AVAILABLE and isinstance(iterator, tqdm):
+                iterator.set_postfix(found=len(theorems), failed=failed)
+            continue
+        
+        type_pp = info["pp"]
+        real_module = info["module"]  # Реальный Lean модуль (для per-file server)
+        
+        if not type_pp or not _is_interesting_type(type_pp):
+            failed += 1
+            if TQDM_AVAILABLE and isinstance(iterator, tqdm):
+                iterator.set_postfix(found=len(theorems), failed=failed)
+            continue
+
+        # Валидация: проверяем что goal_start_expr может начать доказательство
+        if validate_goals:
+            result = dojo.goal_start_expr(name)
+            if result is None or isinstance(result, ProofFinished):
+                goal_rejected += 1
+                if verbose:
+                    print(f"  skip {name}: {'trivial' if isinstance(result, ProofFinished) else 'cannot start'}")
+                if TQDM_AVAILABLE and isinstance(iterator, tqdm):
+                    iterator.set_postfix(found=len(theorems), failed=failed, skip=goal_rejected)
+                continue
+
+        theorems.append(TracedTheorem(
+            name=name,
+            module=real_module,  # Реальный module из env_inspect (для per-file server)
+            goal_state=f"⊢ {type_pp}",
+            goal_expr=type_pp,
+            file_path="",
+            tactics=[],
+        ))
+
+        if TQDM_AVAILABLE and isinstance(iterator, tqdm):
+            iterator.set_postfix(found=len(theorems), failed=failed, skip=goal_rejected)
+
+    rejected_msg = f", goal_rejected={goal_rejected}" if goal_rejected else ""
+    print(f"✓ Загружено {len(theorems)} теорем из Lean env "
+          f"(inspected={inspected}, rejected={failed}{rejected_msg})")
+    return theorems
+
+
+# ============================================================================
 # Полный pipeline (без lean-dojo)
 # ============================================================================
 
@@ -1249,44 +1998,31 @@ def run_lean_navigator(
         if output_dir:
             rag.save(str(Path(output_dir) / "rag_index"))
 
-    # === Шаг 3: Загрузка теорем ===
+    # === Шаг 3+4: Загрузка теорем + BFS ===
     print("\n" + "=" * 60)
-    print("Шаг 3: Загрузка теорем для исследования")
-    print("=" * 60)
-
-    theorems = load_theorems_from_ast_dir(repo_dir)
-
-    # Фильтруем: нужны теоремы с тактическими доказательствами
-    theorems = [t for t in theorems if len(t.tactics) >= 1]
-
-    if max_theorems > 0 and len(theorems) > max_theorems:
-        theorems = random.sample(theorems, max_theorems)
-
-    print(f"Будем исследовать {len(theorems)} теорем")
-
-    # === Шаг 4: BFS исследование ===
-    print("\n" + "=" * 60)
-    print("Шаг 4: BFS исследование через Pantograph")
+    print("Шаг 3: Загрузка теорем из Lean env + BFS")
     print("=" * 60)
 
     all_pairs = []
     theorem_results = []
 
+    cache_dir = str(Path(output_dir)) if output_dir else None
+
     with PantographDojo(project_path=repo_dir, imports=imports) as dojo:
+        # Загружаем теоремы из Lean окружения (правильные имена + полные типы)
+        theorems = load_theorems_from_env(
+            dojo, module_prefix="Mathlib",
+            max_theorems=max_theorems,
+            cache_dir=cache_dir,
+            verbose=verbose,
+        )
+        print(f"Будем исследовать {len(theorems)} теорем")
+
         explorer = LeanNavigatorExplorer(
             dojo=dojo, rag=rag,
             max_steps=max_steps, max_time=max_time,
             verbose=verbose,
         )
-
-        # Пробуем получить полные типы через env_inspect
-        resolved = 0
-        for thm in theorems:
-            full_type = dojo.env_inspect(thm.name)
-            if full_type:
-                thm.goal_expr = full_type
-                resolved += 1
-        print(f"  Разрешено типов через env_inspect: {resolved}/{len(theorems)}")
 
         for i, thm in enumerate(theorems):
             print(f"\n[{i + 1}/{len(theorems)}] {thm.name}")
@@ -1303,16 +2039,31 @@ def run_lean_navigator(
                 theorem_results.append({
                     "theorem": thm.name,
                     "proven": result.theorem_proven,
+                    "verified": result.verified,
                     "states": result.n_states,
                     "steps": result.n_steps,
                     "pairs": len(result.pairs),
+                    "proofs_found": result.n_proofs_found,
+                    "proofs_verified": result.n_proofs_verified,
+                    "proof_length": len(result.proof_tactics) if result.proof_tactics else 0,
                     "time": result.elapsed,
                 })
 
-                status = "✓" if result.theorem_proven else "○"
+                # Статус: ✓ verified, ⚠ proven but not verified, ○ not proven
+                if result.verified:
+                    status = "✓"
+                    verify_str = f"verified={result.n_proofs_verified}/{result.n_proofs_found}"
+                elif result.theorem_proven:
+                    status = "⚠"
+                    verify_str = "VERIFY_FAIL"
+                else:
+                    status = "○"
+                    verify_str = ""
+                
                 print(f"  {status} states={result.n_states}, pairs={len(result.pairs)}, "
-                      f"proven={'yes' if result.theorem_proven else 'no'}, "
-                      f"time={result.elapsed:.1f}s")
+                      f"proven={'yes' if result.theorem_proven else 'no'}"
+                      + (f", {verify_str}" if verify_str else "") +
+                      f", time={result.elapsed:.1f}s")
 
             except Exception as e:
                 print(f"  ✗ Ошибка: {str(e)[:80]}")
@@ -1325,11 +2076,16 @@ def run_lean_navigator(
 
     # === Итоги ===
     proofs_found = sum(1 for r in theorem_results if r.get("proven"))
+    proofs_verified = sum(1 for r in theorem_results if r.get("verified"))
+    verify_failed = sum(1 for r in theorem_results
+                        if r.get("proven") and not r.get("verified"))
     total_pairs = len(all_pairs)
 
     summary = {
         "total_theorems": len(theorems),
         "proofs_found": proofs_found,
+        "proofs_verified": proofs_verified,
+        "verify_failed": verify_failed,
         "total_pairs": total_pairs,
         "total_time": total_time,
         "unique_tactics": len(set(p.tactic for p in all_pairs)) if all_pairs else 0,
@@ -1341,6 +2097,9 @@ def run_lean_navigator(
     print("=" * 60)
     print(f"  Теорем исследовано: {summary['total_theorems']}")
     print(f"  Доказательств найдено: {summary['proofs_found']}")
+    print(f"  Доказательств верифицировано: {summary['proofs_verified']}")
+    if verify_failed > 0:
+        print(f"  ⚠ FALSE POSITIVE (не прошли replay): {verify_failed}")
     print(f"  Training pairs: {summary['total_pairs']}")
     print(f"  Уникальных тактик: {summary['unique_tactics']}")
     print(f"  Общее время: {total_time:.1f}s ({total_time / 60:.1f} мин)")

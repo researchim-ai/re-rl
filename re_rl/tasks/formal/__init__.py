@@ -4,14 +4,17 @@ Formal mathematics tasks - генерация теорем и доказател
 
 Модуль включает:
 
-1. **Шаблонная генерация** (без LeanDojo):
+1. **Шаблонная генерация** (без зависимостей):
    - LeanProofTask — задачи на доказательство из шаблонов
    - THEOREM_TEMPLATES — 24+ предопределённых теорем
 
-2. **Генерация через BFS** (требует LeanDojo):
-   - StateExplorer — исследование графа состояний
-   - TacticGenerator — генерация тактик без ML
-   - LeanDatasetGenerator — сбор датасетов для обучения
+2. **LeanNavigator** (BFS через Pantograph):
+   - LeanNavigatorExplorer — BFS исследование графа переходов
+   - TacticRAG — FAISS retrieval тактик
+   - PantographDojo — обёртка над Pantograph Server
+   - TacticBERTTrainer — обучение BERT retriever
+
+3. Будущие подходы добавляются как поддиректории tasks/formal/<approach>/
 
 Пример шаблонной генерации:
     >>> from re_rl.tasks.formal import LeanProofTask
@@ -19,17 +22,13 @@ Formal mathematics tasks - генерация теорем и доказател
     >>> task.solve()
     >>> print(task.to_sft_format())
 
-Пример генерации датасета (требует LeanDojo):
-    >>> from re_rl.tasks.formal import generate_lean_dataset
-    >>> stats = generate_lean_dataset(
-    ...     repo_url="https://github.com/leanprover-community/mathlib4",
-    ...     commit="abc123",
-    ...     output_dir="./my_dataset",
-    ...     max_theorems=100,
+Пример LeanNavigator:
+    >>> from re_rl.tasks.formal.lean_navigator import (
+    ...     PantographDojo, LeanNavigatorExplorer, run_lean_navigator,
     ... )
 """
 
-# === Шаблонная генерация (работает без LeanDojo) ===
+# === Шаблонная генерация (работает без зависимостей) ===
 from re_rl.tasks.formal.lean_proof_task import (
     LeanProofTask,
     generate_lean_proof_task,
@@ -42,19 +41,6 @@ from re_rl.tasks.formal.theorem_templates import (
     get_random_template,
 )
 
-# === Утилиты для работы с Lean ===
-from re_rl.tasks.formal.lean_utils import (
-    ProofState,
-    PriorityQueue,
-    extract_hypotheses,
-    extract_variables,
-    extract_goal,
-    classify_lean_elements,
-    state_complexity,
-    tokenize_lean_tactic,
-    LEAN4_TACTICS,
-)
-
 # === Генерация тактик (без ML) ===
 from re_rl.tasks.formal.tactic_generator import (
     TacticGenerator,
@@ -63,45 +49,6 @@ from re_rl.tasks.formal.tactic_generator import (
     GOAL_PATTERN_TACTICS,
     generate_tactics,
     generate_tactics_for_goal,
-)
-
-# === BFS исследование и генерация датасетов ===
-from re_rl.tasks.formal.state_explorer import (
-    StateExplorer,
-    StateNode,
-    TrainingPair,
-    ExplorationResult,
-    ExplorationStats,
-    explore_theorem,
-)
-from re_rl.tasks.formal.dataset_generator import (
-    LeanDatasetGenerator,
-    DatasetConfig,
-    DatasetStats,
-    generate_lean_dataset,
-)
-
-# === ML-ускоренная генерация тактик ===
-from re_rl.tasks.formal.ml_tactic_generator import (
-    MLTacticGenerator,
-    HFTacticGenerator,
-    ExternalAPITacticGenerator,
-    LeanDojoProverGenerator,
-    EmbeddingTacticRetriever,
-    HybridTacticGenerator,
-    create_ml_generator,
-)
-
-# === LeanNavigator (воспроизведение статьи) ===
-from re_rl.tasks.formal.lean_navigator import (
-    TacticTemplateExtractor,
-    TacticRAG,
-    PantographDojo,
-    LeanNavigatorExplorer,
-    run_lean_navigator,
-    NavigatorResult,
-    TracedTheorem,
-    load_theorems_from_ast_dir,
 )
 
 # === Утилиты установки ===
@@ -114,6 +61,62 @@ from re_rl.tasks.formal.setup_lean_repos import (
     _apply_extractor_fix,
 )
 
+# === LeanNavigator (lazy import — тяжёлые зависимости) ===
+# Прямые импорты для обратной совместимости:
+# from re_rl.tasks.formal import PantographDojo, TacticRAG, etc.
+try:
+    from re_rl.tasks.formal.lean_navigator import (
+        # Core
+        TacticTemplateExtractor,
+        TacticRAG,
+        PantographDojo,
+        LeanNavigatorExplorer,
+        run_lean_navigator,
+        NavigatorResult,
+        TracedTheorem,
+        load_theorems_from_ast_dir,
+        load_theorems_from_env,
+        # Lean Utils
+        ProofState,
+        PriorityQueue,
+        extract_hypotheses,
+        extract_variables,
+        extract_goal,
+        classify_lean_elements,
+        state_complexity,
+        tokenize_lean_tactic,
+        LEAN4_TACTICS,
+        # State Explorer
+        StateExplorer,
+        StateNode,
+        TrainingPair,
+        ExplorationResult,
+        ExplorationStats,
+        explore_theorem,
+        # Dataset Generator
+        LeanDatasetGenerator,
+        DatasetConfig,
+        DatasetStats,
+        generate_lean_dataset,
+        # ML Tactic Generator
+        MLTacticGenerator,
+        HFTacticGenerator,
+        ExternalAPITacticGenerator,
+        LeanDojoProverGenerator,
+        EmbeddingTacticRetriever,
+        HybridTacticGenerator,
+        create_ml_generator,
+        # RAG Trainer
+        TacticTripletDataset,
+        TripletLoss,
+        TripletDataGenerator,
+        TacticBERTTrainer,
+        TrainedTacticRAG,
+        train_tactic_rag,
+    )
+except ImportError:
+    pass  # Тяжёлые зависимости не установлены — это нормально
+
 __all__ = [
     # Шаблонная генерация
     "LeanProofTask",
@@ -124,17 +127,6 @@ __all__ = [
     "get_theorem_categories",
     "get_random_template",
     
-    # Утилиты
-    "ProofState",
-    "PriorityQueue",
-    "extract_hypotheses",
-    "extract_variables",
-    "extract_goal",
-    "classify_lean_elements",
-    "state_complexity",
-    "tokenize_lean_tactic",
-    "LEAN4_TACTICS",
-    
     # Генерация тактик
     "TacticGenerator",
     "TacticTemplateGen",
@@ -143,39 +135,6 @@ __all__ = [
     "generate_tactics",
     "generate_tactics_for_goal",
     
-    # BFS исследование
-    "StateExplorer",
-    "StateNode",
-    "TrainingPair",
-    "ExplorationResult",
-    "ExplorationStats",
-    "explore_theorem",
-    
-    # Генерация датасетов
-    "LeanDatasetGenerator",
-    "DatasetConfig",
-    "DatasetStats",
-    "generate_lean_dataset",
-    
-    # ML генераторы тактик
-    "MLTacticGenerator",
-    "HFTacticGenerator",
-    "ExternalAPITacticGenerator",
-    "LeanDojoProverGenerator",
-    "EmbeddingTacticRetriever",
-    "HybridTacticGenerator",
-    "create_ml_generator",
-    
-    # LeanNavigator
-    "TacticTemplateExtractor",
-    "TacticRAG",
-    "PantographDojo",
-    "LeanNavigatorExplorer",
-    "run_lean_navigator",
-    "NavigatorResult",
-    "TracedTheorem",
-    "load_theorems_from_ast_dir",
-    
     # Утилиты установки
     "LEAN_REPOS",
     "add_custom_mathlib4",
@@ -183,4 +142,21 @@ __all__ = [
     "list_cached_repos",
     "check_elan_installed",
     "_apply_extractor_fix",
+    
+    # LeanNavigator (доступны если установлены зависимости)
+    "TacticTemplateExtractor", "TacticRAG", "PantographDojo",
+    "LeanNavigatorExplorer", "run_lean_navigator", "NavigatorResult",
+    "TracedTheorem", "load_theorems_from_ast_dir", "load_theorems_from_env",
+    "ProofState", "PriorityQueue", "extract_hypotheses", "extract_variables",
+    "extract_goal", "classify_lean_elements", "state_complexity",
+    "tokenize_lean_tactic", "LEAN4_TACTICS",
+    "StateExplorer", "StateNode", "TrainingPair",
+    "ExplorationResult", "ExplorationStats", "explore_theorem",
+    "LeanDatasetGenerator", "DatasetConfig", "DatasetStats",
+    "generate_lean_dataset",
+    "MLTacticGenerator", "HFTacticGenerator", "ExternalAPITacticGenerator",
+    "LeanDojoProverGenerator", "EmbeddingTacticRetriever",
+    "HybridTacticGenerator", "create_ml_generator",
+    "TacticTripletDataset", "TripletLoss", "TripletDataGenerator",
+    "TacticBERTTrainer", "TrainedTacticRAG", "train_tactic_rag",
 ]

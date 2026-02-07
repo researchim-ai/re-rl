@@ -28,7 +28,7 @@ from .state_explorer import (
     TrainingPair,
     ExplorationStats,
 )
-from .tactic_generator import TacticGenerator
+from re_rl.tasks.formal.tactic_generator import TacticGenerator
 
 logger = logging.getLogger(__name__)
 

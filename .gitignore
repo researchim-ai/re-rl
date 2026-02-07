@@ -178,3 +178,4 @@ examples/grpo_trainer_lora_model/
 examples/grpo_saved_lora/
 examples/outputs_artificial_task/
 examples/datasets/
+datasets/*

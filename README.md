@@ -181,105 +181,44 @@ datasets:
 # Формат уже совместим с alpaca (instruction/input/output)
 ```
 
-## Formal Math: генерация данных для Theorem Proving (LeanNavigator)
+## Formal Math: Theorem Proving в Lean 4
 
-Помимо текстовых задач, RE-RL поддерживает генерацию данных из **формальных доказательств Lean 4** по подходу [LeanNavigator](https://arxiv.org/abs/2502.10000) (Yin & Gao, 2025).
+Помимо текстовых задач, RE-RL воспроизводит pipeline генерации training data из формальных доказательств Lean 4 по подходу [LeanNavigator](https://arxiv.org/abs/2502.10000) (Yin & Gao, 2025) — BFS-обход графа состояний Mathlib4 через Pantograph с BERT+FAISS retrieval тактик.
 
-### Идея
-
-В Lean 4 доказательство — это последовательность **переходов между состояниями**. Тактика трансформирует текущее состояние (гипотезы + цель) в новое, пока не достигнуто `ProofFinished`. LeanNavigator рассматривает это как **граф** и обходит его через BFS:
-
-```
-State₀ (goal теоремы)
-  ├── omega       → ProofFinished ✓   ← training pair (distance=0)
-  ├── norm_cast   → ProofFinished ✓   ← training pair (distance=0)
-  ├── induction a → SubGoal₁, SubGoal₂ ← training pair (distance=2)
-  │     └── simp  → ProofFinished ✓
-  └── congr       → сложные подцели   ← training pair (branch)
-```
-
-Каждый успешный переход `(state, tactic) → next_state` записывается как **training pair**. Из одной теоремы получаются десятки пар — модель учится не только "как доказать", но и "какие тактики вообще применимы".
-
-### Масштаб оригинала
-
-| Метрика | LeanNavigator |
-|---|---|
-| Репозиторий | Mathlib4 (100K+ теорем) |
-| Результат | 4.7M теорем, 1B токенов |
-| Модель | Flan-T5 (350M) → превосходит ReProver |
-
-### Быстрый старт
+Подробная документация и пошаговое руководство по воспроизведению: [`re_rl/tasks/formal/README.md`](re_rl/tasks/formal/README.md)
 
 ```bash
-# Зависимости
-pip install lean-dojo
-curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh
+# Быстрый старт (после установки elan + pip install -e .)
+python scripts/fast_trace.py --version v4.26.0   # трейсинг Mathlib4
+python examples/train_rag.py                      # обучение BERT retriever
+python examples/run_bfs.py --max-theorems 50      # BFS генерация training pairs
 ```
-
-```python
-from lean_dojo import LeanGitRepo, Theorem, Dojo, trace
-from re_rl.tasks.formal import StateExplorer, LEAN_REPOS
-
-# Скачиваем и трейсим репозиторий
-repo_info = LEAN_REPOS["lean4-example"]
-repo = LeanGitRepo(repo_info["url"], repo_info["commit"])
-traced_repo = trace(repo)
-
-# Извлекаем теоремы
-for tf in traced_repo.traced_files:
-    for thm in tf.get_traced_theorems():
-        theorem = Theorem(repo, str(tf.lean_file.path), thm.theorem.full_name)
-        break
-    break
-
-# BFS генерация
-explorer = StateExplorer(max_steps=500, max_time=60, max_depth=8)
-with Dojo(theorem) as (dojo, state_0):
-    result, pairs, stats = explorer.explore(dojo, state_0, theorem.full_name)
-
-print(f"Training pairs: {len(pairs)}, Proof found: {stats.proof_found}")
-```
-
-Полный pipeline — в notebook [`examples/Formal_Math_Generation.ipynb`](examples/Formal_Math_Generation.ipynb).
-
-Подробная документация модуля — [`re_rl/tasks/formal/README.md`](re_rl/tasks/formal/README.md).
 
 ## Структура проекта
 
 ```
 re_rl/
 ├── tasks/
-│   ├── math/              # Математические задачи
-│   │   ├── algebra/       # Уравнения
-│   │   ├── analysis/      # Анализ, интегралы
-│   │   ├── geometry/      # Геометрия
-│   │   ├── discrete/      # Дискретная математика
-│   │   ├── probability/   # Теория вероятностей
-│   │   └── logic/         # Логические задачи
-│   ├── physics/           # Физические задачи
-│   │   ├── mechanics/     # Кинематика, динамика
-│   │   ├── electricity/   # Электричество, магнетизм
-│   │   ├── thermodynamics/
-│   │   ├── waves/
-│   │   ├── quantum/       # Квантовая механика
-│   │   ├── nuclear/       # Ядерная физика
-│   │   ├── relativity/    # СТО
-│   │   ├── oscillations/
-│   │   ├── fluids/
-│   │   └── astrophysics/
-│   ├── formal/            # Formal Math (LeanNavigator)
-│   │   ├── state_explorer.py      # BFS по графу состояний
-│   │   ├── tactic_generator.py    # Rule-based генерация тактик
-│   │   ├── lean_utils.py          # Парсинг Lean состояний
-│   │   ├── dataset_generator.py   # Оркестрация генерации
-│   │   ├── ml_tactic_generator.py # ML-ускорение (опционально)
-│   │   └── setup_lean_repos.py    # Управление Lean репозиториями
-│   ├── prompts.py         # Все текстовые шаблоны (ru/en)
-│   ├── generators.py      # Генераторы математических задач
-│   └── base_task.py       # Базовые классы
+│   ├── math/              # Математические задачи (34 типа)
+│   ├── physics/           # Физические задачи (18 типов)
+│   └── formal/            # Formal Math — см. formal/README.md
+│       ├── lean_navigator/    # Подход LeanNavigator (BFS + Pantograph + RAG)
+│       │   ├── core.py            # BFS exploration + PantographDojo + TacticRAG
+│       │   ├── rag_trainer.py     # Обучение BERT retriever (triplet loss)
+│       │   ├── state_explorer.py  # State exploration
+│       │   ├── dataset_generator.py
+│       │   ├── lean_utils.py
+│       │   └── ml_tactic_generator.py
+│       ├── lean_proof_task.py # Шаблонные задачи (без зависимостей)
+│       ├── theorem_templates.py
+│       └── tactic_generator.py
 ├── dataset_generator.py   # Генератор датасетов
 ├── environments/          # RL окружения
-└── examples/              # Примеры использования
+scripts/
+└── fast_trace.py          # Трейсинг Mathlib4
+examples/
+├── run_bfs.py             # BFS генерация (скрипт)
+└── train_rag.py           # Обучение RAG retriever
 ```
 
 ## Подходит ли для SFT?
@@ -306,15 +245,68 @@ re_rl/
 Ответ: Eсв = 27.27 МэВ (6.82 МэВ/нуклон)
 ```
 
-## Тестирование
+## Тестирование и бенчмарки
+
+### Быстрая проверка (все задачи)
 
 ```bash
-# Запуск всех тестов
+# Запуск всех unit-тестов (~1 мин)
 pytest tests/
 
-# Тест всех типов задач
+# Тест всех 52 типов задач (math + physics)
 python examples/test_all_tasks.py
 ```
+
+### Formal Math бенчмарк (LeanNavigator)
+
+Требует: `elan` (Lean toolchain), `pantograph`, `faiss-cpu`, `sentence-transformers`.
+
+#### Установка и подготовка
+
+```bash
+# Установка Python-пакета
+pip install -e .
+
+# Трейсинг Mathlib4 (один раз, ~30-60 мин, результат кэшируется)
+python scripts/fast_trace.py --version v4.26.0
+```
+
+#### Бенчмарк: Pretrained SBERT vs Обученный BERT
+
+Ключевой эксперимент — сравнение качества RAG retriever.
+`--seed 42` фиксирует выборку теорем, чтобы оба прогона работали на **одних и тех же** 50 теоремах.
+
+```bash
+# ──── Прогон 1: Pretrained SBERT (all-MiniLM-L6-v2, без обучения) ────
+python examples/run_bfs.py --seed 42 --max-theorems 50 --rag-model sbert
+# Ожидаемый результат: ~13/50 доказано, ~170 training pairs, ~5 мин
+
+# ──── Обучение BERT retriever (triplet loss на traced данных) ────
+python examples/train_rag.py
+# ~30-60 мин на GPU, несколько часов на CPU
+# Быстрый вариант: python examples/train_rag.py --max-files 100 --num-epochs 1
+
+# ──── Прогон 2: Обученный BERT (те же 50 теорем) ────
+python examples/run_bfs.py --seed 42 --max-theorems 50 --rag-model trained
+# Ожидаемый результат: больше доказательств (BERT учился на Lean тактиках)
+```
+
+Результаты сохраняются в `datasets/formal_math_data/` — можно сравнить `proven`, `pairs`, тактики.
+
+#### Другие режимы запуска
+
+```bash
+# Быстрый тест (5 теорем, ~30 сек)
+python examples/run_bfs.py --max-theorems 5 --max-steps 3000 --max-time 15 --verbose
+
+# Полный прогон (500 теорем, ~1-2 часа)
+python examples/run_bfs.py --max-theorems 500 --max-steps 50000 --max-time 300
+
+# Без per-file server fallback (только shared server)
+python examples/run_bfs.py --seed 42 --max-theorems 50 --no-per-file
+```
+
+Подробная документация: [`re_rl/tasks/formal/README.md`](re_rl/tasks/formal/README.md)
 
 ## Лицензия
 

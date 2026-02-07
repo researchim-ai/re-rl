@@ -10,12 +10,14 @@ z3-solver
 # ── Datasets & ML ──
 datasets
 sentence-transformers>=2.0
+transformers>=4.30
+torch>=2.0
 
-# ── Formal Math (LeanNavigator pipeline) ──
-# pantograph — Lean 4 interactive proving (совместим с Mathlib4 v4.26.0 / Lean 4.26.0)
-pantograph @ git+https://github.com/stanford-centaur/PyPantograph.git@551e21b6f67d8ff71531d8eac937de9baff4b6b3
-# faiss-cpu — FAISS vector similarity search
+# ── Formal Math ──
 faiss-cpu>=1.7
+nest-asyncio
+# pantograph 0.3.11 — Lean 4 interactive proving (совместим с Mathlib4 v4.26.0)
+pantograph @ git+https://github.com/stanford-centaur/PyPantograph.git@551e21b6f67d8ff71531d8eac937de9baff4b6b3
 
 # ── Dev / Test ──
 pytest

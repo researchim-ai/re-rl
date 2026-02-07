@@ -1,11 +1,22 @@
 from setuptools import setup, find_packages
 
+
 def read_requirements():
-    with open("requirements.txt", "r", encoding="utf-8") as req_file:
-        return [
-            line.strip() for line in req_file
-            if line.strip() and not line.strip().startswith("#")
-        ]
+    """Читает requirements.txt, корректно обрабатывая git-зависимости."""
+    deps = []
+    with open("requirements.txt", "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith("#"):
+                continue
+            # setuptools не поддерживает "pkg @ git+..." в install_requires,
+            # но pip install -r requirements.txt — поддерживает.
+            # Для setup.py оставляем только имя пакета.
+            if " @ " in line:
+                line = line.split(" @ ")[0].strip()
+            deps.append(line)
+    return deps
+
 
 setup(
     name='re_rl',
