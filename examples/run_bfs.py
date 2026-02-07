@@ -68,6 +68,27 @@ def parse_args():
                         help="Random seed для воспроизводимости")
     parser.add_argument("--no-per-file", action="store_true",
                         help="Не использовать per-file server (старый способ, менее надёжный)")
+    parser.add_argument("--no-early-stop", action="store_true",
+                        help="Отключить раннюю остановку (1/3 бюджета). "
+                             "Полезно для нетривиальных теорем.")
+    parser.add_argument("--bench", default=None,
+                        help="JSON файл с бенчмарком теорем (список {name, module, goal_state, goal_expr}). "
+                             "Можно ограничить через --max-theorems.")
+    parser.add_argument("--ban-tactics", default=None,
+                        help="Список забаненных тактик через запятую. BFS не будет "
+                             "применять эти тактики, что заставит искать "
+                             "многошаговые доказательства. "
+                             "Пример: --ban-tactics simp,simp_all,aesop,omega,tauto,decide")
+    parser.add_argument("--no-auto", action="store_true",
+                        help="Пресет: забанить нуклеарные тактики-упрощатели "
+                             "(simp, simp_all, aesop, omega, tauto, decide, norm_num, "
+                             "linarith, ring, trivial, simpa, positivity, field_simp). "
+                             "Заставляет BFS искать многошаговые доказательства.")
+    parser.add_argument("--min-proof-length", type=int, default=0,
+                        help="Мин длина доказательства (distance_to_proof). "
+                             "Пары с distance < N отфильтровываются из датасета. "
+                             "Пример: --min-proof-length 4 оставит только пары, "
+                             "где от состояния нужно >= 4 тактик до proof.")
     return parser.parse_args()
 
 
@@ -227,6 +248,7 @@ def main():
         PantographDojo,
         LeanNavigatorExplorer,
         load_theorems_from_env,
+        TracedTheorem,
         TrainedTacticRAG,
     )
 
@@ -328,17 +350,39 @@ def main():
     total_start = time.time()
 
     with PantographDojo(project_path=str(REPO_DIR), imports=["Mathlib"]) as dojo:
-        # Загружаем теоремы из Lean окружения (правильные имена + полные типы)
-        # validate_goals=True: проверяем goal_start_expr на shared сервере,
-        # пропускаем нестартуемые (auto-generated и т.п.)
-        theorems = load_theorems_from_env(
-            dojo,
-            module_prefix="Mathlib",
-            max_theorems=args.max_theorems if args.max_theorems > 0 else 500,
-            cache_dir=str(NAV_DATA),
-            verbose=args.verbose,
-            validate_goals=True,
-        )
+        if args.bench:
+            # Загрузка бенчмарка из JSON
+            bench_path = Path(args.bench)
+            if not bench_path.exists():
+                print(f"ОШИБКА: бенчмарк не найден: {bench_path}")
+                sys.exit(1)
+            with open(bench_path) as f:
+                bench_data = json.load(f)
+            theorems = [
+                TracedTheorem(
+                    name=d["name"],
+                    module=d.get("module", ""),
+                    goal_state=d.get("goal_state", f"⊢ {d.get('type_pp', '')}"),
+                    goal_expr=d.get("type_pp", d.get("goal_expr", "")),
+                    file_path="",
+                    tactics=[],
+                )
+                for d in bench_data
+            ]
+            # Применяем --max-theorems и к бенчмарку
+            if args.max_theorems > 0 and len(theorems) > args.max_theorems:
+                theorems = theorems[:args.max_theorems]
+            print(f"Бенчмарк загружен: {len(theorems)} теорем из {bench_path}")
+        else:
+            # Загружаем теоремы из Lean окружения (правильные имена + полные типы)
+            theorems = load_theorems_from_env(
+                dojo,
+                module_prefix="Mathlib",
+                max_theorems=args.max_theorems if args.max_theorems > 0 else 500,
+                cache_dir=str(NAV_DATA),
+                verbose=args.verbose,
+                validate_goals=True,
+            )
 
         mode = "shared server" if args.no_per_file else "shared + per-file fallback"
         print(f"\nЗапускаем BFS на {len(theorems)} теоремах...")
@@ -346,11 +390,30 @@ def main():
         print(f"  goal_start mode: {mode}")
         print()
 
+        # Парсим забаненные тактики
+        banned = set()
+        if args.ban_tactics:
+            banned = {t.strip() for t in args.ban_tactics.split(",") if t.strip()}
+        if args.no_auto:
+            _NO_AUTO_SET = {
+                "simp", "simp_all", "aesop", "omega", "tauto", "decide",
+                "norm_num", "linarith", "ring", "trivial", "simpa",
+                "positivity", "field_simp", "norm_cast", "push_cast",
+                "simp_arith", "ring_nf", "nlinarith",
+            }
+            banned |= _NO_AUTO_SET
+        if banned:
+            print(f"  Забаненные тактики ({len(banned)}): {sorted(banned)}")
+        if args.min_proof_length > 0:
+            print(f"  Мин длина доказательства: {args.min_proof_length}")
+
         explorer = LeanNavigatorExplorer(
             dojo=dojo, rag=rag,
             max_steps=args.max_steps,
             max_time=args.max_time,
             verbose=args.verbose,
+            early_stop=not args.no_early_stop,
+            banned_tactics=banned,
         )
 
         for i, thm in enumerate(theorems):
@@ -364,7 +427,16 @@ def main():
                     exit_on_finish=False,
                 )
 
-                all_pairs.extend(result.pairs)
+                # Фильтрация по min_proof_length
+                if args.min_proof_length > 0:
+                    filtered = [
+                        p for p in result.pairs
+                        if p.distance_to_proof >= args.min_proof_length
+                        or p.distance_to_proof < 0  # negative examples сохраняем
+                    ]
+                    all_pairs.extend(filtered)
+                else:
+                    all_pairs.extend(result.pairs)
                 elapsed = time.time() - t0
 
                 # Статус: ✓ verified, ⚠ proven but verify failed, ○ not proven

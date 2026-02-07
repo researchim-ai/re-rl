@@ -59,7 +59,10 @@ except ImportError:
 try:
     import nest_asyncio
     nest_asyncio.apply()
-except ImportError:
+except (ImportError, ValueError):
+    # ValueError: Ray workers используют uvloop, который nest_asyncio
+    # не может патчить. Это нормально — в worker'ах вложенные event loops
+    # не нужны (Pantograph создаёт свой loop).
     pass
 
 try:
@@ -74,11 +77,13 @@ except ImportError:
 # Константы из LeanNavigator
 # ============================================================================
 
-MAX_STEPS = 200000
+MAX_STEPS = 100000          # авторы: 100000 (в статье 200000 для финального прогона)
 MAX_TACTIC_FROM_TEMPLATE = 50
 PENALTY_SEEN_TARGET_MULTIPLIER = 3
-MAX_NUM_OUTPUT_PER_STATE = 50
-MAX_DISTANCE = 8  # макс расстояние до ProofFinished
+MAX_NUM_DOJO_ATTEMPT = 2    # авторы: retry run_tac до 2 раз
+MAX_NUM_OUTPUT_PER_STATE = 50  # макс пар на одно состояние
+MAX_DISTANCE = 8            # макс расстояние до ProofFinished
+MAX_PROVEN_STATES = 1000    # авторы: макс ProofFinished для обхода
 
 # Тактики Lean 4 (из leannavigator/utils/lean_math_utils.py)
 LEAN_TACTICS = [
@@ -1172,12 +1177,38 @@ class LeanNavigatorExplorer:
 
     def __init__(self, dojo: PantographDojo, rag: TacticRAG,
                  max_steps: int = MAX_STEPS, max_time: int = 1200,
-                 verbose: bool = False):
+                 verbose: bool = False, early_stop: bool = True,
+                 banned_tactics: Optional[set] = None):
         self.dojo = dojo
         self.rag = rag
         self.max_steps = max_steps
         self.max_time = max_time
         self.verbose = verbose
+        self.early_stop = early_stop
+        # Множество "корневых" имён тактик, которые BFS не будет применять.
+        # Пример: {"simp", "simp_all", "aesop", "omega", "tauto", "decide"}
+        # Это заставляет BFS искать многошаговые доказательства вместо
+        # одношаговых "нуклеарных" завершений.
+        self.banned_tactics = banned_tactics or set()
+
+    @staticmethod
+    def _tactic_root(tactic: str) -> str:
+        """Извлекает корневое имя тактики (первое слово, без '·' и пробелов).
+        
+        Примеры:
+            '· simp_all'     → 'simp_all'
+            'simp [nvar5]'   → 'simp'
+            'rintro ⟨a⟩'    → 'rintro'
+            'exact foo'      → 'exact'
+        """
+        s = tactic.strip()
+        if s.startswith("·"):
+            s = s[1:].strip()
+        # Первое слово (до пробела, [, (, {, ⟨)
+        for i, ch in enumerate(s):
+            if ch in (' ', '\t', '[', '(', '{', '\u27e8'):  # ⟨
+                return s[:i]
+        return s
 
     def _create_per_file_dojo(self, module: str) -> 'PantographDojo':
         """
@@ -1292,9 +1323,13 @@ class LeanNavigatorExplorer:
     def _run_bfs(self, state_0, working_dojo, per_file_dojo,
                  theorem_name, theorem_code, start_time,
                  exit_on_finish=False):
-        """Внутренний BFS — вынесен чтобы explore() мог гарантировать cleanup."""
+        """Внутренний BFS — вынесен чтобы explore() мог гарантировать cleanup.
+        
+        Воспроизводит Algorithm 1 (ExploreStates) из LeanNavigator.
+        """
         state_queue = PriorityQueue()
-        # state_dict: key=state.pp, value=(state, [parent_states], [tactics], shortest_path)
+        # state_dict: key=state.pp (или "ProofFinished_N"), 
+        # value=(state, [parent_states], [tactics], shortest_path)
         state_dict = {}
         seen_target_freq = {}
 
@@ -1306,6 +1341,15 @@ class LeanNavigatorExplorer:
         base_complexity += 1
         state_dict[state_0.pp] = (state_0, [], [], [])
 
+        # Авторы: удаляют из type_of_item переменные, которых нет в theorem_code.
+        # Это уменьшает кол-во подстановок и делает тактики более прицельными.
+        unused_vars = []
+        if theorem_code:
+            tokens = tokenize_lean_tactic(theorem_code)
+            tokens = [x for x in tokens if x.strip() != '']
+            init_type_of_item, _ = classify_lean_elements(state_0.pp)
+            unused_vars = [x for x in init_type_of_item.keys() if x not in tokens]
+
         n_steps = 0
         theorem_proven = False
         proof_finished_states = []
@@ -1316,19 +1360,25 @@ class LeanNavigatorExplorer:
                 continue
 
             # Классифицируем элементы состояния
-            type_of_item, _ = classify_lean_elements(curr_state.pp)
+            type_of_item, def_of_item = classify_lean_elements(curr_state.pp)
+            
+            # Авторы: удаляем unused_vars из type_of_item
+            for var in unused_vars:
+                type_of_item.pop(var, None)
+                def_of_item.pop(var, None)
 
             if self.verbose and n_steps == 0:
                 print(f"INIT_STATE: {curr_state.pp}")
 
             # RAG: получаем шаблоны тактик
+            # Авторы: query = theorem_code + ' # ' + curr_state.pp
             query_text = theorem_code if theorem_code else theorem_name
             suggestions = self.rag.get_similar_templates(
                 curr_state.pp, theorem_code=query_text, num_returned=200
             )
             tac_templates = [s[0] for s in suggestions]
 
-            # Добавляем обратные rw тактики
+            # Добавляем обратные rw тактики (точно как у авторов)
             for tac_template in list(tac_templates):
                 inv = get_inverse_tactic(tac_template)
                 if inv and inv not in tac_templates:
@@ -1339,10 +1389,44 @@ class LeanNavigatorExplorer:
             for tac_template in tac_templates:
                 try:
                     tactics = generate_tactics_from_template(tac_template, type_of_item)
-                    for t in tactics:
-                        tactic_set.add(t)
+                    # Авторы: лимит MAX_TACTIC_FROM_TEMPLATE=50 на шаблон
+                    if len(tactics) > MAX_TACTIC_FROM_TEMPLATE:
+                        tactics = random.sample(tactics, MAX_TACTIC_FROM_TEMPLATE)
                 except Exception:
                     continue
+                for t in tactics:
+                    tactic_set.add(t)
+
+            # Базовые структурные тактики — всегда добавляем.
+            # RAG может не вернуть intro/intros для ∀-целей если embedding
+            # далёк от "structural" шаблонов. Без них BFS застрянет.
+            _ALWAYS_TACTICS = [
+                "intros", "intro", "constructor", "simp", "rfl", "trivial",
+                "exfalso", "push_neg", "contrapose", "by_contra",
+                "ext", "funext", "congr", "ring", "omega", "norm_num",
+                "aesop", "tauto", "decide", "simp_all", "done",
+                "linarith", "norm_cast", "push_cast", "assumption",
+            ]
+            for tac in _ALWAYS_TACTICS:
+                tactic_set.add(tac)
+            # intro с новыми переменными
+            for i in range(6):
+                tactic_set.add(f"intro nvar{i}")
+            tactic_set.add("intro nvar0 nvar1")
+            tactic_set.add("intro nvar0 nvar1 nvar2")
+            tactic_set.add("rintro nvar0")
+            tactic_set.add("rintro nvar0 nvar1")
+            tactic_set.add("rintro ⟨nvar0⟩")
+            tactic_set.add("rintro ⟨nvar0, nvar1⟩")
+            tactic_set.add("cases nvar0")
+            tactic_set.add("induction nvar0")
+
+            # Фильтруем забаненные тактики (наше расширение)
+            if self.banned_tactics:
+                tactic_set = {
+                    t for t in tactic_set
+                    if self._tactic_root(t) not in self.banned_tactics
+                }
 
             # Применяем тактики
             proof_finished = False
@@ -1355,7 +1439,14 @@ class LeanNavigatorExplorer:
                 if n_steps > self.max_steps:
                     break
 
-                result = working_dojo.run_tac(curr_state, tactic)
+                # Авторы: retry до MAX_NUM_DOJO_ATTEMPT раз
+                result = None
+                for _attempt in range(MAX_NUM_DOJO_ATTEMPT):
+                    try:
+                        result = working_dojo.run_tac(curr_state, tactic)
+                        break
+                    except Exception:
+                        continue
                 if result is None:
                     continue
 
@@ -1374,21 +1465,21 @@ class LeanNavigatorExplorer:
                 elif isinstance(result, ProofState):
                     if result.pp in state_dict:
                         # Состояние уже известно — добавляем нового родителя
-                        _, parent_states, tactics, prefix = state_dict[result.pp]
-                        state_dict[result.pp] = (
-                            result,
-                            parent_states + [curr_state],
-                            tactics + [tactic],
-                            prefix  # оставляем кратчайший путь
-                        )
-                        # Обновляем кратчайший путь если нашли короче
+                        _, parent_states, tactics_list, prefix = state_dict[result.pp]
                         new_prefix = state_dict[curr_state.pp][3] + [tactic]
                         if len(new_prefix) < len(prefix):
                             state_dict[result.pp] = (
                                 result,
                                 parent_states + [curr_state],
-                                tactics + [tactic],
+                                tactics_list + [tactic],
                                 new_prefix
+                            )
+                        else:
+                            state_dict[result.pp] = (
+                                result,
+                                parent_states + [curr_state],
+                                tactics_list + [tactic],
+                                prefix  # оставляем кратчайший
                             )
                     else:
                         complexity = explore_state_complexity(
@@ -1409,7 +1500,11 @@ class LeanNavigatorExplorer:
 
             if n_steps > self.max_steps:
                 break
-            if not theorem_proven and n_steps > self.max_steps / 3:
+            # Раннее прекращение: если не доказано за 1/3 бюджета — стоп.
+            # Эвристика из LeanNavigator для массовой генерации.
+            # Отключается через early_stop=False в конструкторе.
+            if (self.early_stop and not theorem_proven
+                    and n_steps > self.max_steps / 3):
                 break
             if (time.time() - start_time) > self.max_time:
                 if self.verbose:
@@ -1489,68 +1584,139 @@ class LeanNavigatorExplorer:
         )
 
     def _generate_pairs(self, state_dict: Dict, proof_finished_states: List[str],
-                         theorem_name: str, max_distance: int = MAX_DISTANCE) -> List[TrainingPair]:
+                         theorem_name: str, max_distance: int = MAX_DISTANCE,
+                         negative_ratio: float = 1.0) -> List[TrainingPair]:
         """
         Генерирует training pairs из графа переходов.
         
-        Для каждого ProofFinished находим все пути длины ≤ max_distance
-        и создаём pairs (state, tactic, next_state, distance_to_proof).
+        Воспроизводит get_state_provability_data() + yield_state_pairs() из LeanNavigator:
+        1. Для каждого ProofFinished обходит предков (до max_distance=8, max_parents=10)
+        2. Каждый предок = новая теорема с proof_path до ProofFinished
+        3. Макс MAX_NUM_OUTPUT_PER_STATE=50 пар на одно состояние
+        4. Добавляет negative examples (unprovable states с distance=-1)
         """
         pairs = []
-        seen_pairs: Set[Tuple[str, str]] = set()
-
-        for pf_key in proof_finished_states:
+        seen_state_counts: Dict[str, int] = {}  # сколько пар уже для данного state
+        
+        # Перемешиваем ProofFinished (как авторы)
+        pf_keys = list(proof_finished_states)
+        random.shuffle(pf_keys)
+        
+        for pf_idx, pf_key in enumerate(pf_keys):
             if pf_key not in state_dict:
                 continue
-            # Обратный обход от ProofFinished
-            self._collect_pairs_recursive(
-                pf_key, state_dict, theorem_name,
-                pairs, seen_pairs, distance=0, max_distance=max_distance
+            if pf_idx > MAX_PROVEN_STATES:
+                break
+            
+            # yield_state_pairs: обход от ProofFinished к предкам
+            # Собираем (ancestor_state, distance, tactic_list)
+            ancestor_dict: Dict[str, Tuple[int, List[str]]] = {}
+            self._yield_state_pairs(
+                pf_key, pf_key, state_dict,
+                seen_pps={pf_key}, tactic_list=[],
+                max_distance=max_distance, max_parents=10,
+                ancestor_dict=ancestor_dict,
             )
-
+            
+            for ancestor_pp, (distance, tactic_list) in ancestor_dict.items():
+                count = seen_state_counts.get(ancestor_pp, 0)
+                if count >= MAX_NUM_OUTPUT_PER_STATE:
+                    continue
+                
+                state_data = state_dict.get(ancestor_pp)
+                if state_data is None:
+                    continue
+                
+                # tactic_list[0] = первая тактика от ancestor к proof
+                tactic = tactic_list[0] if tactic_list else ""
+                if not tactic:
+                    continue
+                
+                # next_state: куда ведёт первая тактика
+                next_state_str = "no goals" if distance == 1 else ""
+                if distance > 1 and len(tactic_list) > 1:
+                    # Ищем next state в state_dict через parent→child
+                    # но проще — берём tactic_list[1:] как остаток
+                    pass
+                
+                pairs.append(TrainingPair(
+                    state=ancestor_pp,
+                    tactic=tactic,
+                    next_state=next_state_str,
+                    distance_to_proof=distance,
+                    theorem_name=theorem_name,
+                ))
+                seen_state_counts[ancestor_pp] = count + 1
+        
+        # Negative examples: unprovable states (distance=-1)
+        # Авторы добавляют столько же negative сколько positive
+        num_positive = len(pairs)
+        if num_positive > 0 and negative_ratio > 0:
+            provable_pps = set(seen_state_counts.keys())
+            all_states = [
+                (key, data) for key, data in state_dict.items()
+                if not key.startswith("ProofFinished") and key not in provable_pps
+            ]
+            random.shuffle(all_states)
+            num_negative = 0
+            for key, data in all_states:
+                pairs.append(TrainingPair(
+                    state=key,
+                    tactic="",
+                    next_state="",
+                    distance_to_proof=-1,
+                    theorem_name=theorem_name,
+                ))
+                num_negative += 1
+                if num_negative >= int(num_positive * negative_ratio):
+                    break
+        
         return pairs
 
-    def _collect_pairs_recursive(self, state_key: str, state_dict: Dict,
-                                  theorem_name: str, pairs: List[TrainingPair],
-                                  seen_pairs: Set, distance: int, max_distance: int):
-        """Рекурсивно собирает pairs от ProofFinished к предкам."""
-        if distance > max_distance:
-            return
-
-        state_data = state_dict.get(state_key)
+    def _yield_state_pairs(self, curr_key: str, leaf_key: str,
+                            state_dict: Dict, seen_pps: Set[str],
+                            tactic_list: List[str],
+                            max_distance: int, max_parents: int,
+                            ancestor_dict: Dict):
+        """
+        Рекурсивный обход от ProofFinished к предкам (как yield_state_pairs авторов).
+        
+        Собирает ancestor_dict[state.pp] = (distance, tactic_list).
+        Обходит до max_parents=10 родителей на каждом узле.
+        """
+        state_data = state_dict.get(curr_key)
         if state_data is None:
             return
 
         _, parent_states, tactics, _ = state_data
-
-        for i, (parent, tactic) in enumerate(zip(parent_states, tactics)):
+        distance = len(seen_pps) - 1
+        
+        # Yield текущее состояние (если distance > 0, т.е. не сам ProofFinished)
+        if distance > 0 and curr_key not in [k for k in state_dict if k.startswith("ProofFinished")]:
+            if curr_key not in ancestor_dict or distance < ancestor_dict[curr_key][0]:
+                ancestor_dict[curr_key] = (distance, list(tactic_list))
+        
+        if len(seen_pps) > max_distance:
+            return
+        
+        num_parents_checked = 0
+        for i in range(len(parent_states)):
+            parent = parent_states[i]
             if not isinstance(parent, ProofState):
                 continue
-
-            pair_key = (parent.pp, tactic)
-            if pair_key in seen_pairs:
+            if parent.pp in seen_pps:
                 continue
-            seen_pairs.add(pair_key)
-
-            # next_state
-            if state_key.startswith("ProofFinished"):
-                next_state_str = "no goals"
-            else:
-                next_state_str = state_key  # это pp состояния
-
-            pairs.append(TrainingPair(
-                state=parent.pp,
-                tactic=tactic,
-                next_state=next_state_str,
-                distance_to_proof=distance,
-                theorem_name=theorem_name,
-            ))
-
-            # Рекурсия к предкам
-            self._collect_pairs_recursive(
-                parent.pp, state_dict, theorem_name,
-                pairs, seen_pairs, distance + 1, max_distance
+            
+            self._yield_state_pairs(
+                parent.pp, leaf_key, state_dict,
+                seen_pps | {parent.pp},
+                [tactics[i]] + tactic_list,
+                max_distance, max_parents,
+                ancestor_dict,
             )
+            num_parents_checked += 1
+            if num_parents_checked >= max_parents:
+                break
 
 
 # ============================================================================

@@ -217,7 +217,8 @@ re_rl/
 scripts/
 └── fast_trace.py          # Трейсинг Mathlib4
 examples/
-├── run_bfs.py             # BFS генерация (скрипт)
+├── run_bfs.py             # BFS генерация (последовательный)
+├── run_bfs_parallel.py    # BFS генерация (Ray, параллельный)
 └── train_rag.py           # Обучение RAG retriever
 ```
 
@@ -292,6 +293,28 @@ python examples/run_bfs.py --seed 42 --max-theorems 50 --rag-model trained
 ```
 
 Результаты сохраняются в `datasets/formal_math_data/` — можно сравнить `proven`, `pairs`, тактики.
+
+#### Параллельная генерация (Ray)
+
+Для масштабной генерации — аналог оригинального LeanNavigator (Ray, 24 процесса, 28 дней → 4.7M теорем).
+Каждый worker создаёт свой Pantograph server + RAG, теоремы распределяются по workers.
+
+```bash
+# 4 worker'а, 200 теорем (~50 на worker)
+python examples/run_bfs_parallel.py --num-workers 4 --max-theorems 200 --rag-model trained
+
+# 8 worker'ов, 500 теорем, большой бюджет
+python examples/run_bfs_parallel.py --num-workers 8 --max-theorems 500 \
+    --max-steps 20000 --max-time 300 --rag-model trained
+
+# Быстрый тест параллелизации
+python examples/run_bfs_parallel.py --num-workers 2 --max-theorems 20 --verbose
+
+# С фиксированным seed (для сравнений)
+python examples/run_bfs_parallel.py --seed 42 --num-workers 4 --max-theorems 200
+```
+
+> Требует `pip install ray>=2.9`. Каждый worker использует ~2-4 GB RAM (Lean server).
 
 #### Другие режимы запуска
 
