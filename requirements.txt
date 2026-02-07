@@ -1,11 +1,21 @@
+# ── Core ──
 sympy>=1.9
 networkx>=2.6
-rich
 numpy
-datasets
+rich
+tqdm
+loguru
 z3-solver
-pytest
 
-# Formal Math (LeanNavigator-style)
-lean-dojo>=4.0.0  # Lean 4 interaction
-loguru            # Logging
+# ── Datasets & ML ──
+datasets
+sentence-transformers>=2.0
+
+# ── Formal Math (LeanNavigator pipeline) ──
+# pantograph — Lean 4 interactive proving (совместим с Mathlib4 v4.26.0 / Lean 4.26.0)
+pantograph @ git+https://github.com/stanford-centaur/PyPantograph.git@551e21b6f67d8ff71531d8eac937de9baff4b6b3
+# faiss-cpu — FAISS vector similarity search
+faiss-cpu>=1.7
+
+# ── Dev / Test ──
+pytest

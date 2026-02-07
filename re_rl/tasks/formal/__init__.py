@@ -92,6 +92,18 @@ from re_rl.tasks.formal.ml_tactic_generator import (
     create_ml_generator,
 )
 
+# === LeanNavigator (воспроизведение статьи) ===
+from re_rl.tasks.formal.lean_navigator import (
+    TacticTemplateExtractor,
+    TacticRAG,
+    PantographDojo,
+    LeanNavigatorExplorer,
+    run_lean_navigator,
+    NavigatorResult,
+    TracedTheorem,
+    load_theorems_from_ast_dir,
+)
+
 # === Утилиты установки ===
 from re_rl.tasks.formal.setup_lean_repos import (
     REPOS as LEAN_REPOS,
@@ -154,10 +166,21 @@ __all__ = [
     "HybridTacticGenerator",
     "create_ml_generator",
     
+    # LeanNavigator
+    "TacticTemplateExtractor",
+    "TacticRAG",
+    "PantographDojo",
+    "LeanNavigatorExplorer",
+    "run_lean_navigator",
+    "NavigatorResult",
+    "TracedTheorem",
+    "load_theorems_from_ast_dir",
+    
     # Утилиты установки
     "LEAN_REPOS",
     "add_custom_mathlib4",
     "trace_repo",
     "list_cached_repos",
     "check_elan_installed",
+    "_apply_extractor_fix",
 ]

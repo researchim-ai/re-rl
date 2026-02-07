@@ -2,7 +2,10 @@ from setuptools import setup, find_packages
 
 def read_requirements():
     with open("requirements.txt", "r", encoding="utf-8") as req_file:
-        return req_file.read().splitlines()
+        return [
+            line.strip() for line in req_file
+            if line.strip() and not line.strip().startswith("#")
+        ]
 
 setup(
     name='re_rl',

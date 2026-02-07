@@ -90,9 +90,9 @@ REPOS = {
     # (взят из LeanDojo-v2). Можно использовать любой тег Mathlib4.
     "mathlib4": {
         "url": "https://github.com/leanprover-community/mathlib4",
-        "commit": "v4.19.0",
-        "description": "Mathlib4 v4.19.0 — 100K+ теорем",
-        "estimated_time": "3-6 часов",
+        "commit": "v4.26.0",
+        "description": "Mathlib4 v4.26.0 — 100K+ теорем (Lean 4.26.0, совместим с Pantograph)",
+        "estimated_time": "2-4 часа (lake exe cache get ускоряет сборку)",
         "theorems_count": "100K+",
     },
 

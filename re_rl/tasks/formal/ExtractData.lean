@@ -7,10 +7,11 @@ open Lean Elab System
 set_option maxHeartbeats 2000000  -- 10x the default maxHeartbeats.
 
 
-instance : ToJson Substring where
-  toJson s := toJson s.toString
+-- Lean ≥ 4.26.0: Substring → Substring.Raw, String.Pos → String.Pos.Raw
+instance : ToJson Substring.Raw where
+  toJson s := toJson (Substring.Raw.toString s)
 
-instance : ToJson String.Pos where
+instance : ToJson String.Pos.Raw where
   toJson n := toJson n.1
 
 deriving instance ToJson for SourceInfo
@@ -28,8 +29,8 @@ The trace of a tactic.
 structure TacticTrace where
   stateBefore: String
   stateAfter: String
-  pos: String.Pos      -- Start position of the tactic.
-  endPos: String.Pos   -- End position of the tactic.
+  pos: String.Pos.Raw   -- Start position of the tactic.
+  endPos: String.Pos.Raw -- End position of the tactic.
 deriving ToJson
 
 
