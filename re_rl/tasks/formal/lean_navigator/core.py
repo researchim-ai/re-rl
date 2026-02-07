@@ -365,6 +365,8 @@ class NavigatorResult:
     proof_tactics: Optional[List[str]] = None # кратчайший путь тактик
     n_proofs_found: int = 0                  # сколько путей к ProofFinished найдено
     n_proofs_verified: int = 0               # сколько из них прошли replay
+    # Декомпозиция automation-тактик (--decompose-auto)
+    n_decomposed: int = 0                    # сколько simp/aesop разложено в шаги
 
 
 # ============================================================================
@@ -1175,10 +1177,24 @@ class LeanNavigatorExplorer:
     4. Генерируем training pairs из графа
     """
 
+    # Тактики, которые можно декомпозировать через `?`-вариант.
+    # simp → simp? → "simp only [lemma1, lemma2, ...]"
+    # Каждая лемма становится отдельным rw-шагом = отдельная training pair.
+    _DECOMPOSABLE_ROOTS = {"simp", "simp_all", "aesop", "simpa", "simp_arith", "dsimp"}
+    _DECOMPOSE_QUERY = {
+        "simp": "simp?",
+        "simp_all": "simp_all?",
+        "aesop": "aesop?",
+        "simpa": "simpa?",
+        "simp_arith": "simp_arith?",
+        "dsimp": "dsimp?",
+    }
+
     def __init__(self, dojo: PantographDojo, rag: TacticRAG,
                  max_steps: int = MAX_STEPS, max_time: int = 1200,
                  verbose: bool = False, early_stop: bool = True,
-                 banned_tactics: Optional[set] = None):
+                 banned_tactics: Optional[set] = None,
+                 decompose_auto: bool = False):
         self.dojo = dojo
         self.rag = rag
         self.max_steps = max_steps
@@ -1190,6 +1206,9 @@ class LeanNavigatorExplorer:
         # Это заставляет BFS искать многошаговые доказательства вместо
         # одношаговых "нуклеарных" завершений.
         self.banned_tactics = banned_tactics or set()
+        # Если True, после BFS декомпозирует automation-тактики (simp, aesop, ...)
+        # в цепочки отдельных rw-шагов. Расширяет датасет ~×2-5.
+        self.decompose_auto = decompose_auto
 
     @staticmethod
     def _tactic_root(tactic: str) -> str:
@@ -1209,6 +1228,23 @@ class LeanNavigatorExplorer:
             if ch in (' ', '\t', '[', '(', '{', '\u27e8'):  # ⟨
                 return s[:i]
         return s
+
+    @staticmethod
+    def _parse_simp_suggestion(msg_data: str) -> List[str]:
+        """Извлекает леммы из сообщения simp?/aesop?.
+        
+        Примеры входных сообщений:
+            'Try this:\\n  [apply] simp only [add_zero, mul_one]'
+            'Try this:\\n\\n  [apply]   simp_all only [and_self]'
+        
+        Returns:
+            Список имён лемм, или пустой список.
+        """
+        # simp only [...] или simp_all only [...]
+        m = re.search(r'simp(?:_all)?\s+only\s+\[([^\]]*)\]', msg_data)
+        if m:
+            return [l.strip() for l in m.group(1).split(',') if l.strip()]
+        return []
 
     def _create_per_file_dojo(self, module: str) -> 'PantographDojo':
         """
@@ -1513,6 +1549,13 @@ class LeanNavigatorExplorer:
 
         elapsed = time.time() - start_time
 
+        # Post-BFS: декомпозиция automation-тактик в индивидуальные шаги
+        n_decomposed = 0
+        if self.decompose_auto and proof_finished_states:
+            n_decomposed, n_extra = self._decompose_automation(
+                state_dict, proof_finished_states, working_dojo
+            )
+
         # Генерируем training pairs
         pairs = self._generate_pairs(state_dict, proof_finished_states, theorem_name)
 
@@ -1581,7 +1624,141 @@ class LeanNavigatorExplorer:
             proof_tactics=proof_tactics,
             n_proofs_found=len(proof_finished_states),
             n_proofs_verified=n_proofs_verified,
+            n_decomposed=n_decomposed,
         )
+
+    def _decompose_automation(self, state_dict: Dict,
+                              proof_finished_states: List[str],
+                              working_dojo: PantographDojo) -> Tuple[int, int]:
+        """
+        Post-BFS декомпозиция automation-тактик в индивидуальные шаги.
+        
+        Для каждого ребра «state → ProofFinished через simp/aesop/…»:
+        1. Запускает simp? (или аналог) на исходном состоянии
+        2. Парсит сообщение: «simp only [lemma1, lemma2, ...]»
+        3. Применяет каждую лемму отдельно: rw [lemma] или simp only [lemma]
+        4. Вставляет промежуточные состояния в state_dict
+        
+        Результат: _generate_pairs() подхватывает новые промежуточные состояния
+        и генерирует дополнительные (state, rw [lemma]) training pairs.
+        
+        Returns:
+            (n_decomposed, n_extra_states) — сколько рёбер разложено и 
+            сколько новых состояний/ProofFinished добавлено.
+        """
+        # Собираем рёбра к ProofFinished с decomposable тактиками
+        edges = []
+        for pf_key in list(proof_finished_states):
+            if pf_key not in state_dict:
+                continue
+            _, parent_states, tactics, _ = state_dict[pf_key]
+            for parent, tac in zip(parent_states, tactics):
+                root = self._tactic_root(tac)
+                if root in self._DECOMPOSABLE_ROOTS and isinstance(parent, ProofState):
+                    edges.append((parent, tac, pf_key))
+
+        if not edges:
+            return 0, 0
+
+        n_decomposed = 0
+        n_extra_states = 0
+
+        for parent_state, original_tactic, pf_key in edges:
+            if parent_state.goal_state is None:
+                continue
+
+            root = self._tactic_root(original_tactic)
+            query_tac = self._DECOMPOSE_QUERY.get(root)
+            if not query_tac:
+                continue
+
+            # Запускаем simp? (или аналог) на parent state
+            try:
+                q_result = working_dojo.server.goal_tactic(
+                    parent_state.goal_state, query_tac
+                )
+            except Exception:
+                continue
+
+            # Парсим леммы из сообщения
+            if not q_result.messages:
+                continue
+            lemmas = self._parse_simp_suggestion(q_result.messages[0].data)
+            if len(lemmas) < 2:
+                # Нет выигрыша: 0 или 1 лемма = не детальнее оригинала
+                continue
+
+            # Применяем каждую лемму отдельно
+            current = parent_state
+            steps = []  # [(source_state, tactic_str, result)]
+
+            for lemma in lemmas:
+                if not isinstance(current, ProofState) or current.goal_state is None:
+                    break
+
+                # Пробуем rw [lemma], затем simp only [lemma]
+                result = None
+                used_tactic = None
+                for try_tac in [f"rw [{lemma}]", f"simp only [{lemma}]"]:
+                    try:
+                        gs = working_dojo.server.goal_tactic(
+                            current.goal_state, try_tac
+                        )
+                        if not gs.goals:
+                            result = ProofFinished()
+                        else:
+                            pp = "\n".join(str(g) for g in gs.goals)
+                            result = ProofState(pp=pp, goal_state=gs, goal_id=0)
+                        used_tactic = try_tac
+                        break
+                    except Exception:
+                        continue
+
+                if result is None:
+                    break  # Не получилось применить лемму — прерываем цепочку
+
+                steps.append((current, used_tactic, result))
+                current = result
+
+            # Нужно минимум 2 шага для пользы
+            if len(steps) < 2:
+                continue
+
+            # Вставляем промежуточные состояния в state_dict
+            n_decomposed += 1
+            for src, tac, dst in steps:
+                if isinstance(dst, ProofFinished):
+                    new_pf_key = f"ProofFinished_{len(proof_finished_states)}"
+                    proof_finished_states.append(new_pf_key)
+                    src_path = state_dict.get(src.pp, (None, None, None, []))[3]
+                    state_dict[new_pf_key] = (
+                        dst, [src], [tac], src_path + [tac]
+                    )
+                    n_extra_states += 1
+                elif isinstance(dst, ProofState):
+                    if dst.pp in state_dict:
+                        # Состояние уже есть — добавляем нового родителя
+                        existing = state_dict[dst.pp]
+                        state_dict[dst.pp] = (
+                            dst,
+                            existing[1] + [src],
+                            existing[2] + [tac],
+                            existing[3],  # оставляем кратчайший путь
+                        )
+                    else:
+                        src_path = state_dict.get(
+                            src.pp, (None, None, None, [])
+                        )[3]
+                        state_dict[dst.pp] = (
+                            dst, [src], [tac], src_path + [tac]
+                        )
+                        n_extra_states += 1
+
+        if self.verbose and n_decomposed > 0:
+            print(f"  Decompose: {n_decomposed} automation tactics → "
+                  f"{n_extra_states} extra states")
+
+        return n_decomposed, n_extra_states
 
     def _generate_pairs(self, state_dict: Dict, proof_finished_states: List[str],
                          theorem_name: str, max_distance: int = MAX_DISTANCE,

@@ -89,6 +89,12 @@ def parse_args():
                              "Пары с distance < N отфильтровываются из датасета. "
                              "Пример: --min-proof-length 4 оставит только пары, "
                              "где от состояния нужно >= 4 тактик до proof.")
+    parser.add_argument("--decompose-auto", action="store_true",
+                        help="Декомпозиция automation-тактик (simp, aesop, ...) "
+                             "в цепочки индивидуальных rw-шагов. "
+                             "simp? → simp only [l1, l2, l3] → rw [l1]; rw [l2]; rw [l3]. "
+                             "Расширяет датасет ~×2-5 содержательными шагами "
+                             "с конкретными леммами вместо «магического» simp.")
     return parser.parse_args()
 
 
@@ -406,6 +412,8 @@ def main():
             print(f"  Забаненные тактики ({len(banned)}): {sorted(banned)}")
         if args.min_proof_length > 0:
             print(f"  Мин длина доказательства: {args.min_proof_length}")
+        if args.decompose_auto:
+            print(f"  Декомпозиция automation: ВКЛ (simp→rw шаги)")
 
         explorer = LeanNavigatorExplorer(
             dojo=dojo, rag=rag,
@@ -414,6 +422,7 @@ def main():
             verbose=args.verbose,
             early_stop=not args.no_early_stop,
             banned_tactics=banned,
+            decompose_auto=args.decompose_auto,
         )
 
         for i, thm in enumerate(theorems):
@@ -457,6 +466,7 @@ def main():
                     "proofs_found": result.n_proofs_found,
                     "proofs_verified": result.n_proofs_verified,
                     "proof_length": len(result.proof_tactics) if result.proof_tactics else 0,
+                    "n_decomposed": result.n_decomposed,
                     "time": elapsed,
                 })
 
@@ -498,6 +508,9 @@ def main():
     print(f"  Training pairs:         {len(all_pairs)}")
     unique_tactics = len(set(p.tactic for p in all_pairs)) if all_pairs else 0
     print(f"  Уникальных тактик:      {unique_tactics}")
+    total_decomposed = sum(r.get("n_decomposed", 0) for r in theorem_results)
+    if total_decomposed > 0:
+        print(f"  Декомпозировано тактик: {total_decomposed} (simp→rw шаги)")
     print(f"  Время:                  {total_time:.1f}с ({total_time / 60:.1f} мин)")
 
     if all_pairs:

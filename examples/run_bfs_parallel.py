@@ -33,6 +33,7 @@ import time
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 
 def parse_args():
@@ -77,6 +78,15 @@ def parse_args():
                         help="Всего CPU для Ray (default: auto)")
     parser.add_argument("--memory-gb", type=int, default=None,
                         help="RAM для Ray в GB (default: auto)")
+    parser.add_argument("--ban-tactics", default=None,
+                        help="Забаненные тактики через запятую")
+    parser.add_argument("--no-auto", action="store_true",
+                        help="Пресет: забанить нуклеарные тактики-упрощатели")
+    parser.add_argument("--min-proof-length", type=int, default=0,
+                        help="Мин distance_to_proof для пар")
+    parser.add_argument("--decompose-auto", action="store_true",
+                        help="Декомпозиция simp/aesop в rw-шаги. "
+                             "Расширяет датасет содержательными леммами.")
     return parser.parse_args()
 
 
@@ -96,6 +106,9 @@ def _bfs_worker(
     use_per_file: bool,
     early_stop: bool,
     verbose: bool,
+    banned_tactics: Optional[set] = None,
+    decompose_auto: bool = False,
+    min_proof_length: int = 0,
 ):
     """
     Ray worker: создаёт PantographDojo + RAG, обрабатывает batch теорем.
@@ -192,6 +205,8 @@ def _bfs_worker(
             max_steps=max_steps, max_time=max_time,
             verbose=verbose,
             early_stop=early_stop,
+            banned_tactics=banned_tactics,
+            decompose_auto=decompose_auto,
         )
 
         for i, thm in enumerate(theorems):
@@ -205,7 +220,14 @@ def _bfs_worker(
                     exit_on_finish=False,
                 )
 
-                # Конвертируем pairs в dict (для сериализации через Ray)
+                # Фильтрация по min_proof_length + конвертация в dict
+                filtered_pairs = result.pairs
+                if min_proof_length > 0:
+                    filtered_pairs = [
+                        p for p in result.pairs
+                        if p.distance_to_proof >= min_proof_length
+                        or p.distance_to_proof < 0  # negative examples сохраняем
+                    ]
                 pairs_dicts = [
                     {
                         "state": p.state,
@@ -214,7 +236,7 @@ def _bfs_worker(
                         "distance_to_proof": p.distance_to_proof,
                         "theorem_name": p.theorem_name,
                     }
-                    for p in result.pairs
+                    for p in filtered_pairs
                 ]
                 worker_pairs.extend(pairs_dicts)
 
@@ -227,10 +249,11 @@ def _bfs_worker(
                     "verified": result.verified,
                     "states": result.n_states,
                     "steps": result.n_steps,
-                    "pairs": len(result.pairs),
+                    "pairs": len(filtered_pairs),
                     "proofs_found": result.n_proofs_found,
                     "proofs_verified": result.n_proofs_verified,
                     "proof_length": len(result.proof_tactics) if result.proof_tactics else 0,
+                    "n_decomposed": result.n_decomposed,
                     "time": elapsed,
                 })
 
@@ -471,6 +494,25 @@ def main():
     print(f"\nЗапуск {n_workers} workers...")
     print("=" * 60)
 
+    # Парсим забаненные тактики
+    banned = set()
+    if args.ban_tactics:
+        banned = {t.strip() for t in args.ban_tactics.split(",") if t.strip()}
+    if args.no_auto:
+        _NO_AUTO_SET = {
+            "simp", "simp_all", "aesop", "omega", "tauto", "decide",
+            "norm_num", "linarith", "ring", "trivial", "simpa",
+            "positivity", "field_simp", "norm_cast", "push_cast",
+            "simp_arith", "ring_nf", "nlinarith",
+        }
+        banned |= _NO_AUTO_SET
+    if banned:
+        print(f"  Забаненные тактики ({len(banned)}): {sorted(banned)}")
+    if args.min_proof_length > 0:
+        print(f"  Мин длина доказательства: {args.min_proof_length}")
+    if args.decompose_auto:
+        print(f"  Декомпозиция automation: ВКЛ (simp→rw шаги)")
+
     futures = []
     for i, batch in enumerate(batches):
         future = bfs_worker_remote.remote(
@@ -485,6 +527,9 @@ def main():
             use_per_file=not args.no_per_file,
             early_stop=not args.no_early_stop,
             verbose=args.verbose,
+            banned_tactics=banned if banned else None,
+            decompose_auto=args.decompose_auto,
+            min_proof_length=args.min_proof_length,
         )
         futures.append(future)
 
