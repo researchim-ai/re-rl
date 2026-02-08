@@ -185,14 +185,41 @@ datasets:
 
 Помимо текстовых задач, RE-RL воспроизводит pipeline генерации training data из формальных доказательств Lean 4 по подходу [LeanNavigator](https://arxiv.org/abs/2502.10000) (Yin & Gao, 2025) — BFS-обход графа состояний Mathlib4 через Pantograph с BERT+FAISS retrieval тактик.
 
-Подробная документация и пошаговое руководство по воспроизведению: [`re_rl/tasks/formal/README.md`](re_rl/tasks/formal/README.md)
+### Два источника данных
+
+| Источник | Описание | Скорость |
+|----------|----------|----------|
+| **Mathlib Extraction** | Готовые доказательства из traced Mathlib | Быстро (~100k pairs/мин) |
+| **BFS LeanNavigator** | Новые альтернативные пути через BFS | Медленнее, но уникальные данные |
+
+**Рекомендация**: комбинировать оба источника для максимального разнообразия.
+
+### Быстрый старт
 
 ```bash
-# Быстрый старт (после установки elan + pip install -e .)
-python scripts/fast_trace.py --version v4.26.0   # трейсинг Mathlib4
-python examples/train_rag.py                      # обучение BERT retriever
-python examples/run_bfs.py --max-theorems 50      # BFS генерация training pairs
+# 1. Трейсинг Mathlib4 (один раз, ~60 мин, результат кэшируется)
+python scripts/fast_trace.py --version v4.26.0
+
+# 2a. Извлечение готовых доказательств (быстро)
+python examples/formal/extract_mathlib_proofs.py --min-proof-length 2 --max-theorems 50000
+
+# 2b. BFS exploration (новые пути)
+python examples/formal/run_bfs.py --max-theorems 100 --decompose-auto
+
+# 3. (Опционально) Обучение BERT RAG для лучшего retrieval
+python examples/formal/train_rag.py
 ```
+
+### Jupyter Notebook (полный pipeline)
+
+Интерактивный notebook с пошаговым объяснением:
+
+```bash
+cd examples/formal
+jupyter notebook Formal_Math_Generation.ipynb
+```
+
+Подробная документация: [`re_rl/tasks/formal/README.md`](re_rl/tasks/formal/README.md) и [`examples/formal/README.md`](examples/formal/README.md)
 
 ## Структура проекта
 
@@ -205,21 +232,22 @@ re_rl/
 │       ├── lean_navigator/    # Подход LeanNavigator (BFS + Pantograph + RAG)
 │       │   ├── core.py            # BFS exploration + PantographDojo + TacticRAG
 │       │   ├── rag_trainer.py     # Обучение BERT retriever (triplet loss)
-│       │   ├── state_explorer.py  # State exploration
-│       │   ├── dataset_generator.py
-│       │   ├── lean_utils.py
-│       │   └── ml_tactic_generator.py
+│       │   └── ...
 │       ├── lean_proof_task.py # Шаблонные задачи (без зависимостей)
-│       ├── theorem_templates.py
-│       └── tactic_generator.py
+│       └── ...
 ├── dataset_generator.py   # Генератор датасетов
 ├── environments/          # RL окружения
 scripts/
 └── fast_trace.py          # Трейсинг Mathlib4
 examples/
-├── run_bfs.py             # BFS генерация (последовательный)
-├── run_bfs_parallel.py    # BFS генерация (Ray, параллельный)
-└── train_rag.py           # Обучение RAG retriever
+├── formal/                    # ← Formal Math примеры и скрипты
+│   ├── Formal_Math_Generation.ipynb  # Полный pipeline (notebook)
+│   ├── extract_mathlib_proofs.py     # Извлечение из Mathlib
+│   ├── run_bfs.py                    # BFS генерация (последовательный)
+│   ├── run_bfs_parallel.py           # BFS генерация (Ray, параллельный)
+│   └── train_rag.py                  # Обучение BERT RAG
+├── Генерация_датасета.ipynb      # Генерация math/physics задач
+└── test_all_tasks.py             # Тест всех 52 типов задач
 ```
 
 ## Подходит ли для SFT?
@@ -272,64 +300,52 @@ pip install -e .
 python scripts/fast_trace.py --version v4.26.0
 ```
 
+#### Извлечение данных из Mathlib (быстрый способ)
+
+Напрямую извлекает (state, tactic) пары из traced Mathlib — без BFS.
+
+```bash
+# Все теоремы с доказательствами ≥2 шагов
+python examples/formal/extract_mathlib_proofs.py --min-proof-length 2
+
+# Только определённый модуль
+python examples/formal/extract_mathlib_proofs.py --module-prefix Mathlib.Algebra --max-theorems 10000
+
+# SFT формат для обучения
+python examples/formal/extract_mathlib_proofs.py --output-format sft
+```
+
+#### BFS Exploration (новые пути)
+
+Генерирует альтернативные доказательства через BFS — данные, которых нет в Mathlib.
+
+```bash
+# Базовый запуск
+python examples/formal/run_bfs.py --max-theorems 100 --decompose-auto
+
+# С запретом автоматизаторов (для длинных путей)
+python examples/formal/run_bfs.py --max-theorems 50 --no-auto --min-proof-length 3
+
+# Параллельно (Ray, быстрее)
+python examples/formal/run_bfs_parallel.py --workers 8 --max-theorems 500 --decompose-auto
+```
+
 #### Бенчмарк: Pretrained SBERT vs Обученный BERT
 
-Ключевой эксперимент — сравнение качества RAG retriever.
-`--seed 42` фиксирует выборку теорем, чтобы оба прогона работали на **одних и тех же** 50 теоремах.
-
 ```bash
-# ──── Прогон 1: Pretrained SBERT (all-MiniLM-L6-v2, без обучения) ────
-python examples/run_bfs.py --seed 42 --max-theorems 50 --rag-model sbert
-# Ожидаемый результат: ~13/50 доказано, ~170 training pairs, ~5 мин
+# Прогон 1: Pretrained SBERT
+python examples/formal/run_bfs.py --seed 42 --max-theorems 50 --rag-model sbert
 
-# ──── Обучение BERT retriever (triplet loss на traced данных) ────
-python examples/train_rag.py
-# ~30-60 мин на GPU, несколько часов на CPU
-# Быстрый вариант: python examples/train_rag.py --max-files 100 --num-epochs 1
+# Обучение BERT retriever
+python examples/formal/train_rag.py
 
-# ──── Прогон 2: Обученный BERT (те же 50 теорем) ────
-python examples/run_bfs.py --seed 42 --max-theorems 50 --rag-model trained
-# Ожидаемый результат: больше доказательств (BERT учился на Lean тактиках)
+# Прогон 2: Обученный BERT (те же теоремы)
+python examples/formal/run_bfs.py --seed 42 --max-theorems 50 --rag-model trained
 ```
 
-Результаты сохраняются в `datasets/formal_math_data/` — можно сравнить `proven`, `pairs`, тактики.
+Результаты сохраняются в `datasets/formal_math_data/`.
 
-#### Параллельная генерация (Ray)
-
-Для масштабной генерации — аналог оригинального LeanNavigator (Ray, 24 процесса, 28 дней → 4.7M теорем).
-Каждый worker создаёт свой Pantograph server + RAG, теоремы распределяются по workers.
-
-```bash
-# 4 worker'а, 200 теорем (~50 на worker)
-python examples/run_bfs_parallel.py --num-workers 4 --max-theorems 200 --rag-model trained
-
-# 8 worker'ов, 500 теорем, большой бюджет
-python examples/run_bfs_parallel.py --num-workers 8 --max-theorems 500 \
-    --max-steps 20000 --max-time 300 --rag-model trained
-
-# Быстрый тест параллелизации
-python examples/run_bfs_parallel.py --num-workers 2 --max-theorems 20 --verbose
-
-# С фиксированным seed (для сравнений)
-python examples/run_bfs_parallel.py --seed 42 --num-workers 4 --max-theorems 200
-```
-
-> Требует `pip install ray>=2.9`. Каждый worker использует ~2-4 GB RAM (Lean server).
-
-#### Другие режимы запуска
-
-```bash
-# Быстрый тест (5 теорем, ~30 сек)
-python examples/run_bfs.py --max-theorems 5 --max-steps 3000 --max-time 15 --verbose
-
-# Полный прогон (500 теорем, ~1-2 часа)
-python examples/run_bfs.py --max-theorems 500 --max-steps 50000 --max-time 300
-
-# Без per-file server fallback (только shared server)
-python examples/run_bfs.py --seed 42 --max-theorems 50 --no-per-file
-```
-
-Подробная документация: [`re_rl/tasks/formal/README.md`](re_rl/tasks/formal/README.md)
+Подробная документация: [`re_rl/tasks/formal/README.md`](re_rl/tasks/formal/README.md) и [`examples/formal/README.md`](examples/formal/README.md)
 
 ## Лицензия
 
