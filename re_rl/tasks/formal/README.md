@@ -1,6 +1,6 @@
 # Formal Math: генерация данных для Theorem Proving (LeanNavigator)
 
-Воспроизведение pipeline из [LeanNavigator](https://arxiv.org/abs/2502.10000) (Yin & Gao, 2025) — генерация **миллионов** training pairs из формальных доказательств Lean 4 через BFS-обход графа состояний.
+Воспроизведение pipeline из [LeanNavigator](https://arxiv.org/abs/2503.04772) (Yin & Gao, 2025) — генерация **миллионов** training pairs из формальных доказательств Lean 4 через BFS-обход графа состояний.
 
 ## Идея
 
@@ -359,6 +359,6 @@ examples/
 
 ## Ссылки
 
-- [LeanNavigator Paper](https://arxiv.org/abs/2502.10000) — оригинальная статья
+- [LeanNavigator Paper](https://arxiv.org/abs/2503.04772) — оригинальная статья
 - [Pantograph](https://github.com/stanford-centaur/PyPantograph) — Lean 4 machine-to-machine API
 - [Mathlib4](https://github.com/leanprover-community/mathlib4) — библиотека математики Lean 4
