@@ -51,6 +51,7 @@ class TrainingPair:
     next_state: str  # Состояние после (или "ProofFinished")
     distance_to_proof: int  # Расстояние до ProofFinished (-1 если неизвестно)
     theorem_name: str = ""  # Имя исходной теоремы
+    theorem_statement: str = ""  # Исходная формулировка теоремы (goal_expr)
     
     def to_dict(self) -> Dict[str, Any]:
         return {
@@ -59,6 +60,7 @@ class TrainingPair:
             "next_state": self.next_state,
             "distance_to_proof": self.distance_to_proof,
             "theorem_name": self.theorem_name,
+            "theorem_statement": self.theorem_statement,
         }
 
 

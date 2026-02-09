@@ -87,6 +87,9 @@ def parse_args():
     parser.add_argument("--decompose-auto", action="store_true",
                         help="Декомпозиция simp/aesop в rw-шаги. "
                              "Расширяет датасет содержательными леммами.")
+    parser.add_argument("--no-pp-full", action="store_true",
+                        help="Отключить полный pretty-print (разрешить ⋯ обрезку). "
+                             "По умолчанию pp_full=True — полный вывод без обрезки.")
     return parser.parse_args()
 
 
@@ -109,6 +112,7 @@ def _bfs_worker(
     banned_tactics: Optional[set] = None,
     decompose_auto: bool = False,
     min_proof_length: int = 0,
+    pp_full: bool = True,
 ):
     """
     Ray worker: создаёт PantographDojo + RAG, обрабатывает batch теорем.
@@ -199,7 +203,7 @@ def _bfs_worker(
     worker_pairs = []
     worker_results = []
 
-    with PantographDojo(project_path=repo_dir, imports=["Mathlib"]) as dojo:
+    with PantographDojo(project_path=repo_dir, imports=["Mathlib"], pp_full=pp_full) as dojo:
         explorer = LeanNavigatorExplorer(
             dojo=dojo, rag=rag,
             max_steps=max_steps, max_time=max_time,
@@ -235,6 +239,7 @@ def _bfs_worker(
                         "next_state": p.next_state,
                         "distance_to_proof": p.distance_to_proof,
                         "theorem_name": p.theorem_name,
+                        "theorem_statement": getattr(p, 'theorem_statement', ''),
                     }
                     for p in filtered_pairs
                 ]
@@ -304,22 +309,41 @@ def save_dataset(pairs_dicts, output_dir, fmt, metadata):
             json.dump(pairs_dicts, fh, indent=2, ensure_ascii=False)
     elif fmt == "sft":
         f = output_dir / f"lean_sft_{ts}.json"
-        sft = [{
-            "instruction": "You are a Lean 4 theorem prover. Given the current proof state, suggest the next tactic.",
-            "input": f"Current proof state:\n{p['state']}",
-            "output": p["tactic"],
-        } for p in pairs_dicts]
+        sft = []
+        for p in pairs_dicts:
+            # Пропускаем negative examples (пустой tactic)
+            tactic = p.get("tactic", "")
+            if not tactic or not tactic.strip():
+                continue
+            thm_stmt = p.get("theorem_statement", "")
+            input_text = f"Theorem to prove: {thm_stmt}\n\nCurrent proof state:\n{p['state']}" if thm_stmt else f"Current proof state:\n{p['state']}"
+            sft.append({
+                "instruction": "You are a Lean 4 theorem prover. Given the theorem and current proof state, suggest the next tactic.",
+                "input": input_text,
+                "output": tactic,
+            })
         with open(f, "w") as fh:
             json.dump(sft, fh, indent=2, ensure_ascii=False)
     elif fmt == "chat":
         f = output_dir / f"lean_chat_{ts}.json"
-        chat = [{
-            "messages": [
-                {"role": "system", "content": "You are an expert Lean 4 theorem prover."},
-                {"role": "user", "content": f"Prove this goal:\n```\n{p['state']}\n```"},
-                {"role": "assistant", "content": p["tactic"]},
-            ]
-        } for p in pairs_dicts]
+        chat = []
+        for p in pairs_dicts:
+            # Пропускаем negative examples (пустой tactic)
+            tactic = p.get("tactic", "")
+            if not tactic or not tactic.strip():
+                continue
+            thm_stmt = p.get("theorem_statement", "")
+            if thm_stmt:
+                user_content = f"I want to prove: {thm_stmt}\n\nCurrent proof state:\n```\n{p['state']}\n```\n\nWhat tactic should I apply?"
+            else:
+                user_content = f"Prove this goal:\n```\n{p['state']}\n```"
+            chat.append({
+                "messages": [
+                    {"role": "system", "content": "You are an expert Lean 4 theorem prover. Given a theorem and proof state, suggest the next tactic."},
+                    {"role": "user", "content": user_content},
+                    {"role": "assistant", "content": tactic},
+                ]
+            })
         with open(f, "w") as fh:
             json.dump(chat, fh, indent=2, ensure_ascii=False)
 
@@ -427,7 +451,8 @@ def main():
 
     max_thms = args.max_theorems if args.max_theorems > 0 else 5000
 
-    with PantographDojo(project_path=str(REPO_DIR), imports=["Mathlib"]) as dojo:
+    with PantographDojo(project_path=str(REPO_DIR), imports=["Mathlib"],
+                        pp_full=not args.no_pp_full) as dojo:
         theorems = load_theorems_from_env(
             dojo,
             module_prefix="Mathlib",
@@ -530,6 +555,7 @@ def main():
             banned_tactics=banned if banned else None,
             decompose_auto=args.decompose_auto,
             min_proof_length=args.min_proof_length,
+            pp_full=not args.no_pp_full,
         )
         futures.append(future)
 

@@ -91,7 +91,10 @@ def parse_args():
                              "где от состояния нужно >= 4 тактик до proof.")
     parser.add_argument("--decompose-auto", action="store_true",
                         help="Декомпозиция automation-тактик (simp, aesop, ...) "
-                             "в цепочки индивидуальных rw-шагов. "
+                             "в цепочки индивидуальных rw-шагов. ")
+    parser.add_argument("--no-pp-full", action="store_true",
+                        help="Отключить полный pretty-print (разрешить ⋯ обрезку). "
+                             "По умолчанию pp_full=True — полный вывод без обрезки."
                              "simp? → simp only [l1, l2, l3] → rw [l1]; rw [l2]; rw [l3]. "
                              "Расширяет датасет ~×2-5 содержательными шагами "
                              "с конкретными леммами вместо «магического» simp.")
@@ -162,6 +165,7 @@ def save_dataset(pairs, output_dir, fmt, metadata):
             "next_state": p.next_state,
             "distance_to_proof": p.distance_to_proof,
             "theorem_name": p.theorem_name,
+            "theorem_statement": getattr(p, 'theorem_statement', ''),
         }
 
     if fmt == "jsonl":
@@ -175,22 +179,39 @@ def save_dataset(pairs, output_dir, fmt, metadata):
             json.dump([pair_to_dict(p) for p in pairs], fh, indent=2, ensure_ascii=False)
     elif fmt == "sft":
         f = output_dir / f"lean_sft_{ts}.json"
-        sft = [{
-            "instruction": "You are a Lean 4 theorem prover. Given the current proof state, suggest the next tactic.",
-            "input": f"Current proof state:\n{p.state}",
-            "output": p.tactic,
-        } for p in pairs]
+        sft = []
+        for p in pairs:
+            # Пропускаем negative examples (пустой tactic)
+            if not p.tactic or not p.tactic.strip():
+                continue
+            thm_stmt = getattr(p, 'theorem_statement', '')
+            input_text = f"Theorem to prove: {thm_stmt}\n\nCurrent proof state:\n{p.state}" if thm_stmt else f"Current proof state:\n{p.state}"
+            sft.append({
+                "instruction": "You are a Lean 4 theorem prover. Given the theorem and current proof state, suggest the next tactic.",
+                "input": input_text,
+                "output": p.tactic,
+            })
         with open(f, "w") as fh:
             json.dump(sft, fh, indent=2, ensure_ascii=False)
     elif fmt == "chat":
         f = output_dir / f"lean_chat_{ts}.json"
-        chat = [{
-            "messages": [
-                {"role": "system", "content": "You are an expert Lean 4 theorem prover."},
-                {"role": "user", "content": f"Prove this goal:\n```\n{p.state}\n```"},
-                {"role": "assistant", "content": p.tactic},
-            ]
-        } for p in pairs]
+        chat = []
+        for p in pairs:
+            # Пропускаем negative examples (пустой tactic)
+            if not p.tactic or not p.tactic.strip():
+                continue
+            thm_stmt = getattr(p, 'theorem_statement', '')
+            if thm_stmt:
+                user_content = f"I want to prove: {thm_stmt}\n\nCurrent proof state:\n```\n{p.state}\n```\n\nWhat tactic should I apply?"
+            else:
+                user_content = f"Prove this goal:\n```\n{p.state}\n```"
+            chat.append({
+                "messages": [
+                    {"role": "system", "content": "You are an expert Lean 4 theorem prover. Given a theorem and proof state, suggest the next tactic."},
+                    {"role": "user", "content": user_content},
+                    {"role": "assistant", "content": p.tactic},
+                ]
+            })
         with open(f, "w") as fh:
             json.dump(chat, fh, indent=2, ensure_ascii=False)
 
@@ -355,7 +376,8 @@ def main():
     theorem_results = []
     total_start = time.time()
 
-    with PantographDojo(project_path=str(REPO_DIR), imports=["Mathlib"]) as dojo:
+    with PantographDojo(project_path=str(REPO_DIR), imports=["Mathlib"],
+                        pp_full=not args.no_pp_full) as dojo:
         if args.bench:
             # Загрузка бенчмарка из JSON
             bench_path = Path(args.bench)
@@ -412,6 +434,8 @@ def main():
             print(f"  Забаненные тактики ({len(banned)}): {sorted(banned)}")
         if args.min_proof_length > 0:
             print(f"  Мин длина доказательства: {args.min_proof_length}")
+        if args.no_pp_full:
+            print(f"  Полный pretty-print: OFF (возможна обрезка ⋯)")
         if args.decompose_auto:
             print(f"  Декомпозиция automation: ВКЛ (simp→rw шаги)")
 

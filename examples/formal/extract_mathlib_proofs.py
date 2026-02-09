@@ -233,19 +233,30 @@ def extract_theorems_from_ast(
 
 
 def theorems_to_pairs(theorems: List[Dict], include_state_after: bool = False) -> List[Dict]:
-    """Конвертирует теоремы в training pairs (state, tactic)."""
+    """Конвертирует теоремы в training pairs (state, tactic).
+    
+    Каждая пара включает:
+    - state: текущее состояние доказательства
+    - tactic: следующая тактика
+    - theorem_name: имя теоремы
+    - theorem_statement: исходная формулировка (goal_state) — для контекста в SFT
+    - distance_to_proof: шагов до завершения
+    """
     pairs = []
     
     for thm in theorems:
         theorem_name = thm["theorem_name"]
         tactics = thm["tactics"]
         proof_length = len(tactics)
+        # goal_state — исходная формулировка теоремы (первый stateBefore)
+        theorem_statement = thm.get("goal_state", "")
         
         for i, tac in enumerate(tactics):
             pair = {
                 "state": tac["stateBefore"],
                 "tactic": tac["tactic_text"],
                 "theorem_name": theorem_name,
+                "theorem_statement": theorem_statement,  # ← контекст для SFT
                 "distance_to_proof": proof_length - i,  # шагов до конца
                 "step_index": i,
                 "proof_length": proof_length,

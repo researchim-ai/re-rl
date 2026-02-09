@@ -348,6 +348,7 @@ class TrainingPair:
     next_state: str
     distance_to_proof: int  # -1 если не на пути к доказательству
     theorem_name: str = ""
+    theorem_statement: str = ""  # Исходная формулировка теоремы (goal_expr)
 
 
 @dataclass
@@ -654,22 +655,42 @@ class PantographDojo:
     """
 
     def __init__(self, project_path: str, imports: Optional[List[str]] = None,
-                 timeout: int = 120):
+                 timeout: int = 120, pp_full: bool = True):
+        """
+        Args:
+            project_path: Путь к проекту Lean 4
+            imports: Список импортов (default: ["Init"])
+            timeout: Таймаут в секундах
+            pp_full: Полный pretty-print без обрезки (default: True, отключает ⋯)
+        """
         if not PANTOGRAPH_AVAILABLE:
             raise ImportError("pip install 'git+https://github.com/stanford-centaur/PyPantograph.git'")
 
         self.project_path = project_path
         self.imports = imports or ["Init"]
         self.timeout = timeout
+        self.pp_full = pp_full
         self.server = None
 
     def start(self):
         """Запускает Pantograph сервер."""
+        # Lean options для pretty-printing
+        options = {}
+        if self.pp_full:
+            # Увеличиваем лимиты чтобы избежать ⋯ в типах
+            # НЕ включаем pp.proofs — proof terms могут быть гигантскими (десятки GB)
+            options = {
+                "pp.maxSteps": 50000,       # default ~5000, увеличиваем для длинных типов
+                "pp.deepTerms": True,       # показывать глубокие термы в типах
+                "pp.maxDepth": 100,         # default ~32, умеренное увеличение
+            }
+        
         self.server = Server(
             imports=self.imports,
             project_path=self.project_path,
             timeout=self.timeout,
             buffer_limit=10_000_000,  # 10MB — нужно для env_catalog на Mathlib
+            options=options,
         )
         return self
 
@@ -1557,7 +1578,11 @@ class LeanNavigatorExplorer:
             )
 
         # Генерируем training pairs
-        pairs = self._generate_pairs(state_dict, proof_finished_states, theorem_name)
+        # theorem_code содержит формулировку теоремы (goal_expr) для контекста в SFT
+        pairs = self._generate_pairs(
+            state_dict, proof_finished_states, theorem_name,
+            theorem_statement=theorem_code,
+        )
 
         # ================================================================
         # Верификация: replay найденных доказательств на свежем goal
@@ -1761,7 +1786,8 @@ class LeanNavigatorExplorer:
         return n_decomposed, n_extra_states
 
     def _generate_pairs(self, state_dict: Dict, proof_finished_states: List[str],
-                         theorem_name: str, max_distance: int = MAX_DISTANCE,
+                         theorem_name: str, theorem_statement: str = "",
+                         max_distance: int = MAX_DISTANCE,
                          negative_ratio: float = 1.0) -> List[TrainingPair]:
         """
         Генерирует training pairs из графа переходов.
@@ -1771,6 +1797,9 @@ class LeanNavigatorExplorer:
         2. Каждый предок = новая теорема с proof_path до ProofFinished
         3. Макс MAX_NUM_OUTPUT_PER_STATE=50 пар на одно состояние
         4. Добавляет negative examples (unprovable states с distance=-1)
+        
+        Args:
+            theorem_statement: Исходная формулировка теоремы (goal_expr) для контекста в SFT
         """
         pairs = []
         seen_state_counts: Dict[str, int] = {}  # сколько пар уже для данного state
@@ -1822,6 +1851,7 @@ class LeanNavigatorExplorer:
                     next_state=next_state_str,
                     distance_to_proof=distance,
                     theorem_name=theorem_name,
+                    theorem_statement=theorem_statement,
                 ))
                 seen_state_counts[ancestor_pp] = count + 1
         
@@ -1843,6 +1873,7 @@ class LeanNavigatorExplorer:
                     next_state="",
                     distance_to_proof=-1,
                     theorem_name=theorem_name,
+                    theorem_statement=theorem_statement,
                 ))
                 num_negative += 1
                 if num_negative >= int(num_positive * negative_ratio):
