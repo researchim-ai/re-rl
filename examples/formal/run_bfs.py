@@ -31,6 +31,8 @@ import time
 from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
+from re_rl.tasks.formal.dataset_io import save_pairs_dataset
+from re_rl.tasks.formal.rag_io import load_or_build_rag, load_or_build_templates
 
 
 def parse_args():
@@ -156,75 +158,18 @@ def check_dependencies():
 
 def save_dataset(pairs, output_dir, fmt, metadata):
     """Сохраняет датасет в указанном формате."""
-    output_dir = Path(output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    def pair_to_dict(p):
-        return {
+    rows = [
+        {
             "state": p.state,
             "tactic": p.tactic,
             "next_state": p.next_state,
             "distance_to_proof": p.distance_to_proof,
             "theorem_name": p.theorem_name,
-            "theorem_statement": getattr(p, 'theorem_statement', ''),
+            "theorem_statement": getattr(p, "theorem_statement", ""),
         }
-
-    if fmt == "jsonl":
-        f = output_dir / f"lean_data_{ts}.jsonl"
-        with open(f, "w") as fh:
-            for p in pairs:
-                fh.write(json.dumps(pair_to_dict(p), ensure_ascii=False) + "\n")
-    elif fmt == "json":
-        f = output_dir / f"lean_data_{ts}.json"
-        with open(f, "w") as fh:
-            json.dump([pair_to_dict(p) for p in pairs], fh, indent=2, ensure_ascii=False)
-    elif fmt == "sft":
-        f = output_dir / f"lean_sft_{ts}.json"
-        sft = []
-        for p in pairs:
-            # Пропускаем negative examples (пустой tactic)
-            if not p.tactic or not p.tactic.strip():
-                continue
-            thm_stmt = getattr(p, 'theorem_statement', '')
-            input_text = f"Theorem to prove: {thm_stmt}\n\nCurrent proof state:\n{p.state}" if thm_stmt else f"Current proof state:\n{p.state}"
-            sft.append({
-                "instruction": "You are a Lean 4 theorem prover. Given the theorem and current proof state, suggest the next tactic.",
-                "input": input_text,
-                "output": p.tactic,
-            })
-        with open(f, "w") as fh:
-            json.dump(sft, fh, indent=2, ensure_ascii=False)
-    elif fmt == "chat":
-        f = output_dir / f"lean_chat_{ts}.json"
-        chat = []
-        for p in pairs:
-            # Пропускаем negative examples (пустой tactic)
-            if not p.tactic or not p.tactic.strip():
-                continue
-            thm_stmt = getattr(p, 'theorem_statement', '')
-            if thm_stmt:
-                user_content = f"I want to prove: {thm_stmt}\n\nCurrent proof state:\n```\n{p.state}\n```\n\nWhat tactic should I apply?"
-            else:
-                user_content = f"Prove this goal:\n```\n{p.state}\n```"
-            chat.append({
-                "messages": [
-                    {"role": "system", "content": "You are an expert Lean 4 theorem prover. Given a theorem and proof state, suggest the next tactic."},
-                    {"role": "user", "content": user_content},
-                    {"role": "assistant", "content": p.tactic},
-                ]
-            })
-        with open(f, "w") as fh:
-            json.dump(chat, fh, indent=2, ensure_ascii=False)
-
-    # Метаданные
-    mf = output_dir / f"metadata_{ts}.json"
-    with open(mf, "w") as fh:
-        json.dump(metadata, fh, indent=2, ensure_ascii=False, default=str)
-
-    print(f"  Датасет:    {f}  ({f.stat().st_size:,} bytes)")
-    print(f"  Метаданные: {mf}")
-    return f
+        for p in pairs
+    ]
+    return save_pairs_dataset(rows, output_dir, fmt, metadata)
 
 
 def main():
@@ -272,13 +217,10 @@ def main():
 
     # Импортируем после проверки зависимостей
     from re_rl.tasks.formal.lean_navigator import (
-        TacticTemplateExtractor,
-        TacticRAG,
         PantographDojo,
         LeanNavigatorExplorer,
         load_theorems_from_env,
         TracedTheorem,
-        TrainedTacticRAG,
     )
 
     # ═══════════════════════════════════════════════════════════
@@ -288,19 +230,12 @@ def main():
     print("ШАГ 1: Шаблоны тактик")
     print("=" * 60)
 
-    templates_path = NAV_DATA / "tactic_templates.json"
     NAV_DATA.mkdir(parents=True, exist_ok=True)
-
-    extractor = TacticTemplateExtractor()
-
-    if templates_path.exists():
-        extractor.load(str(templates_path))
-    else:
-        print("Извлекаем шаблоны из ast.json...")
-        t0 = time.time()
-        extractor.extract_from_ast_dir(str(REPO_DIR))
-        print(f"Время: {time.time() - t0:.1f}с")
-        extractor.save(str(templates_path))
+    extractor = load_or_build_templates(
+        nav_data=NAV_DATA,
+        repo_dir=REPO_DIR,
+        print_fn=print,
+    )
 
     print(f"\nТоп-10 шаблонов:")
     for tmpl, freq in extractor.get_top_templates(10):
@@ -314,57 +249,12 @@ def main():
     print("ШАГ 2: FAISS RAG index")
     print("=" * 60)
 
-    # Определяем тип RAG модели
-    use_trained_rag = False
-    trained_model_path = None
-
-    if args.rag_model == "trained":
-        # Ищем обученную модель в стандартном месте
-        default_trained = NAV_DATA / "trained_rag" / "bert_rag_model"
-        if default_trained.exists():
-            trained_model_path = str(default_trained)
-            use_trained_rag = True
-            print(f"  Обученная BERT модель: {trained_model_path}")
-        else:
-            print(f"  Обученная модель не найдена: {default_trained}")
-            print(f"  Запустите: python examples/train_rag.py")
-            print(f"  Используем pretrained sentence-transformers...")
-    elif args.rag_model != "sbert":
-        # Пользователь указал путь к модели
-        if Path(args.rag_model).exists():
-            trained_model_path = args.rag_model
-            use_trained_rag = True
-            print(f"  Обученная BERT модель: {trained_model_path}")
-        else:
-            print(f"  Модель не найдена: {args.rag_model}")
-            print(f"  Используем pretrained sentence-transformers...")
-
-    if use_trained_rag:
-        # Используем обученный BERT + FAISS L2
-        trained_rag_index = NAV_DATA / "trained_rag" / "trained_rag_index"
-        rag = TrainedTacticRAG(model_path=trained_model_path)
-
-        if (trained_rag_index / "faiss_l2.index").exists():
-            rag.load(str(trained_rag_index))
-        else:
-            print("Строим FAISS L2 index из обученного BERT...")
-            t0 = time.time()
-            rag.build_index(extractor.templates, min_freq=args.min_template_freq)
-            print(f"Время: {time.time() - t0:.1f}с")
-            rag.save(str(trained_rag_index))
-    else:
-        # Используем pretrained sentence-transformers (по умолчанию)
-        rag_path = NAV_DATA / "rag_index"
-        rag = TacticRAG(model_name="all-MiniLM-L6-v2")
-
-        if (rag_path / "faiss.index").exists():
-            rag.load(str(rag_path))
-        else:
-            print("Строим FAISS index...")
-            t0 = time.time()
-            rag.build_index(extractor.templates, min_freq=args.min_template_freq)
-            print(f"Время: {time.time() - t0:.1f}с")
-            rag.save(str(rag_path))
+    rag = load_or_build_rag(
+        extractor=extractor,
+        nav_data=NAV_DATA,
+        rag_model=args.rag_model,
+        min_template_freq=args.min_template_freq,
+    )
     print()
 
     # ═══════════════════════════════════════════════════════════

@@ -114,8 +114,12 @@ try:
         TrainedTacticRAG,
         train_tactic_rag,
     )
-except ImportError:
-    pass  # Тяжёлые зависимости не установлены — это нормально
+except Exception:
+    # Важно: в некоторых окружениях (например Ray worker с uvloop) импорт
+    # pantograph может падать не ImportError, а ValueError/RuntimeError.
+    # Для lazy-import режима formal-модуля это допустимо: шаблонные/утилитные
+    # части должны оставаться рабочими без LeanNavigator в момент импорта.
+    pass
 
 __all__ = [
     # Шаблонная генерация

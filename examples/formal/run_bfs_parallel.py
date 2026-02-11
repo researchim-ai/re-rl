@@ -34,6 +34,12 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
+from re_rl.tasks.formal.dataset_io import save_pairs_dataset
+from re_rl.tasks.formal.rag_io import (
+    ensure_templates_and_rag_ready,
+    load_or_build_rag,
+    load_or_build_templates,
+)
 
 
 def parse_args():
@@ -180,12 +186,9 @@ def _bfs_worker(
         print(f"[Worker {worker_id}] tracemalloc включён (дифф после каждой теоремы)", flush=True)
 
     from re_rl.tasks.formal.lean_navigator import (
-        TacticTemplateExtractor,
-        TacticRAG,
         PantographDojo,
         LeanNavigatorExplorer,
         TracedTheorem,
-        TrainedTacticRAG,
     )
 
     nav_data = Path(nav_data_dir)
@@ -273,39 +276,14 @@ def _bfs_worker(
     _log_to_file(f"MEM: {_get_full_mem_info()}")
     _diag("worker_start", n_theorems=n_thms, mem=_get_full_mem_info())
 
-    # ── 1. Загрузка шаблонов тактик (из кэша) ──
-    templates_path = nav_data / "tactic_templates.json"
-    extractor = TacticTemplateExtractor()
-    extractor.load(str(templates_path))
-
-    # ── 2. Загрузка/построение RAG ──
-    use_trained_rag = False
-    trained_model_path = None
-
-    if rag_model == "trained":
-        default_trained = nav_data / "trained_rag" / "bert_rag_model"
-        if default_trained.exists():
-            trained_model_path = str(default_trained)
-            use_trained_rag = True
-    elif rag_model != "sbert":
-        if Path(rag_model).exists():
-            trained_model_path = rag_model
-            use_trained_rag = True
-
-    if use_trained_rag:
-        trained_rag_index = nav_data / "trained_rag" / "trained_rag_index"
-        rag = TrainedTacticRAG(model_path=trained_model_path)
-        if (trained_rag_index / "faiss_l2.index").exists():
-            rag.load(str(trained_rag_index))
-        else:
-            rag.build_index(extractor.templates, min_freq=min_template_freq)
-    else:
-        rag_path = nav_data / "rag_index"
-        rag = TacticRAG(model_name="all-MiniLM-L6-v2")
-        if (rag_path / "faiss.index").exists():
-            rag.load(str(rag_path))
-        else:
-            rag.build_index(extractor.templates, min_freq=min_template_freq)
+    # ── 1-2. Загрузка шаблонов и RAG ──
+    extractor = load_or_build_templates(nav_data=nav_data)
+    rag = load_or_build_rag(
+        extractor=extractor,
+        nav_data=nav_data,
+        rag_model=rag_model,
+        min_template_freq=min_template_freq,
+    )
 
     print(f"[Worker {worker_id}] RAG загружен")
 
@@ -675,66 +653,7 @@ def _bfs_worker(
 
 def save_dataset(pairs_dicts, output_dir, fmt, metadata):
     """Сохраняет датасет (pairs уже как dicts)."""
-    output_dir = Path(output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    ts = datetime.now().strftime("%Y%m%d_%H%M%S")
-
-    if fmt == "jsonl":
-        f = output_dir / f"lean_data_{ts}.jsonl"
-        with open(f, "w") as fh:
-            for p in pairs_dicts:
-                fh.write(json.dumps(p, ensure_ascii=False) + "\n")
-    elif fmt == "json":
-        f = output_dir / f"lean_data_{ts}.json"
-        with open(f, "w") as fh:
-            json.dump(pairs_dicts, fh, indent=2, ensure_ascii=False)
-    elif fmt == "sft":
-        f = output_dir / f"lean_sft_{ts}.json"
-        sft = []
-        for p in pairs_dicts:
-            # Пропускаем negative examples (пустой tactic)
-            tactic = p.get("tactic", "")
-            if not tactic or not tactic.strip():
-                continue
-            thm_stmt = p.get("theorem_statement", "")
-            input_text = f"Theorem to prove: {thm_stmt}\n\nCurrent proof state:\n{p['state']}" if thm_stmt else f"Current proof state:\n{p['state']}"
-            sft.append({
-                "instruction": "You are a Lean 4 theorem prover. Given the theorem and current proof state, suggest the next tactic.",
-                "input": input_text,
-                "output": tactic,
-            })
-        with open(f, "w") as fh:
-            json.dump(sft, fh, indent=2, ensure_ascii=False)
-    elif fmt == "chat":
-        f = output_dir / f"lean_chat_{ts}.json"
-        chat = []
-        for p in pairs_dicts:
-            # Пропускаем negative examples (пустой tactic)
-            tactic = p.get("tactic", "")
-            if not tactic or not tactic.strip():
-                continue
-            thm_stmt = p.get("theorem_statement", "")
-            if thm_stmt:
-                user_content = f"I want to prove: {thm_stmt}\n\nCurrent proof state:\n```\n{p['state']}\n```\n\nWhat tactic should I apply?"
-            else:
-                user_content = f"Prove this goal:\n```\n{p['state']}\n```"
-            chat.append({
-                "messages": [
-                    {"role": "system", "content": "You are an expert Lean 4 theorem prover. Given a theorem and proof state, suggest the next tactic."},
-                    {"role": "user", "content": user_content},
-                    {"role": "assistant", "content": tactic},
-                ]
-            })
-        with open(f, "w") as fh:
-            json.dump(chat, fh, indent=2, ensure_ascii=False)
-
-    mf = output_dir / f"metadata_{ts}.json"
-    with open(mf, "w") as fh:
-        json.dump(metadata, fh, indent=2, ensure_ascii=False, default=str)
-
-    print(f"  Датасет:    {f}  ({f.stat().st_size:,} bytes)")
-    print(f"  Метаданные: {mf}")
-    return f
+    return save_pairs_dataset(pairs_dicts, output_dir, fmt, metadata)
 
 
 def main():
@@ -774,51 +693,21 @@ def main():
     # Шаг 1: Убеждаемся что шаблоны и RAG закэшированы
     # ═══════════════════════════════════════════════════════════
     print("Проверка кэша шаблонов и RAG...")
-    templates_path = NAV_DATA / "tactic_templates.json"
     NAV_DATA.mkdir(parents=True, exist_ok=True)
-
-    if not templates_path.exists():
-        print("Шаблоны не найдены — извлекаем (один раз)...")
-        from re_rl.tasks.formal.lean_navigator import TacticTemplateExtractor
-        extractor = TacticTemplateExtractor()
-        extractor.extract_from_ast_dir(str(REPO_DIR))
-        extractor.save(str(templates_path))
-    else:
+    templates_path = NAV_DATA / "tactic_templates.json"
+    had_templates = templates_path.exists()
+    if had_templates:
         print(f"  Шаблоны: OK ({templates_path})")
+    else:
+        print("Шаблоны не найдены — извлекаем (один раз)...")
 
-    # Проверяем/строим RAG index заранее (workers загрузят из кэша)
-    rag_ready = False
-    if args.rag_model == "trained":
-        idx = NAV_DATA / "trained_rag" / "trained_rag_index" / "faiss_l2.index"
-        rag_ready = idx.exists()
-        if not rag_ready:
-            print("Trained RAG index не найден — строим...")
-            from re_rl.tasks.formal.lean_navigator import (
-                TacticTemplateExtractor, TrainedTacticRAG,
-            )
-            ext = TacticTemplateExtractor()
-            ext.load(str(templates_path))
-            model_path = str(NAV_DATA / "trained_rag" / "bert_rag_model")
-            rag = TrainedTacticRAG(model_path=model_path)
-            rag.build_index(ext.templates, min_freq=args.min_template_freq)
-            rag.save(str(NAV_DATA / "trained_rag" / "trained_rag_index"))
-            rag_ready = True
-    elif args.rag_model == "sbert":
-        idx = NAV_DATA / "rag_index" / "faiss.index"
-        rag_ready = idx.exists()
-        if not rag_ready:
-            print("SBERT RAG index не найден — строим...")
-            from re_rl.tasks.formal.lean_navigator import (
-                TacticTemplateExtractor, TacticRAG,
-            )
-            ext = TacticTemplateExtractor()
-            ext.load(str(templates_path))
-            rag = TacticRAG(model_name="all-MiniLM-L6-v2")
-            rag.build_index(ext.templates, min_freq=args.min_template_freq)
-            rag.save(str(NAV_DATA / "rag_index"))
-            rag_ready = True
-
-    print(f"  RAG index: {'OK' if rag_ready else 'будет построен в worker'}")
+    ensure_templates_and_rag_ready(
+        nav_data=NAV_DATA,
+        repo_dir=REPO_DIR,
+        rag_model=args.rag_model,
+        min_template_freq=args.min_template_freq,
+    )
+    print("  RAG index: OK")
 
     # ═══════════════════════════════════════════════════════════
     # Шаг 2: Загрузка теорем (в main процессе, один раз)

@@ -239,6 +239,88 @@ python examples/run_bfs.py --max-theorems 500 --max-steps 50000 --max-time 300
 
 **Время**: ~1-5 мин на 50 теорем; часы-дни для полного Mathlib.
 
+### Шаг 4b: Guided pipeline (отдельный подход для более глубоких траекторий)
+
+Если нужен не классический BFS, а более "глубокий" поиск, используйте:
+
+```bash
+python examples/formal/run_guided_pipeline.py
+```
+
+Этот скрипт реализует отдельный подход (best-first guided search), а не заменяет `run_bfs.py`.
+
+#### Как работает `run_guided_pipeline.py`
+
+1. Загружает кэшированную среду Mathlib (`~/.cache/re_rl/...`) и проверяет, что трейсинг готов (`.step_5_done`).
+2. Загружает шаблоны тактик и RAG индекс через общий helper (`rag_io.py`):
+   - `--rag-model sbert` → pretrained SBERT + FAISS;
+   - `--rag-model trained` → обученный BERT retriever + FAISS L2.
+3. Загружает теоремы из Lean env (`load_theorems_from_env`).
+4. Для каждой теоремы запускает guided-поиск (`GuidedSearchExplorer`):
+   - best-first приоритизация состояний;
+   - ранжирование тактик (policy/value эвристики);
+   - ограничение кандидатов (`candidate_top_k`, `max_total_tactics_per_state`);
+   - сбор positive/negative training pairs.
+5. Фильтрует пары по `--min-proof-length`.
+6. Сохраняет датасет и metadata в `--output-dir`.
+
+#### Базовый запуск
+
+```bash
+python examples/formal/run_guided_pipeline.py \
+  --max-theorems 200 \
+  --output-dir datasets/formal_math_data_guided
+```
+
+#### Режим "глубже" (рекомендуемый старт)
+
+```bash
+python examples/formal/run_guided_pipeline.py \
+  --max-theorems 200 \
+  --max-steps 15000 \
+  --max-time 180 \
+  --max-states 6000 \
+  --max-depth 12 \
+  --candidate-top-k 96 \
+  --max-total-tactics-per-state 192 \
+  --min-proof-length 4 \
+  --ban-tactics "trivial,tauto,decide,omega" \
+  --output-dir datasets/formal_math_data_guided
+```
+
+#### Быстрый smoke-тест
+
+```bash
+python examples/formal/run_guided_pipeline.py \
+  --max-theorems 1 \
+  --max-steps 200 \
+  --max-time 20 \
+  --max-depth 4 \
+  --candidate-top-k 32 \
+  --max-total-tactics-per-state 48 \
+  --output-dir datasets/formal_math_data_guided_smoke
+```
+
+#### Ключевые параметры `run_guided_pipeline.py`
+
+| Параметр | Что делает |
+|---|---|
+| `--max-theorems` | Сколько теорем обрабатывать |
+| `--max-steps` | Лимит попыток тактик на теорему |
+| `--max-time` | Таймаут на теорему (сек) |
+| `--max-states` | Лимит уникальных состояний |
+| `--max-depth` | Макс глубина поиска |
+| `--candidate-top-k` | Сколько top-кандидатов тактик пробовать на состояние |
+| `--max-total-tactics-per-state` | Жёсткий потолок кандидатов до `run_tac` |
+| `--min-proof-length` | Оставлять только пары с distance_to_proof >= N |
+| `--ban-tactics` | Блок root-тактик (через запятую) |
+| `--negatives-per-state` | Сколько negative-пар сохранять на состояние |
+
+#### Выходные файлы
+
+- Датасет: `datasets/formal_math_data_guided/lean_guided_YYYYmmdd_HHMMSS.{jsonl|json}`
+- Метаданные: `datasets/formal_math_data_guided/metadata_guided_YYYYmmdd_HHMMSS.json`
+
 ### Шаг 5 (опционально): Обучение prover-модели
 
 Используя сгенерированный датасет, можно дообучить LLM:
