@@ -52,6 +52,8 @@ def parse_args():
                         help="Макс шагов BFS на теорему (default: 5000)")
     parser.add_argument("--max-time", type=int, default=60,
                         help="Секунд на теорему (default: 60)")
+    parser.add_argument("--max-states", type=int, default=10000,
+                        help="Макс уникальных состояний BFS на теорему, 0=без лимита (default: 10000)")
     parser.add_argument("--min-template-freq", type=int, default=3,
                         help="Мин частота шаблона для RAG (default: 3)")
     parser.add_argument("--output-dir", default=None,
@@ -414,7 +416,7 @@ def main():
 
         mode = "shared server" if args.no_per_file else "shared + per-file fallback"
         print(f"\nЗапускаем BFS на {len(theorems)} теоремах...")
-        print(f"  max_steps={args.max_steps}, max_time={args.max_time}с")
+        print(f"  max_steps={args.max_steps}, max_time={args.max_time}с, max_states={args.max_states}")
         print(f"  goal_start mode: {mode}")
         print()
 
@@ -447,6 +449,7 @@ def main():
             early_stop=not args.no_early_stop,
             banned_tactics=banned,
             decompose_auto=args.decompose_auto,
+            max_states=args.max_states,
         )
 
         for i, thm in enumerate(theorems):

@@ -28,7 +28,7 @@ import itertools
 import json
 import pickle
 from pathlib import Path
-from typing import List, Dict, Tuple, Optional, Any, Set
+from typing import List, Dict, Tuple, Optional, Any, Set, Callable
 from dataclasses import dataclass, field
 from collections import defaultdict
 from contextlib import contextmanager
@@ -289,16 +289,44 @@ def generate_tactics_from_template(template: str, type_of_item: Dict[str, str],
         else:
             return [template]  # unknown type in template
 
-    combinations = list(itertools.product(*replacement_lists))
-    if len(combinations) > max_tactics:
-        combinations = random.sample(combinations, max_tactics)
+    # Важно: нельзя материализовывать весь product в list — для некоторых целей
+    # это даёт взрыв RAM ещё до run_tac. Генерируем только ограниченный набор.
+    for repl in replacement_lists:
+        if not repl:
+            return []
 
-    sentences = []
-    for combination in combinations:
+    def _build_sentence(combination) -> str:
         sentence = fixed_parts[0]
         for item, fixed_part in zip(combination, fixed_parts[1:]):
             sentence += item + fixed_part
-        sentences.append(sentence)
+        return sentence
+
+    total_combinations = 1
+    for repl in replacement_lists:
+        total_combinations *= len(repl)
+        if total_combinations > max_tactics:
+            break
+
+    sentences: List[str] = []
+    if total_combinations <= max_tactics:
+        for combination in itertools.product(*replacement_lists):
+            sentences.append(_build_sentence(combination))
+    else:
+        # Рандомно выбираем уникальные комбинации без построения полного product.
+        seen = set()
+        max_attempts = max_tactics * 30
+        for _ in range(max_attempts):
+            combination = tuple(random.choice(repl) for repl in replacement_lists)
+            if combination in seen:
+                continue
+            seen.add(combination)
+            sentences.append(_build_sentence(combination))
+            if len(sentences) >= max_tactics:
+                break
+        if not sentences:
+            # Теоретический fallback (на случай экстремального совпадения выборок).
+            combination = tuple(repl[0] for repl in replacement_lists)
+            sentences.append(_build_sentence(combination))
 
     return sentences
 
@@ -695,8 +723,19 @@ class PantographDojo:
         return self
 
     def stop(self):
-        """Останавливает сервер."""
+        """Останавливает сервер и убивает процесс pantograph-repl."""
         if self.server:
+            # Явно вызываем _close() для terminate процесса
+            try:
+                self.server._close()
+            except Exception:
+                pass
+            # Дополнительно пробуем kill если proc ещё жив
+            try:
+                if self.server.proc:
+                    self.server.proc.kill()
+            except Exception:
+                pass
             del self.server
             self.server = None
 
@@ -1215,13 +1254,42 @@ class LeanNavigatorExplorer:
                  max_steps: int = MAX_STEPS, max_time: int = 1200,
                  verbose: bool = False, early_stop: bool = True,
                  banned_tactics: Optional[set] = None,
-                 decompose_auto: bool = False):
+                 decompose_auto: bool = False,
+                 max_states: int = 0,
+                 max_process_rss_mb: int = 0,
+                 max_tactic_rss_jump_mb: int = 0,
+                 progress_callback: Optional[Callable[[int, int, float], None]] = None,
+                 trace_tactics: bool = False,
+                 trace_theorem_substr: str = "",
+                 phase_callback: Optional[Callable[[str, Dict[str, Any]], None]] = None):
+        """
+        Args:
+            max_states: Макс уникальных состояний в графе (0 = без лимита).
+                Ограничивает память BFS: каждое состояние хранит полный pp.
+            max_process_rss_mb: Если > 0, BFS останавливается при превышении
+                суммарного RSS процесса (Python + Lean). Позволяет не съедать всю RAM на одной теореме.
+            max_tactic_rss_jump_mb: Если > 0, BFS останавливается, когда один вызов run_tac
+                увеличивает RSS процесса (Python + Lean) более чем на этот порог в MB.
+            progress_callback: Вызывается каждые 200 шагов BFS с (n_steps, n_states, rss_mb).
+                Позволяет по последней строке в логе понять, на какой операции произошёл OOM.
+            trace_tactics: Если True, пишет before/after run_tac через phase_callback.
+            trace_theorem_substr: Ограничить трассировку тактик только теоремами, в имени
+                которых есть эта подстрока (пусто = все теоремы).
+            phase_callback: Диагностический callback событий фаз BFS.
+        """
         self.dojo = dojo
         self.rag = rag
         self.max_steps = max_steps
         self.max_time = max_time
         self.verbose = verbose
         self.early_stop = early_stop
+        self.max_states = max_states  # 0 = no limit
+        self.max_process_rss_mb = max_process_rss_mb  # 0 = disabled
+        self.max_tactic_rss_jump_mb = max_tactic_rss_jump_mb  # 0 = disabled
+        self.progress_callback = progress_callback
+        self.trace_tactics = trace_tactics
+        self.trace_theorem_substr = trace_theorem_substr
+        self.phase_callback = phase_callback
         # Множество "корневых" имён тактик, которые BFS не будет применять.
         # Пример: {"simp", "simp_all", "aesop", "omega", "tauto", "decide"}
         # Это заставляет BFS искать многошаговые доказательства вместо
@@ -1410,6 +1478,25 @@ class LeanNavigatorExplorer:
         n_steps = 0
         theorem_proven = False
         proof_finished_states = []
+        memory_limit_reached = False
+        trace_this_theorem = self.trace_tactics and (
+            not self.trace_theorem_substr or self.trace_theorem_substr in theorem_name
+        )
+
+        def _current_rss_mb() -> float:
+            """RSS текущего Python процесса + всех дочерних (Lean) в MB."""
+            try:
+                import psutil
+                proc = psutil.Process()
+                rss_mb = proc.memory_info().rss / (1024 * 1024)
+                for c in proc.children(recursive=True):
+                    try:
+                        rss_mb += c.memory_info().rss / (1024 * 1024)
+                    except (psutil.NoSuchProcess, psutil.AccessDenied):
+                        pass
+                return rss_mb
+            except Exception:
+                return 0.0
 
         while state_queue.size() > 0:
             curr_state = state_queue.pop()
@@ -1429,10 +1516,30 @@ class LeanNavigatorExplorer:
 
             # RAG: получаем шаблоны тактик
             # Авторы: query = theorem_code + ' # ' + curr_state.pp
+            if trace_this_theorem and self.phase_callback:
+                try:
+                    self.phase_callback("before_rag_query", {
+                        "step": n_steps,
+                        "states": len(state_dict),
+                        "goal_len": len(curr_state.pp),
+                        "rss_mb": round(_current_rss_mb(), 2),
+                    })
+                except Exception:
+                    pass
             query_text = theorem_code if theorem_code else theorem_name
             suggestions = self.rag.get_similar_templates(
                 curr_state.pp, theorem_code=query_text, num_returned=200
             )
+            if trace_this_theorem and self.phase_callback:
+                try:
+                    self.phase_callback("after_rag_query", {
+                        "step": n_steps,
+                        "states": len(state_dict),
+                        "n_suggestions": len(suggestions),
+                        "rss_mb": round(_current_rss_mb(), 2),
+                    })
+                except Exception:
+                    pass
             tac_templates = [s[0] for s in suggestions]
 
             # Добавляем обратные rw тактики (точно как у авторов)
@@ -1442,6 +1549,16 @@ class LeanNavigatorExplorer:
                     tac_templates.append(inv)
 
             # Генерируем конкретные тактики из шаблонов
+            if trace_this_theorem and self.phase_callback:
+                try:
+                    self.phase_callback("before_tactic_expand", {
+                        "step": n_steps,
+                        "states": len(state_dict),
+                        "n_templates": len(tac_templates),
+                        "rss_mb": round(_current_rss_mb(), 2),
+                    })
+                except Exception:
+                    pass
             tactic_set = set()
             for tac_template in tac_templates:
                 try:
@@ -1477,6 +1594,16 @@ class LeanNavigatorExplorer:
             tactic_set.add("rintro ⟨nvar0, nvar1⟩")
             tactic_set.add("cases nvar0")
             tactic_set.add("induction nvar0")
+            if trace_this_theorem and self.phase_callback:
+                try:
+                    self.phase_callback("after_tactic_expand", {
+                        "step": n_steps,
+                        "states": len(state_dict),
+                        "n_tactics": len(tactic_set),
+                        "rss_mb": round(_current_rss_mb(), 2),
+                    })
+                except Exception:
+                    pass
 
             # Фильтруем забаненные тактики (наше расширение)
             if self.banned_tactics:
@@ -1484,6 +1611,16 @@ class LeanNavigatorExplorer:
                     t for t in tactic_set
                     if self._tactic_root(t) not in self.banned_tactics
                 }
+                if trace_this_theorem and self.phase_callback:
+                    try:
+                        self.phase_callback("after_ban_filter", {
+                            "step": n_steps,
+                            "states": len(state_dict),
+                            "n_tactics": len(tactic_set),
+                            "rss_mb": round(_current_rss_mb(), 2),
+                        })
+                    except Exception:
+                        pass
 
             # Применяем тактики
             proof_finished = False
@@ -1495,9 +1632,58 @@ class LeanNavigatorExplorer:
                           f"proven={theorem_proven}")
                 if n_steps > self.max_steps:
                     break
+                # Каждые 200 шагов: проверка RSS (лимит) + логирование прогресса (диагностика OOM)
+                if (self.max_process_rss_mb > 0 or self.progress_callback) and n_steps % 200 == 0:
+                    rss_mb = 0.0
+                    try:
+                        import psutil
+                        proc = psutil.Process()
+                        rss_mb = proc.memory_info().rss / (1024 * 1024)
+                        for c in proc.children(recursive=True):
+                            try:
+                                rss_mb += c.memory_info().rss / (1024 * 1024)
+                            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                                pass
+                    except Exception:
+                        pass
+                    if self.max_process_rss_mb > 0 and rss_mb > self.max_process_rss_mb:
+                        memory_limit_reached = True
+                        if self.phase_callback:
+                            try:
+                                self.phase_callback("memory_limit_hit", {
+                                    "step": n_steps,
+                                    "states": len(state_dict),
+                                    "rss_mb": rss_mb,
+                                })
+                            except Exception:
+                                pass
+                        if self.verbose:
+                            print(f"  BFS остановлен: память процесса {rss_mb:.0f}MB > {self.max_process_rss_mb}MB")
+                        break
+                    if self.progress_callback:
+                        try:
+                            self.progress_callback(n_steps, len(state_dict), rss_mb)
+                        except Exception:
+                            pass
 
                 # Авторы: retry до MAX_NUM_DOJO_ATTEMPT раз
                 result = None
+                measure_tactic_rss = (
+                    self.max_tactic_rss_jump_mb > 0
+                    or trace_this_theorem
+                )
+                rss_before = _current_rss_mb() if measure_tactic_rss else 0.0
+                if trace_this_theorem and self.phase_callback:
+                    try:
+                        self.phase_callback("before_run_tac", {
+                            "step": n_steps,
+                            "states": len(state_dict),
+                            "tactic": tactic[:160],
+                            "goal_len": len(curr_state.pp),
+                            "rss_before_mb": round(rss_before, 2) if measure_tactic_rss else None,
+                        })
+                    except Exception:
+                        pass
                 for _attempt in range(MAX_NUM_DOJO_ATTEMPT):
                     try:
                         result = working_dojo.run_tac(curr_state, tactic)
@@ -1505,7 +1691,70 @@ class LeanNavigatorExplorer:
                     except Exception:
                         continue
                 if result is None:
+                    rss_after_fail = _current_rss_mb() if measure_tactic_rss else 0.0
+                    rss_delta_fail = (rss_after_fail - rss_before) if measure_tactic_rss else 0.0
+                    if trace_this_theorem and self.phase_callback:
+                        try:
+                            self.phase_callback("run_tac_failed", {
+                                "step": n_steps,
+                                "states": len(state_dict),
+                                "tactic": tactic[:160],
+                                "rss_after_mb": round(rss_after_fail, 2) if measure_tactic_rss else None,
+                                "rss_delta_mb": round(rss_delta_fail, 2) if measure_tactic_rss else None,
+                            })
+                        except Exception:
+                            pass
+                    if (self.max_tactic_rss_jump_mb > 0 and measure_tactic_rss
+                            and rss_delta_fail > self.max_tactic_rss_jump_mb):
+                        memory_limit_reached = True
+                        if self.phase_callback:
+                            try:
+                                self.phase_callback("tactic_rss_spike", {
+                                    "step": n_steps,
+                                    "states": len(state_dict),
+                                    "tactic": tactic[:160],
+                                    "rss_before_mb": round(rss_before, 2),
+                                    "rss_after_mb": round(rss_after_fail, 2),
+                                    "rss_delta_mb": round(rss_delta_fail, 2),
+                                })
+                            except Exception:
+                                pass
+                        if self.verbose:
+                            print(f"  BFS остановлен: скачок памяти на тактике +{rss_delta_fail:.0f}MB > {self.max_tactic_rss_jump_mb}MB")
+                        break
                     continue
+                rss_after = _current_rss_mb() if measure_tactic_rss else 0.0
+                rss_delta = (rss_after - rss_before) if measure_tactic_rss else 0.0
+                if trace_this_theorem and self.phase_callback:
+                    try:
+                        self.phase_callback("after_run_tac", {
+                            "step": n_steps,
+                            "states": len(state_dict),
+                            "tactic": tactic[:160],
+                            "result_type": type(result).__name__,
+                            "rss_after_mb": round(rss_after, 2) if measure_tactic_rss else None,
+                            "rss_delta_mb": round(rss_delta, 2) if measure_tactic_rss else None,
+                        })
+                    except Exception:
+                        pass
+                if (self.max_tactic_rss_jump_mb > 0 and measure_tactic_rss
+                        and rss_delta > self.max_tactic_rss_jump_mb):
+                    memory_limit_reached = True
+                    if self.phase_callback:
+                        try:
+                            self.phase_callback("tactic_rss_spike", {
+                                "step": n_steps,
+                                "states": len(state_dict),
+                                "tactic": tactic[:160],
+                                "rss_before_mb": round(rss_before, 2),
+                                "rss_after_mb": round(rss_after, 2),
+                                "rss_delta_mb": round(rss_delta, 2),
+                            })
+                        except Exception:
+                            pass
+                    if self.verbose:
+                        print(f"  BFS остановлен: скачок памяти на тактике +{rss_delta:.0f}MB > {self.max_tactic_rss_jump_mb}MB")
+                    break
 
                 if isinstance(result, ProofFinished):
                     proof_finished = True
@@ -1539,6 +1788,9 @@ class LeanNavigatorExplorer:
                                 prefix  # оставляем кратчайший
                             )
                     else:
+                        # Лимит состояний: защита от OOM (state_dict хранит полный pp каждого состояния)
+                        if self.max_states > 0 and len(state_dict) >= self.max_states:
+                            continue
                         complexity = explore_state_complexity(
                             result.pp, base_complexity=base_complexity,
                             seen_target_freq=seen_target_freq
@@ -1555,7 +1807,15 @@ class LeanNavigatorExplorer:
                 if exit_on_finish:
                     break
 
+            # Очищаем goal_state у обработанного состояния — экономия памяти Lean
+            # (после обработки run_tac больше не нужен)
+            # НО: если decompose_auto, может понадобиться для родителей ProofFinished
+            if not self.decompose_auto:
+                object.__setattr__(curr_state, 'goal_state', None)
+
             if n_steps > self.max_steps:
+                break
+            if memory_limit_reached:
                 break
             # Раннее прекращение: если не доказано за 1/3 бюджета — стоп.
             # Эвристика из LeanNavigator для массовой генерации.
@@ -1569,6 +1829,26 @@ class LeanNavigatorExplorer:
                 break
 
         elapsed = time.time() - start_time
+
+        # ================================================================
+        # КРИТИЧНО: очищаем goal_state для экономии памяти Lean
+        # Сохраняем только те, что нужны для decompose_automation
+        # (родители ProofFinished состояний)
+        # ================================================================
+        needed_for_decompose = set()
+        if self.decompose_auto and proof_finished_states:
+            for pf_key in proof_finished_states:
+                if pf_key in state_dict:
+                    _, parent_states, _, _ = state_dict[pf_key]
+                    for p in parent_states:
+                        if isinstance(p, ProofState):
+                            needed_for_decompose.add(p.pp)
+
+        # Очищаем goal_state у всех состояний, кроме нужных для decompose
+        for key, (state_obj, _, _, _) in state_dict.items():
+            if isinstance(state_obj, ProofState) and key not in needed_for_decompose:
+                # Обнуляем goal_state — он больше не нужен
+                object.__setattr__(state_obj, 'goal_state', None)
 
         # Post-BFS: декомпозиция automation-тактик в индивидуальные шаги
         n_decomposed = 0
@@ -1637,17 +1917,32 @@ class LeanNavigatorExplorer:
                     # Обнуляем pairs — данные ненадёжны
                     pairs = [p for p in pairs if p.distance_to_proof < 0]
 
+        # ================================================================
+        # КРИТИЧНО: очищаем state_dict — он больше не нужен, но занимает
+        # огромное количество памяти (граф ProofState с циклическими ссылками)
+        # ================================================================
+        n_states_final = len(state_dict)
+        n_proofs_found_final = len(proof_finished_states)
+        state_dict.clear()
+        del state_dict
+        proof_finished_states.clear()
+        del proof_finished_states
+
+        # Принудительный GC для освобождения циклических ссылок
+        import gc
+        gc.collect()
+
         return NavigatorResult(
             theorem_name=theorem_name,
-            state_dict=state_dict,
+            state_dict={},  # Пустой — данные больше не нужны
             theorem_proven=theorem_proven,
             pairs=pairs,
-            n_states=len(state_dict),
+            n_states=n_states_final,
             n_steps=n_steps,
             elapsed=elapsed,
             verified=verified,
             proof_tactics=proof_tactics,
-            n_proofs_found=len(proof_finished_states),
+            n_proofs_found=n_proofs_found_final,
             n_proofs_verified=n_proofs_verified,
             n_decomposed=n_decomposed,
         )
@@ -2182,14 +2477,15 @@ def load_theorems_from_env(
     cache_dir: Optional[str] = None,
     verbose: bool = False,
     validate_goals: bool = True,
+    only_names: Optional[List[str]] = None,
 ) -> List[TracedTheorem]:
     """
     Загружает теоремы из Lean окружения через Pantograph.
-    
+
     Использует env_catalog + env_inspect для получения:
     - Правильных квалифицированных имён (namespace, а не модуль)
     - Полных типов (с квантификаторами) — пригодных для goal_start
-    
+
     Args:
         dojo: Запущенный PantographDojo
         module_prefix: Префикс модуля (e.g., "Mathlib")
@@ -2197,66 +2493,87 @@ def load_theorems_from_env(
         cache_dir: Директория кэша (для сохранения каталога)
         verbose: Подробный вывод
         validate_goals: Проверять goal_start_expr перед добавлением (100% рабочие)
-        
+        only_names: Если задан — инспектируем только эти полные имена (без семпла, без лимита max_theorems).
+
     Returns:
         Список TracedTheorem с валидными goal_expr
     """
-    # 1. Получаем каталог (с кэшированием)
-    catalog_cache = Path(cache_dir) / "env_catalog.json" if cache_dir else None
-
-    if catalog_cache and catalog_cache.exists():
-        with open(catalog_cache) as f:
-            all_names = json.load(f)
-        print(f"Каталог загружен из кэша: {len(all_names)} констант")
-    else:
-        print(f"Получаем каталог из Lean ({module_prefix})...")
-        t0 = time.time()
-        all_names = dojo.catalog(module_prefix=module_prefix)
-        elapsed = time.time() - t0
-        print(f"  Получено {len(all_names)} констант за {elapsed:.1f}с")
-        if catalog_cache and len(all_names) > 0:
-            catalog_cache.parent.mkdir(parents=True, exist_ok=True)
-            with open(catalog_cache, 'w') as f:
-                json.dump(all_names, f)
-
-    # 2. env_catalog возвращает имена с однобуквенным тегом:
-    #    t=theorem, d=def, c=constructor, r=recursor, i=inductive, o=opaque
-    #    Берём только теоремы (t) и стрипаем префикс
-    theorem_names = [n[1:] for n in all_names if n.startswith('t')]
-    print(f"  Теорем (prefix=t): {len(theorem_names)} из {len(all_names)}")
-
-    # 3. Фильтруем внутренние имена
-    filtered = [n for n in theorem_names if not _is_internal_name(n)]
-    print(f"  После фильтрации: {len(filtered)} (отброшено {len(theorem_names) - len(filtered)} внутренних)")
-
-    # 4. Семплируем больше чем нужно (часть не пройдёт env_inspect / validate)
-    sample_size = min(max_theorems * 10, len(filtered))
-    sample = random.sample(filtered, sample_size) if len(filtered) > sample_size else filtered
-
-    # 5. Инспектируем типы через env_inspect
     theorems = []
     inspected = 0
     failed = 0
     goal_rejected = 0
 
-    iterator = tqdm(sample, desc="Загрузка типов") if TQDM_AVAILABLE else sample
+    if only_names is not None:
+        iterator = only_names
+        if verbose:
+            print(f"Загрузка только указанных имён: {len(only_names)}")
+    else:
+        # 1. Получаем каталог (с кэшированием)
+        catalog_cache = Path(cache_dir) / "env_catalog.json" if cache_dir else None
+
+        if catalog_cache and catalog_cache.exists():
+            with open(catalog_cache) as f:
+                all_names = json.load(f)
+            print(f"Каталог загружен из кэша: {len(all_names)} констант")
+        else:
+            print(f"Получаем каталог из Lean ({module_prefix})...")
+            t0 = time.time()
+            all_names = dojo.catalog(module_prefix=module_prefix)
+            elapsed = time.time() - t0
+            print(f"  Получено {len(all_names)} констант за {elapsed:.1f}с")
+            if catalog_cache and len(all_names) > 0:
+                catalog_cache.parent.mkdir(parents=True, exist_ok=True)
+                with open(catalog_cache, 'w') as f:
+                    json.dump(all_names, f)
+
+        # 2. env_catalog возвращает имена с однобуквенным тегом: t=theorem, ...
+        theorem_names = [n[1:] for n in all_names if n.startswith('t')]
+        print(f"  Теорем (prefix=t): {len(theorem_names)} из {len(all_names)}")
+
+        # 3. Фильтруем внутренние имена
+        filtered = [n for n in theorem_names if not _is_internal_name(n)]
+        print(f"  После фильтрации: {len(filtered)} (отброшено {len(theorem_names) - len(filtered)} внутренних)")
+
+        # 4. Семплируем
+        sample_size = min(max_theorems * 10, len(filtered))
+        sample = random.sample(filtered, sample_size) if len(filtered) > sample_size else filtered
+        iterator = tqdm(sample, desc="Загрузка типов") if TQDM_AVAILABLE else sample
+
+    consecutive_errors = 0
+    MAX_CONSECUTIVE_ERRORS = 10  # Если много подряд — dojo сломан (Lean PANIC убил процесс)
 
     for name in iterator:
-        if len(theorems) >= max_theorems:
+        if only_names is None and len(theorems) >= max_theorems:
             break
         inspected += 1
-        
+
         # Получаем полную информацию: module, pp, expr
-        info = dojo.env_inspect_full(name)
+        # Оборачиваем в try/except — Lean PANIC может вызвать исключение
+        try:
+            info = dojo.env_inspect_full(name)
+        except Exception as e:
+            # Lean PANIC / краш — пропускаем теорему
+            failed += 1
+            consecutive_errors += 1
+            if verbose:
+                print(f"  skip {name}: env_inspect crash: {str(e)[:60]}")
+            if TQDM_AVAILABLE and isinstance(iterator, tqdm):
+                iterator.set_postfix(found=len(theorems), failed=failed)
+            if consecutive_errors >= MAX_CONSECUTIVE_ERRORS:
+                print(f"\n⚠ {consecutive_errors} ошибок подряд — Lean/Pantograph вероятно упал (PANIC). "
+                      f"Прерываем загрузку. Загружено {len(theorems)} теорем.")
+                break
+            continue
+
         if info is None:
             failed += 1
             if TQDM_AVAILABLE and isinstance(iterator, tqdm):
                 iterator.set_postfix(found=len(theorems), failed=failed)
             continue
-        
+
         type_pp = info["pp"]
         real_module = info["module"]  # Реальный Lean модуль (для per-file server)
-        
+
         if not type_pp or not _is_interesting_type(type_pp):
             failed += 1
             if TQDM_AVAILABLE and isinstance(iterator, tqdm):
@@ -2265,7 +2582,22 @@ def load_theorems_from_env(
 
         # Валидация: проверяем что goal_start_expr может начать доказательство
         if validate_goals:
-            result = dojo.goal_start_expr(name)
+            try:
+                result = dojo.goal_start_expr(name)
+            except Exception as e:
+                # Lean PANIC / краш — пропускаем теорему
+                goal_rejected += 1
+                consecutive_errors += 1
+                if verbose:
+                    print(f"  skip {name}: goal_start crash: {str(e)[:60]}")
+                if TQDM_AVAILABLE and isinstance(iterator, tqdm):
+                    iterator.set_postfix(found=len(theorems), failed=failed, skip=goal_rejected)
+                if consecutive_errors >= MAX_CONSECUTIVE_ERRORS:
+                    print(f"\n⚠ {consecutive_errors} ошибок подряд — Lean/Pantograph вероятно упал (PANIC). "
+                          f"Прерываем загрузку. Загружено {len(theorems)} теорем.")
+                    break
+                continue
+
             if result is None or isinstance(result, ProofFinished):
                 goal_rejected += 1
                 if verbose:
@@ -2282,6 +2614,7 @@ def load_theorems_from_env(
             file_path="",
             tactics=[],
         ))
+        consecutive_errors = 0  # Сбрасываем счётчик при успехе
 
         if TQDM_AVAILABLE and isinstance(iterator, tqdm):
             iterator.set_postfix(found=len(theorems), failed=failed, skip=goal_rejected)

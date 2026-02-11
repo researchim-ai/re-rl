@@ -90,6 +90,30 @@ def parse_args():
     parser.add_argument("--no-pp-full", action="store_true",
                         help="Отключить полный pretty-print (разрешить ⋯ обрезку). "
                              "По умолчанию pp_full=True — полный вывод без обрезки.")
+    parser.add_argument("--max-pairs-per-worker", type=int, default=40000,
+                        help="Макс пар на worker (default: 40000)")
+    parser.add_argument("--max-states-per-theorem", type=int, default=2500,
+                        help="Макс состояний BFS на теорему (default: 2500)")
+    parser.add_argument("--debug-mem", action="store_true",
+                        help="Логировать разбивку памяти (self + дочерние) после каждой теоремы в worker")
+    parser.add_argument("--debug-tracemalloc", action="store_true",
+                        help="В worker: tracemalloc — топ аллокаций после каждой теоремы")
+    parser.add_argument("--gc-interval", type=int, default=1,
+                        help="Вызывать gc() каждые N теорем (0=никогда, default=1)")
+    parser.add_argument("--restart-interval", type=int, default=0,
+                        help="Перезапускать Lean dojo каждые N теорем для очистки памяти (0=никогда, default=0)")
+    parser.add_argument("--min-free-gb", type=float, default=12.0,
+                        help="Не начинать новую теорему, если свободной памяти меньше N GB (default: 12, 0=отключить)")
+    parser.add_argument("--max-worker-rss-mb", type=int, default=7500,
+                        help="Макс RSS (Python+Lean) на воркер в MB; при превышении BFS досрочно завершает теорему (default: 7500, 0=отключить)")
+    parser.add_argument("--max-tactic-rss-jump-mb", type=int, default=0,
+                        help="Если >0, досрочно завершать теорему при скачке RSS на одной тактике больше N MB")
+    parser.add_argument("--diag-jsonl", action="store_true",
+                        help="Писать JSONL-диагностику (theorem_start/progress/error/phase) по воркерам")
+    parser.add_argument("--trace-theorem", default="",
+                        help="Подстрока имени теоремы для детальной трассировки run_tac")
+    parser.add_argument("--trace-every-tac", action="store_true",
+                        help="Логировать before/after run_tac (рекомендуется только с --trace-theorem)")
     return parser.parse_args()
 
 
@@ -112,7 +136,19 @@ def _bfs_worker(
     banned_tactics: Optional[set] = None,
     decompose_auto: bool = False,
     min_proof_length: int = 0,
-    pp_full: bool = True,
+    pp_full: bool = False,
+    max_pairs_per_worker: int = 40000,
+    max_states_per_theorem: int = 2500,
+    debug_mem: bool = False,
+    debug_tracemalloc: bool = False,
+    gc_interval: int = 1,
+    restart_interval: int = 25,
+    min_free_gb: float = 12.0,
+    max_worker_rss_mb: int = 7500,
+    max_tactic_rss_jump_mb: int = 0,
+    diag_jsonl: bool = False,
+    trace_theorem: str = "",
+    trace_every_tac: bool = False,
 ):
     """
     Ray worker: создаёт PantographDojo + RAG, обрабатывает batch теорем.
@@ -137,6 +173,12 @@ def _bfs_worker(
     # elan в PATH (в каждом worker процессе)
     os.environ["PATH"] = str(Path.home() / ".elan" / "bin") + ":" + os.environ.get("PATH", "")
 
+    _tracemalloc_prev_snap = None
+    if debug_tracemalloc:
+        import tracemalloc
+        tracemalloc.start(10)
+        print(f"[Worker {worker_id}] tracemalloc включён (дифф после каждой теоремы)", flush=True)
+
     from re_rl.tasks.formal.lean_navigator import (
         TacticTemplateExtractor,
         TacticRAG,
@@ -149,6 +191,87 @@ def _bfs_worker(
     nav_data = Path(nav_data_dir)
     n_thms = len(theorem_dicts)
     print(f"[Worker {worker_id}] Запуск: {n_thms} теорем")
+
+    # ── Логирование в файл (для диагностики OOM) ──
+    log_dir = Path(nav_data_dir).parent / "logs"
+    log_dir.mkdir(exist_ok=True)
+    log_file = log_dir / f"worker_{worker_id}.log"
+    diag_file = log_dir / f"worker_{worker_id}.jsonl"
+    
+    def _log_to_file(msg: str):
+        """Пишет в файл с flush (не потеряется при OOM)."""
+        try:
+            import datetime
+            ts = datetime.datetime.now().strftime("%H:%M:%S")
+            with open(log_file, "a") as f:
+                f.write(f"[{ts}] {msg}\n")
+                f.flush()
+        except:
+            pass
+
+    def _diag(event: str, **payload):
+        """Структурированный JSONL лог для post-mortem анализа OOM."""
+        if not diag_jsonl:
+            return
+        try:
+            rec = {
+                "ts": time.time(),
+                "worker_id": worker_id,
+                "event": event,
+                **payload,
+            }
+            with open(diag_file, "a") as f:
+                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+                f.flush()
+        except Exception:
+            pass
+
+    def _get_full_mem_info() -> str:
+        """Полная информация о памяти."""
+        try:
+            import psutil
+            proc = psutil.Process()
+            py_mb = proc.memory_info().rss / (1024 * 1024)
+            
+            # Дочерние процессы (Lean) этого worker
+            children_info = []
+            lean_total = 0
+            for c in proc.children(recursive=True):
+                try:
+                    c_mb = c.memory_info().rss / (1024 * 1024)
+                    lean_total += c_mb
+                    cmd = c.name()[:20] if c.name() else "?"
+                    children_info.append(f"{cmd}={c_mb:.0f}MB")
+                except:
+                    pass
+            
+            # ВСЕ pantograph процессы в системе (чтобы видеть реальную картину)
+            all_panto = []
+            all_panto_mb = 0
+            for p in psutil.process_iter(['pid', 'name', 'memory_info']):
+                try:
+                    if 'pantograph' in (p.info['name'] or '').lower():
+                        mb = p.info['memory_info'].rss / (1024 * 1024)
+                        all_panto.append(f"{mb:.0f}")
+                        all_panto_mb += mb
+                except:
+                    pass
+            
+            # Системная память
+            vm = psutil.virtual_memory()
+            sys_used = vm.used / (1024**3)
+            sys_total = vm.total / (1024**3)
+            sys_avail = vm.available / (1024**3)
+            
+            panto_str = f" | ALL_PANTO: {len(all_panto)} procs, {all_panto_mb/1024:.1f}GB" if all_panto else ""
+            return (f"Python={py_mb:.0f}MB | Lean={lean_total:.0f}MB [{', '.join(children_info[:3])}] | "
+                    f"System: {sys_used:.1f}/{sys_total:.1f}GB used, {sys_avail:.1f}GB free{panto_str}")
+        except Exception as e:
+            return f"mem_error: {e}"
+
+    _log_to_file(f"=== Worker {worker_id} START === {n_thms} теорем")
+    _log_to_file(f"MEM: {_get_full_mem_info()}")
+    _diag("worker_start", n_theorems=n_thms, mem=_get_full_mem_info())
 
     # ── 1. Загрузка шаблонов тактик (из кэша) ──
     templates_path = nav_data / "tactic_templates.json"
@@ -186,6 +309,31 @@ def _bfs_worker(
 
     print(f"[Worker {worker_id}] RAG загружен")
 
+    def _log_memory_breakdown(worker_id: int, stage: str):
+        """Пишет в stderr разбивку: RSS текущего процесса + каждый дочерний (pid, cmdline, rss)."""
+        try:
+            import psutil
+            me = psutil.Process()
+            self_mb = me.memory_info().rss / (1024 * 1024)
+            parts = [f"self={self_mb:.0f}MB"]
+            total = self_mb
+            for c in me.children(recursive=True):
+                try:
+                    rss_mb = c.memory_info().rss / (1024 * 1024)
+                    total += rss_mb
+                    cmd = (c.name() or "?") if hasattr(c, "name") else "?"
+                    if c.cmdline():
+                        cmd = " ".join(c.cmdline())[:60].replace("\n", " ")
+                    parts.append(f"pid{c.pid}({cmd})={rss_mb:.0f}MB")
+                except (psutil.NoSuchProcess, psutil.AccessDenied):
+                    pass
+            print(f"  [W{worker_id} MEM] {stage} | {' | '.join(parts)} | total={total:.0f}MB", flush=True)
+        except Exception as e:
+            print(f"  [W{worker_id} MEM] {stage} | error: {e}", flush=True)
+
+    if debug_mem:
+        _log_memory_breakdown(worker_id, "after_rag_before_dojo")
+
     # ── 3. Восстанавливаем TracedTheorem из dict ──
     theorems = [
         TracedTheorem(
@@ -203,18 +351,110 @@ def _bfs_worker(
     worker_pairs = []
     worker_results = []
 
-    with PantographDojo(project_path=repo_dir, imports=["Mathlib"], pp_full=pp_full) as dojo:
-        explorer = LeanNavigatorExplorer(
-            dojo=dojo, rag=rag,
+    # Настройки управления памятью (из аргументов)
+    GC_INTERVAL = gc_interval
+    RESTART_INTERVAL = restart_interval
+    MIN_FREE_GB = min_free_gb
+    MAX_WORKER_RSS_MB = max_worker_rss_mb
+    MAX_TACTIC_RSS_JUMP_MB = max_tactic_rss_jump_mb
+    TRACE_THEOREM = trace_theorem
+    TRACE_EVERY_TAC = trace_every_tac
+    current_theorem_name = ""
+
+    def _create_dojo():
+        d = PantographDojo(project_path=repo_dir, imports=["Mathlib"], pp_full=pp_full)
+        d.start()
+        return d
+
+    def _create_explorer(dojo_instance):
+        def _on_bfs_progress(step: int, states: int, rss_mb: float) -> None:
+            _log_to_file(f"    BFS progress: step={step} states={states} rss_mb={rss_mb:.0f}")
+            _diag(
+                "bfs_progress",
+                theorem=current_theorem_name,
+                step=step,
+                states=states,
+                rss_mb=round(rss_mb, 2),
+            )
+
+        def _on_phase(event: str, data: dict) -> None:
+            _diag(event, theorem=current_theorem_name, **data)
+
+        return LeanNavigatorExplorer(
+            dojo=dojo_instance, rag=rag,
             max_steps=max_steps, max_time=max_time,
             verbose=verbose,
             early_stop=early_stop,
             banned_tactics=banned_tactics,
             decompose_auto=decompose_auto,
+            max_states=max_states_per_theorem,
+            max_process_rss_mb=MAX_WORKER_RSS_MB,
+            max_tactic_rss_jump_mb=MAX_TACTIC_RSS_JUMP_MB,
+            progress_callback=_on_bfs_progress,
+            trace_tactics=TRACE_EVERY_TAC,
+            trace_theorem_substr=TRACE_THEOREM,
+            phase_callback=_on_phase,
         )
 
+    dojo = _create_dojo()
+    explorer = _create_explorer(dojo)
+
+    if debug_mem:
+        _log_memory_breakdown(worker_id, "after_dojo_start_before_theorems")
+    if debug_tracemalloc:
+        import tracemalloc
+        _tracemalloc_prev_snap = tracemalloc.take_snapshot()
+        print(f"[Worker {worker_id}] tracemalloc: базовый снимок (до теорем)", flush=True)
+
+    consecutive_errors = 0
+    MAX_CONSECUTIVE_ERRORS = 5  # Если много подряд — dojo сломан (Lean PANIC)
+
+    _log_to_file(f"Dojo started. MEM: {_get_full_mem_info()}")
+
+    try:
         for i, thm in enumerate(theorems):
             t0 = time.time()
+            current_theorem_name = thm.name
+            
+            # ===== ЛОГИРУЕМ ДО НАЧАЛА ТЕОРЕМЫ (для диагностики OOM) =====
+            _log_to_file(f">>> STARTING theorem {i+1}/{n_thms}: {thm.name}")
+            _log_to_file(f"    goal_expr length: {len(thm.goal_expr)} chars")
+            _log_to_file(f"    MEM BEFORE: {_get_full_mem_info()}")
+            _diag(
+                "theorem_start",
+                theorem=thm.name,
+                theorem_idx=i + 1,
+                n_theorems=n_thms,
+                goal_expr_len=len(thm.goal_expr),
+                mem=_get_full_mem_info(),
+            )
+            
+            # Проверка свободной памяти: не начинаем теорему, если мало RAM (избегаем OOM)
+            if MIN_FREE_GB > 0:
+                try:
+                    vm = psutil.virtual_memory()
+                    free_gb = vm.available / (1024**3)
+                    if free_gb < MIN_FREE_GB:
+                        _log_to_file(f"    SKIP (low memory: {free_gb:.1f}GB free < {MIN_FREE_GB}GB)")
+                        _diag("theorem_skip_low_memory", theorem=thm.name, free_gb=round(free_gb, 3), min_free_gb=MIN_FREE_GB)
+                        print(f"  [W{worker_id}] SKIP {thm.name[:40]} (free {free_gb:.1f}GB < {MIN_FREE_GB}GB)")
+                        worker_results.append({
+                            "theorem": thm.name, "proven": False, "verified": False,
+                            "states": 0, "steps": 0, "pairs": 0,
+                            "proofs_found": 0, "proofs_verified": 0, "proof_length": 0,
+                            "n_decomposed": 0, "time": 0,
+                            "error": f"skipped: low memory ({free_gb:.1f}GB free)",
+                        })
+                        gc.collect()
+                        if GC_INTERVAL > 0:
+                            try:
+                                dojo.server.gc()
+                            except Exception:
+                                pass
+                        continue
+                except Exception:
+                    pass
+            
             try:
                 result = explorer.explore(
                     goal_expr=thm.goal_expr,
@@ -222,6 +462,21 @@ def _bfs_worker(
                     theorem_code=thm.goal_state,
                     theorem_module="" if not use_per_file else thm.module,
                     exit_on_finish=False,
+                )
+
+                # ===== ЛОГИРУЕМ СРАЗУ ПОСЛЕ explore() =====
+                _log_to_file(f"    DONE explore: states={result.n_states}, steps={result.n_steps}, "
+                            f"pairs={len(result.pairs)}, proven={result.theorem_proven}")
+                _log_to_file(f"    MEM AFTER explore: {_get_full_mem_info()}")
+                _diag(
+                    "theorem_done",
+                    theorem=thm.name,
+                    states=result.n_states,
+                    steps=result.n_steps,
+                    pairs=len(result.pairs),
+                    proven=bool(result.theorem_proven),
+                    verified=bool(result.verified),
+                    mem=_get_full_mem_info(),
                 )
 
                 # Фильтрация по min_proof_length + конвертация в dict
@@ -232,18 +487,25 @@ def _bfs_worker(
                         if p.distance_to_proof >= min_proof_length
                         or p.distance_to_proof < 0  # negative examples сохраняем
                     ]
+                # Ограничиваем длину строк (снижает память и риск OOM)
+                _MAX_STATE_LEN = 12000
+                def _trunc(s: str) -> str:
+                    return (s[: _MAX_STATE_LEN] + "\n...[truncated]") if len(s) > _MAX_STATE_LEN else s
                 pairs_dicts = [
                     {
-                        "state": p.state,
+                        "state": _trunc(p.state),
                         "tactic": p.tactic,
-                        "next_state": p.next_state,
+                        "next_state": _trunc(p.next_state),
                         "distance_to_proof": p.distance_to_proof,
                         "theorem_name": p.theorem_name,
-                        "theorem_statement": getattr(p, 'theorem_statement', ''),
+                        "theorem_statement": _trunc(getattr(p, 'theorem_statement', '')),
                     }
                     for p in filtered_pairs
                 ]
                 worker_pairs.extend(pairs_dicts)
+                if len(worker_pairs) >= max_pairs_per_worker:
+                    print(f"  [W{worker_id}] Достигнут лимит {max_pairs_per_worker} пар — завершаем worker")
+                    break
 
                 elapsed = time.time() - t0
                 status = "✓" if result.verified else ("⚠" if result.theorem_proven else "○")
@@ -262,23 +524,142 @@ def _bfs_worker(
                     "time": elapsed,
                 })
 
-                if result.theorem_proven or (i + 1) % 5 == 0:
+                # Память после каждой теоремы (ВСЕГДА логируем для диагностики OOM)
+                mem_warning = ""
+                try:
+                    import psutil
+                    proc = psutil.Process()
+                    py_mb = proc.memory_info().rss / (1024 * 1024)
+                    lean_mb = sum(c.memory_info().rss for c in proc.children(recursive=True)) / (1024 * 1024)
+                    vm = psutil.virtual_memory()
+                    sys_used_gb = vm.used / (1024**3)
+                    sys_total_gb = vm.total / (1024**3)
+                    sys_avail_gb = vm.available / (1024**3)
+                    mem_info = f"Py={py_mb:.0f}MB Lean={lean_mb:.0f}MB Sys={sys_used_gb:.1f}/{sys_total_gb:.1f}GB"
+                    # Предупреждение если мало свободной памяти
+                    if sys_avail_gb < 4:
+                        mem_warning = f" ⚠⚠⚠ КРИТИЧНО: осталось {sys_avail_gb:.1f}GB!"
+                    elif sys_avail_gb < 8:
+                        mem_warning = f" ⚠ мало памяти: {sys_avail_gb:.1f}GB свободно"
+                except:
+                    mem_info = ""
+
+                # Выводим КАЖДУЮ теорему если мало памяти или есть предупреждение
+                force_print = bool(mem_warning) or result.n_states > 500
+
+                if result.theorem_proven or (i + 1) % 5 == 0 or force_print:
                     proven = sum(1 for r in worker_results if r["proven"])
                     verified = sum(1 for r in worker_results if r.get("verified"))
                     total_p = sum(r["pairs"] for r in worker_results)
                     print(f"  [W{worker_id} {i+1}/{n_thms}] {status} "
-                          f"proven={proven} verified={verified} pairs={total_p} | "
-                          f"{thm.name[:35]} ({elapsed:.1f}s)")
+                          f"proven={proven} verified={verified} pairs={total_p} states={result.n_states} | "
+                          f"{thm.name[:40]} ({elapsed:.1f}s) | {mem_info}{mem_warning}", flush=True)
+                if debug_mem:
+                    _log_memory_breakdown(worker_id, f"after_theorem_{i+1}_{thm.name[:30]}")
+                if debug_tracemalloc:
+                    import tracemalloc
+                    snap = tracemalloc.take_snapshot()
+                    diff = snap.compare_to(_tracemalloc_prev_snap, "lineno")
+                    total_diff_mb = sum(s.size_diff for s in diff if s.size_diff > 0) / (1024 * 1024)
+                    print(f"  [W{worker_id} TRACEMALLOC] после теоремы {i+1} ({thm.name[:30]}) | прирост ~{total_diff_mb:.0f} MB, топ по size_diff:", flush=True)
+                    shown = 0
+                    for s in diff:
+                        if s.size_diff <= 0 or shown >= 15:
+                            continue
+                        mb = s.size_diff / (1024 * 1024)
+                        loc = s.traceback[0] if s.traceback else "?"
+                        print(f"    +{mb:.1f} MB  {loc}", flush=True)
+                        shown += 1
+                    _tracemalloc_prev_snap = snap
+
+                consecutive_errors = 0  # Сброс при успехе
+
+                # Очистка result — state_dict и pairs больше не нужны
+                del result
+                del filtered_pairs
+                del pairs_dicts
+                import gc
+                gc.collect()
+
+                # Garbage collection в Lean — освобождаем deleted goal states
+                if GC_INTERVAL > 0 and (i + 1) % GC_INTERVAL == 0:
+                    try:
+                        dojo.server.gc()
+                    except Exception:
+                        pass  # gc() может упасть если сервер уже мёртв
+
+                # Логируем после всех очисток
+                _log_to_file(f"    MEM AFTER cleanup+gc: {_get_full_mem_info()}")
+                _log_to_file(f"<<< FINISHED theorem {i+1}/{n_thms}: {thm.name}")
+
+                # Периодический перезапуск dojo для полной очистки памяти Lean
+                if RESTART_INTERVAL > 0 and (i + 1) % RESTART_INTERVAL == 0 and (i + 1) < len(theorems):
+                    _log_to_file(f"!!! RESTARTING dojo (every {RESTART_INTERVAL} theorems)")
+                    _log_to_file(f"    MEM BEFORE dojo.stop(): {_get_full_mem_info()}")
+                    print(f"  [W{worker_id}] Перезапуск dojo (каждые {RESTART_INTERVAL} теорем) для очистки памяти...")
+                    try:
+                        dojo.stop()
+                    except Exception as e:
+                        _log_to_file(f"    WARN: dojo.stop() raised: {e}")
+                    # Даём время процессу завершиться
+                    time.sleep(1)
+                    gc.collect()
+                    _log_to_file(f"    MEM AFTER dojo.stop() + gc: {_get_full_mem_info()}")
+                    dojo = _create_dojo()
+                    explorer = _create_explorer(dojo)
+                    _log_to_file(f"    MEM AFTER new dojo started: {_get_full_mem_info()}")
+                    if debug_mem:
+                        _log_memory_breakdown(worker_id, f"after_dojo_restart_{i+1}")
 
             except Exception as e:
                 elapsed = time.time() - t0
+                consecutive_errors += 1
+                err_str = str(e)[:200]
                 worker_results.append({
                     "theorem": thm.name, "proven": False,
-                    "error": str(e)[:80], "pairs": 0,
+                    "error": err_str[:80], "pairs": 0,
                     "states": 0, "steps": 0, "time": elapsed,
                 })
-                if verbose:
-                    print(f"  [W{worker_id}] ERROR: {thm.name[:35]} | {str(e)[:60]}")
+                _log_to_file(f"!!! ERROR on theorem {i+1}/{n_thms}: {thm.name}")
+                _log_to_file(f"    Error: {err_str}")
+                _log_to_file(f"    MEM at error: {_get_full_mem_info()}")
+                _diag(
+                    "theorem_error",
+                    theorem=thm.name,
+                    theorem_idx=i + 1,
+                    error=err_str[:1000],
+                    elapsed=round(elapsed, 3),
+                    mem=_get_full_mem_info(),
+                )
+                print(f"  [W{worker_id}] ERROR: {thm.name[:35]} | {err_str[:60]}")
+
+                # Garbage collection даже после ошибки
+                try:
+                    dojo.server.gc()
+                except Exception:
+                    pass
+
+                if consecutive_errors >= MAX_CONSECUTIVE_ERRORS:
+                    print(f"  [W{worker_id}] ⚠ {consecutive_errors} ошибок подряд — "
+                          f"Lean/Pantograph вероятно упал (PANIC). Пробуем перезапустить dojo...")
+                    try:
+                        dojo.stop()
+                    except Exception:
+                        pass
+                    try:
+                        dojo = _create_dojo()
+                        explorer = _create_explorer(dojo)
+                        consecutive_errors = 0  # Сброс после успешного перезапуска
+                        print(f"  [W{worker_id}] Dojo перезапущен, продолжаем.")
+                    except Exception as restart_err:
+                        print(f"  [W{worker_id}] Не удалось перезапустить dojo: {restart_err}. Прерываем worker.")
+                        break
+
+    finally:
+        try:
+            dojo.stop()
+        except Exception:
+            pass
 
     proven = sum(1 for r in worker_results if r["proven"])
     verified = sum(1 for r in worker_results if r.get("verified"))
@@ -451,8 +832,9 @@ def main():
 
     max_thms = args.max_theorems if args.max_theorems > 0 else 5000
 
+    pp_full = not getattr(args, "no_pp_full", False)
     with PantographDojo(project_path=str(REPO_DIR), imports=["Mathlib"],
-                        pp_full=not args.no_pp_full) as dojo:
+                        pp_full=pp_full) as dojo:
         theorems = load_theorems_from_env(
             dojo,
             module_prefix="Mathlib",
@@ -499,7 +881,10 @@ def main():
           f"(~{batch_size} на worker)")
 
     # Инициализация Ray
-    ray_kwargs = {}
+    ray_kwargs = {
+        # Ограничиваем object store до 2GB чтобы не съедал RAM
+        "object_store_memory": 2 * 1024 * 1024 * 1024,
+    }
     if args.num_cpus:
         ray_kwargs["num_cpus"] = args.num_cpus
     if args.memory_gb:
@@ -516,7 +901,10 @@ def main():
 
     # Запускаем workers
     total_start = time.time()
+    log_dir = NAV_DATA.parent / "logs"
+    log_dir.mkdir(exist_ok=True)
     print(f"\nЗапуск {n_workers} workers...")
+    print(f"  ЛОГИ для диагностики OOM: {log_dir}/worker_*.log")
     print("=" * 60)
 
     # Парсим забаненные тактики
@@ -537,6 +925,37 @@ def main():
         print(f"  Мин длина доказательства: {args.min_proof_length}")
     if args.decompose_auto:
         print(f"  Декомпозиция automation: ВКЛ (simp→rw шаги)")
+    print(f"  Макс пар на worker: {args.max_pairs_per_worker}")
+    print(f"  Макс состояний на теорему: {args.max_states_per_theorem} (ограничение памяти BFS)")
+    if not pp_full:
+        print(f"  pp_full: ВЫКЛ (компактный вывод)")
+    if args.debug_mem:
+        print(f"  debug-mem: ВКЛ (разбивка памяти self/дочерние после каждой теоремы)")
+    if args.debug_tracemalloc:
+        print(f"  debug-tracemalloc: ВКЛ (топ аллокаций Python после каждой теоремы)")
+    print(f"  gc-interval: {args.gc_interval} (вызов Lean gc() каждые N теорем)")
+    if args.restart_interval > 0:
+        print(f"  restart-interval: {args.restart_interval} (перезапуск dojo каждые N теорем для очистки памяти)")
+    else:
+        print("  restart-interval: 0 (перезапуск dojo отключён)")
+    min_fg = getattr(args, "min_free_gb", 12.0)
+    if min_fg > 0:
+        print(f"  min-free-gb: {min_fg} (пропуск теоремы если свободной RAM < {min_fg} GB)")
+    max_rss = getattr(args, "max_worker_rss_mb", 7500)
+    if max_rss > 0:
+        print(f"  max-worker-rss-mb: {max_rss} (досрочное завершение BFS по текущей теореме при превышении)")
+    max_tac_jump = getattr(args, "max_tactic_rss_jump_mb", 0)
+    if max_tac_jump > 0:
+        print(f"  max-tactic-rss-jump-mb: {max_tac_jump} (стоп при аномальном скачке памяти на одной тактике)")
+    if args.diag_jsonl:
+        print("  diag-jsonl: ВКЛ (worker_*.jsonl с фазами BFS и run_tac)")
+    if args.trace_every_tac:
+        tr = args.trace_theorem if args.trace_theorem else "<ALL>"
+        print(f"  trace-every-tac: ВКЛ (теоремы: {tr})")
+    # Подсказка: при 5 воркерах и 62GB лучше не съедать >40GB воркерами, иначе много SKIP
+    if max_rss > 0 and n_workers > 0:
+        approx_gb = (n_workers * max_rss) / 1024
+        print(f"  (при {n_workers} воркерах макс ~{approx_gb:.0f} GB под воркеры; при частых SKIP попробуйте --workers 3 или --min-free-gb 8)")
 
     futures = []
     for i, batch in enumerate(batches):
@@ -555,7 +974,19 @@ def main():
             banned_tactics=banned if banned else None,
             decompose_auto=args.decompose_auto,
             min_proof_length=args.min_proof_length,
-            pp_full=not args.no_pp_full,
+            pp_full=pp_full,
+            max_pairs_per_worker=args.max_pairs_per_worker,
+            max_states_per_theorem=args.max_states_per_theorem,
+            debug_mem=args.debug_mem,
+            debug_tracemalloc=args.debug_tracemalloc,
+            gc_interval=args.gc_interval,
+            restart_interval=args.restart_interval,
+            min_free_gb=getattr(args, "min_free_gb", 12.0),
+            max_worker_rss_mb=getattr(args, "max_worker_rss_mb", 7500),
+            max_tactic_rss_jump_mb=getattr(args, "max_tactic_rss_jump_mb", 0),
+            diag_jsonl=bool(getattr(args, "diag_jsonl", False)),
+            trace_theorem=getattr(args, "trace_theorem", ""),
+            trace_every_tac=bool(getattr(args, "trace_every_tac", False)),
         )
         futures.append(future)
 
@@ -563,9 +994,31 @@ def main():
     all_pairs = []
     all_results = []
 
+    # Мониторинг памяти системы
+    def _log_system_memory():
+        try:
+            import psutil
+            vm = psutil.virtual_memory()
+            used_gb = vm.used / (1024**3)
+            total_gb = vm.total / (1024**3)
+            avail_gb = vm.available / (1024**3)
+            pct = vm.percent
+            return f"RAM: {used_gb:.1f}/{total_gb:.1f} GB ({pct:.0f}% used, {avail_gb:.1f} GB free)"
+        except:
+            return "RAM: N/A"
+
     remaining = list(futures)
+    last_mem_log = 0
     while remaining:
         done, remaining = ray.wait(remaining, num_returns=1, timeout=10.0)
+
+        # Логируем память каждые 30 секунд или при завершении worker'а
+        import time as _time
+        now = _time.time()
+        if done or (now - last_mem_log > 30):
+            print(f"  [{_log_system_memory()}] Workers running: {len(remaining)}")
+            last_mem_log = now
+
         for ref in done:
             try:
                 worker_output = ray.get(ref)
@@ -581,7 +1034,12 @@ def main():
                       f"{proven} proven, {verified} verified, "
                       f"{len(wp)} pairs из {len(wr)} теорем")
             except Exception as e:
-                print(f"\n  Worker ОШИБКА: {e}")
+                err_msg = str(e)
+                if "Worker unexpectedly exits" in err_msg or "connection error" in err_msg.lower():
+                    print(f"\n  Worker убит (OOM или паника Lean/pantograph). Обычные причины: "
+                          f"OOM killer, PANIC в pantograph-repl (unreachable code / declRangeExt). "
+                          f"См. лог выше: последняя напечатанная теорема — та, на которой упало.")
+                print(f"  Worker ОШИБКА: {e}")
 
     ray.shutdown()
     total_time = time.time() - total_start
