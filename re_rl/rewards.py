@@ -185,6 +185,22 @@ def parse_system_linear_answer(text: str) -> Optional[List[float]]:
     pairs_sorted = sorted(pairs, key=lambda x: int(x[0]))
     return [float(p[1]) for p in pairs_sorted]
 
+
+def parse_probability_value(text: str) -> Optional[float]:
+    """Parse first probability-like float from answer."""
+    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", text)
+    if not nums:
+        return None
+    try:
+        return float(nums[0])
+    except Exception:
+        return None
+
+
+def parse_status_answer(text: str) -> str:
+    """Normalize SAT/UNSAT/TRUE/FALSE style answers."""
+    return text.strip().upper()
+
 ##############################################################################
 # 3) Функции сравнения "корректности" финального ответа
 ##############################################################################
@@ -369,6 +385,12 @@ def parse_ref_answer(task_type: str, text: str):
         return parse_text_stats_answer(text)
     elif tt=="system_linear":
         return parse_system_linear_answer(text)
+    elif tt in {"bayesian_reasoning"}:
+        return parse_probability_value(text)
+    elif tt in {"sat_smt_mini", "proof_cases_counterexample"}:
+        return parse_status_answer(text)
+    elif tt in {"csp_reasoning", "graph_justification", "combinatorial_optimization"}:
+        return text.strip()
     return text.strip()
 
 def compare_answers(task_type: str, ref_val: Any, pred_val: Any) -> float:
@@ -404,6 +426,17 @@ def compare_answers(task_type: str, ref_val: Any, pred_val: Any) -> float:
     elif task_type == "contradiction":
         # Для задачи противоречий сравниваем утверждения
         return 1.0 if ref_val.strip().lower() == pred_val.strip().lower() else 0.0
+    elif task_type == "bayesian_reasoning":
+        try:
+            r = float(ref_val)
+            p = float(pred_val)
+            return 1.0 if abs(r - p) < 1e-3 else (0.5 if abs(r - p) < 5e-2 else 0.0)
+        except Exception:
+            return 0.0
+    elif task_type in {"sat_smt_mini", "proof_cases_counterexample"}:
+        return 1.0 if str(ref_val).strip().upper() == str(pred_val).strip().upper() else 0.0
+    elif task_type in {"csp_reasoning", "graph_justification", "combinatorial_optimization"}:
+        return 1.0 if str(ref_val).strip() == str(pred_val).strip() else 0.0
     else:
         return 1.0 if ref_val == pred_val else 0.0
 
@@ -437,7 +470,9 @@ def compute_correctness_score(task_type: str, ref_answer: str, pred_answer: str)
         if not ref_final:  # Если не нашли, используем как есть
             ref_final = ref_answer
             
-    return compare_answers(task_type, ref_final, pred_final)
+    ref_val = parse_ref_answer(task_type, ref_final)
+    pred_val = parse_ref_answer(task_type, pred_final)
+    return compare_answers(task_type, ref_val, pred_val)
 
 def extract_answer_value(task_type: str, answer: str) -> Any:
     """

@@ -8,6 +8,8 @@ from re_rl.tasks.math.discrete.sequence_task import SequenceTask
 from re_rl.tasks.math.discrete.set_logic_task import SetLogicTask
 from re_rl.tasks.math.discrete.graph_task import GraphTask
 from re_rl.tasks.math.discrete.nim_game_task import NimGameTask
+from re_rl.tasks.math.discrete.graph_justification_task import GraphJustificationTask
+from re_rl.tasks.math.discrete.combinatorial_optimization_task import CombinatorialOptimizationTask
 
 __all__ = [
     "NumberTheoryTask",
@@ -16,4 +18,6 @@ __all__ = [
     "SetLogicTask",
     "GraphTask",
     "NimGameTask",
+    "GraphJustificationTask",
+    "CombinatorialOptimizationTask",
 ]

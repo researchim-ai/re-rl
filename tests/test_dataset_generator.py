@@ -198,6 +198,35 @@ class TestDatasetGenerator(unittest.TestCase):
             self.assertIn("final_answer", task)
             self.assertTrue(str(task["final_answer"]).strip())
 
+    def test_new_reasoning_families_generation_and_schema(self):
+        """Новые семейства должны генерироваться и сохраняться с валидацией схем."""
+        for task_type in [
+            "csp_reasoning",
+            "sat_smt_mini",
+            "proof_cases_counterexample",
+            "graph_justification",
+            "bayesian_reasoning",
+            "combinatorial_optimization",
+        ]:
+            task = self.generator.generate_single_task(task_type, "ru", difficulty=6, detail_level=3)
+            self.assertIn("problem", task)
+            self.assertTrue(str(task["final_answer"]).strip())
+
+        grpo = self.generator.generate_grpo_dataset(
+            task_types=[
+                "csp_reasoning",
+                "sat_smt_mini",
+                "proof_cases_counterexample",
+                "graph_justification",
+                "bayesian_reasoning",
+                "combinatorial_optimization",
+            ],
+            num_samples=6,
+            language="ru",
+            show_progress=False,
+        )
+        self.generator.save_jsonl(grpo, "new_reasoning_grpo.jsonl", dataset_format="grpo", validate=True)
+
 
 if __name__ == "__main__":
     unittest.main()

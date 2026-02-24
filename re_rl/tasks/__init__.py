@@ -49,6 +49,8 @@ from re_rl.tasks.math.discrete.sequence_task import SequenceTask
 from re_rl.tasks.math.discrete.set_logic_task import SetLogicTask
 from re_rl.tasks.math.discrete.graph_task import GraphTask
 from re_rl.tasks.math.discrete.nim_game_task import NimGameTask
+from re_rl.tasks.math.discrete.graph_justification_task import GraphJustificationTask
+from re_rl.tasks.math.discrete.combinatorial_optimization_task import CombinatorialOptimizationTask
 
 # Абстрактная алгебра
 from re_rl.tasks.math.abstract_algebra.group_theory_task import GroupTheoryTask
@@ -57,6 +59,7 @@ from re_rl.tasks.math.abstract_algebra.category_theory_task import CategoryTheor
 # Вероятность и статистика
 from re_rl.tasks.math.probability.urn_probability_task import UrnProbabilityTask
 from re_rl.tasks.math.probability.statistics_task import StatisticsTask
+from re_rl.tasks.math.probability.bayesian_reasoning_task import BayesianReasoningTask
 
 # Прикладная математика
 from re_rl.tasks.math.applied.financial_math_task import FinancialMathTask
@@ -70,6 +73,9 @@ from re_rl.tasks.math.logic.analogical_task import AnalogicalTask
 from re_rl.tasks.math.logic.text_stats_task import TextStatsTask
 from re_rl.tasks.math.logic.sudoku_task import SudokuTask
 from re_rl.tasks.math.logic.zebra_puzzle_task import ZebraPuzzleTask
+from re_rl.tasks.math.logic.csp_reasoning_task import CSPReasoningTask
+from re_rl.tasks.math.logic.sat_smt_mini_task import SATSMTMiniTask
+from re_rl.tasks.math.logic.proof_cases_counterexample_task import ProofCasesCounterexampleTask
 
 # Планирование
 from re_rl.tasks.math.planning.river_crossing_task import RiverCrossingTask
@@ -198,6 +204,12 @@ from re_rl.tasks.generators import (
     generate_random_vector_3d_task,
     generate_random_financial_math_task,
     generate_random_series_task,
+    generate_random_csp_reasoning_task,
+    generate_random_sat_smt_mini_task,
+    generate_random_proof_cases_counterexample_task,
+    generate_random_graph_justification_task,
+    generate_random_bayesian_reasoning_task,
+    generate_random_combinatorial_optimization_task,
     ALL_TASK_GENERATORS,
 )
 
@@ -241,6 +253,8 @@ __all__ = [
     "SetLogicTask",
     "GraphTask",
     "NimGameTask",
+    "GraphJustificationTask",
+    "CombinatorialOptimizationTask",
     
     # Абстрактная алгебра
     "GroupTheoryTask",
@@ -249,6 +263,7 @@ __all__ = [
     # Вероятность
     "UrnProbabilityTask",
     "StatisticsTask",
+    "BayesianReasoningTask",
     
     # Прикладная
     "FinancialMathTask",
@@ -263,6 +278,9 @@ __all__ = [
     "TextStatsTask",
     "SudokuTask",
     "ZebraPuzzleTask",
+    "CSPReasoningTask",
+    "SATSMTMiniTask",
+    "ProofCasesCounterexampleTask",
     
     # Планирование
     "RiverCrossingTask",
@@ -357,6 +375,12 @@ __all__ = [
     "generate_random_vector_3d_task",
     "generate_random_financial_math_task",
     "generate_random_series_task",
+    "generate_random_csp_reasoning_task",
+    "generate_random_sat_smt_mini_task",
+    "generate_random_proof_cases_counterexample_task",
+    "generate_random_graph_justification_task",
+    "generate_random_bayesian_reasoning_task",
+    "generate_random_combinatorial_optimization_task",
     "ALL_TASK_GENERATORS",
     
     # Генераторы физики

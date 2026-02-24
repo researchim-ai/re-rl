@@ -48,6 +48,7 @@ from re_rl.tasks.math.abstract_algebra.category_theory_task import CategoryTheor
 # Вероятность и статистика
 from re_rl.tasks.math.probability.urn_probability_task import UrnProbabilityTask
 from re_rl.tasks.math.probability.statistics_task import StatisticsTask
+from re_rl.tasks.math.probability.bayesian_reasoning_task import BayesianReasoningTask
 
 # Прикладная математика
 from re_rl.tasks.math.applied.financial_math_task import FinancialMathTask
@@ -61,6 +62,9 @@ from re_rl.tasks.math.logic.analogical_task import AnalogicalTask
 from re_rl.tasks.math.logic.text_stats_task import TextStatsTask
 from re_rl.tasks.math.logic.sudoku_task import SudokuTask
 from re_rl.tasks.math.logic.zebra_puzzle_task import ZebraPuzzleTask
+from re_rl.tasks.math.logic.csp_reasoning_task import CSPReasoningTask
+from re_rl.tasks.math.logic.sat_smt_mini_task import SATSMTMiniTask
+from re_rl.tasks.math.logic.proof_cases_counterexample_task import ProofCasesCounterexampleTask
 
 # Планирование
 from re_rl.tasks.math.planning.river_crossing_task import RiverCrossingTask
@@ -69,6 +73,8 @@ from re_rl.tasks.math.planning.water_jug_task import WaterJugTask
 
 # Теория игр
 from re_rl.tasks.math.discrete.nim_game_task import NimGameTask
+from re_rl.tasks.math.discrete.graph_justification_task import GraphJustificationTask
+from re_rl.tasks.math.discrete.combinatorial_optimization_task import CombinatorialOptimizationTask
 
 # Физические задачи (импортируем все генераторы)
 from re_rl.tasks.physics.generators import ALL_PHYSICS_TASK_GENERATORS
@@ -1192,6 +1198,118 @@ def generate_random_lean_proof_task(
 
 
 ##################################################
+# 32. New reasoning families
+##################################################
+
+def generate_random_csp_reasoning_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> CSPReasoningTask:
+    return CSPReasoningTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
+def generate_random_sat_smt_mini_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> SATSMTMiniTask:
+    return SATSMTMiniTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
+def generate_random_proof_cases_counterexample_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> ProofCasesCounterexampleTask:
+    return ProofCasesCounterexampleTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
+def generate_random_graph_justification_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> GraphJustificationTask:
+    return GraphJustificationTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
+def generate_random_bayesian_reasoning_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> BayesianReasoningTask:
+    return BayesianReasoningTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
+def generate_random_combinatorial_optimization_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> CombinatorialOptimizationTask:
+    return CombinatorialOptimizationTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
+##################################################
 # Универсальный генератор всех типов задач
 ##################################################
 
@@ -1239,6 +1357,12 @@ ALL_TASK_GENERATORS = {
     "tower_of_hanoi": generate_random_tower_of_hanoi_task,
     "water_jug": generate_random_water_jug_task,
     "nim_game": generate_random_nim_game_task,
+    "csp_reasoning": generate_random_csp_reasoning_task,
+    "sat_smt_mini": generate_random_sat_smt_mini_task,
+    "proof_cases_counterexample": generate_random_proof_cases_counterexample_task,
+    "graph_justification": generate_random_graph_justification_task,
+    "bayesian_reasoning": generate_random_bayesian_reasoning_task,
+    "combinatorial_optimization": generate_random_combinatorial_optimization_task,
     # Формальная математика (Lean 4):
     "lean_proof": generate_random_lean_proof_task,
     # Физические задачи (добавляем все из physics):

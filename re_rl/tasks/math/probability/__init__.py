@@ -4,8 +4,10 @@
 
 from re_rl.tasks.math.probability.urn_probability_task import UrnProbabilityTask
 from re_rl.tasks.math.probability.statistics_task import StatisticsTask
+from re_rl.tasks.math.probability.bayesian_reasoning_task import BayesianReasoningTask
 
 __all__ = [
     "UrnProbabilityTask",
     "StatisticsTask",
+    "BayesianReasoningTask",
 ]

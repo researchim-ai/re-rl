@@ -7020,4 +7020,141 @@ Analysis:
         },
     },
 
+    "csp_reasoning": {
+        "latin_problem": {
+            "ru": "Решите CSP (latin square) размера {size}x{size}. Заполните таблицу числами 1..{size}, чтобы в каждой строке и столбце каждое число встречалось ровно один раз.\n{grid}",
+            "en": "Solve the CSP latin square of size {size}x{size}. Fill with numbers 1..{size} so each number appears exactly once in every row and column.\n{grid}",
+        },
+        "latin_step_constraints": {
+            "ru": "Моделируем ограничения: диапазон значений, уникальность в строках и столбцах.",
+            "en": "Model constraints: value ranges and row/column uniqueness.",
+        },
+        "latin_step_solution": {
+            "ru": "Полученное решение:\n{grid}",
+            "en": "Obtained solution:\n{grid}",
+        },
+        "kakuro_problem": {
+            "ru": "Решите мини-Kakuro. Найдите A,B,C,D (1..9), где A!=B, C!=D и суммы: A+B={s1}, C+D={s2}, A+C={s3}, B+D={s4}.",
+            "en": "Solve mini Kakuro. Find A,B,C,D (1..9), A!=B, C!=D and sums: A+B={s1}, C+D={s2}, A+C={s3}, B+D={s4}.",
+        },
+        "kakuro_step_model": {
+            "ru": "Строим систему ограничений и решаем её через SMT.",
+            "en": "Build a constraint system and solve it via SMT.",
+        },
+        "kakuro_step_result": {
+            "ru": "Модель дала: A={a}, B={b}, C={c}, D={d}.",
+            "en": "Model result: A={a}, B={b}, C={c}, D={d}.",
+        },
+    },
+
+    "sat_smt_mini": {
+        "problem": {
+            "ru": "Определите, выполнима ли формула (SAT/UNSAT): {formula}. Если SAT — приведите пример присваивания.",
+            "en": "Determine whether this formula is SAT or UNSAT: {formula}. If SAT, provide a witness assignment.",
+        },
+        "step_encode": {
+            "ru": "Кодируем формулу в булевы ограничения и запускаем решатель.",
+            "en": "Encode the formula into Boolean constraints and run a solver.",
+        },
+        "step_sat": {
+            "ru": "Найдена модель: {assignment}.",
+            "en": "Found model: {assignment}.",
+        },
+        "step_unsat": {
+            "ru": "Решатель вернул UNSAT: система ограничений противоречива.",
+            "en": "Solver returned UNSAT: constraints are contradictory.",
+        },
+    },
+
+    "proof_cases_counterexample": {
+        "problem": {
+            "ru": "Докажите утверждение по случаям или приведите контрпример: {claim}.",
+            "en": "Prove the claim by cases or provide a counterexample: {claim}.",
+        },
+        "step_cases": {
+            "ru": "Разбиваем рассуждение на случаи (чётность/остатки/структура выражения).",
+            "en": "Split reasoning by cases (parity/modular classes/expression structure).",
+        },
+        "step_prove": {
+            "ru": "Во всех случаях утверждение выполняется.",
+            "en": "The claim holds in all considered cases.",
+        },
+        "step_counterexample": {
+            "ru": "Найден контрпример: n={n}.",
+            "en": "Counterexample found: n={n}.",
+        },
+    },
+
+    "graph_justification": {
+        "problem_shortest": {
+            "ru": "Найдите кратчайший путь из {source} в {target} для графа с рёбрами (u,v,w): {edges}. Обоснуйте выбор алгоритма.",
+            "en": "Find the shortest path from {source} to {target} for graph edges (u,v,w): {edges}. Justify algorithm choice.",
+        },
+        "problem_mst": {
+            "ru": "Найдите минимальное остовное дерево для графа с рёбрами (u,v,w): {edges}. Обоснуйте выбор алгоритма.",
+            "en": "Find an MST for graph edges (u,v,w): {edges}. Justify algorithm choice.",
+        },
+        "problem_max_flow": {
+            "ru": "Найдите максимальный поток из {source} в {sink} для ориентированного графа (u,v,cap): {edges}.",
+            "en": "Find max flow from {source} to {sink} for directed edges (u,v,cap): {edges}.",
+        },
+        "justify_dijkstra": {
+            "ru": "Используем Дейкстру: веса неотрицательные, нужна кратчайшая дистанция.",
+            "en": "Use Dijkstra: edge weights are nonnegative and shortest distance is required.",
+        },
+        "justify_mst": {
+            "ru": "Используем алгоритм MST (Краскал/Прим) для минимизации суммарного веса дерева.",
+            "en": "Use an MST algorithm (Kruskal/Prim) to minimize total tree weight.",
+        },
+        "justify_maxflow": {
+            "ru": "Используем max-flow (Эдмондс-Карп/Диниц) для поиска пропускной способности сети.",
+            "en": "Use max-flow (Edmonds-Karp/Dinic) to compute network throughput.",
+        },
+    },
+
+    "bayesian_reasoning": {
+        "problem_basic": {
+            "ru": "Известно: P(D)={p_d}, чувствительность={sens}, специфичность={spec}. Найдите P(D|+).",
+            "en": "Given P(D)={p_d}, sensitivity={sens}, specificity={spec}. Compute P(D|+).",
+        },
+        "problem_base_rate": {
+            "ru": "Ловушка base-rate: P(D)={p_d}, чувствительность={sens}, false positive rate={fpr}. Найдите P(D|+).",
+            "en": "Base-rate case: P(D)={p_d}, sensitivity={sens}, false positive rate={fpr}. Compute P(D|+).",
+        },
+        "problem_chain": {
+            "ru": "В цепочке событий: P(A)={p_a}, P(B|A)={p_b_a}, P(B|¬A)={p_b_not_a}, P(C|B)={p_c_b}, P(C|¬B)={p_c_not_b}. Найдите P(C).",
+            "en": "Event chain: P(A)={p_a}, P(B|A)={p_b_a}, P(B|¬A)={p_b_not_a}, P(C|B)={p_c_b}, P(C|¬B)={p_c_not_b}. Compute P(C).",
+        },
+        "step_bayes_formula": {
+            "ru": "Применяем формулу Байеса и нормировку по полной вероятности.",
+            "en": "Apply Bayes formula and normalize using total probability.",
+        },
+        "step_total_probability": {
+            "ru": "Сначала считаем знаменатель через формулу полной вероятности.",
+            "en": "First compute denominator via total probability.",
+        },
+        "step_chain_rule": {
+            "ru": "Последовательно сворачиваем условные вероятности по цепочке.",
+            "en": "Sequentially marginalize conditional probabilities along the chain.",
+        },
+    },
+
+    "combinatorial_optimization": {
+        "problem_knapsack": {
+            "ru": "Задача рюкзака ({mode}): предметы (вес,ценность) = {items}, вместимость = {capacity}. Максимизируйте ценность.",
+            "en": "Knapsack ({mode}): items (weight,value) = {items}, capacity = {capacity}. Maximize value.",
+        },
+        "problem_set_cover": {
+            "ru": "Set Cover ({mode}): universe={universe}, subsets={sets}. Найдите минимальное покрытие.",
+            "en": "Set Cover ({mode}): universe={universe}, subsets={sets}. Find minimum cover.",
+        },
+        "problem_tsp": {
+            "ru": "TSP-small ({mode}): матрица расстояний {matrix}. Найдите минимальный гамильтонов цикл из 0.",
+            "en": "TSP-small ({mode}): distance matrix {matrix}. Find minimum Hamiltonian tour starting at 0.",
+        },
+        "step_tradeoff": {
+            "ru": "Сравниваем кандидатов по целевой функции и ограничениям.",
+            "en": "Compare candidates by objective value under constraints.",
+        },
+    },
 }
