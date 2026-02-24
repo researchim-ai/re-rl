@@ -5,7 +5,7 @@ import math
 from typing import Dict, Any, ClassVar
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class RotationalDynamicsTask(BaseMathTask):
@@ -87,9 +87,9 @@ class RotationalDynamicsTask(BaseMathTask):
             problem_text += templates["problem"]["moment_of_inertia"][self.language].format(
                 shape=shape_name,
                 m=self.mass,
-                param_name="радиусом" if self.language == "ru" else "radius",
+                param_name=get_template(PROMPT_TEMPLATES["inline"], "rotational_param_radius", self.language, augment=False),
                 param_value=self.radius,
-                axis="центра масс" if self.language == "ru" else "center of mass"
+                axis=get_template(PROMPT_TEMPLATES["inline"], "rotational_axis_center_mass", self.language, augment=False)
             )
         elif self.task_type == "angular_acceleration":
             problem_text += templates["problem"]["angular_acceleration"][self.language].format(
@@ -118,7 +118,7 @@ class RotationalDynamicsTask(BaseMathTask):
             formula = self.SHAPES[self.shape]["formula"]
             if self.reasoning_mode:
                 self.add_given({"M": self.mass, "R": self.radius}, {"M": "кг", "R": "м"})
-                self.add_find("I", "момент инерции" if self.language == "ru" else "moment of inertia")
+                self.add_find("I", get_template(PROMPT_TEMPLATES["inline"], "rotational_find_inertia", self.language, augment=False))
             self.add_formula(formula)
             self.add_substitution(f"I = {factor}·{self.mass}·{self.radius}²")
             self.add_calculation(f"{factor}×{self.mass}×{self.radius**2}", round(I_calc, 4), "кг·м²")
@@ -130,8 +130,8 @@ class RotationalDynamicsTask(BaseMathTask):
             epsilon = self.M_torque / self.I
             if self.reasoning_mode:
                 self.add_given({"I": self.I, "M": self.M_torque}, {"I": "кг·м²", "M": "Н·м"})
-                self.add_find("ε", "угловое ускорение" if self.language == "ru" else "angular acceleration")
-                self.add_analysis("Второй закон Ньютона для вращения: M = Iε" if self.language == "ru" else "Newton's second law for rotation: M = Iε")
+                self.add_find("ε", get_template(PROMPT_TEMPLATES["inline"], "rotational_find_angular_acc", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "rotational_newton_note", self.language, augment=False))
             self.add_formula("M = Iε → ε = M/I")
             self.add_substitution(f"ε = {self.M_torque} / {self.I}")
             self.add_calculation(f"{self.M_torque}/{self.I}", round(epsilon, 3), "рад/с²")
@@ -141,7 +141,7 @@ class RotationalDynamicsTask(BaseMathTask):
             E = 0.5 * self.I * self.omega ** 2
             if self.reasoning_mode:
                 self.add_given({"I": self.I, "ω": self.omega}, {"I": "кг·м²", "ω": "рад/с"})
-                self.add_find("E", "кинетическая энергия вращения" if self.language == "ru" else "rotational kinetic energy")
+                self.add_find("E", get_template(PROMPT_TEMPLATES["inline"], "rotational_find_rot_energy", self.language, augment=False))
             self.add_formula("E = Iω²/2")
             self.add_substitution(f"E = {self.I}·{self.omega}²/2")
             self.add_calculation(f"{self.I}×{self.omega**2}/2", round(E, 2), "Дж")
@@ -153,7 +153,7 @@ class RotationalDynamicsTask(BaseMathTask):
             L = self.I * self.omega
             if self.reasoning_mode:
                 self.add_given({"I": self.I, "ω": self.omega}, {"I": "кг·м²", "ω": "рад/с"})
-                self.add_find("L", "момент импульса" if self.language == "ru" else "angular momentum")
+                self.add_find("L", get_template(PROMPT_TEMPLATES["inline"], "rotational_find_angular_momentum", self.language, augment=False))
             self.add_formula("L = Iω")
             self.add_substitution(f"L = {self.I}·{self.omega}")
             self.add_calculation(f"{self.I}×{self.omega}", round(L, 2), "кг·м²/с")

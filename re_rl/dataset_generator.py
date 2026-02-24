@@ -74,6 +74,45 @@ class DatasetGenerator:
             "math": list(self.math_generators.keys()),
             "physics": list(self.physics_generators.keys()),
         }
+
+    @staticmethod
+    def _clean_problem_text(problem: str) -> str:
+        """Удаляет служебные префиксы из текста условия."""
+        clean_input = problem or ""
+        if clean_input.startswith("type: "):
+            lines = clean_input.split("\n")
+            clean_input = "\n".join(lines[1:]).strip()
+        return clean_input
+
+    @staticmethod
+    def _build_sft_output(
+        task_data: Dict[str, Any],
+        language: str,
+        include_cot: bool,
+        reasoning_mode: bool,
+    ) -> str:
+        """Формирует целевой output для SFT/GRPO reference."""
+        final_ans = task_data["final_answer"]
+        if reasoning_mode:
+            if include_cot and task_data.get("solution_steps"):
+                steps_text = "\n".join(task_data["solution_steps"])
+                return f"<think>\n{steps_text}\n</think>\n<answer>{final_ans}</answer>"
+            return f"<think>\n\n</think>\n<answer>{final_ans}</answer>"
+
+        already_has_prefix = (
+            str(final_ans).startswith("Ответ:")
+            or str(final_ans).startswith("Answer:")
+            or str(final_ans).startswith("Ответ ")
+            or str(final_ans).startswith("Answer ")
+        )
+        if include_cot and task_data.get("solution_steps"):
+            steps_text = "\n".join(task_data["solution_steps"])
+            if already_has_prefix:
+                return f"{steps_text}\n\n{final_ans}"
+            return f"{steps_text}\n\n{'Ответ:' if language == 'ru' else 'Answer:'} {final_ans}"
+        if already_has_prefix:
+            return str(final_ans)
+        return f"{'Ответ:' if language == 'ru' else 'Answer:'} {final_ans}"
     
     def generate_single_task(
         self,
@@ -229,26 +268,23 @@ class DatasetGenerator:
             }
         
         dataset = []
-        samples_per_type = max(1, num_samples // len(task_types))
-        total_iterations = len(task_types) * samples_per_type
-        
-        # Создаём итератор с прогресс-баром
-        task_iterator = []
-        for task_type in task_types:
-            for _ in range(samples_per_type):
-                task_iterator.append(task_type)
-        
+        max_attempts = max(num_samples * 20, len(task_types) * 10)
+        attempts = range(max_attempts)
         if show_progress:
-            task_iterator = tqdm(
-                task_iterator, 
-                desc="Генерация задач", 
-                unit="задач",
-                total=total_iterations
+            attempts = tqdm(
+                attempts,
+                desc="Генерация задач",
+                unit="попыток",
+                total=max_attempts,
             )
-        
-        for task_type in task_iterator:
+
+        for _ in attempts:
+            if len(dataset) >= num_samples:
+                break
+
+            task_type = random.choice(task_types)
             difficulty = random.choice(difficulties)
-            
+
             try:
                 task_data = self.generate_single_task(
                     task_type=task_type,
@@ -257,54 +293,20 @@ class DatasetGenerator:
                     detail_level=detail_level,
                     output_format=output_format,
                     reasoning_mode=reasoning_mode,
-                    augment=augment
+                    augment=augment,
                 )
-                
-                # Формируем output
-                final_ans = task_data['final_answer']
-                
-                # Если reasoning_mode — формируем <think>/<answer> теги
-                if reasoning_mode:
-                    if include_cot and task_data["solution_steps"]:
-                        steps_text = "\n".join(task_data["solution_steps"])
-                        output = f"<think>\n{steps_text}\n</think>\n<answer>{final_ans}</answer>"
-                    else:
-                        output = f"<think>\n\n</think>\n<answer>{final_ans}</answer>"
-                else:
-                    # Обычный режим без тегов
-                    # Проверяем, не начинается ли ответ уже с "Ответ:" / "Answer:"
-                    already_has_prefix = (
-                        str(final_ans).startswith("Ответ:") or 
-                        str(final_ans).startswith("Answer:") or
-                        str(final_ans).startswith("Ответ ") or
-                        str(final_ans).startswith("Answer ")
-                    )
-                    
-                    if include_cot and task_data["solution_steps"]:
-                        steps_text = "\n".join(task_data["solution_steps"])
-                        if already_has_prefix:
-                            output = f"{steps_text}\n\n{final_ans}"
-                        elif language == "ru":
-                            output = f"{steps_text}\n\nОтвет: {final_ans}"
-                        else:
-                            output = f"{steps_text}\n\nAnswer: {final_ans}"
-                    else:
-                        if already_has_prefix:
-                            output = str(final_ans)
-                        elif language == "ru":
-                            output = f"Ответ: {final_ans}"
-                        else:
-                            output = f"Answer: {final_ans}"
-                
-                # Очищаем input от служебных меток
-                clean_input = task_data["problem"]
-                # Убираем "type: structured_text_with_tags\n" и подобные строки
-                if clean_input.startswith("type: "):
-                    lines = clean_input.split('\n')
-                    # Пропускаем первую строку с "type:"
-                    clean_input = '\n'.join(lines[1:]).strip()
-                
-                dataset.append({
+            except Exception:
+                continue
+
+            clean_input = self._clean_problem_text(task_data["problem"])
+            output = self._build_sft_output(
+                task_data=task_data,
+                language=language,
+                include_cot=include_cot,
+                reasoning_mode=reasoning_mode,
+            )
+            dataset.append(
+                {
                     "instruction": instructions[language],
                     "input": clean_input,
                     "output": output,
@@ -314,13 +316,10 @@ class DatasetGenerator:
                         "language": language,
                         "output_format": output_format,
                         "reasoning_mode": reasoning_mode,
-                    }
-                })
-                
-            except Exception as e:
-                # Пропускаем ошибочные задачи
-                continue
-        
+                    },
+                }
+            )
+
         random.shuffle(dataset)
         return dataset[:num_samples]
     
@@ -353,16 +352,134 @@ class DatasetGenerator:
         
         chat_data = []
         for item in sft_data:
-            user_content = f"{item['instruction']}\n\n{item['input']}"
             chat_data.append({
                 "messages": [
-                    {"role": "user", "content": user_content},
+                    {"role": "system", "content": item["instruction"]},
+                    {"role": "user", "content": item["input"]},
                     {"role": "assistant", "content": item["output"]}
                 ],
                 "metadata": item.get("metadata", {})
             })
         
         return chat_data
+
+    def generate_pretrain_dataset(
+        self,
+        task_types: Optional[List[str]] = None,
+        num_samples: int = 1000,
+        language: str = "ru",
+        difficulties: Optional[List[int]] = None,
+        detail_level: int = 5,
+        include_cot: bool = True,
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
+        include_chat_tags: bool = True,
+        show_progress: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Генерирует pretrain-датасет в формате {"text": "..."}.
+        """
+        sft_data = self.generate_sft_dataset(
+            task_types=task_types,
+            num_samples=num_samples,
+            language=language,
+            difficulties=difficulties,
+            detail_level=detail_level,
+            include_cot=include_cot,
+            output_format=output_format,
+            reasoning_mode=reasoning_mode,
+            show_progress=show_progress,
+        )
+
+        rows = []
+        for item in sft_data:
+            if include_chat_tags:
+                text = (
+                    "<|system|>\n"
+                    f"{item['instruction']}\n"
+                    "<|user|>\n"
+                    f"{item['input']}\n"
+                    "<|assistant|>\n"
+                    f"{item['output']}"
+                )
+            else:
+                text = f"{item['instruction']}\n\n{item['input']}\n\n{item['output']}"
+            rows.append({"text": text, "metadata": item.get("metadata", {})})
+        return rows
+
+    def generate_grpo_dataset(
+        self,
+        task_types: Optional[List[str]] = None,
+        num_samples: int = 1000,
+        language: str = "ru",
+        difficulties: Optional[List[int]] = None,
+        detail_level: int = 5,
+        include_cot_in_reference: bool = False,
+        output_format: OutputFormat = "text",
+        reasoning_mode: bool = True,
+        augment: bool = True,
+        show_progress: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """
+        Генерирует GRPO-датасет в формате {"question": ..., "answer": ...}.
+        """
+        if task_types is None:
+            task_types = list(self.all_generators.keys())
+        if difficulties is None:
+            difficulties = list(range(1, 11))
+
+        dataset: List[Dict[str, Any]] = []
+        max_attempts = max(num_samples * 20, len(task_types) * 10)
+        attempts = range(max_attempts)
+        if show_progress:
+            attempts = tqdm(attempts, desc="Генерация GRPO", unit="попыток", total=max_attempts)
+
+        for _ in attempts:
+            if len(dataset) >= num_samples:
+                break
+
+            task_type = random.choice(task_types)
+            difficulty = random.choice(difficulties)
+            try:
+                task_data = self.generate_single_task(
+                    task_type=task_type,
+                    language=language,
+                    difficulty=difficulty,
+                    detail_level=detail_level,
+                    output_format=output_format,
+                    reasoning_mode=reasoning_mode,
+                    augment=augment,
+                )
+            except Exception:
+                continue
+
+            question = self._clean_problem_text(task_data["problem"])
+            answer = self._build_sft_output(
+                task_data=task_data,
+                language=language,
+                include_cot=include_cot_in_reference,
+                reasoning_mode=reasoning_mode,
+            )
+
+            dataset.append(
+                {
+                    "question": question,
+                    "answer": answer,
+                    "task_type": task_type,
+                    "difficulty": difficulty,
+                    "language": language,
+                    "metadata": {
+                        "task_type": task_type,
+                        "difficulty": difficulty,
+                        "language": language,
+                        "output_format": output_format,
+                        "reasoning_mode": reasoning_mode,
+                        "ref_final_answer": str(task_data["final_answer"]),
+                    },
+                }
+            )
+
+        return dataset
     
     def generate_dataset(
         self,

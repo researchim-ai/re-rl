@@ -8,7 +8,7 @@ import random
 import math
 from typing import Dict, Any, ClassVar
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from re_rl.tasks.physics.constants import get_constant
 from re_rl.tasks.physics.units import format_with_units
 
@@ -105,8 +105,8 @@ class DynamicsTask(BaseMathTask):
             a = self.F / self.m
             if self.reasoning_mode:
                 self.add_given({"F": self.F, "m": self.m}, {"F": "Н", "m": "кг"})
-                self.add_find("a", "ускорение" if self.language == "ru" else "acceleration")
-                self.add_analysis("Применим второй закон Ньютона." if self.language == "ru" else "Apply Newton's second law.")
+                self.add_find("a", get_template(PROMPT_TEMPLATES["inline"], "dynamics_find_acceleration", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "dynamics_newton_note", self.language, augment=False))
             self.add_formula("F = ma → a = F/m")
             self.add_substitution(f"a = {self.F} / {self.m}")
             self.add_calculation(f"{self.F}/{self.m}", round(a, 4), "м/с²")
@@ -118,7 +118,7 @@ class DynamicsTask(BaseMathTask):
             F = self.m * self.a
             if self.reasoning_mode:
                 self.add_given({"m": self.m, "a": self.a}, {"m": "кг", "a": "м/с²"})
-                self.add_find("F", "сила" if self.language == "ru" else "force")
+                self.add_find("F", get_template(PROMPT_TEMPLATES["inline"], "dynamics_find_force", self.language, augment=False))
             self.add_formula("F = ma")
             self.add_substitution(f"F = {self.m} × {self.a}")
             self.add_calculation(f"{self.m} × {self.a}", round(F, 4), "Н")
@@ -130,7 +130,7 @@ class DynamicsTask(BaseMathTask):
             W = self.m * self.g
             if self.reasoning_mode:
                 self.add_given({"m": self.m, "g": self.g}, {"m": "кг", "g": "м/с²"})
-                self.add_find("P", "вес тела" if self.language == "ru" else "weight")
+                self.add_find("P", get_template(PROMPT_TEMPLATES["inline"], "dynamics_find_weight", self.language, augment=False))
             self.add_formula("P = mg")
             self.add_substitution(f"P = {self.m} × {self.g}")
             self.add_calculation(f"{self.m} × {self.g}", round(W, 4), "Н")
@@ -141,8 +141,8 @@ class DynamicsTask(BaseMathTask):
             F_friction = self.mu * N
             if self.reasoning_mode:
                 self.add_given({"m": self.m, "μ": self.mu, "g": self.g}, {"m": "кг", "μ": "", "g": "м/с²"})
-                self.add_find("F_тр", "сила трения" if self.language == "ru" else "friction force")
-                self.add_analysis("Сила трения F_тр = μN, где N — сила нормальной реакции." if self.language == "ru" else "Friction force F_fr = μN, where N is the normal force.")
+                self.add_find("F_тр", get_template(PROMPT_TEMPLATES["inline"], "dynamics_find_friction", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "dynamics_friction_note", self.language, augment=False))
             self.add_formula("N = mg, F_тр = μN")
             self.add_substitution(f"N = {self.m} × {self.g} = {round(N, 2)} Н")
             self.add_substitution(f"F_тр = {self.mu} × {round(N, 2)}")
@@ -154,8 +154,8 @@ class DynamicsTask(BaseMathTask):
             F_parallel = self.m * self.g * math.sin(angle_rad)
             if self.reasoning_mode:
                 self.add_given({"m": self.m, "θ": self.angle, "g": self.g}, {"m": "кг", "θ": "°", "g": "м/с²"})
-                self.add_find("F", "сила вдоль плоскости" if self.language == "ru" else "force along the plane")
-                self.add_analysis("Разложим силу тяжести на составляющие." if self.language == "ru" else "Decompose gravity into components.")
+                self.add_find("F", get_template(PROMPT_TEMPLATES["inline"], "dynamics_find_force_along_plane", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "dynamics_decompose_gravity_note", self.language, augment=False))
             self.add_formula("F = mg·sin(θ)")
             self.add_substitution(f"F = {self.m} × {self.g} × sin({self.angle}°)")
             self.add_calculation(f"{self.m} × {self.g} × {round(math.sin(angle_rad), 4)}", round(F_parallel, 4), "Н")
@@ -165,8 +165,8 @@ class DynamicsTask(BaseMathTask):
             T = 2 * self.m1 * self.m2 * self.g / (self.m1 + self.m2)
             if self.reasoning_mode:
                 self.add_given({"m₁": self.m1, "m₂": self.m2, "g": self.g}, {"m₁": "кг", "m₂": "кг", "g": "м/с²"})
-                self.add_find("T", "натяжение нити" if self.language == "ru" else "string tension")
-                self.add_analysis("Система Атвуда. Из законов Ньютона для обоих тел выводим формулу натяжения." if self.language == "ru" else "Atwood machine. From Newton's laws for both bodies we derive the tension formula.")
+                self.add_find("T", get_template(PROMPT_TEMPLATES["inline"], "dynamics_find_tension", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "dynamics_atwood_note", self.language, augment=False))
             self.add_formula("T = 2m₁m₂g/(m₁+m₂)")
             self.add_substitution(f"T = 2 × {self.m1} × {self.m2} × {self.g} / ({self.m1} + {self.m2})")
             self.add_calculation(f"{2*self.m1*self.m2*self.g}/{self.m1+self.m2}", round(T, 4), "Н")

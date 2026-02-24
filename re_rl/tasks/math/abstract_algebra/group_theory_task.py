@@ -14,7 +14,7 @@ from sympy import mod_inverse, gcd, randprime, totient, factorint
 from sympy.combinatorics import Permutation
 from sympy.combinatorics.permutations import Cycle
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from typing import Optional, Dict, Any
 
 
@@ -137,7 +137,7 @@ class GroupTheoryTask(BaseMathTask):
         """Решает задачу на свойства группы."""
         if self.group_type == "cyclic":
             if self.property_type == "is_abelian":
-                self.final_answer = "Да" if self.language == "ru" else "Yes"
+                self.final_answer = get_template(PROMPT_TEMPLATES["inline"], "yes", self.language, augment=False)
                 reason = reasons.get("cyclic_abelian", {}).get(self.language, "")
             else:  # order
                 order = self.modulus
@@ -147,7 +147,11 @@ class GroupTheoryTask(BaseMathTask):
         elif self.group_type == "symmetric":
             if self.property_type == "is_abelian":
                 is_abelian = self.degree <= 2
-                self.final_answer = ("Да" if self.language == "ru" else "Yes") if is_abelian else ("Нет" if self.language == "ru" else "No")
+                self.final_answer = (
+                    get_template(PROMPT_TEMPLATES["inline"], "yes", self.language, augment=False)
+                    if is_abelian
+                    else get_template(PROMPT_TEMPLATES["inline"], "no", self.language, augment=False)
+                )
                 reason = reasons.get("symmetric_not_abelian", {}).get(self.language, "")
             else:  # order
                 order = 1

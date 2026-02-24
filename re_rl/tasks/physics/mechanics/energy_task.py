@@ -8,7 +8,7 @@ import random
 import math
 from typing import Dict, Any, ClassVar
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from re_rl.tasks.physics.constants import get_constant
 from re_rl.tasks.physics.units import format_with_units
 
@@ -104,7 +104,7 @@ class EnergyTask(BaseMathTask):
             W = self.F * self.s
             if self.reasoning_mode:
                 self.add_given({"F": self.F, "s": self.s}, {"F": "Н", "s": "м"})
-                self.add_find("A", "работа силы" if self.language == "ru" else "work done")
+                self.add_find("A", get_template(PROMPT_TEMPLATES["inline"], "energy_find_work", self.language, augment=False))
             self.add_formula("A = F·s·cos(α)")
             self.add_substitution(f"A = {self.F} × {self.s} × cos(0°)")
             self.add_calculation(f"{self.F} × {self.s} × 1", W, "Дж")
@@ -117,7 +117,7 @@ class EnergyTask(BaseMathTask):
             W = self.F * self.s * cos_angle
             if self.reasoning_mode:
                 self.add_given({"F": self.F, "s": self.s, "α": self.angle}, {"F": "Н", "s": "м", "α": "°"})
-                self.add_find("A", "работа силы" if self.language == "ru" else "work done")
+                self.add_find("A", get_template(PROMPT_TEMPLATES["inline"], "energy_find_work", self.language, augment=False))
             self.add_formula("A = F·s·cos(α)")
             self.add_substitution(f"A = {self.F} × {self.s} × cos({self.angle}°)")
             self.add_calculation(f"{self.F} × {self.s} × {round(cos_angle, 4)}", round(W, 4), "Дж")
@@ -127,7 +127,7 @@ class EnergyTask(BaseMathTask):
             Ek = self.m * self.v ** 2 / 2
             if self.reasoning_mode:
                 self.add_given({"m": self.m, "v": self.v}, {"m": "кг", "v": "м/с"})
-                self.add_find("Eₖ", "кинетическая энергия" if self.language == "ru" else "kinetic energy")
+                self.add_find("Eₖ", get_template(PROMPT_TEMPLATES["inline"], "energy_find_kinetic", self.language, augment=False))
             self.add_formula("Eₖ = mv²/2")
             self.add_substitution(f"Eₖ = {self.m} × {self.v}² / 2")
             self.add_calculation(f"{self.m} × {self.v**2} / 2", round(Ek, 4), "Дж")
@@ -139,7 +139,7 @@ class EnergyTask(BaseMathTask):
             Ep = self.m * self.g * self.h
             if self.reasoning_mode:
                 self.add_given({"m": self.m, "g": self.g, "h": self.h}, {"m": "кг", "g": "м/с²", "h": "м"})
-                self.add_find("Eₚ", "потенциальная энергия" if self.language == "ru" else "potential energy")
+                self.add_find("Eₚ", get_template(PROMPT_TEMPLATES["inline"], "energy_find_potential", self.language, augment=False))
             self.add_formula("Eₚ = mgh")
             self.add_substitution(f"Eₚ = {self.m} × {self.g} × {self.h}")
             self.add_calculation(f"{self.m} × {self.g} × {self.h}", round(Ep, 4), "Дж")
@@ -151,7 +151,7 @@ class EnergyTask(BaseMathTask):
             P = self.W / self.t
             if self.reasoning_mode:
                 self.add_given({"A": self.W, "t": self.t}, {"A": "Дж", "t": "с"})
-                self.add_find("P", "мощность" if self.language == "ru" else "power")
+                self.add_find("P", get_template(PROMPT_TEMPLATES["inline"], "energy_find_power", self.language, augment=False))
             self.add_formula("P = A/t")
             self.add_substitution(f"P = {self.W} / {self.t}")
             self.add_calculation(f"{self.W}/{self.t}", round(P, 4), "Вт")
@@ -163,8 +163,8 @@ class EnergyTask(BaseMathTask):
             v = math.sqrt(2 * self.g * self.h)
             if self.reasoning_mode:
                 self.add_given({"m": self.m, "h": self.h, "g": self.g}, {"m": "кг", "h": "м", "g": "м/с²"})
-                self.add_find("v", "скорость при падении" if self.language == "ru" else "velocity when falling")
-                self.add_analysis("По закону сохранения энергии: mgh = mv²/2" if self.language == "ru" else "By energy conservation: mgh = mv²/2")
+                self.add_find("v", get_template(PROMPT_TEMPLATES["inline"], "energy_find_fall_velocity", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "energy_conservation_note", self.language, augment=False))
             self.add_formula("mgh = mv²/2 → v = √(2gh)")
             self.add_substitution(f"v = √(2 × {self.g} × {self.h})")
             self.add_calculation(f"√({2 * self.g * self.h:.2f})", round(v, 4), "м/с")

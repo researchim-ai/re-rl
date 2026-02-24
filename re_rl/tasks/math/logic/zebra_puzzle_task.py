@@ -5,7 +5,7 @@ from typing import Dict, Any, ClassVar, List, Tuple, Optional
 from z3 import Solver, Int, And, Distinct, sat, Or, Abs
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class ZebraPuzzleTask(BaseMathTask):
@@ -230,7 +230,13 @@ class ZebraPuzzleTask(BaseMathTask):
             val = random.choice(self.solution[cat])
             house_idx = self.solution[cat].index(val)
             answer = f"house {house_idx + 1}"
-            question = f"В каком доме живёт человек с {val}?" if self.language == "ru" else f"Which house has {val}?"
+            question = get_template(
+                PROMPT_TEMPLATES["inline"],
+                "zebra_house_question",
+                self.language,
+                augment=False,
+                value=val,
+            )
         
         return question, answer
 

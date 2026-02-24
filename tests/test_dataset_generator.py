@@ -74,7 +74,39 @@ class TestDatasetGenerator(unittest.TestCase):
         self.assertEqual(len(dataset), 2)
         for sample in dataset:
             self.assertIn("messages", sample)
-            self.assertTrue(len(sample["messages"]) >= 2)
+            self.assertTrue(len(sample["messages"]) >= 3)
+            self.assertEqual(sample["messages"][0]["role"], "system")
+            self.assertEqual(sample["messages"][1]["role"], "user")
+            self.assertEqual(sample["messages"][2]["role"], "assistant")
+
+    def test_generate_pretrain_dataset(self):
+        """Проверка генерации pretrain датасета (text)."""
+        dataset = self.generator.generate_pretrain_dataset(
+            task_types=["linear"],
+            num_samples=2,
+            language="ru",
+            show_progress=False,
+        )
+        self.assertEqual(len(dataset), 2)
+        for row in dataset:
+            self.assertIn("text", row)
+            self.assertTrue("<|system|>" in row["text"])
+
+    def test_generate_grpo_dataset(self):
+        """Проверка генерации GRPO датасета (question/answer)."""
+        dataset = self.generator.generate_grpo_dataset(
+            task_types=["linear", "quadratic"],
+            num_samples=4,
+            language="ru",
+            show_progress=False,
+        )
+        self.assertEqual(len(dataset), 4)
+        for row in dataset:
+            self.assertIn("question", row)
+            self.assertIn("answer", row)
+            self.assertIn("task_type", row)
+            self.assertIn("metadata", row)
+            self.assertIn("ref_final_answer", row["metadata"])
 
     def test_generate_dataset_json(self):
         """Проверка генерации датасета в JSON"""
@@ -123,6 +155,14 @@ class TestDatasetGenerator(unittest.TestCase):
         """Проверка обработки неверного типа задачи"""
         with self.assertRaises(ValueError):
             self.generator.generate_single_task("nonexistent_task", "ru")
+
+    def test_regression_problem_task_types(self):
+        """Регрессия на типы задач, которые ранее падали при генерации."""
+        for task_type in ["calculus", "system_linear", "trigonometry", "vector_3d"]:
+            task = self.generator.generate_single_task(task_type, "ru", difficulty=5, detail_level=3)
+            self.assertIn("problem", task)
+            self.assertIn("final_answer", task)
+            self.assertTrue(str(task["final_answer"]).strip())
 
 
 if __name__ == "__main__":

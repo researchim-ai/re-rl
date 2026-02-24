@@ -7,7 +7,7 @@ MomentumTask — задачи на импульс и столкновения.
 import random
 from typing import Dict, Any, ClassVar
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from re_rl.tasks.physics.units import format_with_units
 
 
@@ -90,7 +90,7 @@ class MomentumTask(BaseMathTask):
             p = self.m * self.v
             if self.reasoning_mode:
                 self.add_given({"m": self.m, "v": self.v}, {"m": "кг", "v": "м/с"})
-                self.add_find("p", "импульс тела" if self.language == "ru" else "momentum")
+                self.add_find("p", get_template(PROMPT_TEMPLATES["inline"], "momentum_find_body_momentum", self.language, augment=False))
             self.add_formula("p = mv")
             self.add_substitution(f"p = {self.m} × {self.v}")
             self.add_calculation(f"{self.m} × {self.v}", p, "кг·м/с")
@@ -102,7 +102,7 @@ class MomentumTask(BaseMathTask):
             J = self.F * self.t
             if self.reasoning_mode:
                 self.add_given({"F": self.F, "t": self.t}, {"F": "Н", "t": "с"})
-                self.add_find("J", "импульс силы" if self.language == "ru" else "impulse")
+                self.add_find("J", get_template(PROMPT_TEMPLATES["inline"], "momentum_find_impulse", self.language, augment=False))
             self.add_formula("J = F·t")
             self.add_substitution(f"J = {self.F} × {self.t}")
             self.add_calculation(f"{self.F} × {self.t}", J, "Н·с")
@@ -115,8 +115,8 @@ class MomentumTask(BaseMathTask):
             if self.reasoning_mode:
                 self.add_given({"m₁": self.m1, "v₁": self.v1, "m₂": self.m2, "v₂": 0}, 
                               {"m₁": "кг", "v₁": "м/с", "m₂": "кг", "v₂": "м/с"})
-                self.add_find("v'", "скорость после столкновения" if self.language == "ru" else "velocity after collision")
-                self.add_analysis("Неупругое столкновение: тела слипаются. По закону сохранения импульса:" if self.language == "ru" else "Inelastic collision: bodies stick together. By momentum conservation:")
+                self.add_find("v'", get_template(PROMPT_TEMPLATES["inline"], "momentum_find_vel_after_collision", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "momentum_inelastic_note", self.language, augment=False))
             self.add_formula("m₁v₁ + m₂v₂ = (m₁+m₂)v' → v' = m₁v₁/(m₁+m₂)")
             self.add_substitution(f"v' = {self.m1} × {self.v1} / ({self.m1} + {self.m2})")
             self.add_calculation(f"{self.m1 * self.v1}/{self.m1 + self.m2}", round(v_final, 4), "м/с")
@@ -128,8 +128,8 @@ class MomentumTask(BaseMathTask):
             if self.reasoning_mode:
                 self.add_given({"m₁": self.m1, "v₁": self.v1, "m₂": self.m2, "v₂": 0},
                               {"m₁": "кг", "v₁": "м/с", "m₂": "кг", "v₂": "м/с"})
-                self.add_find("v₁', v₂'", "скорости после столкновения" if self.language == "ru" else "velocities after collision")
-                self.add_analysis("Упругое столкновение: сохраняются импульс и энергия." if self.language == "ru" else "Elastic collision: both momentum and energy are conserved.")
+                self.add_find("v₁', v₂'", get_template(PROMPT_TEMPLATES["inline"], "momentum_find_two_vel_after_collision", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "momentum_elastic_note", self.language, augment=False))
             self.add_formula("v₁' = (m₁-m₂)/(m₁+m₂)·v₁")
             self.add_substitution(f"v₁' = ({self.m1}-{self.m2})/({self.m1}+{self.m2}) × {self.v1}")
             self.add_calculation(f"({self.m1-self.m2}/{self.m1+self.m2}) × {self.v1}", round(v1_final, 4), "м/с")

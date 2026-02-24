@@ -4,7 +4,7 @@ import random
 from typing import Dict, Any, ClassVar
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class DimensionalAnalysisTask(BaseMathTask):
@@ -61,13 +61,13 @@ class DimensionalAnalysisTask(BaseMathTask):
         if self.task_type == "check_formula":
             steps.append(t["steps"]["write_dimensions"][self.language].format(dimensions=self.formula_data["formula"]))
             if self.formula_data["correct"]:
-                steps.append(f"Левая часть: {self.formula_data['dims']}")
-                steps.append(f"Правая часть: {self.formula_data['dims']}")
-                result = "Формула размерностно верна" if self.language == "ru" else "Formula is dimensionally correct"
+                steps.append(get_template(PROMPT_TEMPLATES["inline"], "dimensional_left_part", self.language, augment=False, value=self.formula_data["dims"]))
+                steps.append(get_template(PROMPT_TEMPLATES["inline"], "dimensional_right_part", self.language, augment=False, value=self.formula_data["dims"]))
+                result = get_template(PROMPT_TEMPLATES["inline"], "dimensional_correct", self.language, augment=False)
             else:
-                steps.append(f"Левая часть: {self.formula_data.get('dims_left', '[?]')}")
-                steps.append(f"Правая часть: {self.formula_data.get('dims_right', '[?]')}")
-                result = "Формула размерностно неверна" if self.language == "ru" else "Formula is dimensionally incorrect"
+                steps.append(get_template(PROMPT_TEMPLATES["inline"], "dimensional_left_part", self.language, augment=False, value=self.formula_data.get("dims_left", "[?]")))
+                steps.append(get_template(PROMPT_TEMPLATES["inline"], "dimensional_right_part", self.language, augment=False, value=self.formula_data.get("dims_right", "[?]")))
+                result = get_template(PROMPT_TEMPLATES["inline"], "dimensional_incorrect", self.language, augment=False)
             steps.append(t["steps"]["conclusion"][self.language].format(result=result))
             answer = result
         elif self.task_type == "derive_formula":
@@ -78,7 +78,7 @@ class DimensionalAnalysisTask(BaseMathTask):
             answer = "T = C·√(l/g), где C = 2π"
         else:
             steps.append(t["steps"]["write_dimensions"][self.language].format(dimensions=self.formula_data["formula"]))
-            steps.append(f"Размерность: {self.formula_data['dims']}")
+            steps.append(get_template(PROMPT_TEMPLATES["inline"], "dimensional_value", self.language, augment=False, value=self.formula_data["dims"]))
             answer = f"[{self.formula_data['dims']}]"
         
         self.solution_steps = steps

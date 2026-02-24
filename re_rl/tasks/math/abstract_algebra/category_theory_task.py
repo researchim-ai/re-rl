@@ -10,7 +10,7 @@ CategoryTheoryTask — задачи по теории категорий.
 
 import random
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from typing import List, Dict, Any
 
 
@@ -127,10 +127,10 @@ class CategoryTheoryTask(BaseMathTask):
     def _solve_diagram(self, templates):
         """Решает задачу на коммутативную диаграмму."""
         if self.is_commutative:
-            self.final_answer = "Да" if self.language == "ru" else "Yes"
+            self.final_answer = get_template(PROMPT_TEMPLATES["inline"], "yes", self.language, augment=False)
             reason_key = "commutes"
         else:
-            self.final_answer = "Нет" if self.language == "ru" else "No"
+            self.final_answer = get_template(PROMPT_TEMPLATES["inline"], "no", self.language, augment=False)
             reason_key = "not_commutes"
         
         step1 = templates.get("check_paths", {}).get(self.language, "")

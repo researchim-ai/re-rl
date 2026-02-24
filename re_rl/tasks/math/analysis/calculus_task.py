@@ -70,7 +70,10 @@ class CalculusTask(BaseMathTask):
         else:
             func_str = sp.pretty(self.function)
             task_type_text = templates["task_type_derivative" if self.task_type == "differentiation" else "task_type_integral"][self.language]
-            return templates["problem"][self.language].format(task_type=task_type_text, function_pretty=func_str)
+            problem_template = templates["problem"][self.language]
+            if isinstance(problem_template, list):
+                problem_template = random.choice(problem_template)
+            return problem_template.format(task_type=task_type_text, function_pretty=func_str)
 
     def solve(self):
         x = sp.symbols('x')

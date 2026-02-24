@@ -157,6 +157,165 @@ PROMPT_TEMPLATES = {
     },
 
     #----------------------------------------------------------------------------
+    # Inline localized fragments (migration from hardcoded strings)
+    #----------------------------------------------------------------------------
+    "inline": {
+        "answer_prefix": {"ru": "Ответ:", "en": "Answer:"},
+        "given_label": {"ru": "Дано:", "en": "Given:"},
+        "find_label": {"ru": "Найти:", "en": "Find:"},
+        "formula_label": {"ru": "Формула:", "en": "Formula:"},
+        "substitution_label": {"ru": "Подстановка:", "en": "Substitution:"},
+        "calculation_label": {"ru": "Вычисление:", "en": "Calculation:"},
+        "dimension_check_label": {"ru": "Проверка размерности:", "en": "Dimension check:"},
+        "verification_label": {"ru": "Проверка:", "en": "Verification:"},
+        "tactic_label": {"ru": "Тактика", "en": "Tactic"},
+
+        "yes": {"ru": "Да", "en": "Yes"},
+        "no": {"ru": "Нет", "en": "No"},
+        "truth_table_constructed": {"ru": "Таблица истинности построена", "en": "Truth table constructed"},
+        "solutions_depend_on_value": {"ru": "решения зависят от значения", "en": "solutions depend on the value"},
+        "series_diverges_ge1": {"ru": "Ряд расходится (|r| ≥ 1)", "en": "Series diverges (|r| ≥ 1)"},
+        "series_type_geometric": {"ru": "геометрический", "en": "geometric"},
+        "series_type_telescoping": {"ru": "телескопический", "en": "telescoping"},
+        "matrix_row_word": {"ru": "строке", "en": "row"},
+
+        "atwood_find_acc_tension": {"ru": "ускорение и натяжение нити", "en": "acceleration and tension"},
+        "atwood_motion_equations": {
+            "ru": "Записываем уравнения движения для каждого груза:\nm₁g - T = m₁a\nT - m₂g = m₂a",
+            "en": "Write equations of motion for each mass:\nm₁g - T = m₁a\nT - m₂g = m₂a"
+        },
+
+        "kinematics_find_distance_traveled": {"ru": "пройденный путь", "en": "distance traveled"},
+        "kinematics_find_velocity": {"ru": "скорость", "en": "velocity"},
+        "kinematics_find_distance": {"ru": "пройденный путь", "en": "distance"},
+        "kinematics_find_final_velocity": {"ru": "конечная скорость", "en": "final velocity"},
+        "kinematics_find_max_height": {"ru": "максимальная высота подъёма", "en": "maximum height"},
+        "kinematics_find_range": {"ru": "дальность полёта", "en": "range"},
+        "kinematics_find_linear_velocity": {"ru": "линейная скорость", "en": "linear velocity"},
+        "kinematics_find_centripetal_acc": {"ru": "центростремительное ускорение", "en": "centripetal acceleration"},
+        "kinematics_uniform_motion_note": {"ru": "Равномерное движение — скорость постоянна.", "en": "Uniform motion — velocity is constant."},
+        "kinematics_motion_from_rest_note": {
+            "ru": "Движение из состояния покоя (v₀ = 0) с постоянным ускорением.",
+            "en": "Motion from rest (v₀ = 0) with constant acceleration."
+        },
+        "kinematics_projectile_height_note": {
+            "ru": "На максимальной высоте скорость равна нулю (v = 0).\nИспользуем связь скорости и перемещения: v² = v₀² - 2gh",
+            "en": "At maximum height velocity equals zero (v = 0).\nUse velocity-displacement relation: v² = v₀² - 2gh"
+        },
+        "kinematics_projectile_range_note": {
+            "ru": "Баллистическая задача. Дальность полёта максимальна при угле 45°.",
+            "en": "Projectile motion problem. Maximum range is achieved at 45° angle."
+        },
+        "kinematics_circular_velocity_note": {
+            "ru": "За один период T тело проходит длину окружности 2πr.",
+            "en": "In one period T the body travels the circumference 2πr."
+        },
+        "kinematics_circular_acc_note": {
+            "ru": "При движении по окружности возникает центростремительное ускорение, направленное к центру.",
+            "en": "Circular motion produces centripetal acceleration directed toward the center."
+        },
+
+        "momentum_find_body_momentum": {"ru": "импульс тела", "en": "momentum"},
+        "momentum_find_impulse": {"ru": "импульс силы", "en": "impulse"},
+        "momentum_find_vel_after_collision": {"ru": "скорость после столкновения", "en": "velocity after collision"},
+        "momentum_find_two_vel_after_collision": {"ru": "скорости после столкновения", "en": "velocities after collision"},
+        "momentum_inelastic_note": {
+            "ru": "Неупругое столкновение: тела слипаются. По закону сохранения импульса:",
+            "en": "Inelastic collision: bodies stick together. By momentum conservation:"
+        },
+        "momentum_elastic_note": {
+            "ru": "Упругое столкновение: сохраняются импульс и энергия.",
+            "en": "Elastic collision: both momentum and energy are conserved."
+        },
+
+        "energy_find_work": {"ru": "работа силы", "en": "work done"},
+        "energy_find_kinetic": {"ru": "кинетическая энергия", "en": "kinetic energy"},
+        "energy_find_potential": {"ru": "потенциальная энергия", "en": "potential energy"},
+        "energy_find_power": {"ru": "мощность", "en": "power"},
+        "energy_find_fall_velocity": {"ru": "скорость при падении", "en": "velocity when falling"},
+        "energy_conservation_note": {"ru": "По закону сохранения энергии: mgh = mv²/2", "en": "By energy conservation: mgh = mv²/2"},
+
+        "dynamics_find_acceleration": {"ru": "ускорение", "en": "acceleration"},
+        "dynamics_find_force": {"ru": "сила", "en": "force"},
+        "dynamics_find_weight": {"ru": "вес тела", "en": "weight"},
+        "dynamics_find_friction": {"ru": "сила трения", "en": "friction force"},
+        "dynamics_find_force_along_plane": {"ru": "сила вдоль плоскости", "en": "force along the plane"},
+        "dynamics_find_tension": {"ru": "натяжение нити", "en": "string tension"},
+        "dynamics_newton_note": {"ru": "Применим второй закон Ньютона.", "en": "Apply Newton's second law."},
+        "dynamics_friction_note": {
+            "ru": "Сила трения F_тр = μN, где N — сила нормальной реакции.",
+            "en": "Friction force F_fr = μN, where N is the normal force."
+        },
+        "dynamics_decompose_gravity_note": {"ru": "Разложим силу тяжести на составляющие.", "en": "Decompose gravity into components."},
+        "dynamics_atwood_note": {
+            "ru": "Система Атвуда. Из законов Ньютона для обоих тел выводим формулу натяжения.",
+            "en": "Atwood machine. From Newton's laws for both bodies we derive the tension formula."
+        },
+
+        "inclined_find_acceleration": {"ru": "ускорение", "en": "acceleration"},
+        "inclined_find_min_angle": {"ru": "минимальный угол скольжения", "en": "minimum sliding angle"},
+        "inclined_find_bottom_velocity": {"ru": "скорость внизу", "en": "velocity at bottom"},
+        "inclined_forces_note": {
+            "ru": "Силы на тело: mg·sin(α) вниз по склону, μmg·cos(α) — сила трения против движения.",
+            "en": "Forces: mg·sin(α) down the slope, μmg·cos(α) — friction opposing motion."
+        },
+        "inclined_slide_condition_note": {
+            "ru": "Тело начинает скользить когда mg·sin(α) = μmg·cos(α)",
+            "en": "Body starts sliding when mg·sin(α) = μmg·cos(α)"
+        },
+
+        "projectile_decompose_velocity_note": {
+            "ru": "Разложим начальную скорость на горизонтальную и вертикальную составляющие.",
+            "en": "Decompose initial velocity into horizontal and vertical components."
+        },
+        "projectile_find_range": {"ru": "дальность полёта", "en": "range"},
+        "projectile_find_max_height": {"ru": "максимальная высота", "en": "maximum height"},
+        "projectile_find_flight_time": {"ru": "время полёта", "en": "flight time"},
+        "projectile_velocity_at_height": {"ru": "скорость на высоте {height} м", "en": "velocity at height {height} m"},
+
+        "rotational_param_radius": {"ru": "радиусом", "en": "radius"},
+        "rotational_axis_center_mass": {"ru": "центра масс", "en": "center of mass"},
+        "rotational_find_inertia": {"ru": "момент инерции", "en": "moment of inertia"},
+        "rotational_find_angular_acc": {"ru": "угловое ускорение", "en": "angular acceleration"},
+        "rotational_find_rot_energy": {"ru": "кинетическая энергия вращения", "en": "rotational kinetic energy"},
+        "rotational_find_angular_momentum": {"ru": "момент импульса", "en": "angular momentum"},
+        "rotational_newton_note": {"ru": "Второй закон Ньютона для вращения: M = Iε", "en": "Newton's second law for rotation: M = Iε"},
+
+        "center_mass_coordinates": {"ru": "координаты центра масс", "en": "center of mass coordinates"},
+        "masses_key": {"ru": "массы", "en": "masses"},
+        "dimensional_correct": {"ru": "Формула размерностно верна", "en": "Formula is dimensionally correct"},
+        "dimensional_incorrect": {"ru": "Формула размерностно неверна", "en": "Formula is dimensionally incorrect"},
+        "zebra_house_question": {"ru": "В каком доме живёт человек с {value}?", "en": "Which house has {value}?"},
+        "water_jug_state_item": {"ru": "J{idx}={value}л", "en": "J{idx}={value}L"},
+        "gcd_lcm_answer": {"ru": "НОД = {gcd}, НОК = {lcm}", "en": "GCD = {gcd}, LCM = {lcm}"}
+        ,
+        "undefined_value": {"ru": "не определён", "en": "undefined"},
+        "trigonometry_find_side_c": {"ru": "сторону c", "en": "side c"},
+        "set_logic_neither_known": {"ru": "не знают ни одного из этих языков", "en": "know neither of these languages"},
+        "set_logic_total_known_calc": {
+            "ru": "Всего = {total}, знают англ. = {a_total}, знают франц. = {b_total}, оба = {both}",
+            "en": "Total = {total}, know English = {a_total}, know French = {b_total}, both = {both}"
+        },
+        "set_logic_neither_calc": {
+            "ru": "Ни одного = {total} - {a_total} - {b_total} + {both} = {neither}",
+            "en": "Neither = {total} - {a_total} - {b_total} + {both} = {neither}"
+        },
+        "dimensional_left_part": {"ru": "Левая часть: {value}", "en": "Left side: {value}"},
+        "dimensional_right_part": {"ru": "Правая часть: {value}", "en": "Right side: {value}"},
+        "dimensional_value": {"ru": "Размерность: {value}", "en": "Dimension: {value}"},
+        "lean_prove_theorem_prompt": {"ru": "Докажите следующую теорему в Lean 4:\n\n{theorem}", "en": "Prove the following theorem in Lean 4:\n\n{theorem}"},
+        "lean_sft_instruction": {
+            "ru": "Докажите теорему в Lean 4, используя тактики. Выведите только код доказательства.",
+            "en": "Prove the theorem in Lean 4 using tactics. Output only the proof code."
+        },
+        "lean_chat_system": {
+            "ru": "Ты — ассистент для доказательства теорем в Lean 4. Получив формулировку теоремы, выведи доказательство используя тактики Lean 4. Выводи только код, без объяснений.",
+            "en": "You are a Lean 4 theorem proving assistant. Given a theorem statement, output a proof using Lean 4 tactics. Output only the code, no explanations."
+        },
+        "lean_chat_user": {"ru": "Докажи теорему:\n\n{theorem}", "en": "Prove the theorem:\n\n{theorem}"}
+    },
+
+    #----------------------------------------------------------------------------
     # 1) LINEAR
     #----------------------------------------------------------------------------
     "linear": {

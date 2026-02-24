@@ -40,7 +40,7 @@ def format_reasoning_output(
     if reasoning_mode:
         return f"<think>\n{steps_text}\n</think>\n<answer>{answer}</answer>"
     else:
-        answer_prefix = "Ответ:" if language == "ru" else "Answer:"
+        answer_prefix = get_template(PROMPT_TEMPLATES["inline"], "answer_prefix", language, augment=False)
         return f"{steps_text}\n\n{answer_prefix} {answer}"
 
 
@@ -333,7 +333,7 @@ class BaseMathTask(BaseTask):
             return
         
         units = units or {}
-        given_text = "Дано:" if self.language == "ru" else "Given:"
+        given_text = get_template(PROMPT_TEMPLATES["inline"], "given_label", self.language, augment=False)
         lines = [given_text]
         for name, value in variables.items():
             unit = units.get(name, "")
@@ -354,7 +354,7 @@ class BaseMathTask(BaseTask):
         if not self.reasoning_mode:
             return
         
-        find_text = "Найти:" if self.language == "ru" else "Find:"
+        find_text = get_template(PROMPT_TEMPLATES["inline"], "find_label", self.language, augment=False)
         if description:
             self.solution_steps.append(f"{find_text} {target} — {description}")
         else:
@@ -379,7 +379,7 @@ class BaseMathTask(BaseTask):
             formula: Формула (например, "h = v₀²/(2g)")
             name: Название формулы (например, "Закон сохранения энергии")
         """
-        formula_label = "Формула:" if self.language == "ru" else "Formula:"
+        formula_label = get_template(PROMPT_TEMPLATES["inline"], "formula_label", self.language, augment=False)
         if name:
             self.solution_steps.append(f"{formula_label} {formula}  ({name})")
         else:
@@ -392,7 +392,7 @@ class BaseMathTask(BaseTask):
         Args:
             expression: Выражение с подставленными значениями
         """
-        subst_label = "Подстановка:" if self.language == "ru" else "Substitution:"
+        subst_label = get_template(PROMPT_TEMPLATES["inline"], "substitution_label", self.language, augment=False)
         self.solution_steps.append(f"{subst_label} {expression}")
     
     def add_calculation(self, expression: str, result: Any, unit: str = "") -> None:
@@ -404,7 +404,7 @@ class BaseMathTask(BaseTask):
             result: Результат вычисления
             unit: Единица измерения
         """
-        calc_label = "Вычисление:" if self.language == "ru" else "Calculation:"
+        calc_label = get_template(PROMPT_TEMPLATES["inline"], "calculation_label", self.language, augment=False)
         if unit:
             self.solution_steps.append(f"{calc_label} {expression} = {result} {unit}")
         else:
@@ -419,7 +419,7 @@ class BaseMathTask(BaseTask):
         """
         if not self.reasoning_mode:
             return
-        check_label = "Проверка размерности:" if self.language == "ru" else "Dimension check:"
+        check_label = get_template(PROMPT_TEMPLATES["inline"], "dimension_check_label", self.language, augment=False)
         self.solution_steps.append(f"{check_label} {check}")
     
     def add_verification(self, text: str) -> None:
@@ -431,7 +431,7 @@ class BaseMathTask(BaseTask):
         """
         if not self.reasoning_mode:
             return
-        verify_label = "Проверка:" if self.language == "ru" else "Verification:"
+        verify_label = get_template(PROMPT_TEMPLATES["inline"], "verification_label", self.language, augment=False)
         self.solution_steps.append(f"{verify_label} {text}")
     
     def format_final_output(self) -> str:

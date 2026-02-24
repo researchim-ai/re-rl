@@ -6,7 +6,7 @@ from typing import Dict, Any, ClassVar, List, Tuple, Optional
 from collections import deque
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class WaterJugTask(BaseMathTask):
@@ -255,7 +255,7 @@ class WaterJugTask(BaseMathTask):
 
     def _format_state(self, state: Tuple[int, ...]) -> str:
         """Форматирует состояние."""
-        parts = [f"J{i + 1}={v}л" if self.language == "ru" else f"J{i + 1}={v}L" 
+        parts = [get_template(PROMPT_TEMPLATES["inline"], "water_jug_state_item", self.language, augment=False, idx=i + 1, value=v)
                  for i, v in enumerate(state)]
         return ", ".join(parts)
 

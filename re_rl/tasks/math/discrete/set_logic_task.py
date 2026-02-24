@@ -23,7 +23,7 @@ from dataclasses import dataclass
 from itertools import product as iter_product
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class SetLogicTask(BaseMathTask):
@@ -172,7 +172,7 @@ class SetLogicTask(BaseMathTask):
             self.desc = (f"{self.only_a + self.both} человек знают английский, "
                         f"{self.only_b + self.both} человек знают французский, "
                         f"{self.both} человек знают оба языка.")
-            self.question = "не знают ни одного из этих языков"
+            self.question = get_template(PROMPT_TEMPLATES["inline"], "set_logic_neither_known", self.language, augment=False)
         else:
             self.desc = (f"{self.only_a + self.both} people know English, "
                         f"{self.only_b + self.both} people know French, "
@@ -401,7 +401,7 @@ class SetLogicTask(BaseMathTask):
             
             self.solution_steps.append(table)
         
-        self.final_answer = "Таблица истинности построена" if self.language == "ru" else "Truth table constructed"
+        self.final_answer = get_template(PROMPT_TEMPLATES["inline"], "truth_table_constructed", self.language, augment=False)
     
     def _solve_venn_problem(self, templates):
         """Задача на диаграмму Венна."""
@@ -411,10 +411,30 @@ class SetLogicTask(BaseMathTask):
         b_total = self.only_b + self.both
         
         if self.language == "ru":
-            calc = f"Всего = {self.total}, знают англ. = {a_total}, знают франц. = {b_total}, оба = {self.both}"
+            calc = get_template(
+                PROMPT_TEMPLATES["inline"],
+                "set_logic_total_known_calc",
+                self.language,
+                augment=False,
+                total=self.total,
+                a_total=a_total,
+                b_total=b_total,
+                both=self.both,
+            )
             self.solution_steps.append(template.format(step=1, calculation=calc))
             self.solution_steps.append(template.format(
-                step=2, calculation=f"Ни одного = {self.total} - {a_total} - {b_total} + {self.both} = {self.neither}"
+                step=2,
+                calculation=get_template(
+                    PROMPT_TEMPLATES["inline"],
+                    "set_logic_neither_calc",
+                    self.language,
+                    augment=False,
+                    total=self.total,
+                    a_total=a_total,
+                    b_total=b_total,
+                    both=self.both,
+                    neither=self.neither,
+                ),
             ))
         else:
             calc = f"Total = {self.total}, know English = {a_total}, know French = {b_total}, both = {self.both}"

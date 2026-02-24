@@ -5,7 +5,7 @@ import math
 from typing import Dict, Any, ClassVar
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from re_rl.tasks.physics.constants import PHYSICS_CONSTANTS
 
 
@@ -139,14 +139,14 @@ class ProjectileMotionTask(BaseMathTask):
         
         # Разложение скорости на составляющие
         if self.reasoning_mode:
-            self.add_analysis("Разложим начальную скорость на горизонтальную и вертикальную составляющие." if self.language == "ru" else "Decompose initial velocity into horizontal and vertical components.")
+            self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "projectile_decompose_velocity_note", self.language, augment=False))
         self.add_formula("vₓ = v₀·cos(α), vᵧ = v₀·sin(α)")
         self.add_substitution(f"vₓ = {round(self.v0, 1)}·cos({round(self.angle, 1)}°) = {round(self.vx, 2)} м/с")
         self.add_substitution(f"vᵧ = {round(self.v0, 1)}·sin({round(self.angle, 1)}°) = {round(self.vy, 2)} м/с")
         
         if self.task_type == "range":
             if self.reasoning_mode:
-                self.add_find("L", "дальность полёта" if self.language == "ru" else "range")
+                self.add_find("L", get_template(PROMPT_TEMPLATES["inline"], "projectile_find_range", self.language, augment=False))
             self.add_formula("L = v₀²·sin(2α)/g")
             self.add_substitution(f"L = {round(self.v0, 1)}²·sin(2×{round(self.angle, 1)}°)/{self.g}")
             self.add_calculation(f"{round(self.v0**2, 2)}×{round(math.sin(math.radians(2*self.angle)), 4)}/{self.g}", round(self.range_val, 2), "м")
@@ -154,7 +154,7 @@ class ProjectileMotionTask(BaseMathTask):
             
         elif self.task_type == "max_height":
             if self.reasoning_mode:
-                self.add_find("H", "максимальная высота" if self.language == "ru" else "maximum height")
+                self.add_find("H", get_template(PROMPT_TEMPLATES["inline"], "projectile_find_max_height", self.language, augment=False))
             self.add_formula("H = v₀²·sin²(α)/(2g)")
             self.add_substitution(f"H = {round(self.v0, 1)}²·sin²({round(self.angle, 1)}°)/(2×{self.g})")
             self.add_calculation(f"{round(self.v0**2 * math.sin(math.radians(self.angle))**2, 2)}/{2*self.g}", round(self.max_height, 2), "м")
@@ -162,7 +162,7 @@ class ProjectileMotionTask(BaseMathTask):
             
         elif self.task_type == "flight_time":
             if self.reasoning_mode:
-                self.add_find("T", "время полёта" if self.language == "ru" else "flight time")
+                self.add_find("T", get_template(PROMPT_TEMPLATES["inline"], "projectile_find_flight_time", self.language, augment=False))
             self.add_formula("T = 2v₀·sin(α)/g")
             self.add_substitution(f"T = 2×{round(self.v0, 1)}·sin({round(self.angle, 1)}°)/{self.g}")
             self.add_calculation(f"2×{round(self.v0 * math.sin(math.radians(self.angle)), 2)}/{self.g}", round(self.flight_time, 2), "с")
@@ -171,7 +171,7 @@ class ProjectileMotionTask(BaseMathTask):
         else:  # velocity_at_height
             v_at_h = math.sqrt(self.v0**2 - 2 * self.g * self.height_query)
             if self.reasoning_mode:
-                self.add_find("v", f"скорость на высоте {self.height_query} м" if self.language == "ru" else f"velocity at height {self.height_query} m")
+                self.add_find("v", get_template(PROMPT_TEMPLATES["inline"], "projectile_velocity_at_height", self.language, augment=False, height=self.height_query))
             self.add_formula("v² = v₀² - 2gh → v = √(v₀² - 2gh)")
             self.add_substitution(f"v = √({round(self.v0, 1)}² - 2×{self.g}×{self.height_query})")
             self.add_calculation(f"√({round(self.v0**2 - 2*self.g*self.height_query, 2)})", round(v_at_h, 2), "м/с")

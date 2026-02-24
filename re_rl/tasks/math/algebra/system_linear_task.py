@@ -108,10 +108,14 @@ class SystemLinearTask(BaseMathTask):
             eq = "".join(terms) + f" = {row[-1]}"
             equations.append(eq)
         joined = "\n".join(equations)
+        templates = PROMPT_TEMPLATES["system_linear"]["problem"]
         if language.lower() == "ru":
-            return PROMPT_TEMPLATES["system_linear"]["problem"]["ru"].format(equations=joined)
+            template = templates["ru"]
         else:
-            return PROMPT_TEMPLATES["system_linear"]["problem"]["en"].format(equations=joined)
+            template = templates["en"]
+        if isinstance(template, list):
+            template = random.choice(template)
+        return template.format(equations=joined)
 
     def solve(self):
         matrix = self.matrix

@@ -15,7 +15,7 @@ import random
 import math
 from typing import List, Dict, Any, ClassVar
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class SeriesTask(BaseMathTask):
@@ -168,7 +168,7 @@ class SeriesTask(BaseMathTask):
         
         # Шаг 1: Определяем тип
         step1 = templates.get("identify_type", {}).get(self.language, "")
-        type_name = "геометрический" if self.language == "ru" else "geometric"
+        type_name = get_template(PROMPT_TEMPLATES["inline"], "series_type_geometric", self.language, augment=False)
         self.solution_steps.append(step1.format(type=type_name))
         
         # Шаг 2: Находим отношение
@@ -183,7 +183,7 @@ class SeriesTask(BaseMathTask):
             self.solution_steps.append(step3.format(step=3, a=a, r=r, sum=f"{sum_value:.4f}"))
             self.final_answer = f"S = {sum_value:.4f}"
         else:
-            self.final_answer = "Ряд расходится (|r| ≥ 1)" if self.language == "ru" else "Series diverges (|r| ≥ 1)"
+            self.final_answer = get_template(PROMPT_TEMPLATES["inline"], "series_diverges_ge1", self.language, augment=False)
     
     def _solve_convergence_test(self, templates, conclusions):
         """Исследование сходимости."""
@@ -259,7 +259,7 @@ class SeriesTask(BaseMathTask):
         # Сумма = (1 - 1/2) + (1/2 - 1/3) + ... = 1 - lim 1/(n+1) = 1
         
         step = templates.get("identify_type", {}).get(self.language, "")
-        type_name = "телескопический" if self.language == "ru" else "telescoping"
+        type_name = get_template(PROMPT_TEMPLATES["inline"], "series_type_telescoping", self.language, augment=False)
         self.solution_steps.append(step.format(type=type_name))
         
         decomposition = "1/(n(n+1)) = 1/n - 1/(n+1)"

@@ -4,7 +4,7 @@ import random
 from typing import Dict, Any, ClassVar, List, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class CenterOfMassTask(BaseMathTask):
@@ -102,8 +102,9 @@ class CenterOfMassTask(BaseMathTask):
         
         if self.reasoning_mode:
             masses_str = ", ".join(f"m{i+1}={m}" for i, m in enumerate(self.masses))
-            self.add_given({"массы": masses_str}, {"массы": "кг"})
-            self.add_find("(x_c, y_c)", "координаты центра масс" if self.language == "ru" else "center of mass coordinates")
+            masses_key = get_template(PROMPT_TEMPLATES["inline"], "masses_key", self.language, augment=False)
+            self.add_given({masses_key: masses_str}, {masses_key: "кг"})
+            self.add_find("(x_c, y_c)", get_template(PROMPT_TEMPLATES["inline"], "center_mass_coordinates", self.language, augment=False))
         
         self.add_formula("x_c = Σ(mᵢxᵢ)/Σmᵢ, y_c = Σ(mᵢyᵢ)/Σmᵢ")
         self.add_substitution(f"M = Σmᵢ = {round(self.total_mass, 2)} кг")
@@ -111,7 +112,10 @@ class CenterOfMassTask(BaseMathTask):
         self.add_calculation(f"x_c = {round(weighted_x, 2)}/{round(self.total_mass, 2)}", self.x_cm, "м")
         self.add_calculation(f"y_c = {round(weighted_y, 2)}/{round(self.total_mass, 2)}", self.y_cm, "м")
         
-        self.final_answer = f"Центр масс: ({self.x_cm}, {self.y_cm}) м"
+        self.final_answer = PROMPT_TEMPLATES["center_of_mass"]["final_answer"][self.language].format(
+            x=self.x_cm,
+            y=self.y_cm,
+        )
 
     def get_task_type(self):
         return "center_of_mass"

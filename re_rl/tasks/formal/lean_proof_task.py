@@ -13,6 +13,7 @@ from typing import List, Dict, Any, Optional, ClassVar, Literal
 import random
 
 from re_rl.tasks.base_task import BaseMathTask
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 from .theorem_templates import (
     TheoremTemplate,
@@ -247,7 +248,7 @@ class LeanProofTask(BaseMathTask):
         lines = proof.strip().split('\n')
         steps = []
         
-        tactic_label = "Тактика" if self.language == "ru" else "Tactic"
+        tactic_label = get_template(PROMPT_TEMPLATES["inline"], "tactic_label", self.language, augment=False)
         
         for i, line in enumerate(lines, 1):
             line = line.strip()
@@ -258,10 +259,13 @@ class LeanProofTask(BaseMathTask):
     
     def generate_prompt(self) -> str:
         """Генерирует промпт для модели."""
-        if self.language == "ru":
-            return f"Докажите следующую теорему в Lean 4:\n\n{self.theorem_statement}"
-        else:
-            return f"Prove the following theorem in Lean 4:\n\n{self.theorem_statement}"
+        return get_template(
+            PROMPT_TEMPLATES["inline"],
+            "lean_prove_theorem_prompt",
+            self.language,
+            augment=False,
+            theorem=self.theorem_statement,
+        )
     
     def get_result(self) -> Dict[str, Any]:
         """Возвращает структуру результата для обучения."""
@@ -298,10 +302,12 @@ class LeanProofTask(BaseMathTask):
         if not self.final_answer:
             self.solve()
         
-        if self.language == "ru":
-            instruction = "Докажите теорему в Lean 4, используя тактики. Выведите только код доказательства."
-        else:
-            instruction = "Prove the theorem in Lean 4 using tactics. Output only the proof code."
+        instruction = get_template(
+            PROMPT_TEMPLATES["inline"],
+            "lean_sft_instruction",
+            self.language,
+            augment=False,
+        )
         
         return {
             "instruction": instruction,
@@ -326,20 +332,19 @@ class LeanProofTask(BaseMathTask):
         if not self.final_answer:
             self.solve()
         
-        if self.language == "ru":
-            system_msg = (
-                "Ты — ассистент для доказательства теорем в Lean 4. "
-                "Получив формулировку теоремы, выведи доказательство используя тактики Lean 4. "
-                "Выводи только код, без объяснений."
-            )
-            user_msg = f"Докажи теорему:\n\n{self.theorem_statement}"
-        else:
-            system_msg = (
-                "You are a Lean 4 theorem proving assistant. "
-                "Given a theorem statement, output a proof using Lean 4 tactics. "
-                "Output only the code, no explanations."
-            )
-            user_msg = f"Prove the theorem:\n\n{self.theorem_statement}"
+        system_msg = get_template(
+            PROMPT_TEMPLATES["inline"],
+            "lean_chat_system",
+            self.language,
+            augment=False,
+        )
+        user_msg = get_template(
+            PROMPT_TEMPLATES["inline"],
+            "lean_chat_user",
+            self.language,
+            augment=False,
+            theorem=self.theorem_statement,
+        )
         
         return {
             "messages": [

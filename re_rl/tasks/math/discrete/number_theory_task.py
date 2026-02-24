@@ -19,7 +19,7 @@ from typing import List, Dict, Any, Optional, Tuple, ClassVar
 from dataclasses import dataclass
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class NumberTheoryTask(BaseMathTask):
@@ -204,7 +204,14 @@ class NumberTheoryTask(BaseMathTask):
         lcm_template = templates.get("lcm_formula", {}).get(self.language, "")
         self.solution_steps.append(lcm_template.format(a=original_a, b=original_b, lcm=lcm_val))
         
-        self.final_answer = f"НОД = {gcd_val}, НОК = {lcm_val}" if self.language == "ru" else f"GCD = {gcd_val}, LCM = {lcm_val}"
+        self.final_answer = get_template(
+            PROMPT_TEMPLATES["inline"],
+            "gcd_lcm_answer",
+            self.language,
+            augment=False,
+            gcd=gcd_val,
+            lcm=lcm_val,
+        )
     
     def _solve_prime_factorization(self, templates):
         """Разложение на простые множители."""

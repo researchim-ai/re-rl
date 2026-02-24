@@ -22,7 +22,7 @@ from dataclasses import dataclass
 import numpy as np
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class MatrixTask(BaseMathTask):
@@ -230,7 +230,7 @@ class MatrixTask(BaseMathTask):
             det = round(self._det(self.matrix))
             
             template = templates.get("det_expansion", {}).get(self.language, "")
-            row_col = "строке" if self.language == "ru" else "row"
+            row_col = get_template(PROMPT_TEMPLATES["inline"], "matrix_row_word", self.language, augment=False)
             self.solution_steps.append(template.format(
                 step=1, row_col=row_col, index=1, expansion="...", result=det
             ))

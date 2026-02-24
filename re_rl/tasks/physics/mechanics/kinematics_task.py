@@ -18,7 +18,7 @@ import random
 import math
 from typing import Dict, Any, ClassVar
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from re_rl.tasks.physics.constants import get_constant
 from re_rl.tasks.physics.units import format_with_units
 from re_rl.tasks.formatting import MathFormatter
@@ -177,11 +177,8 @@ class KinematicsTask(BaseMathTask):
                 {"v": self.v, "t": self.t},
                 {"v": "м/с", "t": "с"}
             )
-            self.add_find("s", "пройденный путь" if self.language == "ru" else "distance traveled")
-            self.add_analysis(
-                "Равномерное движение — скорость постоянна." if self.language == "ru" 
-                else "Uniform motion — velocity is constant."
-            )
+            self.add_find("s", get_template(PROMPT_TEMPLATES["inline"], "kinematics_find_distance_traveled", self.language, augment=False))
+            self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "kinematics_uniform_motion_note", self.language, augment=False))
         
         # Формула (ВСЕГДА)
         self.add_formula("s = v × t")
@@ -207,7 +204,7 @@ class KinematicsTask(BaseMathTask):
                 {"s": self.s, "t": self.t},
                 {"s": "м", "t": "с"}
             )
-            self.add_find("v", "скорость" if self.language == "ru" else "velocity")
+            self.add_find("v", get_template(PROMPT_TEMPLATES["inline"], "kinematics_find_velocity", self.language, augment=False))
         
         self.add_formula("v = s/t")
         self.add_substitution(f"v = {self.s} / {self.t}")
@@ -227,12 +224,8 @@ class KinematicsTask(BaseMathTask):
                 {"a": self.a, "t": self.t, "v₀": 0},
                 {"a": "м/с²", "t": "с", "v₀": "м/с"}
             )
-            self.add_find("s", "пройденный путь" if self.language == "ru" else "distance")
-            self.add_analysis(
-                "Движение из состояния покоя (v₀ = 0) с постоянным ускорением."
-                if self.language == "ru" else
-                "Motion from rest (v₀ = 0) with constant acceleration."
-            )
+            self.add_find("s", get_template(PROMPT_TEMPLATES["inline"], "kinematics_find_distance", self.language, augment=False))
+            self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "kinematics_motion_from_rest_note", self.language, augment=False))
         
         self.add_formula("s = v₀t + at²/2 = at²/2")
         self.add_substitution(f"s = {self.a} × {self.t}² / 2")
@@ -252,7 +245,7 @@ class KinematicsTask(BaseMathTask):
                 {"v₀": self.v0, "a": self.a, "t": self.t},
                 {"v₀": "м/с", "a": "м/с²", "t": "с"}
             )
-            self.add_find("v", "конечная скорость" if self.language == "ru" else "final velocity")
+            self.add_find("v", get_template(PROMPT_TEMPLATES["inline"], "kinematics_find_final_velocity", self.language, augment=False))
         
         self.add_formula("v = v₀ + at")
         self.add_substitution(f"v = {self.v0} + {self.a} × {self.t}")
@@ -274,14 +267,8 @@ class KinematicsTask(BaseMathTask):
                 {"v₀": v0, "g": self.g},
                 {"v₀": "м/с", "g": "м/с²"}
             )
-            self.add_find("h", "максимальная высота подъёма" if self.language == "ru" else "maximum height")
-            self.add_analysis(
-                "На максимальной высоте скорость равна нулю (v = 0).\n"
-                "Используем связь скорости и перемещения: v² = v₀² - 2gh"
-                if self.language == "ru" else
-                "At maximum height velocity equals zero (v = 0).\n"
-                "Use velocity-displacement relation: v² = v₀² - 2gh"
-            )
+            self.add_find("h", get_template(PROMPT_TEMPLATES["inline"], "kinematics_find_max_height", self.language, augment=False))
+            self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "kinematics_projectile_height_note", self.language, augment=False))
         
         # Формула (ВСЕГДА)
         self.add_formula("h = v₀²/(2g)")
@@ -310,12 +297,8 @@ class KinematicsTask(BaseMathTask):
                 {"v₀": self.v, "θ": self.angle, "g": self.g},
                 {"v₀": "м/с", "θ": "°", "g": "м/с²"}
             )
-            self.add_find("R", "дальность полёта" if self.language == "ru" else "range")
-            self.add_analysis(
-                "Баллистическая задача. Дальность полёта максимальна при угле 45°."
-                if self.language == "ru" else
-                "Projectile motion problem. Maximum range is achieved at 45° angle."
-            )
+            self.add_find("R", get_template(PROMPT_TEMPLATES["inline"], "kinematics_find_range", self.language, augment=False))
+            self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "kinematics_projectile_range_note", self.language, augment=False))
         
         self.add_formula("R = v₀² × sin(2θ) / g")
         self.add_substitution(f"R = {self.v}² × sin(2×{self.angle}°) / {self.g}")
@@ -337,12 +320,8 @@ class KinematicsTask(BaseMathTask):
                 {"r": self.r, "T": self.T},
                 {"r": "м", "T": "с"}
             )
-            self.add_find("v", "линейная скорость" if self.language == "ru" else "linear velocity")
-            self.add_analysis(
-                "За один период T тело проходит длину окружности 2πr."
-                if self.language == "ru" else
-                "In one period T the body travels the circumference 2πr."
-            )
+            self.add_find("v", get_template(PROMPT_TEMPLATES["inline"], "kinematics_find_linear_velocity", self.language, augment=False))
+            self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "kinematics_circular_velocity_note", self.language, augment=False))
         
         self.add_formula("v = 2πr/T")
         self.add_substitution(f"v = 2π × {self.r} / {self.T}")
@@ -362,12 +341,8 @@ class KinematicsTask(BaseMathTask):
                 {"v": self.v, "r": self.r},
                 {"v": "м/с", "r": "м"}
             )
-            self.add_find("a", "центростремительное ускорение" if self.language == "ru" else "centripetal acceleration")
-            self.add_analysis(
-                "При движении по окружности возникает центростремительное ускорение, направленное к центру."
-                if self.language == "ru" else
-                "Circular motion produces centripetal acceleration directed toward the center."
-            )
+            self.add_find("a", get_template(PROMPT_TEMPLATES["inline"], "kinematics_find_centripetal_acc", self.language, augment=False))
+            self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "kinematics_circular_acc_note", self.language, augment=False))
         
         self.add_formula("a = v²/r")
         self.add_substitution(f"a = {self.v}² / {self.r}")

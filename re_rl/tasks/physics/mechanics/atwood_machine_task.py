@@ -4,7 +4,7 @@ import random
 from typing import Dict, Any, ClassVar
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from re_rl.tasks.physics.constants import PHYSICS_CONSTANTS
 
 
@@ -113,8 +113,8 @@ class AtwoodMachineTask(BaseMathTask):
         
         if self.reasoning_mode:
             self.add_given({"m₁": self.m1, "m₂": self.m2, "g": self.g}, {"m₁": "кг", "m₂": "кг", "g": "м/с²"})
-            self.add_find("a, T", "ускорение и натяжение нити" if self.language == "ru" else "acceleration and tension")
-            self.add_analysis("Записываем уравнения движения для каждого груза:\nm₁g - T = m₁a\nT - m₂g = m₂a" if self.language == "ru" else "Write equations of motion for each mass:\nm₁g - T = m₁a\nT - m₂g = m₂a")
+            self.add_find("a, T", get_template(PROMPT_TEMPLATES["inline"], "atwood_find_acc_tension", self.language, augment=False))
+            self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "atwood_motion_equations", self.language, augment=False))
         
         self.add_formula("a = (m₁-m₂)g/(m₁+m₂)")
         self.add_substitution(f"a = ({self.m1}-{self.m2})×{self.g}/({self.m1}+{self.m2})")

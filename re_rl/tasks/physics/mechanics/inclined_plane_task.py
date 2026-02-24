@@ -5,7 +5,7 @@ import math
 from typing import Dict, Any, ClassVar
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 from re_rl.tasks.physics.constants import PHYSICS_CONSTANTS
 
 
@@ -119,8 +119,8 @@ class InclinedPlaneTask(BaseMathTask):
         if self.task_type == "acceleration":
             if self.reasoning_mode:
                 self.add_given({"m": self.mass, "α": self.angle, "μ": self.mu}, {"m": "кг", "α": "°", "μ": ""})
-                self.add_find("a", "ускорение" if self.language == "ru" else "acceleration")
-                self.add_analysis("Силы на тело: mg·sin(α) вниз по склону, μmg·cos(α) — сила трения против движения." if self.language == "ru" else "Forces: mg·sin(α) down the slope, μmg·cos(α) — friction opposing motion.")
+                self.add_find("a", get_template(PROMPT_TEMPLATES["inline"], "inclined_find_acceleration", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "inclined_forces_note", self.language, augment=False))
             self.add_formula("a = g(sin(α) - μ·cos(α))")
             self.add_substitution(f"a = {self.g}(sin({self.angle}°) - {self.mu}·cos({self.angle}°))")
             self.add_calculation(f"{self.g}×({round(math.sin(math.radians(self.angle)), 4)} - {self.mu}×{round(math.cos(math.radians(self.angle)), 4)})", round(self.acceleration, 3), "м/с²")
@@ -129,8 +129,8 @@ class InclinedPlaneTask(BaseMathTask):
         elif self.task_type == "min_angle":
             if self.reasoning_mode:
                 self.add_given({"μ": self.mu}, {"μ": ""})
-                self.add_find("α_min", "минимальный угол скольжения" if self.language == "ru" else "minimum sliding angle")
-                self.add_analysis("Тело начинает скользить когда mg·sin(α) = μmg·cos(α)" if self.language == "ru" else "Body starts sliding when mg·sin(α) = μmg·cos(α)")
+                self.add_find("α_min", get_template(PROMPT_TEMPLATES["inline"], "inclined_find_min_angle", self.language, augment=False))
+                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], "inclined_slide_condition_note", self.language, augment=False))
             self.add_formula("tan(α_min) = μ → α_min = arctg(μ)")
             self.add_substitution(f"α_min = arctg({self.mu})")
             self.add_calculation(f"arctg({self.mu})", round(self.min_angle, 2), "°")
@@ -139,7 +139,7 @@ class InclinedPlaneTask(BaseMathTask):
         else:  # velocity_at_bottom
             if self.reasoning_mode:
                 self.add_given({"L": self.length, "α": self.angle, "μ": self.mu}, {"L": "м", "α": "°", "μ": ""})
-                self.add_find("v", "скорость внизу" if self.language == "ru" else "velocity at bottom")
+                self.add_find("v", get_template(PROMPT_TEMPLATES["inline"], "inclined_find_bottom_velocity", self.language, augment=False))
             self.add_formula("a = g(sin(α) - μ·cos(α))")
             self.add_calculation(f"a", round(self.acceleration, 3), "м/с²")
             self.add_formula("v = √(2aL)")

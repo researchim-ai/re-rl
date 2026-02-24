@@ -18,7 +18,7 @@ from dataclasses import dataclass
 from fractions import Fraction
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
 class TrigonometryTask(BaseMathTask):
@@ -55,7 +55,7 @@ class TrigonometryTask(BaseMathTask):
         30: {"sin": "1/2", "cos": "√3/2", "tan": "√3/3"},
         45: {"sin": "√2/2", "cos": "√2/2", "tan": "1"},
         60: {"sin": "√3/2", "cos": "1/2", "tan": "√3"},
-        90: {"sin": "1", "cos": "0", "tan": "не определён"},
+        90: {"sin": "1", "cos": "0", "tan": "__UNDEFINED__"},
         120: {"sin": "√3/2", "cos": "-1/2", "tan": "-√3"},
         135: {"sin": "√2/2", "cos": "-√2/2", "tan": "-1"},
         150: {"sin": "1/2", "cos": "-√3/2", "tan": "-√3/3"},
@@ -63,7 +63,7 @@ class TrigonometryTask(BaseMathTask):
         210: {"sin": "-1/2", "cos": "-√3/2", "tan": "√3/3"},
         225: {"sin": "-√2/2", "cos": "-√2/2", "tan": "1"},
         240: {"sin": "-√3/2", "cos": "-1/2", "tan": "√3"},
-        270: {"sin": "-1", "cos": "0", "tan": "не определён"},
+        270: {"sin": "-1", "cos": "0", "tan": "__UNDEFINED__"},
         300: {"sin": "-√3/2", "cos": "1/2", "tan": "-√3"},
         315: {"sin": "-√2/2", "cos": "√2/2", "tan": "-1"},
         330: {"sin": "-1/2", "cos": "√3/2", "tan": "-√3/3"},
@@ -90,6 +90,7 @@ class TrigonometryTask(BaseMathTask):
         detail_level: int = 3,
         difficulty: int = 5,
         output_format: OutputFormat = "text",
+        reasoning_mode: bool = False,
         **kwargs
     ):
         self.task_type = task_type.lower()
@@ -97,6 +98,7 @@ class TrigonometryTask(BaseMathTask):
         self.kwargs = kwargs
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
+        self.language = language.lower()
         
         # Получаем параметры из пресета
         preset = self._interpolate_difficulty(difficulty)
@@ -106,7 +108,6 @@ class TrigonometryTask(BaseMathTask):
         self._generate_task_params()
         
         # Создаём описание
-        self.language = language.lower()  # Fix: set before _create_problem_description
         description = self._create_problem_description()
         super().__init__(description, language, detail_level, output_format)
         self.reasoning_mode = reasoning_mode
@@ -187,7 +188,7 @@ class TrigonometryTask(BaseMathTask):
         
         if self.language == "ru":
             self.given = f"a = {self.a}, b = {self.b}, ∠C = {self.angle_C}°"
-            self.find = "сторону c"
+            self.find = get_template(PROMPT_TEMPLATES["inline"], "trigonometry_find_side_c", self.language, augment=False)
         else:
             self.given = f"a = {self.a}, b = {self.b}, ∠C = {self.angle_C}°"
             self.find = "side c"
@@ -254,6 +255,8 @@ class TrigonometryTask(BaseMathTask):
     def _solve_basic_value(self, templates):
         """Вычисление значения тригонометрической функции."""
         exact_val = self.EXACT_VALUES.get(self.angle_deg, {}).get(self.func, "")
+        if exact_val == "__UNDEFINED__":
+            exact_val = get_template(PROMPT_TEMPLATES["inline"], "undefined_value", self.language, augment=False)
         
         template = templates.get("basic_value_result", {}).get(self.language, "")
         self.solution_steps.append(template.format(
@@ -274,7 +277,7 @@ class TrigonometryTask(BaseMathTask):
         elif self.eq_key == "tan_one":  # tan(x) = 1
             solutions = "π/4, 5π/4"
         else:
-            solutions = "решения зависят от значения" if self.language == "ru" else "solutions depend on the value"
+            solutions = get_template(PROMPT_TEMPLATES["inline"], "solutions_depend_on_value", self.language, augment=False)
         
         template1 = templates.get("equation_transform", {}).get(self.language, "")
         self.solution_steps.append(template1.format(step=1, transformed=self.equation))
