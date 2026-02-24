@@ -6,6 +6,7 @@ rich
 tqdm
 loguru
 z3-solver
+jsonschema
 
 # ── Datasets & ML ──
 datasets

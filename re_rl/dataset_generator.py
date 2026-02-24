@@ -38,6 +38,7 @@ OutputFormat = Literal["text", "latex"]
 from re_rl.tasks.generators import ALL_TASK_GENERATORS
 from re_rl.tasks.physics.generators import ALL_PHYSICS_TASK_GENERATORS
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.dataset_validator import validate_dataset
 
 # Тип multi-turn режима
 MultiturnMode = Literal["chain", "followup", "variations", "correction", "mixed"]
@@ -535,20 +536,44 @@ class DatasetGenerator:
         
         return dataset
     
-    def save_json(self, dataset: List[Dict], filename: str):
-        """Сохраняет датасет в JSON."""
+    def save_json(
+        self,
+        dataset: List[Dict],
+        filename: str,
+        dataset_format: Optional[str] = None,
+        validate: bool = True,
+    ):
+        """Сохраняет датасет в JSON с опциональной валидацией по JSON Schema."""
+        resolved_format = dataset_format
+        if validate:
+            resolved_format = validate_dataset(dataset, dataset_format=dataset_format)
         filepath = self.output_dir / filename
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(dataset, f, ensure_ascii=False, indent=2)
-        print(f"Сохранено {len(dataset)} примеров в {filepath}")
+        if validate:
+            print(f"Сохранено {len(dataset)} примеров в {filepath} (schema: {resolved_format})")
+        else:
+            print(f"Сохранено {len(dataset)} примеров в {filepath}")
     
-    def save_jsonl(self, dataset: List[Dict], filename: str):
-        """Сохраняет датасет в JSONL (одна строка = один пример)."""
+    def save_jsonl(
+        self,
+        dataset: List[Dict],
+        filename: str,
+        dataset_format: Optional[str] = None,
+        validate: bool = True,
+    ):
+        """Сохраняет датасет в JSONL с опциональной валидацией по JSON Schema."""
+        resolved_format = dataset_format
+        if validate:
+            resolved_format = validate_dataset(dataset, dataset_format=dataset_format)
         filepath = self.output_dir / filename
         with open(filepath, "w", encoding="utf-8") as f:
             for item in dataset:
                 f.write(json.dumps(item, ensure_ascii=False) + "\n")
-        print(f"Сохранено {len(dataset)} примеров в {filepath}")
+        if validate:
+            print(f"Сохранено {len(dataset)} примеров в {filepath} (schema: {resolved_format})")
+        else:
+            print(f"Сохранено {len(dataset)} примеров в {filepath}")
     
     def split_dataset(
         self,

@@ -3,6 +3,7 @@ from pathlib import Path
 import json
 import shutil
 from re_rl.dataset_generator import DatasetGenerator
+from re_rl.dataset_validator import validate_dataset
 
 
 class TestDatasetGenerator(unittest.TestCase):
@@ -138,6 +139,39 @@ class TestDatasetGenerator(unittest.TestCase):
         with open(full_path, 'r') as f:
             lines = f.readlines()
         self.assertEqual(len(lines), 2)
+
+    def test_validate_dataset_pretrain_schema(self):
+        """Проверка JSON Schema для pretrain."""
+        dataset = self.generator.generate_pretrain_dataset(
+            task_types=["linear"],
+            num_samples=2,
+            language="ru",
+            show_progress=False,
+        )
+        resolved = validate_dataset(dataset)
+        self.assertEqual(resolved, "pretrain")
+
+    def test_validate_dataset_chat_schema(self):
+        """Проверка JSON Schema для chat/sft_chat."""
+        dataset = self.generator.generate_chat_dataset(
+            task_types=["linear"],
+            num_samples=2,
+            language="ru",
+            show_progress=False,
+        )
+        resolved = validate_dataset(dataset, dataset_format="sft_chat")
+        self.assertEqual(resolved, "sft_chat")
+
+    def test_save_jsonl_raises_on_invalid_schema(self):
+        """Перед сохранением невалидный датасет должен падать."""
+        invalid_dataset = [{"text": 123}]  # text должен быть строкой
+        with self.assertRaises(ValueError):
+            self.generator.save_jsonl(
+                invalid_dataset,
+                "invalid.jsonl",
+                dataset_format="pretrain",
+                validate=True,
+            )
 
     def test_latex_format(self):
         """Проверка LaTeX формата"""
