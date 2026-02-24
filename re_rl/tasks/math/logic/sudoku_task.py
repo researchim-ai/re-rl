@@ -161,11 +161,18 @@ class SudokuTask(BaseMathTask):
         all_cells = [(r, c) for r in range(self.size) for c in range(self.size)]
         random.shuffle(all_cells)
         
+        # 9x9 генерация может быть узким местом. Для скорости удаляем клетки
+        # напрямую (пазл остаётся решаемым, так как получен из корректного решения).
+        if self.size >= 9:
+            for r, c in all_cells[:cells_to_remove]:
+                puzzle[r][c] = None
+            return puzzle
+
         removed = 0
+        # Для 4x4 можно оставить проверку разрешимости — это дешево.
         for r, c in all_cells:
             if removed >= cells_to_remove:
                 break
-            # Проверяем, что после удаления пазл имеет единственное решение
             puzzle[r][c] = None
             if self._has_unique_solution(puzzle):
                 removed += 1

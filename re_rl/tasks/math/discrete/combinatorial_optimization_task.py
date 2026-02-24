@@ -1,4 +1,3 @@
-import itertools
 import math
 import random
 from typing import Any, ClassVar, Dict, List, Optional, Set, Tuple
@@ -70,14 +69,24 @@ class CombinatorialOptimizationTask(BaseMathTask):
                     best_subset.append(i)
             best_val = sum(items[i][1] for i in best_subset)
         else:
-            for mask in range(1 << len(items)):
-                idxs = [i for i in range(len(items)) if (mask >> i) & 1]
-                total_w = sum(items[i][0] for i in idxs)
-                if total_w <= capacity:
-                    total_v = sum(items[i][1] for i in idxs)
-                    if total_v > best_val:
-                        best_val = total_v
-                        best_subset = idxs
+            # Exact DP by capacity: O(n * capacity) instead of brute-force 2^n
+            n = len(items)
+            dp = [[0] * (capacity + 1) for _ in range(n + 1)]
+            take = [[False] * (capacity + 1) for _ in range(n + 1)]
+            for i in range(1, n + 1):
+                w, v = items[i - 1]
+                for cap in range(capacity + 1):
+                    dp[i][cap] = dp[i - 1][cap]
+                    if w <= cap and dp[i - 1][cap - w] + v > dp[i][cap]:
+                        dp[i][cap] = dp[i - 1][cap - w] + v
+                        take[i][cap] = True
+            best_val = dp[n][capacity]
+            cap = capacity
+            for i in range(n, 0, -1):
+                if take[i][cap]:
+                    best_subset.append(i - 1)
+                    cap -= items[i - 1][0]
+            best_subset.reverse()
         return best_val, best_subset, items
 
     def _solve_set_cover(self) -> Tuple[int, List[int], List[Set[int]], Set[int]]:
@@ -106,17 +115,119 @@ class CombinatorialOptimizationTask(BaseMathTask):
                 chosen.append(idx)
                 uncovered -= sets[idx]
         else:
-            for k in range(1, len(sets) + 1):
-                found = None
-                for comb in itertools.combinations(range(len(sets)), k):
-                    covered = set().union(*[sets[i] for i in comb])
-                    if covered == universe:
-                        found = list(comb)
+            # Exact shortest-cover on bitmasks: O(m * 2^n)
+            ordered_universe = sorted(universe)
+            pos = {val: i for i, val in enumerate(ordered_universe)}
+            full_mask = (1 << len(ordered_universe)) - 1
+            set_masks: List[int] = []
+            for s in sets:
+                mask = 0
+                for val in s:
+                    mask |= 1 << pos[val]
+                set_masks.append(mask)
+
+            inf = 10**9
+            best = [inf] * (full_mask + 1)
+            prev_state = [-1] * (full_mask + 1)
+            prev_set = [-1] * (full_mask + 1)
+            best[0] = 0
+            for mask in range(full_mask + 1):
+                if best[mask] == inf:
+                    continue
+                for i, s_mask in enumerate(set_masks):
+                    nxt = mask | s_mask
+                    if best[mask] + 1 < best[nxt]:
+                        best[nxt] = best[mask] + 1
+                        prev_state[nxt] = mask
+                        prev_set[nxt] = i
+
+            cur = full_mask
+            if best[cur] < inf:
+                while cur != 0:
+                    i = prev_set[cur]
+                    if i < 0:
                         break
-                if found is not None:
-                    chosen = found
-                    break
+                    chosen.append(i)
+                    cur = prev_state[cur]
+                chosen.reverse()
         return len(chosen), chosen, sets, universe
+
+    def _held_karp_tsp(self, d: List[List[int]]) -> Tuple[int, List[int]]:
+        """Exact TSP with DP: O(n^2 * 2^n), much faster than permutations."""
+        n = len(d)
+        if n <= 2:
+            return d[0][1] + d[1][0], [0, 1, 0] if n == 2 else [0, 0]
+
+        dp: Dict[Tuple[int, int], int] = {}
+        parent: Dict[Tuple[int, int], int] = {}
+
+        for j in range(1, n):
+            mask = 1 << (j - 1)
+            dp[(mask, j)] = d[0][j]
+
+        for subset_size in range(2, n):
+            next_dp: Dict[Tuple[int, int], int] = {}
+            for mask in range(1, 1 << (n - 1)):
+                if mask.bit_count() != subset_size:
+                    continue
+                for j in range(1, n):
+                    if not (mask & (1 << (j - 1))):
+                        continue
+                    prev_mask = mask ^ (1 << (j - 1))
+                    best_cost = math.inf
+                    best_k = -1
+                    for k in range(1, n):
+                        if not (prev_mask & (1 << (k - 1))):
+                            continue
+                        cost = dp.get((prev_mask, k), math.inf) + d[k][j]
+                        if cost < best_cost:
+                            best_cost = cost
+                            best_k = k
+                    if best_k != -1:
+                        next_dp[(mask, j)] = int(best_cost)
+                        parent[(mask, j)] = best_k
+            dp = next_dp
+
+        full_mask = (1 << (n - 1)) - 1
+        best_len = math.inf
+        end_node = -1
+        for j in range(1, n):
+            cost = dp.get((full_mask, j), math.inf) + d[j][0]
+            if cost < best_len:
+                best_len = cost
+                end_node = j
+
+        path_nodes = [end_node]
+        mask = full_mask
+        cur = end_node
+        while mask != (1 << (cur - 1)):
+            prev = parent.get((mask, cur), -1)
+            if prev == -1:
+                break
+            path_nodes.append(prev)
+            mask ^= 1 << (cur - 1)
+            cur = prev
+        route = [0] + list(reversed(path_nodes)) + [0]
+        return int(best_len), route
+
+    def _two_opt(self, route: List[int], d: List[List[int]]) -> List[int]:
+        """Small 2-opt local optimization for approximation route."""
+        improved = True
+        best = route[:]
+        n = len(best)
+        while improved:
+            improved = False
+            for i in range(1, n - 3):
+                for j in range(i + 1, n - 2):
+                    a, b = best[i - 1], best[i]
+                    c, e = best[j], best[j + 1]
+                    delta = (d[a][c] + d[b][e]) - (d[a][b] + d[c][e])
+                    if delta < 0:
+                        best[i : j + 1] = reversed(best[i : j + 1])
+                        improved = True
+            # one pass is usually enough for fast generation
+            break
+        return best
 
     def _solve_tsp(self) -> Tuple[int, List[int], List[List[int]]]:
         n = min(self.n, 9 if self.solve_mode == "exact" else 12)
@@ -147,15 +258,24 @@ class CombinatorialOptimizationTask(BaseMathTask):
                 unvisited.remove(nxt)
                 cur = nxt
             route.append(0)
-            best_route = route
-            best_len = sum(d[route[i]][route[i + 1]] for i in range(len(route) - 1))
+            best_route = self._two_opt(route, d)
+            best_len = sum(d[best_route[i]][best_route[i + 1]] for i in range(len(best_route) - 1))
         else:
-            for perm in itertools.permutations(nodes):
-                route = [0] + list(perm) + [0]
-                dist = sum(d[route[i]][route[i + 1]] for i in range(len(route) - 1))
-                if dist < best_len:
-                    best_len = dist
-                    best_route = route
+            # For exact mode, use DP Held-Karp up to practical limit.
+            if n <= 12:
+                best_len, best_route = self._held_karp_tsp(d)
+            else:
+                route = [0]
+                unvisited = set(nodes)
+                cur = 0
+                while unvisited:
+                    nxt = min(unvisited, key=lambda x: d[cur][x])
+                    route.append(nxt)
+                    unvisited.remove(nxt)
+                    cur = nxt
+                route.append(0)
+                best_route = self._two_opt(route, d)
+                best_len = sum(d[best_route[i]][best_route[i + 1]] for i in range(len(best_route) - 1))
         return int(best_len), best_route, d
 
     def solve(self):
