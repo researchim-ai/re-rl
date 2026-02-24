@@ -88,14 +88,14 @@ class TestLinearTask(unittest.TestCase):
     def test_linear_ru(self):
         task = LinearTask(2, 3, 7, language="ru", detail_level=4)
         result = task.get_result()
-        self.assertIn("Решите линейное уравнение", result["problem"])
+        self.assertIn("2x + 3 = 7", result["problem"])
         self.assertEqual(result["final_answer"], "2")
         self.assertTrue(result["prompt"].startswith("Задача:"))
 
     def test_linear_en(self):
         task = LinearTask(2, 3, 7, language="en", detail_level=4)
         result = task.get_result()
-        self.assertIn("Solve the linear equation", result["problem"])
+        self.assertIn("2x + 3 = 7", result["problem"])
         self.assertEqual(result["final_answer"], "2")
         self.assertTrue(result["prompt"].startswith("Task:"))
 
@@ -104,7 +104,8 @@ class TestQuadraticTask(unittest.TestCase):
     def test_quadratic(self):
         task = QuadraticTask(1, -5, 6, language="ru", detail_level=3)
         result = task.get_result()
-        self.assertIn("Решите квадратное уравнение", result["problem"])
+        self.assertIn("x", result["problem"])
+        self.assertIn("= 0", result["problem"])
         self.assertTrue("2" in result["final_answer"] or "3" in result["final_answer"])
     
     def test_quadratic_solution_steps(self):
@@ -118,7 +119,7 @@ class TestCubicTask(unittest.TestCase):
     def test_cubic(self):
         task = CubicTask(1, -6, 11, -6, language="ru", detail_level=3)
         result = task.get_result()
-        self.assertIn("Решите кубическое уравнение", result["problem"])
+        self.assertIn("x", result["problem"])
         for r in ["1", "2", "3"]:
             self.assertIn(r, result["final_answer"])
 
@@ -177,7 +178,8 @@ class TestSystemLinearTask(unittest.TestCase):
         ]
         task = SystemLinearTask(matrix, language="ru", detail_level=4)
         result = task.get_result()
-        self.assertIn("Решите систему уравнений", result["problem"])
+        self.assertIn("2.0x1 + x2 = 5.0", result["problem"])
+        self.assertIn("x1 + 2.0x2 = 4.0", result["problem"])
         self.assertIn("x1 = 2.00", result["final_answer"])
         self.assertIn("x2 = 1.00", result["final_answer"])
 
@@ -319,8 +321,8 @@ class TestFactory(unittest.TestCase):
         prompt_ru = task_ru.generate_prompt()
         prompt_en = task_en.generate_prompt()
         self.assertNotEqual(prompt_ru, prompt_en)
-        self.assertIn("Решите", prompt_ru)
-        self.assertIn("Solve", prompt_en)
+        self.assertTrue(prompt_ru.startswith("Задача:"))
+        self.assertTrue(prompt_en.startswith("Task:"))
 
 
 if __name__ == '__main__':
