@@ -46,6 +46,12 @@ def test_extract_reasoning_and_answer():
     assert reasoning == "First"
     assert answer == "1"
 
+    # Современный формат с <think>
+    text = "<think>Chain of thought</think><answer>42</answer>"
+    reasoning, answer = extract_reasoning_and_answer(text)
+    assert reasoning == "Chain of thought"
+    assert answer == "42"
+
 # Тесты для check_format_compliance
 def test_check_format_compliance():
     # Корректный случай
@@ -59,6 +65,10 @@ def test_check_format_compliance():
     # Дублирующиеся теги
     text = "<reasoning>First</reasoning><reasoning>Second</reasoning><answer>1</answer>"
     assert check_format_compliance(text) == 0.0
+
+    # Корректный формат с <think>
+    text = "<think>Test</think><answer>42</answer>"
+    assert check_format_compliance(text) == 0.2
 
 # Тесты для парсеров ответов
 def test_parse_linear_answer():

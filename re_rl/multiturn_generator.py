@@ -1185,11 +1185,18 @@ class MultiturnGenerator:
                             difficulty=difficulty,
                             reasoning_mode=reasoning_mode,
                         )
-                    elif mode in ["followup", "variations"]:
+                    elif mode == "followup":
                         dialogue = generator_func(
                             task_type=task_type,
-                            num_followups=turns - 1 if mode == "followup" else turns - 1,
-                            num_variations=turns - 1 if mode == "variations" else turns - 1,
+                            num_followups=turns - 1,
+                            language=language,
+                            difficulty=difficulty,
+                            reasoning_mode=reasoning_mode,
+                        )
+                    elif mode == "variations":
+                        dialogue = generator_func(
+                            task_type=task_type,
+                            num_variations=turns - 1,
                             language=language,
                             difficulty=difficulty,
                             reasoning_mode=reasoning_mode,

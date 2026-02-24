@@ -1,45 +1,58 @@
 import re
 import math
-from typing import Optional, List, Dict, Union, Any
+from typing import Optional, List, Dict, Union, Any, Tuple
 from rich import print
 ##############################################################################
 # 1) Утилиты для извлечения chain-of-thought (reasoning) и финального ответа #
 ##############################################################################
 
-def extract_reasoning_and_answer(full_text: str) -> (str, str):
+def extract_reasoning_and_answer(full_text: str) -> Tuple[str, str]:
     """
-    Ищем:
-      <reasoning>...</reasoning>
+    Ищем reasoning в двух совместимых форматах:
+      <reasoning>...</reasoning> (legacy)
+      <think>...</think>         (current)
+    и:
       <answer>...</answer>
 
     Возвращаем (reasoning_text, answer_text).
     Если что-то не нашли — вернём пустые строки.
     """
-    reasoning_pat = re.compile(r"<reasoning>(.*?)</reasoning>", re.DOTALL)
-    answer_pat    = re.compile(r"<answer>(.*?)</answer>", re.DOTALL)
-
-    reasoning_match = reasoning_pat.search(full_text)
-    answer_match    = answer_pat.search(full_text)
+    reasoning_match = re.search(r"<reasoning>(.*?)</reasoning>", full_text, re.DOTALL)
+    if not reasoning_match:
+        reasoning_match = re.search(r"<think>(.*?)</think>", full_text, re.DOTALL)
+    answer_match = re.search(r"<answer>(.*?)</answer>", full_text, re.DOTALL)
 
     reasoning_str = reasoning_match.group(1).strip() if reasoning_match else ""
-    answer_str    = answer_match.group(1).strip() if answer_match else ""
+    answer_str = answer_match.group(1).strip() if answer_match else ""
 
     return (reasoning_str, answer_str)
 
 def check_format_compliance(full_text: str) -> float:
     """
-    Проверяем, что текст содержит ровно ОДИН <reasoning>...</reasoning>
+    Проверяем, что текст содержит ровно ОДИН reasoning-блок
+    (<reasoning>...</reasoning> ИЛИ <think>...</think>)
     и ровно ОДИН <answer>...</answer>, без повторов.
     Если всё ок, +0.2, иначе 0.
     """
-    num_reason_open  = full_text.count("<reasoning>")
+    reasoning_pairs = len(re.findall(r"<reasoning>.*?</reasoning>", full_text, re.DOTALL))
+    think_pairs = len(re.findall(r"<think>.*?</think>", full_text, re.DOTALL))
+    answer_pairs = len(re.findall(r"<answer>.*?</answer>", full_text, re.DOTALL))
+
+    # Дополнительно контролируем "сырые" теги, чтобы отлавливать сломанный XML-подобный формат
+    num_reason_open = full_text.count("<reasoning>")
     num_reason_close = full_text.count("</reasoning>")
-    num_ans_open     = full_text.count("<answer>")
-    num_ans_close    = full_text.count("</answer>")
-    if (num_reason_open == 1 and 
-        num_reason_close == 1 and
-        num_ans_open == 1 and
-        num_ans_close == 1):
+    num_think_open = full_text.count("<think>")
+    num_think_close = full_text.count("</think>")
+    num_ans_open = full_text.count("<answer>")
+    num_ans_close = full_text.count("</answer>")
+
+    if (
+        reasoning_pairs + think_pairs == 1
+        and answer_pairs == 1
+        and num_reason_open == num_reason_close
+        and num_think_open == num_think_close
+        and num_ans_open == num_ans_close
+    ):
         return 0.2
     else:
         return 0.0
