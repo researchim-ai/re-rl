@@ -17,7 +17,9 @@ class RCCircuitsTask(BaseMathTask):
     - discharging: разрядка конденсатора
     - time_constant: постоянная времени
     """
-    
+
+    TASK_TYPE = "rc_circuits"
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"R_range": (1, 10), "C_range": (10, 100)},  # кОм, мкФ
         3: {"R_range": (5, 50), "C_range": (1, 50)},

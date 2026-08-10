@@ -181,6 +181,12 @@ class QuantumTask(BaseMathTask):
             )
             self.final_answer = f"{E_kinetic_eV:.4f} эВ"
         else:
+            self.solution_steps.append(
+                f"Eₖ = hν - A = {E_photon_eV:.2f} - {self.work_function} = {E_kinetic_eV:.2f} эВ < 0"
+            )
+            self.solution_steps.append(
+                "Так как энергия фотона меньше работы выхода (hν < A), фотоэффект не происходит."
+            )
             self.final_answer = "Фотоэффект не происходит (hν < A)"
     
     def _solve_compton(self, templates):

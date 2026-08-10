@@ -22,6 +22,8 @@ from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class Vector3DTask(BaseMathTask):
     """Генератор задач по векторам в 3D."""
+
+    TASK_TYPE = "vector_3d"
     
     TASK_TYPES = [
         "cross_product", "triple_scalar", "plane_equation",

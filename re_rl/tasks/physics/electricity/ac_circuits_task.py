@@ -17,7 +17,9 @@ class ACCircuitsTask(BaseMathTask):
     - resonance: резонансная частота
     - power_factor: коэффициент мощности
     """
-    
+
+    TASK_TYPE = "ac_circuits"
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"R_range": (10, 100), "simple": True},
         3: {"R_range": (50, 500), "simple": True},

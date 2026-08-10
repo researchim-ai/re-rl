@@ -16,6 +16,7 @@ from re_rl.tasks.math.algebra.system_linear_task import SystemLinearTask
 from re_rl.tasks.math.algebra.exponential_task import ExponentialTask
 from re_rl.tasks.math.algebra.logarithmic_task import LogarithmicTask
 from re_rl.tasks.math.algebra.inequality_task import InequalityTask
+from re_rl.tasks.math.algebra.symbolic_simplification_task import SymbolicSimplificationTask
 
 # Анализ
 from re_rl.tasks.math.analysis.calculus_task import CalculusTask
@@ -65,11 +66,16 @@ from re_rl.tasks.math.logic.zebra_puzzle_task import ZebraPuzzleTask
 from re_rl.tasks.math.logic.csp_reasoning_task import CSPReasoningTask
 from re_rl.tasks.math.logic.sat_smt_mini_task import SATSMTMiniTask
 from re_rl.tasks.math.logic.proof_cases_counterexample_task import ProofCasesCounterexampleTask
+from re_rl.tasks.math.logic.find_the_error_task import FindTheErrorTask
+from re_rl.tasks.math.logic.propositional_logic_task import PropositionalLogicTask
+from re_rl.tasks.math.logic.regex_dfa_task import RegexDFATask
+from re_rl.tasks.math.discrete.dynamic_programming_task import DynamicProgrammingTask
 
 # Планирование
 from re_rl.tasks.math.planning.river_crossing_task import RiverCrossingTask
 from re_rl.tasks.math.planning.tower_of_hanoi_task import TowerOfHanoiTask
 from re_rl.tasks.math.planning.water_jug_task import WaterJugTask
+from re_rl.tasks.math.planning.blocks_world_task import BlocksWorldTask
 
 # Теория игр
 from re_rl.tasks.math.discrete.nim_game_task import NimGameTask
@@ -391,14 +397,25 @@ def generate_random_graph_task(
 def generate_random_system_linear_task(
     language="ru",
     detail_level=3,
-    size=2
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    size: Optional[int] = None,
+    **kwargs
 ):
     """
     Генерируем систему линейных уравнений размером size x size.
     Матрица shape = (size, size+1).
     Метод Крамера, a!=0 => суммарный дет!=0 (не всегда гарантирован).
+
+    Если ``size`` не задан явно, он выводится из ``difficulty``
+    (2 для низкой сложности, до 4 для высокой).
     """
     import numpy as np
+
+    if size is None:
+        # difficulty 1-3 -> 2, 4-7 -> 3, 8-10 -> 4
+        size = 2 if difficulty <= 3 else (3 if difficulty <= 7 else 4)
 
     while True:
         # Генерируем случайную матрицу (size x (size+1))
@@ -1309,6 +1326,102 @@ def generate_random_combinatorial_optimization_task(
     )
 
 
+def generate_random_regex_dfa_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> RegexDFATask:
+    return RegexDFATask.generate_random_task(
+        language=language, detail_level=detail_level, difficulty=difficulty,
+        reasoning_mode=reasoning_mode, augment=augment, **kwargs
+    )
+
+
+def generate_random_dynamic_programming_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> DynamicProgrammingTask:
+    return DynamicProgrammingTask.generate_random_task(
+        language=language, detail_level=detail_level, difficulty=difficulty,
+        reasoning_mode=reasoning_mode, augment=augment, **kwargs
+    )
+
+
+def generate_random_blocks_world_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> BlocksWorldTask:
+    return BlocksWorldTask.generate_random_task(
+        language=language, detail_level=detail_level, difficulty=difficulty,
+        reasoning_mode=reasoning_mode, augment=augment, **kwargs
+    )
+
+
+def generate_random_find_the_error_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> FindTheErrorTask:
+    return FindTheErrorTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
+def generate_random_propositional_logic_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> PropositionalLogicTask:
+    return PropositionalLogicTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
+def generate_random_symbolic_simplification_task(
+    language: str = "ru",
+    detail_level: int = 3,
+    difficulty: int = 5,
+    reasoning_mode: bool = False,
+    augment: bool = True,
+    **kwargs
+) -> SymbolicSimplificationTask:
+    return SymbolicSimplificationTask.generate_random_task(
+        language=language,
+        detail_level=detail_level,
+        difficulty=difficulty,
+        reasoning_mode=reasoning_mode,
+        augment=augment,
+        **kwargs
+    )
+
+
 ##################################################
 # Универсальный генератор всех типов задач
 ##################################################
@@ -1339,6 +1452,7 @@ ALL_TASK_GENERATORS = {
     "matrix": generate_random_matrix_task,
     "trigonometry": generate_random_trigonometry_task,
     "inequality": generate_random_inequality_task,
+    "symbolic_simplification": generate_random_symbolic_simplification_task,
     "complex_number": generate_random_complex_number_task,
     "limits": generate_random_limits_task,
     "set_logic": generate_random_set_logic_task,
@@ -1360,6 +1474,11 @@ ALL_TASK_GENERATORS = {
     "csp_reasoning": generate_random_csp_reasoning_task,
     "sat_smt_mini": generate_random_sat_smt_mini_task,
     "proof_cases_counterexample": generate_random_proof_cases_counterexample_task,
+    "find_the_error": generate_random_find_the_error_task,
+    "propositional_logic": generate_random_propositional_logic_task,
+    "regex_dfa": generate_random_regex_dfa_task,
+    "dynamic_programming": generate_random_dynamic_programming_task,
+    "blocks_world": generate_random_blocks_world_task,
     "graph_justification": generate_random_graph_justification_task,
     "bayesian_reasoning": generate_random_bayesian_reasoning_task,
     "combinatorial_optimization": generate_random_combinatorial_optimization_task,
@@ -1375,6 +1494,7 @@ def generate_random_task(
     language: str = "ru",
     detail_level: int = 3,
     difficulty: int = 5,
+    seed: Optional[int] = None,
     **kwargs
 ):
     """
@@ -1386,9 +1506,18 @@ def generate_random_task(
     :param language: 'ru' или 'en'
     :param detail_level: уровень детализации решения
     :param difficulty: уровень сложности (1-10)
+    :param seed: если задан — фиксирует random/numpy для воспроизводимости
     :param kwargs: дополнительные параметры для конкретного генератора
     :return: экземпляр задачи
     """
+    if seed is not None:
+        random.seed(seed)
+        try:
+            import numpy as _np
+            _np.random.seed(seed % (2 ** 32))
+        except Exception:
+            pass
+
     if task_type is None:
         task_type = random.choice(list(ALL_TASK_GENERATORS.keys()))
     
@@ -1397,4 +1526,4 @@ def generate_random_task(
         raise ValueError(f"Неизвестный тип задачи: {task_type}. Доступные: {list(ALL_TASK_GENERATORS.keys())}")
     
     # Передаём параметры, которые поддерживает генератор
-    return generator(language=language, detail_level=detail_level, **kwargs)
+    return generator(language=language, detail_level=detail_level, difficulty=difficulty, **kwargs)

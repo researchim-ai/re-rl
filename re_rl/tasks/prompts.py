@@ -7047,6 +7047,160 @@ Analysis:
         },
     },
 
+    "symbolic_simplification": {
+        "problem": {
+            "ru": [
+                "Упростите выражение: {expression}",
+                "Приведите выражение к простейшему виду: {expression}",
+                "Максимально упростите следующее алгебраическое выражение: {expression}",
+            ],
+            "en": [
+                "Simplify the expression: {expression}",
+                "Reduce the expression to its simplest form: {expression}",
+                "Simplify the following algebraic expression: {expression}",
+            ],
+        },
+        "step_original": {
+            "ru": "Исходное выражение: {expression}",
+            "en": "Original expression: {expression}",
+        },
+        "step_expand": {
+            "ru": "Раскрываем скобки и приводим подобные слагаемые.",
+            "en": "Expand the brackets and collect like terms.",
+        },
+        "step_simplify": {
+            "ru": "После упрощения получаем: {result}",
+            "en": "After simplification we obtain: {result}",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "find_the_error": {
+        "problem": {
+            "ru": [
+                "Ниже приведено решение, в котором ровно один шаг содержит ошибку. Укажите номер ошибочного шага.\n{steps}",
+                "В следующей цепочке вычислений допущена ровно одна ошибка. Назовите номер шага с ошибкой.\n{steps}",
+            ],
+            "en": [
+                "The solution below contains exactly one incorrect step. State the number of the erroneous step.\n{steps}",
+                "Exactly one step in the following chain is wrong. Name the number of the step with the error.\n{steps}",
+            ],
+        },
+        "step_label": {
+            "ru": "Шаг",
+            "en": "Step",
+        },
+        "step_check": {
+            "ru": "Проверяем шаг {n}: {a} {op} {b} = {shown}; правильно {correct}.",
+            "en": "Check step {n}: {a} {op} {b} = {shown}; correct value is {correct}.",
+        },
+        "step_result": {
+            "ru": "Ошибка находится в шаге {n}.",
+            "en": "The error is in step {n}.",
+        },
+    },
+
+    "propositional_logic": {
+        "problem": {
+            "ru": [
+                "Является ли формула тавтологией (истинна при всех значениях переменных)? Ответьте YES или NO.\nФормула: {formula}",
+                "Определите, тавтология ли данная формула. Ответ: YES (да) или NO (нет).\n{formula}",
+            ],
+            "en": [
+                "Is the formula a tautology (true for all variable assignments)? Answer YES or NO.\nFormula: {formula}",
+                "Determine whether the formula is a tautology. Answer YES or NO.\n{formula}",
+            ],
+        },
+        "step_negate": {
+            "ru": "Проверяем выполнимость отрицания формулы: если оно UNSAT — формула тавтология.",
+            "en": "Check satisfiability of the negation: if it is UNSAT, the formula is a tautology.",
+        },
+        "step_result": {
+            "ru": "Результат: формула {verdict} тавтологией. Ответ: {answer}.",
+            "en": "Result: the formula {verdict} a tautology. Answer: {answer}.",
+        },
+    },
+
+    "dynamic_programming": {
+        "grid_problem": {
+            "ru": [
+                "На сетке {rows}x{cols} робот стоит в левом верхнем углу и может двигаться только вправо или вниз. Сколько существует различных путей до правого нижнего угла?",
+                "Сколькими способами можно дойти из левого верхнего в правый нижний угол сетки {rows}x{cols}, двигаясь только вправо и вниз?",
+            ],
+            "en": [
+                "On a {rows}x{cols} grid a robot starts at the top-left corner and may move only right or down. How many distinct paths lead to the bottom-right corner?",
+                "In how many ways can you reach the bottom-right from the top-left of a {rows}x{cols} grid moving only right and down?",
+            ],
+        },
+        "coin_problem": {
+            "ru": [
+                "Сколькими способами можно набрать сумму {amount}, используя монеты номиналами {coins} (каждый номинал можно брать неограниченно, порядок не важен)?",
+                "Сколько существует способов разменять сумму {amount} монетами {coins} (порядок не важен, номиналы можно повторять)?",
+            ],
+            "en": [
+                "In how many ways can you make the amount {amount} using coin denominations {coins} (unlimited coins of each type, order does not matter)?",
+                "How many ways are there to form the sum {amount} with coins {coins} (order irrelevant, repetitions allowed)?",
+            ],
+        },
+        "grid_step": {
+            "ru": "Число путей до правого нижнего угла = C({rows}+{cols}-2, {rows}-1). Заполняем таблицу DP: путей = {result}.",
+            "en": "Number of paths to the bottom-right = C({rows}+{cols}-2, {rows}-1). Filling the DP table: paths = {result}.",
+        },
+        "coin_step": {
+            "ru": "Динамика dp[s] = число способов набрать s. Перебираем монеты, обновляем dp. Ответ: {result}.",
+            "en": "DP: dp[s] = number of ways to make s. Iterate over coins, update dp. Answer: {result}.",
+        },
+        "result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "regex_dfa": {
+        "problem": {
+            "ru": [
+                "Язык над алфавитом {{a, b}} задан описанием: {desc}. Принадлежит ли этому языку строка \"{string}\"? Ответьте YES или NO.",
+                "Формальный язык: {desc}. Верно ли, что строка \"{string}\" принадлежит языку? Ответ: YES или NO.",
+            ],
+            "en": [
+                "A language over the alphabet {{a, b}} is defined as: {desc}. Does the string \"{string}\" belong to this language? Answer YES or NO.",
+                "Formal language: {desc}. Is the string \"{string}\" in the language? Answer YES or NO.",
+            ],
+        },
+        "step_check": {
+            "ru": "Проверяем строку по описанию языка (регулярное выражение {pattern}).",
+            "en": "Match the string against the language description (regular expression {pattern}).",
+        },
+        "step_result": {
+            "ru": "Строка {verdict} языку. Ответ: {answer}.",
+            "en": "The string {verdict} the language. Answer: {answer}.",
+        },
+    },
+
+    "blocks_world": {
+        "problem": {
+            "ru": [
+                "Мир блоков. Начальное состояние:\n{init}\nЦелевое состояние:\n{goal}\nПравила: можно перемещать только верхний (свободный) блок на стол или на другой свободный блок. Дайте последовательность ходов в формате 'move X onto Y' или 'move X onto table', разделённых точкой с запятой.",
+                "Задача планирования (blocks world).\nСейчас:\n{init}\nНужно получить:\n{goal}\nЗа один ход перемещается один свободный блок на стол или поверх другого свободного блока. Запишите план ходами вида 'move X onto Y' / 'move X onto table' через точку с запятой.",
+            ],
+            "en": [
+                "Blocks world. Initial state:\n{init}\nGoal state:\n{goal}\nRules: you may move only a clear (top) block onto the table or onto another clear block. Provide a sequence of moves formatted as 'move X onto Y' or 'move X onto table', separated by semicolons.",
+                "Planning task (blocks world).\nNow:\n{init}\nGoal:\n{goal}\nEach move relocates one clear block onto the table or on top of another clear block. Write the plan as moves 'move X onto Y' / 'move X onto table' separated by semicolons.",
+            ],
+        },
+        "step_plan": {
+            "ru": "План (поиск в ширину по состояниям): {plan}",
+            "en": "Plan (breadth-first search over states): {plan}",
+        },
+        "result": {
+            "ru": "Итоговый план: {plan}",
+            "en": "Final plan: {plan}",
+        },
+    },
+
     "sat_smt_mini": {
         "problem": {
             "ru": "Определите, выполнима ли формула (SAT/UNSAT): {formula}. Если SAT — приведите пример присваивания.",

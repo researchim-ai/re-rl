@@ -1,7 +1,97 @@
+import os
 import re
 import math
+from fractions import Fraction
 from typing import Optional, List, Dict, Union, Any, Tuple
-from rich import print
+
+try:
+    from loguru import logger
+except Exception:  # pragma: no cover - loguru всегда есть в зависимостях
+    import logging
+
+    logger = logging.getLogger("re_rl.rewards")
+
+# Число с поддержкой знака, десятичной части и научной нотации (1.2e-3).
+NUMBER_RE = r"[-+]?\d+(?:\.\d+)?(?:[eE][-+]?\d+)?"
+
+# Если выставлено RE_RL_REWARD_DEBUG=1 — reward_correctness будет логировать
+# запрос/ответ модели. По умолчанию выключено, чтобы не спамить stdout в RL.
+_REWARD_DEBUG = os.getenv("RE_RL_REWARD_DEBUG", "0") == "1"
+
+
+def _to_float(token: str) -> Optional[float]:
+    """Преобразует токен в float, поддерживая дроби вида ``a/b`` и науч. нотацию."""
+    token = token.strip()
+    if not token:
+        return None
+    # Дробь a/b (но не деление в составе выражения — только «чистая» дробь)
+    frac_match = re.fullmatch(r"([-+]?\d+)\s*/\s*(\d+)", token)
+    if frac_match:
+        try:
+            return float(Fraction(int(frac_match.group(1)), int(frac_match.group(2))))
+        except (ZeroDivisionError, ValueError):
+            return None
+    try:
+        return float(token)
+    except ValueError:
+        return None
+
+
+def coerce_float(value: Any) -> Optional[float]:
+    """Пытается привести произвольное значение/строку к float.
+
+    Поддерживает дроби (``3/4``), научную нотацию и извлекает первое число
+    из более длинной строки. Возвращает ``None``, если число не найдено.
+    """
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    text = str(value).strip()
+    # Сначала пробуем распарсить строку целиком (учитывает дроби).
+    direct = _to_float(text)
+    if direct is not None:
+        return direct
+    # Иначе ищем дробь внутри текста, затем первое число.
+    frac_match = re.search(r"([-+]?\d+)\s*/\s*(\d+)", text)
+    if frac_match:
+        val = _to_float(frac_match.group(0))
+        if val is not None:
+            return val
+    nums = re.findall(NUMBER_RE, text)
+    if not nums:
+        return None
+    try:
+        return float(nums[0])
+    except ValueError:
+        return None
+
+
+def numbers_close(ref: Optional[float], pred: Optional[float], rel_tol: float = 1e-3, abs_tol: float = 1e-6) -> bool:
+    """Сравнивает два числа с относительным и абсолютным допуском."""
+    if ref is None or pred is None:
+        return False
+    return math.isclose(ref, pred, rel_tol=rel_tol, abs_tol=abs_tol)
+
+
+def reward_numeric(ref_val: Any, pred_val: Any, rel_tol: float = 1e-3, abs_tol: float = 1e-6) -> float:
+    """Универсальная числовая награда с допуском и частичным кредитом.
+
+    Возвращает 1.0 при совпадении в пределах допуска, 0.5 при близком
+    (в пределах 5% относительной ошибки) и 0.0 иначе.
+    """
+    ref = coerce_float(ref_val)
+    pred = coerce_float(pred_val)
+    if ref is None or pred is None:
+        return 0.0
+    if numbers_close(ref, pred, rel_tol=rel_tol, abs_tol=abs_tol):
+        return 1.0
+    denom = max(abs(ref), 1e-9)
+    if abs(ref - pred) / denom < 0.05:
+        return 0.5
+    return 0.0
+
+
 ##############################################################################
 # 1) Утилиты для извлечения chain-of-thought (reasoning) и финального ответа #
 ##############################################################################
@@ -63,19 +153,13 @@ def check_format_compliance(full_text: str) -> float:
 
 def parse_linear_answer(text: str) -> Optional[float]:
     """
-    Для линейной задачи (a*x+b=c) — обычно 1 корень (float). 
-    Ищем первое попавшееся число.
+    Для линейной задачи (a*x+b=c) — обычно 1 корень (float).
+    Поддерживает дроби, научную нотацию и извлекает первое число из текста.
     """
-    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", text)
-    if not nums:
-        return None
-    try:
-        return float(nums[0])
-    except:
-        return None
+    return coerce_float(text)
 
 def parse_list_of_floats(text: str) -> List[float]:
-    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", text)
+    nums = re.findall(NUMBER_RE, text)
     return [float(n) for n in nums]
 
 def parse_quadratic_answer(text: str) -> Optional[List[float]]:
@@ -83,12 +167,12 @@ def parse_quadratic_answer(text: str) -> Optional[List[float]]:
     Возвращаем список корней (0..2).
     """
     # Ищем числа в формате x1 = 1, x2 = -1 или просто 1, -1
-    pairs = re.findall(r"x\d+\s*=\s*([-+]?\d+(?:\.\d+)?)", text)
+    pairs = re.findall(rf"x\d+\s*=\s*({NUMBER_RE})", text)
     if pairs:
         return [float(p) for p in pairs[:2]]
     
     # Если не нашли в формате x1=..., ищем просто числа
-    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", text)
+    nums = re.findall(NUMBER_RE, text)
     if not nums:
         return None
     return [float(n) for n in nums[:2]]
@@ -104,10 +188,9 @@ def parse_urn_probability_answer(text: str) -> Optional[float]:
     """
     Должно быть число 0..1.
     """
-    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", text)
-    if not nums:
+    val = coerce_float(text)
+    if val is None:
         return None
-    val = float(nums[0])
     if val<0 or val>1.0001:
         return None
     return val
@@ -124,15 +207,23 @@ def parse_knights_knaves_answer(answer_text: str) -> Optional[Dict[str, str]]:
     """
     if not answer_text:
         return None
-        
+
+    # Роли на двух языках; используем для устойчивого извлечения пар из текста.
+    role_words = ["рыцарь", "лжец", "knight", "liar", "knave"]
+    role_alt = "|".join(role_words)
+    pattern = re.compile(rf"([A-Za-zА-Яа-яЁё]+)\s*[:\-]\s*({role_alt})", re.IGNORECASE)
+    found = pattern.findall(answer_text)
+    if found:
+        return {name.strip().lower(): role.strip().lower() for name, role in found}
+
+    # Fallback: старый формат "name: role, name: role".
     try:
         roles = {}
-        pairs = answer_text.split(",")
-        for pair in pairs:
+        for pair in answer_text.split(","):
             name, role = pair.strip().split(":")
             roles[name.strip().lower()] = role.strip().lower()
         return roles
-    except:
+    except (ValueError, AttributeError):
         return None
 
 def parse_futoshiki_answer(text: str) -> Optional[List[List[int]]]:
@@ -176,7 +267,7 @@ def parse_system_linear_answer(text: str) -> Optional[List[float]]:
     "x1=2.00, x2=1.00" => [2.0,1.0]
     Или в тексте 2,1
     """
-    pairs = re.findall(r"x(\d+)\s*=\s*([-+]?\d+(?:\.\d+)?)", text)
+    pairs = re.findall(rf"x(\d+)\s*=\s*({NUMBER_RE})", text)
     if not pairs:
         # fallback: ищем float'ы
         floats = parse_list_of_floats(text)
@@ -188,18 +279,41 @@ def parse_system_linear_answer(text: str) -> Optional[List[float]]:
 
 def parse_probability_value(text: str) -> Optional[float]:
     """Parse first probability-like float from answer."""
-    nums = re.findall(r"[-+]?\d+(?:\.\d+)?", text)
-    if not nums:
-        return None
-    try:
-        return float(nums[0])
-    except Exception:
-        return None
+    return coerce_float(text)
 
 
 def parse_status_answer(text: str) -> str:
     """Normalize SAT/UNSAT/TRUE/FALSE style answers."""
     return text.strip().upper()
+
+
+def sympy_equivalent(ref_str: str, pred_str: str) -> bool:
+    """Проверяет символическую эквивалентность двух выражений через sympy.
+
+    Поддерживает ``^`` как степень. Возвращает False при ошибке парсинга.
+    """
+    try:
+        import sympy as sp
+    except Exception:
+        return False
+
+    def _parse(s: str):
+        s = str(s).strip().split(":")[-1].strip().rstrip(".").replace("^", "**")
+        if not s:
+            return None
+        try:
+            return sp.sympify(s, locals={"x": sp.Symbol("x"), "y": sp.Symbol("y")})
+        except (sp.SympifyError, SyntaxError, TypeError, ValueError):
+            return None
+
+    a = _parse(ref_str)
+    b = _parse(pred_str)
+    if a is None or b is None:
+        return False
+    try:
+        return sp.simplify(a - b) == 0
+    except Exception:
+        return False
 
 ##############################################################################
 # 3) Функции сравнения "корректности" финального ответа
@@ -263,10 +377,12 @@ def reward_knights_knaves(ref_answer: str, pred_answer: str) -> float:
     Returns:
         float: Награда от 0 до 1
     """
-    # Извлекаем рассуждения и ответы
-    ref_reasoning, ref_answer = extract_reasoning_and_answer(ref_answer)
-    pred_reasoning, pred_answer = extract_reasoning_and_answer(pred_answer)
-    
+    # Извлекаем рассуждения и ответы; если тегов нет — используем сырой текст.
+    _, ref_extracted = extract_reasoning_and_answer(ref_answer)
+    _, pred_extracted = extract_reasoning_and_answer(pred_answer)
+    ref_answer = ref_extracted or ref_answer
+    pred_answer = pred_extracted or pred_answer
+
     if not ref_answer or not pred_answer:
         return 0.0
         
@@ -387,9 +503,9 @@ def parse_ref_answer(task_type: str, text: str):
         return parse_system_linear_answer(text)
     elif tt in {"bayesian_reasoning"}:
         return parse_probability_value(text)
-    elif tt in {"sat_smt_mini", "proof_cases_counterexample"}:
+    elif tt in {"sat_smt_mini", "proof_cases_counterexample", "propositional_logic", "regex_dfa"}:
         return parse_status_answer(text)
-    elif tt in {"csp_reasoning", "graph_justification", "combinatorial_optimization"}:
+    elif tt in {"csp_reasoning", "graph_justification", "combinatorial_optimization", "symbolic_simplification"}:
         return text.strip()
     return text.strip()
 
@@ -433,12 +549,25 @@ def compare_answers(task_type: str, ref_val: Any, pred_val: Any) -> float:
             return 1.0 if abs(r - p) < 1e-3 else (0.5 if abs(r - p) < 5e-2 else 0.0)
         except Exception:
             return 0.0
-    elif task_type in {"sat_smt_mini", "proof_cases_counterexample"}:
+    elif task_type in {"sat_smt_mini", "proof_cases_counterexample", "propositional_logic", "regex_dfa"}:
         return 1.0 if str(ref_val).strip().upper() == str(pred_val).strip().upper() else 0.0
+    elif task_type == "symbolic_simplification":
+        # Любая математически эквивалентная форма ответа засчитывается.
+        return 1.0 if sympy_equivalent(str(ref_val), str(pred_val)) else 0.0
     elif task_type in {"csp_reasoning", "graph_justification", "combinatorial_optimization"}:
         return 1.0 if str(ref_val).strip() == str(pred_val).strip() else 0.0
     else:
-        return 1.0 if ref_val == pred_val else 0.0
+        # Точное совпадение (в т.ч. для строковых ответов).
+        if ref_val == pred_val:
+            return 1.0
+        # Числовой fallback: покрывает физику, геометрию, calculus и прочие
+        # типы с числовым ответом, для которых нет специального компаратора.
+        ref_num = coerce_float(ref_val)
+        pred_num = coerce_float(pred_val)
+        if ref_num is not None and pred_num is not None:
+            return reward_numeric(ref_num, pred_num)
+        # Иначе — нормализованное сравнение строк.
+        return 1.0 if str(ref_val).strip().lower() == str(pred_val).strip().lower() else 0.0
 
 
 def compute_correctness_score(task_type: str, ref_answer: str, pred_answer: str) -> float:
@@ -470,6 +599,13 @@ def compute_correctness_score(task_type: str, ref_answer: str, pred_answer: str)
         if not ref_final:  # Если не нашли, используем как есть
             ref_final = ref_answer
             
+    # Общее правило: если текст ответа точно совпадает с эталоном — это верно.
+    # Покрывает вырожденные случаи (например, ответ «Нет решения») и любые
+    # типы, где эталон не парсится в число/структуру.
+    if ref_final is not None and pred_final is not None:
+        if str(ref_final).strip().lower() == str(pred_final).strip().lower():
+            return 1.0
+
     ref_val = parse_ref_answer(task_type, ref_final)
     pred_val = parse_ref_answer(task_type, pred_final)
     return compare_answers(task_type, ref_val, pred_val)
@@ -555,31 +691,22 @@ def reward_correctness(prompts, completions, answer, **kwargs) -> List[float]:
     rewards = []
     batch_size = len(prompts)
     for b in range(batch_size):
-        system_msg = prompts[b][0]
         user_msg = prompts[b][-1]
         meta = user_msg.get("metadata", {})
         task_type = meta.get("task_type", "unknown")
         ref_answer = meta.get("ref_final_answer", "")
 
-        question = prompts[b][-1]["content"]
-        # answer[b] – список одинаковых эталонов (длиной num_generations)
-        # (либо возьмём meta["ref_final_answer"])
-        ref_ans = answer[b] # предполагаем, что answer[b] одинаков
-        # -> "ref_ans" — строка
+        ref_ans = answer[b]  # предполагаем, что answer[b] одинаков
         gen_list = completions[b]
-        # answer[b] (эталон) обычно совпадает, но 
-        # берём всё равно meta["ref_final_answer"].
         for c in gen_list:
-            model_text = c["content"]
-            print("-"*20)
-            print(f"System:\n{system_msg}")
-            print(f"Question:\n{question}")
-            print(f"\nRef answer:\n{ref_ans}")
-            print(f"\nModel response :\n{model_text}")
-            # if extracted_ans:
-            #     print(f"\nExtracted answer:\n{extracted_ans}")
-            print("-"*20)
             model_output = c["content"]
+            if _REWARD_DEBUG:
+                logger.debug(
+                    "reward_correctness | task_type={} | ref={!r} | model={!r}",
+                    task_type,
+                    ref_ans,
+                    model_output,
+                )
             sc = compute_correctness_score(
                 task_type,
                 ref_answer,
