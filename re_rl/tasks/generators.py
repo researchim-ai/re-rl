@@ -94,6 +94,46 @@ from re_rl.tasks.math.logic.magic_square_task import MagicSquareTask
 from re_rl.tasks.math.logic.skyscrapers_task import SkyscrapersTask
 from re_rl.tasks.math.logic.kenken_task import KenKenTask
 from re_rl.tasks.math.logic.kakuro_task import KakuroTask
+
+# Волна «графы / оптимизация / симуляция / сетки / дедукция / игры / пространство»
+from re_rl.tasks.math.logic.graph_algorithms_task import (
+    WeightedShortestPathTask, TopologicalSortTask, GraphColoringTask, MSTWeightTask,
+    EulerianPathTask, HamiltonianPathTask, BipartiteMatchingTask, TSPTask, MaxFlowTask,
+    DAGLongestPathTask,
+)
+from re_rl.tasks.math.logic.optimization_task import KnapsackTask, SubsetSumTask
+from re_rl.tasks.math.logic.formal_logic2_task import (
+    TruthTableTask, ModelCountingTask, ThreeSatTask, LogicalEquivalenceTask, QBFTask,
+)
+from re_rl.tasks.math.logic.automata_sim_task import (
+    DFASimulationTask, TuringMachineTask, GameOfLifeTask, ElementaryCATask,
+)
+from re_rl.tasks.math.logic.algo_sim_task import (
+    RPNEvalTask, BalancedBracketsTask, SortingTraceTask,
+)
+from re_rl.tasks.math.logic.grids2_task import (
+    NonogramTask, BinaryPuzzleTask, HitoriTask, StarBattleTask, BattleshipTask,
+)
+from re_rl.tasks.math.logic.deduction2_task import (
+    LogicGridTask, SeatingCircularTask, TournamentTask,
+)
+from re_rl.tasks.math.logic.games2_task import CombinatorialGamesTask, TicTacToeTask
+from re_rl.tasks.math.logic.spatial_task import (
+    CubeNetTask, DiceReasoningTask, RotationReflectionTask, PaperFoldingTask,
+)
+from re_rl.tasks.math.logic.misc_logic_task import (
+    CipherDecodeTask, PigeonholeTask, MontyHallTask, AllenRelationsTask,
+)
+
+# Волна «продвинутый ризонинг»
+from re_rl.tasks.math.logic.arc_induction_task import ARCGridInductionTask
+from re_rl.tasks.math.logic.program_trace_task import ProgramTraceTask
+from re_rl.tasks.math.logic.sprague_grundy_task import SpragueGrundyTask
+from re_rl.tasks.math.logic.natural_deduction_task import NaturalDeductionTask
+from re_rl.tasks.math.logic.string_dp_task import EditDistanceTask
+from re_rl.tasks.math.logic.calendar_task import CalendarReasoningTask
+from re_rl.tasks.math.logic.word_ladder_task import WordLadderTask
+from re_rl.tasks.math.logic.cfg_membership_task import CFGMembershipTask
 from re_rl.tasks.math.analysis.symbolic_regression_task import SymbolicRegressionTask
 from re_rl.tasks.math.algebra.polynomial_factorization_task import PolynomialFactorizationTask
 from re_rl.tasks.math.discrete.base_conversion_task import BaseConversionTask
@@ -1448,6 +1488,58 @@ generate_random_skyscrapers_task = _mk_generator(SkyscrapersTask)
 generate_random_kenken_task = _mk_generator(KenKenTask)
 generate_random_kakuro_task = _mk_generator(KakuroTask)
 
+generate_random_weighted_shortest_path_task = _mk_generator(WeightedShortestPathTask)
+generate_random_topological_sort_task = _mk_generator(TopologicalSortTask)
+generate_random_graph_coloring_task = _mk_generator(GraphColoringTask)
+generate_random_mst_weight_task = _mk_generator(MSTWeightTask)
+generate_random_eulerian_path_task = _mk_generator(EulerianPathTask)
+generate_random_hamiltonian_path_task = _mk_generator(HamiltonianPathTask)
+generate_random_bipartite_matching_task = _mk_generator(BipartiteMatchingTask)
+generate_random_tsp_task = _mk_generator(TSPTask)
+generate_random_max_flow_task = _mk_generator(MaxFlowTask)
+generate_random_dag_longest_path_task = _mk_generator(DAGLongestPathTask)
+generate_random_knapsack_task = _mk_generator(KnapsackTask)
+generate_random_subset_sum_task = _mk_generator(SubsetSumTask)
+generate_random_truth_table_task = _mk_generator(TruthTableTask)
+generate_random_model_counting_task = _mk_generator(ModelCountingTask)
+generate_random_three_sat_task = _mk_generator(ThreeSatTask)
+generate_random_logical_equivalence_task = _mk_generator(LogicalEquivalenceTask)
+generate_random_qbf_task = _mk_generator(QBFTask)
+generate_random_dfa_simulation_task = _mk_generator(DFASimulationTask)
+generate_random_turing_machine_task = _mk_generator(TuringMachineTask)
+generate_random_game_of_life_task = _mk_generator(GameOfLifeTask)
+generate_random_elementary_ca_task = _mk_generator(ElementaryCATask)
+generate_random_rpn_eval_task = _mk_generator(RPNEvalTask)
+generate_random_balanced_brackets_task = _mk_generator(BalancedBracketsTask)
+generate_random_sorting_trace_task = _mk_generator(SortingTraceTask)
+generate_random_nonogram_task = _mk_generator(NonogramTask)
+generate_random_binary_puzzle_task = _mk_generator(BinaryPuzzleTask)
+generate_random_hitori_task = _mk_generator(HitoriTask)
+generate_random_star_battle_task = _mk_generator(StarBattleTask)
+generate_random_battleship_task = _mk_generator(BattleshipTask)
+generate_random_logic_grid_task = _mk_generator(LogicGridTask)
+generate_random_seating_circular_task = _mk_generator(SeatingCircularTask)
+generate_random_tournament_task = _mk_generator(TournamentTask)
+generate_random_combinatorial_games_task = _mk_generator(CombinatorialGamesTask)
+generate_random_tic_tac_toe_task = _mk_generator(TicTacToeTask)
+generate_random_cube_net_task = _mk_generator(CubeNetTask)
+generate_random_dice_reasoning_task = _mk_generator(DiceReasoningTask)
+generate_random_rotation_reflection_task = _mk_generator(RotationReflectionTask)
+generate_random_paper_folding_task = _mk_generator(PaperFoldingTask)
+generate_random_cipher_decode_task = _mk_generator(CipherDecodeTask)
+generate_random_pigeonhole_task = _mk_generator(PigeonholeTask)
+generate_random_monty_hall_task = _mk_generator(MontyHallTask)
+generate_random_allen_relations_task = _mk_generator(AllenRelationsTask)
+
+generate_random_arc_grid_induction_task = _mk_generator(ARCGridInductionTask)
+generate_random_program_trace_task = _mk_generator(ProgramTraceTask)
+generate_random_sprague_grundy_task = _mk_generator(SpragueGrundyTask)
+generate_random_natural_deduction_task = _mk_generator(NaturalDeductionTask)
+generate_random_edit_distance_task = _mk_generator(EditDistanceTask)
+generate_random_calendar_reasoning_task = _mk_generator(CalendarReasoningTask)
+generate_random_word_ladder_task = _mk_generator(WordLadderTask)
+generate_random_cfg_membership_task = _mk_generator(CFGMembershipTask)
+
 
 def generate_random_regex_dfa_task(
     language: str = "ru",
@@ -1656,6 +1748,58 @@ ALL_TASK_GENERATORS = {
     "skyscrapers": generate_random_skyscrapers_task,
     "kenken": generate_random_kenken_task,
     "kakuro": generate_random_kakuro_task,
+    # Волна «графы / оптимизация / симуляция / сетки / дедукция / игры / пространство»:
+    "weighted_shortest_path": generate_random_weighted_shortest_path_task,
+    "topological_sort": generate_random_topological_sort_task,
+    "graph_coloring": generate_random_graph_coloring_task,
+    "mst_weight": generate_random_mst_weight_task,
+    "eulerian_path": generate_random_eulerian_path_task,
+    "hamiltonian_path": generate_random_hamiltonian_path_task,
+    "bipartite_matching": generate_random_bipartite_matching_task,
+    "tsp": generate_random_tsp_task,
+    "max_flow": generate_random_max_flow_task,
+    "dag_longest_path": generate_random_dag_longest_path_task,
+    "knapsack": generate_random_knapsack_task,
+    "subset_sum": generate_random_subset_sum_task,
+    "truth_table": generate_random_truth_table_task,
+    "model_counting": generate_random_model_counting_task,
+    "three_sat": generate_random_three_sat_task,
+    "logical_equivalence": generate_random_logical_equivalence_task,
+    "qbf": generate_random_qbf_task,
+    "dfa_simulation": generate_random_dfa_simulation_task,
+    "turing_machine": generate_random_turing_machine_task,
+    "game_of_life": generate_random_game_of_life_task,
+    "elementary_ca": generate_random_elementary_ca_task,
+    "rpn_eval": generate_random_rpn_eval_task,
+    "balanced_brackets": generate_random_balanced_brackets_task,
+    "sorting_trace": generate_random_sorting_trace_task,
+    "nonogram": generate_random_nonogram_task,
+    "binary_puzzle": generate_random_binary_puzzle_task,
+    "hitori": generate_random_hitori_task,
+    "star_battle": generate_random_star_battle_task,
+    "battleship": generate_random_battleship_task,
+    "logic_grid": generate_random_logic_grid_task,
+    "seating_circular": generate_random_seating_circular_task,
+    "tournament": generate_random_tournament_task,
+    "combinatorial_games": generate_random_combinatorial_games_task,
+    "tic_tac_toe": generate_random_tic_tac_toe_task,
+    "cube_net": generate_random_cube_net_task,
+    "dice_reasoning": generate_random_dice_reasoning_task,
+    "rotation_reflection": generate_random_rotation_reflection_task,
+    "paper_folding": generate_random_paper_folding_task,
+    "cipher_decode": generate_random_cipher_decode_task,
+    "pigeonhole": generate_random_pigeonhole_task,
+    "monty_hall": generate_random_monty_hall_task,
+    "allen_relations": generate_random_allen_relations_task,
+    # Волна «продвинутый ризонинг»:
+    "arc_grid_induction": generate_random_arc_grid_induction_task,
+    "program_trace": generate_random_program_trace_task,
+    "sprague_grundy": generate_random_sprague_grundy_task,
+    "natural_deduction": generate_random_natural_deduction_task,
+    "edit_distance": generate_random_edit_distance_task,
+    "calendar_reasoning": generate_random_calendar_reasoning_task,
+    "word_ladder": generate_random_word_ladder_task,
+    "cfg_membership": generate_random_cfg_membership_task,
     "graph_justification": generate_random_graph_justification_task,
     "bayesian_reasoning": generate_random_bayesian_reasoning_task,
     "combinatorial_optimization": generate_random_combinatorial_optimization_task,

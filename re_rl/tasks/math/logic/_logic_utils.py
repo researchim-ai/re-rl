@@ -71,6 +71,25 @@ def verify_int_sequence(prediction: str, truth: List[int]) -> float:
     return 1.0 if ints[-len(truth):] == list(truth) else 0.0
 
 
+def parse_value(prediction: str) -> Optional[float]:
+    """Извлекает числовое значение из ответа: дробь ``a/b`` или (последнее) число."""
+    txt = extract_answer_text(prediction).replace("−", "-").replace(",", ".")
+    m = re.search(r"(-?\d+)\s*/\s*(-?\d+)", txt)
+    if m:
+        num, den = int(m.group(1)), int(m.group(2))
+        if den != 0:
+            return num / den
+    floats = re.findall(r"-?\d+\.?\d*", txt)
+    return float(floats[-1]) if floats else None
+
+
+def verify_value(prediction: str, truth: float, tol: float = 1e-3) -> float:
+    val = parse_value(prediction)
+    if val is None:
+        return 0.0
+    return 1.0 if abs(val - truth) <= tol * max(1.0, abs(truth)) else 0.0
+
+
 def normalize(text: str) -> str:
     """Нижний регистр, схлопнутые пробелы, без знаков препинания."""
     text = extract_answer_text(text).lower().replace("ё", "е")
@@ -96,6 +115,13 @@ def _find_run(tokens: List[str], sub: List[str]) -> int:
         if tokens[i:i + len(sub)] == sub:
             return i
     return -1
+
+
+def verify_phrase(prediction: str, phrase: str) -> float:
+    """1.0, если последовательность слов ``phrase`` встречается в ответе подряд."""
+    toks = normalize(prediction).split()
+    sub = normalize(phrase).split()
+    return 1.0 if _find_run(toks, sub) >= 0 else 0.0
 
 
 def extract_name_sequence(prediction: str, names: List[str]) -> List[str]:

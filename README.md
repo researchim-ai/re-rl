@@ -4,7 +4,7 @@
 
 ## Особенности
 
-- **162 типов задач**: 105 математических (включая формальную математику Lean 4 и логические/ризонинг-головоломки) + 57 физических
+- **212 типов задач**: 155 математических (включая формальную математику Lean 4 и логические/ризонинг-головоломки) + 57 физических
 - **Языки**: русский и английский
 - **Система сложности**: 10 уровней для каждого типа задач
 - **Пошаговые решения**: детальные цепочки рассуждений для SFT/RL обучения
@@ -63,7 +63,7 @@ chat_dataset = generator.generate_chat_dataset(
 
 ## Типы задач
 
-### Математика (105 типов)
+### Математика (155 типов)
 
 | Категория | Задачи |
 |-----------|--------|
@@ -77,7 +77,12 @@ chat_dataset = generator.generate_chat_dataset(
 | **Прикладная** | financial_math, arithmetic |
 | **Логика и планирование** | contradiction, knights_knaves, futoshiki, analogical, text_stats, sudoku, zebra_puzzle, csp_reasoning, sat_smt_mini, propositional_logic, regex_dfa, find_the_error, cryptarithmetic, inequality_proof, river_crossing, tower_of_hanoi, water_jug, blocks_world, nim_game |
 | **Ризонинг и дедукция** | graph_reasoning, ordering_puzzle, state_tracking, grid_navigation, interval_scheduling, set_reasoning, pattern_induction, syllogism, logical_entailment, boolean_circuit, mastermind, countdown_24, game_theory_optimal, family_tree, minesweeper_deduction |
-| **CSP-головоломки (сетки)** | n_queens, magic_square, skyscrapers, kenken, kakuro |
+| **CSP-головоломки (сетки)** | n_queens, magic_square, skyscrapers, kenken, kakuro, nonogram, binary_puzzle, hitori, star_battle, battleship |
+| **Графы и оптимизация** | weighted_shortest_path, topological_sort, graph_coloring, mst_weight, eulerian_path, hamiltonian_path, bipartite_matching, tsp, max_flow, dag_longest_path, knapsack, subset_sum |
+| **Формальная логика и вычисления** | truth_table, model_counting, three_sat, logical_equivalence, qbf, dfa_simulation, turing_machine, game_of_life, elementary_ca, rpn_eval, balanced_brackets, sorting_trace |
+| **Дедукция и игры** | logic_grid, seating_circular, tournament, combinatorial_games, tic_tac_toe |
+| **Пространственное мышление и прочее** | cube_net, dice_reasoning, rotation_reflection, paper_folding, cipher_decode, pigeonhole, monty_hall, allen_relations |
+| **Продвинутый ризонинг** | arc_grid_induction, program_trace, sprague_grundy, natural_deduction, edit_distance, calendar_reasoning, word_ladder, cfg_membership |
 
 ### Физика (57 типов)
 
