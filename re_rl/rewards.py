@@ -503,9 +503,11 @@ def parse_ref_answer(task_type: str, text: str):
         return parse_system_linear_answer(text)
     elif tt in {"bayesian_reasoning"}:
         return parse_probability_value(text)
-    elif tt in {"sat_smt_mini", "proof_cases_counterexample", "propositional_logic", "regex_dfa"}:
+    elif tt in {"sat_smt_mini", "proof_cases_counterexample", "propositional_logic", "regex_dfa", "inequality_proof"}:
         return parse_status_answer(text)
-    elif tt in {"csp_reasoning", "graph_justification", "combinatorial_optimization", "symbolic_simplification"}:
+    elif tt in {"csp_reasoning", "graph_justification", "combinatorial_optimization",
+                "symbolic_simplification", "symbolic_regression", "polynomial_factorization",
+                "taylor_series", "partial_fractions", "partial_derivatives", "recurrence"}:
         return text.strip()
     return text.strip()
 
@@ -549,9 +551,10 @@ def compare_answers(task_type: str, ref_val: Any, pred_val: Any) -> float:
             return 1.0 if abs(r - p) < 1e-3 else (0.5 if abs(r - p) < 5e-2 else 0.0)
         except Exception:
             return 0.0
-    elif task_type in {"sat_smt_mini", "proof_cases_counterexample", "propositional_logic", "regex_dfa"}:
+    elif task_type in {"sat_smt_mini", "proof_cases_counterexample", "propositional_logic", "regex_dfa", "inequality_proof"}:
         return 1.0 if str(ref_val).strip().upper() == str(pred_val).strip().upper() else 0.0
-    elif task_type == "symbolic_simplification":
+    elif task_type in {"symbolic_simplification", "symbolic_regression", "polynomial_factorization",
+                       "taylor_series", "partial_fractions", "partial_derivatives", "recurrence"}:
         # Любая математически эквивалентная форма ответа засчитывается.
         return 1.0 if sympy_equivalent(str(ref_val), str(pred_val)) else 0.0
     elif task_type in {"csp_reasoning", "graph_justification", "combinatorial_optimization"}:

@@ -4,7 +4,7 @@
 
 ## Особенности
 
-- **94 типа задач**: 53 математических (включая формальную математику Lean 4) + 41 физическая
+- **162 типов задач**: 105 математических (включая формальную математику Lean 4 и логические/ризонинг-головоломки) + 57 физических
 - **Языки**: русский и английский
 - **Система сложности**: 10 уровней для каждого типа задач
 - **Пошаговые решения**: детальные цепочки рассуждений для SFT/RL обучения
@@ -63,32 +63,37 @@ chat_dataset = generator.generate_chat_dataset(
 
 ## Типы задач
 
-### Математика (34 типа)
+### Математика (105 типов)
 
 | Категория | Задачи |
 |-----------|--------|
-| **Алгебра** | linear, quadratic, cubic, system_linear, exponential, logarithmic, inequality |
-| **Анализ** | calculus, limits, integral, differential_equation, series, optimization |
-| **Геометрия** | geometry, trigonometry, vector_3d |
-| **Линейная алгебра** | matrix, complex_number |
-| **Дискретная математика** | number_theory, combinatorics, sequence, set_logic, graph |
+| **Алгебра** | linear, quadratic, cubic, system_linear, exponential, logarithmic, inequality, symbolic_simplification, polynomial_factorization, vieta |
+| **Анализ** | calculus, limits, integral, differential_equation, series, optimization, taylor_series, partial_fractions, partial_derivatives, area_between_curves, lhopital, symbolic_regression |
+| **Геометрия** | geometry, trigonometry, vector_3d, coordinate_geometry, shoelace_area, triangle_solving, conic_sections |
+| **Линейная алгебра** | matrix, complex_number, matrix_reasoning, gaussian_elimination, matrix_multiplication, gram_schmidt, least_squares, roots_of_unity |
+| **Дискретная математика** | number_theory, combinatorics, sequence, set_logic, graph, dynamic_programming, base_conversion, modular_arithmetic, recurrence, prime_factorization, diophantine, modular_inverse, continued_fraction, generating_function |
 | **Абстрактная алгебра** | group_theory, category_theory |
-| **Теория вероятностей** | urn_probability, statistics |
+| **Теория вероятностей** | urn_probability, statistics, bayesian_reasoning, expected_value, markov_chain, conditional_probability, hypothesis_testing |
 | **Прикладная** | financial_math, arithmetic |
-| **Логика** | contradiction, knights_knaves, futoshiki, analogical, text_stats |
+| **Логика и планирование** | contradiction, knights_knaves, futoshiki, analogical, text_stats, sudoku, zebra_puzzle, csp_reasoning, sat_smt_mini, propositional_logic, regex_dfa, find_the_error, cryptarithmetic, inequality_proof, river_crossing, tower_of_hanoi, water_jug, blocks_world, nim_game |
+| **Ризонинг и дедукция** | graph_reasoning, ordering_puzzle, state_tracking, grid_navigation, interval_scheduling, set_reasoning, pattern_induction, syllogism, logical_entailment, boolean_circuit, mastermind, countdown_24, game_theory_optimal, family_tree, minesweeper_deduction |
+| **CSP-головоломки (сетки)** | n_queens, magic_square, skyscrapers, kenken, kakuro |
 
-### Физика (18 типов)
+### Физика (57 типов)
 
 | Категория | Задачи |
 |-----------|--------|
-| **Механика** | kinematics, dynamics, energy, momentum |
-| **Электричество** | circuits, electrostatics, capacitors, magnetism |
-| **Термодинамика** | gas_laws, heat_transfer |
-| **Волны и оптика** | waves, optics |
-| **Современная физика** | quantum, nuclear, relativity |
+| **Механика** | kinematics, dynamics, energy, momentum, projectile_motion, rotational_dynamics, center_of_mass, atwood_machine, inclined_plane, statics_equilibrium, circular_dynamics, rolling_motion |
+| **Электричество и магнетизм** | circuits, electrostatics, capacitors, electromagnetic_induction, ac_circuits, rc_circuits, magnetism, magnetic_force, kirchhoff_laws, rl_circuits, gauss_law, transformer |
+| **Термодинамика** | gas_laws, heat_transfer, thermodynamic_cycles, entropy, phase_transitions, kinetic_theory, thermal_expansion, blackbody_radiation |
+| **Волны, оптика и звук** | waves, optics, doppler_effect, interference, diffraction, polarization, standing_waves, sound_intensity, beats |
+| **Квантовая физика** | quantum, bohr_model, de_broglie, uncertainty_principle, radioactive_decay, radiation_pressure |
+| **Ядерная физика** | nuclear |
+| **Теория относительности** | relativity, relativistic_energy, velocity_addition |
 | **Колебания** | oscillations |
 | **Гидростатика** | fluids |
 | **Астрофизика** | astrophysics |
+| **Измерения и анализ** | dimensional_analysis, error_propagation, unit_conversion |
 
 ## Примеры использования
 

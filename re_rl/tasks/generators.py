@@ -70,6 +70,61 @@ from re_rl.tasks.math.logic.find_the_error_task import FindTheErrorTask
 from re_rl.tasks.math.logic.propositional_logic_task import PropositionalLogicTask
 from re_rl.tasks.math.logic.regex_dfa_task import RegexDFATask
 from re_rl.tasks.math.discrete.dynamic_programming_task import DynamicProgrammingTask
+from re_rl.tasks.math.logic.cryptarithmetic_task import CryptarithmeticTask
+from re_rl.tasks.math.logic.inequality_proof_task import InequalityProofTask
+
+# Волна «ризонинг-задачи»
+from re_rl.tasks.math.logic.graph_reasoning_task import GraphReasoningTask
+from re_rl.tasks.math.logic.ordering_puzzle_task import OrderingPuzzleTask
+from re_rl.tasks.math.logic.state_tracking_task import StateTrackingTask
+from re_rl.tasks.math.logic.grid_navigation_task import GridNavigationTask
+from re_rl.tasks.math.logic.interval_scheduling_task import IntervalSchedulingTask
+from re_rl.tasks.math.logic.set_reasoning_task import SetReasoningTask
+from re_rl.tasks.math.logic.pattern_induction_task import PatternInductionTask
+from re_rl.tasks.math.logic.syllogism_task import SyllogismTask
+from re_rl.tasks.math.logic.logical_entailment_task import LogicalEntailmentTask
+from re_rl.tasks.math.logic.boolean_circuit_task import BooleanCircuitTask
+from re_rl.tasks.math.logic.mastermind_task import MastermindTask
+from re_rl.tasks.math.logic.countdown_24_task import Countdown24Task
+from re_rl.tasks.math.logic.game_theory_optimal_task import GameTheoryOptimalTask
+from re_rl.tasks.math.logic.family_tree_task import FamilyTreeTask
+from re_rl.tasks.math.logic.minesweeper_deduction_task import MinesweeperDeductionTask
+from re_rl.tasks.math.logic.n_queens_task import NQueensTask
+from re_rl.tasks.math.logic.magic_square_task import MagicSquareTask
+from re_rl.tasks.math.logic.skyscrapers_task import SkyscrapersTask
+from re_rl.tasks.math.logic.kenken_task import KenKenTask
+from re_rl.tasks.math.logic.kakuro_task import KakuroTask
+from re_rl.tasks.math.analysis.symbolic_regression_task import SymbolicRegressionTask
+from re_rl.tasks.math.algebra.polynomial_factorization_task import PolynomialFactorizationTask
+from re_rl.tasks.math.discrete.base_conversion_task import BaseConversionTask
+from re_rl.tasks.math.discrete.modular_arithmetic_task import ModularArithmeticTask
+from re_rl.tasks.math.linear_algebra.matrix_reasoning_task import MatrixReasoningTask
+# Волна «важная математика»
+from re_rl.tasks.math.analysis.taylor_series_task import TaylorSeriesTask
+from re_rl.tasks.math.analysis.partial_fractions_task import PartialFractionsTask
+from re_rl.tasks.math.analysis.partial_derivatives_task import PartialDerivativesTask
+from re_rl.tasks.math.analysis.area_between_curves_task import AreaBetweenCurvesTask
+from re_rl.tasks.math.analysis.lhopital_task import LHopitalTask
+from re_rl.tasks.math.discrete.recurrence_task import RecurrenceTask
+from re_rl.tasks.math.discrete.prime_factorization_task import PrimeFactorizationTask
+from re_rl.tasks.math.discrete.diophantine_task import DiophantineTask
+from re_rl.tasks.math.discrete.modular_inverse_task import ModularInverseTask
+from re_rl.tasks.math.discrete.continued_fraction_task import ContinuedFractionTask
+from re_rl.tasks.math.discrete.generating_function_task import GeneratingFunctionTask
+from re_rl.tasks.math.linear_algebra.gaussian_elimination_task import GaussianEliminationTask
+from re_rl.tasks.math.linear_algebra.matrix_multiplication_task import MatrixMultiplicationTask
+from re_rl.tasks.math.linear_algebra.gram_schmidt_task import GramSchmidtTask
+from re_rl.tasks.math.linear_algebra.least_squares_task import LeastSquaresTask
+from re_rl.tasks.math.linear_algebra.roots_of_unity_task import RootsOfUnityTask
+from re_rl.tasks.math.probability.expected_value_task import ExpectedValueTask
+from re_rl.tasks.math.probability.markov_chain_task import MarkovChainTask
+from re_rl.tasks.math.probability.conditional_probability_task import ConditionalProbabilityTask
+from re_rl.tasks.math.probability.hypothesis_testing_task import HypothesisTestingTask
+from re_rl.tasks.math.geometry.coordinate_geometry_task import CoordinateGeometryTask
+from re_rl.tasks.math.geometry.shoelace_area_task import ShoelaceAreaTask
+from re_rl.tasks.math.geometry.triangle_solving_task import TriangleSolvingTask
+from re_rl.tasks.math.geometry.conic_sections_task import ConicSectionsTask
+from re_rl.tasks.math.algebra.vieta_task import VietaTask
 
 # Планирование
 from re_rl.tasks.math.planning.river_crossing_task import RiverCrossingTask
@@ -1326,6 +1381,74 @@ def generate_random_combinatorial_optimization_task(
     )
 
 
+def _mk_generator(task_cls):
+    def _gen(language: str = "ru", detail_level: int = 3, difficulty: int = 5,
+             reasoning_mode: bool = False, augment: bool = True, **kwargs):
+        return task_cls.generate_random_task(
+            language=language, detail_level=detail_level, difficulty=difficulty,
+            reasoning_mode=reasoning_mode, augment=augment, **kwargs
+        )
+    return _gen
+
+
+generate_random_cryptarithmetic_task = _mk_generator(CryptarithmeticTask)
+generate_random_inequality_proof_task = _mk_generator(InequalityProofTask)
+generate_random_symbolic_regression_task = _mk_generator(SymbolicRegressionTask)
+generate_random_polynomial_factorization_task = _mk_generator(PolynomialFactorizationTask)
+generate_random_base_conversion_task = _mk_generator(BaseConversionTask)
+generate_random_modular_arithmetic_task = _mk_generator(ModularArithmeticTask)
+generate_random_matrix_reasoning_task = _mk_generator(MatrixReasoningTask)
+
+# Волна «важная математика»
+generate_random_taylor_series_task = _mk_generator(TaylorSeriesTask)
+generate_random_partial_fractions_task = _mk_generator(PartialFractionsTask)
+generate_random_partial_derivatives_task = _mk_generator(PartialDerivativesTask)
+generate_random_area_between_curves_task = _mk_generator(AreaBetweenCurvesTask)
+generate_random_lhopital_task = _mk_generator(LHopitalTask)
+generate_random_recurrence_task = _mk_generator(RecurrenceTask)
+generate_random_prime_factorization_task = _mk_generator(PrimeFactorizationTask)
+generate_random_diophantine_task = _mk_generator(DiophantineTask)
+generate_random_modular_inverse_task = _mk_generator(ModularInverseTask)
+generate_random_continued_fraction_task = _mk_generator(ContinuedFractionTask)
+generate_random_generating_function_task = _mk_generator(GeneratingFunctionTask)
+generate_random_gaussian_elimination_task = _mk_generator(GaussianEliminationTask)
+generate_random_matrix_multiplication_task = _mk_generator(MatrixMultiplicationTask)
+generate_random_gram_schmidt_task = _mk_generator(GramSchmidtTask)
+generate_random_least_squares_task = _mk_generator(LeastSquaresTask)
+generate_random_roots_of_unity_task = _mk_generator(RootsOfUnityTask)
+generate_random_expected_value_task = _mk_generator(ExpectedValueTask)
+generate_random_markov_chain_task = _mk_generator(MarkovChainTask)
+generate_random_conditional_probability_task = _mk_generator(ConditionalProbabilityTask)
+generate_random_hypothesis_testing_task = _mk_generator(HypothesisTestingTask)
+generate_random_coordinate_geometry_task = _mk_generator(CoordinateGeometryTask)
+generate_random_shoelace_area_task = _mk_generator(ShoelaceAreaTask)
+generate_random_triangle_solving_task = _mk_generator(TriangleSolvingTask)
+generate_random_conic_sections_task = _mk_generator(ConicSectionsTask)
+generate_random_vieta_task = _mk_generator(VietaTask)
+
+# Волна «ризонинг-задачи»
+generate_random_graph_reasoning_task = _mk_generator(GraphReasoningTask)
+generate_random_ordering_puzzle_task = _mk_generator(OrderingPuzzleTask)
+generate_random_state_tracking_task = _mk_generator(StateTrackingTask)
+generate_random_grid_navigation_task = _mk_generator(GridNavigationTask)
+generate_random_interval_scheduling_task = _mk_generator(IntervalSchedulingTask)
+generate_random_set_reasoning_task = _mk_generator(SetReasoningTask)
+generate_random_pattern_induction_task = _mk_generator(PatternInductionTask)
+generate_random_syllogism_task = _mk_generator(SyllogismTask)
+generate_random_logical_entailment_task = _mk_generator(LogicalEntailmentTask)
+generate_random_boolean_circuit_task = _mk_generator(BooleanCircuitTask)
+generate_random_mastermind_task = _mk_generator(MastermindTask)
+generate_random_countdown_24_task = _mk_generator(Countdown24Task)
+generate_random_game_theory_optimal_task = _mk_generator(GameTheoryOptimalTask)
+generate_random_family_tree_task = _mk_generator(FamilyTreeTask)
+generate_random_minesweeper_deduction_task = _mk_generator(MinesweeperDeductionTask)
+generate_random_n_queens_task = _mk_generator(NQueensTask)
+generate_random_magic_square_task = _mk_generator(MagicSquareTask)
+generate_random_skyscrapers_task = _mk_generator(SkyscrapersTask)
+generate_random_kenken_task = _mk_generator(KenKenTask)
+generate_random_kakuro_task = _mk_generator(KakuroTask)
+
+
 def generate_random_regex_dfa_task(
     language: str = "ru",
     detail_level: int = 3,
@@ -1479,6 +1602,60 @@ ALL_TASK_GENERATORS = {
     "regex_dfa": generate_random_regex_dfa_task,
     "dynamic_programming": generate_random_dynamic_programming_task,
     "blocks_world": generate_random_blocks_world_task,
+    "cryptarithmetic": generate_random_cryptarithmetic_task,
+    "inequality_proof": generate_random_inequality_proof_task,
+    "symbolic_regression": generate_random_symbolic_regression_task,
+    "polynomial_factorization": generate_random_polynomial_factorization_task,
+    "base_conversion": generate_random_base_conversion_task,
+    "modular_arithmetic": generate_random_modular_arithmetic_task,
+    "matrix_reasoning": generate_random_matrix_reasoning_task,
+    # Волна «важная математика»:
+    "taylor_series": generate_random_taylor_series_task,
+    "partial_fractions": generate_random_partial_fractions_task,
+    "partial_derivatives": generate_random_partial_derivatives_task,
+    "area_between_curves": generate_random_area_between_curves_task,
+    "lhopital": generate_random_lhopital_task,
+    "recurrence": generate_random_recurrence_task,
+    "prime_factorization": generate_random_prime_factorization_task,
+    "diophantine": generate_random_diophantine_task,
+    "modular_inverse": generate_random_modular_inverse_task,
+    "continued_fraction": generate_random_continued_fraction_task,
+    "generating_function": generate_random_generating_function_task,
+    "gaussian_elimination": generate_random_gaussian_elimination_task,
+    "matrix_multiplication": generate_random_matrix_multiplication_task,
+    "gram_schmidt": generate_random_gram_schmidt_task,
+    "least_squares": generate_random_least_squares_task,
+    "roots_of_unity": generate_random_roots_of_unity_task,
+    "expected_value": generate_random_expected_value_task,
+    "markov_chain": generate_random_markov_chain_task,
+    "conditional_probability": generate_random_conditional_probability_task,
+    "hypothesis_testing": generate_random_hypothesis_testing_task,
+    "coordinate_geometry": generate_random_coordinate_geometry_task,
+    "shoelace_area": generate_random_shoelace_area_task,
+    "triangle_solving": generate_random_triangle_solving_task,
+    "conic_sections": generate_random_conic_sections_task,
+    "vieta": generate_random_vieta_task,
+    # Волна «ризонинг-задачи»:
+    "graph_reasoning": generate_random_graph_reasoning_task,
+    "ordering_puzzle": generate_random_ordering_puzzle_task,
+    "state_tracking": generate_random_state_tracking_task,
+    "grid_navigation": generate_random_grid_navigation_task,
+    "interval_scheduling": generate_random_interval_scheduling_task,
+    "set_reasoning": generate_random_set_reasoning_task,
+    "pattern_induction": generate_random_pattern_induction_task,
+    "syllogism": generate_random_syllogism_task,
+    "logical_entailment": generate_random_logical_entailment_task,
+    "boolean_circuit": generate_random_boolean_circuit_task,
+    "mastermind": generate_random_mastermind_task,
+    "countdown_24": generate_random_countdown_24_task,
+    "game_theory_optimal": generate_random_game_theory_optimal_task,
+    "family_tree": generate_random_family_tree_task,
+    "minesweeper_deduction": generate_random_minesweeper_deduction_task,
+    "n_queens": generate_random_n_queens_task,
+    "magic_square": generate_random_magic_square_task,
+    "skyscrapers": generate_random_skyscrapers_task,
+    "kenken": generate_random_kenken_task,
+    "kakuro": generate_random_kakuro_task,
     "graph_justification": generate_random_graph_justification_task,
     "bayesian_reasoning": generate_random_bayesian_reasoning_task,
     "combinatorial_optimization": generate_random_combinatorial_optimization_task,

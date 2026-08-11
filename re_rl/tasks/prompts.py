@@ -7201,6 +7201,163 @@ Analysis:
         },
     },
 
+    "cryptarithmetic": {
+        "problem": {
+            "ru": [
+                "Реши ребус: {a} + {b} = {c}. Одинаковым буквам соответствуют одинаковые цифры, разным — разные; старшая цифра числа не может быть нулём. Ответ дайте в формате БУКВА=ЦИФРА через запятую.",
+                "Числовой ребус: {a} + {b} = {c}. Каждая буква — своя цифра (0–9), одинаковые буквы = одинаковые цифры, ведущая цифра ≠ 0. Укажите цифру для каждой буквы (формат БУКВА=ЦИФРА).",
+            ],
+            "en": [
+                "Solve the cryptarithm: {a} + {b} = {c}. Equal letters map to equal digits, different letters to different digits; a leading digit cannot be zero. Give the answer as LETTER=DIGIT separated by commas.",
+                "Verbal arithmetic: {a} + {b} = {c}. Each letter is a distinct digit (0–9); leading digit ≠ 0. Provide a digit for each letter (format LETTER=DIGIT).",
+            ],
+        },
+        "step_model": {
+            "ru": "Составляем ограничения: биекция буква→цифра, ведущие цифры ≠ 0, сложение по разрядам с переносами.",
+            "en": "Set up constraints: letter→digit bijection, nonzero leading digits, column-wise addition with carries.",
+        },
+        "step_result": {
+            "ru": "Решение: {mapping}.",
+            "en": "Solution: {mapping}.",
+        },
+    },
+
+    "symbolic_regression": {
+        "problem": {
+            "ru": [
+                "По таблице значений функции f(x) найдите её формулу:\n{table}",
+                "Определите формулу f(x), согласующуюся со всеми значениями таблицы:\n{table}",
+            ],
+            "en": [
+                "Find the formula of f(x) from the table of values:\n{table}",
+                "Determine a formula for f(x) consistent with all the table values:\n{table}",
+            ],
+        },
+        "step_fit": {
+            "ru": "Подбираем многочлен, проходящий через все точки (интерполяция/метод неопределённых коэффициентов).",
+            "en": "Fit a polynomial passing through all points (interpolation / undetermined coefficients).",
+        },
+        "step_result": {
+            "ru": "Ответ: f(x) = {result}",
+            "en": "Answer: f(x) = {result}",
+        },
+    },
+
+    "polynomial_factorization": {
+        "problem": {
+            "ru": [
+                "Разложите многочлен на множители: {poly}",
+                "Представьте многочлен в виде произведения множителей: {poly}",
+            ],
+            "en": [
+                "Factor the polynomial: {poly}",
+                "Write the polynomial as a product of factors: {poly}",
+            ],
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "base_conversion": {
+        "convert_problem": {
+            "ru": [
+                "Переведите число {number} из системы счисления с основанием {b1} в систему с основанием {b2}.",
+                "Запишите число {number} (основание {b1}) в системе счисления с основанием {b2}.",
+            ],
+            "en": [
+                "Convert the number {number} from base {b1} to base {b2}.",
+                "Write the number {number} (base {b1}) in base {b2}.",
+            ],
+        },
+        "bitwise_problem": {
+            "ru": [
+                "Вычислите {expr} (результат в десятичной системе).",
+                "Найдите значение выражения {expr} (ответ — десятичное число).",
+            ],
+            "en": [
+                "Compute {expr} (result in decimal).",
+                "Evaluate the expression {expr} (answer as a decimal number).",
+            ],
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "matrix_reasoning": {
+        "determinant": {
+            "ru": "Вычислите определитель матрицы:\n{matrix}",
+            "en": "Compute the determinant of the matrix:\n{matrix}",
+        },
+        "rank": {
+            "ru": "Найдите ранг матрицы:\n{matrix}",
+            "en": "Find the rank of the matrix:\n{matrix}",
+        },
+        "trace": {
+            "ru": "Найдите след (сумму диагональных элементов) матрицы:\n{matrix}",
+            "en": "Find the trace (sum of diagonal entries) of the matrix:\n{matrix}",
+        },
+        "eigenvalues": {
+            "ru": "Найдите собственные значения матрицы (через запятую):\n{matrix}",
+            "en": "Find the eigenvalues of the matrix (comma-separated):\n{matrix}",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "inequality_proof": {
+        "problem": {
+            "ru": [
+                "Верно ли, что для всех действительных x выполнено {expr} ≥ 0? Ответьте YES или NO.",
+                "Определите, справедливо ли неравенство {expr} ≥ 0 при всех действительных x. Ответ: YES или NO.",
+            ],
+            "en": [
+                "Is it true that {expr} ≥ 0 for all real x? Answer YES or NO.",
+                "Determine whether {expr} ≥ 0 holds for all real x. Answer YES or NO.",
+            ],
+        },
+        "step_discriminant": {
+            "ru": "Анализируем квадратичную форму: знак старшего коэффициента и дискриминант D = b² − 4ac.",
+            "en": "Analyze the quadratic: sign of the leading coefficient and discriminant D = b² − 4ac.",
+        },
+        "step_result": {
+            "ru": "Неравенство {verdict} для всех x. Ответ: {answer}.",
+            "en": "The inequality {verdict} for all x. Answer: {answer}.",
+        },
+    },
+
+    "modular_arithmetic": {
+        "modexp_problem": {
+            "ru": [
+                "Вычислите {a}^{b} mod {m}.",
+                "Найдите остаток от деления {a}^{b} на {m}.",
+            ],
+            "en": [
+                "Compute {a}^{b} mod {m}.",
+                "Find {a} raised to the power {b}, modulo {m}.",
+            ],
+        },
+        "dlog_problem": {
+            "ru": [
+                "Найдите наименьшее целое x ≥ 0, такое что {g}^x ≡ {h} (mod {p}).",
+                "Решите уравнение {g}^x ≡ {h} (mod {p}) относительно наименьшего x ≥ 0.",
+            ],
+            "en": [
+                "Find the smallest integer x ≥ 0 such that {g}^x ≡ {h} (mod {p}).",
+                "Solve {g}^x ≡ {h} (mod {p}) for the smallest x ≥ 0.",
+            ],
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
     "sat_smt_mini": {
         "problem": {
             "ru": "Определите, выполнима ли формула (SAT/UNSAT): {formula}. Если SAT — приведите пример присваивания.",
@@ -7310,5 +7467,922 @@ Analysis:
             "ru": "Сравниваем кандидатов по целевой функции и ограничениям.",
             "en": "Compare candidates by objective value under constraints.",
         },
+    },
+
+    # ------------------------------------------------------------------
+    # Волна «важная математика»: анализ, дискретка, линейная алгебра,
+    # вероятность, геометрия, алгебра.
+    # ------------------------------------------------------------------
+    "taylor_series": {
+        "problem": {
+            "ru": [
+                "Найдите многочлен Тейлора порядка {order} функции f(x) = {func} в точке x = 0.",
+                "Разложите функцию f(x) = {func} в ряд Тейлора до члена x^{order} включительно (в окрестности 0).",
+            ],
+            "en": [
+                "Find the Taylor polynomial of order {order} of f(x) = {func} at x = 0.",
+                "Expand f(x) = {func} into a Taylor series up to the x^{order} term (around 0).",
+            ],
+        },
+        "step_setup": {
+            "ru": "Считаем производные в нуле и используем формулу Тейлора f(x) = Σ f⁽ᵏ⁾(0)/k! · xᵏ.",
+            "en": "Compute derivatives at zero and use f(x) = Σ f⁽ᵏ⁾(0)/k! · xᵏ.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "partial_fractions": {
+        "problem": {
+            "ru": [
+                "Разложите рациональную дробь на простейшие дроби: {expr}",
+                "Представьте дробь {expr} в виде суммы простейших дробей.",
+            ],
+            "en": [
+                "Decompose the rational function into partial fractions: {expr}",
+                "Write {expr} as a sum of partial fractions.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Раскладываем знаменатель на множители и записываем дробь суммой простейших с неизвестными числителями.",
+            "en": "Factor the denominator and write the fraction as a sum of partial fractions with unknown numerators.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "partial_derivatives": {
+        "problem": {
+            "ru": [
+                "Найдите частную производную ∂f/∂{var} функции f(x, y) = {func}.",
+                "Вычислите частную производную функции f(x, y) = {func} по переменной {var}.",
+            ],
+            "en": [
+                "Find the partial derivative ∂f/∂{var} of f(x, y) = {func}.",
+                "Compute the partial derivative of f(x, y) = {func} with respect to {var}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Дифференцируем по {var}, считая остальные переменные константами.",
+            "en": "Differentiate with respect to {var}, treating the other variables as constants.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "area_between_curves": {
+        "problem": {
+            "ru": [
+                "Найдите площадь фигуры, ограниченной кривыми y = {f} и y = {g} на отрезке [{a}, {b}].",
+                "Вычислите площадь области между графиками y = {f} и y = {g} при x ∈ [{a}, {b}].",
+            ],
+            "en": [
+                "Find the area of the region bounded by y = {f} and y = {g} on [{a}, {b}].",
+                "Compute the area between the curves y = {f} and y = {g} for x ∈ [{a}, {b}].",
+            ],
+        },
+        "step_setup": {
+            "ru": "Площадь = ∫[{a},{b}] |f(x) − g(x)| dx. Определяем, какая кривая выше, и интегрируем разность.",
+            "en": "Area = ∫[{a},{b}] |f(x) − g(x)| dx. Determine the upper curve and integrate the difference.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "lhopital": {
+        "problem": {
+            "ru": [
+                "Вычислите предел lim(x→{point}) {expr}. При необходимости примените правило Лопиталя.",
+                "Найдите предел функции {expr} при x → {point} (правило Лопиталя).",
+            ],
+            "en": [
+                "Compute the limit lim(x→{point}) {expr}. Use L'Hôpital's rule if needed.",
+                "Find the limit of {expr} as x → {point} (L'Hôpital).",
+            ],
+        },
+        "step_setup": {
+            "ru": "Подстановка даёт неопределённость 0/0 или ∞/∞; дифференцируем числитель и знаменатель.",
+            "en": "Substitution yields 0/0 or ∞/∞; differentiate numerator and denominator.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "recurrence": {
+        "problem": {
+            "ru": [
+                "Дана рекуррента: {recur}, {inits}. Найдите замкнутую формулу для a(n).",
+                "Решите рекуррентное соотношение {recur} с начальными условиями {inits}.",
+            ],
+            "en": [
+                "Given the recurrence {recur}, {inits}, find a closed form for a(n).",
+                "Solve the recurrence {recur} with initial conditions {inits}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Составляем характеристическое уравнение и находим общий вид решения, затем подбираем константы по начальным условиям.",
+            "en": "Form the characteristic equation, write the general solution, then fit constants to the initial conditions.",
+        },
+        "step_result": {
+            "ru": "Ответ: a(n) = {result}",
+            "en": "Answer: a(n) = {result}",
+        },
+    },
+
+    "prime_factorization": {
+        "problem": {
+            "ru": [
+                "Разложите число {n} на простые множители.",
+                "Найдите каноническое разложение числа {n} на простые множители.",
+            ],
+            "en": [
+                "Factor the number {n} into primes.",
+                "Find the prime factorization of {n}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Последовательно делим число на наименьшие простые делители.",
+            "en": "Successively divide the number by its smallest prime factors.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "diophantine": {
+        "problem": {
+            "ru": [
+                "Найдите какое-нибудь целочисленное решение (x, y) уравнения {a}·x + {b}·y = {c}.",
+                "Укажите целые x и y, удовлетворяющие уравнению {a}x + {b}y = {c}.",
+            ],
+            "en": [
+                "Find an integer solution (x, y) of {a}·x + {b}·y = {c}.",
+                "Provide integers x and y satisfying {a}x + {b}y = {c}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Уравнение разрешимо, так как gcd({a}, {b}) делит {c}. Используем расширенный алгоритм Евклида.",
+            "en": "It is solvable since gcd({a}, {b}) divides {c}. Use the extended Euclidean algorithm.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "modular_inverse": {
+        "problem": {
+            "ru": [
+                "Найдите обратный элемент к {a} по модулю {m}: число x из диапазона 0..{m1}, для которого {a}·x ≡ 1 (mod {m}).",
+                "Вычислите {a}⁻¹ (mod {m}).",
+            ],
+            "en": [
+                "Find the inverse of {a} modulo {m}: an x in 0..{m1} with {a}·x ≡ 1 (mod {m}).",
+                "Compute {a}⁻¹ (mod {m}).",
+            ],
+        },
+        "step_setup": {
+            "ru": "Обратный существует, так как gcd({a}, {m}) = 1. Применяем расширенный алгоритм Евклида.",
+            "en": "The inverse exists since gcd({a}, {m}) = 1. Apply the extended Euclidean algorithm.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "continued_fraction": {
+        "problem": {
+            "ru": [
+                "Разложите дробь {p}/{q} в конечную цепную дробь (перечислите неполные частные через ; или запятую).",
+                "Найдите разложение числа {p}/{q} в цепную дробь [a0; a1, a2, ...].",
+            ],
+            "en": [
+                "Expand {p}/{q} into a finite continued fraction (list the partial quotients).",
+                "Find the continued fraction expansion [a0; a1, a2, ...] of {p}/{q}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Применяем алгоритм Евклида: на каждом шаге берём целую часть и переходим к обратной дробной части.",
+            "en": "Run the Euclidean algorithm: take the integer part and invert the fractional part each step.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "generating_function": {
+        "problem": {
+            "ru": [
+                "Дана производящая функция G(x) = {gf}. Найдите коэффициент при x^{n} в её разложении в степенной ряд.",
+                "Найдите коэффициент при x^{n} в разложении функции {gf}.",
+            ],
+            "en": [
+                "Given the generating function G(x) = {gf}, find the coefficient of x^{n} in its power series.",
+                "Find the coefficient of x^{n} in the expansion of {gf}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Раскладываем функцию в степенной ряд и выделяем нужный коэффициент.",
+            "en": "Expand the function into a power series and extract the required coefficient.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "gaussian_elimination": {
+        "problem": {
+            "ru": [
+                "Решите систему линейных уравнений методом Гаусса:\n{system}",
+                "Методом исключения Гаусса найдите решение системы:\n{system}",
+            ],
+            "en": [
+                "Solve the system of linear equations by Gaussian elimination:\n{system}",
+                "Use Gaussian elimination to solve:\n{system}",
+            ],
+        },
+        "step_setup": {
+            "ru": "Приводим расширенную матрицу к ступенчатому виду и находим переменные обратным ходом.",
+            "en": "Reduce the augmented matrix to row echelon form and back-substitute.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "matrix_multiplication": {
+        "problem": {
+            "ru": [
+                "Перемножьте матрицы A·B:\nA =\n{a}\nB =\n{b}",
+                "Найдите произведение матриц A и B:\nA =\n{a}\nB =\n{b}",
+            ],
+            "en": [
+                "Multiply the matrices A·B:\nA =\n{a}\nB =\n{b}",
+                "Find the product of matrices A and B:\nA =\n{a}\nB =\n{b}",
+            ],
+        },
+        "step_setup": {
+            "ru": "Элемент (i, j) произведения — скалярное произведение i-й строки A на j-й столбец B.",
+            "en": "Entry (i, j) of the product is the dot product of row i of A and column j of B.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "gram_schmidt": {
+        "problem": {
+            "ru": [
+                "Ортогонализуйте систему векторов методом Грама–Шмидта: {vectors}",
+                "Постройте ортогональный базис из векторов {vectors} (процесс Грама–Шмидта).",
+            ],
+            "en": [
+                "Orthogonalize the vectors by the Gram–Schmidt process: {vectors}",
+                "Build an orthogonal basis from {vectors} (Gram–Schmidt).",
+            ],
+        },
+        "step_setup": {
+            "ru": "Первый вектор оставляем, из каждого следующего вычитаем его проекции на уже построенные ортогональные векторы.",
+            "en": "Keep the first vector; from each next one subtract its projections onto the already built orthogonal vectors.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "least_squares": {
+        "problem": {
+            "ru": [
+                "Методом наименьших квадратов найдите прямую y = k·x + b, приближающую точки: {points}. Укажите k и b.",
+                "Постройте линейную регрессию y = k·x + b по точкам {points} (метод наименьших квадратов).",
+            ],
+            "en": [
+                "Use least squares to fit a line y = k·x + b to the points: {points}. Report k and b.",
+                "Find the least-squares line y = k·x + b for the points {points}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Считаем средние, ковариацию и дисперсию x: k = cov(x,y)/var(x), b = ȳ − k·x̄.",
+            "en": "Compute means, covariance and variance of x: k = cov(x,y)/var(x), b = ȳ − k·x̄.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "expected_value": {
+        "problem": {
+            "ru": [
+                "Случайная величина принимает значения {values} с вероятностями {probs}. Найдите математическое ожидание E[X].",
+                "Найдите E[X] для дискретной случайной величины со значениями {values} и вероятностями {probs}.",
+            ],
+            "en": [
+                "A random variable takes values {values} with probabilities {probs}. Find the expected value E[X].",
+                "Compute E[X] for a discrete random variable with values {values} and probabilities {probs}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "E[X] = Σ xᵢ·pᵢ — суммируем произведения значений на их вероятности.",
+            "en": "E[X] = Σ xᵢ·pᵢ — sum the products of values and their probabilities.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "markov_chain": {
+        "problem": {
+            "ru": [
+                "Дана матрица переходов цепи Маркова:\n{matrix}\nНайдите стационарное распределение π (через запятую).",
+                "Найдите стационарное распределение цепи Маркова с матрицей переходов:\n{matrix}",
+            ],
+            "en": [
+                "Given the Markov chain transition matrix:\n{matrix}\nFind the stationary distribution π (comma-separated).",
+                "Find the stationary distribution of the Markov chain with transition matrix:\n{matrix}",
+            ],
+        },
+        "step_setup": {
+            "ru": "Решаем систему πP = π при Σπᵢ = 1.",
+            "en": "Solve πP = π subject to Σπᵢ = 1.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "conditional_probability": {
+        "problem": {
+            "ru": [
+                "{scenario} Найдите вероятность P({event}).",
+                "{scenario} Чему равна P({event})?",
+            ],
+            "en": [
+                "{scenario} Find the probability P({event}).",
+                "{scenario} What is P({event})?",
+            ],
+        },
+        "step_setup": {
+            "ru": "Используем определение условной вероятности и формулу полной вероятности/Байеса.",
+            "en": "Use the definition of conditional probability and total probability/Bayes.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "hypothesis_testing": {
+        "problem": {
+            "ru": [
+                "Выборка размера n = {n} имеет среднее x̄ = {mean}. Проверьте гипотезу H₀: μ = {mu0} против H₁: μ ≠ {mu0} при известном σ = {sigma}, уровень значимости α = {alpha}. Ответьте: reject или not reject.",
+                "При σ = {sigma}, n = {n}, x̄ = {mean}, α = {alpha} проверьте H₀: μ = {mu0}. Ответ: reject или not reject.",
+            ],
+            "en": [
+                "A sample of size n = {n} has mean x̄ = {mean}. Test H₀: μ = {mu0} vs H₁: μ ≠ {mu0} with known σ = {sigma} at level α = {alpha}. Answer: reject or not reject.",
+                "With σ = {sigma}, n = {n}, x̄ = {mean}, α = {alpha}, test H₀: μ = {mu0}. Answer: reject or not reject.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Считаем статистику z = (x̄ − μ₀)·√n/σ и сравниваем |z| с критическим значением.",
+            "en": "Compute the statistic z = (x̄ − μ₀)·√n/σ and compare |z| with the critical value.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "coordinate_geometry": {
+        "problem": {
+            "ru": [
+                "{scenario}",
+                "{scenario}",
+            ],
+            "en": [
+                "{scenario}",
+                "{scenario}",
+            ],
+        },
+        "step_setup": {
+            "ru": "Используем формулы аналитической геометрии на плоскости.",
+            "en": "Apply coordinate-geometry formulas in the plane.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "shoelace_area": {
+        "problem": {
+            "ru": [
+                "Найдите площадь многоугольника с вершинами (в порядке обхода): {points}.",
+                "Вычислите площадь многоугольника по координатам вершин {points} (формула шнурков).",
+            ],
+            "en": [
+                "Find the area of the polygon with vertices (in order): {points}.",
+                "Compute the polygon area from vertices {points} (shoelace formula).",
+            ],
+        },
+        "step_setup": {
+            "ru": "Площадь = ½·|Σ (xᵢ·yᵢ₊₁ − xᵢ₊₁·yᵢ)| — формула шнурков.",
+            "en": "Area = ½·|Σ (xᵢ·yᵢ₊₁ − xᵢ₊₁·yᵢ)| — the shoelace formula.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "triangle_solving": {
+        "problem": {
+            "ru": [
+                "{scenario}",
+                "{scenario}",
+            ],
+            "en": [
+                "{scenario}",
+                "{scenario}",
+            ],
+        },
+        "step_setup": {
+            "ru": "Применяем теоремы синусов/косинусов и формулы для треугольника.",
+            "en": "Apply the laws of sines/cosines and triangle formulas.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "conic_sections": {
+        "problem": {
+            "ru": [
+                "Определите тип кривой второго порядка, заданной уравнением {equation} (эллипс, гипербола, парабола, окружность).",
+                "Какой конике соответствует уравнение {equation}? Ответ: окружность/эллипс/гипербола/парабола.",
+            ],
+            "en": [
+                "Determine the type of conic given by {equation} (ellipse, hyperbola, parabola, circle).",
+                "Which conic does {equation} represent? Answer: circle/ellipse/hyperbola/parabola.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Анализируем коэффициенты при x² и y² (и наличие обоих квадратов) для классификации.",
+            "en": "Analyze the coefficients of x² and y² (and presence of both squares) to classify.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "roots_of_unity": {
+        "problem": {
+            "ru": [
+                "Найдите все комплексные корни уравнения z^{n} = {value} (в алгебраической или тригонометрической форме).",
+                "Перечислите все решения уравнения z^{n} = {value} в комплексных числах.",
+            ],
+            "en": [
+                "Find all complex roots of z^{n} = {value} (algebraic or trigonometric form).",
+                "List all complex solutions of z^{n} = {value}.",
+            ],
+        },
+        "step_setup": {
+            "ru": "Записываем {value} в тригонометрической форме и применяем формулу корней n-й степени.",
+            "en": "Write {value} in trigonometric form and apply the n-th root formula.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    "vieta": {
+        "problem": {
+            "ru": [
+                "{scenario}",
+                "{scenario}",
+            ],
+            "en": [
+                "{scenario}",
+                "{scenario}",
+            ],
+        },
+        "step_setup": {
+            "ru": "Применяем формулы Виета, связывающие коэффициенты многочлена с суммами и произведениями корней.",
+            "en": "Apply Vieta's formulas relating polynomial coefficients to sums and products of roots.",
+        },
+        "step_result": {
+            "ru": "Ответ: {result}",
+            "en": "Answer: {result}",
+        },
+    },
+
+    # ==================================================================
+    # ФИЗИКА — волна новых типов
+    # ==================================================================
+    "statics_equilibrium": {
+        "instructions": {"ru": "Решите задачу на равновесие (статику).",
+                          "en": "Solve the statics/equilibrium problem."},
+        "problem": {
+            "lever": {
+                "ru": "На рычаг слева на расстоянии {d1} м действует сила {F1} Н. На каком плече {d2} м справа нужно приложить силу, чтобы рычаг был в равновесии? Найдите эту силу.",
+                "en": "A lever has a force {F1} N applied on the left at distance {d1} m. Find the force applied on the right arm at distance {d2} m to keep the lever balanced.",
+            },
+            "beam_supports": {
+                "ru": "Однородная балка длиной {L} м и весом {W} Н лежит на двух опорах по концам. На расстоянии {a} м от левой опоры стоит груз весом {P} Н. Найдите реакции опор R1 (левая) и R2 (правая).",
+                "en": "A uniform beam of length {L} m and weight {W} N rests on two end supports. A load of weight {P} N sits {a} m from the left support. Find the support reactions R1 (left) and R2 (right).",
+            },
+        },
+        "steps": {
+            "lever_formula": {"ru": "Правило моментов: F1·d1 = F2·d2 ⇒ F2 = F1·d1/d2.",
+                              "en": "Torque balance: F1·d1 = F2·d2 ⇒ F2 = F1·d1/d2."},
+            "beam_formula": {"ru": "Моменты относительно левой опоры: R2·L = W·(L/2) + P·a; затем R1 = W + P − R2.",
+                             "en": "Torques about the left support: R2·L = W·(L/2) + P·a; then R1 = W + P − R2."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "circular_dynamics": {
+        "instructions": {"ru": "Решите задачу на движение по окружности (центростремительная сила).",
+                          "en": "Solve the circular-motion (centripetal force) problem."},
+        "problem": {
+            "centripetal_force": {
+                "ru": "Тело массой {m} кг движется по окружности радиусом {r} м со скоростью {v} м/с. Найдите центростремительную силу.",
+                "en": "A body of mass {m} kg moves in a circle of radius {r} m at speed {v} m/s. Find the centripetal force.",
+            },
+            "car_turn": {
+                "ru": "Автомобиль проходит горизонтальный поворот радиусом {r} м. Коэффициент трения между шинами и дорогой {mu}. Найдите максимальную скорость без заноса.",
+                "en": "A car takes a flat turn of radius {r} m. The tire–road friction coefficient is {mu}. Find the maximum speed without skidding.",
+            },
+            "vertical_loop": {
+                "ru": "Найдите минимальную скорость в верхней точке «мёртвой петли» радиусом {r} м.",
+                "en": "Find the minimum speed at the top of a vertical loop of radius {r} m.",
+            },
+        },
+        "steps": {
+            "centripetal_formula": {"ru": "Центростремительная сила: F = m·v²/r.",
+                                    "en": "Centripetal force: F = m·v²/r."},
+            "car_formula": {"ru": "Трение обеспечивает центростремительную силу: μ·m·g = m·v²/r ⇒ v = √(μ·g·r).",
+                            "en": "Friction provides the centripetal force: μ·m·g = m·v²/r ⇒ v = √(μ·g·r)."},
+            "loop_formula": {"ru": "В верхней точке m·g = m·v²/r ⇒ v = √(g·r).",
+                             "en": "At the top m·g = m·v²/r ⇒ v = √(g·r)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "rolling_motion": {
+        "instructions": {"ru": "Решите задачу на качение без проскальзывания.",
+                          "en": "Solve the rolling-without-slipping problem."},
+        "problem": {
+            "incline_acceleration": {
+                "ru": "{shape} скатывается без проскальзывания по наклонной плоскости с углом {angle}°. Найдите ускорение центра масс.",
+                "en": "A {shape} rolls without slipping down an incline at angle {angle}°. Find the acceleration of the center of mass.",
+            },
+            "final_speed": {
+                "ru": "{shape} скатывается без проскальзывания с высоты {h} м. Найдите скорость центра масс у основания.",
+                "en": "A {shape} rolls without slipping from height {h} m. Find the speed of the center of mass at the bottom.",
+            },
+            "rotational_fraction": {
+                "ru": "Какая доля полной кинетической энергии катящегося тела ({shape}) приходится на вращение?",
+                "en": "What fraction of the total kinetic energy of a rolling {shape} is rotational?",
+            },
+        },
+        "steps": {
+            "accel_formula": {"ru": "a = g·sin(α)/(1 + k), где k = I/(mR²).",
+                              "en": "a = g·sin(α)/(1 + k), where k = I/(mR²)."},
+            "speed_formula": {"ru": "Сохранение энергии: v = √(2·g·h/(1 + k)).",
+                              "en": "Energy conservation: v = √(2·g·h/(1 + k))."},
+            "fraction_formula": {"ru": "Доля вращательной энергии = k/(1 + k).",
+                                 "en": "Rotational fraction = k/(1 + k)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "kinetic_theory": {
+        "instructions": {"ru": "Решите задачу молекулярно-кинетической теории.",
+                          "en": "Solve the kinetic-theory problem."},
+        "problem": {
+            "rms_speed": {
+                "ru": "Найдите среднеквадратичную скорость молекул газа {gas} (молярная масса {M} кг/моль) при температуре {T} К.",
+                "en": "Find the root-mean-square speed of {gas} molecules (molar mass {M} kg/mol) at temperature {T} K.",
+            },
+            "mean_ke": {
+                "ru": "Найдите среднюю кинетическую энергию поступательного движения одной молекулы при температуре {T} К.",
+                "en": "Find the mean translational kinetic energy of a single molecule at temperature {T} K.",
+            },
+            "internal_energy": {
+                "ru": "Найдите внутреннюю энергию {n} моль одноатомного идеального газа при температуре {T} К.",
+                "en": "Find the internal energy of {n} mol of a monatomic ideal gas at temperature {T} K.",
+            },
+        },
+        "steps": {
+            "rms_formula": {"ru": "v_rms = √(3·R·T/M).", "en": "v_rms = √(3·R·T/M)."},
+            "ke_formula": {"ru": "⟨E⟩ = (3/2)·k_B·T.", "en": "⟨E⟩ = (3/2)·k_B·T."},
+            "u_formula": {"ru": "U = (3/2)·n·R·T.", "en": "U = (3/2)·n·R·T."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "thermal_expansion": {
+        "instructions": {"ru": "Решите задачу на тепловое расширение.",
+                          "en": "Solve the thermal-expansion problem."},
+        "problem": {
+            "linear": {
+                "ru": "Стержень из материала «{material}» (α = {alpha} 1/К) длиной {L} м нагрели на {dT} К. Найдите удлинение ΔL.",
+                "en": "A rod of {material} (α = {alpha} 1/K), length {L} m, is heated by {dT} K. Find the elongation ΔL.",
+            },
+            "volume": {
+                "ru": "Тело из материала «{material}» (α = {alpha} 1/К) объёмом {V} м³ нагрели на {dT} К. Найдите изменение объёма ΔV.",
+                "en": "A body of {material} (α = {alpha} 1/K), volume {V} m³, is heated by {dT} K. Find the volume change ΔV.",
+            },
+        },
+        "steps": {
+            "linear_formula": {"ru": "ΔL = α·L·ΔT.", "en": "ΔL = α·L·ΔT."},
+            "volume_formula": {"ru": "ΔV = 3·α·V·ΔT (объёмный коэффициент β ≈ 3α).",
+                               "en": "ΔV = 3·α·V·ΔT (volumetric coefficient β ≈ 3α)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "standing_waves": {
+        "instructions": {"ru": "Решите задачу о стоячих волнах.",
+                          "en": "Solve the standing-waves problem."},
+        "problem": {
+            "string": {
+                "ru": "Струна длиной {L} м закреплена с обоих концов; скорость волны {v} м/с. Найдите частоту {n}-й гармоники.",
+                "en": "A string of length {L} m is fixed at both ends; wave speed {v} m/s. Find the frequency of the {n}-th harmonic.",
+            },
+            "pipe_open": {
+                "ru": "Открытая с обоих концов труба длиной {L} м; скорость звука {v} м/с. Найдите частоту {n}-й гармоники.",
+                "en": "A pipe open at both ends of length {L} m; sound speed {v} m/s. Find the frequency of the {n}-th harmonic.",
+            },
+            "pipe_closed": {
+                "ru": "Труба длиной {L} м, закрытая с одного конца; скорость звука {v} м/с. Найдите частоту {n}-й гармоники (только нечётные).",
+                "en": "A pipe of length {L} m closed at one end; sound speed {v} m/s. Find the frequency of the {n}-th harmonic (odd only).",
+            },
+        },
+        "steps": {
+            "string_formula": {"ru": "f_n = n·v/(2L).", "en": "f_n = n·v/(2L)."},
+            "open_formula": {"ru": "f_n = n·v/(2L).", "en": "f_n = n·v/(2L)."},
+            "closed_formula": {"ru": "f_n = n·v/(4L), n = 1, 3, 5, …",
+                               "en": "f_n = n·v/(4L), n = 1, 3, 5, …"},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "sound_intensity": {
+        "instructions": {"ru": "Решите задачу об интенсивности и уровне звука.",
+                          "en": "Solve the sound-intensity/level problem."},
+        "problem": {
+            "decibel": {
+                "ru": "Интенсивность звука I = {I} Вт/м². Найдите уровень звука в децибелах (I₀ = 1e-12 Вт/м²).",
+                "en": "Sound intensity I = {I} W/m². Find the sound level in decibels (I₀ = 1e-12 W/m²).",
+            },
+            "intensity_from_db": {
+                "ru": "Уровень звука β = {beta} дБ. Найдите интенсивность I (I₀ = 1e-12 Вт/м²).",
+                "en": "Sound level β = {beta} dB. Find the intensity I (I₀ = 1e-12 W/m²).",
+            },
+            "point_source": {
+                "ru": "Точечный источник мощностью P = {P} Вт излучает звук равномерно. Найдите интенсивность на расстоянии {r} м.",
+                "en": "A point source of power P = {P} W radiates sound uniformly. Find the intensity at distance {r} m.",
+            },
+        },
+        "steps": {
+            "db_formula": {"ru": "β = 10·log₁₀(I/I₀).", "en": "β = 10·log₁₀(I/I₀)."},
+            "inv_db_formula": {"ru": "I = I₀·10^(β/10).", "en": "I = I₀·10^(β/10)."},
+            "source_formula": {"ru": "I = P/(4π·r²).", "en": "I = P/(4π·r²)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "beats": {
+        "instructions": {"ru": "Решите задачу о биениях.",
+                          "en": "Solve the beats problem."},
+        "problem": {
+            "beat_frequency": {
+                "ru": "Два камертона звучат с частотами {f1} Гц и {f2} Гц. Найдите частоту биений.",
+                "en": "Two tuning forks sound at {f1} Hz and {f2} Hz. Find the beat frequency.",
+            },
+        },
+        "steps": {
+            "beat_formula": {"ru": "f_биений = |f1 − f2|.", "en": "f_beat = |f1 − f2|."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "kirchhoff_laws": {
+        "instructions": {"ru": "Решите задачу с применением правил Кирхгофа.",
+                          "en": "Solve the problem using Kirchhoff's laws."},
+        "problem": {
+            "single_loop": {
+                "ru": "В одном контуре включены встречно две ЭДС E1 = {E1} В и E2 = {E2} В и резисторы R1 = {R1} Ом и R2 = {R2} Ом. Найдите ток в контуре.",
+                "en": "A single loop contains two opposing EMFs E1 = {E1} V and E2 = {E2} V and resistors R1 = {R1} Ω and R2 = {R2} Ω. Find the loop current.",
+            },
+            "two_loop": {
+                "ru": "Две ветви с ЭДС E1 = {E1} В (R1 = {R1} Ом) и E2 = {E2} В (R2 = {R2} Ом) соединены параллельно через общий резистор R3 = {R3} Ом. Найдите ток через R3.",
+                "en": "Two branches with EMFs E1 = {E1} V (R1 = {R1} Ω) and E2 = {E2} V (R2 = {R2} Ω) share a common resistor R3 = {R3} Ω. Find the current through R3.",
+            },
+        },
+        "steps": {
+            "single_formula": {"ru": "Закон Кирхгофа для контура: I = (E1 − E2)/(R1 + R2).",
+                               "en": "Kirchhoff's voltage law: I = (E1 − E2)/(R1 + R2)."},
+            "two_formula": {"ru": "Система: E1 = I1·R1 + I3·R3; E2 = I2·R2 + I3·R3; I3 = I1 + I2. Решаем относительно I3.",
+                            "en": "System: E1 = I1·R1 + I3·R3; E2 = I2·R2 + I3·R3; I3 = I1 + I2. Solve for I3."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "rl_circuits": {
+        "instructions": {"ru": "Решите задачу о переходном процессе в RL-цепи.",
+                          "en": "Solve the RL-transient problem."},
+        "problem": {
+            "time_constant": {
+                "ru": "Катушка L = {L} Гн соединена последовательно с резистором R = {R} Ом. Найдите постоянную времени цепи.",
+                "en": "An inductor L = {L} H is in series with a resistor R = {R} Ω. Find the time constant.",
+            },
+            "final_current": {
+                "ru": "К RL-цепи (R = {R} Ом, L = {L} Гн) подключили ЭДС E = {E} В. Найдите установившийся ток.",
+                "en": "An EMF E = {E} V is applied to an RL circuit (R = {R} Ω, L = {L} H). Find the steady-state current.",
+            },
+            "current_growth": {
+                "ru": "В RL-цепи (E = {E} В, R = {R} Ом, L = {L} Гн) найдите ток через t = {t} с после включения.",
+                "en": "In an RL circuit (E = {E} V, R = {R} Ω, L = {L} H) find the current at t = {t} s after switching on.",
+            },
+        },
+        "steps": {
+            "tau_formula": {"ru": "Постоянная времени: τ = L/R.", "en": "Time constant: τ = L/R."},
+            "final_formula": {"ru": "Установившийся ток: I = E/R.", "en": "Steady-state current: I = E/R."},
+            "growth_formula": {"ru": "i(t) = (E/R)·(1 − e^(−t·R/L)).",
+                               "en": "i(t) = (E/R)·(1 − e^(−t·R/L))."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "gauss_law": {
+        "instructions": {"ru": "Решите задачу с применением теоремы Гаусса.",
+                          "en": "Solve the problem using Gauss's law."},
+        "problem": {
+            "flux_charge": {
+                "ru": "Внутри замкнутой поверхности находится заряд Q = {Q} Кл. Найдите поток электрического поля через поверхность.",
+                "en": "A charge Q = {Q} C is enclosed by a closed surface. Find the electric flux through it.",
+            },
+            "enclosed_charge": {
+                "ru": "Поток электрического поля через замкнутую поверхность Φ = {flux} В·м. Найдите заключённый заряд.",
+                "en": "The electric flux through a closed surface is Φ = {flux} V·m. Find the enclosed charge.",
+            },
+            "sphere_field": {
+                "ru": "Найдите напряжённость поля на расстоянии r = {r} м от точечного заряда Q = {Q} Кл.",
+                "en": "Find the field magnitude at distance r = {r} m from a point charge Q = {Q} C.",
+            },
+        },
+        "steps": {
+            "flux_formula": {"ru": "Теорема Гаусса: Φ = Q/ε₀.", "en": "Gauss's law: Φ = Q/ε₀."},
+            "charge_formula": {"ru": "Q = ε₀·Φ.", "en": "Q = ε₀·Φ."},
+            "field_formula": {"ru": "E = Q/(4π·ε₀·r²).", "en": "E = Q/(4π·ε₀·r²)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "transformer": {
+        "instructions": {"ru": "Решите задачу о трансформаторе.",
+                          "en": "Solve the transformer problem."},
+        "problem": {
+            "voltage_ratio": {
+                "ru": "У трансформатора N1 = {N1} витков (первичная) и N2 = {N2} витков (вторичная). На вход подано U1 = {U1} В. Найдите напряжение на выходе U2.",
+                "en": "A transformer has N1 = {N1} turns (primary) and N2 = {N2} turns (secondary). Input U1 = {U1} V. Find the output voltage U2.",
+            },
+            "current_ratio": {
+                "ru": "Идеальный трансформатор: N1 = {N1}, N2 = {N2}. Ток в первичной обмотке I1 = {I1} А. Найдите ток во вторичной I2.",
+                "en": "Ideal transformer: N1 = {N1}, N2 = {N2}. Primary current I1 = {I1} A. Find the secondary current I2.",
+            },
+            "efficiency": {
+                "ru": "Трансформатор потребляет мощность P1 = {P1} Вт и отдаёт P2 = {P2} Вт. Найдите КПД в процентах.",
+                "en": "A transformer draws P1 = {P1} W and delivers P2 = {P2} W. Find the efficiency in percent.",
+            },
+        },
+        "steps": {
+            "voltage_formula": {"ru": "U2 = U1·N2/N1.", "en": "U2 = U1·N2/N1."},
+            "current_formula": {"ru": "Для идеального трансформатора I2 = I1·N1/N2.",
+                                "en": "For an ideal transformer I2 = I1·N1/N2."},
+            "efficiency_formula": {"ru": "η = (P2/P1)·100 %.", "en": "η = (P2/P1)·100 %."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "blackbody_radiation": {
+        "instructions": {"ru": "Решите задачу об излучении абсолютно чёрного тела.",
+                          "en": "Solve the blackbody-radiation problem."},
+        "problem": {
+            "wien": {
+                "ru": "Тело имеет температуру T = {T} К. Найдите длину волны максимума излучения (закон Вина, b = 2.898e-3 м·К).",
+                "en": "A body has temperature T = {T} K. Find the wavelength of maximum emission (Wien's law, b = 2.898e-3 m·K).",
+            },
+            "temperature_from_wien": {
+                "ru": "Максимум излучения тела приходится на λ_max = {lam} м. Найдите температуру (закон Вина, b = 2.898e-3 м·К).",
+                "en": "A body's emission peaks at λ_max = {lam} m. Find the temperature (Wien's law, b = 2.898e-3 m·K).",
+            },
+            "stefan": {
+                "ru": "Найдите мощность излучения абсолютно чёрного тела площадью S = {A} м² при температуре T = {T} К (ε = 1).",
+                "en": "Find the radiated power of a blackbody of area S = {A} m² at temperature T = {T} K (ε = 1).",
+            },
+        },
+        "steps": {
+            "wien_formula": {"ru": "Закон смещения Вина: λ_max = b/T.", "en": "Wien's displacement law: λ_max = b/T."},
+            "temp_formula": {"ru": "T = b/λ_max.", "en": "T = b/λ_max."},
+            "stefan_formula": {"ru": "Закон Стефана–Больцмана: P = σ·ε·S·T⁴.",
+                               "en": "Stefan–Boltzmann law: P = σ·ε·S·T⁴."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "relativistic_energy": {
+        "instructions": {"ru": "Решите задачу на релятивистскую энергию.",
+                          "en": "Solve the relativistic-energy problem."},
+        "problem": {
+            "kinetic": {
+                "ru": "Частица массой m = {m} кг движется со скоростью {beta}·c. Найдите её релятивистскую кинетическую энергию.",
+                "en": "A particle of mass m = {m} kg moves at {beta}·c. Find its relativistic kinetic energy.",
+            },
+            "total": {
+                "ru": "Частица массой m = {m} кг движется со скоростью {beta}·c. Найдите её полную энергию.",
+                "en": "A particle of mass m = {m} kg moves at {beta}·c. Find its total energy.",
+            },
+            "energy_momentum": {
+                "ru": "Частица массой m = {m} кг имеет импульс p = {p} кг·м/с. Найдите полную энергию (E² = (pc)² + (mc²)²).",
+                "en": "A particle of mass m = {m} kg has momentum p = {p} kg·m/s. Find the total energy (E² = (pc)² + (mc²)²).",
+            },
+        },
+        "steps": {
+            "gamma_formula": {"ru": "Фактор Лоренца: γ = 1/√(1 − β²).", "en": "Lorentz factor: γ = 1/√(1 − β²)."},
+            "kinetic_formula": {"ru": "Кинетическая энергия: KE = (γ − 1)·m·c².",
+                                "en": "Kinetic energy: KE = (γ − 1)·m·c²."},
+            "total_formula": {"ru": "Полная энергия: E = γ·m·c².", "en": "Total energy: E = γ·m·c²."},
+            "em_formula": {"ru": "E = √((p·c)² + (m·c²)²).", "en": "E = √((p·c)² + (m·c²)²)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "velocity_addition": {
+        "instructions": {"ru": "Решите задачу на релятивистское сложение скоростей.",
+                          "en": "Solve the relativistic velocity-addition problem."},
+        "problem": {
+            "collinear": {
+                "ru": "В системе K объект движется со скоростью u' = {w}·c, а система K' движется относительно K со скоростью v = {v}·c (сонаправленно). Найдите скорость объекта в K (в долях c).",
+                "en": "In frame K' an object moves at u' = {w}·c, and K' moves relative to K at v = {v}·c (same direction). Find the object's speed in K (as a fraction of c).",
+            },
+        },
+        "steps": {
+            "add_formula": {"ru": "u = (v + u')/(1 + v·u'/c²).",
+                            "en": "u = (v + u')/(1 + v·u'/c²)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "radiation_pressure": {
+        "instructions": {"ru": "Решите задачу о давлении света.",
+                          "en": "Solve the radiation-pressure problem."},
+        "problem": {
+            "photon_momentum": {
+                "ru": "Найдите импульс фотона с длиной волны λ = {lam} м.",
+                "en": "Find the momentum of a photon of wavelength λ = {lam} m.",
+            },
+            "pressure_absorbing": {
+                "ru": "На полностью поглощающую поверхность падает свет интенсивностью I = {I} Вт/м². Найдите давление света.",
+                "en": "Light of intensity I = {I} W/m² hits a fully absorbing surface. Find the radiation pressure.",
+            },
+            "pressure_reflecting": {
+                "ru": "На идеально отражающую поверхность падает свет интенсивностью I = {I} Вт/м². Найдите давление света.",
+                "en": "Light of intensity I = {I} W/m² hits a perfectly reflecting surface. Find the radiation pressure.",
+            },
+        },
+        "steps": {
+            "momentum_formula": {"ru": "Импульс фотона: p = h/λ.", "en": "Photon momentum: p = h/λ."},
+            "absorbing_formula": {"ru": "Давление на поглощающую поверхность: P = I/c.",
+                                  "en": "Pressure on an absorbing surface: P = I/c."},
+            "reflecting_formula": {"ru": "Давление на отражающую поверхность: P = 2·I/c.",
+                                   "en": "Pressure on a reflecting surface: P = 2·I/c."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
     },
 }

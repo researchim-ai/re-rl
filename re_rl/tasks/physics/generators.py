@@ -72,6 +72,24 @@ from re_rl.tasks.physics.measurements.dimensional_analysis_task import Dimension
 from re_rl.tasks.physics.measurements.error_propagation_task import ErrorPropagationTask
 from re_rl.tasks.physics.measurements.unit_conversion_task import UnitConversionTask
 
+# Новая волна физических задач
+from re_rl.tasks.physics.mechanics.statics_equilibrium_task import StaticsEquilibriumTask
+from re_rl.tasks.physics.mechanics.circular_dynamics_task import CircularDynamicsTask
+from re_rl.tasks.physics.mechanics.rolling_motion_task import RollingMotionTask
+from re_rl.tasks.physics.thermodynamics.kinetic_theory_task import KineticTheoryTask
+from re_rl.tasks.physics.thermodynamics.thermal_expansion_task import ThermalExpansionTask
+from re_rl.tasks.physics.thermodynamics.blackbody_radiation_task import BlackbodyRadiationTask
+from re_rl.tasks.physics.waves.standing_waves_task import StandingWavesTask
+from re_rl.tasks.physics.waves.sound_intensity_task import SoundIntensityTask
+from re_rl.tasks.physics.waves.beats_task import BeatsTask
+from re_rl.tasks.physics.electricity.kirchhoff_laws_task import KirchhoffLawsTask
+from re_rl.tasks.physics.electricity.rl_circuits_task import RLCircuitsTask
+from re_rl.tasks.physics.electricity.gauss_law_task import GaussLawTask
+from re_rl.tasks.physics.electricity.transformer_task import TransformerTask
+from re_rl.tasks.physics.relativity.relativistic_energy_task import RelativisticEnergyTask
+from re_rl.tasks.physics.relativity.velocity_addition_task import VelocityAdditionTask
+from re_rl.tasks.physics.quantum.radiation_pressure_task import RadiationPressureTask
+
 
 ##################################################
 # Генераторы механики
@@ -342,6 +360,91 @@ def generate_random_unit_conversion_task(task_type: str = None, language: str = 
 
 
 ##################################################
+# Генераторы новой волны физических задач
+##################################################
+
+def generate_random_statics_equilibrium_task(task_type: str = None, language: str = "ru",
+                                              detail_level: int = 3, difficulty: int = 5):
+    return StaticsEquilibriumTask.generate_random_task(task_type=task_type, language=language,
+                                                       detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_circular_dynamics_task(task_type: str = None, language: str = "ru",
+                                           detail_level: int = 3, difficulty: int = 5):
+    return CircularDynamicsTask.generate_random_task(task_type=task_type, language=language,
+                                                     detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_rolling_motion_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5):
+    return RollingMotionTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_kinetic_theory_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5):
+    return KineticTheoryTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_thermal_expansion_task(task_type: str = None, language: str = "ru",
+                                           detail_level: int = 3, difficulty: int = 5):
+    return ThermalExpansionTask.generate_random_task(task_type=task_type, language=language,
+                                                     detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_blackbody_radiation_task(task_type: str = None, language: str = "ru",
+                                             detail_level: int = 3, difficulty: int = 5):
+    return BlackbodyRadiationTask.generate_random_task(task_type=task_type, language=language,
+                                                       detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_standing_waves_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5):
+    return StandingWavesTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_sound_intensity_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5):
+    return SoundIntensityTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_beats_task(task_type: str = None, language: str = "ru",
+                               detail_level: int = 3, difficulty: int = 5):
+    return BeatsTask.generate_random_task(task_type=task_type, language=language,
+                                          detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_kirchhoff_laws_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5):
+    return KirchhoffLawsTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_rl_circuits_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5):
+    return RLCircuitsTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_gauss_law_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5):
+    return GaussLawTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_transformer_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5):
+    return TransformerTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_relativistic_energy_task(task_type: str = None, language: str = "ru",
+                                             detail_level: int = 3, difficulty: int = 5):
+    return RelativisticEnergyTask.generate_random_task(task_type=task_type, language=language,
+                                                       detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_velocity_addition_task(task_type: str = None, language: str = "ru",
+                                           detail_level: int = 3, difficulty: int = 5):
+    return VelocityAdditionTask.generate_random_task(task_type=task_type, language=language,
+                                                     detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_radiation_pressure_task(task_type: str = None, language: str = "ru",
+                                            detail_level: int = 3, difficulty: int = 5):
+    return RadiationPressureTask.generate_random_task(task_type=task_type, language=language,
+                                                      detail_level=detail_level, difficulty=difficulty)
+
+
+##################################################
 # Словарь всех генераторов физических задач
 ##################################################
 
@@ -399,6 +502,27 @@ ALL_PHYSICS_TASK_GENERATORS = {
     "dimensional_analysis": generate_random_dimensional_analysis_task,
     "error_propagation": generate_random_error_propagation_task,
     "unit_conversion": generate_random_unit_conversion_task,
+    # Новая волна: механика
+    "statics_equilibrium": generate_random_statics_equilibrium_task,
+    "circular_dynamics": generate_random_circular_dynamics_task,
+    "rolling_motion": generate_random_rolling_motion_task,
+    # Новая волна: термодинамика
+    "kinetic_theory": generate_random_kinetic_theory_task,
+    "thermal_expansion": generate_random_thermal_expansion_task,
+    "blackbody_radiation": generate_random_blackbody_radiation_task,
+    # Новая волна: волны и звук
+    "standing_waves": generate_random_standing_waves_task,
+    "sound_intensity": generate_random_sound_intensity_task,
+    "beats": generate_random_beats_task,
+    # Новая волна: электричество и магнетизм
+    "kirchhoff_laws": generate_random_kirchhoff_laws_task,
+    "rl_circuits": generate_random_rl_circuits_task,
+    "gauss_law": generate_random_gauss_law_task,
+    "transformer": generate_random_transformer_task,
+    # Новая волна: современная физика
+    "relativistic_energy": generate_random_relativistic_energy_task,
+    "velocity_addition": generate_random_velocity_addition_task,
+    "radiation_pressure": generate_random_radiation_pressure_task,
 }
 
 
