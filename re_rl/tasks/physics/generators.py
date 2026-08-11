@@ -90,6 +90,15 @@ from re_rl.tasks.physics.relativity.relativistic_energy_task import Relativistic
 from re_rl.tasks.physics.relativity.velocity_addition_task import VelocityAdditionTask
 from re_rl.tasks.physics.quantum.radiation_pressure_task import RadiationPressureTask
 
+# Новейшая волна физических задач
+from re_rl.tasks.physics.mechanics.elasticity_task import ElasticityTask
+from re_rl.tasks.physics.mechanics.terminal_velocity_task import TerminalVelocityTask
+from re_rl.tasks.physics.fluids.surface_tension_task import SurfaceTensionTask
+from re_rl.tasks.physics.electricity.wheatstone_bridge_task import WheatstoneBridgeTask
+from re_rl.tasks.physics.thermodynamics.gas_work_task import GasWorkTask
+from re_rl.tasks.physics.thermodynamics.mean_free_path_task import MeanFreePathTask
+from re_rl.tasks.physics.quantum.pair_production_task import PairProductionTask
+
 
 ##################################################
 # Генераторы механики
@@ -445,6 +454,46 @@ def generate_random_radiation_pressure_task(task_type: str = None, language: str
 
 
 ##################################################
+# Генераторы новейшей волны физических задач
+##################################################
+
+def generate_random_elasticity_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5):
+    return ElasticityTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_terminal_velocity_task(task_type: str = None, language: str = "ru",
+                                            detail_level: int = 3, difficulty: int = 5):
+    return TerminalVelocityTask.generate_random_task(task_type=task_type, language=language,
+                                                     detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_surface_tension_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5):
+    return SurfaceTensionTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_wheatstone_bridge_task(task_type: str = None, language: str = "ru",
+                                           detail_level: int = 3, difficulty: int = 5):
+    return WheatstoneBridgeTask.generate_random_task(task_type=task_type, language=language,
+                                                     detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_gas_work_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5):
+    return GasWorkTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_mean_free_path_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5):
+    return MeanFreePathTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_pair_production_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5):
+    return PairProductionTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty)
+
+
+##################################################
 # Словарь всех генераторов физических задач
 ##################################################
 
@@ -523,6 +572,17 @@ ALL_PHYSICS_TASK_GENERATORS = {
     "relativistic_energy": generate_random_relativistic_energy_task,
     "velocity_addition": generate_random_velocity_addition_task,
     "radiation_pressure": generate_random_radiation_pressure_task,
+    # Новейшая волна: механика и гидродинамика
+    "elasticity": generate_random_elasticity_task,
+    "terminal_velocity": generate_random_terminal_velocity_task,
+    "surface_tension": generate_random_surface_tension_task,
+    # Новейшая волна: электричество
+    "wheatstone_bridge": generate_random_wheatstone_bridge_task,
+    # Новейшая волна: термодинамика
+    "gas_work": generate_random_gas_work_task,
+    "mean_free_path": generate_random_mean_free_path_task,
+    # Новейшая волна: современная физика
+    "pair_production": generate_random_pair_production_task,
 }
 
 

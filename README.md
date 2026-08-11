@@ -4,7 +4,7 @@
 
 ## Особенности
 
-- **212 типов задач**: 155 математических (включая формальную математику Lean 4 и логические/ризонинг-головоломки) + 57 физических
+- **219 типов задач**: 155 математических (включая формальную математику Lean 4 и логические/ризонинг-головоломки) + 64 физических
 - **Языки**: русский и английский
 - **Система сложности**: 10 уровней для каждого типа задач
 - **Пошаговые решения**: детальные цепочки рассуждений для SFT/RL обучения
@@ -84,19 +84,19 @@ chat_dataset = generator.generate_chat_dataset(
 | **Пространственное мышление и прочее** | cube_net, dice_reasoning, rotation_reflection, paper_folding, cipher_decode, pigeonhole, monty_hall, allen_relations |
 | **Продвинутый ризонинг** | arc_grid_induction, program_trace, sprague_grundy, natural_deduction, edit_distance, calendar_reasoning, word_ladder, cfg_membership |
 
-### Физика (57 типов)
+### Физика (64 типа)
 
 | Категория | Задачи |
 |-----------|--------|
-| **Механика** | kinematics, dynamics, energy, momentum, projectile_motion, rotational_dynamics, center_of_mass, atwood_machine, inclined_plane, statics_equilibrium, circular_dynamics, rolling_motion |
-| **Электричество и магнетизм** | circuits, electrostatics, capacitors, electromagnetic_induction, ac_circuits, rc_circuits, magnetism, magnetic_force, kirchhoff_laws, rl_circuits, gauss_law, transformer |
-| **Термодинамика** | gas_laws, heat_transfer, thermodynamic_cycles, entropy, phase_transitions, kinetic_theory, thermal_expansion, blackbody_radiation |
+| **Механика** | kinematics, dynamics, energy, momentum, projectile_motion, rotational_dynamics, center_of_mass, atwood_machine, inclined_plane, statics_equilibrium, circular_dynamics, rolling_motion, elasticity, terminal_velocity |
+| **Электричество и магнетизм** | circuits, electrostatics, capacitors, electromagnetic_induction, ac_circuits, rc_circuits, magnetism, magnetic_force, kirchhoff_laws, rl_circuits, gauss_law, transformer, wheatstone_bridge |
+| **Термодинамика** | gas_laws, heat_transfer, thermodynamic_cycles, entropy, phase_transitions, kinetic_theory, thermal_expansion, blackbody_radiation, gas_work, mean_free_path |
 | **Волны, оптика и звук** | waves, optics, doppler_effect, interference, diffraction, polarization, standing_waves, sound_intensity, beats |
-| **Квантовая физика** | quantum, bohr_model, de_broglie, uncertainty_principle, radioactive_decay, radiation_pressure |
+| **Квантовая физика** | quantum, bohr_model, de_broglie, uncertainty_principle, radioactive_decay, radiation_pressure, pair_production |
 | **Ядерная физика** | nuclear |
 | **Теория относительности** | relativity, relativistic_energy, velocity_addition |
 | **Колебания** | oscillations |
-| **Гидростатика** | fluids |
+| **Гидростатика и гидродинамика** | fluids, surface_tension |
 | **Астрофизика** | astrophysics |
 | **Измерения и анализ** | dimensional_analysis, error_propagation, unit_conversion |
 

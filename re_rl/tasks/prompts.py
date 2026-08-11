@@ -8385,4 +8385,199 @@ Analysis:
         },
         "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
     },
+
+    "elasticity": {
+        "instructions": {"ru": "Решите задачу на упругие деформации (модуль Юнга).",
+                          "en": "Solve the elasticity (Young's modulus) problem."},
+        "problem": {
+            "stress": {
+                "ru": "К стержню с площадью поперечного сечения A = {A} мм² приложена растягивающая сила F = {F} Н. Найдите механическое напряжение σ (в Па).",
+                "en": "A rod with cross-sectional area A = {A} mm² is pulled by a force F = {F} N. Find the mechanical stress σ (in Pa).",
+            },
+            "strain": {
+                "ru": "Стержень длиной L = {L} м под нагрузкой удлинился на ΔL = {dL} мм. Найдите относительную деформацию ε.",
+                "en": "A rod of length L = {L} m elongates by ΔL = {dL} mm under load. Find the strain ε.",
+            },
+            "young_modulus": {
+                "ru": "При напряжении σ = {sigma} Па относительная деформация равна ε = {eps}. Найдите модуль Юнга E (в Па).",
+                "en": "At a stress σ = {sigma} Pa the strain is ε = {eps}. Find Young's modulus E (in Pa).",
+            },
+            "elongation": {
+                "ru": "Стержень из материала «{mat}» длиной L = {L} м и площадью сечения A = {A} мм² растягивают силой F = {F} Н. Модуль Юнга E = {E} Па. Найдите удлинение ΔL (в м).",
+                "en": "A rod of material \"{mat}\" of length L = {L} m and cross-section A = {A} mm² is stretched by a force F = {F} N. Young's modulus E = {E} Pa. Find the elongation ΔL (in m).",
+            },
+        },
+        "steps": {
+            "stress_formula": {"ru": "Механическое напряжение: σ = F/A (площадь в м²).",
+                               "en": "Mechanical stress: σ = F/A (area in m²)."},
+            "strain_formula": {"ru": "Относительная деформация: ε = ΔL/L.",
+                               "en": "Strain: ε = ΔL/L."},
+            "young_formula": {"ru": "Закон Гука: E = σ/ε.", "en": "Hooke's law: E = σ/ε."},
+            "elongation_formula": {"ru": "Удлинение: ΔL = F·L/(A·E).",
+                                   "en": "Elongation: ΔL = F·L/(A·E)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "surface_tension": {
+        "instructions": {"ru": "Решите задачу на поверхностное натяжение.",
+                          "en": "Solve the surface-tension problem."},
+        "problem": {
+            "capillary_rise": {
+                "ru": "В капилляре радиусом r = {r} мм жидкость (σ = {sigma} Н/м, ρ = {rho} кг/м³) полностью смачивает стенки. Найдите высоту поднятия h (в м).",
+                "en": "In a capillary of radius r = {r} mm a liquid (σ = {sigma} N/m, ρ = {rho} kg/m³) fully wets the walls. Find the rise height h (in m).",
+            },
+            "laplace_pressure": {
+                "ru": "Найдите избыточное давление внутри {obj} радиусом r = {r} мм (σ = {sigma} Н/м).",
+                "en": "Find the excess pressure inside a {obj} of radius r = {r} mm (σ = {sigma} N/m).",
+            },
+            "wire_force": {
+                "ru": "Проволоку длиной L = {L} см вытягивают из жидкости с σ = {sigma} Н/м (плёнка контактирует с двух сторон). Найдите силу поверхностного натяжения (в Н).",
+                "en": "A wire of length L = {L} cm is pulled off a liquid with σ = {sigma} N/m (film on both sides). Find the surface-tension force (in N).",
+            },
+        },
+        "steps": {
+            "capillary_formula": {"ru": "Высота поднятия: h = 2σ/(ρ·g·r).",
+                                  "en": "Capillary rise: h = 2σ/(ρ·g·r)."},
+            "laplace_formula": {"ru": "Избыточное давление: ΔP = {k}·σ/r.",
+                                "en": "Excess pressure: ΔP = {k}·σ/r."},
+            "wire_formula": {"ru": "Сила: F = 2·σ·L (две стороны плёнки).",
+                             "en": "Force: F = 2·σ·L (two film surfaces)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "terminal_velocity": {
+        "instructions": {"ru": "Решите задачу об установившейся скорости при вязком сопротивлении.",
+                          "en": "Solve the terminal-velocity (drag) problem."},
+        "problem": {
+            "stokes_velocity": {
+                "ru": "Шарик радиусом r = {r} мм и плотностью ρ_т = {rho_s} кг/м³ падает в жидкости плотностью ρ_ж = {rho_f} кг/м³ и вязкостью η = {eta} Па·с. Найдите установившуюся скорость (закон Стокса, в м/с).",
+                "en": "A sphere of radius r = {r} mm and density ρ_s = {rho_s} kg/m³ falls in a liquid of density ρ_f = {rho_f} kg/m³ and viscosity η = {eta} Pa·s. Find the terminal velocity (Stokes, in m/s).",
+            },
+            "drag_force": {
+                "ru": "Шарик радиусом r = {r} мм движется со скоростью v = {v} м/с в среде с вязкостью η = {eta} Па·с. Найдите силу вязкого сопротивления (закон Стокса, в Н).",
+                "en": "A sphere of radius r = {r} mm moves at v = {v} m/s in a medium of viscosity η = {eta} Pa·s. Find the viscous drag force (Stokes, in N).",
+            },
+            "quadratic_terminal": {
+                "ru": "Тело массой m = {m} кг падает в воздухе (ρ = {rho} кг/м³); коэффициент сопротивления C = {C}, площадь A = {A} м². Найдите установившуюся скорость (в м/с).",
+                "en": "A body of mass m = {m} kg falls through air (ρ = {rho} kg/m³); drag coefficient C = {C}, area A = {A} m². Find the terminal velocity (in m/s).",
+            },
+        },
+        "steps": {
+            "stokes_v_formula": {"ru": "Из mg_эфф = 6πηrv: v = 2·r²·(ρ_т − ρ_ж)·g/(9·η).",
+                                 "en": "From mg_eff = 6πηrv: v = 2·r²·(ρ_s − ρ_f)·g/(9·η)."},
+            "drag_formula": {"ru": "Сила Стокса: F = 6·π·η·r·v.",
+                             "en": "Stokes drag: F = 6·π·η·r·v."},
+            "quadratic_formula": {"ru": "Из mg = ½·ρ·C·A·v²: v = √(2·m·g/(ρ·C·A)).",
+                                  "en": "From mg = ½·ρ·C·A·v²: v = √(2·m·g/(ρ·C·A))."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "wheatstone_bridge": {
+        "instructions": {"ru": "Решите задачу о мосте Уитстона.",
+                          "en": "Solve the Wheatstone-bridge problem."},
+        "problem": {
+            "unknown_resistance": {
+                "ru": "Мост Уитстона сбалансирован: R1 = {R1} Ом, R2 = {R2} Ом, R3 = {R3} Ом. При балансе R1/R2 = R3/Rx. Найдите неизвестное сопротивление Rx (в Ом).",
+                "en": "A Wheatstone bridge is balanced: R1 = {R1} Ω, R2 = {R2} Ω, R3 = {R3} Ω. At balance R1/R2 = R3/Rx. Find the unknown resistance Rx (in Ω).",
+            },
+            "output_voltage": {
+                "ru": "К мосту приложено напряжение U = {U} В. Плечи делителей: R1 = {R1} Ом, R2 = {R2} Ом (первая ветвь), R3 = {R3} Ом, R4 = {R4} Ом (вторая ветвь). Найдите напряжение разбаланса между средними точками (в В).",
+                "en": "A voltage U = {U} V is applied to the bridge. Divider arms: R1 = {R1} Ω, R2 = {R2} Ω (first branch), R3 = {R3} Ω, R4 = {R4} Ω (second branch). Find the imbalance voltage between the midpoints (in V).",
+            },
+        },
+        "steps": {
+            "balance_formula": {"ru": "Условие баланса: Rx = R2·R3/R1.",
+                                "en": "Balance condition: Rx = R2·R3/R1."},
+            "output_formula": {"ru": "U_out = U·(R2/(R1+R2) − R4/(R3+R4)).",
+                               "en": "U_out = U·(R2/(R1+R2) − R4/(R3+R4))."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "gas_work": {
+        "instructions": {"ru": "Решите задачу о работе газа и первом начале термодинамики.",
+                          "en": "Solve the gas-work / first-law problem."},
+        "problem": {
+            "isobaric_work": {
+                "ru": "Газ при постоянном давлении P = {P} Па расширяется от V1 = {V1} м³ до V2 = {V2} м³. Найдите работу газа (в Дж).",
+                "en": "A gas at constant pressure P = {P} Pa expands from V1 = {V1} m³ to V2 = {V2} m³. Find the work done by the gas (in J).",
+            },
+            "isothermal_work": {
+                "ru": "n = {n} моль идеального газа изотермически при T = {T} К расширяется от V1 = {V1} м³ до V2 = {V2} м³. Найдите работу газа (в Дж).",
+                "en": "n = {n} mol of an ideal gas expands isothermally at T = {T} K from V1 = {V1} m³ to V2 = {V2} m³. Find the work done by the gas (in J).",
+            },
+            "first_law": {
+                "ru": "Газу передали Q = {Q} Дж теплоты, и он совершил работу W = {W} Дж. Найдите изменение внутренней энергии ΔU (в Дж).",
+                "en": "A gas receives Q = {Q} J of heat and does W = {W} J of work. Find the change in internal energy ΔU (in J).",
+            },
+        },
+        "steps": {
+            "isobaric_formula": {"ru": "Работа при изобарном процессе: W = P·(V2 − V1).",
+                                 "en": "Isobaric work: W = P·(V2 − V1)."},
+            "isothermal_formula": {"ru": "Работа при изотермическом процессе: W = n·R·T·ln(V2/V1).",
+                                   "en": "Isothermal work: W = n·R·T·ln(V2/V1)."},
+            "first_law_formula": {"ru": "Первое начало: ΔU = Q − W.",
+                                  "en": "First law: ΔU = Q − W."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "mean_free_path": {
+        "instructions": {"ru": "Решите задачу о средней длине свободного пробега молекул.",
+                          "en": "Solve the mean-free-path problem."},
+        "problem": {
+            "mean_free_path": {
+                "ru": "Молекулы газа имеют эффективный диаметр d = {d} м. Найдите среднюю длину свободного пробега при давлении P = {P} Па и температуре T = {T} К (в м).",
+                "en": "Gas molecules have effective diameter d = {d} m. Find the mean free path at pressure P = {P} Pa and temperature T = {T} K (in m).",
+            },
+            "number_density": {
+                "ru": "Найдите концентрацию молекул идеального газа при давлении P = {P} Па и температуре T = {T} К (в м⁻³).",
+                "en": "Find the number density of an ideal gas at pressure P = {P} Pa and temperature T = {T} K (in m⁻³).",
+            },
+            "collision_frequency": {
+                "ru": "Молекула движется со средней скоростью v = {v} м/с; средняя длина свободного пробега λ = {lam} м. Найдите частоту столкновений (в с⁻¹).",
+                "en": "A molecule moves at average speed v = {v} m/s with mean free path λ = {lam} m. Find the collision frequency (in s⁻¹).",
+            },
+        },
+        "steps": {
+            "mfp_formula": {"ru": "Средняя длина пробега: λ = k_B·T/(√2·π·d²·P).",
+                            "en": "Mean free path: λ = k_B·T/(√2·π·d²·P)."},
+            "density_formula": {"ru": "Концентрация: n = P/(k_B·T).",
+                                "en": "Number density: n = P/(k_B·T)."},
+            "frequency_formula": {"ru": "Частота столкновений: z = v/λ.",
+                                  "en": "Collision frequency: z = v/λ."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "pair_production": {
+        "instructions": {"ru": "Решите задачу о рождении электрон-позитронной пары.",
+                          "en": "Solve the electron-positron pair-production problem."},
+        "problem": {
+            "threshold_energy": {
+                "ru": "Найдите минимальную энергию гамма-кванта (в МэВ), необходимую для рождения электрон-позитронной пары.",
+                "en": "Find the minimum gamma-photon energy (in MeV) required to create an electron-positron pair.",
+            },
+            "threshold_wavelength": {
+                "ru": "Найдите максимальную длину волны гамма-кванта (в м), способного породить электрон-позитронную пару.",
+                "en": "Find the maximum wavelength (in m) of a gamma photon able to create an electron-positron pair.",
+            },
+            "excess_kinetic": {
+                "ru": "Гамма-квант энергией E = {E} МэВ рождает электрон-позитронную пару. Найдите суммарную кинетическую энергию частиц (в МэВ).",
+                "en": "A gamma photon of energy E = {E} MeV creates an electron-positron pair. Find the total kinetic energy of the particles (in MeV).",
+            },
+        },
+        "steps": {
+            "threshold_formula": {"ru": "Порог: E = 2·m_e·c² ≈ 1.022 МэВ.",
+                                  "en": "Threshold: E = 2·m_e·c² ≈ 1.022 MeV."},
+            "wavelength_formula": {"ru": "λ = h·c/E = h/(2·m_e·c).",
+                                   "en": "λ = h·c/E = h/(2·m_e·c)."},
+            "excess_formula": {"ru": "Кинетическая энергия: KE = E − 2·m_e·c².",
+                               "en": "Kinetic energy: KE = E − 2·m_e·c²."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
 }
