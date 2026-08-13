@@ -8,6 +8,10 @@ loguru
 z3-solver
 jsonschema
 
+# ── Визуальные (VLM) задачи ──
+matplotlib>=3.5
+pillow>=9.0
+
 # ── Datasets & ML ──
 datasets
 sentence-transformers>=2.0

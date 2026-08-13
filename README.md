@@ -5,10 +5,11 @@
 ## Особенности
 
 - **232 типов задач**: 162 математических (включая формальную математику Lean 4 и логические/ризонинг-головоломки) + 70 физических
+- **Визуальные (VLM) задачи**: 21 тип с генерацией изображений — графики функций, столбчатые/круговые/линейные диаграммы, геометрия, аналоговые часы, кости, шахматная доска, цветная сетка, взвешенные графы, диаграммы ДКА, схемы логических вентилей, поле «Сапёра», доска «Мастермайнда», ферзи, P–V диаграммы, многоугольники, а также картиночные варианты судоку/пятнашек/ARC — картинка + текстовый ответ, плюс аугментации изображений
 - **Языки**: русский и английский
 - **Система сложности**: 10 уровней для каждого типа задач
 - **Пошаговые решения**: детальные цепочки рассуждений для SFT/RL обучения
-- **Форматы экспорта**: JSON, JSONL, SFT-формат, Chat-формат
+- **Форматы экспорта**: JSON, JSONL, SFT-формат, Chat-формат, мультимодальный (`generate_vlm_dataset`)
 
 ## Быстрый старт
 
@@ -101,6 +102,52 @@ chat_dataset = generator.generate_chat_dataset(
 | **Астрофизика** | astrophysics |
 | **Измерения и анализ** | dimensional_analysis, error_propagation, unit_conversion |
 | **Масштабируемые сети** | series_parallel_network (резисторы/конденсаторы/пружины/тепловые сопротивления) |
+
+### Визуальные (VLM) задачи
+
+Мультимодальные задачи: изображение + вопрос → текстовый ответ (проверка `verify` без изменений). Реестр — `ALL_VISUAL_TASK_GENERATORS` (отдельно от текстового `ALL_TASK_GENERATORS`).
+
+| Тип | Бэкенд | Подтипы |
+|---|---|---|
+| `function_plot_read` | matplotlib | count_roots, y_intercept |
+| `bar_chart_read` | matplotlib | max_category, min_category, difference, total |
+| `grid_color_count` | PIL | count_color, most_color |
+| `geometry_figure` | matplotlib | right_triangle_area, perimeter, missing_angle |
+| `line_plot_read` | matplotlib | value_at, max_x, num_increases |
+| `pie_chart_read` | matplotlib | largest, smallest |
+| `clock_read` | PIL | чтение времени по циферблату (Ч:ММ) |
+| `dice_read` | PIL | sum, count_value |
+| `chessboard_count` | PIL | total, on_dark, on_light |
+| `sudoku_image` | PIL | судоку-картинка: число в выделенной клетке |
+| `sliding_puzzle_image` | PIL | пятнашки-картинка: solvable, min_moves |
+| `arc_grid_image` | PIL | ARC-индукция на цветных сетках |
+| `shortest_path_image` | networkx | взвешенный граф: вес кратчайшего пути |
+| `mst_image` | networkx | взвешенный граф: вес минимального остовного дерева |
+| `dfa_image` | matplotlib | диаграмма ДКА: принимает ли строку |
+| `boolean_circuit_image` | matplotlib | схема вентилей: evaluate, count |
+| `minesweeper_image` | PIL | поле «Сапёра»: мина/безопасно |
+| `queens_check_image` | PIL | ферзи на доске: корректна ли расстановка |
+| `mastermind_image` | PIL | доска «Мастермайнда»: восстановить код |
+| `pv_cycle_image` | matplotlib | P–V диаграмма: работа за цикл (площадь) |
+| `shoelace_image` | matplotlib | многоугольник по вершинам: площадь |
+
+Дополнительно доступна лёгкая аугментация изображений `augment_image(img, seed=...)` (небольшой поворот на белом фоне) — верификация текстовая, поэтому корректность ответа не меняется.
+
+```python
+from re_rl.tasks.visual.generators import ALL_VISUAL_TASK_GENERATORS
+
+task = ALL_VISUAL_TASK_GENERATORS["bar_chart_read"](language="ru", difficulty=6)
+task.render_image().save("chart.png")   # PIL.Image
+print(task.description, "→", task.final_answer)
+
+# Мультимодальный датасет (PNG на диск + JSONL с путём и токеном <image>)
+from re_rl.dataset_generator import DatasetGenerator
+gen = DatasetGenerator(output_dir="datasets_vlm")
+vlm = gen.generate_vlm_dataset(num_samples=100, language="ru", difficulties=[3, 5, 7])
+gen.save_jsonl(vlm, "vlm.jsonl", validate=False)
+```
+
+Подробности и инлайн-картинки — в `examples/Визуальные_задачи.ipynb`.
 
 ## Примеры использования
 

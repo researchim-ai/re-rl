@@ -482,6 +482,102 @@ class DatasetGenerator:
 
         return dataset
     
+    def generate_vlm_dataset(
+        self,
+        task_types: Optional[List[str]] = None,
+        num_samples: int = 100,
+        language: str = "ru",
+        difficulties: Optional[List[int]] = None,
+        image_dir: str = "images",
+        image_token: str = "<image>",
+        include_cot: bool = True,
+        reasoning_mode: bool = True,
+        show_progress: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """Генерирует мультимодальный (VLM) датасет: изображение + текстовый ответ.
+
+        Для каждой задачи рендерится PNG (в ``output_dir/image_dir``), а в записи
+        сохраняется относительный путь к нему. Формат совместим с VLM-конвейерами
+        (LLaVA/Qwen-VL): в ``input`` добавляется токен изображения.
+
+        Формат записи::
+
+            {
+                "instruction": "...",
+                "image": "images/bar_chart_read_3.png",
+                "input": "<image>\\nУсловие...",
+                "output": "<think>...</think><answer>...</answer>",
+                "metadata": {...},
+            }
+
+        Примечание: сохраняйте такой датасет через ``save_jsonl(..., validate=False)`` —
+        поле ``image`` не описано в текстовой JSON-схеме.
+        """
+        from re_rl.tasks.visual.generators import ALL_VISUAL_TASK_GENERATORS
+
+        if task_types is None:
+            task_types = list(ALL_VISUAL_TASK_GENERATORS.keys())
+        if difficulties is None:
+            difficulties = list(range(1, 11))
+
+        img_root = self.output_dir / image_dir
+        img_root.mkdir(parents=True, exist_ok=True)
+
+        instructions = {
+            "ru": "Рассмотрите изображение и решите задачу. Рассуждения — в <think></think>, "
+                  "ответ — в <answer></answer>.",
+            "en": "Look at the image and solve the task. Put reasoning in <think></think>, "
+                  "the answer in <answer></answer>.",
+        }
+
+        dataset: List[Dict[str, Any]] = []
+        max_attempts = max(num_samples * 20, len(task_types) * 10)
+        attempts = range(max_attempts)
+        if show_progress:
+            attempts = tqdm(attempts, desc="Генерация VLM", unit="попыток", total=max_attempts)
+
+        for _ in attempts:
+            if len(dataset) >= num_samples:
+                break
+            task_type = random.choice(task_types)
+            difficulty = random.choice(difficulties)
+            try:
+                gen = ALL_VISUAL_TASK_GENERATORS[task_type]
+                task = gen(language=language, difficulty=difficulty, reasoning_mode=reasoning_mode)
+                result = task.get_result()
+                idx = len(dataset)
+                rel_path = f"{image_dir}/{task_type}_{idx}.png"
+                task.save_image(str(self.output_dir / rel_path))
+            except Exception:
+                continue
+
+            output = self._build_sft_output(
+                task_data={"final_answer": result["final_answer"],
+                           "solution_steps": result.get("solution_steps", [])},
+                language=language,
+                include_cot=include_cot,
+                reasoning_mode=reasoning_mode,
+            )
+            problem = self._clean_problem_text(result["problem"])
+            dataset.append(
+                {
+                    "instruction": instructions[language],
+                    "image": rel_path,
+                    "input": f"{image_token}\n{problem}",
+                    "output": output,
+                    "metadata": {
+                        "task_type": task_type,
+                        "difficulty": difficulty,
+                        "language": language,
+                        "reasoning_mode": reasoning_mode,
+                        "ref_final_answer": str(result["final_answer"]),
+                    },
+                }
+            )
+
+        random.shuffle(dataset)
+        return dataset[:num_samples]
+
     def generate_dataset(
         self,
         task_types: Optional[List[str]] = None,
