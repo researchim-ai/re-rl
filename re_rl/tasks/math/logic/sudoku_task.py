@@ -90,66 +90,40 @@ class SudokuTask(BaseMathTask):
         self.reasoning_mode = reasoning_mode
 
     def _generate_complete_grid(self) -> List[List[int]]:
-        """Генерирует полностью заполненную корректную сетку судоку через Z3."""
-        solver = Solver()
-        cells = [[Int(f"c_{r}_{c}") for c in range(self.size)] for r in range(self.size)]
-        
-        # Ограничение: значения от 1 до size
-        for r in range(self.size):
-            for c in range(self.size):
-                solver.add(cells[r][c] >= 1, cells[r][c] <= self.size)
-        
-        # Уникальность в строках
-        for r in range(self.size):
-            solver.add(Distinct(*cells[r]))
-        
-        # Уникальность в столбцах
-        for c in range(self.size):
-            solver.add(Distinct(*[cells[r][c] for r in range(self.size)]))
-        
-        # Уникальность в блоках
-        for block_r in range(self.block_size):
-            for block_c in range(self.block_size):
-                block_cells = []
-                for r in range(self.block_size):
-                    for c in range(self.block_size):
-                        block_cells.append(cells[block_r * self.block_size + r][block_c * self.block_size + c])
-                solver.add(Distinct(*block_cells))
-        
-        # Добавляем случайные начальные значения для разнообразия
-        random_cells = random.sample([(r, c) for r in range(self.size) for c in range(self.size)], 
-                                     min(self.size, self.size * self.size // 4))
-        for r, c in random_cells:
-            val = random.randint(1, self.size)
-            solver.add(cells[r][c] == val)
-        
-        if solver.check() != sat:
-            # Если не нашли решение с рандомными значениями, пробуем без них
-            solver = Solver()
-            cells = [[Int(f"c_{r}_{c}") for c in range(self.size)] for r in range(self.size)]
-            
-            for r in range(self.size):
-                for c in range(self.size):
-                    solver.add(cells[r][c] >= 1, cells[r][c] <= self.size)
-            
-            for r in range(self.size):
-                solver.add(Distinct(*cells[r]))
-            
-            for c in range(self.size):
-                solver.add(Distinct(*[cells[r][c] for r in range(self.size)]))
-            
-            for block_r in range(self.block_size):
-                for block_c in range(self.block_size):
-                    block_cells = []
-                    for r in range(self.block_size):
-                        for c in range(self.block_size):
-                            block_cells.append(cells[block_r * self.block_size + r][block_c * self.block_size + c])
-                    solver.add(Distinct(*block_cells))
-            
-            solver.check()
-        
-        model = solver.model()
-        grid = [[model[cells[r][c]].as_long() for c in range(self.size)] for r in range(self.size)]
+        """Генерирует полностью заполненную корректную сетку судоку.
+
+        Быстрый рандомизированный бэктрекинг (миллисекунды даже для 9×9), что
+        на порядки быстрее прежней генерации через Z3.
+        """
+        n, b = self.size, self.block_size
+        grid = [[0] * n for _ in range(n)]
+
+        def ok(r: int, c: int, v: int) -> bool:
+            for i in range(n):
+                if grid[r][i] == v or grid[i][c] == v:
+                    return False
+            br, bc = (r // b) * b, (c // b) * b
+            for i in range(b):
+                for j in range(b):
+                    if grid[br + i][bc + j] == v:
+                        return False
+            return True
+
+        def fill(pos: int) -> bool:
+            if pos == n * n:
+                return True
+            r, c = divmod(pos, n)
+            vals = list(range(1, n + 1))
+            random.shuffle(vals)
+            for v in vals:
+                if ok(r, c, v):
+                    grid[r][c] = v
+                    if fill(pos + 1):
+                        return True
+                    grid[r][c] = 0
+            return False
+
+        fill(0)
         return grid
 
     def _create_puzzle(self) -> List[List[Optional[int]]]:

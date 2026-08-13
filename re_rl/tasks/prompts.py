@@ -2014,7 +2014,7 @@ Analysis:
                 "en": "Step {step}: {base}^{exp} ≡ {result} (mod {m})"
             },
             "crt_step": {
-                "ru": "Шаг {step}: x ≡ {a} (mod {m}), M_{i} = {M_i}, y_{i} = {y_i}",
+                "ru": "Шаг {step}: x ≡ {a} (mod {m}), M_i = {M_i}, y_i = {y_i}",
                 "en": "Step {step}: x ≡ {a} (mod {m}), M_i = {M_i}, y_i = {y_i}"
             },
             "diophantine_gcd": {
@@ -8577,6 +8577,164 @@ Analysis:
                                    "en": "λ = h·c/E = h/(2·m_e·c)."},
             "excess_formula": {"ru": "Кинетическая энергия: KE = E − 2·m_e·c².",
                                "en": "Kinetic energy: KE = E − 2·m_e·c²."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "series_parallel_network": {
+        "instructions": {"ru": "Сверните сеть из последовательных и параллельных элементов.",
+                          "en": "Reduce a network of series and parallel elements."},
+        "problem": {
+            "resistor": {
+                "ru": "Дана цепь резисторов (последовательно = сумма, параллельно = обратная сумма обратных): {net}. Найдите эквивалентное сопротивление (в Ом).",
+                "en": "A resistor network (series = sum, parallel = reciprocal of sum of reciprocals): {net}. Find the equivalent resistance (in Ω).",
+            },
+            "capacitor": {
+                "ru": "Дана цепь конденсаторов (параллельно = сумма, последовательно = обратная сумма обратных): {net}. Найдите эквивалентную ёмкость (в мкФ).",
+                "en": "A capacitor network (parallel = sum, series = reciprocal of sum of reciprocals): {net}. Find the equivalent capacitance (in µF).",
+            },
+            "spring": {
+                "ru": "Дана система пружин (параллельно = сумма жёсткостей, последовательно = обратная сумма обратных): {net}. Найдите эквивалентную жёсткость (в Н/м).",
+                "en": "A spring system (parallel = sum of stiffnesses, series = reciprocal of sum of reciprocals): {net}. Find the equivalent stiffness (in N/m).",
+            },
+            "thermal": {
+                "ru": "Дана система тепловых сопротивлений (последовательно = сумма, параллельно = обратная сумма обратных): {net}. Найдите эквивалентное тепловое сопротивление (в К/Вт).",
+                "en": "A thermal-resistance system (series = sum, parallel = reciprocal of sum of reciprocals): {net}. Find the equivalent thermal resistance (in K/W).",
+            },
+        },
+        "steps": {
+            "resistor_rule": {"ru": "Последовательно: R = ΣR_i. Параллельно: 1/R = Σ(1/R_i).",
+                              "en": "Series: R = ΣR_i. Parallel: 1/R = Σ(1/R_i)."},
+            "capacitor_rule": {"ru": "Параллельно: C = ΣC_i. Последовательно: 1/C = Σ(1/C_i).",
+                               "en": "Parallel: C = ΣC_i. Series: 1/C = Σ(1/C_i)."},
+            "spring_rule": {"ru": "Параллельно: k = Σk_i. Последовательно: 1/k = Σ(1/k_i).",
+                            "en": "Parallel: k = Σk_i. Series: 1/k = Σ(1/k_i)."},
+            "thermal_rule": {"ru": "Последовательно: R = ΣR_i. Параллельно: 1/R = Σ(1/R_i).",
+                             "en": "Series: R = ΣR_i. Parallel: 1/R = Σ(1/R_i)."},
+            "reduce": {"ru": "Сворачиваем сеть от внутренних узлов к внешним.",
+                       "en": "Reduce the network from inner nodes outward."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "pv_cycle": {
+        "instructions": {"ru": "Найдите работу газа по PV-диаграмме.",
+                          "en": "Find the gas work from the PV diagram."},
+        "problem": {
+            "net_work": {
+                "ru": "Идеальный газ обходит замкнутый цикл через точки (V [м³], P [Па]) по прямым отрезкам на PV-диаграмме: {points}. Найдите работу, совершённую газом за цикл (в Дж; знак — по направлению обхода).",
+                "en": "An ideal gas traverses a closed cycle through the points (V [m³], P [Pa]) along straight PV segments: {points}. Find the work done by the gas over the cycle (in J; sign follows the traversal direction).",
+            },
+            "leg_work": {
+                "ru": "На участке PV-диаграммы газ переходит из состояния (V1 = {V1} м³, P1 = {P1} Па) в (V2 = {V2} м³, P2 = {P2} Па) по прямой. Найдите работу газа на этом участке (в Дж).",
+                "en": "Along a straight PV segment a gas goes from (V1 = {V1} m³, P1 = {P1} Pa) to (V2 = {V2} m³, P2 = {P2} Pa). Find the gas work on this segment (in J).",
+            },
+        },
+        "steps": {
+            "area_formula": {"ru": "Работа газа = ∮P dV = площадь, охватываемая циклом на PV-диаграмме.",
+                             "en": "Gas work = ∮P dV = area enclosed by the cycle on the PV diagram."},
+            "trapezoid_formula": {"ru": "Работа по отрезку: W = (P1 + P2)/2 · (V2 − V1).",
+                                  "en": "Work along a segment: W = (P1 + P2)/2 · (V2 − V1)."},
+            "shoelace": {"ru": "Суммируем работы по всем отрезкам (формула трапеций/шнуровки).",
+                         "en": "Sum the segment works over the loop (trapezoid/shoelace)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "elastic_chain": {
+        "instructions": {"ru": "Проанализируйте цепочку одномерных упругих соударений.",
+                          "en": "Analyze a chain of 1D elastic collisions."},
+        "problem": {
+            "last_velocity": {
+                "ru": "Шар массой m₀ = {m0} кг движется со скоростью v₀ = {v0} м/с и упруго ударяет цепочку покоящихся шаров с массами (кг): {masses}. Каждый шар после удара налетает на следующий (лобовые упругие удары). Найдите скорость последнего шара (в м/с).",
+                "en": "A ball of mass m₀ = {m0} kg moving at v₀ = {v0} m/s elastically strikes a chain of stationary balls of masses (kg): {masses}. Each struck ball then hits the next (head-on elastic collisions). Find the velocity of the last ball (in m/s).",
+            },
+            "ball_velocity": {
+                "ru": "Шар массой m₀ = {m0} кг движется со скоростью v₀ = {v0} м/с и упруго ударяет цепочку покоящихся шаров с массами (кг): {masses}. Каждый шар после удара налетает на следующий. Найдите скорость шара №{k} (считая от первого ударенного) сразу после его удара (в м/с).",
+                "en": "A ball of mass m₀ = {m0} kg moving at v₀ = {v0} m/s elastically strikes a chain of stationary balls of masses (kg): {masses}. Each struck ball then hits the next. Find the velocity of ball #{k} (counting from the first struck) right after it is hit (in m/s).",
+            },
+        },
+        "steps": {
+            "elastic_formula": {"ru": "При лобовом упругом ударе движущейся массы m по покоящейся m': v' = 2m/(m + m') · v.",
+                                "en": "For a head-on elastic hit of moving mass m on stationary m': v' = 2m/(m + m') · v."},
+            "chain_formula": {"ru": "Скорость k-го шара: v_k = v₀ · Π 2·m_{i−1}/(m_{i−1} + m_i).",
+                              "en": "Velocity of ball k: v_k = v₀ · Π 2·m_{i−1}/(m_{i−1} + m_i)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "abcd_optics": {
+        "instructions": {"ru": "Используйте матричную оптику (ABCD) для системы элементов.",
+                          "en": "Use ABCD matrix optics for the element sequence."},
+        "problem": {
+            "effective_focal": {
+                "ru": "Оптическая система состоит из последовательности элементов (по ходу луча): {elements}. Найдите эффективное фокусное расстояние системы (в м).",
+                "en": "An optical system consists of the following elements (in ray order): {elements}. Find the effective focal length of the system (in m).",
+            },
+            "image_position": {
+                "ru": "Оптическая система (по ходу луча): {elements}. Предмет расположен на расстоянии s = {s} м перед первым элементом. Найдите расстояние до изображения за последним элементом (в м).",
+                "en": "Optical system (in ray order): {elements}. An object is at distance s = {s} m before the first element. Find the image distance behind the last element (in m).",
+            },
+            "magnification": {
+                "ru": "Оптическая система (по ходу луча): {elements}. Предмет на расстоянии s = {s} м перед первым элементом. Найдите линейное увеличение системы.",
+                "en": "Optical system (in ray order): {elements}. An object is at distance s = {s} m before the first element. Find the linear magnification of the system.",
+            },
+        },
+        "steps": {
+            "matrices": {"ru": "Свободный промежуток d: [[1, d],[0, 1]]; тонкая линза f: [[1, 0],[−1/f, 1]].",
+                         "en": "Free space d: [[1, d],[0, 1]]; thin lens f: [[1, 0],[−1/f, 1]]."},
+            "product": {"ru": "Матрица системы M = M_n·…·M_1 (перемножение по ходу луча).",
+                        "en": "System matrix M = M_n·…·M_1 (multiplied in ray order)."},
+            "focal": {"ru": "Эффективное фокусное: f = −1/C.", "en": "Effective focal length: f = −1/C."},
+            "image": {"ru": "Изображение: элемент B полной матрицы (с промежутками s и s') равен нулю ⇒ s'.",
+                      "en": "Imaging: the B element of the full matrix (with spaces s and s') is zero ⇒ s'."},
+            "magnif": {"ru": "Увеличение m = A полной матрицы при B = 0.",
+                       "en": "Magnification m = A of the full matrix when B = 0."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "composite_inertia": {
+        "instructions": {"ru": "Найдите момент инерции составного тела.",
+                          "en": "Find the moment of inertia of a composite body."},
+        "problem": {
+            "point_masses": {
+                "ru": "Точечные массы закреплены на расстояниях от оси вращения. Пары (m [кг], r [м]): {pairs}. Найдите момент инерции системы (в кг·м²).",
+                "en": "Point masses are fixed at distances from the rotation axis. Pairs (m [kg], r [m]): {pairs}. Find the moment of inertia of the system (in kg·m²).",
+            },
+            "parallel_axis_shapes": {
+                "ru": "Несколько тел смещены от общей оси. Для каждого заданы момент инерции относительно собственного центра I_cm [кг·м²], масса m [кг] и смещение d [м]: {rows}. Найдите суммарный момент инерции относительно общей оси (теорема Штейнера, в кг·м²).",
+                "en": "Several bodies are offset from a common axis. For each: central moment of inertia I_cm [kg·m²], mass m [kg], offset d [m]: {rows}. Find the total moment of inertia about the common axis (parallel-axis theorem, in kg·m²).",
+            },
+        },
+        "steps": {
+            "point_formula": {"ru": "I = Σ m_i·r_i².", "en": "I = Σ m_i·r_i²."},
+            "steiner_formula": {"ru": "Теорема Штейнера: I = Σ (I_cm,i + m_i·d_i²).",
+                                "en": "Parallel-axis theorem: I = Σ (I_cm,i + m_i·d_i²)."},
+        },
+        "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
+    },
+
+    "calorimetry_mix": {
+        "instructions": {"ru": "Решите задачу о теплообмене нескольких тел.",
+                          "en": "Solve the multi-body heat-exchange problem."},
+        "problem": {
+            "equilibrium_temp": {
+                "ru": "В теплоизолированном сосуде смешивают вещества. Тройки (m [кг], c [Дж/(кг·К)], T [°C]): {rows}. Фазовых переходов нет. Найдите равновесную температуру (в °C).",
+                "en": "Substances are mixed in an insulated vessel. Triples (m [kg], c [J/(kg·K)], T [°C]): {rows}. No phase transitions. Find the equilibrium temperature (in °C).",
+            },
+            "missing_temperature": {
+                "ru": "В теплоизолированном сосуде смешивают вещества с известными тройками (m [кг], c [Дж/(кг·К)], T [°C]): {rows}. Ещё одно вещество имеет m = {m} кг, c = {c} Дж/(кг·К) и неизвестную начальную температуру. Равновесная температура смеси T = {Teq} °C. Найдите неизвестную начальную температуру (в °C).",
+                "en": "Substances with known triples (m [kg], c [J/(kg·K)], T [°C]): {rows} are mixed in an insulated vessel. One more substance has m = {m} kg, c = {c} J/(kg·K) and unknown initial temperature. The equilibrium temperature is T = {Teq} °C. Find the unknown initial temperature (in °C).",
+            },
+        },
+        "steps": {
+            "balance": {"ru": "Баланс теплоты: Σ m_i·c_i·(T − T_i) = 0.",
+                        "en": "Heat balance: Σ m_i·c_i·(T − T_i) = 0."},
+            "equilibrium_formula": {"ru": "T = Σ(m_i·c_i·T_i) / Σ(m_i·c_i).",
+                                    "en": "T = Σ(m_i·c_i·T_i) / Σ(m_i·c_i)."},
+            "missing_formula": {"ru": "T_x = [T·Σ(m·c)_все − Σ(m_i·c_i·T_i)_изв] / (m_x·c_x).",
+                                "en": "T_x = [T·Σ(m·c)_all − Σ(m_i·c_i·T_i)_known] / (m_x·c_x)."},
         },
         "final_answer": {"ru": "Ответ: {answer}", "en": "Answer: {answer}"},
     },

@@ -134,6 +134,13 @@ from re_rl.tasks.math.logic.string_dp_task import EditDistanceTask
 from re_rl.tasks.math.logic.calendar_task import CalendarReasoningTask
 from re_rl.tasks.math.logic.word_ladder_task import WordLadderTask
 from re_rl.tasks.math.logic.cfg_membership_task import CFGMembershipTask
+from re_rl.tasks.math.logic.datalog_inference_task import DatalogInferenceTask
+from re_rl.tasks.math.logic.unification_task import UnificationTask
+from re_rl.tasks.math.logic.lambda_calculus_task import LambdaCalculusTask
+from re_rl.tasks.math.logic.resolution_task import ResolutionTask
+from re_rl.tasks.math.logic.lis_dp_task import LISDPTask
+from re_rl.tasks.math.logic.kmp_matching_task import KMPMatchingTask
+from re_rl.tasks.math.logic.sliding_puzzle_task import SlidingPuzzleTask
 from re_rl.tasks.math.analysis.symbolic_regression_task import SymbolicRegressionTask
 from re_rl.tasks.math.algebra.polynomial_factorization_task import PolynomialFactorizationTask
 from re_rl.tasks.math.discrete.base_conversion_task import BaseConversionTask
@@ -1539,6 +1546,13 @@ generate_random_edit_distance_task = _mk_generator(EditDistanceTask)
 generate_random_calendar_reasoning_task = _mk_generator(CalendarReasoningTask)
 generate_random_word_ladder_task = _mk_generator(WordLadderTask)
 generate_random_cfg_membership_task = _mk_generator(CFGMembershipTask)
+generate_random_datalog_inference_task = _mk_generator(DatalogInferenceTask)
+generate_random_unification_task = _mk_generator(UnificationTask)
+generate_random_lambda_calculus_task = _mk_generator(LambdaCalculusTask)
+generate_random_resolution_task = _mk_generator(ResolutionTask)
+generate_random_lis_dp_task = _mk_generator(LISDPTask)
+generate_random_kmp_matching_task = _mk_generator(KMPMatchingTask)
+generate_random_sliding_puzzle_task = _mk_generator(SlidingPuzzleTask)
 
 
 def generate_random_regex_dfa_task(
@@ -1800,6 +1814,13 @@ ALL_TASK_GENERATORS = {
     "calendar_reasoning": generate_random_calendar_reasoning_task,
     "word_ladder": generate_random_word_ladder_task,
     "cfg_membership": generate_random_cfg_membership_task,
+    "datalog_inference": generate_random_datalog_inference_task,
+    "unification": generate_random_unification_task,
+    "lambda_calculus": generate_random_lambda_calculus_task,
+    "resolution": generate_random_resolution_task,
+    "lis_dp": generate_random_lis_dp_task,
+    "kmp_matching": generate_random_kmp_matching_task,
+    "sliding_puzzle": generate_random_sliding_puzzle_task,
     "graph_justification": generate_random_graph_justification_task,
     "bayesian_reasoning": generate_random_bayesian_reasoning_task,
     "combinatorial_optimization": generate_random_combinatorial_optimization_task,

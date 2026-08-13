@@ -99,6 +99,14 @@ from re_rl.tasks.physics.thermodynamics.gas_work_task import GasWorkTask
 from re_rl.tasks.physics.thermodynamics.mean_free_path_task import MeanFreePathTask
 from re_rl.tasks.physics.quantum.pair_production_task import PairProductionTask
 
+# Масштабируемые (многошаговые) физические задачи
+from re_rl.tasks.physics.networks.series_parallel_task import SeriesParallelNetworkTask
+from re_rl.tasks.physics.thermodynamics.pv_cycle_task import PVCycleTask
+from re_rl.tasks.physics.mechanics.elastic_chain_task import ElasticChainTask
+from re_rl.tasks.physics.waves.abcd_optics_task import ABCDOpticsTask
+from re_rl.tasks.physics.mechanics.composite_inertia_task import CompositeInertiaTask
+from re_rl.tasks.physics.thermodynamics.calorimetry_mix_task import CalorimetryMixTask
+
 
 ##################################################
 # Генераторы механики
@@ -494,6 +502,41 @@ def generate_random_pair_production_task(task_type: str = None, language: str = 
 
 
 ##################################################
+# Генераторы масштабируемых физических задач
+##################################################
+
+def generate_random_series_parallel_network_task(task_type: str = None, language: str = "ru",
+                                                  detail_level: int = 3, difficulty: int = 5):
+    return SeriesParallelNetworkTask.generate_random_task(task_type=task_type, language=language,
+                                                          detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_pv_cycle_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5):
+    return PVCycleTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_elastic_chain_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5):
+    return ElasticChainTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_abcd_optics_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5):
+    return ABCDOpticsTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_composite_inertia_task(task_type: str = None, language: str = "ru",
+                                           detail_level: int = 3, difficulty: int = 5):
+    return CompositeInertiaTask.generate_random_task(task_type=task_type, language=language,
+                                                     detail_level=detail_level, difficulty=difficulty)
+
+def generate_random_calorimetry_mix_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5):
+    return CalorimetryMixTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty)
+
+
+##################################################
 # Словарь всех генераторов физических задач
 ##################################################
 
@@ -583,6 +626,13 @@ ALL_PHYSICS_TASK_GENERATORS = {
     "mean_free_path": generate_random_mean_free_path_task,
     # Новейшая волна: современная физика
     "pair_production": generate_random_pair_production_task,
+    # Масштабируемые многошаговые задачи
+    "series_parallel_network": generate_random_series_parallel_network_task,
+    "pv_cycle": generate_random_pv_cycle_task,
+    "elastic_chain": generate_random_elastic_chain_task,
+    "abcd_optics": generate_random_abcd_optics_task,
+    "composite_inertia": generate_random_composite_inertia_task,
+    "calorimetry_mix": generate_random_calorimetry_mix_task,
 }
 
 
