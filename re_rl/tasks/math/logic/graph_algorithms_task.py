@@ -147,6 +147,10 @@ class TopologicalSortTask(_GraphBase):
                 if (a, b) not in self.edges:
                     self.edges.append((a, b))
         if self.subtype == "has_cycle" and self.has_cycle:
+            if not self.edges:
+                # без рёбер цикл невозможен — гарантируем хотя бы одно ребро
+                a, b = random.sample(range(n), 2)
+                self.edges.append((a, b))
             # добавляем обратное ребро, создающее цикл
             fwd = random.choice(self.edges)
             self.edges.append((fwd[1], fwd[0]))

@@ -16,7 +16,17 @@ from re_rl.tasks.visual.chessboard_task import ChessboardCountTask
 from re_rl.tasks.visual.puzzle_visual_task import (
     SudokuVisualTask, SlidingPuzzleVisualTask, ARCGridVisualTask,
 )
-from re_rl.tasks.visual.graph_task import ShortestPathVisualTask, MSTVisualTask
+from re_rl.tasks.visual.graph_task import (
+    ShortestPathVisualTask, MSTVisualTask, GraphColoringVisualTask,
+    TopoSortVisualTask, MaxFlowVisualTask,
+)
+from re_rl.tasks.visual.venn_task import VennDiagramTask
+from re_rl.tasks.visual.area_task import AreaReadTask
+from re_rl.tasks.visual.stats_task import StatsHistogramTask
+from re_rl.tasks.visual.motion_task import KinematicsGraphTask, ProjectileGraphTask
+from re_rl.tasks.visual.puzzle_visual2_task import (
+    GameOfLifeVisualTask, MagicSquareVisualTask, GridNavigationVisualTask,
+)
 from re_rl.tasks.visual.dfa_task import DFAVisualTask
 from re_rl.tasks.visual.logic_circuit_task import BooleanCircuitVisualTask
 from re_rl.tasks.visual.minesweeper_task import MinesweeperVisualTask
@@ -45,6 +55,17 @@ __all__ = [
     "ARCGridVisualTask",
     "ShortestPathVisualTask",
     "MSTVisualTask",
+    "GraphColoringVisualTask",
+    "TopoSortVisualTask",
+    "MaxFlowVisualTask",
+    "VennDiagramTask",
+    "AreaReadTask",
+    "StatsHistogramTask",
+    "KinematicsGraphTask",
+    "ProjectileGraphTask",
+    "GameOfLifeVisualTask",
+    "MagicSquareVisualTask",
+    "GridNavigationVisualTask",
     "DFAVisualTask",
     "BooleanCircuitVisualTask",
     "MinesweeperVisualTask",
