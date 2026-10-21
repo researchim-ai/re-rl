@@ -18,7 +18,7 @@
     },
     "s5": {
       "ru": "Во всех примерах вход преобразуется в выход по ОДНОМУ и тому же скрытому правилу (сетки из чисел-цветов).\n\n{body}\n\nТестовый вход:\n{v1}\nПримените то же правило и выпишите выходную сетку ({ro}×{co}) — все числа по строкам.",
-      "en": "Во всех примерах вход преобразуется в выход по ОДНОМУ и тому же скрытому правилу (сетки из чисел-цветов).\n\n{body}\n\nТестовый вход:\n{v1}\nПримените то же правило и выпишите выходную сетку ({ro}×{co}) — все числа по строкам."
+      "en": "In every example the input is turned into the output by ONE hidden rule (grids of color numbers).\n\n{body}\n\nTest input:\n{v1}\nApply the same rule and write the output grid ({ro}×{co}), all numbers row by row."
     }
   },
   "literals": {

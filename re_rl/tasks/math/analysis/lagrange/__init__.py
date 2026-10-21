@@ -1,4 +1,3 @@
-from .task import lagrange_at
-from .task import LagrangeInterpolationTask
+from .task import LagrangeInterpolationTask, _eval_poly, lagrange_at
 
-__all__ = ['lagrange_at', 'LagrangeInterpolationTask']
+__all__ = ["LagrangeInterpolationTask", "_eval_poly", "lagrange_at"]

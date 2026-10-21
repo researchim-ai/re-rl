@@ -6,7 +6,7 @@
     },
     "s1": {
       "ru": "Найдите координаты середины отрезка с концами {p1} и {p2}.",
-      "en": "Найдите координаты середины отрезка с концами {p1} и {p2}."
+      "en": "Find the midpoint coordinates of the segment with endpoints {p1} and {p2}."
     },
     "s2": {
       "ru": "Find the slope of the line through the points {p1} and {p2}.",
@@ -18,11 +18,11 @@
     },
     "s4": {
       "ru": "Найдите угловой коэффициент прямой, проходящей через точки {p1} и {p2}.",
-      "en": "Найдите угловой коэффициент прямой, проходящей через точки {p1} и {p2}."
+      "en": "Find the slope of the line through the points {p1} and {p2}."
     },
     "s5": {
       "ru": "Найдите квадрат расстояния между точками {p1} и {p2}.",
-      "en": "Найдите квадрат расстояния между точками {p1} и {p2}."
+      "en": "Find the square of the distance between points {p1} and {p2}."
     }
   },
   "prompt": {

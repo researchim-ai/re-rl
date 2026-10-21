@@ -314,7 +314,7 @@
     },
     "s78": {
       "ru": "<think>\nПодставляем x = {current_value}:\n{step_text}\n</think>\n<answer>{result}</answer>",
-      "en": "<think>\nПодставляем x = {current_value}:\n{step_text}\n</think>\n<answer>{result}</answer>"
+      "en": "<think>\nSubstitute x = {current_value}:\n{step_text}\n</think>\n<answer>{result}</answer>"
     },
     "s79": {
       "ru": "chain_physics_first",
@@ -394,7 +394,7 @@
     },
     "s98": {
       "ru": "<think>\n{steps}\n</think>\n<answer>{s} м</answer>",
-      "en": "<think>\n{steps}\n</think>\n<answer>{s} м</answer>"
+      "en": "<think>\n{steps}\n</think>\n<answer>{s} m</answer>"
     },
     "s99": {
       "ru": "{steps}\n\n{answer_prefix} {s} м",
@@ -430,7 +430,7 @@
     },
     "s107": {
       "ru": "Я использовал формулу дискриминанта, потому что это стандартный метод решения квадратных уравнений. Он даёт все корни и позволяет определить их количество по знаку дискриминанта.",
-      "en": "Я использовал формулу дискриминанта, потому что это стандартный метод решения квадратных уравнений. Он даёт все корни и позволяет определить их количество по знаку дискриминанта."
+      "en": "I used the discriminant formula, because it is the standard way to solve a quadratic. It gives every root and the sign of the discriminant tells how many there are."
     },
     "s108": {
       "ru": "I used the discriminant formula because it's the standard method for solving quadratic equations. It gives all roots and allows determining their number by the discriminant's sign.",
@@ -438,7 +438,7 @@
     },
     "s109": {
       "ru": "Я использовал метод переноса слагаемых и деления, потому что это самый прямой способ решения линейных уравнений.",
-      "en": "Я использовал метод переноса слагаемых и деления, потому что это самый прямой способ решения линейных уравнений."
+      "en": "I moved terms across and divided, because that is the most direct way to solve a linear equation."
     },
     "s110": {
       "ru": "I used the method of moving terms and division because it's the most direct way to solve linear equations.",
@@ -446,7 +446,7 @@
     },
     "s111": {
       "ru": "Я использовал кинематические формулы равноускоренного движения, так как в задаче дано постоянное ускорение.",
-      "en": "Я использовал кинематические формулы равноускоренного движения, так как в задаче дано постоянное ускорение."
+      "en": "I used the constant-acceleration kinematic formulas, because the problem states that the acceleration is constant."
     },
     "s112": {
       "ru": "I used kinematic equations for uniformly accelerated motion since the problem involves constant acceleration.",
@@ -474,19 +474,19 @@
     },
     "s118": {
       "ru": "сложение {x} + {v} = {v2}",
-      "en": "сложение {x} + {v} = {v2}"
+      "en": "addition {x} + {v} = {v2}"
     },
     "s119": {
       "ru": "вычитание {x} - {v} = {v2}",
-      "en": "вычитание {x} - {v} = {v2}"
+      "en": "subtraction {x} - {v} = {v2}"
     },
     "s120": {
       "ru": "умножение {x} * {v} = {v2}",
-      "en": "умножение {x} * {v} = {v2}"
+      "en": "multiplication {x} * {v} = {v2}"
     },
     "s121": {
       "ru": "сложение {x} + {v} = {v2}",
-      "en": "сложение {x} + {v} = {v2}"
+      "en": "addition {x} + {v} = {v2}"
     },
     "s122": {
       "ru": "{new_a} м/с²",
@@ -494,7 +494,7 @@
     },
     "s123": {
       "ru": "Да, можно также использовать разложение на множители или теорему Виета. Для уравнения x² + bx + c = 0 корни связаны соотношениями: x₁ + x₂ = -b и x₁ × x₂ = c.",
-      "en": "Да, можно также использовать разложение на множители или теорему Виета. Для уравнения x² + bx + c = 0 корни связаны соотношениями: x₁ + x₂ = -b и x₁ × x₂ = c."
+      "en": "Yes. Factoring or Vieta's formulas also work. For x² + bx + c = 0 the roots satisfy x₁ + x₂ = -b and x₁ × x₂ = c."
     },
     "s124": {
       "ru": "Yes, we can also use factoring or Vieta's formulas. For equation x² + bx + c = 0, the roots satisfy: x₁ + x₂ = -b and x₁ × x₂ = c.",
@@ -502,7 +502,7 @@
     },
     "s125": {
       "ru": "Можно решить графически — построить прямую y = ax + b и найти точку пересечения с горизонтальной прямой y = c.",
-      "en": "Можно решить графически — построить прямую y = ax + b и найти точку пересечения с горизонтальной прямой y = c."
+      "en": "It can also be solved graphically: plot the line y = ax + b and find where it meets the horizontal line y = c."
     },
     "s126": {
       "ru": "We can solve graphically — plot the line y = ax + b and find its intersection with the horizontal line y = c.",
@@ -510,7 +510,7 @@
     },
     "s127": {
       "ru": "Можно группировать числа по-другому или использовать свойства операций (ассоциативность, коммутативность) для упрощения вычислений.",
-      "en": "Можно группировать числа по-другому или использовать свойства операций (ассоциативность, коммутативность) для упрощения вычислений."
+      "en": "The numbers can be grouped differently, or the properties of the operations (associativity, commutativity) can be used to simplify the calculation."
     },
     "s128": {
       "ru": "We can group numbers differently or use operation properties (associativity, commutativity) to simplify calculations.",
@@ -534,15 +534,15 @@
     },
     "s133": {
       "ru": "Генерация {mode}",
-      "en": "Генерация {mode}"
+      "en": "Generating {mode}"
     },
     "s134": {
       "ru": "диалогов",
-      "en": "диалогов"
+      "en": "dialogues"
     },
     "s135": {
       "ru": "Особые случаи:\n- D < 0: нет вещественных корней\n- D = 0: один корень (кратный)\n- a = 0: уравнение становится линейным",
-      "en": "Особые случаи:\n- D < 0: нет вещественных корней\n- D = 0: один корень (кратный)\n- a = 0: уравнение становится линейным"
+      "en": "Special cases:\n- D < 0: no real roots\n- D = 0: one (repeated) root\n- a = 0: the equation becomes linear"
     },
     "s136": {
       "ru": "Edge cases:\n- D < 0: no real roots\n- D = 0: one root (repeated)\n- a = 0: equation becomes linear",
@@ -550,7 +550,7 @@
     },
     "s137": {
       "ru": "Особые случаи:\n- a = 0 и b = c: бесконечно много решений\n- a = 0 и b ≠ c: нет решений",
-      "en": "Особые случаи:\n- a = 0 и b = c: бесконечно много решений\n- a = 0 и b ≠ c: нет решений"
+      "en": "Special cases:\n- a = 0 and b = c: infinitely many solutions\n- a = 0 and b ≠ c: no solution"
     },
     "s138": {
       "ru": "Edge cases:\n- a = 0 and b = c: infinitely many solutions\n- a = 0 and b ≠ c: no solutions",
@@ -558,7 +558,7 @@
     },
     "s139": {
       "ru": "Особые случаи:\n- a = 0: равномерное движение\n- v₀ = 0: движение из состояния покоя\n- t < 0: рассматриваем движение в прошлом",
-      "en": "Особые случаи:\n- a = 0: равномерное движение\n- v₀ = 0: движение из состояния покоя\n- t < 0: рассматриваем движение в прошлом"
+      "en": "Special cases:\n- a = 0: uniform motion\n- v₀ = 0: motion from rest\n- t < 0: the motion is considered in the past"
     },
     "s140": {
       "ru": "Edge cases:\n- a = 0: uniform motion\n- v₀ = 0: motion from rest\n- t < 0: considering past motion",

@@ -10,7 +10,7 @@
     },
     "s2": {
       "ru": "Дано y' = {rhs}, y({x0}) = {y0}. Чему равно y после {steps} {word}?",
-      "en": "Дано y' = {rhs}, y({x0}) = {y0}. Чему равно y после {steps} {word}?"
+      "en": "Given y' = {rhs}, y({x0}) = {y0}. What is y after {steps} {word}?"
     },
     "s3": {
       "ru": "Given y' = {rhs}, y({x0}) = {y0}. What is y after {steps} {word}?",
@@ -18,11 +18,11 @@
     },
     "s4": {
       "ru": "шага",
-      "en": "шага"
+      "en": "step"
     },
     "s5": {
       "ru": "шагов",
-      "en": "шагов"
+      "en": "steps"
     }
   }
 }

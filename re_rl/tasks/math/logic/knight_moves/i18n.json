@@ -6,27 +6,27 @@
     },
     "s2": {
       "ru": "не удалось подобрать позицию коня",
-      "en": "не удалось подобрать позицию коня"
+      "en": "could not find a knight position"
     },
     "s3": {
       "ru": "Кратчайший путь ({n} {word}): {shown}.",
-      "en": "Кратчайший путь ({n} {word}): {shown}."
+      "en": "Shortest path ({n} {word}): {shown}."
     },
     "s4": {
       "ru": "ход",
-      "en": "ход"
+      "en": "move"
     },
     "s5": {
       "ru": "хода",
-      "en": "хода"
+      "en": "moves"
     },
     "s6": {
       "ru": "ходов",
-      "en": "ходов"
+      "en": "moves"
     },
     "s7": {
       "ru": "дистанция коня не совпала со слоем BFS",
-      "en": "дистанция коня не совпала со слоем BFS"
+      "en": "the knight distance did not match the BFS layer"
     }
   },
   "literals": {

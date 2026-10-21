@@ -2,163 +2,163 @@
   "text": {
     "s0": {
       "ru": "✓ Загружено {v0} теорем из {v1} файлов",
-      "en": "✓ Загружено {v0} теорем из {v1} файлов"
+      "en": "✓ Loaded {v0} theorems from {v1} files"
     },
     "s1": {
       "ru": "✓ Загружено {v0} теорем из Lean env (inspected={inspected}, rejected={failed}{rejected_msg})",
-      "en": "✓ Загружено {v0} теорем из Lean env (inspected={inspected}, rejected={failed}{rejected_msg})"
+      "en": "✓ Loaded {v0} theorems from the Lean env (inspected={inspected}, rejected={failed}{rejected_msg})"
     },
     "s7": {
       "ru": "  Теорем исследовано: {v0}",
-      "en": "  Теорем исследовано: {v0}"
+      "en": "  Theorems explored: {v0}"
     },
     "s8": {
       "ru": "  Доказательств найдено: {v0}",
-      "en": "  Доказательств найдено: {v0}"
+      "en": "  Proofs found: {v0}"
     },
     "s9": {
       "ru": "  Доказательств верифицировано: {v0}",
-      "en": "  Доказательств верифицировано: {v0}"
+      "en": "  Proofs verified: {v0}"
     },
     "s10": {
       "ru": "  Уникальных тактик: {v0}",
-      "en": "  Уникальных тактик: {v0}"
+      "en": "  Unique tactics: {v0}"
     },
     "s11": {
       "ru": "  Общее время: {total_time:.1f}s ({v1:.1f} мин)",
-      "en": "  Общее время: {total_time:.1f}s ({v1:.1f} мин)"
+      "en": "  Total time: {total_time:.1f}s ({v1:.1f} min)"
     },
     "s12": {
       "ru": "Извлекаем шаблоны тактик из {v0} файлов...",
-      "en": "Извлекаем шаблоны тактик из {v0} файлов..."
+      "en": "Extracting tactic templates from {v0} files..."
     },
     "s13": {
       "ru": "✓ Извлечено {v0} уникальных шаблонов из {total_tactics} тактик ({errors} ошибок)",
-      "en": "✓ Извлечено {v0} уникальных шаблонов из {total_tactics} тактик ({errors} ошибок)"
+      "en": "✓ Extracted {v0} unique templates from {total_tactics} tactics ({errors} errors)"
     },
     "s14": {
       "ru": "Извлекаем шаблоны тактик из {v0} теорем...",
-      "en": "Извлекаем шаблоны тактик из {v0} теорем..."
+      "en": "Extracting tactic templates from {v0} theorems..."
     },
     "s15": {
       "ru": "✓ Извлечено {v0} уникальных шаблонов тактик",
-      "en": "✓ Извлечено {v0} уникальных шаблонов тактик"
+      "en": "✓ Extracted {v0} unique tactic templates"
     },
     "s16": {
       "ru": "✓ Шаблоны сохранены в {path}",
-      "en": "✓ Шаблоны сохранены в {path}"
+      "en": "✓ Templates saved to {path}"
     },
     "s17": {
       "ru": "✓ Загружено {v0} шаблонов из {path}",
-      "en": "✓ Загружено {v0} шаблонов из {path}"
+      "en": "✓ Loaded {v0} templates from {path}"
     },
     "s18": {
       "ru": "Строим FAISS index для {v0} шаблонов...",
-      "en": "Строим FAISS index для {v0} шаблонов..."
+      "en": "Building a FAISS index for {v0} templates..."
     },
     "s19": {
       "ru": "✓ FAISS index построен: {v0} шаблонов, dim={dim}",
-      "en": "✓ FAISS index построен: {v0} шаблонов, dim={dim}"
+      "en": "✓ FAISS index built: {v0} templates, dim={dim}"
     },
     "s20": {
       "ru": "✓ RAG сохранён в {path}",
-      "en": "✓ RAG сохранён в {path}"
+      "en": "✓ RAG saved to {path}"
     },
     "s21": {
       "ru": "✓ RAG загружен из {path}: {v1} шаблонов",
-      "en": "✓ RAG загружен из {path}: {v1} шаблонов"
+      "en": "✓ RAG loaded from {path}: {v1} templates"
     },
     "s22": {
       "ru": "Нет build/ir в {repo_dir}",
-      "en": "Нет build/ir в {repo_dir}"
+      "en": "No build/ir in {repo_dir}"
     },
     "s23": {
       "ru": "  Теорем (prefix=t): {v0} из {v1}",
-      "en": "  Теорем (prefix=t): {v0} из {v1}"
+      "en": "  Theorems (prefix=t): {v0} of {v1}"
     },
     "s24": {
       "ru": "  После фильтрации: {v0} (отброшено {v1} внутренних)",
-      "en": "  После фильтрации: {v0} (отброшено {v1} внутренних)"
+      "en": "  After filtering: {v0} ({v1} internal ones dropped)"
     },
     "s25": {
       "ru": "Будем исследовать {v0} теорем",
-      "en": "Будем исследовать {v0} теорем"
+      "en": "Exploring {v0} theorems"
     },
     "s26": {
       "ru": "  ⚠ FALSE POSITIVE (не прошли replay): {verify_failed}",
-      "en": "  ⚠ FALSE POSITIVE (не прошли replay): {verify_failed}"
+      "en": "  ⚠ FALSE POSITIVE (failed replay): {verify_failed}"
     },
     "s27": {
       "ru": "  Данные: {pairs_path}",
-      "en": "  Данные: {pairs_path}"
+      "en": "  Data: {pairs_path}"
     },
     "s28": {
       "ru": "Нет build/ir в {repo_dir}. Запустите: python scripts/fast_trace.py",
-      "en": "Нет build/ir в {repo_dir}. Запустите: python scripts/fast_trace.py"
+      "en": "No build/ir in {repo_dir}. Run: python scripts/fast_trace.py"
     },
     "s29": {
       "ru": "Нет шаблонов для индексации",
-      "en": "Нет шаблонов для индексации"
+      "en": "No templates to index"
     },
     "s30": {
       "ru": "Сначала вызовите build_index()",
-      "en": "Сначала вызовите build_index()"
+      "en": "Call build_index() first"
     },
     "s32": {
       "ru": "Загрузка только указанных имён: {v0}",
-      "en": "Загрузка только указанных имён: {v0}"
+      "en": "Loading only the listed names: {v0}"
     },
     "s33": {
       "ru": "Каталог загружен из кэша: {v0} констант",
-      "en": "Каталог загружен из кэша: {v0} констант"
+      "en": "Catalog loaded from cache: {v0} constants"
     },
     "s34": {
       "ru": "Получаем каталог из Lean ({module_prefix})...",
-      "en": "Получаем каталог из Lean ({module_prefix})..."
+      "en": "Fetching the catalog from Lean ({module_prefix})..."
     },
     "s35": {
       "ru": "  Получено {v0} констант за {elapsed:.1f}с",
-      "en": "  Получено {v0} констант за {elapsed:.1f}с"
+      "en": "  Got {v0} constants in {elapsed:.1f}s"
     },
     "s36": {
       "ru": "Извлечение шаблонов",
-      "en": "Извлечение шаблонов"
+      "en": "Extracting templates"
     },
     "s37": {
       "ru": "  {v0}/{v1} теорем обработано, {v2} шаблонов",
-      "en": "  {v0}/{v1} теорем обработано, {v2} шаблонов"
+      "en": "  {v0}/{v1} theorems processed, {v2} templates"
     },
     "s38": {
       "ru": "env_catalog ошибка: {e}",
-      "en": "env_catalog ошибка: {e}"
+      "en": "env_catalog error: {e}"
     },
     "s40": {
       "ru": "  {n_steps} шагов выполнено, {v1} состояний, proven={theorem_proven}",
-      "en": "  {n_steps} шагов выполнено, {v1} состояний, proven={theorem_proven}"
+      "en": "  {n_steps} steps done, {v1} states, proven={theorem_proven}"
     },
     "s41": {
       "ru": "\n⚠ {consecutive_errors} ошибок подряд — Lean/Pantograph вероятно упал (PANIC). Прерываем загрузку. Загружено {v1} теорем.",
-      "en": "\n⚠ {consecutive_errors} ошибок подряд — Lean/Pantograph вероятно упал (PANIC). Прерываем загрузку. Загружено {v1} теорем."
+      "en": "\n⚠ {consecutive_errors} errors in a row — Lean/Pantograph likely crashed (PANIC). Stopping the load. Loaded {v1} theorems."
     },
     "s42": {
       "ru": "  ✗ Ошибка: {v0}",
-      "en": "  ✗ Ошибка: {v0}"
+      "en": "  ✗ Error: {v0}"
     },
     "s43": {
       "ru": "  BFS остановлен: скачок памяти на тактике +{rss_delta:.0f}MB > {max_tactic_rss_jump_mb}MB",
-      "en": "  BFS остановлен: скачок памяти на тактике +{rss_delta:.0f}MB > {max_tactic_rss_jump_mb}MB"
+      "en": "  BFS stopped: tactic memory jump +{rss_delta:.0f}MB > {max_tactic_rss_jump_mb}MB"
     },
     "s44": {
       "ru": "\n⚠ {consecutive_errors} ошибок подряд — Lean/Pantograph вероятно упал (PANIC). Прерываем загрузку. Загружено {v1} теорем.",
-      "en": "\n⚠ {consecutive_errors} ошибок подряд — Lean/Pantograph вероятно упал (PANIC). Прерываем загрузку. Загружено {v1} теорем."
+      "en": "\n⚠ {consecutive_errors} errors in a row — Lean/Pantograph likely crashed (PANIC). Stopping the load. Loaded {v1} theorems."
     },
     "s45": {
       "ru": "  BFS остановлен: память процесса {rss_mb:.0f}MB > {max_process_rss_mb}MB",
-      "en": "  BFS остановлен: память процесса {rss_mb:.0f}MB > {max_process_rss_mb}MB"
+      "en": "  BFS stopped: process memory {rss_mb:.0f}MB > {max_process_rss_mb}MB"
     },
     "s46": {
       "ru": "  BFS остановлен: скачок памяти на тактике +{rss_delta_fail:.0f}MB > {max_tactic_rss_jump_mb}MB",
-      "en": "  BFS остановлен: скачок памяти на тактике +{rss_delta_fail:.0f}MB > {max_tactic_rss_jump_mb}MB"
+      "en": "  BFS stopped: tactic memory jump +{rss_delta_fail:.0f}MB > {max_tactic_rss_jump_mb}MB"
     }
   },
   "literals": {

@@ -22,15 +22,15 @@
     },
     "s5": {
       "ru": "B = {v0} Тл",
-      "en": "B = {v0} Тл"
+      "en": "B = {v0} T"
     },
     "s6": {
       "ru": "n = N/L = {n}/{L} = {n_per_m:.0f} вит/м",
-      "en": "n = N/L = {n}/{L} = {n_per_m:.0f} вит/м"
+      "en": "n = N/L = {n}/{L} = {n_per_m:.0f} turns/m"
     },
     "s7": {
       "ru": "B = μ₀nI = {v0} Тл",
-      "en": "B = μ₀nI = {v0} Тл"
+      "en": "B = μ₀nI = {v0} T"
     },
     "s8": {
       "ru": "{F:.4f} Н",
@@ -42,11 +42,11 @@
     },
     "s10": {
       "ru": "{Phi:.6f} Вб",
-      "en": "{Phi:.6f} Вб"
+      "en": "{Phi:.6f} Wb"
     },
     "s11": {
       "ru": "Φ = BS·cos(α) = {B}×{S}×cos({angle}°) = {Phi:.6f} Вб",
-      "en": "Φ = BS·cos(α) = {B}×{S}×cos({angle}°) = {Phi:.6f} Вб"
+      "en": "Φ = BS·cos(α) = {B}×{S}×cos({angle}°) = {Phi:.6f} Wb"
     }
   }
 }

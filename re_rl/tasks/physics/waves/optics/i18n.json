@@ -2,7 +2,7 @@
   "text": {
     "s0": {
       "ru": "Полное внутреннее отражение",
-      "en": "Полное внутреннее отражение"
+      "en": "Total internal reflection"
     },
     "s1": {
       "ru": "sin(θ₂) = n₁sin(θ₁)/n₂ = {n1}×sin({angle1}°)/{n2} = {sin_theta2:.4f}",
@@ -10,39 +10,39 @@
     },
     "s2": {
       "ru": "Полное внутреннее отражение невозможно (n₁ ≤ n₂)",
-      "en": "Полное внутреннее отражение невозможно (n₁ ≤ n₂)"
+      "en": "Total internal reflection is impossible (n₁ ≤ n₂)"
     },
     "s3": {
       "ru": "{f_prime:.2f} см",
-      "en": "{f_prime:.2f} см"
+      "en": "{f_prime:.2f} cm"
     },
     "s4": {
       "ru": "Изображение на бесконечности",
-      "en": "Изображение на бесконечности"
+      "en": "Image at infinity"
     },
     "s5": {
       "ru": "f' = d·F/(d-F) = {d}×{f}/({d_2}-{f_2}) = {f_prime:.2f} см",
-      "en": "f' = d·F/(d-F) = {d}×{f}/({d_2}-{f_2}) = {f_prime:.2f} см"
+      "en": "f' = d·F/(d-F) = {d}×{f}/({d_2}-{f_2}) = {f_prime:.2f} cm"
     },
     "s6": {
       "ru": "Г = |f'/d| = |{f_img}/{d_obj}| = {magnification:.4f}",
-      "en": "Г = |f'/d| = |{f_img}/{d_obj}| = {magnification:.4f}"
+      "en": "M = |f'/d| = |{f_img}/{d_obj}| = {magnification:.4f}"
     },
     "s7": {
       "ru": "{f_prime:.2f} см",
-      "en": "{f_prime:.2f} см"
+      "en": "{f_prime:.2f} cm"
     },
     "s8": {
       "ru": "Изображение на бесконечности",
-      "en": "Изображение на бесконечности"
+      "en": "Image at infinity"
     },
     "s9": {
       "ru": "F = R/2 = {R}/2 = {f_mirror} см",
-      "en": "F = R/2 = {R}/2 = {f_mirror} см"
+      "en": "F = R/2 = {R}/2 = {f_mirror} cm"
     },
     "s10": {
       "ru": "f' = d·R/(2d-R) = {d}×{R}/(2×{d_2}-{R_2}) = {f_prime:.2f} см",
-      "en": "f' = d·R/(2d-R) = {d}×{R}/(2×{d_2}-{R_2}) = {f_prime:.2f} см"
+      "en": "f' = d·R/(2d-R) = {d}×{R}/(2×{d_2}-{R_2}) = {f_prime:.2f} cm"
     }
   }
 }

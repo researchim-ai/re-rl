@@ -30,7 +30,7 @@
     },
     "s17": {
       "ru": "{v0} человек знают английский, {v1} человек знают французский, {both} человек знают оба языка.",
-      "en": "{v0} человек знают английский, {v1} человек знают французский, {both} человек знают оба языка."
+      "en": "{v0} people know English, {v1} people know French, and {both} people know both."
     },
     "s18": {
       "ru": "{v0} people know English, {v1} people know French, {both} people know both languages.",
@@ -54,11 +54,11 @@
     },
     "s23": {
       "ru": "⊥ (ложь)",
-      "en": "⊥ (ложь)"
+      "en": "⊥ (false)"
     },
     "s24": {
       "ru": "⊤ (истина)",
-      "en": "⊤ (истина)"
+      "en": "⊤ (true)"
     },
     "s25": {
       "ru": "set_logic_neither_known",

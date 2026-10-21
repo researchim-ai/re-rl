@@ -30,23 +30,23 @@
     },
     "s7": {
       "ru": "Дан пропозициональный вывод. Правила: MP (из A и A→B следует B), MT (из A→B и ¬B следует ¬A), ∧-введение (из A и B следует A∧B), ∧-удаление (из A∧B следует A или B). Каждая строка ссылается на номера предыдущих строк.\n\n{body}\n\nКорректен ли вывод (каждый шаг верно применяет своё правило)? Ответьте да/нет.",
-      "en": "Дан пропозициональный вывод. Правила: MP (из A и A→B следует B), MT (из A→B и ¬B следует ¬A), ∧-введение (из A и B следует A∧B), ∧-удаление (из A∧B следует A или B). Каждая строка ссылается на номера предыдущих строк.\n\n{body}\n\nКорректен ли вывод (каждый шаг верно применяет своё правило)? Ответьте да/нет."
+      "en": "Here is a propositional derivation. Rules: MP (from A and A→B infer B), MT (from A→B and ¬B infer ¬A), ∧-introduction (from A and B infer A∧B), ∧-elimination (from A∧B infer A or B). Each line cites earlier line numbers.\n\n{body}\n\nIs the derivation correct (does every step apply its rule properly)? Answer yes or no."
     },
     "s8": {
       "ru": "∧-введение",
-      "en": "∧-введение"
+      "en": "∧-introduction"
     },
     "s9": {
       "ru": "∧-удаление",
-      "en": "∧-удаление"
+      "en": "∧-elimination"
     },
     "s10": {
       "ru": "∧-удаление",
-      "en": "∧-удаление"
+      "en": "∧-elimination"
     },
     "s11": {
       "ru": "посылка",
-      "en": "посылка"
+      "en": "premise"
     }
   }
 }

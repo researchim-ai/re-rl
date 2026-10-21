@@ -214,7 +214,7 @@ class MultiturnGenerator:
         dialogue.add_user(user_msg)
         
         if reasoning_mode:
-            assistant_msg = texts.t('s62', self.language, step=step, result=result)
+            assistant_msg = texts.t('s62', dialogue.language, step=step, result=result)
         else:
             answer_prefix = (texts.t('s10', lang))
             assistant_msg = f"{step}\n\n{answer_prefix} {result}"
@@ -223,9 +223,9 @@ class MultiturnGenerator:
         # Последующие turns
         current_result = result
         operations = [
-            ("continue_add", lambda x, v: x + v, lambda x, v, l: texts.t('s118', self.language, x=x, v=v, v2=x + v) if l == "ru" else f"addition {x} + {v} = {x + v}"),
-            ("continue_subtract", lambda x, v: x - v, lambda x, v, l: texts.t('s119', self.language, x=x, v=v, v2=x - v) if l == "ru" else f"subtraction {x} - {v} = {x - v}"),
-            ("continue_multiply", lambda x, v: x * v, lambda x, v, l: texts.t('s120', self.language, x=x, v=v, v2=x * v) if l == "ru" else f"multiplication {x} * {v} = {x * v}"),
+            ("continue_add", lambda x, v: x + v, lambda x, v, l: texts.t('s118', dialogue.language, x=x, v=v, v2=x + v) if l == "ru" else f"addition {x} + {v} = {x + v}"),
+            ("continue_subtract", lambda x, v: x - v, lambda x, v, l: texts.t('s119', dialogue.language, x=x, v=v, v2=x - v) if l == "ru" else f"subtraction {x} - {v} = {x - v}"),
+            ("continue_multiply", lambda x, v: x * v, lambda x, v, l: texts.t('s120', dialogue.language, x=x, v=v, v2=x * v) if l == "ru" else f"multiplication {x} * {v} = {x * v}"),
         ]
         
         for _ in range(turns - 1):
@@ -236,7 +236,7 @@ class MultiturnGenerator:
             if op_key == "continue_multiply" and abs(current_result) > 1000:
                 op_key = "continue_add"
                 op_func = lambda x, v: x + v
-                step_func = lambda x, v, l: texts.t('s121', self.language, x=x, v=v, v2=x + v) if l == "ru" else f"addition {x} + {v} = {x + v}"
+                step_func = lambda x, v, l: texts.t('s121', dialogue.language, x=x, v=v, v2=x + v) if l == "ru" else f"addition {x} + {v} = {x + v}"
             
             user_msg = get_prompt("chain", op_key, lang, value=value)
             dialogue.add_user(user_msg)
@@ -245,7 +245,7 @@ class MultiturnGenerator:
             step_text = step_func(current_result, value, lang)
             
             if reasoning_mode:
-                assistant_msg = texts.t('s76', self.language, step_text=step_text, new_result=new_result)
+                assistant_msg = texts.t('s76', dialogue.language, step_text=step_text, new_result=new_result)
             else:
                 answer_prefix = (texts.t('s29', lang))
                 assistant_msg = f"{step_text}\n\n{answer_prefix} {new_result}"
@@ -290,11 +290,11 @@ class MultiturnGenerator:
             step2 = f"x₁ = {x1}, x₂ = {x2}"
             steps = f"{step1}\n{step2}"
         
-        user_msg = get_prompt("chain", texts.t('s63', self.language), lang, equation=equation)
+        user_msg = get_prompt("chain", texts.t('s63', dialogue.language), lang, equation=equation)
         dialogue.add_user(user_msg)
         
         if reasoning_mode:
-            assistant_msg = texts.t('s64', self.language, steps=steps, x=x)
+            assistant_msg = texts.t('s64', dialogue.language, steps=steps, x=x)
         else:
             answer_prefix = (texts.t('s13', lang))
             assistant_msg = f"{steps}\n\n{answer_prefix} x = {x}"
@@ -307,14 +307,14 @@ class MultiturnGenerator:
             addend = random.randint(-10, 10)
             expression = f"{multiplier}x + {addend}" if addend >= 0 else f"{multiplier}x - {abs(addend)}"
             
-            user_msg = get_prompt("chain", texts.t('s77', self.language), lang, expression=expression)
+            user_msg = get_prompt("chain", texts.t('s77', dialogue.language), lang, expression=expression)
             dialogue.add_user(user_msg)
             
             result = multiplier * current_value + addend
             step_text = (texts.t('s14', lang, multiplier=multiplier, current_value=current_value, addend=addend, result=result))
             
             if reasoning_mode:
-                assistant_msg = texts.t('s78', self.language, current_value=current_value, step_text=step_text, result=result)
+                assistant_msg = texts.t('s78', dialogue.language, current_value=current_value, step_text=step_text, result=result)
             else:
                 answer_prefix = (texts.t('s30', lang))
                 subst_text = (texts.t('s31', lang))
@@ -346,38 +346,38 @@ class MultiturnGenerator:
             
             steps = (texts.t('s16', lang, v0=v0, a=a, t=t, v=v))
             
-            user_msg = get_prompt("chain", texts.t('s79', self.language), lang, problem=problem)
+            user_msg = get_prompt("chain", texts.t('s79', dialogue.language), lang, problem=problem)
             dialogue.add_user(user_msg)
             
             if reasoning_mode:
-                assistant_msg = texts.t('s80', self.language, steps=steps, v=v)
+                assistant_msg = texts.t('s80', dialogue.language, steps=steps, v=v)
             else:
                 answer_prefix = (texts.t('s32', lang))
-                assistant_msg = texts.t('s81', self.language, steps=steps, answer_prefix=answer_prefix, v=v)
+                assistant_msg = texts.t('s81', dialogue.language, steps=steps, answer_prefix=answer_prefix, v=v)
             dialogue.add_assistant(assistant_msg)
             
             # Второй turn: найти перемещение
             if turns >= 2:
                 s = v0 * t + a * t * t / 2
                 quantity = (texts.t('s33', lang))
-                user_msg = get_prompt("chain", texts.t('s97', self.language), lang, quantity=quantity)
+                user_msg = get_prompt("chain", texts.t('s97', dialogue.language), lang, quantity=quantity)
                 dialogue.add_user(user_msg)
                 
                 steps = (texts.t('s34', lang, v0=v0, t=t, a=a, t_2=t, v4=v0 * t, v5=a * t * t / 2, s=s))
                 
                 if reasoning_mode:
-                    assistant_msg = texts.t('s98', self.language, steps=steps, s=s)
+                    assistant_msg = texts.t('s98', dialogue.language, steps=steps, s=s)
                 else:
                     answer_prefix = (texts.t('s50', lang))
-                    assistant_msg = texts.t('s99', self.language, steps=steps, answer_prefix=answer_prefix, s=s)
+                    assistant_msg = texts.t('s99', dialogue.language, steps=steps, answer_prefix=answer_prefix, s=s)
                 dialogue.add_assistant(assistant_msg)
             
             # Третий turn: что если изменить параметр
             if turns >= 3:
                 new_a = a * 2
-                user_msg = get_prompt("chain", texts.t('s100', self.language), lang, 
+                user_msg = get_prompt("chain", texts.t('s100', dialogue.language), lang, 
                                      parameter=(texts.t('s59', lang)),
-                                     new_value=texts.t('s122', self.language, new_a=new_a))
+                                     new_value=texts.t('s122', dialogue.language, new_a=new_a))
                 dialogue.add_user(user_msg)
                 
                 new_v = v0 + new_a * t
@@ -386,10 +386,10 @@ class MultiturnGenerator:
                 steps = texts.t('s17', lang, new_a=new_a, v0=v0, new_a_2=new_a, t=t, new_v=new_v, v0_2=v0, t_2=t, new_a_3=new_a, t_3=t, new_s=new_s)
                 
                 if reasoning_mode:
-                    assistant_msg = texts.t('s101', self.language, steps=steps, new_v=new_v, new_s=new_s)
+                    assistant_msg = texts.t('s101', dialogue.language, steps=steps, new_v=new_v, new_s=new_s)
                 else:
                     answer_prefix = (texts.t('s51', lang))
-                    assistant_msg = texts.t('s102', self.language, steps=steps, answer_prefix=answer_prefix, new_v=new_v, new_s=new_s)
+                    assistant_msg = texts.t('s102', dialogue.language, steps=steps, answer_prefix=answer_prefix, new_v=new_v, new_s=new_s)
                 dialogue.add_assistant(assistant_msg)
         
         else:  # dynamics: F = ma
@@ -399,16 +399,16 @@ class MultiturnGenerator:
             
             problem = (texts.t('s18', lang, m=m, F=F))
             
-            steps = texts.t('s65', self.language, F=F, m=m, a=a)
+            steps = texts.t('s65', dialogue.language, F=F, m=m, a=a)
             
-            user_msg = get_prompt("chain", texts.t('s82', self.language), lang, problem=problem)
+            user_msg = get_prompt("chain", texts.t('s82', dialogue.language), lang, problem=problem)
             dialogue.add_user(user_msg)
             
             if reasoning_mode:
-                assistant_msg = texts.t('s83', self.language, steps=steps, a=a)
+                assistant_msg = texts.t('s83', dialogue.language, steps=steps, a=a)
             else:
                 answer_prefix = (texts.t('s35', lang))
-                assistant_msg = texts.t('s84', self.language, steps=steps, answer_prefix=answer_prefix, a=a)
+                assistant_msg = texts.t('s84', dialogue.language, steps=steps, answer_prefix=answer_prefix, a=a)
             dialogue.add_assistant(assistant_msg)
             
             # Продолжение: найти скорость через время t
@@ -416,16 +416,16 @@ class MultiturnGenerator:
                 t = random.randint(2, 10)
                 v = round(a * t, 2)
                 quantity = (texts.t('s36', lang, t=t))
-                user_msg = get_prompt("chain", texts.t('s103', self.language), lang, quantity=quantity)
+                user_msg = get_prompt("chain", texts.t('s103', dialogue.language), lang, quantity=quantity)
                 dialogue.add_user(user_msg)
                 
-                steps = texts.t('s85', self.language, a=a, t=t, v=v)
+                steps = texts.t('s85', dialogue.language, a=a, t=t, v=v)
                 
                 if reasoning_mode:
-                    assistant_msg = texts.t('s104', self.language, steps=steps, v=v)
+                    assistant_msg = texts.t('s104', dialogue.language, steps=steps, v=v)
                 else:
                     answer_prefix = (texts.t('s52', lang))
-                    assistant_msg = texts.t('s105', self.language, steps=steps, answer_prefix=answer_prefix, v=v)
+                    assistant_msg = texts.t('s105', dialogue.language, steps=steps, answer_prefix=answer_prefix, v=v)
                 dialogue.add_assistant(assistant_msg)
     
     # =========================================================================
@@ -605,7 +605,7 @@ class MultiturnGenerator:
         step = (texts.t('s2', lang, a=a, b=b, result=result))
         
         if reasoning_mode:
-            assistant_msg = texts.t('s66', self.language, step=step, result=result)
+            assistant_msg = texts.t('s66', dialogue.language, step=step, result=result)
         else:
             answer_prefix = (texts.t('s19', lang))
             assistant_msg = f"{step}\n\n{answer_prefix} {result}"
@@ -674,31 +674,31 @@ class MultiturnGenerator:
         step = (texts.t('s4', lang, a=a, b=b, result=result))
         
         if reasoning_mode:
-            assistant_msg = texts.t('s67', self.language, step=step, result=result)
+            assistant_msg = texts.t('s67', dialogue.language, step=step, result=result)
         else:
             answer_prefix = (texts.t('s20', lang))
             assistant_msg = f"{step}\n\n{answer_prefix} {result}"
         dialogue.add_assistant(assistant_msg)
         
         # Вариации
-        variation_types = [texts.t('s68', self.language), texts.t('s69', self.language), texts.t('s70', self.language)]
+        variation_types = [texts.t('s68', dialogue.language), texts.t('s69', dialogue.language), texts.t('s70', dialogue.language)]
         
         for i in range(num_variations):
             var_type = variation_types[i % len(variation_types)]
             
-            if var_type == texts.t('s88', self.language):
+            if var_type == texts.t('s88', dialogue.language):
                 param_name = (texts.t('s39', lang))
-                user_msg = get_prompt("variations", texts.t('s113', self.language), lang, param_name=param_name)
+                user_msg = get_prompt("variations", texts.t('s113', dialogue.language), lang, param_name=param_name)
                 dialogue.add_user(user_msg)
                 
                 new_a = a * 2
                 new_result = new_a + b
                 step = f"{new_a} + {b} = {new_result}"
                 
-            elif var_type == texts.t('s114', self.language):
+            elif var_type == texts.t('s114', dialogue.language):
                 new_b = random.randint(50, 100)
                 param_name = (texts.t('s55', lang))
-                user_msg = get_prompt("variations", texts.t('s129', self.language), lang, param_name=param_name, new_value=new_b)
+                user_msg = get_prompt("variations", texts.t('s129', dialogue.language), lang, param_name=param_name, new_value=new_b)
                 dialogue.add_user(user_msg)
                 
                 new_result = a + new_b
@@ -706,7 +706,7 @@ class MultiturnGenerator:
                 
             else:  # what_if_negative
                 param_name = (texts.t('s56', lang))
-                user_msg = get_prompt("variations", texts.t('s130', self.language), lang, param_name=param_name)
+                user_msg = get_prompt("variations", texts.t('s130', dialogue.language), lang, param_name=param_name)
                 dialogue.add_user(user_msg)
                 
                 new_b = -b
@@ -714,7 +714,7 @@ class MultiturnGenerator:
                 step = f"{a} + ({new_b}) = {new_result}"
             
             if reasoning_mode:
-                assistant_msg = texts.t('s89', self.language, step=step, new_result=new_result)
+                assistant_msg = texts.t('s89', dialogue.language, step=step, new_result=new_result)
             else:
                 answer_prefix = (texts.t('s40', lang))
                 assistant_msg = f"{step}\n\n{answer_prefix} {new_result}"
@@ -745,7 +745,7 @@ class MultiturnGenerator:
             steps = f"D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 2"
             
             if reasoning_mode:
-                assistant_msg = texts.t('s90', self.language, steps=steps)
+                assistant_msg = texts.t('s90', dialogue.language, steps=steps)
             else:
                 answer_prefix = (texts.t('s41', lang))
                 assistant_msg = f"{steps}\n\n{answer_prefix} x = 2, x = 3"
@@ -757,7 +757,7 @@ class MultiturnGenerator:
                     # Изменяем коэффициент b
                     new_b = -7
                     param_name = (texts.t('s57', lang))
-                    user_msg = get_prompt("variations", texts.t('s131', self.language), lang, param_name=param_name, new_value=new_b)
+                    user_msg = get_prompt("variations", texts.t('s131', dialogue.language), lang, param_name=param_name, new_value=new_b)
                     dialogue.add_user(user_msg)
                     
                     # x² - 7x + 6 = 0 -> x = 1, x = 6
@@ -766,14 +766,14 @@ class MultiturnGenerator:
                     answer = "x = 1, x = 6"
                 else:
                     # Что если D < 0
-                    user_msg = get_prompt("followup", texts.t('s132', self.language), lang)
+                    user_msg = get_prompt("followup", texts.t('s132', dialogue.language), lang)
                     dialogue.add_user(user_msg)
                     
                     steps = texts.t('s42', lang)
                     answer = texts.t('s43', lang)
                 
                 if reasoning_mode:
-                    assistant_msg = texts.t('s115', self.language, steps=steps, answer=answer)
+                    assistant_msg = texts.t('s115', dialogue.language, steps=steps, answer=answer)
                 else:
                     answer_prefix = (texts.t('s58', lang))
                     assistant_msg = f"{steps}\n\n{answer_prefix} {answer}"
@@ -803,13 +803,13 @@ class MultiturnGenerator:
         dialogue.add_user(problem)
         
         v = v0 + a * t
-        steps = texts.t('s61', self.language, v0=v0, a=a, t=t, v=v)
+        steps = texts.t('s61', dialogue.language, v0=v0, a=a, t=t, v=v)
         
         if reasoning_mode:
-            assistant_msg = texts.t('s71', self.language, steps=steps, v=v)
+            assistant_msg = texts.t('s71', dialogue.language, steps=steps, v=v)
         else:
             answer_prefix = (texts.t('s22', lang))
-            assistant_msg = texts.t('s72', self.language, steps=steps, answer_prefix=answer_prefix, v=v)
+            assistant_msg = texts.t('s72', dialogue.language, steps=steps, answer_prefix=answer_prefix, v=v)
         dialogue.add_assistant(assistant_msg)
         
         # Вариации
@@ -817,17 +817,17 @@ class MultiturnGenerator:
             if i == 0:
                 # Удвоить ускорение
                 param_name = (texts.t('s44', lang))
-                user_msg = get_prompt("variations", texts.t('s116', self.language), lang, param_name=param_name)
+                user_msg = get_prompt("variations", texts.t('s116', dialogue.language), lang, param_name=param_name)
                 dialogue.add_user(user_msg)
                 
                 new_a = a * 2
                 new_v = v0 + new_a * t
-                steps = texts.t('s91', self.language, new_a=new_a, v0=v0, new_a_2=new_a, t=t, new_v=new_v)
-                answer = texts.t('s92', self.language, new_v=new_v)
+                steps = texts.t('s91', dialogue.language, new_a=new_a, v0=v0, new_a_2=new_a, t=t, new_v=new_v)
+                answer = texts.t('s92', dialogue.language, new_v=new_v)
             else:
                 # Отрицательное ускорение (торможение)
                 param_name = (texts.t('s45', lang))
-                user_msg = get_prompt("variations", texts.t('s117', self.language), lang, param_name=param_name)
+                user_msg = get_prompt("variations", texts.t('s117', dialogue.language), lang, param_name=param_name)
                 dialogue.add_user(user_msg)
                 
                 new_a = -a
@@ -836,7 +836,7 @@ class MultiturnGenerator:
                 answer = (texts.t('s46', lang, new_v=new_v))
             
             if reasoning_mode:
-                assistant_msg = texts.t('s93', self.language, steps=steps, answer=answer)
+                assistant_msg = texts.t('s93', dialogue.language, steps=steps, answer=answer)
             else:
                 answer_prefix = (texts.t('s47', lang))
                 assistant_msg = f"{steps}\n\n{answer_prefix} {answer}"
@@ -904,7 +904,7 @@ class MultiturnGenerator:
         wrong_step = (texts.t('s6', lang, a=a, b=b, wrong_result=wrong_result))
         
         if reasoning_mode:
-            wrong_msg = texts.t('s73', self.language, wrong_step=wrong_step, wrong_result=wrong_result)
+            wrong_msg = texts.t('s73', dialogue.language, wrong_step=wrong_step, wrong_result=wrong_result)
         else:
             answer_prefix = (texts.t('s24', lang))
             wrong_msg = f"{wrong_step}\n\n{answer_prefix} {wrong_result}"
@@ -919,7 +919,7 @@ class MultiturnGenerator:
         correct_step = (texts.t('s7', lang, a=a, b=b, correct_result=correct_result))
         
         if reasoning_mode:
-            correct_msg = texts.t('s74', self.language, acknowledgment=acknowledgment, correct_step=correct_step, correct_result=correct_result)
+            correct_msg = texts.t('s74', dialogue.language, acknowledgment=acknowledgment, correct_step=correct_step, correct_result=correct_result)
         else:
             answer_prefix = (texts.t('s25', lang))
             correct_msg = f"{acknowledgment}\n{correct_step}\n\n{answer_prefix} {correct_result}"
@@ -948,7 +948,7 @@ class MultiturnGenerator:
             wrong_steps = texts.t('s8', lang)
             
             if reasoning_mode:
-                wrong_msg = texts.t('s95', self.language, wrong_steps=wrong_steps, wrong_answer=wrong_answer)
+                wrong_msg = texts.t('s95', dialogue.language, wrong_steps=wrong_steps, wrong_answer=wrong_answer)
             else:
                 answer_prefix = (texts.t('s48', lang))
                 wrong_msg = f"{wrong_steps}\n\n{answer_prefix} {wrong_answer}"
@@ -963,7 +963,7 @@ class MultiturnGenerator:
             correct_steps = "D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 2  ✓"
             
             if reasoning_mode:
-                correct_msg = texts.t('s96', self.language, acknowledgment=acknowledgment, correct_steps=correct_steps, correct_answer=correct_answer)
+                correct_msg = texts.t('s96', dialogue.language, acknowledgment=acknowledgment, correct_steps=correct_steps, correct_answer=correct_answer)
             else:
                 answer_prefix = (texts.t('s49', lang))
                 correct_msg = f"{acknowledgment}\n{correct_steps}\n\n{answer_prefix} {correct_answer}"

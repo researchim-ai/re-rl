@@ -2,15 +2,15 @@
   "text": {
     "s1": {
       "ru": "Требуется численное решение",
-      "en": "Требуется численное решение"
+      "en": "A numerical solution is required"
     },
     "s2": {
       "ru": "Требуется численное решение",
-      "en": "Требуется численное решение"
+      "en": "A numerical solution is required"
     },
     "s3": {
       "ru": "Требуется симплекс-метод",
-      "en": "Требуется симплекс-метод"
+      "en": "The simplex method is required"
     },
     "s4": {
       "ru": "max_min_interval",

@@ -30,7 +30,7 @@
     },
     "s9": {
       "ru": "L = {v0} кг·м²/с",
-      "en": "L = {v0} кг·м²/с"
+      "en": "L = {v0} kg·m²/s"
     },
     "s10": {
       "ru": "rotational_param_radius",
@@ -58,7 +58,7 @@
     },
     "s16": {
       "ru": "кг·м²/с",
-      "en": "кг·м²/с"
+      "en": "kg·m²/s"
     },
     "s17": {
       "ru": "moment_of_inertia",
@@ -70,7 +70,7 @@
     },
     "s19": {
       "ru": "Н·м",
-      "en": "Н·м"
+      "en": "N·m"
     },
     "s20": {
       "ru": "rotational_find_angular_acc",

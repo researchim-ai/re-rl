@@ -2,107 +2,107 @@
   "text": {
     "s1": {
       "ru": "  Всего шаблонов: {v0}",
-      "en": "  Всего шаблонов: {v0}"
+      "en": "  Templates in total: {v0}"
     },
     "s5": {
       "ru": "✓ Обучение завершено за {total_time:.1f}с ({v1:.1f} мин)",
-      "en": "✓ Обучение завершено за {total_time:.1f}с ({v1:.1f} мин)"
+      "en": "✓ Training finished in {total_time:.1f}s ({v1:.1f} min)"
     },
     "s6": {
       "ru": "  Модель: {model_path}",
-      "en": "  Модель: {model_path}"
+      "en": "  Model: {model_path}"
     },
     "s7": {
       "ru": "Шаблонов для negative sampling: {v0}",
-      "en": "Шаблонов для negative sampling: {v0}"
+      "en": "Templates for negative sampling: {v0}"
     },
     "s8": {
       "ru": "✓ Сгенерировано {v0} троек ({errors} ошибок)",
-      "en": "✓ Сгенерировано {v0} троек ({errors} ошибок)"
+      "en": "✓ Generated {v0} triples ({errors} errors)"
     },
     "s9": {
       "ru": "✓ {v0} hard negatives сгенерировано",
-      "en": "✓ {v0} hard negatives сгенерировано"
+      "en": "✓ {v0} hard negatives generated"
     },
     "s10": {
       "ru": "✓ {v0} троек сохранено в {path}",
-      "en": "✓ {v0} троек сохранено в {path}"
+      "en": "✓ {v0} triples saved to {path}"
     },
     "s11": {
       "ru": "✓ {v0} троек загружено из {path}",
-      "en": "✓ {v0} троек загружено из {path}"
+      "en": "✓ {v0} triples loaded from {path}"
     },
     "s12": {
       "ru": "Инициализация {model_name} на {device}...",
-      "en": "Инициализация {model_name} на {device}..."
+      "en": "Initializing {model_name} on {device}..."
     },
     "s13": {
       "ru": "Обучение: {v0} троек, {num_epochs} эпох, batch={batch_size}",
-      "en": "Обучение: {v0} троек, {num_epochs} эпох, batch={batch_size}"
+      "en": "Training: {v0} triples, {num_epochs} epochs, batch={batch_size}"
     },
     "s14": {
       "ru": "  Шагов за эпоху: {v0}",
-      "en": "  Шагов за эпоху: {v0}"
+      "en": "  Steps per epoch: {v0}"
     },
     "s15": {
       "ru": "\n✓ Обучение завершено: final_avg_loss={final_loss:.4f}",
-      "en": "\n✓ Обучение завершено: final_avg_loss={final_loss:.4f}"
+      "en": "\n✓ Training finished: final_avg_loss={final_loss:.4f}"
     },
     "s16": {
       "ru": "✓ Модель сохранена в {path}",
-      "en": "✓ Модель сохранена в {path}"
+      "en": "✓ Model saved to {path}"
     },
     "s17": {
       "ru": "Загрузка BERT из {model_path}...",
-      "en": "Загрузка BERT из {model_path}..."
+      "en": "Loading BERT from {model_path}..."
     },
     "s18": {
       "ru": "Строим FAISS L2 index для {v0} шаблонов...",
-      "en": "Строим FAISS L2 index для {v0} шаблонов..."
+      "en": "Building a FAISS L2 index for {v0} templates..."
     },
     "s19": {
       "ru": "✓ FAISS L2 index: {v0} шаблонов, dim={dim}",
-      "en": "✓ FAISS L2 index: {v0} шаблонов, dim={dim}"
+      "en": "✓ FAISS L2 index: {v0} templates, dim={dim}"
     },
     "s20": {
       "ru": "✓ TrainedRAG сохранён в {path}",
-      "en": "✓ TrainedRAG сохранён в {path}"
+      "en": "✓ TrainedRAG saved to {path}"
     },
     "s21": {
       "ru": "✓ TrainedRAG загружен из {path}: {v1} шаблонов",
-      "en": "✓ TrainedRAG загружен из {path}: {v1} шаблонов"
+      "en": "✓ TrainedRAG loaded from {path}: {v1} templates"
     },
     "s22": {
       "ru": "Шаг 4.{v0}: Hard negative mining (round {v1})",
-      "en": "Шаг 4.{v0}: Hard negative mining (round {v1})"
+      "en": "Step 4.{v0}: Hard negative mining (round {v1})"
     },
     "s23": {
       "ru": "Нет build/ir в {repo_dir}",
-      "en": "Нет build/ir в {repo_dir}"
+      "en": "No build/ir in {repo_dir}"
     },
     "s24": {
       "ru": "Нет шаблонов с достаточной частотой",
-      "en": "Нет шаблонов с достаточной частотой"
+      "en": "No templates with sufficient frequency"
     },
     "s25": {
       "ru": "Сначала вызовите generate_from_ast_dir()",
-      "en": "Сначала вызовите generate_from_ast_dir()"
+      "en": "Call generate_from_ast_dir() first"
     },
     "s26": {
       "ru": "Сначала загрузите модель: load_model()",
-      "en": "Сначала загрузите модель: load_model()"
+      "en": "Load the model first: load_model()"
     },
     "s27": {
       "ru": "Нет шаблонов для индексации",
-      "en": "Нет шаблонов для индексации"
+      "en": "No templates to index"
     },
     "s28": {
       "ru": "Сначала вызовите build_index()",
-      "en": "Сначала вызовите build_index()"
+      "en": "Call build_index() first"
     },
     "s29": {
       "ru": "Генерация triplets",
-      "en": "Генерация triplets"
+      "en": "Generating triplets"
     }
   },
   "literals": {

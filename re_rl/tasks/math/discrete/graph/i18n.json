@@ -14,7 +14,7 @@
     },
     "s3": {
       "ru": "минимальное остовное дерево данного графа",
-      "en": "минимальное остовное дерево данного графа"
+      "en": "a minimum spanning tree of this graph"
     },
     "s4": {
       "ru": "minimum_spanning_tree",
@@ -22,7 +22,7 @@
     },
     "s5": {
       "ru": "диаметр данного графа",
-      "en": "диаметр данного графа"
+      "en": "diameter of this graph"
     },
     "s6": {
       "ru": "Final path: {{path}}.",
@@ -30,7 +30,7 @@
     },
     "s7": {
       "ru": "средний коэффициент кластеризации данного графа",
-      "en": "средний коэффициент кластеризации данного графа"
+      "en": "the average clustering coefficient of this graph"
     },
     "s8": {
       "ru": "Step {{iter}}: Selected {{u}} with distance {{d}}. Updates: {{updates}}.",

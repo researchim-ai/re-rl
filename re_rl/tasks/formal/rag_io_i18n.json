@@ -2,7 +2,7 @@
   "text": {
     "s1": {
       "ru": "Шаблоны не найдены: {templates_path}",
-      "en": "Шаблоны не найдены: {templates_path}"
+      "en": "Templates not found: {templates_path}"
     }
   },
   "literals": {

@@ -10,7 +10,7 @@
     },
     "s3": {
       "ru": "большинство потерялось при генерации",
-      "en": "большинство потерялось при генерации"
+      "en": "most of the sample was lost during generation"
     }
   },
   "literals": {

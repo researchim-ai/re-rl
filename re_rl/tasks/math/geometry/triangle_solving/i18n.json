@@ -6,7 +6,7 @@
     },
     "s1": {
       "ru": "В прямоугольном треугольнике катеты равны {a} и {b}. Найдите площадь треугольника.",
-      "en": "В прямоугольном треугольнике катеты равны {a} и {b}. Найдите площадь треугольника."
+      "en": "In a right triangle the legs are {a} and {b}. Find the area of the triangle."
     },
     "s2": {
       "ru": "A triangle has two sides {a} and {b} with the included angle {theta}°. Find the square of the third side.",
@@ -18,11 +18,11 @@
     },
     "s4": {
       "ru": "В треугольнике две стороны равны {a} и {b}, а угол между ними {theta}°. Найдите квадрат третьей стороны.",
-      "en": "В треугольнике две стороны равны {a} и {b}, а угол между ними {theta}°. Найдите квадрат третьей стороны."
+      "en": "In a triangle two sides are {a} and {b}, and the angle between them is {theta}°. Find the square of the third side."
     },
     "s5": {
       "ru": "В прямоугольном треугольнике катеты равны {a} и {b}. Найдите квадрат гипотенузы.",
-      "en": "В прямоугольном треугольнике катеты равны {a} и {b}. Найдите квадрат гипотенузы."
+      "en": "In a right triangle the legs are {a} and {b}. Find the square of the hypotenuse."
     }
   },
   "prompt": {

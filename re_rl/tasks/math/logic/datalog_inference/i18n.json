@@ -9,8 +9,8 @@
       "en": "if an object has {b}, then it has {head}"
     },
     "s2": {
-      "ru": "Факты:\n{{f}}\nПравила:\n{{r}}\n{{q}}",
-      "en": "Facts:\n{{f}}\nRules:\n{{r}}\n{{q}}"
+      "ru": "Факты:\n{f}\nПравила:\n{r}\n{q}",
+      "en": "Facts:\n{f}\nRules:\n{r}\n{q}"
     },
     "s3": {
       "ru": "Вопрос: обладает ли объект {query_obj} свойством {target}? (да/нет)",

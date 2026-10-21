@@ -6,15 +6,15 @@
     },
     "s1": {
       "ru": "Найдите {what} корней многочлена P(x) = {_poly_str}.",
-      "en": "Найдите {what} корней многочлена P(x) = {_poly_str}."
+      "en": "Find the {what} of the roots of P(x) = {_poly_str}."
     },
     "s2": {
       "ru": "сумму",
-      "en": "сумму"
+      "en": "sum"
     },
     "s3": {
       "ru": "произведение",
-      "en": "произведение"
+      "en": "product"
     }
   },
   "prompt": {

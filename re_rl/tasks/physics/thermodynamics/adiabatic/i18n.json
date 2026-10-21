@@ -26,19 +26,19 @@
     },
     "s8": {
       "ru": "адиабата: давление при расширении",
-      "en": "адиабата: давление при расширении"
+      "en": "adiabat: pressure under expansion"
     },
     "s9": {
       "ru": "адиабата: давление при сжатии",
-      "en": "адиабата: давление при сжатии"
+      "en": "adiabat: pressure under compression"
     },
     "s10": {
       "ru": "адиабата: температура при расширении",
-      "en": "адиабата: температура при расширении"
+      "en": "adiabat: temperature under expansion"
     },
     "s11": {
       "ru": "адиабата: температура при сжатии",
-      "en": "адиабата: температура при сжатии"
+      "en": "adiabat: temperature under compression"
     },
     "s12": {
       "ru": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, so the volume grows by {power}. V2 = {V1} * {power_2} = {V2}.",
@@ -46,7 +46,7 @@
     },
     "s13": {
       "ru": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, значит объём вырос в {k_2}^{q_t} = {power} раз. V2 = {V1} * {power_2} = {V2}.",
-      "en": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, значит объём вырос в {k_2}^{q_t} = {power} раз. V2 = {V1} * {power_2} = {V2}."
+      "en": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, so the volume grew by a factor of {k_2}^{q_t} = {power}. V2 = {V1} * {power_2} = {V2}."
     },
     "s14": {
       "ru": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, so the volume grows by {power}. V2 = {V1} * {power_2} = {V2}.",

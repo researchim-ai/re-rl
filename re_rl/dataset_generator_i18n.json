@@ -10,15 +10,15 @@
     },
     "s3": {
       "ru": "  Математика ({v0}): {v1}...",
-      "en": "  Математика ({v0}): {v1}..."
+      "en": "  Mathematics ({v0}): {v1}..."
     },
     "s4": {
       "ru": "  Физика ({v0}): {v1}",
-      "en": "  Физика ({v0}): {v1}"
+      "en": "  Physics ({v0}): {v1}"
     },
     "s8": {
       "ru": "\nВсего сгенерировано: {v0} примеров",
-      "en": "\nВсего сгенерировано: {v0} примеров"
+      "en": "\nGenerated in total: {v0} examples"
     },
     "s9": {
       "ru": "<think>\n\n</think>\n<answer>{final_ans}</answer>",
@@ -26,7 +26,7 @@
     },
     "s10": {
       "ru": "Рассмотрите изображение и решите задачу. Рассуждения — в <think></think>, ответ — в <answer></answer>.",
-      "en": "Рассмотрите изображение и решите задачу. Рассуждения — в <think></think>, ответ — в <answer></answer>."
+      "en": "Look at the image and solve the problem. Put the reasoning in <think></think> and the answer in <answer></answer>."
     },
     "s11": {
       "ru": "Look at the image and solve the task. Put reasoning in <think></think>, the answer in <answer></answer>.",
@@ -38,19 +38,19 @@
     },
     "s13": {
       "ru": "Ответ:",
-      "en": "Ответ:"
+      "en": "Answer:"
     },
     "s14": {
       "ru": "Ответ ",
-      "en": "Ответ "
+      "en": "Answer "
     },
     "s15": {
       "ru": "Неизвестный тип: {task_type}. Доступные: {v1}",
-      "en": "Неизвестный тип: {task_type}. Доступные: {v1}"
+      "en": "Unknown type: {task_type}. Available: {v1}"
     },
     "s16": {
       "ru": "Решите задачу. Запишите рассуждения в <think></think>, ответ в <answer></answer>.",
-      "en": "Решите задачу. Запишите рассуждения в <think></think>, ответ в <answer></answer>."
+      "en": "Solve the problem. Write the reasoning in <think></think> and the answer in <answer></answer>."
     },
     "s17": {
       "ru": "Solve the problem. Write reasoning in <think></think>, answer in <answer></answer>.",
@@ -58,7 +58,7 @@
     },
     "s18": {
       "ru": "Решите задачу пошагово, объясняя каждый шаг рассуждения.",
-      "en": "Решите задачу пошагово, объясняя каждый шаг рассуждения."
+      "en": "Solve the problem step by step, explaining each reasoning step."
     },
     "s19": {
       "ru": "Solve the problem step by step, explaining each reasoning step.",
@@ -66,7 +66,7 @@
     },
     "s20": {
       "ru": "Решите задачу пошагово, используя LaTeX для математических формул.",
-      "en": "Решите задачу пошагово, используя LaTeX для математических формул."
+      "en": "Solve the problem step by step, using LaTeX for mathematical formulas."
     },
     "s21": {
       "ru": "Solve the problem step by step, using LaTeX for mathematical formulas.",
@@ -78,51 +78,51 @@
     },
     "s23": {
       "ru": "Сохранено {v0} примеров в {filepath} (schema: {resolved_format})",
-      "en": "Сохранено {v0} примеров в {filepath} (schema: {resolved_format})"
+      "en": "Saved {v0} examples to {filepath} (schema: {resolved_format})"
     },
     "s24": {
       "ru": "Сохранено {v0} примеров в {filepath}",
-      "en": "Сохранено {v0} примеров в {filepath}"
+      "en": "Saved {v0} examples to {filepath}"
     },
     "s25": {
       "ru": "Сохранено {v0} примеров в {filepath} (schema: {resolved_format})",
-      "en": "Сохранено {v0} примеров в {filepath} (schema: {resolved_format})"
+      "en": "Saved {v0} examples to {filepath} (schema: {resolved_format})"
     },
     "s26": {
       "ru": "Сохранено {v0} примеров в {filepath}",
-      "en": "Сохранено {v0} примеров в {filepath}"
+      "en": "Saved {v0} examples to {filepath}"
     },
     "s27": {
       "ru": "Генерация задач",
-      "en": "Генерация задач"
+      "en": "Generating tasks"
     },
     "s28": {
       "ru": "попыток",
-      "en": "попыток"
+      "en": "attempts"
     },
     "s29": {
       "ru": "Генерация GRPO",
-      "en": "Генерация GRPO"
+      "en": "Generating GRPO"
     },
     "s30": {
       "ru": "попыток",
-      "en": "попыток"
+      "en": "attempts"
     },
     "s31": {
       "ru": "Генерация VLM",
-      "en": "Генерация VLM"
+      "en": "Generating VLM"
     },
     "s32": {
       "ru": "попыток",
-      "en": "попыток"
+      "en": "attempts"
     },
     "s33": {
       "ru": "Генерация задач",
-      "en": "Генерация задач"
+      "en": "Generating tasks"
     },
     "s34": {
       "ru": "задач",
-      "en": "задач"
+      "en": "tasks"
     },
     "s35": {
       "ru": "ref_final_answer",

@@ -2,11 +2,11 @@
   "text": {
     "s0": {
       "ru": "точки не определены",
-      "en": "точки не определены"
+      "en": "points are undefined"
     },
     "s1": {
       "ru": "требуется дополнительный анализ",
-      "en": "требуется дополнительный анализ"
+      "en": "further analysis is required"
     },
     "s2": {
       "ru": "system_first_ineq",

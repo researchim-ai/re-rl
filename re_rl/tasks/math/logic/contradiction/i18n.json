@@ -10,7 +10,7 @@
     },
     "s2": {
       "ru": "База фактов должна содержать не менее чем {num_statements} истинных и {num_statements_2} ложных утверждений.",
-      "en": "База фактов должна содержать не менее чем {num_statements} истинных и {num_statements_2} ложных утверждений."
+      "en": "The fact base must contain at least {num_statements} true statements and {num_statements_2} false statements."
     }
   },
   "prompt": {

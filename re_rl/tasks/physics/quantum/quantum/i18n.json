@@ -30,7 +30,7 @@
     },
     "s8": {
       "ru": "Фотоэффект не происходит (hν < A)",
-      "en": "Фотоэффект не происходит (hν < A)"
+      "en": "The photoelectric effect does not occur (hν < A)"
     },
     "s9": {
       "ru": "λc = h/(m_e·c) = {v0} м",
@@ -70,7 +70,7 @@
     },
     "s18": {
       "ru": "ℏ = h/(2π) = {v0} Дж·с",
-      "en": "ℏ = h/(2π) = {v0} Дж·с"
+      "en": "ℏ = h/(2π) = {v0} J·s"
     },
     "s19": {
       "ru": "Δp ≥ ℏ/(2Δx) = {v0} / (2 × {v1}) = {v2} кг·м/с",
@@ -90,7 +90,7 @@
     },
     "s23": {
       "ru": "Так как энергия фотона меньше работы выхода (hν < A), фотоэффект не происходит.",
-      "en": "Так как энергия фотона меньше работы выхода (hν < A), фотоэффект не происходит."
+      "en": "Because the photon energy is below the work function (hν < A), the photoelectric effect does not occur."
     },
     "s24": {
       "ru": "de_broglie_formula",

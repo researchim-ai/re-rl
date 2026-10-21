@@ -22,7 +22,7 @@
     },
     "s5": {
       "ru": "Неизвестный тип задачи: {task_type}. Доступные: {v1}",
-      "en": "Неизвестный тип задачи: {task_type}. Доступные: {v1}"
+      "en": "Unknown task type: {task_type}. Available: {v1}"
     }
   }
 }

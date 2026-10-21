@@ -613,7 +613,7 @@ class DatasetGenerator:
                         iterations.append((task_type, language, difficulty))
         
         if show_progress:
-            iterations = tqdm(iterations, desc=texts.t('s33', self.language), unit=texts.t('s34', self.language), total=total)
+            iterations = tqdm(iterations, desc=texts.t('s33', "ru"), unit=texts.t('s34', "ru"), total=total)
         
         for task_type, language, difficulty in iterations:
             try:
@@ -643,9 +643,9 @@ class DatasetGenerator:
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(dataset, f, ensure_ascii=False, indent=2)
         if validate:
-            print(texts.t('s23', self.language, v0=len(dataset), filepath=filepath, resolved_format=resolved_format))
+            print(texts.t('s23', "ru", v0=len(dataset), filepath=filepath, resolved_format=resolved_format))
         else:
-            print(texts.t('s24', self.language, v0=len(dataset), filepath=filepath))
+            print(texts.t('s24', "ru", v0=len(dataset), filepath=filepath))
     
     def save_jsonl(
         self,
@@ -663,9 +663,9 @@ class DatasetGenerator:
             for item in dataset:
                 f.write(json.dumps(item, ensure_ascii=False) + "\n")
         if validate:
-            print(texts.t('s25', self.language, v0=len(dataset), filepath=filepath, resolved_format=resolved_format))
+            print(texts.t('s25', "ru", v0=len(dataset), filepath=filepath, resolved_format=resolved_format))
         else:
-            print(texts.t('s26', self.language, v0=len(dataset), filepath=filepath))
+            print(texts.t('s26', "ru", v0=len(dataset), filepath=filepath))
     
     def split_dataset(
         self,

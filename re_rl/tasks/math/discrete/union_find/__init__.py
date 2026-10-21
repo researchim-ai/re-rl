@@ -1,3 +1,3 @@
-from .task import UnionFindTask
+from .task import UnionFindTask, _DSU
 
-__all__ = ['UnionFindTask']
+__all__ = ["UnionFindTask", "_DSU"]

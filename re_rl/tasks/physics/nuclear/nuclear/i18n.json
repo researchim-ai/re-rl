@@ -6,7 +6,7 @@
     },
     "s1": {
       "ru": "Δm = {mass_defect:.6f} а.е.м.",
-      "en": "Δm = {mass_defect:.6f} а.е.м."
+      "en": "Δm = {mass_defect:.6f} u"
     },
     "s2": {
       "ru": "A = {activity:.4e} Бк",
@@ -18,11 +18,11 @@
     },
     "s4": {
       "ru": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м.",
-      "en": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м."
+      "en": "m_theor = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} u"
     },
     "s5": {
       "ru": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} а.е.м.",
-      "en": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} а.е.м."
+      "en": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} u"
     },
     "s6": {
       "ru": "Eсв = {mass_defect:.6f} × 931.5 = {binding_energy:.2f} МэВ",
@@ -34,15 +34,15 @@
     },
     "s8": {
       "ru": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м.",
-      "en": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м."
+      "en": "m_theor = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} u"
     },
     "s9": {
       "ru": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} а.е.м.",
-      "en": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} а.е.м."
+      "en": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} u"
     },
     "s10": {
       "ru": "λ = ln(2)/T½ = {decay_const:.6e} с⁻¹",
-      "en": "λ = ln(2)/T½ = {decay_const:.6e} с⁻¹"
+      "en": "λ = ln(2)/T½ = {decay_const:.6e} s⁻¹"
     },
     "s11": {
       "ru": "A = λN = {decay_const:.6e} × {N0} = {activity:.4e} Бк",

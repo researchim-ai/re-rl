@@ -2,7 +2,7 @@
   "text": {
     "s0": {
       "ru": "Дано: P(A) = {p_a}, P(B|A) = {p_b_a}, P(B|¬A) = {p_b_na}.",
-      "en": "Дано: P(A) = {p_a}, P(B|A) = {p_b_a}, P(B|¬A) = {p_b_na}."
+      "en": "Given: P(A) = {p_a}, P(B|A) = {p_b_a}, P(B|¬A) = {p_b_na}."
     }
   },
   "prompt": {
