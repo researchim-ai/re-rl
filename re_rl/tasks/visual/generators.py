@@ -28,6 +28,13 @@ from re_rl.tasks.visual.motion_task import KinematicsGraphTask, ProjectileGraphT
 from re_rl.tasks.visual.puzzle_visual2_task import (
     GameOfLifeVisualTask, MagicSquareVisualTask, GridNavigationVisualTask,
 )
+from re_rl.tasks.visual.convex_hull_task import ConvexHullVisualTask
+from re_rl.tasks.visual.scatter_task import ScatterPlotTask
+from re_rl.tasks.visual.circuit_task import CircuitResistanceVisualTask
+from re_rl.tasks.visual.box_plot_task import BoxPlotTask
+from re_rl.tasks.visual.number_line_task import NumberLineTask
+from re_rl.tasks.visual.slope_task import SlopeReadTask
+from re_rl.tasks.visual.balance_scale_task import BalanceScaleTask
 from re_rl.tasks.visual.dfa_task import DFAVisualTask
 from re_rl.tasks.visual.logic_circuit_task import BooleanCircuitVisualTask
 from re_rl.tasks.visual.minesweeper_task import MinesweeperVisualTask
@@ -58,6 +65,8 @@ VISUAL_TASK_CLASSES = [
     VennDiagramTask, AreaReadTask, StatsHistogramTask,
     KinematicsGraphTask, ProjectileGraphTask,
     GameOfLifeVisualTask, MagicSquareVisualTask, GridNavigationVisualTask,
+    ConvexHullVisualTask, ScatterPlotTask, CircuitResistanceVisualTask,
+    BoxPlotTask, NumberLineTask, SlopeReadTask, BalanceScaleTask,
 ]
 
 ALL_VISUAL_TASK_GENERATORS = {cls.TASK_TYPE: _mk(cls) for cls in VISUAL_TASK_CLASSES}

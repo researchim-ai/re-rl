@@ -105,6 +105,23 @@ def test_puzzle_visual_inherits_logic():
     assert sp.verify(f"<answer>{sp.answer_int}</answer>") == 1.0
 
 
+def test_balance_and_slope_formulas():
+    from re_rl.tasks.visual import BalanceScaleTask, SlopeReadTask, NumberLineTask
+    _seed("bal", 1)
+    arm = BalanceScaleTask.generate_random_task(task_type="equal_arm", difficulty=8)
+    assert arm.answer == sum(arm.left) - sum(arm.right)
+    assert arm.answer > 0
+    lever = BalanceScaleTask.generate_random_task(task_type="lever", difficulty=6)
+    assert lever.m_l * lever.d_l == lever.answer * lever.d_r
+    slope = SlopeReadTask.generate_random_task(task_type="slope", difficulty=7)
+    assert slope.answer == slope.m
+    inter = SlopeReadTask.generate_random_task(task_type="intercept", difficulty=4)
+    assert inter.answer == inter.b
+    mid = NumberLineTask.generate_random_task(task_type="midpoint", difficulty=9)
+    assert (mid.a + mid.b) % 2 == 0
+    assert mid.answer == (mid.a + mid.b) // 2
+
+
 def test_generate_vlm_dataset(tmp_path):
     from re_rl.dataset_generator import DatasetGenerator
 

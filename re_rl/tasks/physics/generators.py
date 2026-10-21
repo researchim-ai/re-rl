@@ -106,6 +106,31 @@ from re_rl.tasks.physics.mechanics.elastic_chain_task import ElasticChainTask
 from re_rl.tasks.physics.waves.abcd_optics_task import ABCDOpticsTask
 from re_rl.tasks.physics.mechanics.composite_inertia_task import CompositeInertiaTask
 from re_rl.tasks.physics.thermodynamics.calorimetry_mix_task import CalorimetryMixTask
+from re_rl.tasks.physics.thermodynamics.adiabatic_task import AdiabaticTask
+from re_rl.tasks.physics.mechanics.ballistic_pendulum_task import BallisticPendulumTask
+from re_rl.tasks.physics.mechanics.restitution_task import RestitutionTask
+from re_rl.tasks.physics.mechanics.meeting_motion_task import MeetingMotionTask
+from re_rl.tasks.physics.electricity.internal_resistance_task import InternalResistanceTask
+from re_rl.tasks.physics.electricity.lc_oscillator_task import LCOscillatorTask
+from re_rl.tasks.physics.astrophysics.parallax_task import ParallaxTask
+from re_rl.tasks.physics.quantum.half_life_task import HalfLifeStepsTask
+from re_rl.tasks.physics.thermodynamics.fourier_task import FourierConductionTask
+from re_rl.tasks.physics.mechanics.spring_energy_task import SpringEnergyTask
+from re_rl.tasks.physics.mechanics.efficiency_task import EfficiencyTask
+from re_rl.tasks.physics.mechanics.relative_velocity_task import RelativeVelocityTask
+from re_rl.tasks.physics.oscillations.pendulum_ratio_task import PendulumRatioTask
+from re_rl.tasks.physics.waves.wave_relation_task import WaveRelationTask
+from re_rl.tasks.physics.thermodynamics.sensible_heat_task import SensibleHeatTask
+from re_rl.tasks.physics.electricity.resistor_pair_task import ResistorPairTask
+from re_rl.tasks.physics.mechanics.reduced_mass_task import ReducedMassTask
+from re_rl.tasks.physics.magnetism.cyclotron_task import CyclotronTask
+from re_rl.tasks.physics.astrophysics.redshift_task import RedshiftTask
+from re_rl.tasks.physics.relativity.rational_gamma_task import RationalGammaTask
+from re_rl.tasks.physics.thermodynamics.stefan_ratio_task import StefanRatioTask
+from re_rl.tasks.physics.electricity.inductor_energy_task import InductorEnergyTask
+from re_rl.tasks.physics.waves.doppler_shift_task import DopplerShiftTask
+from re_rl.tasks.physics.astrophysics.hubble_task import HubbleTask
+from re_rl.tasks.physics.mechanics.free_fall_task import FreeFallTask
 
 
 ##################################################
@@ -530,6 +555,156 @@ def generate_random_composite_inertia_task(task_type: str = None, language: str 
     return CompositeInertiaTask.generate_random_task(task_type=task_type, language=language,
                                                      detail_level=detail_level, difficulty=difficulty)
 
+def generate_random_adiabatic_task(task_type: str = None, language: str = "ru",
+                                 detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return AdiabaticTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_ballistic_pendulum_task(task_type: str = None, language: str = "ru",
+                                            detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BallisticPendulumTask.generate_random_task(task_type=task_type, language=language,
+                                                      detail_level=detail_level, difficulty=difficulty,
+                                                      **kwargs)
+
+def generate_random_restitution_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return RestitutionTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_meeting_motion_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return MeetingMotionTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_internal_resistance_task(task_type: str = None, language: str = "ru",
+                                             detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return InternalResistanceTask.generate_random_task(task_type=task_type, language=language,
+                                                       detail_level=detail_level, difficulty=difficulty,
+                                                       **kwargs)
+
+def generate_random_lc_oscillator_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return LCOscillatorTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_stellar_parallax_task(task_type: str = None, language: str = "ru",
+                                          detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ParallaxTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_half_life_steps_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HalfLifeStepsTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_fourier_conduction_task(task_type: str = None, language: str = "ru",
+                                            detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return FourierConductionTask.generate_random_task(task_type=task_type, language=language,
+                                                      detail_level=detail_level, difficulty=difficulty,
+                                                      **kwargs)
+
+def generate_random_spring_energy_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SpringEnergyTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_mechanical_efficiency_task(task_type: str = None, language: str = "ru",
+                                               detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return EfficiencyTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_relative_velocity_task(task_type: str = None, language: str = "ru",
+                                           detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return RelativeVelocityTask.generate_random_task(task_type=task_type, language=language,
+                                                     detail_level=detail_level, difficulty=difficulty,
+                                                     **kwargs)
+
+def generate_random_pendulum_ratio_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return PendulumRatioTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_wave_relation_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return WaveRelationTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_sensible_heat_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SensibleHeatTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_resistor_pair_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ResistorPairTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_reduced_mass_task(task_type: str = None, language: str = "ru",
+                                      detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ReducedMassTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_cyclotron_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return CyclotronTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_spectral_redshift_task(task_type: str = None, language: str = "ru",
+                                           detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return RedshiftTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_rational_gamma_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return RationalGammaTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_stefan_ratio_task(task_type: str = None, language: str = "ru",
+                                      detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return StefanRatioTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_inductor_energy_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return InductorEnergyTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty,
+                                                   **kwargs)
+
+def generate_random_doppler_shift_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return DopplerShiftTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_hubble_law_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HubbleTask.generate_random_task(task_type=task_type, language=language,
+                                           detail_level=detail_level, difficulty=difficulty,
+                                           **kwargs)
+
+def generate_random_free_fall_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return FreeFallTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
 def generate_random_calorimetry_mix_task(task_type: str = None, language: str = "ru",
                                          detail_level: int = 3, difficulty: int = 5):
     return CalorimetryMixTask.generate_random_task(task_type=task_type, language=language,
@@ -633,6 +808,31 @@ ALL_PHYSICS_TASK_GENERATORS = {
     "abcd_optics": generate_random_abcd_optics_task,
     "composite_inertia": generate_random_composite_inertia_task,
     "calorimetry_mix": generate_random_calorimetry_mix_task,
+    "adiabatic": generate_random_adiabatic_task,
+    "ballistic_pendulum": generate_random_ballistic_pendulum_task,
+    "restitution": generate_random_restitution_task,
+    "meeting_motion": generate_random_meeting_motion_task,
+    "internal_resistance": generate_random_internal_resistance_task,
+    "lc_oscillator": generate_random_lc_oscillator_task,
+    "stellar_parallax": generate_random_stellar_parallax_task,
+    "half_life_steps": generate_random_half_life_steps_task,
+    "fourier_conduction": generate_random_fourier_conduction_task,
+    "spring_energy": generate_random_spring_energy_task,
+    "mechanical_efficiency": generate_random_mechanical_efficiency_task,
+    "relative_velocity": generate_random_relative_velocity_task,
+    "pendulum_ratio": generate_random_pendulum_ratio_task,
+    "wave_relation": generate_random_wave_relation_task,
+    "sensible_heat": generate_random_sensible_heat_task,
+    "resistor_pair": generate_random_resistor_pair_task,
+    "reduced_mass": generate_random_reduced_mass_task,
+    "cyclotron": generate_random_cyclotron_task,
+    "spectral_redshift": generate_random_spectral_redshift_task,
+    "rational_gamma": generate_random_rational_gamma_task,
+    "stefan_ratio": generate_random_stefan_ratio_task,
+    "inductor_energy": generate_random_inductor_energy_task,
+    "doppler_shift": generate_random_doppler_shift_task,
+    "hubble_law": generate_random_hubble_law_task,
+    "free_fall": generate_random_free_fall_task,
 }
 
 

@@ -4,8 +4,8 @@
 
 ## Особенности
 
-- **232 типов задач**: 162 математических (включая формальную математику Lean 4 и логические/ризонинг-головоломки) + 70 физических
-- **Визуальные (VLM) задачи**: 32 типа с генерацией изображений — графики функций, столбчатые/круговые/линейные диаграммы, гистограммы, диаграммы Венна, площадь по графику, графики движения (v–t и траектории), геометрия, аналоговые часы, кости, шахматная доска, цветная сетка, взвешенные/ориентированные графы (кратчайший путь, MST, раскраска, топ-сортировка, макс. поток), диаграммы ДКА, схемы логических вентилей, «Сапёр», «Мастермайнд», ферзи, «Жизнь» Конвея, магический квадрат, лабиринт, P–V диаграммы, многоугольники, а также картиночные варианты судоку/пятнашек/ARC — картинка + текстовый ответ, плюс аугментации изображений
+- **387 типов задач**: 244 математических (включая формальную математику Lean 4, вычислительную геометрию и логические/ризонинг-головоломки) + 26 машинного обучения + 22 обучения с подкреплением + 95 физических
+- **Визуальные (VLM) задачи**: 39 типов с генерацией изображений — графики функций, столбчатые/круговые/линейные диаграммы, гистограммы, диаграммы размаха, диаграммы рассеяния, числовая прямая, наклон прямой, диаграммы Венна, площадь по графику, графики движения (v–t и траектории), геометрия, выпуклая оболочка, аналоговые часы, кости, шахматная доска, цветная сетка, взвешенные/ориентированные графы (кратчайший путь, MST, раскраска, топ-сортировка, макс. поток), диаграммы ДКА, схемы логических вентилей и резисторных цепей, чашечные весы и рычаг, «Сапёр», «Мастермайнд», ферзи, «Жизнь» Конвея, магический квадрат, лабиринт, P–V диаграммы, многоугольники, а также картиночные варианты судоку/пятнашек/ARC — картинка + текстовый ответ, плюс аугментации изображений
 - **Языки**: русский и английский
 - **Система сложности**: 10 уровней для каждого типа задач
 - **Пошаговые решения**: детальные цепочки рассуждений для SFT/RL обучения
@@ -62,44 +62,154 @@ chat_dataset = generator.generate_chat_dataset(
 # Формат: {"messages": [{"role": "user", ...}, {"role": "assistant", ...}]}
 ```
 
+## Улучшения каталога
+
+Волна ниже закрывает конкретные дыры: формульные и переборные задачи уже были, а алгоритмов с однозначным следом и чтения новых диаграмм не хватало.
+
+1. **stable_matching** — устойчивое паросочетание Гейла–Шепли и проверка блокирующей пары. Обычное паросочетание в двудольном графе уже есть, устойчивость предпочтений — нет.
+2. **hamming_code** — код Хэмминга (7,4): кодовое слово, синдром единственной ошибки, расстояние Хэмминга. Рядом уже были дополнительный код и Хаффман, но не коды с исправлением ошибок.
+3. **page_replacement** — число отказов страниц FIFO / LRU / OPT по трассе обращений.
+4. **tree_queries** — диаметр, листья, высота и наименьший общий предок дерева. Графовые задачи покрывали пути и связность, но не запросы к дереву.
+5. **os_scheduling** — суммарное ожидание SJF и FCFS и перемещение головки SSTF. Интервальное расписание уже было, планирование заявок и диска — нет.
+6. **numerical_methods** — один шаг Ньютона, метод трапеций и левый конец отрезка после бисекции. Правило округления середины зафиксировано, ответ однозначен.
+7. **min_coins** — минимум монет, в том числе когда жадный выбор крупного номинала ошибается. Число способов набрать сумму по-прежнему живёт в `dynamic_programming`.
+8. **box_plot**, **number_line**, **slope_read**, **balance_scale** — диаграмма размаха (медиана, межквартильный размах, размах), целое на числовой прямой, наклон и пересечение с осью Oy, масса «?» на весах и на рычаге. Числа только на рисунке.
+
+Вторая волна считает ответ точно, без допуска на округление:
+
+9. **lagrange_interpolation** — значение многочлена Лагранжа в целой точке. Узлы сняты с многочлена с целыми коэффициентами, формула на дробях совпадает с прямой подстановкой.
+10. **euler_method** — один или несколько шагов метода Эйлера для y' = px + qy + r при h = 1. Все узлы целые.
+11. **fractional_knapsack** — дробный рюкзак. Удельные стоимости — различные целые, поэтому и разрезанный предмет даёт целую стоимость.
+12. **union_find** — число компонент, «в одной ли компоненте» и размер компоненты после серии объединений.
+13. **direct_mapped_cache** — попадания, промахи и tag в кэше прямого отображения.
+14. **knight_moves** — минимум ходов коня по пустой доске 8×8.
+15. **adiabatic** — конечные T, P или V обратимой адиабаты. Объёмы — степени двойки, сокращающиеся с γ = 5/3 или 7/5.
+16. **ballistic_pendulum** — скорость после неупругого удара, высота подъёма и скорость пули при g = 10. Импульс и V^2 = 2gh сходятся на целых.
+
+Отдельный раздел — база машинного обучения. Логарифмы энтропии берутся только на степенях двойки, критерий расщепления — Джини (точная дробь), остальные ответы тоже целые или несократимые дроби: `shannon_entropy`, `gini_split`, `knn_classify`, `perceptron_update`, `kmeans_step`, `naive_bayes`, `confusion_metrics`, `gradient_step`, `ranking_auc`, `hinge_loss`, `cosine_rank`, `univariate_regression`, `decision_stump`, `brier_score`, `mse_loss`, `precision_at_k`, `cohen_kappa`, `r2_score`, `mean_average_precision`, `mae_loss`, `jaccard_index`, `reciprocal_rank`, `kalman_update`, `hmm_decode`, `elimination_query`, `pagerank`.
+
+Дальше по всем направлениям, тоже с точным ответом и шкалой сложности: `catalan`, `stirling_second`, `gray_code`, `binary_search`, `matrix_chain`, `common_substring`, `solid_volume`, `round_robin`, `deadlock`, `second_price`, `shapley_value`, `internal_resistance`, `restitution`, `meeting_motion`, `lc_oscillator`, `stellar_parallax`.
+
+Для претрейна, SFT и RL отдельно считаются отдача, Q-learning и шаг Беллмана, а также классическая динамика: `discounted_return`, `q_learning`, `bellman_backup`, `max_subarray`, `house_robber`, `rod_cutting`, `pair_sum`, `heap_array`, `weighted_interval`, `half_life_steps`, `fourier_conduction`, `spring_energy`.
+
+Следующий слой: `sarsa`, `epsilon_greedy`, `policy_expectation`, `min_path_sum`, `stock_profit`, `jump_game`, `container_water`, `decode_ways`, `gas_station`, `pendulum_ratio`, `mechanical_efficiency`, `relative_velocity`.
+
+Ещё один слой вне графов: отдача с выбранного шага, Double Q-learning и мягкое обновление весов, формула Пика, удержанная вода, элемент большинства и алгоритм Евклида, а также волна, нагрев без фазового перехода и пара резисторов: `reward_to_go`, `double_q`, `polyak_update`, `pick_theorem`, `trapping_rain`, `majority_element`, `euclid_gcd`, `wave_relation`, `sensible_heat`, `resistor_pair`.
+
+Дальше: след затухания, Expected SARSA и GAE, среднеквадратичная ошибка и точность на топ-k, задача Иосифа, прямоугольник в гистограмме, расстановки знаков и последовательность Коллатца, приведённая масса, циклотронная частота и красное смещение: `eligibility_trace`, `expected_sarsa`, `gae_advantage`, `mse_loss`, `precision_at_k`, `josephus`, `histogram_area`, `target_sum`, `collatz_steps`, `reduced_mass`, `cyclotron`, `spectral_redshift`.
+
+Ещё слой: обрезка PPO, произведение отношений важности и дифференциальная ошибка средней награды, каппа Коэна, коэффициент детерминации и средняя точность, прибыль при многих сделках, минимум квадратов и палиндромная подпоследовательность, рациональный фактор Лоренца, отношение светимостей и энергия катушки: `ppo_clip`, `importance_ratio`, `average_reward`, `cohen_kappa`, `r2_score`, `mean_average_precision`, `stock_unlimited`, `min_squares`, `palindrome_subseq`, `rational_gamma`, `stefan_ratio`, `inductor_energy`.
+
+Следующий слой: один шаг V-trace, вероятность приоритетного семплирования и отдача после обрезки наград, средняя абсолютная ошибка, индекс Жаккара и обратный ранг, число подмассивов с заданной суммой, целый квадратный корень и наибольшее произведение, а также целочисленный эффект Доплера, закон Хаббла и свободное падение: `vtrace`, `priority_replay`, `reward_clip`, `mae_loss`, `jaccard_index`, `reciprocal_rank`, `subarray_sum`, `integer_sqrt`, `max_product`, `doppler_shift`, `hubble_law`, `free_fall`.
+
+Крупные многошаговые задачи: обратная индукция на горизонте, цепочка обновлений Q-learning, назначение работников, кратчайшие пути Флойда, выравнивание Нидлмана–Вунша, замены в массиве и сумма отрезка, несколько шагов фильтра Калмана и смешанное равновесие 2×2: `finite_horizon`, `q_trajectory`, `min_assignment`, `floyd_distance`, `sequence_alignment`, `range_query`, `kalman_update`, `mixed_nash`.
+
+Ещё один слой длинных алгоритмов: траектория SARSA, expectimax и минимакс на явном дереве, Витерби и вероятность наблюдений, вывод в цепочке признаков, локальное выравнивание, укладка РНК и оптимальное дерево поиска: `sarsa_trajectory`, `expectimax`, `minimax_tree`, `hmm_decode`, `elimination_query`, `local_alignment`, `nussinov`, `optimal_bst`.
+
+Следом: альфа-бета отсечение, произведение многочленов, прибавления на отрезке, независимое множество дерева, число вхождений подпоследовательности, секрет Шамира, точный PageRank и серия обновлений Double Q-learning: `alpha_beta`, `polynomial_product`, `range_add`, `tree_mis`, `subsequence_count`, `secret_share`, `pagerank`, `double_q_trajectory`.
+
 ## Типы задач
 
-### Математика (162 типов)
+### Математика (244 типа)
 
 | Категория | Задачи |
 |-----------|--------|
 | **Алгебра** | linear, quadratic, cubic, system_linear, exponential, logarithmic, inequality, symbolic_simplification, polynomial_factorization, vieta |
-| **Анализ** | calculus, limits, integral, differential_equation, series, optimization, taylor_series, partial_fractions, partial_derivatives, area_between_curves, lhopital, symbolic_regression |
-| **Геометрия** | geometry, trigonometry, vector_3d, coordinate_geometry, shoelace_area, triangle_solving, conic_sections |
+| **Анализ** | calculus, limits, integral, differential_equation, series, optimization, taylor_series, partial_fractions, partial_derivatives, area_between_curves, lhopital, symbolic_regression, numerical_methods, lagrange_interpolation, euler_method |
+| **Геометрия** | geometry, trigonometry, vector_3d, coordinate_geometry, shoelace_area, triangle_solving, conic_sections, solid_volume, pick_theorem |
 | **Линейная алгебра** | matrix, complex_number, matrix_reasoning, gaussian_elimination, matrix_multiplication, gram_schmidt, least_squares, roots_of_unity |
-| **Дискретная математика** | number_theory, combinatorics, sequence, set_logic, graph, dynamic_programming, base_conversion, modular_arithmetic, recurrence, prime_factorization, diophantine, modular_inverse, continued_fraction, generating_function |
+| **Дискретная математика** | number_theory, combinatorics, sequence, set_logic, graph, dynamic_programming, base_conversion, modular_arithmetic, recurrence, prime_factorization, diophantine, modular_inverse, continued_fraction, generating_function, catalan, stirling_second, gray_code, euclid_gcd, josephus, collatz_steps, min_squares, integer_sqrt, secret_share |
 | **Абстрактная алгебра** | group_theory, category_theory |
 | **Теория вероятностей** | urn_probability, statistics, bayesian_reasoning, expected_value, markov_chain, conditional_probability, hypothesis_testing |
 | **Прикладная** | financial_math, arithmetic |
 | **Логика и планирование** | contradiction, knights_knaves, futoshiki, analogical, text_stats, sudoku, zebra_puzzle, csp_reasoning, sat_smt_mini, propositional_logic, regex_dfa, find_the_error, cryptarithmetic, inequality_proof, river_crossing, tower_of_hanoi, water_jug, blocks_world, nim_game |
 | **Ризонинг и дедукция** | graph_reasoning, ordering_puzzle, state_tracking, grid_navigation, interval_scheduling, set_reasoning, pattern_induction, syllogism, logical_entailment, boolean_circuit, mastermind, countdown_24, game_theory_optimal, family_tree, minesweeper_deduction |
 | **CSP-головоломки (сетки)** | n_queens, magic_square, skyscrapers, kenken, kakuro, nonogram, binary_puzzle, hitori, star_battle, battleship |
-| **Графы и оптимизация** | weighted_shortest_path, topological_sort, graph_coloring, mst_weight, eulerian_path, hamiltonian_path, bipartite_matching, tsp, max_flow, dag_longest_path, knapsack, subset_sum |
+| **Графы и оптимизация** | weighted_shortest_path, topological_sort, graph_coloring, mst_weight, eulerian_path, hamiltonian_path, bipartite_matching, tsp, max_flow, dag_longest_path, knapsack, subset_sum, fractional_knapsack, dag_paths, shortest_path_count, triangle_girth, wiener_index, tree_radius, prufer_code, havel_hakimi, spanning_trees, topo_count, floyd_distance, tree_mis |
 | **Формальная логика и вычисления** | truth_table, model_counting, three_sat, logical_equivalence, qbf, dfa_simulation, turing_machine, game_of_life, elementary_ca, rpn_eval, balanced_brackets, sorting_trace |
-| **Дедукция и игры** | logic_grid, seating_circular, tournament, combinatorial_games, tic_tac_toe |
+| **Дедукция и игры** | logic_grid, seating_circular, tournament, combinatorial_games, tic_tac_toe, mixed_nash, expectimax, minimax_tree, alpha_beta |
 | **Пространственное мышление и прочее** | cube_net, dice_reasoning, rotation_reflection, paper_folding, cipher_decode, pigeonhole, monty_hall, allen_relations |
 | **Продвинутый ризонинг** | arc_grid_induction, program_trace, sprague_grundy, natural_deduction, edit_distance, calendar_reasoning, word_ladder, cfg_membership |
-| **Логика, вывод и алгоритмы** | datalog_inference, unification, lambda_calculus, resolution, lis_dp, kmp_matching, sliding_puzzle |
+| **Логика, вывод и алгоритмы** | datalog_inference, unification, lambda_calculus, resolution, lis_dp, kmp_matching, sliding_puzzle, algorithm_complexity, twos_complement, connect_four, graph_connectivity, huffman_coding, dfa_minimization |
+| **Вычислительная геометрия** | computational_geometry (выпуклая оболочка, пересечение отрезков, точка в многоугольнике, ближайшая пара) |
+| **Алгоритмы, коды и системы** | stable_matching, hamming_code, page_replacement, tree_queries, os_scheduling, min_coins, union_find, direct_mapped_cache, knight_moves, binary_search, matrix_chain, common_substring, round_robin, deadlock, second_price, shapley_value, max_subarray, house_robber, rod_cutting, pair_sum, heap_array, weighted_interval, min_path_sum, stock_profit, jump_game, container_water, decode_ways, gas_station, trapping_rain, majority_element, histogram_area, target_sum, stock_unlimited, palindrome_subseq, subarray_sum, max_product, min_assignment, sequence_alignment, range_query, local_alignment, nussinov, optimal_bst, polynomial_product, range_add, subsequence_count |
 
-### Физика (70 типов)
+### Машинное обучение (26 типов)
+
+Считается точно: энтропия — только на кратностях-степенях двойки, расщепление — по Джини, дроби сравниваются как рациональные числа.
+
+| Задача | Что спрашивается |
+|---|---|
+| `shannon_entropy` | энтропия в битах или какое из двух распределений её больше |
+| `gini_split` | прирост Джини одного признака или какой из двух признаков лучше |
+| `knn_classify` | класс запроса (манхэттен, нечётное k) или номер ближайшего соседа |
+| `perceptron_update` | веса w1, w2, b после одного примера или прохода |
+| `kmeans_step` | ближайший центроид, размер кластера или новая x-координата центроида |
+| `naive_bayes` | класс запроса или условная вероятность со сглаживанием Лапласа |
+| `confusion_metrics` | TP, precision, recall или F1 |
+| `gradient_step` | градиент или вес после одного шага для y = w·x |
+| `ranking_auc` | число согласованных пар или AUC |
+| `hinge_loss` | суммарная шарнирная потеря или число ошибок |
+| `cosine_rank` | какой вектор ближе по косинусу или скалярное произведение |
+| `univariate_regression` | наклон или свободный член прямой МНК |
+| `decision_stump` | минимум ошибок одномерного порога, включая постоянный классификатор |
+| `brier_score` | средняя квадратичная ошибка вероятностного прогноза |
+| `mse_loss` | среднеквадратичная ошибка регрессии или сумма квадратов |
+| `precision_at_k` | число релевантных в топ-k или точность; при равенстве оценок левый объект выше |
+| `cohen_kappa` | каппа Коэна или доля наблюдаемого согласия po |
+| `r2_score` | коэффициент детерминации или сумма квадратов отклонений истины |
+| `mean_average_precision` | средняя точность отсортированного списка или точность на последнем релевантном |
+| `mae_loss` | средняя абсолютная ошибка или сумма модулей |
+| `jaccard_index` | индекс Жаккара двух бинарных векторов или размер пересечения |
+| `reciprocal_rank` | обратный ранг первого релевантного объекта или сам ранг |
+| `kalman_update` | среднее или дисперсия после нескольких одномерных обновлений Калмана |
+| `hmm_decode` | вероятность наблюдений или путь Витерби |
+| `elimination_query` | маргинальная вероятность конца цепочки или апостериорная вероятность начала |
+| `pagerank` | ранг вершины или вершина с наибольшим рангом при затухании 1/2 |
+
+### Обучение с подкреплением (22 типа)
+
+γ и α — дроби, отдача и Q считаются точно.
+
+| Задача | Что спрашивается |
+|---|---|
+| `discounted_return` | полная отдача, n-шаговая отдача с бутстрапом или преимущество G − V |
+| `q_learning` | новая оценка Q или TD-ошибка одного обновления |
+| `bellman_backup` | оптимальная оценка состояния или жадное действие |
+| `sarsa` | новая Q или TD-ошибка, в цели стоит выбранное следующее действие |
+| `epsilon_greedy` | номер действия по ε и одному случайному числу u |
+| `policy_expectation` | оценка политики V или преимущество действия |
+| `reward_to_go` | отдача начиная с выбранного шага траектории |
+| `double_q` | действие по Q1 или цель r + γ Q2 этого действия |
+| `polyak_update` | новая координата целевых весов или её приращение |
+| `eligibility_trace` | координата накапливающегося следа после домножения на γλ и +1 |
+| `expected_sarsa` | среднее Q при равномерной политике или цель r + γ * среднее |
+| `gae_advantage` | одношаговая TD-ошибка или преимущество GAE с шага t |
+| `ppo_clip` | обрезанное отношение вероятностей или суррогат PPO |
+| `importance_ratio` | произведение пошаговых отношений или число шагов с большим числителем |
+| `average_reward` | средняя награда или дифференциальная TD-ошибка |
+| `vtrace` | обрезанное отношение ρ или цель одного шага V-trace |
+| `priority_replay` | вероятность номера или номер наибольшего приоритета |
+| `reward_clip` | обрезанная награда шага или отдача после обрезки |
+| `finite_horizon` | оценка состояния или действие перед первым шагом конечного горизонта |
+| `q_trajectory` | Q пары после серии обновлений или лучшее действие состояния |
+| `sarsa_trajectory` | Q после серии обновлений SARSA, в цели стоит выбранное следующее действие |
+| `double_q_trajectory` | Q одной из двух голов после серии обновлений или её лучшее действие |
+
+### Физика (95 типов)
 
 | Категория | Задачи |
 |-----------|--------|
-| **Механика** | kinematics, dynamics, energy, momentum, projectile_motion, rotational_dynamics, center_of_mass, atwood_machine, inclined_plane, statics_equilibrium, circular_dynamics, rolling_motion, elasticity, terminal_velocity, elastic_chain, composite_inertia |
-| **Электричество и магнетизм** | circuits, electrostatics, capacitors, electromagnetic_induction, ac_circuits, rc_circuits, magnetism, magnetic_force, kirchhoff_laws, rl_circuits, gauss_law, transformer, wheatstone_bridge |
-| **Термодинамика** | gas_laws, heat_transfer, thermodynamic_cycles, entropy, phase_transitions, kinetic_theory, thermal_expansion, blackbody_radiation, gas_work, mean_free_path, pv_cycle, calorimetry_mix |
-| **Волны, оптика и звук** | waves, optics, doppler_effect, interference, diffraction, polarization, standing_waves, sound_intensity, beats, abcd_optics |
-| **Квантовая физика** | quantum, bohr_model, de_broglie, uncertainty_principle, radioactive_decay, radiation_pressure, pair_production |
+| **Механика** | kinematics, dynamics, energy, momentum, projectile_motion, rotational_dynamics, center_of_mass, atwood_machine, inclined_plane, statics_equilibrium, circular_dynamics, rolling_motion, elasticity, terminal_velocity, elastic_chain, composite_inertia, ballistic_pendulum, restitution, meeting_motion, spring_energy, mechanical_efficiency, relative_velocity, reduced_mass, free_fall |
+| **Электричество и магнетизм** | circuits, electrostatics, capacitors, electromagnetic_induction, ac_circuits, rc_circuits, magnetism, magnetic_force, kirchhoff_laws, rl_circuits, gauss_law, transformer, wheatstone_bridge, internal_resistance, lc_oscillator, resistor_pair, cyclotron, inductor_energy |
+| **Термодинамика** | gas_laws, heat_transfer, thermodynamic_cycles, entropy, phase_transitions, kinetic_theory, thermal_expansion, blackbody_radiation, gas_work, mean_free_path, pv_cycle, calorimetry_mix, adiabatic, fourier_conduction, sensible_heat, stefan_ratio |
+| **Волны, оптика и звук** | waves, optics, doppler_effect, interference, diffraction, polarization, standing_waves, sound_intensity, beats, abcd_optics, wave_relation, doppler_shift |
+| **Квантовая физика** | quantum, bohr_model, de_broglie, uncertainty_principle, radioactive_decay, radiation_pressure, pair_production, half_life_steps |
 | **Ядерная физика** | nuclear |
-| **Теория относительности** | relativity, relativistic_energy, velocity_addition |
-| **Колебания** | oscillations |
+| **Теория относительности** | relativity, relativistic_energy, velocity_addition, rational_gamma |
+| **Колебания** | oscillations, pendulum_ratio |
 | **Гидростатика и гидродинамика** | fluids, surface_tension |
-| **Астрофизика** | astrophysics |
+| **Астрофизика** | astrophysics, stellar_parallax, spectral_redshift, hubble_law |
 | **Измерения и анализ** | dimensional_analysis, error_propagation, unit_conversion |
 | **Масштабируемые сети** | series_parallel_network (резисторы/конденсаторы/пружины/тепловые сопротивления) |
 
@@ -141,6 +251,13 @@ chat_dataset = generator.generate_chat_dataset(
 | `game_of_life_image` | PIL | «Жизнь» Конвея: поле через k шагов |
 | `magic_square_image` | PIL | магический квадрат 3×3 с пропусками |
 | `grid_navigation_image` | PIL | лабиринт: длина кратчайшего пути |
+| `convex_hull_image` | matplotlib | точки на плоскости: число вершин выпуклой оболочки |
+| `scatter_plot` | matplotlib | диаграмма рассеяния: характер связи (±/нет) |
+| `circuit_resistance_image` | matplotlib | схема резисторов: эквивалентное сопротивление |
+| `box_plot` | matplotlib | диаграмма размаха: медиана, межквартильный размах, размах |
+| `number_line` | matplotlib | числовая прямая: значение точки, расстояние, середина |
+| `slope_read` | matplotlib | прямая на сетке: наклон, пересечение с Oy |
+| `balance_scale` | matplotlib | весы или рычаг: масса неизвестного груза |
 
 Дополнительно доступна лёгкая аугментация изображений `augment_image(img, seed=...)` (небольшой поворот на белом фоне) — верификация текстовая, поэтому корректность ответа не меняется.
 
