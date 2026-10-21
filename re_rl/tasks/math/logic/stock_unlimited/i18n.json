@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цены акции по дням: {data}. Можно совершать сколько угодно сделок, но держать не больше одной акции: перед новой покупкой прежнюю нужно продать. Найдите максимальную прибыль. Если роста нет, ответ 0.",
+      "en": "Daily stock prices: {data}. Any number of transactions is allowed, but at most one share may be held: sell before buying again. Find the maximum profit. If the price never rises, the answer is 0."
+    },
+    "s1": {
+      "ru": "Сумма соседних повышений равна {answer}.",
+      "en": "The sum of adjacent rises is {answer}."
+    }
+  }
+}

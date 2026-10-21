@@ -1,0 +1,28 @@
+{
+  "prompt": {
+    "convert_problem": {
+      "ru": [
+        "Переведите число {number} из системы счисления с основанием {b1} в систему с основанием {b2}.",
+        "Запишите число {number} (основание {b1}) в системе счисления с основанием {b2}."
+      ],
+      "en": [
+        "Convert the number {number} from base {b1} to base {b2}.",
+        "Write the number {number} (base {b1}) in base {b2}."
+      ]
+    },
+    "bitwise_problem": {
+      "ru": [
+        "Вычислите {expr} (результат в десятичной системе).",
+        "Найдите значение выражения {expr} (ответ — десятичное число)."
+      ],
+      "en": [
+        "Compute {expr} (result in decimal).",
+        "Evaluate the expression {expr} (answer as a decimal number)."
+      ]
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

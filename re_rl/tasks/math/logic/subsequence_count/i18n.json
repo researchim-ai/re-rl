@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Текст {text}, шаблон {pattern}. Сколько способов выбрать строго возрастающие позиции текста, которые дают шаблон?",
+      "en": "Text {text}, pattern {pattern}. How many ways are there to choose strictly increasing positions in the text that spell the pattern?"
+    },
+    "s1": {
+      "ru": "Число способов равно {answer}.",
+      "en": "The number of ways is {answer}."
+    },
+    "s2": {
+      "ru": "шаблон должен встречаться",
+      "en": "шаблон должен встречаться"
+    }
+  }
+}

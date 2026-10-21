@@ -1,0 +1,52 @@
+{
+  "text": {
+    "s0": {
+      "ru": "fail to reject",
+      "en": "fail to reject"
+    },
+    "s1": {
+      "ru": "не отвергаем",
+      "en": "не отвергаем"
+    },
+    "s2": {
+      "ru": "не отвергается",
+      "en": "не отвергается"
+    },
+    "s3": {
+      "ru": "не отклоняем",
+      "en": "не отклоняем"
+    },
+    "s4": {
+      "ru": "принимаем",
+      "en": "принимаем"
+    },
+    "s5": {
+      "ru": "отверг",
+      "en": "отверг"
+    },
+    "s6": {
+      "ru": "отклон",
+      "en": "отклон"
+    }
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Выборка размера n = {n} имеет среднее x̄ = {mean}. Проверьте гипотезу H₀: μ = {mu0} против H₁: μ ≠ {mu0} при известном σ = {sigma}, уровень значимости α = {alpha}. Ответьте: reject или not reject.",
+        "При σ = {sigma}, n = {n}, x̄ = {mean}, α = {alpha} проверьте H₀: μ = {mu0}. Ответ: reject или not reject."
+      ],
+      "en": [
+        "A sample of size n = {n} has mean x̄ = {mean}. Test H₀: μ = {mu0} vs H₁: μ ≠ {mu0} with known σ = {sigma} at level α = {alpha}. Answer: reject or not reject.",
+        "With σ = {sigma}, n = {n}, x̄ = {mean}, α = {alpha}, test H₀: μ = {mu0}. Answer: reject or not reject."
+      ]
+    },
+    "step_setup": {
+      "ru": "Считаем статистику z = (x̄ − μ₀)·√n/σ и сравниваем |z| с критическим значением.",
+      "en": "Compute the statistic z = (x̄ − μ₀)·√n/σ and compare |z| with the critical value."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

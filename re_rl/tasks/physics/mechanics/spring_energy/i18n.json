@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Энергия пружины E = k * x^2 / 2. Ответ — целое или несократимая дробь.",
+      "en": "Spring energy E = k * x^2 / 2. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Жёсткость k = {k}, удлинение x = {x}. Найдите E.",
+      "en": "Stiffness k = {k}, extension x = {x}. Find E."
+    },
+    "s2": {
+      "ru": "Энергия E = {v0}, удлинение x = {x}. Найдите k.",
+      "en": "Energy E = {v0}, extension x = {x}. Find k."
+    }
+  }
+}

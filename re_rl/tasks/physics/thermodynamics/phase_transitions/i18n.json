@@ -1,0 +1,91 @@
+{
+  "text": {
+    "s0": {
+      "ru": "name_ru",
+      "en": "name_en"
+    },
+    "s4": {
+      "ru": "{v0} кДж",
+      "en": "{v0} кДж"
+    },
+    "s5": {
+      "ru": "Q = {v0}·{m}·1000 = {v2} кДж",
+      "en": "Q = {v0}·{m}·1000 = {v2} kJ"
+    },
+    "s6": {
+      "ru": "{v0} кДж",
+      "en": "{v0} кДж"
+    },
+    "s7": {
+      "ru": "{v0} кДж",
+      "en": "{v0} кДж"
+    },
+    "s8": {
+      "ru": "Q = {v0}·{m}·1000 = {v2} кДж",
+      "en": "Q = {v0}·{m}·1000 = {v2} kJ"
+    },
+    "s9": {
+      "ru": "Q₁ = {m}·{v1}·{v2} = {v3} кДж",
+      "en": "Q₁ = {m}·{v1}·{v2} = {v3} kJ"
+    },
+    "s10": {
+      "ru": "Q₂ = {m}·{v1} = {v2} кДж",
+      "en": "Q₂ = {m}·{v1} = {v2} kJ"
+    },
+    "s11": {
+      "ru": "Q₃ = {m}·{v1}·{T2} = {v3} кДж",
+      "en": "Q₃ = {m}·{v1}·{T2} = {v3} kJ"
+    },
+    "s12": {
+      "ru": "Q = {v0} кДж",
+      "en": "Q = {v0} кДж"
+    },
+    "s13": {
+      "ru": "heating_with_phase",
+      "en": "heating_with_phase"
+    }
+  },
+  "literals": {
+    "s1": "heating_with_phase",
+    "s2": "льда",
+    "s3": "железа"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на фазовые переходы.",
+      "en": "Solve the phase transition problem."
+    },
+    "problem": {
+      "melting": {
+        "ru": "Сколько теплоты нужно для плавления {m} кг {substance} при температуре плавления? (λ = {lambda} кДж/кг)",
+        "en": "How much heat is needed to melt {m} kg of {substance} at melting point? (λ = {lambda} kJ/kg)"
+      },
+      "vaporization": {
+        "ru": "Сколько теплоты нужно для испарения {m} кг {substance} при температуре кипения? (L = {L} кДж/кг)",
+        "en": "How much heat is needed to vaporize {m} kg of {substance} at boiling point? (L = {L} kJ/kg)"
+      },
+      "heating_with_phase": {
+        "ru": "Сколько теплоты нужно для нагрева {m} кг льда от {T1}°C до {T2}°C воды? (c_лёд={c_ice}, c_вода={c_water}, λ={lambda} кДж/кг)",
+        "en": "How much heat to heat {m} kg ice from {T1}°C to {T2}°C water? (c_ice={c_ice}, c_water={c_water}, λ={lambda} kJ/kg)"
+      }
+    },
+    "steps": {
+      "melting_heat": {
+        "ru": "Теплота плавления: Q = λ·m",
+        "en": "Heat of fusion: Q = λ·m"
+      },
+      "vaporization_heat": {
+        "ru": "Теплота парообразования: Q = L·m",
+        "en": "Heat of vaporization: Q = L·m"
+      },
+      "total_heat": {
+        "ru": "Полная теплота: Q = Q_нагрев + Q_плавление + Q_нагрев2",
+        "en": "Total heat: Q = Q_heating + Q_melting + Q_heating2"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: Q = {answer}",
+      "en": "Answer: Q = {answer}"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Невзвешенный неориентированный граф, вершины 1..{n}, рёбра: {v1}.",
+      "en": "Unweighted undirected graph, vertices 1..{n}, edges: {v1}."
+    },
+    "s1": {
+      "ru": "Сколько различных кратчайших путей между {source} и {target}?",
+      "en": "How many distinct shortest paths are there between {source} and {target}?"
+    },
+    "s2": {
+      "ru": "Сколько вершин находится на расстоянии {k} от вершины {source}?",
+      "en": "How many vertices are at distance {k} from vertex {source}?"
+    },
+    "s3": {
+      "ru": "BFS: расстояние {v0}, число путей {path_count}.",
+      "en": "BFS: distance {v0}, number of paths {path_count}."
+    },
+    "s4": {
+      "ru": "На расстоянии {k} лежит {level} вершин.",
+      "en": "{k} vertices lie at distance {level}."
+    }
+  },
+  "literals": {
+    "s5": "shortest_path_count"
+  }
+}

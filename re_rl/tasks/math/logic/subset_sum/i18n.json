@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дан набор чисел: {v0}. Существует ли подмножество с суммой ровно {target}? Ответьте да/нет.",
+      "en": "Given the numbers: {v0}. Is there a subset summing to exactly {target}? Answer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "Динамика по достижимым суммам: добавляем каждое число ко всем уже достижимым.",
+      "en": "DP over reachable sums: add each number to all currently reachable sums."
+    },
+    "s4": {
+      "ru": "Такое подмножество существует.",
+      "en": "Such a subset exists."
+    },
+    "s5": {
+      "ru": "Такого подмножества нет.",
+      "en": "No such subset."
+    }
+  }
+}

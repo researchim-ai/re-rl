@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — траектория брошенного тела (парабола). Определите максимальную высоту подъёма.",
+      "en": "The figure shows a projectile trajectory (a parabola). Find the maximum height."
+    },
+    "s1": {
+      "ru": "На рисунке — траектория брошенного тела (парабола). Определите дальность полёта — координату x, где тело возвращается на землю (y = 0).",
+      "en": "The figure shows a projectile trajectory (a parabola). Find the range — the x coordinate where the body returns to the ground (y = 0)."
+    },
+    "s2": {
+      "ru": "Дальность — точка, где парабола пересекает ось x справа.",
+      "en": "The range is where the parabola crosses the x-axis on the right."
+    },
+    "s3": {
+      "ru": "Максимальная высота — ордината вершины параболы.",
+      "en": "The maximum height is the y coordinate of the parabola's vertex."
+    },
+    "s4": {
+      "ru": "x, м",
+      "en": "x, m"
+    },
+    "s5": {
+      "ru": "y, м",
+      "en": "y, m"
+    },
+    "s6": {
+      "ru": "Траектория брошенного тела",
+      "en": "Траектория брошенного тела"
+    }
+  }
+}

@@ -22,6 +22,9 @@
     pip install lean-dojo
     curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'setup_lean_repos_i18n.json')
+
 
 import argparse
 import os
@@ -38,7 +41,7 @@ try:
     LEANDOJO_AVAILABLE = True
 except ImportError:
     LEANDOJO_AVAILABLE = False
-    print("⚠ LeanDojo не установлен. Установите: pip install lean-dojo")
+    print(texts.literal('literals.s14'))
 
 
 # ============================================================================
@@ -71,8 +74,8 @@ REPOS = {
     "lean4-example": {
         "url": "https://github.com/yangky11/lean4-example",
         "commit": "7b6ecb9ad4829e4e73600a3329baeb3b5df8d23f",
-        "description": "Минимальный пример (2 теоремы) — для проверки pipeline",
-        "estimated_time": "1-2 минуты",
+        "description": texts.literal('literals.s0'),
+        "estimated_time": texts.literal('literals.s1'),
         "theorems_count": 2,
     },
 
@@ -80,8 +83,8 @@ REPOS = {
     "minif2f": {
         "url": "https://github.com/facebookresearch/miniF2F",
         "commit": "5271ddec788677c815cf818a06f368ef6498a106",
-        "description": "Олимпиадные задачи (IMO, AIME) — бенчмарк",
-        "estimated_time": "30-60 минут",
+        "description": texts.literal('literals.s2'),
+        "estimated_time": texts.literal('literals.s3'),
         "theorems_count": 493,
     },
 
@@ -91,8 +94,8 @@ REPOS = {
     "mathlib4": {
         "url": "https://github.com/leanprover-community/mathlib4",
         "commit": "v4.26.0",
-        "description": "Mathlib4 v4.26.0 — 100K+ теорем (Lean 4.26.0, совместим с Pantograph)",
-        "estimated_time": "2-4 часа (lake exe cache get ускоряет сборку)",
+        "description": texts.literal('literals.s4'),
+        "estimated_time": texts.literal('literals.s5'),
         "theorems_count": "100K+",
     },
 
@@ -100,8 +103,8 @@ REPOS = {
     "mathematics-in-lean": {
         "url": "https://github.com/leanprover-community/mathematics_in_lean",
         "commit": "master",
-        "description": "Mathematics in Lean (учебник) — бенчмарк MIL",
-        "estimated_time": "30-60 минут",
+        "description": texts.literal('literals.s6'),
+        "estimated_time": texts.literal('literals.s7'),
         "theorems_count": "~500",
     },
 }
@@ -121,7 +124,7 @@ def add_custom_mathlib4(version: str) -> str:
             "url": "https://github.com/leanprover-community/mathlib4",
             "commit": version,
             "description": f"Mathlib4 {version}",
-            "estimated_time": "3-6 часов",
+            "estimated_time": texts.literal('literals.s15'),
             "theorems_count": "100K+",
         }
     return key
@@ -154,7 +157,7 @@ def check_elan_installed() -> bool:
 def print_status():
     """Выводит текущий статус установки."""
     print("=" * 60)
-    print("СТАТУС УСТАНОВКИ")
+    print(texts.literal('literals.s8'))
     print("=" * 60)
     print()
     
@@ -164,28 +167,28 @@ def print_status():
         version = getattr(lean_dojo, '__version__', 'unknown')
         print(f"✓ LeanDojo: {version}")
     else:
-        print("✗ LeanDojo: не установлен")
-        print("  Установите: pip install lean-dojo")
+        print(texts.literal('literals.s16'))
+        print(texts.literal('literals.s17'))
     
     # elan
     if check_elan_installed():
-        print("✓ elan: установлен")
+        print(texts.literal('literals.s18'))
     else:
-        print("✗ elan: не установлен")
-        print("  Установите: curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh")
+        print(texts.literal('literals.s19'))
+        print(texts.literal('literals.s20'))
     
     print()
     
     # Кэшированные репозитории
     cached = list_cached_repos()
-    print(f"ЗАКЭШИРОВАННЫЕ РЕПОЗИТОРИИ ({len(cached)}):")
+    print(texts.t('s9', 'ru', v0=len(cached)))
     if cached:
         for repo in cached[:10]:
             print(f"  - {repo}")
         if len(cached) > 10:
-            print(f"  ... и ещё {len(cached) - 10}")
+            print(texts.t('s39', 'ru', v0=len(cached) - 10))
     else:
-        print("  (пусто)")
+        print(texts.literal('literals.s21'))
     
     print()
 
@@ -193,15 +196,15 @@ def print_status():
 def print_available_repos():
     """Выводит список доступных репозиториев."""
     print("=" * 60)
-    print("ДОСТУПНЫЕ РЕПОЗИТОРИИ")
+    print(texts.literal('literals.s10'))
     print("=" * 60)
     print()
     
     for name, info in REPOS.items():
         print(f"  {name}")
         print(f"    {info['description']}")
-        print(f"    Теорем: {info['theorems_count']}")
-        print(f"    Время: {info['estimated_time']}")
+        print(texts.t('s22', 'ru', v0=info['theorems_count']))
+        print(texts.t('s23', 'ru', v0=info['estimated_time']))
         print()
 
 
@@ -213,12 +216,12 @@ def trace_repo(repo_name: str, verbose: bool = True) -> Optional[str]:
         Путь к traced репозиторию или None при ошибке
     """
     if not LEANDOJO_AVAILABLE:
-        print("✗ LeanDojo не установлен")
+        print(texts.literal('literals.s24'))
         return None
     
     if repo_name not in REPOS:
-        print(f"✗ Неизвестный репозиторий: {repo_name}")
-        print(f"  Доступные: {', '.join(REPOS.keys())}")
+        print(texts.t('s25', 'ru', repo_name=repo_name))
+        print(texts.t('s26', 'ru', v0=', '.join(REPOS.keys())))
         return None
     
     info = REPOS[repo_name]
@@ -228,16 +231,16 @@ def trace_repo(repo_name: str, verbose: bool = True) -> Optional[str]:
     print(f"{'=' * 60}")
     print(f"  URL: {info['url']}")
     print(f"  Commit: {info['commit']}")
-    print(f"  Описание: {info['description']}")
-    print(f"  Ожидаемое время: {info['estimated_time']}")
+    print(texts.t('s11', 'ru', v0=info['description']))
+    print(texts.t('s12', 'ru', v0=info['estimated_time']))
     print()
     
     try:
         _apply_extractor_fix()
         repo = LeanGitRepo(info['url'], info['commit'])
         
-        print("Запускаем tracing...")
-        print("(при первом запуске скачивается Lean toolchain и зависимости)")
+        print(texts.literal('literals.s27'))
+        print(texts.literal('literals.s28'))
         print()
         
         start_time = time.time()
@@ -245,17 +248,17 @@ def trace_repo(repo_name: str, verbose: bool = True) -> Optional[str]:
         elapsed = time.time() - start_time
         
         print()
-        print(f"✓ Tracing завершён за {elapsed:.1f} секунд ({elapsed/60:.1f} минут)")
-        print(f"  Файлов: {len(traced_repo.traced_files)}")
+        print(texts.t('s29', 'ru', elapsed=elapsed, v1=elapsed / 60))
+        print(texts.t('s30', 'ru', v0=len(traced_repo.traced_files)))
         
         # Путь к кэшу
         cache_path = get_traced_repo_path(repo, build_deps=False)
-        print(f"  Кэш: {cache_path}")
+        print(texts.t('s31', 'ru', cache_path=cache_path))
         
         return str(cache_path)
         
     except Exception as e:
-        print(f"✗ Ошибка: {e}")
+        print(texts.t('s40', 'ru', e=e))
         return None
 
 
@@ -271,7 +274,7 @@ def trace_all_repos(repos: List[str], verbose: bool = True):
     
     # Итоги
     print("=" * 60)
-    print("ИТОГИ")
+    print(texts.literal('literals.s13'))
     print("=" * 60)
     
     for name, path in results.items():
@@ -283,49 +286,41 @@ def trace_all_repos(repos: List[str], verbose: bool = True):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Скачивание и tracing Lean репозиториев для LeanDojo",
+        description=texts.literal('literals.s32'),
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Примеры:
-    %(prog)s --check                    # Проверить статус
-    %(prog)s --list                     # Список доступных репозиториев
-    %(prog)s --repo lean4-example       # Быстрый тест (1-2 мин)
-    %(prog)s --repo minif2f             # MiniF2F (30-60 мин)
-    %(prog)s --repo mathlib4            # Mathlib4 (2-4 часа)
-    %(prog)s --repo all                 # Все репозитории
-        """
+        epilog=texts.literal('literals.s33')
     )
     
     parser.add_argument(
         "--repo", "-r",
         type=str,
         choices=list(REPOS.keys()) + ["all"],
-        help="Репозиторий для tracing"
+        help=texts.literal('literals.s34')
     )
     
     parser.add_argument(
         "--check", "-c",
         action="store_true",
-        help="Проверить статус установки"
+        help=texts.literal('literals.s35')
     )
     
     parser.add_argument(
         "--list", "-l",
         action="store_true",
-        help="Показать доступные репозитории"
+        help=texts.literal('literals.s36')
     )
     
     parser.add_argument(
         "--mathlib-version",
         type=str,
-        help="Произвольная версия Mathlib4 (tag), например: v4.25.0, v4.28.0-rc1"
+        help=texts.literal('literals.s37')
     )
     
     parser.add_argument(
         "--verbose", "-v",
         action="store_true",
         default=True,
-        help="Подробный вывод"
+        help=texts.literal('literals.s38')
     )
     
     args = parser.parse_args()

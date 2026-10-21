@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — диаграмма ДКА над алфавитом из символов a и b: начальное состояние отмечено стрелкой «start», принимающие — двойным кругом, дуги подписаны символами. Принимает ли автомат строку «{word}»? Ответьте да/нет.",
+      "en": "The figure shows a DFA diagram over the alphabet with symbols a and b: the start state has a 'start' arrow, accepting states are double circles, arcs are labeled by symbols. Does the automaton accept the string '{word}'? Answer yes/no."
+    },
+    "s1": {
+      "ru": "ДКА · строка: {word}",
+      "en": "ДКА · строка: {word}"
+    }
+  }
+}

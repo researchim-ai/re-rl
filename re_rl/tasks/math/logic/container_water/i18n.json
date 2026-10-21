@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Высоты вертикальных линий слева направо: {data}. Индексы с 0. Площадь между i и j равна min(h[i], h[j]) * (j - i). Найдите максимальную площадь.",
+      "en": "Heights of vertical lines from left to right: {data}. Indices start at 0. The area between i and j is min(h[i], h[j]) * (j - i). Find the maximum area."
+    },
+    "s1": {
+      "ru": "Два указателя с краёв дают площадь {answer}.",
+      "en": "Two pointers from the ends give area {answer}."
+    }
+  }
+}

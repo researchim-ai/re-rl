@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Высоты столбцов слева направо: {data}. После дождя вода стоит между стенками и не вытекает с краёв. Сколько единиц воды удержится?",
+      "en": "Bar heights from left to right: {data}. After rain, water stands between walls and does not flow off the ends. How many units are trapped?"
+    },
+    "s1": {
+      "ru": "Два указателя дают объём {answer}.",
+      "en": "Two pointers give volume {answer}."
+    }
+  }
+}

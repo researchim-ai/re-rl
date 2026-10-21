@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Правильно ли расставлены скобки в строке «{s}»? Ответьте да/нет.",
+      "en": "Is the bracket string '{s}' correctly balanced? Answer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "Идём по строке со стеком: открывающую кладём, закрывающая должна совпасть с вершиной.",
+      "en": "Scan with a stack: push opening brackets; a closing one must match the top."
+    },
+    "s4": {
+      "ru": "Скобки сбалансированы.",
+      "en": "Balanced."
+    },
+    "s5": {
+      "ru": "Скобки не сбалансированы.",
+      "en": "Not balanced."
+    }
+  }
+}

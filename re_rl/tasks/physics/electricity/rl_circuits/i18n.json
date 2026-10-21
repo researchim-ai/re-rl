@@ -1,0 +1,54 @@
+{
+  "text": {
+    "s0": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s1": {
+      "ru": "А",
+      "en": "A"
+    },
+    "s2": {
+      "ru": "А",
+      "en": "A"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о переходном процессе в RL-цепи.",
+      "en": "Solve the RL-transient problem."
+    },
+    "problem": {
+      "time_constant": {
+        "ru": "Катушка L = {L} Гн соединена последовательно с резистором R = {R} Ом. Найдите постоянную времени цепи.",
+        "en": "An inductor L = {L} H is in series with a resistor R = {R} Ω. Find the time constant."
+      },
+      "final_current": {
+        "ru": "К RL-цепи (R = {R} Ом, L = {L} Гн) подключили ЭДС E = {E} В. Найдите установившийся ток.",
+        "en": "An EMF E = {E} V is applied to an RL circuit (R = {R} Ω, L = {L} H). Find the steady-state current."
+      },
+      "current_growth": {
+        "ru": "В RL-цепи (E = {E} В, R = {R} Ом, L = {L} Гн) найдите ток через t = {t} с после включения.",
+        "en": "In an RL circuit (E = {E} V, R = {R} Ω, L = {L} H) find the current at t = {t} s after switching on."
+      }
+    },
+    "steps": {
+      "tau_formula": {
+        "ru": "Постоянная времени: τ = L/R.",
+        "en": "Time constant: τ = L/R."
+      },
+      "final_formula": {
+        "ru": "Установившийся ток: I = E/R.",
+        "en": "Steady-state current: I = E/R."
+      },
+      "growth_formula": {
+        "ru": "i(t) = (E/R)·(1 − e^(−t·R/L)).",
+        "en": "i(t) = (E/R)·(1 − e^(−t·R/L))."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Гц",
+      "en": "Hz"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о стоячих волнах.",
+      "en": "Solve the standing-waves problem."
+    },
+    "problem": {
+      "string": {
+        "ru": "Струна длиной {L} м закреплена с обоих концов; скорость волны {v} м/с. Найдите частоту {n}-й гармоники.",
+        "en": "A string of length {L} m is fixed at both ends; wave speed {v} m/s. Find the frequency of the {n}-th harmonic."
+      },
+      "pipe_open": {
+        "ru": "Открытая с обоих концов труба длиной {L} м; скорость звука {v} м/с. Найдите частоту {n}-й гармоники.",
+        "en": "A pipe open at both ends of length {L} m; sound speed {v} m/s. Find the frequency of the {n}-th harmonic."
+      },
+      "pipe_closed": {
+        "ru": "Труба длиной {L} м, закрытая с одного конца; скорость звука {v} м/с. Найдите частоту {n}-й гармоники (только нечётные).",
+        "en": "A pipe of length {L} m closed at one end; sound speed {v} m/s. Find the frequency of the {n}-th harmonic (odd only)."
+      }
+    },
+    "steps": {
+      "string_formula": {
+        "ru": "f_n = n·v/(2L).",
+        "en": "f_n = n·v/(2L)."
+      },
+      "open_formula": {
+        "ru": "f_n = n·v/(2L).",
+        "en": "f_n = n·v/(2L)."
+      },
+      "closed_formula": {
+        "ru": "f_n = n·v/(4L), n = 1, 3, 5, …",
+        "en": "f_n = n·v/(4L), n = 1, 3, 5, …"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

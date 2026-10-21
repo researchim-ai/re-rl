@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Награды: {rewards}. Каждая заменяется ближайшим числом из отрезка от -{limit} до {limit_2}. Отдача — сумма уже обрезанных наград с дисконтом γ = {gamma}, начиная с первой. Ответ — целое или несократимая дробь.",
+      "en": "Rewards: {rewards}. Each is replaced by the nearest number in the segment from -{limit} to {limit_2}. The return sums the clipped rewards with discount γ = {gamma}, starting from the first. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "После обрезки: {clipped}. Отдача {v1}.",
+      "en": "After clipping: {clipped}. Return {v1}."
+    },
+    "s2": {
+      "ru": "Найдите обрезанную награду шага {t}. Шаги нумеруются с 0.",
+      "en": "Find the clipped reward at step {t}. Steps start at 0."
+    },
+    "s3": {
+      "ru": "Найдите отдачу.",
+      "en": "Find the return."
+    }
+  }
+}

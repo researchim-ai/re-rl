@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стационарный поток тепла H = k * A * dT / d.",
+      "en": "Steady heat current H = k * A * dT / d."
+    },
+    "s1": {
+      "ru": "H = {k} * {area} * {delta} / {thickness} = {rate}.",
+      "en": "H = {k} * {area} * {delta} / {thickness} = {rate}."
+    },
+    "s2": {
+      "ru": "k = {k}, площадь A = {area}, разность температур dT = {delta}, толщина d = {thickness}. Найдите H.",
+      "en": "k = {k}, area A = {area}, temperature difference dT = {delta}, thickness d = {thickness}. Find H."
+    },
+    "s3": {
+      "ru": "k = {k}, площадь A = {area}, разность температур dT = {delta}, поток H = {rate}. Найдите толщину d.",
+      "en": "k = {k}, area A = {area}, temperature difference dT = {delta}, current H = {rate}. Find the thickness d."
+    }
+  }
+}

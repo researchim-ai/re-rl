@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько пар индексов i < j в массиве {data} дают сумму {target}?",
+      "en": "How many index pairs i < j in the array {data} sum to {target}?"
+    },
+    "s1": {
+      "ru": "Перебор пар с накопленным счётчиком даёт {answer}.",
+      "en": "A counting pass over pairs gives {answer}."
+    }
+  }
+}

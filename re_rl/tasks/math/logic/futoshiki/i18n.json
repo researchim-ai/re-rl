@@ -1,0 +1,58 @@
+{
+  "text": {
+    "s10": {
+      "ru": "num_inequalities_ratio",
+      "en": "num_inequalities_ratio"
+    },
+    "s11": {
+      "ru": "No solution found",
+      "en": "No solution found"
+    },
+    "s12": {
+      "ru": "Нет решения",
+      "en": "No solution found"
+    }
+  },
+  "literals": {
+    "s0": "num_inequalities_ratio",
+    "s1": "num_inequalities_ratio",
+    "s2": "num_inequalities_ratio",
+    "s3": "num_inequalities_ratio",
+    "s4": "num_inequalities_ratio",
+    "s5": "num_inequalities_ratio",
+    "s6": "num_inequalities_ratio",
+    "s7": "num_inequalities_ratio",
+    "s8": "num_inequalities_ratio",
+    "s9": "num_inequalities_ratio"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Futoshiki-задача. Заполните поле или укажите, если решения нет.\nПример:\n<reasoning>\n  (Проверка строк/столбцов и неравенств)\n</reasoning>\n<answer>\n  (Матрица решения)\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Futoshiki puzzle. Provide the final grid or no solution.\nExample:\n<reasoning>\n  (Check row constraints, inequalities, etc.)\n</reasoning>\n<answer>\n  (Matrix of the solution)\n</answer>"
+    },
+    "problem": {
+      "ru": "Задача Futoshiki на поле {size}×{size}. В каждой строке и каждом столбце нужно расставить числа от 1 до {size} без повторений. Также даны неравенства:\n{inequalities}",
+      "en": "Futoshiki puzzle on a {size}×{size} grid. Each row and column must contain the numbers 1..{size} with no repeats. Some inequalities are given:\n{inequalities}"
+    },
+    "step_explanations": {
+      "ru": [
+        "Шаг 1: Проверяем ограничения в строке {row}.",
+        "Шаг 2: Учитывая ({r1},{c1})<({r2},{c2}), сужаем варианты.",
+        "Шаг 3: Убираем повторения в столбце {col}.",
+        "Шаг 4: Правило уникальности в строке {row}.",
+        "Шаг 5: Уточняем значения."
+      ],
+      "en": [
+        "Step 1: Check constraints in row {row}.",
+        "Step 2: Given ({r1},{c1})<({r2},{c2}), reduce possibilities.",
+        "Step 3: Remove duplicates in column {col}.",
+        "Step 4: Enforce uniqueness in row {row}.",
+        "Step 5: Refine values further."
+      ]
+    },
+    "final_answer": {
+      "ru": "Итоговое решение Futoshiki:\n{grid_repr}",
+      "en": "Final Futoshiki solution:\n{grid_repr}"
+    }
+  }
+}

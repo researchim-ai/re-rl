@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Неориентированный граф, вершины 1..{n}, рёбра: {shown}. Сколько у него остовных деревьев?",
+      "en": "Undirected graph, vertices 1..{n}, edges: {shown}. How many spanning trees does it have?"
+    },
+    "s1": {
+      "ru": "Минор лапласиана имеет определитель {answer}.",
+      "en": "A Laplacian minor has determinant {answer}."
+    }
+  },
+  "literals": {
+    "s2": "определитель лапласиана не целый",
+    "s3": "число остовных деревьев отрицательно"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скрытая марковская модель, состояния с 1, символы {obs_names}. Начальные вероятности: {v1}. Переходы: {trans}. Вероятности символов в том же порядке: {emit}. Наблюдения: {symbols}. Если несколько предыдущих состояний дают одну вероятность, берётся меньший номер; в конце при равенстве тоже меньший номер.",
+      "en": "Hidden Markov model, states start at 1, symbols {obs_names}. Initial probabilities: {v1}. Transitions: {trans}. Symbol probabilities in that same order: {emit}. Observations: {symbols}. If several previous states give the same probability, take the smaller index; at the end, ties also take the smaller index."
+    },
+    "s1": {
+      "ru": "Вероятность {v0}, путь {path}.",
+      "en": "Probability {v0}, path {path}."
+    },
+    "s2": {
+      "ru": "Найдите вероятность наблюдений. Ответ — целое или несократимая дробь.",
+      "en": "Find the probability of the observations. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Выпишите путь Витерби номерами состояний через запятую.",
+      "en": "Write the Viterbi path as comma-separated state indices."
+    },
+    "s4": {
+      "ru": "из {v0}: {v1}",
+      "en": "from {v0}: {v1}"
+    },
+    "s5": {
+      "ru": "состояние {v0}: {v1}",
+      "en": "state {v0}: {v1}"
+    }
+  }
+}

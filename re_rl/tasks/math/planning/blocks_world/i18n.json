@@ -1,0 +1,39 @@
+{
+  "text": {
+    "s0": {
+      "ru": "no moves needed",
+      "en": "no moves needed"
+    },
+    "s2": {
+      "ru": "move {b} onto table",
+      "en": "move {b} onto table"
+    },
+    "s3": {
+      "ru": "стол",
+      "en": "стол"
+    }
+  },
+  "literals": {
+    "s1": "move\\s+([A-Za-z])\\s+(?:onto|on|to)\\s+(table|стол|[A-Za-z])"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Мир блоков. Начальное состояние:\n{init}\nЦелевое состояние:\n{goal}\nПравила: можно перемещать только верхний (свободный) блок на стол или на другой свободный блок. Дайте последовательность ходов в формате 'move X onto Y' или 'move X onto table', разделённых точкой с запятой.",
+        "Задача планирования (blocks world).\nСейчас:\n{init}\nНужно получить:\n{goal}\nЗа один ход перемещается один свободный блок на стол или поверх другого свободного блока. Запишите план ходами вида 'move X onto Y' / 'move X onto table' через точку с запятой."
+      ],
+      "en": [
+        "Blocks world. Initial state:\n{init}\nGoal state:\n{goal}\nRules: you may move only a clear (top) block onto the table or onto another clear block. Provide a sequence of moves formatted as 'move X onto Y' or 'move X onto table', separated by semicolons.",
+        "Planning task (blocks world).\nNow:\n{init}\nGoal:\n{goal}\nEach move relocates one clear block onto the table or on top of another clear block. Write the plan as moves 'move X onto Y' / 'move X onto table' separated by semicolons."
+      ]
+    },
+    "step_plan": {
+      "ru": "План (поиск в ширину по состояниям): {plan}",
+      "en": "Plan (breadth-first search over states): {plan}"
+    },
+    "result": {
+      "ru": "Итоговый план: {plan}",
+      "en": "Final plan: {plan}"
+    }
+  }
+}

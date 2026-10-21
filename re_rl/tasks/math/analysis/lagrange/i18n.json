@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Через точки {pts} проведите многочлен степени не выше {degree} (он единственен). Чему он равен в точке x = {xq}?",
+      "en": "Fit the unique polynomial of degree at most {pts} through the points {degree}. What is its value at x = {xq}?"
+    },
+    "s1": {
+      "ru": "Формула Лагранжа в x = {xq} даёт слагаемые: {shown}.",
+      "en": "The Lagrange formula at x = {xq} gives terms: {shown}."
+    },
+    "s2": {
+      "ru": "Сумма слагаемых равна {answer}.",
+      "en": "The terms sum to {answer}."
+    },
+    "s3": {
+      "ru": "интерполяция Лагранжа разошлась с многочленом",
+      "en": "интерполяция Лагранжа разошлась с многочленом"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — доска «Мастермайнда». Сверху легенда: цвет фишки = цифра (1..{C}). Каждая строка — догадка из {L} цветных фишек; справа колышки-подсказки: чёрные — число «точных» совпадений (верная цифра на своём месте), белые — «частичных» (верная цифра не на своём месте). Определите скрытый код — {L_2} цифр по порядку.",
+      "en": "The figure shows a Mastermind board. Top legend: peg color = digit (1..{C}). Each row is a guess of {L} colored pegs; on the right are key pegs: black = number of 'exact' matches (right digit, right place), white = 'partial' (right digit, wrong place). Determine the secret code — {L_2} digits in order."
+    },
+    "s1": {
+      "ru": "Легенда:",
+      "en": "Легенда:"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Expected SARSA. Политика на следующем шаге равномерная: каждое действие имеет вероятность 1/{n}. Среднее Q — сумма оценок, делённая на число действий. Цель = r + γ * среднее. Ответ — целое или несократимая дробь.",
+      "en": "Expected SARSA. The next-step policy is uniform: each action has probability 1/{n}. The mean Q is the sum of the values divided by the number of actions. The target is r + γ * mean. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Q следующего состояния: {shown}. r = {reward}, γ = {v2}.",
+      "en": "Next-state Q: {shown}. r = {reward}, γ = {v2}."
+    },
+    "s2": {
+      "ru": "Среднее {v0}, цель {v1}.",
+      "en": "Mean {v0}, target {v1}."
+    },
+    "s3": {
+      "ru": "Найдите цель.",
+      "en": "Find the target."
+    },
+    "s4": {
+      "ru": "Найдите среднее Q.",
+      "en": "Find the mean Q."
+    }
+  }
+}

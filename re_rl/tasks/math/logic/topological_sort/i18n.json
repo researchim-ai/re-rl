@@ -1,0 +1,44 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ориентированный граф (вершины 0..{v0}). Дуги: {v1}.",
+      "en": "Directed graph (vertices 0..{v0}). Arcs: {v1}."
+    },
+    "s1": {
+      "ru": " Есть ли в графе ориентированный цикл? Ответьте да/нет.",
+      "en": " Does the graph contain a directed cycle? Answer yes/no."
+    },
+    "s2": {
+      "ru": " Выпишите топологический порядок вершин (слева направо).",
+      "en": " Output a topological ordering of the vertices (left to right)."
+    },
+    "s3": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s4": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s5": {
+      "ru": "Алгоритм Кана: удаляем вершины с нулевой полустепенью захода.",
+      "en": "Kahn's algorithm: repeatedly remove vertices with in-degree zero."
+    },
+    "s6": {
+      "ru": "Обработать все вершины не удалось — цикл есть.",
+      "en": "Not all vertices could be processed — there is a cycle."
+    },
+    "s7": {
+      "ru": "Все вершины обработаны — цикла нет.",
+      "en": "All vertices processed — no cycle."
+    },
+    "s8": {
+      "ru": "Повторно берём вершину без входящих дуг и удаляем её.",
+      "en": "Repeatedly take a vertex with no incoming arcs and remove it."
+    },
+    "s9": {
+      "ru": "Один из порядков: {v0}.",
+      "en": "One valid order: {v0}."
+    }
+  }
+}

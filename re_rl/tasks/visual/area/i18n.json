@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На графике две ломаные заданы узлами на целочисленной сетке. Найдите площадь закрашенной области между верхней и нижней ломаными.",
+      "en": "The plot shows two polylines through integer grid nodes. Find the area of the shaded region between the upper and lower polylines."
+    },
+    "s1": {
+      "ru": "На графике ломаная задаётся узлами на целочисленной сетке. Найдите площадь закрашенной области между ломаной и осью x.",
+      "en": "The plot shows a polyline through integer grid nodes. Find the area of the shaded region between the polyline and the x-axis."
+    },
+    "s2": {
+      "ru": "Разбиваем область на трапеции шириной 1 и складываем их площади ((y_i+y_{{i+1}})/2).",
+      "en": "Split the region into width-1 trapezoids and sum their areas ((y_i+y_{{i+1}})/2)."
+    },
+    "s3": {
+      "ru": "Суммарная площадь = {a_str}.",
+      "en": "Total area = {a_str}."
+    },
+    "s4": {
+      "ru": "Найдите площадь закрашенной области",
+      "en": "Найдите площадь закрашенной области"
+    },
+    "s5": {
+      "ru": "верхняя",
+      "en": "верхняя"
+    },
+    "s6": {
+      "ru": "нижняя",
+      "en": "нижняя"
+    }
+  }
+}

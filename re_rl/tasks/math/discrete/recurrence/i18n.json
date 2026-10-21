@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Дана рекуррента: {recur}, {inits}. Найдите замкнутую формулу для a(n).",
+        "Решите рекуррентное соотношение {recur} с начальными условиями {inits}."
+      ],
+      "en": [
+        "Given the recurrence {recur}, {inits}, find a closed form for a(n).",
+        "Solve the recurrence {recur} with initial conditions {inits}."
+      ]
+    },
+    "step_setup": {
+      "ru": "Составляем характеристическое уравнение и находим общий вид решения, затем подбираем константы по начальным условиям.",
+      "en": "Form the characteristic equation, write the general solution, then fit constants to the initial conditions."
+    },
+    "step_result": {
+      "ru": "Ответ: a(n) = {result}",
+      "en": "Answer: a(n) = {result}"
+    }
+  }
+}

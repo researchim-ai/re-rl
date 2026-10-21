@@ -1,0 +1,68 @@
+{
+  "text": {
+    "s10": {
+      "ru": "max_first_term",
+      "en": "max_first_term"
+    },
+    "s11": {
+      "ru": "series_type_geometric",
+      "en": "series_type_geometric"
+    },
+    "s12": {
+      "ru": "series_type_telescoping",
+      "en": "series_type_telescoping"
+    },
+    "s13": {
+      "ru": "series_diverges_ge1",
+      "en": "series_diverges_ge1"
+    },
+    "s14": {
+      "ru": "$\\sum_{{n=1}}^{{\\infty}} \\frac{{1}}{{n^{{{p}}}}}$",
+      "en": "$\\sum_{{n=1}}^{{\\infty}} \\frac{{1}}{{n^{{{p}}}}}$"
+    },
+    "s15": {
+      "ru": "geometric_sum_formula",
+      "en": "geometric_sum_formula"
+    },
+    "s18": {
+      "ru": "Σ(1/(n(n+1))), n = 1 до ∞",
+      "en": "Σ(1/(n(n+1))), n = 1 до ∞"
+    },
+    "s19": {
+      "ru": "$\\sum_{{n=1}}^{{\\infty}} \\left({ratio}\\right)^n$",
+      "en": "$\\sum_{{n=1}}^{{\\infty}} \\left({ratio}\\right)^n$"
+    },
+    "s20": {
+      "ru": "$\\sum_{{n=1}}^{{\\infty}} \\frac{{n!}}{{{base}^n}}$",
+      "en": "$\\sum_{{n=1}}^{{\\infty}} \\frac{{n!}}{{{base}^n}}$"
+    }
+  },
+  "literals": {
+    "s0": "max_first_term",
+    "s1": "max_first_term",
+    "s2": "max_first_term",
+    "s3": "max_first_term",
+    "s4": "max_first_term",
+    "s5": "max_first_term",
+    "s6": "max_first_term",
+    "s7": "max_first_term",
+    "s8": "max_first_term",
+    "s9": "max_first_term",
+    "s16": "$\\sum_{{n=1}}^{{\\infty}} \\frac{{1}}{{n}}$",
+    "s17": "$\\sum_{{n=1}}^{{\\infty}} \\frac{{1}}{{n(n+1)}}$"
+  },
+  "inline_keys": {
+    "series_diverges_ge1": {
+      "ru": "Ряд расходится (|r| ≥ 1)",
+      "en": "Series diverges (|r| ≥ 1)"
+    },
+    "series_type_geometric": {
+      "ru": "геометрический",
+      "en": "geometric"
+    },
+    "series_type_telescoping": {
+      "ru": "телескопический",
+      "en": "telescoping"
+    }
+  }
+}

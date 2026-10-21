@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Квадрат стоимостей, строка — работник, столбец — работа, номера с 1: {v0}. Каждый работник получает одну работу, каждая работа достаётся одному. Среди назначений минимальной стоимости берётся лексикографически первая последовательность работ.",
+      "en": "Cost square, a row is a worker and a column is a job, indices start at 1: {v0}. Each worker gets one job, and each job goes to one worker. Among minimum-cost assignments, take the lexicographically first job sequence."
+    },
+    "s1": {
+      "ru": "Стоимость {best}, работы по работникам: {jobs}.",
+      "en": "Cost {best}, jobs by worker: {jobs}."
+    },
+    "s2": {
+      "ru": "Найдите минимальную стоимость.",
+      "en": "Find the minimum cost."
+    },
+    "s3": {
+      "ru": "Какую работу получает работник {v0} в этом назначении?",
+      "en": "Which job does worker {v0} receive in that assignment?"
+    }
+  }
+}

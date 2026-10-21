@@ -1,0 +1,40 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Примите g = 10 м/с^2. Массы даны в граммах, скорости — в м/с.",
+      "en": "Take g = 10 m/s^2. Masses are in grams, speeds in m/s."
+    },
+    "s1": {
+      "ru": "Пуля массой {m} г попадает в брусок маятника массой {M} г и застревает.",
+      "en": "A bullet of mass {m} g hits a pendulum block of mass {M} g and sticks."
+    },
+    "s2": {
+      "ru": "Сохранение импульса: {m} * {v} = ({m_2} + {M}) * V, V = {V} м/с.",
+      "en": "Momentum: {m} * {v} = ({m_2} + {M}) * V, V = {V} m/s."
+    },
+    "s3": {
+      "ru": "Энергия подъёма: V^2 = 2 g h, h = {V}^2 / 20 = {h} м.",
+      "en": "Rise energy: V^2 = 2 g h, h = {V}^2 / 20 = {h} m."
+    },
+    "s4": {
+      "ru": "Скорость пули до удара {v} м/с. Найдите скорость бруска с пулей сразу после удара.",
+      "en": "The bullet's speed before impact is {v} m/s. Find the speed of the block with the embedded bullet right after impact."
+    },
+    "s5": {
+      "ru": "Скорость пули до удара {v} м/с. На какую высоту в метрах поднимется маятник?",
+      "en": "The bullet's speed before impact is {v} m/s. To what height, in meters, does the pendulum rise?"
+    },
+    "s6": {
+      "ru": "Маятник поднимается на {h} м. Какой была скорость пули до удара?",
+      "en": "The pendulum rises {h} m. What was the bullet's speed before impact?"
+    },
+    "s7": {
+      "ru": "импульс баллистического маятника не сошёлся",
+      "en": "импульс баллистического маятника не сошёлся"
+    },
+    "s8": {
+      "ru": "энергия баллистического маятника не сошлась",
+      "en": "энергия баллистического маятника не сошлась"
+    }
+  }
+}

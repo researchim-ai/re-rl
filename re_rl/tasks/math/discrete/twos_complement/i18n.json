@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа хранятся в {n}-битном дополнительном коде (диапазон от {v1} до {v2}). Возникает ли знаковое переполнение при сложении {a} + {b}? Ответьте да/нет.",
+      "en": "Numbers are stored in {n}-bit two's complement (range {v1}..{v2}). Does signed overflow occur when adding {a} + {b}? Answer yes/no."
+    },
+    "s1": {
+      "ru": "Дано {n}-битное число в дополнительном коде (two's complement): {bits_str}. Какому знаковому десятичному числу оно соответствует?",
+      "en": "Given a {n}-bit two's complement number: {bits_str}. Which signed decimal value does it represent?"
+    },
+    "s2": {
+      "ru": "Представьте число {value} в {n}-битном дополнительном коде (two's complement). Ответьте строкой из {n_2} бит.",
+      "en": "Represent {value} in {n}-bit two's complement. Answer as a string of {n_2} bits."
+    },
+    "s3": {
+      "ru": "Старший бит — знаковый; если он 1, вычитаем 2^n из беззнакового значения.",
+      "en": "The top bit is the sign; if it is 1, subtract 2^n from the unsigned value."
+    },
+    "s4": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s5": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s6": {
+      "ru": "Для отрицательных берём 2^n + value (или инвертируем биты и прибавляем 1).",
+      "en": "For negatives use 2^n + value (or invert bits and add 1)."
+    },
+    "s7": {
+      "ru": "Переполнение есть, если сумма выходит за диапазон знаковых n-битных чисел.",
+      "en": "Overflow occurs if the sum leaves the signed n-bit range."
+    }
+  }
+}

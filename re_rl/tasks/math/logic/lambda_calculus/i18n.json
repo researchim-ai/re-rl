@@ -1,0 +1,47 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дан λ-терм: {term}\nНаходится ли он в нормальной форме (нет ни одного β-редекса)? (да/нет)",
+      "en": "Given the λ-term: {term}\nIs it in normal form (no β-redex)? (yes/no)"
+    },
+    "s1": {
+      "ru": "Дан λ-терм: {term}\nРедуцируйте его в нормальном порядке (крайний левый внешний редекс) до нормальной формы. Сколько шагов β-редукции для этого потребуется?",
+      "en": "Given the λ-term: {term}\nReduce it in normal order (leftmost-outermost redex) to normal form. How many β-reduction steps are needed?"
+    },
+    "s2": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s3": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s5": {
+      "ru": "Нормальная форма: {v0}.",
+      "en": "Normal form: {v0}."
+    },
+    "s6": {
+      "ru": "Число шагов: {steps}.",
+      "en": "Number of steps: {steps}."
+    },
+    "s7": {
+      "ru": "Ищем β-редекс — подтерм вида (λx.M) N.",
+      "en": "Look for a β-redex — a subterm of the form (λx.M) N."
+    },
+    "s8": {
+      "ru": "Редекс отсутствует.",
+      "en": "No redex present."
+    },
+    "s9": {
+      "ru": "Редекс присутствует.",
+      "en": "A redex is present."
+    }
+  },
+  "literals": {
+    "s4": {
+      "ru": "На каждом шаге находим крайний левый внешний редекс (λx.M) N и заменяем его на M[x:=N] (с переименованием во избежание захвата переменных).",
+      "en": "At each step, take the leftmost outermost redex (λx.M) N and replace it by M[x:=N] (renaming to avoid capture)."
+    },
+    "s10": "is_normal_form"
+  }
+}

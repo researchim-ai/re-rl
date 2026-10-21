@@ -1,0 +1,568 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело движется с начальной скоростью {v0} м/с и ускорением {a} м/с². Найдите скорость через {t} с.",
+      "en": "A body moves with initial velocity {v0} m/s and acceleration {a} m/s². Find the velocity after {t} s."
+    },
+    "s1": {
+      "ru": "Вычислите: {a} × {b}",
+      "en": "Calculate: {a} × {b}"
+    },
+    "s2": {
+      "ru": "умножение {a} × {b} = {result}",
+      "en": "multiplication {a} × {b} = {result}"
+    },
+    "s3": {
+      "ru": "Вычислите: {a} + {b}",
+      "en": "Calculate: {a} + {b}"
+    },
+    "s4": {
+      "ru": "сложение {a} + {b} = {result}",
+      "en": "addition {a} + {b} = {result}"
+    },
+    "s5": {
+      "ru": "Вычислите: {a} × {b}",
+      "en": "Calculate: {a} × {b}"
+    },
+    "s6": {
+      "ru": "умножение {a} × {b} = {wrong_result}",
+      "en": "multiplication {a} × {b} = {wrong_result}"
+    },
+    "s7": {
+      "ru": "умножение {a} × {b} = {correct_result}",
+      "en": "multiplication {a} × {b} = {correct_result}"
+    },
+    "s8": {
+      "ru": "D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 4  ← ошибка!",
+      "en": "D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 4  ← error!"
+    },
+    "s9": {
+      "ru": "сложение {a} + {b} = {result}",
+      "en": "addition {a} + {b} = {result}"
+    },
+    "s10": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s11": {
+      "ru": "Переносим {b}: {a}x = {c} - {b_2} = {v4}",
+      "en": "Move {b}: {a}x = {c} - {b_2} = {v4}"
+    },
+    "s12": {
+      "ru": "Делим на {a}: x = {v1}/{a_2} = {x}",
+      "en": "Divide by {a}: x = {v1}/{a_2} = {x}"
+    },
+    "s13": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s14": {
+      "ru": "{multiplier} × {current_value} + {addend} = {result}",
+      "en": "{multiplier} × {current_value} + {addend} = {result}"
+    },
+    "s15": {
+      "ru": "Тело движется с начальной скоростью {v0} м/с и ускорением {a} м/с². Найдите скорость через {t} с.",
+      "en": "A body moves with initial velocity {v0} m/s and acceleration {a} m/s². Find the velocity after {t} s."
+    },
+    "s16": {
+      "ru": "v = v₀ + at = {v0} + {a}×{t} = {v} м/с",
+      "en": "v = v₀ + at = {v0} + {a}×{t} = {v} m/s"
+    },
+    "s17": {
+      "ru": "При a = {new_a} м/с²:\nv = {v0} + {new_a_2}×{t} = {new_v} м/с\ns = {v0_2}×{t_2} + {new_a_3}×{t_3}²/2 = {new_s} м",
+      "en": "With a = {new_a} m/s²:\nv = {v0} + {new_a_2}×{t} = {new_v} m/s\ns = {v0_2}×{t_2} + {new_a_3}×{t_3}²/2 = {new_s} m"
+    },
+    "s18": {
+      "ru": "На тело массой {m} кг действует сила {F} Н. Найдите ускорение.",
+      "en": "A force of {m} N acts on a body of mass {F} kg. Find the acceleration."
+    },
+    "s19": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s20": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s21": {
+      "ru": "Решите уравнение: {equation}",
+      "en": "Solve the equation: {equation}"
+    },
+    "s22": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s23": {
+      "ru": "При отрицательном ускорении (торможение):\na = {new_a} м/с²\nv = {v0} + ({new_a_2})×{t} = {new_v} м/с",
+      "en": "With negative acceleration (deceleration):\na = {new_a} m/s²\nv = {v0} + ({new_a_2})×{t} = {new_v} m/s"
+    },
+    "s24": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s25": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s26": {
+      "ru": "Решите уравнение: {equation}",
+      "en": "Solve the equation: {equation}"
+    },
+    "s27": {
+      "ru": "вычитание {a} - {b} = {result}",
+      "en": "subtraction {a} - {b} = {result}"
+    },
+    "s28": {
+      "ru": "умножение {a} * {b} = {result}",
+      "en": "multiplication {a} * {b} = {result}"
+    },
+    "s29": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s30": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s31": {
+      "ru": "Подставляем",
+      "en": "Substituting"
+    },
+    "s32": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s33": {
+      "ru": "перемещение за это время",
+      "en": "displacement during this time"
+    },
+    "s34": {
+      "ru": "s = v₀t + at²/2 = {v0}×{t} + {a}×{t_2}²/2 = {v4} + {v5} = {s} м",
+      "en": "s = v₀t + at²/2 = {v0}×{t} + {a}×{t_2}²/2 = {v4} + {v5} = {s} m"
+    },
+    "s35": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s36": {
+      "ru": "скорость через {t} с (начальная скорость 0)",
+      "en": "velocity after {t} s (initial velocity 0)"
+    },
+    "s37": {
+      "ru": "Этот метод наиболее подходит для данного типа задач.",
+      "en": "This method is most suitable for this type of problem."
+    },
+    "s38": {
+      "ru": "Можно проверить подстановкой найденного значения в исходное уравнение/выражение. Если равенство выполняется — ответ верный.",
+      "en": "We can verify by substituting the found value into the original equation/expression. If the equality holds — the answer is correct."
+    },
+    "s39": {
+      "ru": "первое число",
+      "en": "the first number"
+    },
+    "s40": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s41": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s42": {
+      "ru": "Уравнение не имеет вещественных решений, когда D < 0.\nНапример, x² - 2x + 5 = 0: D = 4 - 20 = -16 < 0",
+      "en": "The equation has no real solutions when D < 0.\nFor example, x² - 2x + 5 = 0: D = 4 - 20 = -16 < 0"
+    },
+    "s43": {
+      "ru": "При D < 0 вещественных корней нет",
+      "en": "When D < 0, there are no real roots"
+    },
+    "s44": {
+      "ru": "ускорение",
+      "en": "acceleration"
+    },
+    "s45": {
+      "ru": "ускорение",
+      "en": "acceleration"
+    },
+    "s46": {
+      "ru": "{new_v} м/с",
+      "en": "{new_v} m/s"
+    },
+    "s47": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s48": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s49": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s50": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s51": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s52": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s53": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s54": {
+      "ru": "Для этой задачи использованный метод является оптимальным.",
+      "en": "For this problem, the method used is optimal."
+    },
+    "s55": {
+      "ru": "второе число",
+      "en": "the second number"
+    },
+    "s56": {
+      "ru": "второе число",
+      "en": "the second number"
+    },
+    "s57": {
+      "ru": "коэффициент при x",
+      "en": "coefficient of x"
+    },
+    "s58": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s59": {
+      "ru": "ускорение",
+      "en": "acceleration"
+    },
+    "s60": {
+      "ru": "Всегда проверяйте граничные значения параметров.",
+      "en": "Always check boundary values of parameters."
+    },
+    "s61": {
+      "ru": "v = v₀ + at = {v0} + {a}×{t} = {v} м/с",
+      "en": "v = v₀ + at = {v0} + {a}×{t} = {v} m/s"
+    },
+    "s62": {
+      "ru": "<think>\n{step}\n</think>\n<answer>{result}</answer>",
+      "en": "<think>\n{step}\n</think>\n<answer>{result}</answer>"
+    },
+    "s63": {
+      "ru": "chain_equation_first",
+      "en": "chain_equation_first"
+    },
+    "s64": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>x = {x}</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>x = {x}</answer>"
+    },
+    "s65": {
+      "ru": "F = ma → a = F/m = {F}/{m} = {a} м/с²",
+      "en": "F = ma → a = F/m = {F}/{m} = {a} m/s²"
+    },
+    "s66": {
+      "ru": "<think>\n{step}\n</think>\n<answer>{result}</answer>",
+      "en": "<think>\n{step}\n</think>\n<answer>{result}</answer>"
+    },
+    "s67": {
+      "ru": "<think>\n{step}\n</think>\n<answer>{result}</answer>",
+      "en": "<think>\n{step}\n</think>\n<answer>{result}</answer>"
+    },
+    "s68": {
+      "ru": "what_if_double",
+      "en": "what_if_double"
+    },
+    "s69": {
+      "ru": "what_if_param",
+      "en": "what_if_param"
+    },
+    "s70": {
+      "ru": "what_if_negative",
+      "en": "what_if_negative"
+    },
+    "s71": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>{v} м/с</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>{v} m/s</answer>"
+    },
+    "s72": {
+      "ru": "{steps}\n\n{answer_prefix} {v} м/с",
+      "en": "{steps}\n\n{answer_prefix} {v} m/s"
+    },
+    "s73": {
+      "ru": "<think>\n{wrong_step}\n</think>\n<answer>{wrong_result}</answer>",
+      "en": "<think>\n{wrong_step}\n</think>\n<answer>{wrong_result}</answer>"
+    },
+    "s74": {
+      "ru": "{acknowledgment}\n<think>\n{correct_step}\n</think>\n<answer>{correct_result}</answer>",
+      "en": "{acknowledgment}\n<think>\n{correct_step}\n</think>\n<answer>{correct_result}</answer>"
+    },
+    "s75": {
+      "ru": "system_step_by_step",
+      "en": "system_step_by_step"
+    },
+    "s76": {
+      "ru": "<think>\n{step_text}\n</think>\n<answer>{new_result}</answer>",
+      "en": "<think>\n{step_text}\n</think>\n<answer>{new_result}</answer>"
+    },
+    "s77": {
+      "ru": "chain_equation_substitute",
+      "en": "chain_equation_substitute"
+    },
+    "s78": {
+      "ru": "<think>\nПодставляем x = {current_value}:\n{step_text}\n</think>\n<answer>{result}</answer>",
+      "en": "<think>\nПодставляем x = {current_value}:\n{step_text}\n</think>\n<answer>{result}</answer>"
+    },
+    "s79": {
+      "ru": "chain_physics_first",
+      "en": "chain_physics_first"
+    },
+    "s80": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>{v} м/с</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>{v} m/s</answer>"
+    },
+    "s81": {
+      "ru": "{steps}\n\n{answer_prefix} {v} м/с",
+      "en": "{steps}\n\n{answer_prefix} {v} m/s"
+    },
+    "s82": {
+      "ru": "chain_physics_first",
+      "en": "chain_physics_first"
+    },
+    "s83": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>{a} м/с²</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>{a} m/s²</answer>"
+    },
+    "s84": {
+      "ru": "{steps}\n\n{answer_prefix} {a} м/с²",
+      "en": "{steps}\n\n{answer_prefix} {a} m/s²"
+    },
+    "s85": {
+      "ru": "v = at = {a}×{t} = {v} м/с",
+      "en": "v = at = {a}×{t} = {v} m/s"
+    },
+    "s86": {
+      "ru": "system_step_by_step",
+      "en": "system_step_by_step"
+    },
+    "s87": {
+      "ru": "system_step_by_step",
+      "en": "system_step_by_step"
+    },
+    "s88": {
+      "ru": "what_if_double",
+      "en": "what_if_double"
+    },
+    "s89": {
+      "ru": "<think>\n{step}\n</think>\n<answer>{new_result}</answer>",
+      "en": "<think>\n{step}\n</think>\n<answer>{new_result}</answer>"
+    },
+    "s90": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>x = 2, x = 3</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>x = 2, x = 3</answer>"
+    },
+    "s91": {
+      "ru": "При a = {new_a} м/с²:\nv = {v0} + {new_a_2}×{t} = {new_v} м/с",
+      "en": "При a = {new_a} m/s²:\nv = {v0} + {new_a_2}×{t} = {new_v} m/s"
+    },
+    "s92": {
+      "ru": "{new_v} м/с",
+      "en": "{new_v} m/s"
+    },
+    "s93": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>{answer}</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>{answer}</answer>"
+    },
+    "s94": {
+      "ru": "system_step_by_step",
+      "en": "system_step_by_step"
+    },
+    "s95": {
+      "ru": "<think>\n{wrong_steps}\n</think>\n<answer>{wrong_answer}</answer>",
+      "en": "<think>\n{wrong_steps}\n</think>\n<answer>{wrong_answer}</answer>"
+    },
+    "s96": {
+      "ru": "{acknowledgment}\n<think>\n{correct_steps}\n</think>\n<answer>{correct_answer}</answer>",
+      "en": "{acknowledgment}\n<think>\n{correct_steps}\n</think>\n<answer>{correct_answer}</answer>"
+    },
+    "s97": {
+      "ru": "chain_physics_continue",
+      "en": "chain_physics_continue"
+    },
+    "s98": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>{s} м</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>{s} м</answer>"
+    },
+    "s99": {
+      "ru": "{steps}\n\n{answer_prefix} {s} м",
+      "en": "{steps}\n\n{answer_prefix} {s} m"
+    },
+    "s100": {
+      "ru": "chain_physics_what_if",
+      "en": "chain_physics_what_if"
+    },
+    "s101": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>v = {new_v} м/с, s = {new_s} м</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>v = {new_v} m/s, s = {new_s} м</answer>"
+    },
+    "s102": {
+      "ru": "{steps}\n\n{answer_prefix} v = {new_v} м/с, s = {new_s} м",
+      "en": "{steps}\n\n{answer_prefix} v = {new_v} m/s, s = {new_s} m"
+    },
+    "s103": {
+      "ru": "chain_physics_continue",
+      "en": "chain_physics_continue"
+    },
+    "s104": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>{v} м/с</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>{v} m/s</answer>"
+    },
+    "s105": {
+      "ru": "{steps}\n\n{answer_prefix} {v} м/с",
+      "en": "{steps}\n\n{answer_prefix} {v} m/s"
+    },
+    "s106": {
+      "ru": "<think>\n{steps_text}\n</think>\n<answer>{final_answer}</answer>",
+      "en": "<think>\n{steps_text}\n</think>\n<answer>{final_answer}</answer>"
+    },
+    "s107": {
+      "ru": "Я использовал формулу дискриминанта, потому что это стандартный метод решения квадратных уравнений. Он даёт все корни и позволяет определить их количество по знаку дискриминанта.",
+      "en": "Я использовал формулу дискриминанта, потому что это стандартный метод решения квадратных уравнений. Он даёт все корни и позволяет определить их количество по знаку дискриминанта."
+    },
+    "s108": {
+      "ru": "I used the discriminant formula because it's the standard method for solving quadratic equations. It gives all roots and allows determining their number by the discriminant's sign.",
+      "en": "I used the discriminant formula because it's the standard method for solving quadratic equations. It gives all roots and allows determining their number by the discriminant's sign."
+    },
+    "s109": {
+      "ru": "Я использовал метод переноса слагаемых и деления, потому что это самый прямой способ решения линейных уравнений.",
+      "en": "Я использовал метод переноса слагаемых и деления, потому что это самый прямой способ решения линейных уравнений."
+    },
+    "s110": {
+      "ru": "I used the method of moving terms and division because it's the most direct way to solve linear equations.",
+      "en": "I used the method of moving terms and division because it's the most direct way to solve linear equations."
+    },
+    "s111": {
+      "ru": "Я использовал кинематические формулы равноускоренного движения, так как в задаче дано постоянное ускорение.",
+      "en": "Я использовал кинематические формулы равноускоренного движения, так как в задаче дано постоянное ускорение."
+    },
+    "s112": {
+      "ru": "I used kinematic equations for uniformly accelerated motion since the problem involves constant acceleration.",
+      "en": "I used kinematic equations for uniformly accelerated motion since the problem involves constant acceleration."
+    },
+    "s113": {
+      "ru": "what_if_double",
+      "en": "what_if_double"
+    },
+    "s114": {
+      "ru": "what_if_param",
+      "en": "what_if_param"
+    },
+    "s115": {
+      "ru": "<think>\n{steps}\n</think>\n<answer>{answer}</answer>",
+      "en": "<think>\n{steps}\n</think>\n<answer>{answer}</answer>"
+    },
+    "s116": {
+      "ru": "what_if_double",
+      "en": "what_if_double"
+    },
+    "s117": {
+      "ru": "what_if_negative",
+      "en": "what_if_negative"
+    },
+    "s118": {
+      "ru": "сложение {x} + {v} = {v2}",
+      "en": "сложение {x} + {v} = {v2}"
+    },
+    "s119": {
+      "ru": "вычитание {x} - {v} = {v2}",
+      "en": "вычитание {x} - {v} = {v2}"
+    },
+    "s120": {
+      "ru": "умножение {x} * {v} = {v2}",
+      "en": "умножение {x} * {v} = {v2}"
+    },
+    "s121": {
+      "ru": "сложение {x} + {v} = {v2}",
+      "en": "сложение {x} + {v} = {v2}"
+    },
+    "s122": {
+      "ru": "{new_a} м/с²",
+      "en": "{new_a} m/s²"
+    },
+    "s123": {
+      "ru": "Да, можно также использовать разложение на множители или теорему Виета. Для уравнения x² + bx + c = 0 корни связаны соотношениями: x₁ + x₂ = -b и x₁ × x₂ = c.",
+      "en": "Да, можно также использовать разложение на множители или теорему Виета. Для уравнения x² + bx + c = 0 корни связаны соотношениями: x₁ + x₂ = -b и x₁ × x₂ = c."
+    },
+    "s124": {
+      "ru": "Yes, we can also use factoring or Vieta's formulas. For equation x² + bx + c = 0, the roots satisfy: x₁ + x₂ = -b and x₁ × x₂ = c.",
+      "en": "Yes, we can also use factoring or Vieta's formulas. For equation x² + bx + c = 0, the roots satisfy: x₁ + x₂ = -b and x₁ × x₂ = c."
+    },
+    "s125": {
+      "ru": "Можно решить графически — построить прямую y = ax + b и найти точку пересечения с горизонтальной прямой y = c.",
+      "en": "Можно решить графически — построить прямую y = ax + b и найти точку пересечения с горизонтальной прямой y = c."
+    },
+    "s126": {
+      "ru": "We can solve graphically — plot the line y = ax + b and find its intersection with the horizontal line y = c.",
+      "en": "We can solve graphically — plot the line y = ax + b and find its intersection with the horizontal line y = c."
+    },
+    "s127": {
+      "ru": "Можно группировать числа по-другому или использовать свойства операций (ассоциативность, коммутативность) для упрощения вычислений.",
+      "en": "Можно группировать числа по-другому или использовать свойства операций (ассоциативность, коммутативность) для упрощения вычислений."
+    },
+    "s128": {
+      "ru": "We can group numbers differently or use operation properties (associativity, commutativity) to simplify calculations.",
+      "en": "We can group numbers differently or use operation properties (associativity, commutativity) to simplify calculations."
+    },
+    "s129": {
+      "ru": "what_if_param",
+      "en": "what_if_param"
+    },
+    "s130": {
+      "ru": "what_if_negative",
+      "en": "what_if_negative"
+    },
+    "s131": {
+      "ru": "what_if_param",
+      "en": "what_if_param"
+    },
+    "s132": {
+      "ru": "when_no_solution",
+      "en": "when_no_solution"
+    },
+    "s133": {
+      "ru": "Генерация {mode}",
+      "en": "Генерация {mode}"
+    },
+    "s134": {
+      "ru": "диалогов",
+      "en": "диалогов"
+    },
+    "s135": {
+      "ru": "Особые случаи:\n- D < 0: нет вещественных корней\n- D = 0: один корень (кратный)\n- a = 0: уравнение становится линейным",
+      "en": "Особые случаи:\n- D < 0: нет вещественных корней\n- D = 0: один корень (кратный)\n- a = 0: уравнение становится линейным"
+    },
+    "s136": {
+      "ru": "Edge cases:\n- D < 0: no real roots\n- D = 0: one root (repeated)\n- a = 0: equation becomes linear",
+      "en": "Edge cases:\n- D < 0: no real roots\n- D = 0: one root (repeated)\n- a = 0: equation becomes linear"
+    },
+    "s137": {
+      "ru": "Особые случаи:\n- a = 0 и b = c: бесконечно много решений\n- a = 0 и b ≠ c: нет решений",
+      "en": "Особые случаи:\n- a = 0 и b = c: бесконечно много решений\n- a = 0 и b ≠ c: нет решений"
+    },
+    "s138": {
+      "ru": "Edge cases:\n- a = 0 and b = c: infinitely many solutions\n- a = 0 and b ≠ c: no solutions",
+      "en": "Edge cases:\n- a = 0 and b = c: infinitely many solutions\n- a = 0 and b ≠ c: no solutions"
+    },
+    "s139": {
+      "ru": "Особые случаи:\n- a = 0: равномерное движение\n- v₀ = 0: движение из состояния покоя\n- t < 0: рассматриваем движение в прошлом",
+      "en": "Особые случаи:\n- a = 0: равномерное движение\n- v₀ = 0: движение из состояния покоя\n- t < 0: рассматриваем движение в прошлом"
+    },
+    "s140": {
+      "ru": "Edge cases:\n- a = 0: uniform motion\n- v₀ = 0: motion from rest\n- t < 0: considering past motion",
+      "en": "Edge cases:\n- a = 0: uniform motion\n- v₀ = 0: motion from rest\n- t < 0: considering past motion"
+    }
+  }
+}

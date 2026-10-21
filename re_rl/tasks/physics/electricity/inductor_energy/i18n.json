@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В выбранных единицах энергия катушки U = L * I^2 / 2. Ток положителен. Ответ — целое или несократимая дробь.",
+      "en": "In the chosen units the inductor energy is U = L * I^2 / 2. The current is positive. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "L = {inductance}, I = {current}. Найдите U.",
+      "en": "L = {inductance}, I = {current}. Find U."
+    },
+    "s2": {
+      "ru": "U = {energy}, I = {current}. Найдите L.",
+      "en": "U = {energy}, I = {current}. Find L."
+    },
+    "s3": {
+      "ru": "U = {energy}, L = {inductance}. Найдите I.",
+      "en": "U = {energy}, L = {inductance}. Find I."
+    }
+  }
+}

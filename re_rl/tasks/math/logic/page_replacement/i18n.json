@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кадров памяти: {frames_n}. Последовательность обращений: {seq}. {rules} Сколько будет отказов страниц? Загрузка в пустой кадр тоже считается отказом.",
+      "en": "Memory frames: {frames_n}. Reference string: {seq}. {rules} How many page faults occur? Loading into an empty frame counts as a fault."
+    },
+    "s1": {
+      "ru": "FIFO: вытесняется страница, загруженная раньше всех.",
+      "en": "FIFO: evict the page that was loaded earliest."
+    },
+    "s2": {
+      "ru": "LRU: вытесняется страница, к которой дольше всего не обращались.",
+      "en": "LRU: evict the page that has gone unused the longest."
+    },
+    "s3": {
+      "ru": "OPT: вытесняется страница, чьё следующее обращение дальше всех; при равенстве — страница с меньшим номером.",
+      "en": "OPT: evict the page whose next reference is farthest; ties go to the smaller page number."
+    },
+    "s4": {
+      "ru": "Звёздочка — отказ. Кадры после каждого обращения:",
+      "en": "A star marks a fault. Frames after each reference:"
+    }
+  }
+}

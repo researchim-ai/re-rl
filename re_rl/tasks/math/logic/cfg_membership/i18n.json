@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Контекстно-свободная грамматика (стартовый символ S, терминалы a, b) в нормальной форме Хомского:\n{v0}\n\nПринадлежит ли строка «{string}» языку этой грамматики? Ответьте да/нет.",
+      "en": "Context-free grammar (start symbol S, terminals a, b) in Chomsky normal form:\n{v0}\n\nDoes the string '{string}' belong to the grammar's language? Answer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "Алгоритм CYK: заполняем таблицу нетерминалов для всех подстрок снизу вверх.",
+      "en": "CYK algorithm: fill the table of nonterminals for all substrings bottom-up."
+    },
+    "s4": {
+      "ru": "Символ S покрывает всю строку — принадлежит.",
+      "en": "S covers the whole string — it belongs."
+    },
+    "s5": {
+      "ru": "S не покрывает всю строку — не принадлежит.",
+      "en": "S does not cover the whole string — it does not belong."
+    }
+  }
+}

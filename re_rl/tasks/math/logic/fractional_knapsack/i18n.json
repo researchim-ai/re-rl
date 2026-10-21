@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дробный рюкзак: предметы заданы парами (масса, стоимость): {items}. Вместимость равна {capacity}. Предмет можно брать частично. Найдите максимальную стоимость. При равной удельной стоимости раньше берётся предмет с меньшим номером (нумерация с 1 в порядке перечисления).",
+      "en": "Fractional knapsack. Items are pairs (weight, value): {items}. Capacity is {capacity}. An item may be taken partially. Find the maximum value. Equal value/weight ratios are broken by the smaller index (numbering starts at 1 in the listed order)."
+    },
+    "s1": {
+      "ru": "Жадный порядок по убыванию стоимости на единицу массы: {v0}.",
+      "en": "Greedy order by value per unit weight: {v0}."
+    },
+    "s2": {
+      "ru": "предмет {v0}: {take_w}/{w}, стоимость {take_v}",
+      "en": "item {v0}: {take_w}/{w}, value {take_v}"
+    }
+  },
+  "literals": {
+    "s3": "дробный рюкзак дал нецелую стоимость"
+  }
+}

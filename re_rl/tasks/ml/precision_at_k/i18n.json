@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пары (оценка, метка) слева направо: {v0}. Метка 1 — релевантный объект. В топ-{k} при равной оценке выше стоит левый объект.",
+      "en": "Pairs (score, label) from left to right: {v0}. Label 1 is relevant. In the top {k}, equal scores keep the left object higher."
+    },
+    "s1": {
+      "ru": "В топ-{k} релевантных {hits}, точность {v2}.",
+      "en": "Top-{k} contains {hits} relevant objects, precision {v2}."
+    },
+    "s2": {
+      "ru": "Сколько релевантных объектов попало в этот топ?",
+      "en": "How many relevant objects are in that top?"
+    },
+    "s3": {
+      "ru": "Найдите точность: число релевантных в топе, делённое на его длину. Ответ — целое или несократимая дробь.",
+      "en": "Find the precision: relevant objects in the top divided by its length. Answer with an integer or a reduced fraction."
+    }
+  }
+}

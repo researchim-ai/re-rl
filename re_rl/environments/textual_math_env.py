@@ -2,6 +2,9 @@
 """
 Интерфейс для выдачи задач в процессе тренировки LLM.
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'textual_math_env_i18n.json')
+
 
 import random
 from re_rl.tasks import (
@@ -121,21 +124,21 @@ class TextualMathEnv:
 # Пример использования интерфейса
 if __name__ == "__main__":
     print("=" * 60)
-    print("Пример: Математическая задача")
+    print(texts.literal('literals.s0'))
     print("=" * 60)
     
     env = TextualMathEnv(language="ru", difficulty=5)
     result = env.get_task()
-    print(f"Тип: {result['task_type']}")
-    print(f"Задача: {result['problem']}")
-    print(f"Ответ: {result['final_answer']}")
+    print(texts.t('s1', 'ru', v0=result['task_type']))
+    print(texts.t('s2', 'ru', v0=result['problem']))
+    print(texts.t('s3', 'ru', v0=result['final_answer']))
     
     print("\n" + "=" * 60)
-    print("Пример: Физическая задача")
+    print(texts.literal('literals.s4'))
     print("=" * 60)
     
     env = TextualMathEnv(language="ru", difficulty=5, include_physics=True)
     result = env.get_physics_task()
-    print(f"Тип: {result['task_type']}")
-    print(f"Задача: {result['problem']}")
-    print(f"Ответ: {result['final_answer']}")
+    print(texts.t('s5', 'ru', v0=result['task_type']))
+    print(texts.t('s6', 'ru', v0=result['problem']))
+    print(texts.t('s7', 'ru', v0=result['final_answer']))

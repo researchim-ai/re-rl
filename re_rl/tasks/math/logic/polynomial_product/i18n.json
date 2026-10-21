@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Коэффициенты A от свободного члена: {v0}. Коэффициенты B: {v1}.",
+      "en": "Coefficients of A from the constant term: {v0}. Coefficients of B: {v1}."
+    },
+    "s1": {
+      "ru": "Произведение: {shown}. В точке {point} получается {value}.",
+      "en": "Product: {shown}. At {point} it equals {value}."
+    },
+    "s2": {
+      "ru": "Найдите коэффициент произведения при степени {power}.",
+      "en": "Find the coefficient of degree {power} in the product."
+    },
+    "s3": {
+      "ru": "Найдите значение произведения в точке {point}.",
+      "en": "Find the value of the product at {point}."
+    }
+  }
+}

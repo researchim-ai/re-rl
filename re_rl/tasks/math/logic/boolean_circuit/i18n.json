@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Логическая схема с входами {v0} (выход — {out}):\n{circuit}\n",
+      "en": "A logic circuit with inputs {v0} (output is {out}):\n{circuit}\n"
+    },
+    "s1": {
+      "ru": "Даны входы: {assign}. Чему равен выход {out} (0 или 1)?",
+      "en": "Given inputs: {assign}. What is the output {out} (0 or 1)?"
+    },
+    "s2": {
+      "ru": "Для скольких из {v0} наборов входов выход {out} равен 1?",
+      "en": "For how many of the {v0} input combinations is the output {out} equal to 1?"
+    },
+    "s3": {
+      "ru": "Вычисляем вентили по порядку, подставляя значения входов.",
+      "en": "Evaluate the gates in order, substituting the input values."
+    },
+    "s4": {
+      "ru": "Выход = {_answer}.",
+      "en": "Output = {_answer}."
+    },
+    "s5": {
+      "ru": "Перебираем все наборы входов и считаем, где выход равен 1.",
+      "en": "Enumerate all input combinations and count where the output is 1."
+    },
+    "s6": {
+      "ru": "Число единичных наборов = {_answer}.",
+      "en": "Number of satisfying inputs = {_answer}."
+    }
+  }
+}

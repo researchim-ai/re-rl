@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "По таблице значений функции f(x) найдите её формулу:\n{table}",
+        "Определите формулу f(x), согласующуюся со всеми значениями таблицы:\n{table}"
+      ],
+      "en": [
+        "Find the formula of f(x) from the table of values:\n{table}",
+        "Determine a formula for f(x) consistent with all the table values:\n{table}"
+      ]
+    },
+    "step_fit": {
+      "ru": "Подбираем многочлен, проходящий через все точки (интерполяция/метод неопределённых коэффициентов).",
+      "en": "Fit a polynomial passing through all points (interpolation / undetermined coefficients)."
+    },
+    "step_result": {
+      "ru": "Ответ: f(x) = {result}",
+      "en": "Answer: f(x) = {result}"
+    }
+  }
+}

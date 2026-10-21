@@ -1,0 +1,26 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько раз образец «{pattern}» встречается в тексте «{text}» (вхождения могут перекрываться)?",
+      "en": "How many times does the pattern '{pattern}' occur in the text '{text}' (occurrences may overlap)?"
+    },
+    "s1": {
+      "ru": "Дан образец «{pattern}» (индексы: {idx}). Вычислите префикс-функцию KMP π[0..{v2}] — для каждой позиции длину наибольшего собственного префикса, являющегося суффиксом. Приведите массив значений через запятую.",
+      "en": "Given the pattern '{pattern}' (indices: {idx}). Compute the KMP prefix-function π[0..{v2}] — for each position the length of the longest proper prefix that is also a suffix. Give the array of values separated by commas."
+    },
+    "s3": {
+      "ru": "Прогоняем KMP по тексту, считая позиции полного совпадения образца.",
+      "en": "Run KMP over the text, counting positions of a full pattern match."
+    },
+    "s4": {
+      "ru": "Вхождений: {count}.",
+      "en": "Occurrences: {count}."
+    }
+  },
+  "literals": {
+    "s2": {
+      "ru": "Идём слева направо, поддерживая длину k текущего совпавшего префикса; при несовпадении откатываемся по π[k-1].",
+      "en": "Scan left to right, keeping the matched prefix length k; on a mismatch, fall back using π[k-1]."
+    }
+  }
+}

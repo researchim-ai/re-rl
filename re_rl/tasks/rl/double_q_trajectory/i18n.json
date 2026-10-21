@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Double Q-learning, обе таблицы в начале нулевые. Состояний {n_states}, действий 2. α = {v1}, γ = {v2}. Запись: голова, состояние, действие, награда, следующее состояние. {v3}. Действие для цели выбирает обновляемая голова: максимум в следующем состоянии, при равенстве меньший номер. Значение берётся из другой головы. Лучшее действие головы — её собственный максимум, при равенстве меньший номер. Ответ — целое или несократимая дробь.",
+      "en": "Double Q-learning, both tables start at zero. There are {n_states} states and 2 actions. α = {v1}, γ = {v2}. A record is head, state, action, reward, next state. {v3}. The updated head selects the target action: the maximum in the next state, ties take the smaller index. The value comes from the other head. A head's best action is its own maximum, ties take the smaller index. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Q головы {v0} для ({v1}, {v2}) равно {v3}, лучшее действие {best}.",
+      "en": "Head {v0} Q for ({v1}, {v2}) is {v3}, best action {best}."
+    },
+    "s2": {
+      "ru": "Найдите Q головы {v0} для состояния {v1} и действия {v2}.",
+      "en": "Find head {v0}'s Q for state {v1} and action {v2}."
+    },
+    "s3": {
+      "ru": "Какое действие лучше у головы {v0} в состоянии {v1}?",
+      "en": "Which action is best for head {v0} in state {v1}?"
+    }
+  }
+}

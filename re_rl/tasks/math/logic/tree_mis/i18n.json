@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дерево из {n} вершин, номера с 1. Рёбра: {v1}. Независимое множество не содержит двух соседних вершин. Найдите его максимальный размер.",
+      "en": "A tree of {n} vertices, numbered from 1. Edges: {v1}. An independent set contains no two adjacent vertices. Find its maximum size."
+    },
+    "s1": {
+      "ru": "Максимальный размер равен {answer}.",
+      "en": "The maximum size is {answer}."
+    }
+  }
+}

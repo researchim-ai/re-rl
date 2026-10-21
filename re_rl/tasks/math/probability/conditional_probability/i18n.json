@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дано: P(A) = {p_a}, P(B|A) = {p_b_a}, P(B|¬A) = {p_b_na}.",
+      "en": "Дано: P(A) = {p_a}, P(B|A) = {p_b_a}, P(B|¬A) = {p_b_na}."
+    }
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "{scenario} Найдите вероятность P({event}).",
+        "{scenario} Чему равна P({event})?"
+      ],
+      "en": [
+        "{scenario} Find the probability P({event}).",
+        "{scenario} What is P({event})?"
+      ]
+    },
+    "step_setup": {
+      "ru": "Используем определение условной вероятности и формулу полной вероятности/Байеса.",
+      "en": "Use the definition of conditional probability and total probability/Bayes."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

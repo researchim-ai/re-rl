@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шифр простой подстановки. Таблица (буква оригинала → буква шифра): {table}. Зашифрованный текст: «{cipher}». Восстановите исходный текст.",
+      "en": "Simple substitution cipher. Table (plain → cipher): {table}. Ciphertext: '{cipher}'. Recover the original text."
+    },
+    "s1": {
+      "ru": "Шифр Цезаря со сдвигом {shift} (каждая буква сдвинута на {shift_2} позиций вперёд по латинскому алфавиту a–z с циклом). Зашифрованный текст: «{cipher}». Восстановите исходный текст.",
+      "en": "Caesar cipher with shift {shift} (each letter shifted {shift_2} positions forward in the Latin alphabet a–z, wrapping around). Ciphertext: '{cipher}'. Recover the original text."
+    },
+    "s2": {
+      "ru": "Применяем обратное преобразование к каждой букве шифра.",
+      "en": "Apply the inverse transformation to each ciphertext letter."
+    },
+    "s3": {
+      "ru": "Исходный текст: {plain}.",
+      "en": "Original text: {plain}."
+    }
+  }
+}

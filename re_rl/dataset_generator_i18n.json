@@ -1,0 +1,142 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s1": {
+      "ru": "Ответ:",
+      "en": "Answer:"
+    },
+    "s3": {
+      "ru": "  Математика ({v0}): {v1}...",
+      "en": "  Математика ({v0}): {v1}..."
+    },
+    "s4": {
+      "ru": "  Физика ({v0}): {v1}",
+      "en": "  Физика ({v0}): {v1}"
+    },
+    "s8": {
+      "ru": "\nВсего сгенерировано: {v0} примеров",
+      "en": "\nВсего сгенерировано: {v0} примеров"
+    },
+    "s9": {
+      "ru": "<think>\n\n</think>\n<answer>{final_ans}</answer>",
+      "en": "<think>\n\n</think>\n<answer>{final_ans}</answer>"
+    },
+    "s10": {
+      "ru": "Рассмотрите изображение и решите задачу. Рассуждения — в <think></think>, ответ — в <answer></answer>.",
+      "en": "Рассмотрите изображение и решите задачу. Рассуждения — в <think></think>, ответ — в <answer></answer>."
+    },
+    "s11": {
+      "ru": "Look at the image and solve the task. Put reasoning in <think></think>, the answer in <answer></answer>.",
+      "en": "Look at the image and solve the task. Put reasoning in <think></think>, the answer in <answer></answer>."
+    },
+    "s12": {
+      "ru": "<think>\n{steps_text}\n</think>\n<answer>{final_ans}</answer>",
+      "en": "<think>\n{steps_text}\n</think>\n<answer>{final_ans}</answer>"
+    },
+    "s13": {
+      "ru": "Ответ:",
+      "en": "Ответ:"
+    },
+    "s14": {
+      "ru": "Ответ ",
+      "en": "Ответ "
+    },
+    "s15": {
+      "ru": "Неизвестный тип: {task_type}. Доступные: {v1}",
+      "en": "Неизвестный тип: {task_type}. Доступные: {v1}"
+    },
+    "s16": {
+      "ru": "Решите задачу. Запишите рассуждения в <think></think>, ответ в <answer></answer>.",
+      "en": "Решите задачу. Запишите рассуждения в <think></think>, ответ в <answer></answer>."
+    },
+    "s17": {
+      "ru": "Solve the problem. Write reasoning in <think></think>, answer in <answer></answer>.",
+      "en": "Solve the problem. Write reasoning in <think></think>, answer in <answer></answer>."
+    },
+    "s18": {
+      "ru": "Решите задачу пошагово, объясняя каждый шаг рассуждения.",
+      "en": "Решите задачу пошагово, объясняя каждый шаг рассуждения."
+    },
+    "s19": {
+      "ru": "Solve the problem step by step, explaining each reasoning step.",
+      "en": "Solve the problem step by step, explaining each reasoning step."
+    },
+    "s20": {
+      "ru": "Решите задачу пошагово, используя LaTeX для математических формул.",
+      "en": "Решите задачу пошагово, используя LaTeX для математических формул."
+    },
+    "s21": {
+      "ru": "Solve the problem step by step, using LaTeX for mathematical formulas.",
+      "en": "Solve the problem step by step, using LaTeX for mathematical formulas."
+    },
+    "s22": {
+      "ru": "<|system|>\n{v0}\n<|user|>\n{v1}\n<|assistant|>\n{v2}",
+      "en": "<|system|>\n{v0}\n<|user|>\n{v1}\n<|assistant|>\n{v2}"
+    },
+    "s23": {
+      "ru": "Сохранено {v0} примеров в {filepath} (schema: {resolved_format})",
+      "en": "Сохранено {v0} примеров в {filepath} (schema: {resolved_format})"
+    },
+    "s24": {
+      "ru": "Сохранено {v0} примеров в {filepath}",
+      "en": "Сохранено {v0} примеров в {filepath}"
+    },
+    "s25": {
+      "ru": "Сохранено {v0} примеров в {filepath} (schema: {resolved_format})",
+      "en": "Сохранено {v0} примеров в {filepath} (schema: {resolved_format})"
+    },
+    "s26": {
+      "ru": "Сохранено {v0} примеров в {filepath}",
+      "en": "Сохранено {v0} примеров в {filepath}"
+    },
+    "s27": {
+      "ru": "Генерация задач",
+      "en": "Генерация задач"
+    },
+    "s28": {
+      "ru": "попыток",
+      "en": "попыток"
+    },
+    "s29": {
+      "ru": "Генерация GRPO",
+      "en": "Генерация GRPO"
+    },
+    "s30": {
+      "ru": "попыток",
+      "en": "попыток"
+    },
+    "s31": {
+      "ru": "Генерация VLM",
+      "en": "Генерация VLM"
+    },
+    "s32": {
+      "ru": "попыток",
+      "en": "попыток"
+    },
+    "s33": {
+      "ru": "Генерация задач",
+      "en": "Генерация задач"
+    },
+    "s34": {
+      "ru": "задач",
+      "en": "задач"
+    },
+    "s35": {
+      "ru": "ref_final_answer",
+      "en": "ref_final_answer"
+    },
+    "s36": {
+      "ru": "ref_final_answer",
+      "en": "ref_final_answer"
+    }
+  },
+  "literals": {
+    "s2": "Доступные типы задач:",
+    "s5": "\nГенерация SFT датасета...",
+    "s6": "\nПример из датасета:",
+    "s7": "sft_sample.jsonl"
+  }
+}

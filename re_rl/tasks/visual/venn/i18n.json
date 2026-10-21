@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На диаграмме Венна показаны два множества A и B; числа расставлены по областям (числа вне кругов — вне обоих множеств). ",
+      "en": "The Venn diagram shows two sets A and B; numbers are placed in the regions (numbers outside the circles are in neither set). "
+    },
+    "s1": {
+      "ru": "Считаем элементы в нужных областях диаграммы.",
+      "en": "Count the elements in the relevant regions of the diagram."
+    },
+    "s2": {
+      "ru": "сколько элементов в пересечении A ∩ B (в общей области)?",
+      "en": "how many elements are in the intersection A ∩ B (the overlap)?"
+    },
+    "s3": {
+      "ru": "сколько элементов в объединении A ∪ B?",
+      "en": "how many elements are in the union A ∪ B?"
+    },
+    "s4": {
+      "ru": "сколько элементов только в A (в A, но не в B)?",
+      "en": "how many elements are only in A (in A but not in B)?"
+    },
+    "s5": {
+      "ru": "сколько элементов в симметрической разности A △ B (ровно в одном из множеств)?",
+      "en": "how many elements are in the symmetric difference A △ B (in exactly one set)?"
+    },
+    "s6": {
+      "ru": "Диаграмма Венна (U — все числа)",
+      "en": "Диаграмма Венна (U — все числа)"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Время встречи {time} с, координата {place} м.",
+      "en": "Meeting time {time} s, coordinate {place} m."
+    },
+    "s1": {
+      "ru": "Тело A в точке {xa} м едет вправо со скоростью {va} м/с. Тело B в точке {xb} м едет влево со скоростью {vb} м/с.",
+      "en": "Body A at {xa} m moves right at {va} m/s. Body B at {xb} m moves left at {vb} m/s."
+    },
+    "s2": {
+      "ru": "Тело A в точке {xa} м едет вправо со скоростью {va} м/с. Тело B в точке {xb} м едет вправо со скоростью {vb} м/с.",
+      "en": "Body A at {xa} m moves right at {va} m/s. Body B at {xb} m moves right at {vb} m/s."
+    },
+    "s3": {
+      "ru": "Через сколько секунд они встретятся?",
+      "en": "After how many seconds do they meet?"
+    },
+    "s4": {
+      "ru": "В какой координате, в метрах, они встретятся?",
+      "en": "At what coordinate, in meters, do they meet?"
+    }
+  }
+}

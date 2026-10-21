@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Найдите частную производную ∂f/∂{var} функции f(x, y) = {func}.",
+        "Вычислите частную производную функции f(x, y) = {func} по переменной {var}."
+      ],
+      "en": [
+        "Find the partial derivative ∂f/∂{var} of f(x, y) = {func}.",
+        "Compute the partial derivative of f(x, y) = {func} with respect to {var}."
+      ]
+    },
+    "step_setup": {
+      "ru": "Дифференцируем по {var}, считая остальные переменные константами.",
+      "en": "Differentiate with respect to {var}, treating the other variables as constants."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "text": {
+    "s0": {
+      "ru": "center_of_mass",
+      "en": "center_of_mass"
+    },
+    "s1": {
+      "ru": "center_of_mass",
+      "en": "center_of_mass"
+    },
+    "s2": {
+      "ru": "M = Σmᵢ = {v0} кг",
+      "en": "M = Σmᵢ = {v0} kg"
+    },
+    "s3": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s4": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s5": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s6": {
+      "ru": "center_mass_coordinates",
+      "en": "center_mass_coordinates"
+    },
+    "s7": {
+      "ru": "center_of_mass",
+      "en": "center_of_mass"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Найдите координаты центра масс системы тел.",
+      "en": "Find the coordinates of the center of mass of the system."
+    },
+    "problem": {
+      "ru": "Даны {n} тел с массами {masses} кг в точках с координатами {positions}. Найдите центр масс системы.",
+      "en": "Given {n} bodies with masses {masses} kg at positions {positions}. Find the center of mass."
+    },
+    "steps": {
+      "formula": {
+        "ru": "Центр масс: r_c = Σ(mᵢ·rᵢ)/Σmᵢ",
+        "en": "Center of mass: r_c = Σ(mᵢ·rᵢ)/Σmᵢ"
+      },
+      "total_mass": {
+        "ru": "Общая масса: M = {total_mass} кг",
+        "en": "Total mass: M = {total_mass} kg"
+      },
+      "weighted_sum": {
+        "ru": "Взвешенная сумма координат: {weighted}",
+        "en": "Weighted sum of coordinates: {weighted}"
+      }
+    },
+    "final_answer": {
+      "ru": "Центр масс: ({x}, {y}) м",
+      "en": "Center of mass: ({x}, {y}) m"
+    }
+  },
+  "inline_keys": {
+    "masses_key": {
+      "ru": "массы",
+      "en": "masses"
+    },
+    "center_mass_coordinates": {
+      "ru": "координаты центра масс",
+      "en": "center of mass coordinates"
+    }
+  }
+}

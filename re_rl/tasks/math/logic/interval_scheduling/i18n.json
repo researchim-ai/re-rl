@@ -1,0 +1,56 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Даны временные интервалы (в часах): {lst}.",
+      "en": "Given time intervals (in hours): {lst}."
+    },
+    "s1": {
+      "ru": " Какое максимальное число попарно непересекающихся интервалов можно выбрать?",
+      "en": " What is the maximum number of pairwise non-overlapping intervals you can pick?"
+    },
+    "s2": {
+      "ru": " Какое минимальное число переговорных нужно, чтобы провести все встречи?",
+      "en": " What is the minimum number of rooms needed to host all meetings?"
+    },
+    "s3": {
+      "ru": " Пересекаются ли интервалы [{v0}, {v1}) и [{v2}, {v3})? Ответьте да/нет.",
+      "en": " Do intervals [{v0}, {v1}) and [{v2}, {v3}) overlap? Answer yes/no."
+    },
+    "s4": {
+      "ru": "Сортируем интервалы по времени окончания и жадно берём совместимые.",
+      "en": "Sort intervals by end time and greedily pick compatible ones."
+    },
+    "s5": {
+      "ru": "Максимум непересекающихся = {_answer}.",
+      "en": "Maximum non-overlapping = {_answer}."
+    },
+    "s6": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s7": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s8": {
+      "ru": "Считаем максимум одновременно активных интервалов (развёртка событий).",
+      "en": "Count the maximum number of simultaneously active intervals (sweep line)."
+    },
+    "s9": {
+      "ru": "Минимум переговорных = {_answer}.",
+      "en": "Minimum rooms = {_answer}."
+    },
+    "s10": {
+      "ru": "Два полуинтервала пересекаются, если s1 < e2 и s2 < e1.",
+      "en": "Two half-open intervals overlap iff s1 < e2 and s2 < e1."
+    },
+    "s11": {
+      "ru": "Пересекаются.",
+      "en": "They overlap."
+    },
+    "s12": {
+      "ru": "Не пересекаются.",
+      "en": "They do not overlap."
+    }
+  }
+}

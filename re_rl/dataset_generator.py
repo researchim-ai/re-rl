@@ -17,6 +17,9 @@ Multi-turn режимы:
 - variations: Вариации параметров
 - correction: Исправление ошибок (для RLHF)
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'dataset_generator_i18n.json')
+
 
 import json
 import random
@@ -97,23 +100,23 @@ class DatasetGenerator:
         if reasoning_mode:
             if include_cot and task_data.get("solution_steps"):
                 steps_text = "\n".join(task_data["solution_steps"])
-                return f"<think>\n{steps_text}\n</think>\n<answer>{final_ans}</answer>"
-            return f"<think>\n\n</think>\n<answer>{final_ans}</answer>"
+                return texts.t('s12', language, steps_text=steps_text, final_ans=final_ans)
+            return texts.t('s9', language, final_ans=final_ans)
 
         already_has_prefix = (
-            str(final_ans).startswith("Ответ:")
+            str(final_ans).startswith(texts.t('s13', language))
             or str(final_ans).startswith("Answer:")
-            or str(final_ans).startswith("Ответ ")
+            or str(final_ans).startswith(texts.t('s14', language))
             or str(final_ans).startswith("Answer ")
         )
         if include_cot and task_data.get("solution_steps"):
             steps_text = "\n".join(task_data["solution_steps"])
             if already_has_prefix:
                 return f"{steps_text}\n\n{final_ans}"
-            return f"{steps_text}\n\n{'Ответ:' if language == 'ru' else 'Answer:'} {final_ans}"
+            return f"{steps_text}\n\n{(texts.t('s1', language))} {final_ans}"
         if already_has_prefix:
             return str(final_ans)
-        return f"{'Ответ:' if language == 'ru' else 'Answer:'} {final_ans}"
+        return f"{(texts.t('s0', language))} {final_ans}"
     
     def generate_single_task(
         self,
@@ -141,7 +144,7 @@ class DatasetGenerator:
             Словарь с задачей и решением
         """
         if task_type not in self.all_generators:
-            raise ValueError(f"Неизвестный тип: {task_type}. Доступные: {list(self.all_generators.keys())}")
+            raise ValueError(texts.t('s15', language, task_type=task_type, v1=list(self.all_generators.keys())))
         
         generator = self.all_generators[task_type]
         
@@ -252,20 +255,20 @@ class DatasetGenerator:
         # Инструкции на разных языках
         if reasoning_mode:
             instructions = {
-                "ru": "Решите задачу. Запишите рассуждения в <think></think>, ответ в <answer></answer>.",
-                "en": "Solve the problem. Write reasoning in <think></think>, answer in <answer></answer>.",
+                "ru": texts.t('s16', language),
+                "en": texts.t('s17', language),
             }
         else:
             instructions = {
-                "ru": "Решите задачу пошагово, объясняя каждый шаг рассуждения.",
-                "en": "Solve the problem step by step, explaining each reasoning step.",
+                "ru": texts.t('s18', language),
+                "en": texts.t('s19', language),
             }
         
         # Дополнение для LaTeX формата
         if output_format == "latex" and not reasoning_mode:
             instructions = {
-                "ru": "Решите задачу пошагово, используя LaTeX для математических формул.",
-                "en": "Solve the problem step by step, using LaTeX for mathematical formulas.",
+                "ru": texts.t('s20', language),
+                "en": texts.t('s21', language),
             }
         
         dataset = []
@@ -274,8 +277,8 @@ class DatasetGenerator:
         if show_progress:
             attempts = tqdm(
                 attempts,
-                desc="Генерация задач",
-                unit="попыток",
+                desc=texts.t('s27', language),
+                unit=texts.t('s28', language),
                 total=max_attempts,
             )
 
@@ -396,12 +399,7 @@ class DatasetGenerator:
         for item in sft_data:
             if include_chat_tags:
                 text = (
-                    "<|system|>\n"
-                    f"{item['instruction']}\n"
-                    "<|user|>\n"
-                    f"{item['input']}\n"
-                    "<|assistant|>\n"
-                    f"{item['output']}"
+                    texts.t('s22', language, v0=item['instruction'], v1=item['input'], v2=item['output'])
                 )
             else:
                 text = f"{item['instruction']}\n\n{item['input']}\n\n{item['output']}"
@@ -433,7 +431,7 @@ class DatasetGenerator:
         max_attempts = max(num_samples * 20, len(task_types) * 10)
         attempts = range(max_attempts)
         if show_progress:
-            attempts = tqdm(attempts, desc="Генерация GRPO", unit="попыток", total=max_attempts)
+            attempts = tqdm(attempts, desc=texts.t('s29', language), unit=texts.t('s30', language), total=max_attempts)
 
         for _ in attempts:
             if len(dataset) >= num_samples:
@@ -475,7 +473,7 @@ class DatasetGenerator:
                         "language": language,
                         "output_format": output_format,
                         "reasoning_mode": reasoning_mode,
-                        "ref_final_answer": str(task_data["final_answer"]),
+                        texts.t('s35', language): str(task_data["final_answer"]),
                     },
                 }
             )
@@ -524,17 +522,15 @@ class DatasetGenerator:
         img_root.mkdir(parents=True, exist_ok=True)
 
         instructions = {
-            "ru": "Рассмотрите изображение и решите задачу. Рассуждения — в <think></think>, "
-                  "ответ — в <answer></answer>.",
-            "en": "Look at the image and solve the task. Put reasoning in <think></think>, "
-                  "the answer in <answer></answer>.",
+            "ru": texts.t('s10', language),
+            "en": texts.t('s11', language),
         }
 
         dataset: List[Dict[str, Any]] = []
         max_attempts = max(num_samples * 20, len(task_types) * 10)
         attempts = range(max_attempts)
         if show_progress:
-            attempts = tqdm(attempts, desc="Генерация VLM", unit="попыток", total=max_attempts)
+            attempts = tqdm(attempts, desc=texts.t('s31', language), unit=texts.t('s32', language), total=max_attempts)
 
         for _ in attempts:
             if len(dataset) >= num_samples:
@@ -570,7 +566,7 @@ class DatasetGenerator:
                         "difficulty": difficulty,
                         "language": language,
                         "reasoning_mode": reasoning_mode,
-                        "ref_final_answer": str(result["final_answer"]),
+                        texts.t('s36', language): str(result["final_answer"]),
                     },
                 }
             )
@@ -617,7 +613,7 @@ class DatasetGenerator:
                         iterations.append((task_type, language, difficulty))
         
         if show_progress:
-            iterations = tqdm(iterations, desc="Генерация задач", unit="задач", total=total)
+            iterations = tqdm(iterations, desc=texts.t('s33', self.language), unit=texts.t('s34', self.language), total=total)
         
         for task_type, language, difficulty in iterations:
             try:
@@ -647,9 +643,9 @@ class DatasetGenerator:
         with open(filepath, "w", encoding="utf-8") as f:
             json.dump(dataset, f, ensure_ascii=False, indent=2)
         if validate:
-            print(f"Сохранено {len(dataset)} примеров в {filepath} (schema: {resolved_format})")
+            print(texts.t('s23', self.language, v0=len(dataset), filepath=filepath, resolved_format=resolved_format))
         else:
-            print(f"Сохранено {len(dataset)} примеров в {filepath}")
+            print(texts.t('s24', self.language, v0=len(dataset), filepath=filepath))
     
     def save_jsonl(
         self,
@@ -667,9 +663,9 @@ class DatasetGenerator:
             for item in dataset:
                 f.write(json.dumps(item, ensure_ascii=False) + "\n")
         if validate:
-            print(f"Сохранено {len(dataset)} примеров в {filepath} (schema: {resolved_format})")
+            print(texts.t('s25', self.language, v0=len(dataset), filepath=filepath, resolved_format=resolved_format))
         else:
-            print(f"Сохранено {len(dataset)} примеров в {filepath}")
+            print(texts.t('s26', self.language, v0=len(dataset), filepath=filepath))
     
     def split_dataset(
         self,
@@ -915,13 +911,13 @@ def main():
     generator = DatasetGenerator()
     
     # Показать доступные задачи
-    print("Доступные типы задач:")
+    print(texts.literal('literals.s2'))
     tasks = generator.list_available_tasks()
-    print(f"  Математика ({len(tasks['math'])}): {tasks['math'][:5]}...")
-    print(f"  Физика ({len(tasks['physics'])}): {tasks['physics']}")
+    print(texts.t('s3', 'ru', v0=len(tasks['math']), v1=tasks['math'][:5]))
+    print(texts.t('s4', 'ru', v0=len(tasks['physics']), v1=tasks['physics']))
     
     # Быстрая генерация SFT датасета
-    print("\nГенерация SFT датасета...")
+    print(texts.literal('literals.s5'))
     dataset = generator.generate_sft_dataset(
         task_types=["quadratic", "kinematics", "quantum", "circuits"],
         num_samples=100,
@@ -930,16 +926,16 @@ def main():
     )
     
     # Пример
-    print(f"\nПример из датасета:")
+    print(texts.literal('literals.s6'))
     example = dataset[0]
     print(f"Instruction: {example['instruction']}")
     print(f"Input: {example['input'][:100]}...")
     print(f"Output: {example['output'][:200]}...")
     
     # Сохранение
-    generator.save_jsonl(dataset, "sft_sample.jsonl")
+    generator.save_jsonl(dataset, texts.literal('literals.s7'))
     
-    print(f"\nВсего сгенерировано: {len(dataset)} примеров")
+    print(texts.t('s8', 'ru', v0=len(dataset)))
 
 
 if __name__ == "__main__":

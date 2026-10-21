@@ -1,0 +1,56 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Из кучки в {heap} камней игроки по очереди берут количество из множества {{{moves}}}. Кто не может ходить — проигрывает. Сколько камней нужно взять первым ходом, чтобы выиграть при оптимальной игре? Если выигрышного хода нет, ответьте 0.",
+      "en": "From a heap of {heap} stones, players alternately remove an amount from the set {{{moves}}}. A player who cannot move loses. How many stones should the first move take to win with optimal play? If there is no winning move, answer 0."
+    },
+    "s1": {
+      "ru": "первый",
+      "en": "first"
+    },
+    "s2": {
+      "ru": "второй",
+      "en": "second"
+    },
+    "s3": {
+      "ru": "Мизерный Ним: кучки [{heaps}]. Игроки по очереди берут любое число камней (≥1) из одной кучки. Тот, кто заберёт ПОСЛЕДНИЙ камень, ПРОИГРЫВАЕТ. Кто выигрывает при оптимальной игре: первый или второй?",
+      "en": "Misère Nim: heaps [{heaps}]. Players alternately remove any number of stones (≥1) from one heap. The player who takes the LAST stone LOSES. With optimal play, who wins: first or second?"
+    },
+    "s4": {
+      "ru": "Игра Витоффа: две кучки ({a}, {b}). За ход можно взять любое число камней из одной кучки ИЛИ поровну из обеих. Кто не может ходить — проигрывает. Кто выигрывает при оптимальной игре: первый или второй?",
+      "en": "Wythoff's game: two heaps ({a}, {b}). A move takes any number from one heap OR the same number from both. A player who cannot move loses. With optimal play, who wins: first or second?"
+    },
+    "s5": {
+      "ru": "Игра Chomp: плитка шоколада {rows}×{cols}, левый нижний кусочек отравлен. За ход берут кусочек и всё, что выше и правее него. Кто съест отравленный — проигрывает. Кто выигрывает при оптимальной игре: первый или второй?",
+      "en": "Chomp: a {rows}×{cols} chocolate bar, the bottom-left square is poisoned. A move eats a square and everything above-and-right of it. Whoever eats the poisoned square loses. With optimal play, who wins: first or second?"
+    },
+    "s6": {
+      "ru": "Применяем теорию игры для данной позиции.",
+      "en": "Apply the game theory for this position."
+    },
+    "s7": {
+      "ru": "Выигрывает: {winner}.",
+      "en": "Winner: {winner}."
+    },
+    "s8": {
+      "ru": "Выигрышный ход ведёт в проигрышную для соперника позицию: взять {answer_move}.",
+      "en": "A winning move leaves the opponent in a losing position: take {answer_move}."
+    },
+    "s9": {
+      "ru": "Позиция проигрышна: выигрышного хода нет (ответ 0).",
+      "en": "The position is losing: no winning move (answer 0)."
+    },
+    "s10": {
+      "ru": "Помечаем позиции выигрышными/проигрышными снизу вверх.",
+      "en": "Label positions winning/losing from the bottom up."
+    },
+    "s11": {
+      "ru": "второй",
+      "en": "второй"
+    },
+    "s12": {
+      "ru": "первый",
+      "en": "первый"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цепочка РНК {seq}, позиции с 1. Пара возможна только между A и U или между G и C. Номера концов пары отличаются минимум на 4, пары не пересекаются и не делят основание. Найдите наибольшее число таких пар.",
+      "en": "RNA string {seq}, positions start at 1. A pair is possible only between A and U or between G and C. The ends of a pair differ by at least 4, pairs do not cross, and they share no base. Find the greatest number of such pairs."
+    },
+    "s1": {
+      "ru": "Наибольшее число пар равно {answer}.",
+      "en": "The greatest number of pairs is {answer}."
+    }
+  }
+}

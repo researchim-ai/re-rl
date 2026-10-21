@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "$\\int_0^\\pi {coef}{trig}(x) \\, dx$",
+      "en": "$\\int_0^\\pi {coef}{trig}(x) \\, dx$"
+    },
+    "s1": {
+      "ru": "$y = {poly_str}$ от $x = {lower_bound}$ до $x = {upper_bound}$",
+      "en": "$y = {poly_str}$ от $x = {lower_bound}$ до $x = {upper_bound}$"
+    },
+    "s2": {
+      "ru": "y = {poly_str} на отрезке [{lower_bound}, {upper_bound}]",
+      "en": "y = {poly_str} на отрезке [{lower_bound}, {upper_bound}]"
+    }
+  }
+}

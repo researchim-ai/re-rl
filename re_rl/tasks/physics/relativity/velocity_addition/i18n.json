@@ -1,0 +1,24 @@
+{
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на релятивистское сложение скоростей.",
+      "en": "Solve the relativistic velocity-addition problem."
+    },
+    "problem": {
+      "collinear": {
+        "ru": "В системе K объект движется со скоростью u' = {w}·c, а система K' движется относительно K со скоростью v = {v}·c (сонаправленно). Найдите скорость объекта в K (в долях c).",
+        "en": "In frame K' an object moves at u' = {w}·c, and K' moves relative to K at v = {v}·c (same direction). Find the object's speed in K (as a fraction of c)."
+      }
+    },
+    "steps": {
+      "add_formula": {
+        "ru": "u = (v + u')/(1 + v·u'/c²).",
+        "en": "u = (v + u')/(1 + v·u'/c²)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

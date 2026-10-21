@@ -1,0 +1,71 @@
+{
+  "text": {
+    "s3": {
+      "ru": "v = {v0} м/с",
+      "en": "v = {v0} m/s"
+    },
+    "s4": {
+      "ru": "v = 2·{v0}²·({rho_s}−{rho_f})·{g}/(9·{v4}) = {v5} м/с",
+      "en": "v = 2·{v0}²·({rho_s}−{rho_f})·{g}/(9·{v4}) = {v5} m/s"
+    },
+    "s5": {
+      "ru": "F = {v0} Н",
+      "en": "F = {v0} N"
+    },
+    "s6": {
+      "ru": "v = {v0} м/с",
+      "en": "v = {v0} m/s"
+    },
+    "s7": {
+      "ru": "F = 6π·{v0}·{v1}·{v} = {v3} Н",
+      "en": "F = 6π·{v0}·{v1}·{v} = {v3} N"
+    },
+    "s8": {
+      "ru": "v = √(2·{m}·{g}/({rho}·{C}·{A})) = {v5} м/с",
+      "en": "v = √(2·{m}·{g}/({rho}·{C}·{A})) = {v5} m/s"
+    }
+  },
+  "literals": {
+    "s0": "глицерин",
+    "s1": "масло",
+    "s2": "вода"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу об установившейся скорости при вязком сопротивлении.",
+      "en": "Solve the terminal-velocity (drag) problem."
+    },
+    "problem": {
+      "stokes_velocity": {
+        "ru": "Шарик радиусом r = {r} мм и плотностью ρ_т = {rho_s} кг/м³ падает в жидкости плотностью ρ_ж = {rho_f} кг/м³ и вязкостью η = {eta} Па·с. Найдите установившуюся скорость (закон Стокса, в м/с).",
+        "en": "A sphere of radius r = {r} mm and density ρ_s = {rho_s} kg/m³ falls in a liquid of density ρ_f = {rho_f} kg/m³ and viscosity η = {eta} Pa·s. Find the terminal velocity (Stokes, in m/s)."
+      },
+      "drag_force": {
+        "ru": "Шарик радиусом r = {r} мм движется со скоростью v = {v} м/с в среде с вязкостью η = {eta} Па·с. Найдите силу вязкого сопротивления (закон Стокса, в Н).",
+        "en": "A sphere of radius r = {r} mm moves at v = {v} m/s in a medium of viscosity η = {eta} Pa·s. Find the viscous drag force (Stokes, in N)."
+      },
+      "quadratic_terminal": {
+        "ru": "Тело массой m = {m} кг падает в воздухе (ρ = {rho} кг/м³); коэффициент сопротивления C = {C}, площадь A = {A} м². Найдите установившуюся скорость (в м/с).",
+        "en": "A body of mass m = {m} kg falls through air (ρ = {rho} kg/m³); drag coefficient C = {C}, area A = {A} m². Find the terminal velocity (in m/s)."
+      }
+    },
+    "steps": {
+      "stokes_v_formula": {
+        "ru": "Из mg_эфф = 6πηrv: v = 2·r²·(ρ_т − ρ_ж)·g/(9·η).",
+        "en": "From mg_eff = 6πηrv: v = 2·r²·(ρ_s − ρ_f)·g/(9·η)."
+      },
+      "drag_formula": {
+        "ru": "Сила Стокса: F = 6·π·η·r·v.",
+        "en": "Stokes drag: F = 6·π·η·r·v."
+      },
+      "quadratic_formula": {
+        "ru": "Из mg = ½·ρ·C·A·v²: v = √(2·m·g/(ρ·C·A)).",
+        "en": "From mg = ½·ρ·C·A·v²: v = √(2·m·g/(ρ·C·A))."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

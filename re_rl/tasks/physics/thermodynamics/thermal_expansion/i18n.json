@@ -1,0 +1,49 @@
+{
+  "text": {
+    "s0": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s1": {
+      "ru": "м³",
+      "en": "m³"
+    }
+  },
+  "literals": {
+    "s2": "сталь",
+    "s3": "алюминий",
+    "s4": "медь",
+    "s5": "стекло",
+    "s6": "латунь"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на тепловое расширение.",
+      "en": "Solve the thermal-expansion problem."
+    },
+    "problem": {
+      "linear": {
+        "ru": "Стержень из материала «{material}» (α = {alpha} 1/К) длиной {L} м нагрели на {dT} К. Найдите удлинение ΔL.",
+        "en": "A rod of {material} (α = {alpha} 1/K), length {L} m, is heated by {dT} K. Find the elongation ΔL."
+      },
+      "volume": {
+        "ru": "Тело из материала «{material}» (α = {alpha} 1/К) объёмом {V} м³ нагрели на {dT} К. Найдите изменение объёма ΔV.",
+        "en": "A body of {material} (α = {alpha} 1/K), volume {V} m³, is heated by {dT} K. Find the volume change ΔV."
+      }
+    },
+    "steps": {
+      "linear_formula": {
+        "ru": "ΔL = α·L·ΔT.",
+        "en": "ΔL = α·L·ΔT."
+      },
+      "volume_formula": {
+        "ru": "ΔV = 3·α·V·ΔT (объёмный коэффициент β ≈ 3α).",
+        "en": "ΔV = 3·α·V·ΔT (volumetric coefficient β ≈ 3α)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

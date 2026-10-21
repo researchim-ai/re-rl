@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Перемножьте матрицы A·B:\nA =\n{a}\nB =\n{b}",
+        "Найдите произведение матриц A и B:\nA =\n{a}\nB =\n{b}"
+      ],
+      "en": [
+        "Multiply the matrices A·B:\nA =\n{a}\nB =\n{b}",
+        "Find the product of matrices A and B:\nA =\n{a}\nB =\n{b}"
+      ]
+    },
+    "step_setup": {
+      "ru": "Элемент (i, j) произведения — скалярное произведение i-й строки A на j-й столбец B.",
+      "en": "Entry (i, j) of the product is the dot product of row i of A and column j of B."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

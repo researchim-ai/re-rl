@@ -1,0 +1,73 @@
+{
+  "text": {
+    "s0": {
+      "ru": "β = {v0} дБ",
+      "en": "β = {v0} dB"
+    },
+    "s1": {
+      "ru": "Вт/м²",
+      "en": "W/m²"
+    },
+    "s2": {
+      "ru": "Вт/м²",
+      "en": "W/m²"
+    },
+    "s4": {
+      "ru": "intensity_from_db",
+      "en": "intensity_from_db"
+    },
+    "s5": {
+      "ru": "β = 10·log₁₀({v0}/1e-12) = {v1} дБ",
+      "en": "β = 10·log₁₀({v0}/1e-12) = {v1} dB"
+    },
+    "s6": {
+      "ru": "intensity_from_db",
+      "en": "intensity_from_db"
+    },
+    "s7": {
+      "ru": "inv_db_formula",
+      "en": "inv_db_formula"
+    }
+  },
+  "literals": {
+    "s3": "intensity_from_db"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу об интенсивности и уровне звука.",
+      "en": "Solve the sound-intensity/level problem."
+    },
+    "problem": {
+      "decibel": {
+        "ru": "Интенсивность звука I = {I} Вт/м². Найдите уровень звука в децибелах (I₀ = 1e-12 Вт/м²).",
+        "en": "Sound intensity I = {I} W/m². Find the sound level in decibels (I₀ = 1e-12 W/m²)."
+      },
+      "intensity_from_db": {
+        "ru": "Уровень звука β = {beta} дБ. Найдите интенсивность I (I₀ = 1e-12 Вт/м²).",
+        "en": "Sound level β = {beta} dB. Find the intensity I (I₀ = 1e-12 W/m²)."
+      },
+      "point_source": {
+        "ru": "Точечный источник мощностью P = {P} Вт излучает звук равномерно. Найдите интенсивность на расстоянии {r} м.",
+        "en": "A point source of power P = {P} W radiates sound uniformly. Find the intensity at distance {r} m."
+      }
+    },
+    "steps": {
+      "db_formula": {
+        "ru": "β = 10·log₁₀(I/I₀).",
+        "en": "β = 10·log₁₀(I/I₀)."
+      },
+      "inv_db_formula": {
+        "ru": "I = I₀·10^(β/10).",
+        "en": "I = I₀·10^(β/10)."
+      },
+      "source_formula": {
+        "ru": "I = P/(4π·r²).",
+        "en": "I = P/(4π·r²)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

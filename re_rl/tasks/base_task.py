@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import List, Any, ClassVar, Dict, Optional, Type, TypeVar, Literal
 
-from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
+from re_rl.tasks.i18n import common_text
 from re_rl.tasks.registry import registry
 
 
@@ -40,7 +40,7 @@ def format_reasoning_output(
     if reasoning_mode:
         return f"<think>\n{steps_text}\n</think>\n<answer>{answer}</answer>"
     else:
-        answer_prefix = get_template(PROMPT_TEMPLATES["inline"], "answer_prefix", language, augment=False)
+        answer_prefix = common_text("inline.answer_prefix", language, augment=False)
         return f"{steps_text}\n\n{answer_prefix} {answer}"
 
 
@@ -206,10 +206,7 @@ class BaseTask(DifficultyMixin, metaclass=TaskMeta):
 
     def generate_prompt(self) -> str:
         """Шаблонный промпт, может быть переопределён."""
-        default = PROMPT_TEMPLATES["default"]["prompt"]
-        lang = self.language.lower()
-        prompt_template = default.get(lang, default["en"])
-        return prompt_template.format(problem=self.description)
+        return common_text("default.prompt", self.language.lower(), augment=False, problem=self.description)
 
     # Конкретная задача обязана реализовать solve()
     def solve(self):  # noqa: D401  (human-readable comment style)
@@ -286,9 +283,7 @@ class BaseMathTask(BaseTask):
     # ------------------------------------------------------------------
 
     def generate_prompt(self) -> str:  # type: ignore[override]
-        default = PROMPT_TEMPLATES["default"]["prompt"]
-        prompt_template = default.get(self.language, default["en"])
-        return prompt_template.format(problem=self.description)
+        return common_text("default.prompt", self.language, augment=False, problem=self.description)
 
     def add_solution_step(
         self,
@@ -361,7 +356,7 @@ class BaseMathTask(BaseTask):
             return
         
         units = units or {}
-        given_text = get_template(PROMPT_TEMPLATES["inline"], "given_label", self.language, augment=False)
+        given_text = common_text("inline.given_label", self.language, augment=False)
         lines = [given_text]
         for name, value in variables.items():
             unit = units.get(name, "")
@@ -382,7 +377,7 @@ class BaseMathTask(BaseTask):
         if not self.reasoning_mode:
             return
         
-        find_text = get_template(PROMPT_TEMPLATES["inline"], "find_label", self.language, augment=False)
+        find_text = common_text("inline.find_label", self.language, augment=False)
         if description:
             self.solution_steps.append(f"{find_text} {target} — {description}")
         else:
@@ -407,7 +402,7 @@ class BaseMathTask(BaseTask):
             formula: Формула (например, "h = v₀²/(2g)")
             name: Название формулы (например, "Закон сохранения энергии")
         """
-        formula_label = get_template(PROMPT_TEMPLATES["inline"], "formula_label", self.language, augment=False)
+        formula_label = common_text("inline.formula_label", self.language, augment=False)
         if name:
             self.solution_steps.append(f"{formula_label} {formula}  ({name})")
         else:
@@ -420,7 +415,7 @@ class BaseMathTask(BaseTask):
         Args:
             expression: Выражение с подставленными значениями
         """
-        subst_label = get_template(PROMPT_TEMPLATES["inline"], "substitution_label", self.language, augment=False)
+        subst_label = common_text("inline.substitution_label", self.language, augment=False)
         self.solution_steps.append(f"{subst_label} {expression}")
     
     def add_calculation(self, expression: str, result: Any, unit: str = "") -> None:
@@ -432,7 +427,7 @@ class BaseMathTask(BaseTask):
             result: Результат вычисления
             unit: Единица измерения
         """
-        calc_label = get_template(PROMPT_TEMPLATES["inline"], "calculation_label", self.language, augment=False)
+        calc_label = common_text("inline.calculation_label", self.language, augment=False)
         if unit:
             self.solution_steps.append(f"{calc_label} {expression} = {result} {unit}")
         else:
@@ -447,7 +442,7 @@ class BaseMathTask(BaseTask):
         """
         if not self.reasoning_mode:
             return
-        check_label = get_template(PROMPT_TEMPLATES["inline"], "dimension_check_label", self.language, augment=False)
+        check_label = common_text("inline.dimension_check_label", self.language, augment=False)
         self.solution_steps.append(f"{check_label} {check}")
     
     def add_verification(self, text: str) -> None:
@@ -459,7 +454,7 @@ class BaseMathTask(BaseTask):
         """
         if not self.reasoning_mode:
             return
-        verify_label = get_template(PROMPT_TEMPLATES["inline"], "verification_label", self.language, augment=False)
+        verify_label = common_text("inline.verification_label", self.language, augment=False)
         self.solution_steps.append(f"{verify_label} {text}")
     
     def format_final_output(self) -> str:

@@ -1,0 +1,69 @@
+{
+  "text": {
+    "s1": {
+      "ru": "work_from_heat",
+      "en": "work_from_heat"
+    },
+    "s2": {
+      "ru": "work_from_heat",
+      "en": "work_from_heat"
+    },
+    "s3": {
+      "ru": "A = {v0} Дж, Q₂ = {v1} Дж",
+      "en": "A = {v0} J, Q₂ = {v1} J"
+    },
+    "s4": {
+      "ru": "A = {eta}%·{Q1} = {v2} Дж",
+      "en": "A = {eta}%·{Q1} = {v2} J"
+    },
+    "s5": {
+      "ru": "Q₂ = {Q1} - {v1} = {v2} Дж",
+      "en": "Q₂ = {Q1} - {v1} = {v2} J"
+    },
+    "s6": {
+      "ru": "work_from_heat",
+      "en": "work_from_heat"
+    }
+  },
+  "literals": {
+    "s0": "work_from_heat"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на термодинамический цикл.",
+      "en": "Solve the thermodynamic cycle problem."
+    },
+    "problem": {
+      "carnot_efficiency": {
+        "ru": "Цикл Карно работает между температурами T₁ = {T1} К (нагреватель) и T₂ = {T2} К (холодильник). Найдите КПД.",
+        "en": "A Carnot cycle operates between T₁ = {T1} K (hot) and T₂ = {T2} K (cold). Find the efficiency."
+      },
+      "work_from_heat": {
+        "ru": "Тепловая машина с КПД η = {eta}% получает Q₁ = {Q1} Дж от нагревателя. Найдите работу и отданное тепло.",
+        "en": "A heat engine with efficiency η = {eta}% receives Q₁ = {Q1} J from hot reservoir. Find work and rejected heat."
+      },
+      "refrigerator_cop": {
+        "ru": "Холодильник работает между T₁ = {T1} К и T₂ = {T2} К. Найдите максимальный холодильный коэффициент.",
+        "en": "A refrigerator operates between T₁ = {T1} K and T₂ = {T2} K. Find the maximum COP."
+      }
+    },
+    "steps": {
+      "carnot_formula": {
+        "ru": "КПД Карно: η = 1 - T₂/T₁",
+        "en": "Carnot efficiency: η = 1 - T₂/T₁"
+      },
+      "work_heat": {
+        "ru": "Работа: A = η·Q₁, отданное тепло: Q₂ = Q₁ - A",
+        "en": "Work: A = η·Q₁, rejected heat: Q₂ = Q₁ - A"
+      },
+      "cop_formula": {
+        "ru": "Холодильный коэффициент: COP = T₂/(T₁ - T₂)",
+        "en": "COP: COP = T₂/(T₁ - T₂)"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

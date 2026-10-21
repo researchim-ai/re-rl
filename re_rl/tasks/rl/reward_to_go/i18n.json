@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Награды с шага 0: {rewards}. Дисконт γ = {gamma}. Найдите отдачу начиная с шага {t}: r_t + γ r_(t+1) + ... Ответ — целое или несократимая дробь.",
+      "en": "Rewards from step 0: {rewards}. Discount γ = {gamma}. Find the return starting at step {t}: r_t + γ r_(t+1) + ... Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Хвост наград с шага {t}: {v1}. Отдача {shown}.",
+      "en": "Reward tail from step {t}: {v1}. Return {shown}."
+    }
+  },
+  "literals": {
+    "s2": "reward_to_go"
+  }
+}

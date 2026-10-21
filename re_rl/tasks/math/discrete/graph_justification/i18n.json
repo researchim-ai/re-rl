@@ -1,0 +1,34 @@
+{
+  "text": {
+    "s0": {
+      "ru": "problem_max_flow",
+      "en": "problem_max_flow"
+    }
+  },
+  "prompt": {
+    "problem_shortest": {
+      "ru": "Найдите кратчайший путь из {source} в {target} для графа с рёбрами (u,v,w): {edges}. Обоснуйте выбор алгоритма.",
+      "en": "Find the shortest path from {source} to {target} for graph edges (u,v,w): {edges}. Justify algorithm choice."
+    },
+    "problem_mst": {
+      "ru": "Найдите минимальное остовное дерево для графа с рёбрами (u,v,w): {edges}. Обоснуйте выбор алгоритма.",
+      "en": "Find an MST for graph edges (u,v,w): {edges}. Justify algorithm choice."
+    },
+    "problem_max_flow": {
+      "ru": "Найдите максимальный поток из {source} в {sink} для ориентированного графа (u,v,cap): {edges}.",
+      "en": "Find max flow from {source} to {sink} for directed edges (u,v,cap): {edges}."
+    },
+    "justify_dijkstra": {
+      "ru": "Используем Дейкстру: веса неотрицательные, нужна кратчайшая дистанция.",
+      "en": "Use Dijkstra: edge weights are nonnegative and shortest distance is required."
+    },
+    "justify_mst": {
+      "ru": "Используем алгоритм MST (Краскал/Прим) для минимизации суммарного веса дерева.",
+      "en": "Use an MST algorithm (Kruskal/Prim) to minimize total tree weight."
+    },
+    "justify_maxflow": {
+      "ru": "Используем max-flow (Эдмондс-Карп/Диниц) для поиска пропускной способности сети.",
+      "en": "Use max-flow (Edmonds-Karp/Dinic) to compute network throughput."
+    }
+  }
+}

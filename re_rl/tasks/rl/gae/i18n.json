@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "GAE. δ_i = r_i + γ * V_(i+1) - V_i. Преимущество A_t — сумма δ_i с шага t до конца, каждый следующий δ умножается на γλ. Оценок V на одну больше, чем наград: последняя — бутстрап. Шаги с 0. γ = {v0}, λ = {v1}. Ответ — целое или несократимая дробь.",
+      "en": "GAE. δ_i = r_i + γ * V_(i+1) - V_i. Advantage A_t sums δ_i from step t to the end; each later δ is multiplied by γλ. There is one more V than rewards: the last is the bootstrap. Steps start at 0. γ = {v0}, λ = {v1}. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Награды: {rewards}. Оценки V: {values}.",
+      "en": "Rewards: {rewards}. Values V: {values}."
+    },
+    "s2": {
+      "ru": "Найдите A_{t}.",
+      "en": "Find A_{t}."
+    },
+    "s3": {
+      "ru": "Найдите δ_{t}.",
+      "en": "Find δ_{t}."
+    }
+  }
+}

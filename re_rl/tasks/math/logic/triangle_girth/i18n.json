@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Неориентированный граф, вершины 1..{n}, рёбра: {shown}.",
+      "en": "Undirected graph, vertices 1..{n}, edges: {shown}."
+    },
+    "s1": {
+      "ru": "Треугольников {triangles}, обхват {girth}.",
+      "en": "Triangles {triangles}, girth {girth}."
+    },
+    "s2": {
+      "ru": "Сколько в нём треугольников?",
+      "en": "How many triangles does it contain?"
+    },
+    "s3": {
+      "ru": "Какова длина кратчайшего цикла? Если циклов нет, ответьте 0.",
+      "en": "What is the length of the shortest cycle? If there is none, answer 0."
+    }
+  }
+}

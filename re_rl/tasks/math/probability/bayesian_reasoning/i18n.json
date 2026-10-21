@@ -1,0 +1,46 @@
+{
+  "text": {
+    "s0": {
+      "ru": "problem_base_rate",
+      "en": "problem_base_rate"
+    },
+    "s1": {
+      "ru": "step_chain_rule",
+      "en": "step_chain_rule"
+    },
+    "s2": {
+      "ru": "step_bayes_formula",
+      "en": "step_bayes_formula"
+    },
+    "s3": {
+      "ru": "step_total_probability",
+      "en": "step_total_probability"
+    }
+  },
+  "prompt": {
+    "problem_basic": {
+      "ru": "Известно: P(D)={p_d}, чувствительность={sens}, специфичность={spec}. Найдите P(D|+).",
+      "en": "Given P(D)={p_d}, sensitivity={sens}, specificity={spec}. Compute P(D|+)."
+    },
+    "problem_base_rate": {
+      "ru": "Ловушка base-rate: P(D)={p_d}, чувствительность={sens}, false positive rate={fpr}. Найдите P(D|+).",
+      "en": "Base-rate case: P(D)={p_d}, sensitivity={sens}, false positive rate={fpr}. Compute P(D|+)."
+    },
+    "problem_chain": {
+      "ru": "В цепочке событий: P(A)={p_a}, P(B|A)={p_b_a}, P(B|¬A)={p_b_not_a}, P(C|B)={p_c_b}, P(C|¬B)={p_c_not_b}. Найдите P(C).",
+      "en": "Event chain: P(A)={p_a}, P(B|A)={p_b_a}, P(B|¬A)={p_b_not_a}, P(C|B)={p_c_b}, P(C|¬B)={p_c_not_b}. Compute P(C)."
+    },
+    "step_bayes_formula": {
+      "ru": "Применяем формулу Байеса и нормировку по полной вероятности.",
+      "en": "Apply Bayes formula and normalize using total probability."
+    },
+    "step_total_probability": {
+      "ru": "Сначала считаем знаменатель через формулу полной вероятности.",
+      "en": "First compute denominator via total probability."
+    },
+    "step_chain_rule": {
+      "ru": "Последовательно сворачиваем условные вероятности по цепочке.",
+      "en": "Sequentially marginalize conditional probabilities along the chain."
+    }
+  }
+}

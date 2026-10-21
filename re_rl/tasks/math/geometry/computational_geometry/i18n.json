@@ -1,0 +1,67 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Даны точки: {v0}. Найдите расстояние между ближайшей парой точек (округлите до 2 знаков).",
+      "en": "Given points: {v0}. Find the distance between the closest pair of points (round to 2 decimals)."
+    },
+    "s1": {
+      "ru": "Даны точки на плоскости: {v0}. Сколько вершин у их выпуклой оболочки? (точки, лежащие внутри ребра, вершинами не считаются)",
+      "en": "Given points on the plane: {v0}. How many vertices does their convex hull have? (points lying on an edge do not count)"
+    },
+    "s2": {
+      "ru": "Отрезок 1: {a}–{b}. Отрезок 2: {c}–{d}. Пересекаются ли эти два отрезка (включая касание)? Ответьте да/нет.",
+      "en": "Segment 1: {a}–{b}. Segment 2: {c}–{d}. Do these two segments intersect (touching counts)? Answer yes/no."
+    },
+    "s3": {
+      "ru": "Многоугольник задан вершинами по порядку: {v0}. Лежит ли точка {query} строго внутри него? Ответьте да/нет.",
+      "en": "A polygon is given by its vertices in order: {v0}. Is the point {query} strictly inside it? Answer yes/no."
+    },
+    "s4": {
+      "ru": "Строим оболочку (обход Эндрю) и считаем вершины-повороты.",
+      "en": "Build the hull (Andrew's monotone chain) and count the turn vertices."
+    },
+    "s5": {
+      "ru": "Сравниваем ориентации концов относительно другого отрезка (предикат CCW).",
+      "en": "Compare orientations of endpoints w.r.t. the other segment (CCW test)."
+    },
+    "s6": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s7": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s8": {
+      "ru": "Пускаем луч вправо и считаем пересечения со сторонами (чётность).",
+      "en": "Cast a ray to the right and count crossings with the sides (parity)."
+    },
+    "s9": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s10": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s11": {
+      "ru": "Перебираем все пары и берём минимум евклидовых расстояний.",
+      "en": "Check all pairs and take the minimum Euclidean distance."
+    },
+    "s13": {
+      "ru": "point_in_polygon",
+      "en": "point_in_polygon"
+    },
+    "s14": {
+      "ru": "point_in_polygon",
+      "en": "point_in_polygon"
+    },
+    "s15": {
+      "ru": "point_in_polygon",
+      "en": "point_in_polygon"
+    }
+  },
+  "literals": {
+    "s12": "point_in_polygon"
+  }
+}

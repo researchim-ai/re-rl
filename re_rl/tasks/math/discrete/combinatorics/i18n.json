@@ -1,0 +1,35 @@
+{
+  "text": {
+    "s1": {
+      "ru": "combination_rep_formula",
+      "en": "combination_rep_formula"
+    },
+    "s2": {
+      "ru": "combination_rep_formula",
+      "en": "combination_rep_formula"
+    },
+    "s3": {
+      "ru": "inclusion_exclusion_step",
+      "en": "inclusion_exclusion_step"
+    },
+    "s4": {
+      "ru": "stars_and_bars",
+      "en": "stars_and_bars"
+    },
+    "s5": {
+      "ru": "stars_and_bars",
+      "en": "stars_and_bars"
+    },
+    "s6": {
+      "ru": "stars_and_bars",
+      "en": "stars_and_bars"
+    },
+    "s7": {
+      "ru": "stars_and_bars",
+      "en": "stars_and_bars"
+    }
+  },
+  "literals": {
+    "s0": "stars_and_bars"
+  }
+}

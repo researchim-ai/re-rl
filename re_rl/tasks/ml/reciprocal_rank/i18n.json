@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Метки от лучшей оценки к худшей: {shown}. Единица — релевантный объект. Ранг — позиция первой единицы, нумерация с 1. Обратный ранг равен 1, делённой на ранг.",
+      "en": "Labels from the best score to the worst: {shown}. One means relevant. The rank is the position of the first one, starting at 1. The reciprocal rank is 1 divided by the rank."
+    },
+    "s1": {
+      "ru": "Ранг {rank}, обратный ранг {v1}.",
+      "en": "Rank {rank}, reciprocal rank {v1}."
+    },
+    "s2": {
+      "ru": "Найдите обратный ранг. Ответ — целое или несократимая дробь.",
+      "en": "Find the reciprocal rank. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Найдите ранг первой единицы.",
+      "en": "Find the rank of the first one."
+    }
+  }
+}

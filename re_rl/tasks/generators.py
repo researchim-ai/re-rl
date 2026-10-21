@@ -1,3 +1,6 @@
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'generators_i18n.json')
+
 # re_rl/tasks/generators.py
 
 import random
@@ -687,13 +690,13 @@ def generate_random_analogical_task(
         "5 + 3 = 8 -> 7 + 4 = 11",
         
         # Логические аналогии
-        "круг -> круглый -> квадрат -> квадратный",
-        "бежать -> бег -> плыть -> плавание",
-        "горячий -> холодный -> светлый -> темный",
+        texts.t('s0', language),
+        texts.t('s1', language),
+        texts.t('s2', language),
         
         # Геометрические аналогии
-        "треугольник -> 3 стороны -> квадрат -> 4 стороны",
-        "круг -> 0 углов -> треугольник -> 3 угла",
+        texts.t('s3', language),
+        texts.t('s4', language),
         
         # Числовые аналогии
         "2 -> 4 -> 3 -> 6",  # умножение на 2
@@ -2255,7 +2258,7 @@ def generate_random_task(
     
     generator = ALL_TASK_GENERATORS.get(task_type)
     if generator is None:
-        raise ValueError(f"Неизвестный тип задачи: {task_type}. Доступные: {list(ALL_TASK_GENERATORS.keys())}")
+        raise ValueError(texts.t('s5', language, task_type=task_type, v1=list(ALL_TASK_GENERATORS.keys())))
     
     # Передаём параметры, которые поддерживает генератор
     return generator(language=language, detail_level=detail_level, difficulty=difficulty, **kwargs)

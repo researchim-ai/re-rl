@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Красное смещение z = (λ_obs - λ_rest) / λ_rest. Ответ — целое или несократимая дробь.",
+      "en": "Redshift z = (λ_obs - λ_rest) / λ_rest. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "z = {shift}/{rest} = {v2}, λ_obs = {observed}.",
+      "en": "z = {shift}/{rest} = {v2}, λ_obs = {observed}."
+    },
+    "s2": {
+      "ru": "λ_rest = {rest}, λ_obs = {observed}. Найдите z.",
+      "en": "λ_rest = {rest}, λ_obs = {observed}. Find z."
+    },
+    "s3": {
+      "ru": "λ_rest = {rest}, z = {z}. Найдите λ_obs.",
+      "en": "λ_rest = {rest}, z = {z}. Find λ_obs."
+    },
+    "s4": {
+      "ru": "λ_obs = {observed}, z = {z}. Найдите λ_rest.",
+      "en": "λ_obs = {observed}, z = {z}. Find λ_rest."
+    }
+  }
+}

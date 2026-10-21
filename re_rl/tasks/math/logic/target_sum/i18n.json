@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа: {data}. Каждому можно поставить плюс или минус. Сколько расстановок дают сумму {target}?",
+      "en": "Numbers: {data}. Each number may receive a plus or a minus. How many assignments sum to {target}?"
+    },
+    "s1": {
+      "ru": "Сумму {target} дают {answer} расстановок.",
+      "en": "{target} assignments sum to {answer}."
+    },
+    "s2": {
+      "ru": "цель должна достигаться хотя бы одним набором знаков",
+      "en": "цель должна достигаться хотя бы одним набором знаков"
+    }
+  }
+}

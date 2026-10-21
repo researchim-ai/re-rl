@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело падает из покоя без сопротивления, g = 10. Высота h = g * t^2 / 2, время t — положительное целое.",
+      "en": "A body falls from rest without drag, g = 10. The height is h = g * t^2 / 2, and the time t is a positive integer."
+    },
+    "s1": {
+      "ru": "t = {time}. Найдите h.",
+      "en": "t = {time}. Find h."
+    },
+    "s2": {
+      "ru": "h = {height}. Найдите t.",
+      "en": "h = {height}. Find t."
+    }
+  }
+}

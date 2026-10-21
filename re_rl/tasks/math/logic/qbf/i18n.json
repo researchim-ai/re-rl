@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Истинна ли квантифицированная булева формула?\n{prefix}: {v1}\n(∀ — «для всех», ∃ — «существует»). Ответьте да/нет.",
+      "en": "Is the quantified boolean formula true?\n{prefix}: {v1}\n(∀ — 'for all', ∃ — 'exists'). Answer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "Раскрываем кванторы слева направо: ∀ требует истинности при обоих значениях, ∃ — хотя бы при одном.",
+      "en": "Expand quantifiers left to right: ∀ needs both values true, ∃ needs at least one."
+    },
+    "s4": {
+      "ru": "Формула истинна.",
+      "en": "The formula is true."
+    },
+    "s5": {
+      "ru": "Формула ложна.",
+      "en": "The formula is false."
+    }
+  }
+}

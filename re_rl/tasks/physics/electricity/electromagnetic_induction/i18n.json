@@ -1,0 +1,87 @@
+{
+  "text": {
+    "s3": {
+      "ru": "emf_flux_change",
+      "en": "emf_flux_change"
+    },
+    "s4": {
+      "ru": "emf_flux_change",
+      "en": "emf_flux_change"
+    },
+    "s5": {
+      "ru": "emf_moving_rod",
+      "en": "emf_moving_rod"
+    },
+    "s6": {
+      "ru": "ε = {v0} В",
+      "en": "ε = {v0} V"
+    },
+    "s7": {
+      "ru": "emf_moving_rod",
+      "en": "emf_moving_rod"
+    },
+    "s8": {
+      "ru": "ε = {B}·{L}·{v} = {v3} В",
+      "en": "ε = {B}·{L}·{v} = {v3} V"
+    },
+    "s9": {
+      "ru": "ε_max = {N}·{B}·{A}·{v3} = {v4} В",
+      "en": "ε_max = {N}·{B}·{A}·{v3} = {v4} V"
+    },
+    "s10": {
+      "ru": "emf_flux_change",
+      "en": "emf_flux_change"
+    },
+    "s11": {
+      "ru": "emf_moving_rod",
+      "en": "emf_moving_rod"
+    },
+    "s12": {
+      "ru": "emf_rotating_coil",
+      "en": "emf_rotating_coil"
+    }
+  },
+  "literals": {
+    "s0": "emf_flux_change",
+    "s1": "emf_moving_rod",
+    "s2": "emf_rotating_coil"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на электромагнитную индукцию.",
+      "en": "Solve the electromagnetic induction problem."
+    },
+    "problem": {
+      "emf_flux_change": {
+        "ru": "Магнитный поток через контур изменяется по закону Φ(t) = {flux_formula} Вб. Найдите ЭДС индукции в момент t = {t} с.",
+        "en": "Magnetic flux through a loop changes as Φ(t) = {flux_formula} Wb. Find the induced EMF at t = {t} s."
+      },
+      "emf_moving_rod": {
+        "ru": "Проводник длиной {L} м движется со скоростью {v} м/с перпендикулярно магнитному полю B = {B} Тл. Найдите ЭДС индукции.",
+        "en": "A conductor of length {L} m moves at {v} m/s perpendicular to magnetic field B = {B} T. Find the induced EMF."
+      },
+      "emf_rotating_coil": {
+        "ru": "Катушка из {N} витков площадью {A} м² вращается в поле B = {B} Тл с частотой {f} Гц. Найдите максимальную ЭДС.",
+        "en": "A coil of {N} turns with area {A} m² rotates in field B = {B} T at frequency {f} Hz. Find the maximum EMF."
+      }
+    },
+    "steps": {
+      "faraday_law": {
+        "ru": "Закон Фарадея: ε = -dΦ/dt",
+        "en": "Faraday's law: ε = -dΦ/dt"
+      },
+      "motional_emf": {
+        "ru": "ЭДС движущегося проводника: ε = BLv",
+        "en": "Motional EMF: ε = BLv"
+      },
+      "rotating_coil": {
+        "ru": "Вращающаяся катушка: ε_max = NBAω = 2πNBAf",
+        "en": "Rotating coil: ε_max = NBAω = 2πNBAf"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: ε = {emf} В",
+      "en": "Answer: ε = {emf} V"
+    }
+  }
+}

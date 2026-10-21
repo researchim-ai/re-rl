@@ -1,0 +1,207 @@
+{
+  "text": {
+    "s1": {
+      "ru": "moment_of_inertia",
+      "en": "moment_of_inertia"
+    },
+    "s2": {
+      "ru": "moment_of_inertia",
+      "en": "moment_of_inertia"
+    },
+    "s3": {
+      "ru": "I = {v0} кг·м²",
+      "en": "I = {v0} kg·m²"
+    },
+    "s4": {
+      "ru": "кг·м²",
+      "en": "kg·m²"
+    },
+    "s5": {
+      "ru": "ε = {v0} рад/с²",
+      "en": "ε = {v0} rad/s²"
+    },
+    "s7": {
+      "ru": "рад/с²",
+      "en": "rad/s²"
+    },
+    "s8": {
+      "ru": "E = {v0} Дж",
+      "en": "E = {v0} J"
+    },
+    "s9": {
+      "ru": "L = {v0} кг·м²/с",
+      "en": "L = {v0} кг·м²/с"
+    },
+    "s10": {
+      "ru": "rotational_param_radius",
+      "en": "rotational_param_radius"
+    },
+    "s11": {
+      "ru": "rotational_axis_center_mass",
+      "en": "rotational_axis_center_mass"
+    },
+    "s12": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s13": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s14": {
+      "ru": "rotational_find_inertia",
+      "en": "rotational_find_inertia"
+    },
+    "s15": {
+      "ru": "Дж",
+      "en": "J"
+    },
+    "s16": {
+      "ru": "кг·м²/с",
+      "en": "кг·м²/с"
+    },
+    "s17": {
+      "ru": "moment_of_inertia",
+      "en": "moment_of_inertia"
+    },
+    "s18": {
+      "ru": "кг·м²",
+      "en": "kg·m²"
+    },
+    "s19": {
+      "ru": "Н·м",
+      "en": "Н·м"
+    },
+    "s20": {
+      "ru": "rotational_find_angular_acc",
+      "en": "rotational_find_angular_acc"
+    },
+    "s21": {
+      "ru": "rotational_newton_note",
+      "en": "rotational_newton_note"
+    },
+    "s23": {
+      "ru": "кг·м²",
+      "en": "kg·m²"
+    },
+    "s24": {
+      "ru": "рад/с",
+      "en": "rad/s"
+    },
+    "s25": {
+      "ru": "rotational_find_rot_energy",
+      "en": "rotational_find_rot_energy"
+    },
+    "s26": {
+      "ru": "кг·м²",
+      "en": "kg·m²"
+    },
+    "s27": {
+      "ru": "рад/с",
+      "en": "rad/s"
+    },
+    "s28": {
+      "ru": "rotational_find_angular_momentum",
+      "en": "rotational_find_angular_momentum"
+    }
+  },
+  "literals": {
+    "s0": "moment_of_inertia",
+    "s6": "[кг]×[м²] = [кг·м²] ✓",
+    "s22": "[кг·м²]×[рад/с]² = [Дж] ✓"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на вращательное движение.",
+      "en": "Solve the rotational dynamics problem."
+    },
+    "problem": {
+      "moment_of_inertia": {
+        "ru": "Найдите момент инерции {shape} массой {m} кг с {param_name} = {param_value} м относительно {axis}.",
+        "en": "Find the moment of inertia of a {shape} with mass {m} kg and {param_name} = {param_value} m about {axis}."
+      },
+      "angular_acceleration": {
+        "ru": "К телу с моментом инерции I = {I} кг·м² приложен момент силы M = {M} Н·м. Найдите угловое ускорение.",
+        "en": "A torque M = {M} N·m is applied to a body with moment of inertia I = {I} kg·m². Find the angular acceleration."
+      },
+      "rotational_energy": {
+        "ru": "Найдите кинетическую энергию вращения тела с моментом инерции I = {I} кг·м² и угловой скоростью ω = {omega} рад/с.",
+        "en": "Find the rotational kinetic energy of a body with moment of inertia I = {I} kg·m² and angular velocity ω = {omega} rad/s."
+      },
+      "angular_momentum": {
+        "ru": "Найдите момент импульса тела с моментом инерции I = {I} кг·м² и угловой скоростью ω = {omega} рад/с.",
+        "en": "Find the angular momentum of a body with moment of inertia I = {I} kg·m² and angular velocity ω = {omega} rad/s."
+      }
+    },
+    "shapes": {
+      "disk": {
+        "ru": "диска",
+        "en": "disk"
+      },
+      "sphere": {
+        "ru": "сферы",
+        "en": "sphere"
+      },
+      "rod": {
+        "ru": "стержня",
+        "en": "rod"
+      },
+      "cylinder": {
+        "ru": "цилиндра",
+        "en": "cylinder"
+      },
+      "ring": {
+        "ru": "кольца",
+        "en": "ring"
+      }
+    },
+    "steps": {
+      "newton_rotation": {
+        "ru": "Второй закон Ньютона для вращения: M = I·ε",
+        "en": "Newton's second law for rotation: M = I·ε"
+      },
+      "energy_formula": {
+        "ru": "Кинетическая энергия вращения: E = I·ω²/2",
+        "en": "Rotational kinetic energy: E = I·ω²/2"
+      },
+      "momentum_formula": {
+        "ru": "Момент импульса: L = I·ω",
+        "en": "Angular momentum: L = I·ω"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  },
+  "inline_keys": {
+    "rotational_find_angular_acc": {
+      "ru": "угловое ускорение",
+      "en": "angular acceleration"
+    },
+    "rotational_newton_note": {
+      "ru": "Второй закон Ньютона для вращения: M = Iε",
+      "en": "Newton's second law for rotation: M = Iε"
+    },
+    "rotational_find_rot_energy": {
+      "ru": "кинетическая энергия вращения",
+      "en": "rotational kinetic energy"
+    },
+    "rotational_param_radius": {
+      "ru": "радиусом",
+      "en": "radius"
+    },
+    "rotational_axis_center_mass": {
+      "ru": "центра масс",
+      "en": "center of mass"
+    },
+    "rotational_find_inertia": {
+      "ru": "момент инерции",
+      "en": "moment of inertia"
+    },
+    "rotational_find_angular_momentum": {
+      "ru": "момент импульса",
+      "en": "angular momentum"
+    }
+  }
+}

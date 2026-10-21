@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Если y * (w1*x1 + w2*x2 + b) <= 0, то w1 := w1 + y*x1, w2 := w2 + y*x2, b := b + y. Иначе веса не меняются.",
+      "en": "If y * (w1*x1 + w2*x2 + b) <= 0, then w1 := w1 + y*x1, w2 := w2 + y*x2, b := b + y. Otherwise the weights stay unchanged."
+    },
+    "s1": {
+      "ru": "Начальные веса w1 = {v0}, w2 = {v1}, b = {b0}. Примеры (x1, x2, y): {data}.",
+      "en": "Initial weights w1 = {v0}, w2 = {v1}, b = {b0}. Examples (x1, x2, y): {data}."
+    },
+    "s2": {
+      "ru": "Какие веса получатся после обработки примеров по порядку? Ответьте тремя числами: w1, w2, b.",
+      "en": "What are the weights after processing the examples in order? Answer with three numbers: w1, w2, b."
+    },
+    "s3": {
+      "ru": "обновление",
+      "en": "update"
+    },
+    "s4": {
+      "ru": "без изменений",
+      "en": "no change"
+    },
+    "s5": {
+      "ru": "Проход: ",
+      "en": "Pass: "
+    }
+  }
+}

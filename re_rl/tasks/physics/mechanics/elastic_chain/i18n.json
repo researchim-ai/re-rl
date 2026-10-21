@@ -1,0 +1,42 @@
+{
+  "text": {
+    "s0": {
+      "ru": "v = {v0} м/с",
+      "en": "v = {v0} m/s"
+    },
+    "s1": {
+      "ru": "v = {v0} м/с",
+      "en": "v = {v0} m/s"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Проанализируйте цепочку одномерных упругих соударений.",
+      "en": "Analyze a chain of 1D elastic collisions."
+    },
+    "problem": {
+      "last_velocity": {
+        "ru": "Шар массой m₀ = {m0} кг движется со скоростью v₀ = {v0} м/с и упруго ударяет цепочку покоящихся шаров с массами (кг): {masses}. Каждый шар после удара налетает на следующий (лобовые упругие удары). Найдите скорость последнего шара (в м/с).",
+        "en": "A ball of mass m₀ = {m0} kg moving at v₀ = {v0} m/s elastically strikes a chain of stationary balls of masses (kg): {masses}. Each struck ball then hits the next (head-on elastic collisions). Find the velocity of the last ball (in m/s)."
+      },
+      "ball_velocity": {
+        "ru": "Шар массой m₀ = {m0} кг движется со скоростью v₀ = {v0} м/с и упруго ударяет цепочку покоящихся шаров с массами (кг): {masses}. Каждый шар после удара налетает на следующий. Найдите скорость шара №{k} (считая от первого ударенного) сразу после его удара (в м/с).",
+        "en": "A ball of mass m₀ = {m0} kg moving at v₀ = {v0} m/s elastically strikes a chain of stationary balls of masses (kg): {masses}. Each struck ball then hits the next. Find the velocity of ball #{k} (counting from the first struck) right after it is hit (in m/s)."
+      }
+    },
+    "steps": {
+      "elastic_formula": {
+        "ru": "При лобовом упругом ударе движущейся массы m по покоящейся m': v' = 2m/(m + m') · v.",
+        "en": "For a head-on elastic hit of moving mass m on stationary m': v' = 2m/(m + m') · v."
+      },
+      "chain_formula": {
+        "ru": "Скорость k-го шара: v_k = v₀ · Π 2·m_{i−1}/(m_{i−1} + m_i).",
+        "en": "Velocity of ball k: v_k = v₀ · Π 2·m_{i−1}/(m_{i−1} + m_i)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

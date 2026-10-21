@@ -1,0 +1,44 @@
+{
+  "text": {
+    "s0": {
+      "ru": "является",
+      "en": "является"
+    },
+    "s1": {
+      "ru": "не является",
+      "en": "не является"
+    },
+    "s2": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s3": {
+      "ru": "нет",
+      "en": "no"
+    }
+  },
+  "literals": {
+    "s4": "\\b(no|нет|false|не\\s+тавтолог\\w*)\\b",
+    "s5": "\\b(yes|да|true|тавтолог\\w*)\\b"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Является ли формула тавтологией (истинна при всех значениях переменных)? Ответьте YES или NO.\nФормула: {formula}",
+        "Определите, тавтология ли данная формула. Ответ: YES (да) или NO (нет).\n{formula}"
+      ],
+      "en": [
+        "Is the formula a tautology (true for all variable assignments)? Answer YES or NO.\nFormula: {formula}",
+        "Determine whether the formula is a tautology. Answer YES or NO.\n{formula}"
+      ]
+    },
+    "step_negate": {
+      "ru": "Проверяем выполнимость отрицания формулы: если оно UNSAT — формула тавтология.",
+      "en": "Check satisfiability of the negation: if it is UNSAT, the formula is a tautology."
+    },
+    "step_result": {
+      "ru": "Результат: формула {verdict} тавтологией. Ответ: {answer}.",
+      "en": "Result: the formula {verdict} a tautology. Answer: {answer}."
+    }
+  }
+}

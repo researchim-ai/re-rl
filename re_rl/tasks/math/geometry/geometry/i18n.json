@@ -1,0 +1,89 @@
+{
+  "text": {
+    "s3": {
+      "ru": "triangle_area_coords",
+      "en": "triangle_area_coords"
+    },
+    "s4": {
+      "ru": "triangle_area_coords",
+      "en": "triangle_area_coords"
+    },
+    "s5": {
+      "ru": "triangle_area_coords",
+      "en": "triangle_area_coords"
+    },
+    "s6": {
+      "ru": "triangle_area_sides",
+      "en": "triangle_area_sides"
+    },
+    "s7": {
+      "ru": "triangle_area_sides",
+      "en": "triangle_area_sides"
+    },
+    "s8": {
+      "ru": "triangle_area_sides",
+      "en": "triangle_area_sides"
+    },
+    "s9": {
+      "ru": "triangle_area_formula",
+      "en": "triangle_area_formula"
+    },
+    "s10": {
+      "ru": "circle_area_formula",
+      "en": "circle_area_formula"
+    },
+    "s11": {
+      "ru": "sphere_volume_formula",
+      "en": "sphere_volume_formula"
+    },
+    "s12": {
+      "ru": "cylinder_volume_formula",
+      "en": "cylinder_volume_formula"
+    },
+    "s13": {
+      "ru": "cone_volume_formula",
+      "en": "cone_volume_formula"
+    },
+    "s14": {
+      "ru": "dot_product_formula",
+      "en": "dot_product_formula"
+    },
+    "s15": {
+      "ru": "cross_product_formula",
+      "en": "cross_product_formula"
+    },
+    "s16": {
+      "ru": "triangle_area_coords",
+      "en": "triangle_area_coords"
+    },
+    "s17": {
+      "ru": "line_equation_result",
+      "en": "line_equation_result"
+    },
+    "s18": {
+      "ru": "triangle_area_sides",
+      "en": "triangle_area_sides"
+    },
+    "s19": {
+      "ru": "angle_between_vectors",
+      "en": "angle_between_vectors"
+    },
+    "s20": {
+      "ru": "angle_between_vectors",
+      "en": "angle_between_vectors"
+    },
+    "s21": {
+      "ru": "angle_between_vectors",
+      "en": "angle_between_vectors"
+    },
+    "s22": {
+      "ru": "angle_between_vectors",
+      "en": "angle_between_vectors"
+    }
+  },
+  "literals": {
+    "s0": "triangle_area_coords",
+    "s1": "triangle_area_sides",
+    "s2": "angle_between_vectors"
+  }
+}

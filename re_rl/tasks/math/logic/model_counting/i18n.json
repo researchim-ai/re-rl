@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько наборов значений переменных {v0} делают формулу истинной?\n{v1}",
+      "en": "For how many assignments of {v0} is the formula true?\n{v1}"
+    },
+    "s1": {
+      "ru": "Перебираем все {v0} наборов и считаем истинные строки.",
+      "en": "Enumerate all {v0} assignments and count the true rows."
+    },
+    "s2": {
+      "ru": "Число моделей = {_answer}.",
+      "en": "Number of models = {_answer}."
+    }
+  }
+}

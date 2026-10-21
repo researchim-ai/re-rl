@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите длину наибольшей общей подпоследовательности строк «{s1}» и «{s2}» (символы идут в том же порядке, но не обязательно подряд).",
+      "en": "Find the length of the longest common subsequence of '{s1}' and '{s2}' (characters in the same order, not necessarily contiguous)."
+    },
+    "s1": {
+      "ru": "Найдите расстояние Левенштейна (минимальное число вставок, удалений и замен одного символа) между строками «{s1}» и «{s2}».",
+      "en": "Find the Levenshtein distance (minimum number of single-character insertions, deletions, substitutions) between '{s1}' and '{s2}'."
+    },
+    "s2": {
+      "ru": "Заполняем таблицу динамического программирования по символам обеих строк.",
+      "en": "Fill the dynamic-programming table over both strings' characters."
+    },
+    "s3": {
+      "ru": "Ответ = {_answer}.",
+      "en": "Answer = {_answer}."
+    }
+  }
+}

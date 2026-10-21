@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "ДКА с состояниями 0..{v0}, начальное 0, принимающие: {{{acc}}}. Алфавит {{a,b}}. Переходы: {trans}.\nПринимает ли автомат строку «{word}»? Ответьте да/нет.",
+      "en": "DFA with states 0..{v0}, start 0, accepting {{{acc}}}. Alphabet {{a,b}}. Transitions: {trans}.\nDoes the automaton accept the string '{word}'? Answer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "Прогоняем строку по автомату, отслеживая текущее состояние.",
+      "en": "Run the string through the automaton, tracking the current state."
+    },
+    "s4": {
+      "ru": "Автомат принимает строку.",
+      "en": "The automaton accepts."
+    },
+    "s5": {
+      "ru": "Автомат отвергает строку.",
+      "en": "The automaton rejects."
+    }
+  }
+}

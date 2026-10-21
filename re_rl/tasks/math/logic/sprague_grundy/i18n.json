@@ -1,0 +1,48 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сумма игр вычитания с множеством ходов {{{moves}}}. Кучки: [{heaps}]. За ход берут камни из ОДНОЙ кучки (разрешённое количество). Кто не может ходить — проигрывает. Кто выигрывает при оптимальной игре: первый или второй?",
+      "en": "Sum of subtraction games with move set {{{moves}}}. Heaps: [{heaps}]. A move removes (an allowed amount of) stones from ONE heap. A player who cannot move loses. With optimal play, who wins: first or second?"
+    },
+    "s1": {
+      "ru": "Игра Kayles: ряд из {n} кеглей. За ход сбивают одну кеглю ИЛИ две соседние, ряд может разбиваться на части. Кто не может ходить — проигрывает. Чему равно число Гранди этой позиции?",
+      "en": "Kayles: a row of {n} pins. A move knocks down one pin OR two adjacent pins, possibly splitting the row. A player who cannot move loses. What is the Grundy value of this position?"
+    },
+    "s2": {
+      "ru": "Игра вычитания: из кучки в {n} камней за ход берут количество из множества {{{moves}}}. Кто не может ходить — проигрывает. Чему равно число Гранди позиции с {n_2} камнями?",
+      "en": "Subtraction game: from a heap of {n} stones a move removes an amount from {{{moves}}}. A player who cannot move loses. What is the Grundy value of the position with {n_2} stones?"
+    },
+    "s3": {
+      "ru": "первый",
+      "en": "first"
+    },
+    "s4": {
+      "ru": "второй",
+      "en": "second"
+    },
+    "s5": {
+      "ru": "Число Гранди = mex значений Гранди достижимых позиций.",
+      "en": "The Grundy value = mex of the Grundy values of reachable positions."
+    },
+    "s6": {
+      "ru": "Число Гранди = {val}.",
+      "en": "Grundy value = {val}."
+    },
+    "s7": {
+      "ru": "XOR чисел Гранди кучек: не ноль — выигрывает первый, ноль — второй.",
+      "en": "XOR of the heaps' Grundy values: nonzero → first wins, zero → second."
+    },
+    "s8": {
+      "ru": "XOR = {xor} ⇒ выигрывает {winner}.",
+      "en": "XOR = {xor} ⇒ {winner} wins."
+    },
+    "s9": {
+      "ru": "второй",
+      "en": "второй"
+    },
+    "s10": {
+      "ru": "первый",
+      "en": "первый"
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "text": {
+    "s0": {
+      "ru": "{p} кг·м/с",
+      "en": "{p} kg·m/s"
+    },
+    "s1": {
+      "ru": "кг·м/с",
+      "en": "kg·m/s"
+    },
+    "s2": {
+      "ru": "{J} Н·с",
+      "en": "{J} N·s"
+    },
+    "s4": {
+      "ru": "Н·с",
+      "en": "N·s"
+    },
+    "s5": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s6": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s7": {
+      "ru": "momentum_find_body_momentum",
+      "en": "momentum_find_body_momentum"
+    },
+    "s9": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s10": {
+      "ru": "v₁' = {v0} м/с, v₂' = {v1} м/с",
+      "en": "v₁' = {v0} m/s, v₂' = {v1} m/s"
+    },
+    "s11": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s12": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s13": {
+      "ru": "momentum_find_impulse",
+      "en": "momentum_find_impulse"
+    },
+    "s14": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s15": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s16": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s17": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s18": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s19": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s20": {
+      "ru": "momentum_find_vel_after_collision",
+      "en": "momentum_find_vel_after_collision"
+    },
+    "s21": {
+      "ru": "momentum_inelastic_note",
+      "en": "momentum_inelastic_note"
+    },
+    "s22": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s23": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s24": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s25": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s26": {
+      "ru": "momentum_find_two_vel_after_collision",
+      "en": "momentum_find_two_vel_after_collision"
+    },
+    "s27": {
+      "ru": "momentum_elastic_note",
+      "en": "momentum_elastic_note"
+    }
+  },
+  "literals": {
+    "s3": "[кг] × [м/с] = [кг·м/с] ✓",
+    "s8": "[Н] × [с] = [Н·с] = [кг·м/с] ✓"
+  },
+  "inline_keys": {
+    "momentum_inelastic_note": {
+      "ru": "Неупругое столкновение: тела слипаются. По закону сохранения импульса:",
+      "en": "Inelastic collision: bodies stick together. By momentum conservation:"
+    },
+    "momentum_find_body_momentum": {
+      "ru": "импульс тела",
+      "en": "momentum"
+    },
+    "momentum_find_impulse": {
+      "ru": "импульс силы",
+      "en": "impulse"
+    },
+    "momentum_elastic_note": {
+      "ru": "Упругое столкновение: сохраняются импульс и энергия.",
+      "en": "Elastic collision: both momentum and energy are conserved."
+    },
+    "momentum_find_two_vel_after_collision": {
+      "ru": "скорости после столкновения",
+      "en": "velocities after collision"
+    },
+    "momentum_find_vel_after_collision": {
+      "ru": "скорость после столкновения",
+      "en": "velocity after collision"
+    }
+  }
+}

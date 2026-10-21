@@ -1,0 +1,51 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — сетка {n}×{n_2} из цветных клеток. Клеток какого цвета больше всего?",
+      "en": "The figure is a {n}×{n_2} grid of colored cells. Which color appears most often?"
+    },
+    "s1": {
+      "ru": "На рисунке — сетка {n}×{n_2} из цветных клеток. Сколько клеток {v2} цвета?",
+      "en": "The figure is a {n}×{n_2} grid of colored cells. How many {v2} cells are there?"
+    },
+    "s2": {
+      "ru": "gen",
+      "en": "en"
+    },
+    "s3": {
+      "ru": "ru",
+      "en": "en"
+    },
+    "s4": {
+      "ru": "Пересчитываем клетки {name} цвета по всей сетке.",
+      "en": "Count the {name} cells across the whole grid."
+    },
+    "s5": {
+      "ru": "Итого: {answer_int}.",
+      "en": "Total: {answer_int}."
+    },
+    "s6": {
+      "ru": "Считаем клетки каждого цвета и берём максимум.",
+      "en": "Count cells of each color and take the maximum."
+    },
+    "s7": {
+      "ru": "gen",
+      "en": "en"
+    },
+    "s17": {
+      "ru": "Больше всего клеток {v0} цвета ({v1}).",
+      "en": "Больше всего клеток {v0} цвета ({v1})."
+    }
+  },
+  "literals": {
+    "s8": "grid_color_count",
+    "s9": "красный",
+    "s10": "красного",
+    "s11": "синий",
+    "s12": "синего",
+    "s13": "зелёный",
+    "s14": "зелёного",
+    "s15": "жёлтый",
+    "s16": "жёлтого"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка {code} кодирует сообщение: одна цифра 1..9 или две цифры от 10 до 26. Ноль сам по себе не является кодом. Сколькими способами можно разбить строку?",
+      "en": "The string {code} encodes a message: one digit 1..9 or two digits from 10 to 26. Zero alone is not a code. In how many ways can the string be split?"
+    },
+    "s1": {
+      "ru": "Динамика по префиксам даёт {answer} способов.",
+      "en": "The prefix DP gives {answer} ways."
+    }
+  }
+}

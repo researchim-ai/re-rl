@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Найдите обратный элемент к {a} по модулю {m}: число x из диапазона 0..{m1}, для которого {a}·x ≡ 1 (mod {m}).",
+        "Вычислите {a}⁻¹ (mod {m})."
+      ],
+      "en": [
+        "Find the inverse of {a} modulo {m}: an x in 0..{m1} with {a}·x ≡ 1 (mod {m}).",
+        "Compute {a}⁻¹ (mod {m})."
+      ]
+    },
+    "step_setup": {
+      "ru": "Обратный существует, так как gcd({a}, {m}) = 1. Применяем расширенный алгоритм Евклида.",
+      "en": "The inverse exists since gcd({a}, {m}) = 1. Apply the extended Euclidean algorithm."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

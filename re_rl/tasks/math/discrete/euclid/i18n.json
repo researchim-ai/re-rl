@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Алгоритм Евклида: пока b не 0, пара (a, b) заменяется на (b, a mod b). Каждая такая замена — один шаг.",
+      "en": "The Euclidean algorithm replaces (a, b) with (b, a mod b) while b is not 0. Each replacement is one step."
+    },
+    "s1": {
+      "ru": "НОД = {gcd}, шагов = {steps}.",
+      "en": "gcd = {gcd}, steps = {steps}."
+    },
+    "s2": {
+      "ru": "Найдите НОД({a}, {b}).",
+      "en": "Find gcd({a}, {b})."
+    },
+    "s3": {
+      "ru": "Сколько шагов сделает алгоритм Евклида для пары ({a}, {b})?",
+      "en": "How many steps does the Euclidean algorithm take for the pair ({a}, {b})?"
+    }
+  }
+}

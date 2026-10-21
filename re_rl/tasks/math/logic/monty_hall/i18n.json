@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Какова вероятность выиграть автомобиль, если переключиться? Ответьте дробью.",
+      "en": "What is the probability of winning the car if you switch? Answer as a fraction."
+    },
+    "s1": {
+      "ru": "Классическая задача Монти Холла: 3 двери, за одной автомобиль, за двумя — козы. Вы выбираете дверь, ведущий (знающий, где приз) открывает одну из оставшихся дверей с козой. ",
+      "en": "Classic Monty Hall: 3 doors, a car behind one, goats behind two. You pick a door, the host (who knows the prize) opens one of the other doors revealing a goat. "
+    },
+    "s2": {
+      "ru": "Обобщённая задача Монти Холла: {n} дверей, за одной автомобиль. Вы выбираете дверь, ведущий открывает ОДНУ из оставшихся дверей с козой. Затем вы переключаетесь на одну (случайную) из ещё закрытых дверей. ",
+      "en": "Generalized Monty Hall: {n} doors, a car behind one. You pick a door, the host opens ONE other door revealing a goat. Then you switch to one (random) of the still-closed doors. "
+    },
+    "s3": {
+      "ru": "Вероятность = P(изначально ошиблись) × P(переключение попадёт на приз).",
+      "en": "Probability = P(initial pick wrong) × P(switch lands on the prize)."
+    },
+    "s4": {
+      "ru": "Ответ: {v0}/{v1}.",
+      "en": "Answer: {v0}/{v1}."
+    }
+  }
+}

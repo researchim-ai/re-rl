@@ -1,0 +1,71 @@
+{
+  "text": {
+    "s3": {
+      "ru": "F = {F:.3e} Н",
+      "en": "F = {F:.3e} N"
+    },
+    "s4": {
+      "ru": "F = qvB = {q:.3e}·{v:.3e}·{B} = {F:.3e} Н",
+      "en": "F = qvB = {q:.3e}·{v:.3e}·{B} = {F:.3e} N"
+    },
+    "s5": {
+      "ru": "r = {r:.4e} м = {v1:.4f} см",
+      "en": "r = {r:.4e} m = {v1:.4f} см"
+    },
+    "s6": {
+      "ru": "T = {T:.4e} с",
+      "en": "T = {T:.4e} s"
+    },
+    "s7": {
+      "ru": "r = mv/(qB) = {m:.3e}·{v:.3e}/({q:.3e}·{B}) = {r:.4e} м",
+      "en": "r = mv/(qB) = {m:.3e}·{v:.3e}/({q:.3e}·{B}) = {r:.4e} m"
+    },
+    "s8": {
+      "ru": "T = 2πm/(qB) = 2π·{m:.3e}/({q:.3e}·{B}) = {T:.4e} с",
+      "en": "T = 2πm/(qB) = 2π·{m:.3e}/({q:.3e}·{B}) = {T:.4e} s"
+    }
+  },
+  "literals": {
+    "s0": "электрон",
+    "s1": "протон",
+    "s2": "альфа-частица"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на движение заряда в магнитном поле.",
+      "en": "Solve the problem on charge motion in magnetic field."
+    },
+    "problem": {
+      "lorentz_force": {
+        "ru": "Частица с зарядом q = {q} Кл движется со скоростью v = {v} м/с перпендикулярно полю B = {B} Тл. Найдите силу Лоренца.",
+        "en": "A particle with charge q = {q} C moves at v = {v} m/s perpendicular to field B = {B} T. Find the Lorentz force."
+      },
+      "radius": {
+        "ru": "Частица массой m = {m} кг и зарядом q = {q} Кл влетает в поле B = {B} Тл со скоростью v = {v} м/с. Найдите радиус траектории.",
+        "en": "A particle of mass m = {m} kg and charge q = {q} C enters field B = {B} T at v = {v} m/s. Find the orbit radius."
+      },
+      "period": {
+        "ru": "Частица массой m = {m} кг и зарядом q = {q} Кл движется в поле B = {B} Тл. Найдите период обращения.",
+        "en": "A particle of mass m = {m} kg and charge q = {q} C moves in field B = {B} T. Find the orbital period."
+      }
+    },
+    "steps": {
+      "lorentz": {
+        "ru": "Сила Лоренца: F = qvB·sin(α)",
+        "en": "Lorentz force: F = qvB·sin(α)"
+      },
+      "radius_formula": {
+        "ru": "Радиус: r = mv/(qB)",
+        "en": "Radius: r = mv/(qB)"
+      },
+      "period_formula": {
+        "ru": "Период: T = 2πm/(qB)",
+        "en": "Period: T = 2πm/(qB)"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

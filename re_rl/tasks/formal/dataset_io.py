@@ -3,6 +3,9 @@ Shared dataset save utilities for formal pipelines.
 """
 
 from __future__ import annotations
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'dataset_io_i18n.json')
+
 
 import json
 from datetime import datetime
@@ -107,6 +110,6 @@ def save_pairs_dataset(
     with open(meta, "w") as f:
         json.dump(metadata, f, indent=2, ensure_ascii=False, default=str)
 
-    print(f"  Датасет:    {out}  ({out.stat().st_size:,} bytes)")
-    print(f"  Метаданные: {meta}")
+    print(texts.t('s0', 'ru', out=out, v1=out.stat().st_size))
+    print(texts.t('s1', 'ru', meta=meta))
     return out

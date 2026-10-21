@@ -1,0 +1,80 @@
+{
+  "text": {
+    "s0": {
+      "ru": "мыльного пузыря",
+      "en": "soap bubble"
+    },
+    "s1": {
+      "ru": "капли",
+      "en": "droplet"
+    },
+    "s6": {
+      "ru": "h = {v0} м",
+      "en": "h = {v0} m"
+    },
+    "s7": {
+      "ru": "h = 2·{sigma}/({rho}·{g}·{v3}) = {v4} м",
+      "en": "h = 2·{sigma}/({rho}·{g}·{v3}) = {v4} m"
+    },
+    "s8": {
+      "ru": "ΔP = {v0} Па",
+      "en": "ΔP = {v0} Pa"
+    },
+    "s9": {
+      "ru": "F = {v0} Н",
+      "en": "F = {v0} N"
+    },
+    "s10": {
+      "ru": "ΔP = {k}·{sigma}/{v2} = {v3} Па",
+      "en": "ΔP = {k}·{sigma}/{v2} = {v3} Pa"
+    },
+    "s11": {
+      "ru": "F = 2·{sigma}·{v1} = {v2} Н",
+      "en": "F = 2·{sigma}·{v1} = {v2} N"
+    }
+  },
+  "literals": {
+    "s2": "вода",
+    "s3": "ртуть",
+    "s4": "этанол",
+    "s5": "глицерин"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на поверхностное натяжение.",
+      "en": "Solve the surface-tension problem."
+    },
+    "problem": {
+      "capillary_rise": {
+        "ru": "В капилляре радиусом r = {r} мм жидкость (σ = {sigma} Н/м, ρ = {rho} кг/м³) полностью смачивает стенки. Найдите высоту поднятия h (в м).",
+        "en": "In a capillary of radius r = {r} mm a liquid (σ = {sigma} N/m, ρ = {rho} kg/m³) fully wets the walls. Find the rise height h (in m)."
+      },
+      "laplace_pressure": {
+        "ru": "Найдите избыточное давление внутри {obj} радиусом r = {r} мм (σ = {sigma} Н/м).",
+        "en": "Find the excess pressure inside a {obj} of radius r = {r} mm (σ = {sigma} N/m)."
+      },
+      "wire_force": {
+        "ru": "Проволоку длиной L = {L} см вытягивают из жидкости с σ = {sigma} Н/м (плёнка контактирует с двух сторон). Найдите силу поверхностного натяжения (в Н).",
+        "en": "A wire of length L = {L} cm is pulled off a liquid with σ = {sigma} N/m (film on both sides). Find the surface-tension force (in N)."
+      }
+    },
+    "steps": {
+      "capillary_formula": {
+        "ru": "Высота поднятия: h = 2σ/(ρ·g·r).",
+        "en": "Capillary rise: h = 2σ/(ρ·g·r)."
+      },
+      "laplace_formula": {
+        "ru": "Избыточное давление: ΔP = {k}·σ/r.",
+        "en": "Excess pressure: ΔP = {k}·σ/r."
+      },
+      "wire_formula": {
+        "ru": "Сила: F = 2·σ·L (две стороны плёнки).",
+        "en": "Force: F = 2·σ·L (two film surfaces)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

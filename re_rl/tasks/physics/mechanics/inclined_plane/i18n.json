@@ -1,0 +1,123 @@
+{
+  "text": {
+    "s1": {
+      "ru": "a = {v0} м/с²",
+      "en": "a = {v0} m/s²"
+    },
+    "s2": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s3": {
+      "ru": "v = {v0} м/с",
+      "en": "v = {v0} m/s"
+    },
+    "s4": {
+      "ru": "tan(α_min) = μ → α_min = arctg(μ)",
+      "en": "tan(α_min) = μ → α_min = arctg(μ)"
+    },
+    "s5": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s6": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s7": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s8": {
+      "ru": "inclined_find_acceleration",
+      "en": "inclined_find_acceleration"
+    },
+    "s9": {
+      "ru": "inclined_forces_note",
+      "en": "inclined_forces_note"
+    },
+    "s10": {
+      "ru": "inclined_find_min_angle",
+      "en": "inclined_find_min_angle"
+    },
+    "s11": {
+      "ru": "inclined_slide_condition_note",
+      "en": "inclined_slide_condition_note"
+    },
+    "s12": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s13": {
+      "ru": "inclined_find_bottom_velocity",
+      "en": "inclined_find_bottom_velocity"
+    },
+    "s14": {
+      "ru": "velocity_at_bottom",
+      "en": "velocity_at_bottom"
+    }
+  },
+  "literals": {
+    "s0": "velocity_at_bottom"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на движение по наклонной плоскости.",
+      "en": "Solve the inclined plane problem."
+    },
+    "problem": {
+      "acceleration": {
+        "ru": "Тело массой {m} кг скользит по наклонной плоскости с углом {angle}° (коэффициент трения μ = {mu}). Найдите ускорение.",
+        "en": "A body of mass {m} kg slides down an inclined plane at angle {angle}° (friction coefficient μ = {mu}). Find the acceleration."
+      },
+      "min_angle": {
+        "ru": "При каком минимальном угле наклона тело начнёт скользить, если коэффициент трения μ = {mu}?",
+        "en": "What is the minimum angle for the body to start sliding if friction coefficient μ = {mu}?"
+      },
+      "velocity_at_bottom": {
+        "ru": "Тело скользит с вершины наклонной плоскости длиной {L} м и углом {angle}° (μ = {mu}). Найдите скорость внизу.",
+        "en": "A body slides from the top of an inclined plane of length {L} m at angle {angle}° (μ = {mu}). Find the velocity at the bottom."
+      }
+    },
+    "steps": {
+      "forces": {
+        "ru": "Силы: Fт = mg·sin(α), Fтр = μ·mg·cos(α)",
+        "en": "Forces: F_gravity = mg·sin(α), F_friction = μ·mg·cos(α)"
+      },
+      "net_force": {
+        "ru": "Результирующая: F = mg(sin(α) - μ·cos(α))",
+        "en": "Net force: F = mg(sin(α) - μ·cos(α))"
+      },
+      "acceleration": {
+        "ru": "Ускорение: a = g(sin(α) - μ·cos(α)) = {a} м/с²",
+        "en": "Acceleration: a = g(sin(α) - μ·cos(α)) = {a} m/s²"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  },
+  "inline_keys": {
+    "inclined_forces_note": {
+      "ru": "Силы на тело: mg·sin(α) вниз по склону, μmg·cos(α) — сила трения против движения.",
+      "en": "Forces: mg·sin(α) down the slope, μmg·cos(α) — friction opposing motion."
+    },
+    "inclined_find_bottom_velocity": {
+      "ru": "скорость внизу",
+      "en": "velocity at bottom"
+    },
+    "inclined_find_acceleration": {
+      "ru": "ускорение",
+      "en": "acceleration"
+    },
+    "inclined_find_min_angle": {
+      "ru": "минимальный угол скольжения",
+      "en": "minimum sliding angle"
+    },
+    "inclined_slide_condition_note": {
+      "ru": "Тело начинает скользить когда mg·sin(α) = μmg·cos(α)",
+      "en": "Body starts sliding when mg·sin(α) = μmg·cos(α)"
+    }
+  }
+}

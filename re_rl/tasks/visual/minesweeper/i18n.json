@@ -1,0 +1,8 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — поле «Сапёра» {n}×{n_2}. Числа в открытых клетках — сколько мин среди 8 соседей; серые клетки со знаком «?» скрыты. Целевая клетка обведена красным (строка {v2}, столбец {v3}). Является ли она миной? Ответьте «мина» или «безопасно».",
+      "en": "The figure shows a {n}×{n_2} Minesweeper board. Numbers in open cells are how many of the 8 neighbors are mines; grey '?' cells are hidden. The target cell is outlined in red (row {v2}, column {v3}). Is it a mine? Answer 'mine' or 'safe'."
+    }
+  }
+}

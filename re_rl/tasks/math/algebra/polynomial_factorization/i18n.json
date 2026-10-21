@@ -1,0 +1,18 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Разложите многочлен на множители: {poly}",
+        "Представьте многочлен в виде произведения множителей: {poly}"
+      ],
+      "en": [
+        "Factor the polynomial: {poly}",
+        "Write the polynomial as a product of factors: {poly}"
+      ]
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

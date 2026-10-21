@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — ориентированный ациклический граф (стрелки — дуги). Выпишите топологический порядок вершин (слева направо).",
+      "en": "The figure shows a directed acyclic graph (arrows are arcs). Output a topological ordering of the vertices (left to right)."
+    },
+    "s1": {
+      "ru": "На рисунке — ориентированный граф (стрелки — дуги). Есть ли в нём ориентированный цикл? Ответьте да/нет.",
+      "en": "The figure shows a directed graph (arrows are arcs). Does it contain a directed cycle? Answer yes/no."
+    },
+    "s3": {
+      "ru": "Ориентированный граф",
+      "en": "Ориентированный граф"
+    }
+  },
+  "literals": {
+    "s2": "topological_sort_image"
+  }
+}

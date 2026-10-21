@@ -1,0 +1,36 @@
+{
+  "prompt": {
+    "grid_problem": {
+      "ru": [
+        "На сетке {rows}x{cols} робот стоит в левом верхнем углу и может двигаться только вправо или вниз. Сколько существует различных путей до правого нижнего угла?",
+        "Сколькими способами можно дойти из левого верхнего в правый нижний угол сетки {rows}x{cols}, двигаясь только вправо и вниз?"
+      ],
+      "en": [
+        "On a {rows}x{cols} grid a robot starts at the top-left corner and may move only right or down. How many distinct paths lead to the bottom-right corner?",
+        "In how many ways can you reach the bottom-right from the top-left of a {rows}x{cols} grid moving only right and down?"
+      ]
+    },
+    "coin_problem": {
+      "ru": [
+        "Сколькими способами можно набрать сумму {amount}, используя монеты номиналами {coins} (каждый номинал можно брать неограниченно, порядок не важен)?",
+        "Сколько существует способов разменять сумму {amount} монетами {coins} (порядок не важен, номиналы можно повторять)?"
+      ],
+      "en": [
+        "In how many ways can you make the amount {amount} using coin denominations {coins} (unlimited coins of each type, order does not matter)?",
+        "How many ways are there to form the sum {amount} with coins {coins} (order irrelevant, repetitions allowed)?"
+      ]
+    },
+    "grid_step": {
+      "ru": "Число путей до правого нижнего угла = C({rows}+{cols}-2, {rows}-1). Заполняем таблицу DP: путей = {result}.",
+      "en": "Number of paths to the bottom-right = C({rows}+{cols}-2, {rows}-1). Filling the DP table: paths = {result}."
+    },
+    "coin_step": {
+      "ru": "Динамика dp[s] = число способов набрать s. Перебираем монеты, обновляем dp. Ответ: {result}.",
+      "en": "DP: dp[s] = number of ways to make s. Iterate over coins, update dp. Answer: {result}."
+    },
+    "result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

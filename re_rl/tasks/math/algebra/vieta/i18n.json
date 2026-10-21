@@ -1,0 +1,40 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Find the {what} of the roots of the polynomial P(x) = {_poly_str}.",
+      "en": "Find the {what} of the roots of the polynomial P(x) = {_poly_str}."
+    },
+    "s1": {
+      "ru": "Найдите {what} корней многочлена P(x) = {_poly_str}.",
+      "en": "Найдите {what} корней многочлена P(x) = {_poly_str}."
+    },
+    "s2": {
+      "ru": "сумму",
+      "en": "сумму"
+    },
+    "s3": {
+      "ru": "произведение",
+      "en": "произведение"
+    }
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "{scenario}",
+        "{scenario}"
+      ],
+      "en": [
+        "{scenario}",
+        "{scenario}"
+      ]
+    },
+    "step_setup": {
+      "ru": "Применяем формулы Виета, связывающие коэффициенты многочлена с суммами и произведениями корней.",
+      "en": "Apply Vieta's formulas relating polynomial coefficients to sums and products of roots."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

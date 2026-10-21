@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Код Хэмминга (7,4), чётная чётность. Позиции слева направо с 1; биты чётности в позициях 1, 2, 4 покрывают те позиции, в номере которых этот бит установлен. Данные d1 d2 d3 d4 стоят в позициях 3, 5, 6, 7.",
+      "en": "Hamming (7,4) code, even parity. Positions run left to right from 1; parity bits at 1, 2 and 4 cover positions whose index has that bit set. Data bits d1 d2 d3 d4 sit at positions 3, 5, 6, 7."
+    },
+    "s1": {
+      "ru": "Найдите расстояние Хэмминга между строками {a} и {b} (число позиций, в которых биты различаются).",
+      "en": "Find the Hamming distance between {a} and {b} (the number of positions where the bits differ)."
+    },
+    "s2": {
+      "ru": "Постройте кодовое слово для данных {data}. Ответ — 7 бит.",
+      "en": "Build the codeword for data {data}. Answer with 7 bits."
+    },
+    "s3": {
+      "ru": "В слове {word} не больше одной ошибки. Укажите номер ошибочной позиции (1..7) или 0, если слово корректно.",
+      "en": "The word {word} has at most one error. Give the index of the flipped bit (1..7), or 0 if the word is valid."
+    },
+    "s4": {
+      "ru": "Биты различаются в позициях: {where}.",
+      "en": "Bits differ at positions: {where}."
+    },
+    "s5": {
+      "ru": "нет",
+      "en": "none"
+    },
+    "s6": {
+      "ru": "Данные в позициях 3, 5, 6, 7, биты чётности дополняют покрытие до чётности. Слово: {answer}.",
+      "en": "Data goes to positions 3, 5, 6, 7; parity bits make each check even. Codeword: {answer}."
+    },
+    "s7": {
+      "ru": "Проверки чётности: {v0}. Синдром = {answer}.",
+      "en": "Parity checks: {v0}. Syndrome = {answer}."
+    }
+  }
+}

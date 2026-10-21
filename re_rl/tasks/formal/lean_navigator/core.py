@@ -16,6 +16,9 @@ LeanNavigator — воспроизведение статьи
   - Работает напрямую с .ast.json (без lean-dojo TracedRepo)
   - Чистый API без глобальных переменных
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'core_i18n.json')
+
 
 import re
 import os
@@ -433,7 +436,7 @@ class TacticTemplateExtractor:
 
         if not build_ir.exists():
             raise FileNotFoundError(
-                f"Нет build/ir в {repo_dir}. Запустите: python scripts/fast_trace.py"
+                texts.t('s28', self.language, repo_dir=repo_dir)
             )
 
         # Собираем .ast.json файлы
@@ -446,10 +449,10 @@ class TacticTemplateExtractor:
         if max_files > 0 and len(ast_files) > max_files:
             ast_files = random.sample(ast_files, max_files)
 
-        print(f"Извлекаем шаблоны тактик из {len(ast_files)} файлов...")
+        print(texts.t('s12', self.language, v0=len(ast_files)))
         total_tactics = 0
         errors = 0
-        iterator = tqdm(ast_files, desc="Извлечение шаблонов") if TQDM_AVAILABLE else ast_files
+        iterator = tqdm(ast_files, desc=texts.t('s36', self.language)) if TQDM_AVAILABLE else ast_files
 
         for ast_file in iterator:
             try:
@@ -495,8 +498,7 @@ class TacticTemplateExtractor:
                 errors += 1
                 continue
 
-        print(f"✓ Извлечено {len(self.templates)} уникальных шаблонов "
-              f"из {total_tactics} тактик ({errors} ошибок)")
+        print(texts.t('s13', self.language, v0=len(self.templates), total_tactics=total_tactics, errors=errors))
         return self.templates
 
     def extract_from_traced_repo(self, traced_repo, max_theorems: int = 0,
@@ -510,12 +512,11 @@ class TacticTemplateExtractor:
         if max_theorems > 0 and len(traced_theorems) > max_theorems:
             traced_theorems = random.sample(traced_theorems, max_theorems)
 
-        print(f"Извлекаем шаблоны тактик из {len(traced_theorems)} теорем...")
+        print(texts.t('s14', self.language, v0=len(traced_theorems)))
 
         for i, thm in enumerate(traced_theorems):
             if (i + 1) % 10000 == 0:
-                print(f"  {i + 1}/{len(traced_theorems)} теорем обработано, "
-                      f"{len(self.templates)} шаблонов")
+                print(texts.t('s37', self.language, v0=i + 1, v1=len(traced_theorems), v2=len(self.templates)))
             try:
                 if not thm.has_tactic_proof():
                     continue
@@ -532,7 +533,7 @@ class TacticTemplateExtractor:
             except Exception:
                 continue
 
-        print(f"✓ Извлечено {len(self.templates)} уникальных шаблонов тактик")
+        print(texts.t('s15', self.language, v0=len(self.templates)))
         return self.templates
 
     def save(self, path: str):
@@ -543,7 +544,7 @@ class TacticTemplateExtractor:
         }
         with open(path, 'w') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
-        print(f"✓ Шаблоны сохранены в {path}")
+        print(texts.t('s16', self.language, path=path))
 
     def load(self, path: str):
         """Загружает шаблоны из JSON."""
@@ -551,7 +552,7 @@ class TacticTemplateExtractor:
             data = json.load(f)
         self.templates = data["templates"]
         self.template_examples = data.get("examples", {})
-        print(f"✓ Загружено {len(self.templates)} шаблонов из {path}")
+        print(texts.t('s17', self.language, v0=len(self.templates), path=path))
 
     def get_top_templates(self, n: int = 50) -> List[Tuple[str, int]]:
         """Топ-N шаблонов по частоте."""
@@ -591,9 +592,9 @@ class TacticRAG:
         self.templates = list(self.template_freq.keys())
 
         if not self.templates:
-            raise ValueError("Нет шаблонов для индексации")
+            raise ValueError(texts.t('s29', self.language))
 
-        print(f"Строим FAISS index для {len(self.templates)} шаблонов...")
+        print(texts.t('s18', self.language, v0=len(self.templates)))
         embeddings = self.model.encode(self.templates, show_progress_bar=True,
                                         batch_size=256)
         embeddings = embeddings.astype(np.float32)
@@ -605,13 +606,13 @@ class TacticRAG:
         self.index = faiss.IndexFlatIP(dim)  # Inner Product = cosine после нормализации
         self.index.add(embeddings)
 
-        print(f"✓ FAISS index построен: {len(self.templates)} шаблонов, dim={dim}")
+        print(texts.t('s19', self.language, v0=len(self.templates), dim=dim))
 
     def get_similar_templates(self, state: str, theorem_code: str = "",
                                num_returned: int = 200) -> List[Tuple[str, float]]:
         """Находит наиболее похожие шаблоны тактик для состояния."""
         if self.index is None:
-            raise ValueError("Сначала вызовите build_index()")
+            raise ValueError(texts.t('s30', self.language))
 
         query = (theorem_code + ' # ' + state) if theorem_code else state
         query_embedding = self.model.encode([query]).astype(np.float32)
@@ -633,7 +634,7 @@ class TacticRAG:
         faiss.write_index(self.index, str(save_path / "faiss.index"))
         with open(save_path / "templates.json", 'w') as f:
             json.dump({"templates": self.templates, "freq": self.template_freq}, f)
-        print(f"✓ RAG сохранён в {path}")
+        print(texts.t('s20', self.language, path=path))
 
     def load(self, path: str):
         """Загружает индекс и данные."""
@@ -643,7 +644,7 @@ class TacticRAG:
             data = json.load(f)
         self.templates = data["templates"]
         self.template_freq = data["freq"]
-        print(f"✓ RAG загружен из {path}: {len(self.templates)} шаблонов")
+        print(texts.t('s21', self.language, path=path, v1=len(self.templates)))
 
 
 # ============================================================================
@@ -1173,7 +1174,7 @@ class PantographDojo:
         try:
             return self.server.env_catalog(module_prefix=module_prefix)
         except Exception as e:
-            print(f"env_catalog ошибка: {e}")
+            print(texts.t('s38', self.language, e=e))
             return []
 
     def __enter__(self):
@@ -1627,9 +1628,7 @@ class LeanNavigatorExplorer:
             for tactic in tactic_set:
                 n_steps += 1
                 if n_steps % 10000 == 0:
-                    print(f"  {n_steps} шагов выполнено, "
-                          f"{len(state_dict)} состояний, "
-                          f"proven={theorem_proven}")
+                    print(texts.t('s40', self.language, n_steps=n_steps, v1=len(state_dict), theorem_proven=theorem_proven))
                 if n_steps > self.max_steps:
                     break
                 # Каждые 200 шагов: проверка RSS (лимит) + логирование прогресса (диагностика OOM)
@@ -1658,7 +1657,7 @@ class LeanNavigatorExplorer:
                             except Exception:
                                 pass
                         if self.verbose:
-                            print(f"  BFS остановлен: память процесса {rss_mb:.0f}MB > {self.max_process_rss_mb}MB")
+                            print(texts.t('s45', self.language, rss_mb=rss_mb, max_process_rss_mb=self.max_process_rss_mb))
                         break
                     if self.progress_callback:
                         try:
@@ -1720,7 +1719,7 @@ class LeanNavigatorExplorer:
                             except Exception:
                                 pass
                         if self.verbose:
-                            print(f"  BFS остановлен: скачок памяти на тактике +{rss_delta_fail:.0f}MB > {self.max_tactic_rss_jump_mb}MB")
+                            print(texts.t('s46', self.language, rss_delta_fail=rss_delta_fail, max_tactic_rss_jump_mb=self.max_tactic_rss_jump_mb))
                         break
                     continue
                 rss_after = _current_rss_mb() if measure_tactic_rss else 0.0
@@ -1753,7 +1752,7 @@ class LeanNavigatorExplorer:
                         except Exception:
                             pass
                     if self.verbose:
-                        print(f"  BFS остановлен: скачок памяти на тактике +{rss_delta:.0f}MB > {self.max_tactic_rss_jump_mb}MB")
+                        print(texts.t('s43', self.language, rss_delta=rss_delta, max_tactic_rss_jump_mb=self.max_tactic_rss_jump_mb))
                     break
 
                 if isinstance(result, ProofFinished):
@@ -2260,7 +2259,7 @@ def load_theorems_from_ast_dir(
     build_ir = repo_dir / ".lake" / "build" / "ir"
 
     if not build_ir.exists():
-        raise FileNotFoundError(f"Нет build/ir в {repo_dir}")
+        raise FileNotFoundError(texts.t('s22', 'ru', repo_dir=repo_dir))
 
     ast_files = sorted(build_ir.rglob("*.ast.json"))
     if skip_packages:
@@ -2276,7 +2275,7 @@ def load_theorems_from_ast_dir(
         r'(?:theorem|lemma|def|instance)\s+([\w.\']+)\s*'
     )
 
-    iterator = tqdm(ast_files, desc="Загрузка теорем") if TQDM_AVAILABLE else ast_files
+    iterator = tqdm(ast_files, desc=texts.literal('literals.s31')) if TQDM_AVAILABLE else ast_files
 
     for ast_file in iterator:
         try:
@@ -2342,7 +2341,7 @@ def load_theorems_from_ast_dir(
         except Exception:
             continue
 
-    print(f"✓ Загружено {len(theorems)} теорем из {len(ast_files)} файлов")
+    print(texts.t('s0', 'ru', v0=len(theorems), v1=len(ast_files)))
     return theorems
 
 
@@ -2506,7 +2505,7 @@ def load_theorems_from_env(
     if only_names is not None:
         iterator = only_names
         if verbose:
-            print(f"Загрузка только указанных имён: {len(only_names)}")
+            print(texts.t('s32', 'ru', v0=len(only_names)))
     else:
         # 1. Получаем каталог (с кэшированием)
         catalog_cache = Path(cache_dir) / "env_catalog.json" if cache_dir else None
@@ -2514,13 +2513,13 @@ def load_theorems_from_env(
         if catalog_cache and catalog_cache.exists():
             with open(catalog_cache) as f:
                 all_names = json.load(f)
-            print(f"Каталог загружен из кэша: {len(all_names)} констант")
+            print(texts.t('s33', 'ru', v0=len(all_names)))
         else:
-            print(f"Получаем каталог из Lean ({module_prefix})...")
+            print(texts.t('s34', 'ru', module_prefix=module_prefix))
             t0 = time.time()
             all_names = dojo.catalog(module_prefix=module_prefix)
             elapsed = time.time() - t0
-            print(f"  Получено {len(all_names)} констант за {elapsed:.1f}с")
+            print(texts.t('s35', 'ru', v0=len(all_names), elapsed=elapsed))
             if catalog_cache and len(all_names) > 0:
                 catalog_cache.parent.mkdir(parents=True, exist_ok=True)
                 with open(catalog_cache, 'w') as f:
@@ -2528,16 +2527,16 @@ def load_theorems_from_env(
 
         # 2. env_catalog возвращает имена с однобуквенным тегом: t=theorem, ...
         theorem_names = [n[1:] for n in all_names if n.startswith('t')]
-        print(f"  Теорем (prefix=t): {len(theorem_names)} из {len(all_names)}")
+        print(texts.t('s23', 'ru', v0=len(theorem_names), v1=len(all_names)))
 
         # 3. Фильтруем внутренние имена
         filtered = [n for n in theorem_names if not _is_internal_name(n)]
-        print(f"  После фильтрации: {len(filtered)} (отброшено {len(theorem_names) - len(filtered)} внутренних)")
+        print(texts.t('s24', 'ru', v0=len(filtered), v1=len(theorem_names) - len(filtered)))
 
         # 4. Семплируем
         sample_size = min(max_theorems * 10, len(filtered))
         sample = random.sample(filtered, sample_size) if len(filtered) > sample_size else filtered
-        iterator = tqdm(sample, desc="Загрузка типов") if TQDM_AVAILABLE else sample
+        iterator = tqdm(sample, desc=texts.literal('literals.s39')) if TQDM_AVAILABLE else sample
 
     consecutive_errors = 0
     MAX_CONSECUTIVE_ERRORS = 10  # Если много подряд — dojo сломан (Lean PANIC убил процесс)
@@ -2560,8 +2559,7 @@ def load_theorems_from_env(
             if TQDM_AVAILABLE and isinstance(iterator, tqdm):
                 iterator.set_postfix(found=len(theorems), failed=failed)
             if consecutive_errors >= MAX_CONSECUTIVE_ERRORS:
-                print(f"\n⚠ {consecutive_errors} ошибок подряд — Lean/Pantograph вероятно упал (PANIC). "
-                      f"Прерываем загрузку. Загружено {len(theorems)} теорем.")
+                print(texts.t('s41', 'ru', consecutive_errors=consecutive_errors, v1=len(theorems)))
                 break
             continue
 
@@ -2593,8 +2591,7 @@ def load_theorems_from_env(
                 if TQDM_AVAILABLE and isinstance(iterator, tqdm):
                     iterator.set_postfix(found=len(theorems), failed=failed, skip=goal_rejected)
                 if consecutive_errors >= MAX_CONSECUTIVE_ERRORS:
-                    print(f"\n⚠ {consecutive_errors} ошибок подряд — Lean/Pantograph вероятно упал (PANIC). "
-                          f"Прерываем загрузку. Загружено {len(theorems)} теорем.")
+                    print(texts.t('s44', 'ru', consecutive_errors=consecutive_errors, v1=len(theorems)))
                     break
                 continue
 
@@ -2620,8 +2617,7 @@ def load_theorems_from_env(
             iterator.set_postfix(found=len(theorems), failed=failed, skip=goal_rejected)
 
     rejected_msg = f", goal_rejected={goal_rejected}" if goal_rejected else ""
-    print(f"✓ Загружено {len(theorems)} теорем из Lean env "
-          f"(inspected={inspected}, rejected={failed}{rejected_msg})")
+    print(texts.t('s1', 'ru', v0=len(theorems), inspected=inspected, failed=failed, rejected_msg=rejected_msg))
     return theorems
 
 
@@ -2673,7 +2669,7 @@ def run_lean_navigator(
 
     # === Шаг 1: Извлечение шаблонов тактик ===
     print("=" * 60)
-    print("Шаг 1: Извлечение шаблонов тактик")
+    print(texts.literal('literals.s2'))
     print("=" * 60)
 
     extractor = TacticTemplateExtractor()
@@ -2687,13 +2683,13 @@ def run_lean_navigator(
             extractor.save(str(Path(output_dir) / "tactic_templates.json"))
 
     top_templates = extractor.get_top_templates(10)
-    print("\nТоп-10 шаблонов:")
+    print(texts.literal('literals.s3'))
     for tmpl, freq in top_templates:
         print(f"  [{freq:6d}] {tmpl}")
 
     # === Шаг 2: Построение FAISS index ===
     print("\n" + "=" * 60)
-    print("Шаг 2: Построение FAISS index для RAG")
+    print(texts.literal('literals.s4'))
     print("=" * 60)
 
     rag = TacticRAG(model_name=rag_model)
@@ -2707,7 +2703,7 @@ def run_lean_navigator(
 
     # === Шаг 3+4: Загрузка теорем + BFS ===
     print("\n" + "=" * 60)
-    print("Шаг 3: Загрузка теорем из Lean env + BFS")
+    print(texts.literal('literals.s5'))
     print("=" * 60)
 
     all_pairs = []
@@ -2723,7 +2719,7 @@ def run_lean_navigator(
             cache_dir=cache_dir,
             verbose=verbose,
         )
-        print(f"Будем исследовать {len(theorems)} теорем")
+        print(texts.t('s25', 'ru', v0=len(theorems)))
 
         explorer = LeanNavigatorExplorer(
             dojo=dojo, rag=rag,
@@ -2773,7 +2769,7 @@ def run_lean_navigator(
                       f", time={result.elapsed:.1f}s")
 
             except Exception as e:
-                print(f"  ✗ Ошибка: {str(e)[:80]}")
+                print(texts.t('s42', 'ru', v0=str(e)[:80]))
                 theorem_results.append({
                     "theorem": thm.name, "proven": False,
                     "error": str(e), "pairs": 0,
@@ -2800,16 +2796,16 @@ def run_lean_navigator(
     }
 
     print("\n" + "=" * 60)
-    print("ИТОГИ LeanNavigator")
+    print(texts.literal('literals.s6'))
     print("=" * 60)
-    print(f"  Теорем исследовано: {summary['total_theorems']}")
-    print(f"  Доказательств найдено: {summary['proofs_found']}")
-    print(f"  Доказательств верифицировано: {summary['proofs_verified']}")
+    print(texts.t('s7', 'ru', v0=summary['total_theorems']))
+    print(texts.t('s8', 'ru', v0=summary['proofs_found']))
+    print(texts.t('s9', 'ru', v0=summary['proofs_verified']))
     if verify_failed > 0:
-        print(f"  ⚠ FALSE POSITIVE (не прошли replay): {verify_failed}")
+        print(texts.t('s26', 'ru', verify_failed=verify_failed))
     print(f"  Training pairs: {summary['total_pairs']}")
-    print(f"  Уникальных тактик: {summary['unique_tactics']}")
-    print(f"  Общее время: {total_time:.1f}s ({total_time / 60:.1f} мин)")
+    print(texts.t('s10', 'ru', v0=summary['unique_tactics']))
+    print(texts.t('s11', 'ru', total_time=total_time, v1=total_time / 60))
 
     # Сохраняем
     if output_dir:
@@ -2825,7 +2821,7 @@ def run_lean_navigator(
                     "theorem_name": pair.theorem_name,
                 }
                 f.write(json.dumps(record, ensure_ascii=False) + "\n")
-        print(f"  Данные: {pairs_path}")
+        print(texts.t('s27', 'ru', pairs_path=pairs_path))
 
         with open(Path(output_dir) / "summary.json", 'w') as f:
             json.dump(summary, f, indent=2, ensure_ascii=False, default=str)

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стержень длины {n}. Цена куска длины i: {shown}. Разрезов сколько угодно, куски оцениваются по этой таблице. Найдите максимальную выручку.",
+      "en": "A rod of length {n}. Price of a piece of length i: {shown}. Any number of cuts is allowed, and pieces are priced by this table. Find the maximum revenue."
+    },
+    "s1": {
+      "ru": "Динамика по длине даёт выручку {answer}.",
+      "en": "The length DP gives revenue {answer}."
+    }
+  }
+}

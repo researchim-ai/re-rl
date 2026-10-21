@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сетка, строки разделены знаком / : {v0}. Идти можно только вправо и вниз, из левого верхнего угла в правый нижний. Найдите минимальную сумму клеток на пути.",
+      "en": "Grid, rows separated by / : {v0}. You may move only right and down, from the top-left corner to the bottom-right. Find the minimum sum of cells on a path."
+    },
+    "s1": {
+      "ru": "Динамика по клеткам даёт сумму {answer}.",
+      "en": "The cell DP gives sum {answer}."
+    }
+  },
+  "literals": {
+    "s2": "min_path_sum"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "PPO. Отношение вероятностей r = {v0} обрезается в отрезок от 1 - ε до 1 + ε, ε = {v1}. Суррогат — меньшее из r * A и (обрезанное r) * A, A = {advantage}. Ответ — целое или несократимая дробь.",
+      "en": "PPO. The probability ratio r = {v0} is clipped to the segment from 1 - ε to 1 + ε, ε = {v1}. The surrogate is the smaller of r * A and (clipped r) * A, A = {advantage}. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Обрезанное r = {v0}, суррогат = {v1}.",
+      "en": "Clipped r = {v0}, surrogate = {v1}."
+    },
+    "s2": {
+      "ru": "Найдите обрезанное отношение.",
+      "en": "Find the clipped ratio."
+    },
+    "s3": {
+      "ru": "Найдите суррогат.",
+      "en": "Find the surrogate."
+    }
+  }
+}

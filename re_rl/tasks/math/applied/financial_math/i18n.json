@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "simple_interest_formula",
+      "en": "simple_interest_formula"
+    },
+    "s1": {
+      "ru": "simple_interest_total",
+      "en": "simple_interest_total"
+    },
+    "s2": {
+      "ru": "annuity_pv_formula",
+      "en": "annuity_pv_formula"
+    }
+  }
+}

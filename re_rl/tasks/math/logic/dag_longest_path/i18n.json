@@ -1,0 +1,23 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Взвешенный ориентированный ациклический граф (вершины 0..{v0}). Дуги: {es}.\nНайдите вес самого длинного пути (сумму весов дуг).",
+      "en": "Weighted directed acyclic graph (vertices 0..{v0}). Arcs: {es}.\nFind the weight of the longest path (sum of arc weights)."
+    },
+    "s1": {
+      "ru": "Обрабатываем вершины в топологическом порядке и накапливаем максимум.",
+      "en": "Process vertices in topological order, accumulating the maximum."
+    },
+    "s2": {
+      "ru": "Длиннейший путь = {_answer}.",
+      "en": "Longest path = {_answer}."
+    },
+    "s4": {
+      "ru": "{a}→{b} (вес {w})",
+      "en": "{a}→{b} (weight {w})"
+    }
+  },
+  "literals": {
+    "s3": "dag_longest_path"
+  }
+}

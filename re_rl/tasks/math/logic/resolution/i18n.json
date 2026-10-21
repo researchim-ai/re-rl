@@ -1,0 +1,43 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дан набор дизъюнктов:\n{cs}\nСколько различных нетавтологичных резольвент (как множеств литералов) можно получить за один шаг резолюции, перебрав все пары клауз и все комплементарные литералы?",
+      "en": "Given a set of clauses:\n{cs}\nHow many distinct non-tautological resolvents (as literal sets) can be obtained in one resolution step, over all clause pairs and all complementary literals?"
+    },
+    "s1": {
+      "ru": "Дан набор дизъюнктов (в КНФ):\n{cs}\nМетодом резолюции определите, выводима ли пустая клауза, то есть является ли набор невыполнимым. (да/нет)",
+      "en": "Given a set of clauses (CNF):\n{cs}\nUsing resolution, determine whether the empty clause is derivable, i.e. whether the set is unsatisfiable. (yes/no)"
+    },
+    "s2": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s3": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s4": {
+      "ru": "Строим резольвенты, пока не выведем пустую клаузу; эквивалентно проверке невыполнимости перебором означиваний.",
+      "en": "Derive resolvents until the empty clause appears; equivalently, check unsatisfiability by truth assignments."
+    },
+    "s5": {
+      "ru": "Пустая клауза выводима — набор невыполним.",
+      "en": "The empty clause is derivable — the set is unsatisfiable."
+    },
+    "s6": {
+      "ru": "Пустая клауза не выводима — набор выполним.",
+      "en": "The empty clause is not derivable — the set is satisfiable."
+    },
+    "s7": {
+      "ru": "Для каждой пары клауз с комплементарными литералами строим резольвенту (объединение без пары), отбрасывая тавтологии; считаем различные.",
+      "en": "For each clause pair with complementary literals form the resolvent (union minus the pair), drop tautologies, count the distinct ones."
+    },
+    "s8": {
+      "ru": "Число резольвент: {answer_int}.",
+      "en": "Number of resolvents: {answer_int}."
+    }
+  },
+  "literals": {
+    "s9": "one_step_resolvents"
+  }
+}

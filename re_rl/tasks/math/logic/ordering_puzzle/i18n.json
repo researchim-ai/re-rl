@@ -1,0 +1,50 @@
+{
+  "text": {
+    "s0": {
+      "ru": "{v0} стоит последним.",
+      "en": "{v0} is last."
+    },
+    "s1": {
+      "ru": "{n} человек стоят в ряд на позициях с 1 по {n_2}: {v2}.\nПодсказки:\n",
+      "en": "{n} people stand in a row at positions 1..{n_2}: {v2}.\nClues:\n"
+    },
+    "s2": {
+      "ru": "\nВосстановите порядок от первого к последнему (перечислите имена по порядку).",
+      "en": "\nReconstruct the order from first to last (list the names in order)."
+    },
+    "s3": {
+      "ru": "{v0} стоит где-то раньше, чем {v1}.",
+      "en": "{v0} is somewhere before {v1}."
+    },
+    "s4": {
+      "ru": "{v0} стоит непосредственно перед {v1}.",
+      "en": "{v0} is immediately before {v1}."
+    },
+    "s5": {
+      "ru": "{v0} стоит на позиции {v1}.",
+      "en": "{v0} is at position {v1}."
+    },
+    "s6": {
+      "ru": "{v0} стоит первым.",
+      "en": "{v0} is first."
+    },
+    "s7": {
+      "ru": "Комбинируем подсказки, сужая возможные позиции каждого объекта.",
+      "en": "Combine the clues to narrow down each object's possible positions."
+    },
+    "s8": {
+      "ru": "Единственный порядок: {v0}.",
+      "en": "The unique order: {v0}."
+    }
+  },
+  "literals": {
+    "s9": "Анна",
+    "s10": "Борис",
+    "s11": "Вера",
+    "s12": "Глеб",
+    "s13": "Дина",
+    "s14": "Егор",
+    "s15": "Жанна",
+    "s16": "Игорь"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив: {data}. Найдите наибольшее произведение непустого непрерывного подмассива.",
+      "en": "Array: {data}. Find the largest product of a nonempty contiguous subarray."
+    },
+    "s1": {
+      "ru": "Наибольшее произведение равно {answer}.",
+      "en": "The largest product is {answer}."
+    }
+  }
+}

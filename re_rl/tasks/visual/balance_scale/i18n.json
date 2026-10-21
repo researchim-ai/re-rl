@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s1": {
+      "ru": "Чашечные весы в равновесии, плечи одинаковые. Массы указаны на грузах. Найдите массу груза «?».",
+      "en": "The balance scale is level and the arms are equal. Masses are written on the loads. Find the mass of the load marked «?»."
+    },
+    "s2": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s3": {
+      "ru": "Рычаг в равновесии, опора в точке 0. Масса и положение грузов указаны на рисунке. Найдите массу груза «?».",
+      "en": "The lever is balanced, with the fulcrum at 0. Masses and positions are shown in the figure. Find the mass of the load marked «?»."
+    },
+    "s4": {
+      "ru": "Моменты: {m_l} * {d_l} = ? * {d_r}, поэтому ? = {answer} {unit}.",
+      "en": "Moments: {m_l} * {d_l} = ? * {d_r}, so ? = {answer} {unit}."
+    },
+    "s5": {
+      "ru": "Сумма слева {v0} равна сумме справа {v1} + ?, поэтому ? = {answer} {unit}.",
+      "en": "The left sum {v0} equals the right sum {v1} + ?, so ? = {answer} {unit}."
+    },
+    "s6": {
+      "ru": "round,pad=0.02,rounding_size=0.08",
+      "en": "round,pad=0.02,rounding_size=0.08"
+    }
+  }
+}

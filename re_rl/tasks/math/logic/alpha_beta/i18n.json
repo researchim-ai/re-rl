@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Корень максимизирует, ходы идут по порядку. Ход берёт минимум прочитанных листьев. Как только этот минимум стал не больше уже найденной оценки корня, остальные листья хода не читаются. {v0}",
+      "en": "The root maximizes, and moves are tried in order. A move takes the minimum of the leaves read. Once that minimum is no greater than the root value already found, the remaining leaves of the move are not read. {v0}"
+    },
+    "s1": {
+      "ru": "Оценка {value}, прочитано листьев {visited}.",
+      "en": "Value {value}, leaves read {visited}."
+    },
+    "s2": {
+      "ru": "Найдите оценку корня.",
+      "en": "Find the value of the root."
+    },
+    "s3": {
+      "ru": "Сколько листьев будет прочитано?",
+      "en": "How many leaves are read?"
+    },
+    "s4": {
+      "ru": "Ход {v0}, листья слева направо: {nums}.",
+      "en": "Move {v0}, leaves left to right: {nums}."
+    }
+  }
+}

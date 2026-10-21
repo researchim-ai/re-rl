@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "{argument:.4f} рад ({argument_deg:.2f}°)",
+      "en": "{argument:.4f} rad ({argument_deg:.2f}°)"
+    },
+    "s1": {
+      "ru": "{argument:.4f} рад ({argument_deg:.2f}°)",
+      "en": "{argument:.4f} rad ({argument_deg:.2f}°)"
+    },
+    "s2": {
+      "ru": "polar_form_result",
+      "en": "polar_form_result"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дано дерево с вершинами 1..{n} и рёбрами: {edges}. Корень — вершина 1.",
+      "en": "A tree on vertices 1..{n} has edges: {edges}. The root is vertex 1."
+    },
+    "s1": {
+      "ru": "Сколько рёбер в самом длинном пути (диаметр)?",
+      "en": "How many edges are in a longest path (the diameter)?"
+    },
+    "s2": {
+      "ru": "Два обхода в ширину: дальняя от 1 вершина и дальняя от неё — {u} и {v}, между ними {answer} рёбер.",
+      "en": "Two BFS passes give endpoints {u} and {v}, with {answer} edges between them."
+    },
+    "s3": {
+      "ru": "Сколько в дереве листьев (вершин степени 1)?",
+      "en": "How many leaves (degree-1 vertices) does the tree have?"
+    },
+    "s4": {
+      "ru": "Вершины степени 1: {listed}.",
+      "en": "Degree-1 vertices: {listed}."
+    },
+    "s5": {
+      "ru": "Какова высота дерева — число рёбер от корня до самой глубокой вершины?",
+      "en": "What is the height — the number of edges from the root to the deepest vertex?"
+    },
+    "s6": {
+      "ru": "Найдите наименьший общий предок вершин {a} и {b}.",
+      "en": "Find the lowest common ancestor of vertices {a} and {b}."
+    },
+    "s7": {
+      "ru": "Самая глубокая вершина — {deep}, глубина {answer}.",
+      "en": "The deepest vertex is {deep}, at depth {answer}."
+    },
+    "s8": {
+      "ru": "Поднимаемся от {a} и {b} к корню; первая общая вершина — {answer}.",
+      "en": "Walk from {a} and {b} toward the root; the first shared vertex is {answer}."
+    }
+  }
+}

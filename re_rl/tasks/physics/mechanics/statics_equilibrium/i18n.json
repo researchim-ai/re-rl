@@ -1,0 +1,38 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Н",
+      "en": "N"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на равновесие (статику).",
+      "en": "Solve the statics/equilibrium problem."
+    },
+    "problem": {
+      "lever": {
+        "ru": "На рычаг слева на расстоянии {d1} м действует сила {F1} Н. На каком плече {d2} м справа нужно приложить силу, чтобы рычаг был в равновесии? Найдите эту силу.",
+        "en": "A lever has a force {F1} N applied on the left at distance {d1} m. Find the force applied on the right arm at distance {d2} m to keep the lever balanced."
+      },
+      "beam_supports": {
+        "ru": "Однородная балка длиной {L} м и весом {W} Н лежит на двух опорах по концам. На расстоянии {a} м от левой опоры стоит груз весом {P} Н. Найдите реакции опор R1 (левая) и R2 (правая).",
+        "en": "A uniform beam of length {L} m and weight {W} N rests on two end supports. A load of weight {P} N sits {a} m from the left support. Find the support reactions R1 (left) and R2 (right)."
+      }
+    },
+    "steps": {
+      "lever_formula": {
+        "ru": "Правило моментов: F1·d1 = F2·d2 ⇒ F2 = F1·d1/d2.",
+        "en": "Torque balance: F1·d1 = F2·d2 ⇒ F2 = F1·d1/d2."
+      },
+      "beam_formula": {
+        "ru": "Моменты относительно левой опоры: R2·L = W·(L/2) + P·a; затем R1 = W + P − R2.",
+        "en": "Torques about the left support: R2·L = W·(L/2) + P·a; then R1 = W + P − R2."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

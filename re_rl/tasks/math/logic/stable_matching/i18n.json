@@ -1,0 +1,52 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сторона P предлагает, сторона A принимает. Свободные вначале идут в порядке P1, P2, …; отвергнутый или вытесненный встаёт в конец очереди.",
+      "en": "Side P proposes, side A accepts. Free proposers start in order P1, P2, …; a rejected or displaced proposer goes to the back of the queue."
+    },
+    "s1": {
+      "ru": "Кого получает {who} в паросочетании Гейла–Шепли? Ответьте меткой вида A1.",
+      "en": "Whom does {who} get in the Gale–Shapley matching? Answer with a label like A1."
+    },
+    "s2": {
+      "ru": "Устойчиво ли паросочетание {v0}? Ответьте да/нет.",
+      "en": "Is the matching {v0} stable? Answer yes/no."
+    },
+    "s3": {
+      "ru": "Ход предложений: {v0}.",
+      "en": "Proposal trace: {v0}."
+    },
+    "s4": {
+      "ru": "Паросочетание: {v0}.",
+      "en": "Matching: {v0}."
+    },
+    "s5": {
+      "ru": "Блокирующих пар нет.",
+      "en": "There is no blocking pair."
+    },
+    "s6": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s7": {
+      "ru": "Пара {v0}—{v1} блокирующая: оба предпочитают друг друга своим партнёрам.",
+      "en": "Pair {v0}—{v1} is blocking: each prefers the other to their current partner."
+    },
+    "s8": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s9": {
+      "ru": "{v0}→{v1} принято",
+      "en": "{v0}→{v1} accepted"
+    },
+    "s10": {
+      "ru": "{v0}→{v1} вытесняет {v2}",
+      "en": "{v0}→{v1} displaces {v2}"
+    },
+    "s11": {
+      "ru": "{v0}→{v1} отказ",
+      "en": "{v0}→{v1} rejected"
+    }
+  }
+}

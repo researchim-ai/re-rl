@@ -1,0 +1,35 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кэш прямого отображения: {n_lines} строк, размер блока {block_size} байт, изначально пуст. Для адреса addr: block = addr // {block_size_2}, index = block mod {n_lines_2}, tag = block // {n_lines_3}. Попадание, если в строке index уже лежит тот же tag; иначе это промах и tag записывается.",
+      "en": "Direct-mapped cache: {n_lines} lines, block size {block_size} bytes, initially empty. For an address addr: block = addr // {block_size_2}, index = block mod {n_lines_2}, tag = block // {n_lines_3}. It is a hit when line index already holds the same tag; otherwise it is a miss and the tag is stored."
+    },
+    "s1": {
+      "ru": "Трасса адресов: {seq}.",
+      "en": "Address trace: {seq}."
+    },
+    "s2": {
+      "ru": "Сколько попаданий?",
+      "en": "How many hits?"
+    },
+    "s3": {
+      "ru": "Адрес {addr}: block = {v1}, tag = {tag}, index = {index}.",
+      "en": "Address {addr}: block = {v1}, tag = {tag}, index = {index}."
+    },
+    "s4": {
+      "ru": "Сколько промахов?",
+      "en": "How many misses?"
+    },
+    "s5": {
+      "ru": "Какой tag у адреса {addr}?",
+      "en": "What is the tag of address {addr}?"
+    },
+    "s6": {
+      "ru": "Трасса: ",
+      "en": "Trace: "
+    }
+  },
+  "literals": {
+    "s7": "direct_mapped_cache"
+  }
+}

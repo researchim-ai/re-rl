@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Расставьте {n} ферзей на доске {n_2}×{n_3} так, чтобы никакие два не били друг друга. Для каждой строки сверху вниз укажите номер столбца (1..{n_4}), где стоит ферзь — {n_5} чисел по порядку.",
+      "en": "Place {n} non-attacking queens on an {n_2}×{n_3} board. For each row from top to bottom, give the column (1..{n_4}) of its queen — {n_5} numbers in order."
+    },
+    "s1": {
+      "ru": "Сколько существует различных расстановок {n} ферзей на доске {n_2}×{n_3}, при которых ферзи не бьют друг друга?",
+      "en": "How many distinct ways are there to place {n} non-attacking queens on an {n_2}×{n_3} board?"
+    },
+    "s2": {
+      "ru": "Перебор с возвратом по строкам, отсекая занятые столбцы и диагонали.",
+      "en": "Backtracking row by row, pruning used columns and diagonals."
+    },
+    "s3": {
+      "ru": "Число решений = {_count}.",
+      "en": "Number of solutions = {_count}."
+    },
+    "s4": {
+      "ru": "Ставим ферзей по строкам, выбирая свободный столбец и диагонали.",
+      "en": "Place queens row by row, choosing a free column and diagonals."
+    },
+    "s5": {
+      "ru": "Одно из решений (столбцы по строкам): {v0}.",
+      "en": "One solution (columns per row): {v0}."
+    }
+  }
+}

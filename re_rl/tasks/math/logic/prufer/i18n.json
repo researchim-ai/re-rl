@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Код Прюфера: пока остаётся больше двух вершин, удаляйте лист с наименьшим номером и записывайте его соседа. Степень вершины = 1 + число вхождений в код.",
+      "en": "Prufer code: while more than two vertices remain, delete the smallest-numbered leaf and record its neighbor. A vertex degree is 1 plus its number of occurrences in the code."
+    },
+    "s1": {
+      "ru": "Дерево на вершинах 1..{n}, рёбра: {shown}. Запишите код Прюфера числами через запятую.",
+      "en": "Tree on vertices 1..{n}, edges: {shown}. Write the Prufer code as comma-separated numbers."
+    },
+    "s2": {
+      "ru": "Дерево на вершинах 1..{n}, рёбра: {shown}. Какова степень вершины {vertex}?",
+      "en": "Tree on vertices 1..{n}, edges: {shown}. What is the degree of vertex {vertex}?"
+    },
+    "s3": {
+      "ru": "Код: {code}.",
+      "en": "Code: {code}."
+    },
+    "s4": {
+      "ru": "Вершина {vertex} входит в код {v1} раз, степень {degree}.",
+      "en": "Vertex {vertex} occurs {v1} times, degree {degree}."
+    },
+    "s5": {
+      "ru": "степень по коду Прюфера не совпала с рёбрами",
+      "en": "степень по коду Прюфера не совпала с рёбрами"
+    }
+  }
+}

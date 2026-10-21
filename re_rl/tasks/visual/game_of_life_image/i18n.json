@@ -1,0 +1,11 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — начальное поле игры «Жизнь» Конвея {r}×{c} (чёрные клетки — живые, белые — мёртвые; клетки вне поля считаются мёртвыми). Правила: живая клетка выживает при 2–3 живых соседях, мёртвая оживает при ровно 3. Каким будет поле через {k} шаг(а)? Выпишите все {v3} клеток по строкам (1 — живая, 0 — мёртвая).",
+      "en": "The figure shows the initial board of Conway's Game of Life {r}×{c} (black cells are alive, white are dead; cells outside are dead). Rules: a live cell survives with 2–3 live neighbors, a dead cell is born with exactly 3. What is the board after {k} step(s)? List all {v3} cells row by row (1 alive, 0 dead)."
+    }
+  },
+  "literals": {
+    "s1": "game_of_life_image"
+  }
+}

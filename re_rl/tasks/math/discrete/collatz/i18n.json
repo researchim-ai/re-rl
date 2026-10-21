@@ -1,0 +1,23 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пока число больше 1: чётное делится на 2, нечётное заменяется на 3n + 1. Максимум учитывает и стартовое число.",
+      "en": "While the number is greater than 1: an even number is divided by 2, an odd number becomes 3n + 1. The maximum includes the starting number."
+    },
+    "s1": {
+      "ru": "От {start} до 1 нужно {steps} шагов, максимум {peak}.",
+      "en": "From {start} to 1 takes {steps} steps, maximum {peak}."
+    },
+    "s2": {
+      "ru": "Сколько шагов ведёт от {start} до 1?",
+      "en": "How many steps lead from {start} to 1?"
+    },
+    "s3": {
+      "ru": "Какой максимум встретится на пути от {start} до 1?",
+      "en": "What maximum occurs on the way from {start} to 1?"
+    }
+  },
+  "literals": {
+    "s4": "последовательность Коллатца не дошла до 1"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Приоритеты переходов, номера с 1: {shown}. Вероятность номера равна его приоритету, делённому на сумму. Номер с наибольшим приоритетом при равенстве — меньший.",
+      "en": "Transition priorities, indices start at 1: {shown}. The probability of an index is its priority divided by the sum. The maximum priority breaks ties toward the smaller index."
+    },
+    "s1": {
+      "ru": "Вероятность номера {v0} равна {v1}, максимум у номера {argmax}.",
+      "en": "Probability of index {v0} is {v1}, the maximum is at index {argmax}."
+    },
+    "s2": {
+      "ru": "Найдите вероятность номера {v0}. Ответ — целое или несократимая дробь.",
+      "en": "Find the probability of index {v0}. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Какой номер имеет наибольший приоритет?",
+      "en": "Which index has the greatest priority?"
+    }
+  }
+}

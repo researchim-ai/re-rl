@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Накапливающийся след: каждая координата умножается на γλ, затем к посещённой прибавляется 1. γ = {v0}, λ = {v1}. Координаты нумеруются с 1. Ответ — целое или несократимая дробь.",
+      "en": "Accumulating trace: every coordinate is multiplied by γλ, then 1 is added to the visited one. γ = {v0}, λ = {v1}. Coordinates start at 1. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "След: {shown}. Посещена координата {v1}.",
+      "en": "Trace: {shown}. Visited coordinate: {v1}."
+    },
+    "s2": {
+      "ru": "Найдите новую координату {v0}.",
+      "en": "Find the new coordinate {v0}."
+    },
+    "s3": {
+      "ru": "Новая координата {v0} равна {shown}.",
+      "en": "New coordinate {v0} is {shown}."
+    }
+  }
+}

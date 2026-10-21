@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s1": {
+      "ru": "distance_point_plane",
+      "en": "distance_point_plane"
+    },
+    "s2": {
+      "ru": "distance_point_plane",
+      "en": "distance_point_plane"
+    },
+    "s3": {
+      "ru": "distance_point_plane",
+      "en": "distance_point_plane"
+    }
+  },
+  "literals": {
+    "s0": "distance_point_plane"
+  }
+}

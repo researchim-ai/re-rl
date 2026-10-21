@@ -1,0 +1,60 @@
+{
+  "text": {
+    "s0": {
+      "ru": "$\\frac{{d}}{{dx}}\\left({func_latex}\\right)$",
+      "en": "$\\frac{{d}}{{dx}}\\left({func_latex}\\right)$"
+    },
+    "s1": {
+      "ru": "task_type_derivative",
+      "en": "task_type_derivative"
+    },
+    "s2": {
+      "ru": "task_type_integral",
+      "en": "task_type_integral"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите задачу по анализу (дифференцирование/интегрирование).\nФормат:\n<reasoning>\n  (Ваши шаги)\n</reasoning>\n<answer>\n  (Результат)\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the calculus task (differentiation/integration).\nFormat:\n<reasoning>\n  (Steps)\n</reasoning>\n<answer>\n  (The final expression)\n</answer>"
+    },
+    "problem": {
+      "ru": [
+        "Найдите {task_type} функции f(x) = {function_pretty}.",
+        "Вычислите {task_type} функции f(x) = {function_pretty}.",
+        "Определите {task_type} для f(x) = {function_pretty}.",
+        "Дана функция f(x) = {function_pretty}. Найдите её {task_type}."
+      ],
+      "en": [
+        "Find the {task_type} of the function f(x) = {function_pretty}.",
+        "Calculate the {task_type} of f(x) = {function_pretty}.",
+        "Determine the {task_type} for f(x) = {function_pretty}.",
+        "Given f(x) = {function_pretty}, find its {task_type}."
+      ]
+    },
+    "problem_derivative": {
+      "ru": "Найдите производную: {expression}",
+      "en": "Find the derivative: {expression}"
+    },
+    "problem_integral": {
+      "ru": "Найдите неопределённый интеграл: {expression}",
+      "en": "Find the indefinite integral: {expression}"
+    },
+    "task_type_derivative": {
+      "ru": "производную",
+      "en": "derivative"
+    },
+    "task_type_integral": {
+      "ru": "неопределённый интеграл",
+      "en": "indefinite integral"
+    },
+    "step1": {
+      "ru": "Шаг 1: Запишем функцию: f(x) = {function_pretty}.",
+      "en": "Step 1: Write the function: f(x) = {function_pretty}."
+    },
+    "step2": {
+      "ru": "Шаг 2: Вычисляем {task_type}: {result}.",
+      "en": "Step 2: Compute the {task_type}: {result}."
+    }
+  }
+}

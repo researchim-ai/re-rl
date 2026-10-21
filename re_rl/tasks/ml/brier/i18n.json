@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пары (вероятность класса 1, истинная метка): {shown}. Оценка Брайера — среднее квадратов разностей. Найдите её. Ответ — целое или несократимая дробь.",
+      "en": "Pairs (probability of class 1, true label): {shown}. The Brier score is the mean of the squared differences. Find it. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Среднее (p - y)^2 равно {shown}.",
+      "en": "The mean of (p - y)^2 is {shown}."
+    }
+  }
+}

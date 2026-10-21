@@ -1,0 +1,33 @@
+{
+  "literals": {
+    "s0": "окружность",
+    "s1": "эллипс",
+    "s2": "гипербола",
+    "s3": "парабола",
+    "s4": "окружность",
+    "s5": "круг",
+    "s6": "эллипс",
+    "s7": "гипербола",
+    "s8": "парабола"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Определите тип кривой второго порядка, заданной уравнением {equation} (эллипс, гипербола, парабола, окружность).",
+        "Какой конике соответствует уравнение {equation}? Ответ: окружность/эллипс/гипербола/парабола."
+      ],
+      "en": [
+        "Determine the type of conic given by {equation} (ellipse, hyperbola, parabola, circle).",
+        "Which conic does {equation} represent? Answer: circle/ellipse/hyperbola/parabola."
+      ]
+    },
+    "step_setup": {
+      "ru": "Анализируем коэффициенты при x² и y² (и наличие обоих квадратов) для классификации.",
+      "en": "Analyze the coefficients of x² and y² (and presence of both squares) to classify."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

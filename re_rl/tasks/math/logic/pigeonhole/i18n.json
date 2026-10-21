@@ -1,0 +1,23 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В ящике лежит много {item} {colors} различных цветов (поровну достаточно каждого). Их достают не глядя. Сколько предметов нужно достать, чтобы ГАРАНТИРОВАННО среди них оказалось {k} одного цвета?",
+      "en": "A drawer holds many {item} of {colors} different colors (plenty of each). They are drawn without looking. How many must be drawn to GUARANTEE {k} of the same color?"
+    },
+    "s1": {
+      "ru": "В худшем случае набираем по {v0} каждого цвета: {colors}×{v2} штук, следующий предмет даёт {k} одного цвета.",
+      "en": "Worst case: {v0} of each color, i.e. {colors}×{v2}; one more forces {k} of a color."
+    },
+    "s2": {
+      "ru": "ru",
+      "en": "en"
+    }
+  },
+  "literals": {
+    "s3": "носков",
+    "s4": "перчаток",
+    "s5": "шаров",
+    "s6": "карандашей",
+    "s7": "конфет"
+  }
+}

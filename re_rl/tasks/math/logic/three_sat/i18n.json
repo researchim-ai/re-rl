@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дана КНФ над переменными {v0}:\n{cnf}\nНайдите набор значений (0/1), выполняющий формулу. Укажите значения {v2} в этом порядке.",
+      "en": "Given a CNF over {v0}:\n{cnf}\nFind a satisfying 0/1 assignment. List values for {v2} in order."
+    },
+    "s1": {
+      "ru": "Каждая клауза должна содержать хотя бы один истинный литерал; подбираем значения.",
+      "en": "Each clause needs at least one true literal; pick values accordingly."
+    },
+    "s2": {
+      "ru": "Подходит набор: {v0}.",
+      "en": "A satisfying assignment: {v0}."
+    }
+  }
+}

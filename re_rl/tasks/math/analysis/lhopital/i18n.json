@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Вычислите предел lim(x→{point}) {expr}. При необходимости примените правило Лопиталя.",
+        "Найдите предел функции {expr} при x → {point} (правило Лопиталя)."
+      ],
+      "en": [
+        "Compute the limit lim(x→{point}) {expr}. Use L'Hôpital's rule if needed.",
+        "Find the limit of {expr} as x → {point} (L'Hôpital)."
+      ]
+    },
+    "step_setup": {
+      "ru": "Подстановка даёт неопределённость 0/0 или ∞/∞; дифференцируем числитель и знаменатель.",
+      "en": "Substitution yields 0/0 or ∞/∞; differentiate numerator and denominator."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

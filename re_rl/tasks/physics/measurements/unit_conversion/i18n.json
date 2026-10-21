@@ -1,0 +1,105 @@
+{
+  "unit_en": {
+    "км": "km",
+    "м": "m",
+    "см": "cm",
+    "мм": "mm",
+    "миля": "mile",
+    "фут": "ft",
+    "дюйм": "in",
+    "кг": "kg",
+    "г": "g",
+    "т": "t",
+    "фунт": "lb",
+    "ч": "h",
+    "мин": "min",
+    "с": "s",
+    "сут": "day",
+    "км/ч": "km/h",
+    "м/с": "m/s",
+    "кДж": "kJ",
+    "Дж": "J",
+    "эВ": "eV",
+    "кал": "cal",
+    "атм": "atm",
+    "Па": "Pa",
+    "бар": "bar",
+    "мм рт.ст.": "mmHg"
+  },
+  "literals": {
+    "s0": "км",
+    "s1": "м",
+    "s2": "м",
+    "s3": "см",
+    "s4": "м",
+    "s5": "мм",
+    "s6": "миля",
+    "s7": "км",
+    "s8": "фут",
+    "s9": "м",
+    "s10": "дюйм",
+    "s11": "см",
+    "s12": "кг",
+    "s13": "г",
+    "s14": "т",
+    "s15": "кг",
+    "s16": "фунт",
+    "s17": "кг",
+    "s18": "ч",
+    "s19": "мин",
+    "s20": "мин",
+    "s21": "с",
+    "s22": "сут",
+    "s23": "ч",
+    "s24": "км/ч",
+    "s25": "м/с",
+    "s26": "м/с",
+    "s27": "км/ч",
+    "s28": "кДж",
+    "s29": "Дж",
+    "s30": "эВ",
+    "s31": "Дж",
+    "s32": "кал",
+    "s33": "Дж",
+    "s34": "атм",
+    "s35": "Па",
+    "s36": "бар",
+    "s37": "Па",
+    "s38": "мм рт.ст.",
+    "s39": "Па"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Выполните перевод единиц измерения.",
+      "en": "Perform unit conversion."
+    },
+    "problem": {
+      "simple": {
+        "ru": "Переведите {value} {from_unit} в {to_unit}.",
+        "en": "Convert {value} {from_unit} to {to_unit}."
+      },
+      "compound": {
+        "ru": "Переведите {value} {from_unit} в единицы СИ.",
+        "en": "Convert {value} {from_unit} to SI units."
+      },
+      "derived": {
+        "ru": "Выразите {value} {from_unit} через основные единицы СИ.",
+        "en": "Express {value} {from_unit} in base SI units."
+      }
+    },
+    "steps": {
+      "conversion_factor": {
+        "ru": "Коэффициент перевода: 1 {from_unit} = {factor} {to_unit}",
+        "en": "Conversion factor: 1 {from_unit} = {factor} {to_unit}"
+      },
+      "calculate": {
+        "ru": "Расчёт: {value} × {factor} = {result}",
+        "en": "Calculation: {value} × {factor} = {result}"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

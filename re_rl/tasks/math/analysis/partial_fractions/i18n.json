@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Разложите рациональную дробь на простейшие дроби: {expr}",
+        "Представьте дробь {expr} в виде суммы простейших дробей."
+      ],
+      "en": [
+        "Decompose the rational function into partial fractions: {expr}",
+        "Write {expr} as a sum of partial fractions."
+      ]
+    },
+    "step_setup": {
+      "ru": "Раскладываем знаменатель на множители и записываем дробь суммой простейших с неизвестными числителями.",
+      "en": "Factor the denominator and write the fraction as a sum of partial fractions with unknown numerators."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

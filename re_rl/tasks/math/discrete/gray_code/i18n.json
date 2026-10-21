@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка {bits} — {width}-битный двоично-отражённый код Грея. Какое целое число она кодирует?",
+      "en": "The string {bits} is a {width}-bit binary-reflected Gray code. Which integer does it encode?"
+    },
+    "s1": {
+      "ru": "Запишите число {value} двоично-отражённым кодом Грея ровно в {width} бит (ведущие нули сохраняйте).",
+      "en": "Write {value} in binary-reflected Gray code using exactly {width} bits (keep leading zeros)."
+    },
+    "s2": {
+      "ru": "n XOR (n >> 1) = {value} XOR {v1} = {v2}, в {width} битах: {bits}.",
+      "en": "n XOR (n >> 1) = {value} XOR {v1} = {v2}, in {width} bits: {bits}."
+    },
+    "s3": {
+      "ru": "Побитовое восстановление даёт {value}.",
+      "en": "Bit-by-bit decoding gives {value}."
+    },
+    "s4": {
+      "ru": "код Грея не декодируется",
+      "en": "код Грея не декодируется"
+    }
+  }
+}

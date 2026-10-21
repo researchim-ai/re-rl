@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "{n} городов (0..{v1}), симметричные расстояния: {table}.\nНайдите длину кратчайшего замкнутого маршрута, проходящего через все города по разу и возвращающегося в старт.",
+      "en": "{n} cities (0..{v1}), symmetric distances: {table}.\nFind the length of the shortest closed tour visiting every city once and returning to the start."
+    },
+    "s1": {
+      "ru": "Перебираем все перестановки городов и выбираем минимальную длину цикла.",
+      "en": "Enumerate all city permutations and pick the minimum cycle length."
+    },
+    "s2": {
+      "ru": "Длина кратчайшего маршрута = {_answer}.",
+      "en": "Shortest tour length = {_answer}."
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Выполняем инструкции по порядку, обновляя значения переменных.",
+      "en": "Execute the statements in order, updating variable values."
+    },
+    "s1": {
+      "ru": "Итоговое значение {query} = {_answer}.",
+      "en": "Final value of {query} = {_answer}."
+    },
+    "s2": {
+      "ru": "Execute the program (all variables are integers, initially 0; '==' is equality):\n\n{code_en}\n\nWhat is the final value of variable {query}?",
+      "en": "Execute the program (all variables are integers, initially 0; '==' is equality):\n\n{code_en}\n\nWhat is the final value of variable {query}?"
+    },
+    "s3": {
+      "ru": "Выполните программу (все переменные целые, изначально 0; «==» — сравнение на равенство):\n\n{code}\n\nКакое значение будет у переменной {query} в конце?",
+      "en": "Выполните программу (все переменные целые, изначально 0; «==» — сравнение на равенство):\n\n{code}\n\nКакое значение будет у переменной {query} в конце?"
+    },
+    "s4": {
+      "ru": "если",
+      "en": "если"
+    },
+    "s5": {
+      "ru": " раз:",
+      "en": " раз:"
+    },
+    "s6": {
+      "ru": "{pad}повторить {v1} раз:",
+      "en": "{pad}повторить {v1} раз:"
+    },
+    "s7": {
+      "ru": "{pad}если {v1}:",
+      "en": "{pad}если {v1}:"
+    },
+    "s8": {
+      "ru": "повторить",
+      "en": "повторить"
+    }
+  }
+}

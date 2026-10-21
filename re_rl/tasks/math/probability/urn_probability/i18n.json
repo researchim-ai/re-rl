@@ -1,0 +1,107 @@
+{
+  "text": {
+    "s0": {
+      "ru": "{container_syn} №{idx} (всего {total_count} {item_syn}):",
+      "en": "{container_syn} #{idx} (total {total_count} {item_syn}):"
+    },
+    "s1": {
+      "ru": "все",
+      "en": "все"
+    },
+    "s2": {
+      "ru": "хотя бы один",
+      "en": "хотя бы один"
+    },
+    "s3": {
+      "ru": "at least one",
+      "en": "at least one"
+    },
+    "s4": {
+      "ru": "ровно",
+      "en": "ровно"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Рассчитать вероятность события при выборе ящика и извлечении предметов.\nПример:\n<reasoning>\n  (Формула, суммирование вероятностей)\n</reasoning>\n<answer>\n  0.3333\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Probability puzzle with multiple containers.\nExample:\n<reasoning>\n  (Derive formula, sum weighted probabilities)\n</reasoning>\n<answer>\n  0.3333\n</answer>"
+    },
+    "synonyms": {
+      "ru": {
+        "containers": [
+          "коробка",
+          "мешок",
+          "ящик",
+          "контейнер"
+        ],
+        "items": [
+          "шар",
+          "камушек",
+          "предмет"
+        ],
+        "colors": [
+          "красный",
+          "синий",
+          "зелёный",
+          "белый",
+          "чёрный"
+        ]
+      },
+      "en": {
+        "containers": [
+          "box",
+          "bag",
+          "container",
+          "bin"
+        ],
+        "items": [
+          "ball",
+          "marble",
+          "object",
+          "token"
+        ],
+        "colors": [
+          "red",
+          "blue",
+          "green",
+          "white",
+          "black"
+        ]
+      }
+    },
+    "problem": {
+      "ru": "У нас есть {count_containers} {container_syn}. В каждом {container_syn} лежат {item_syn} разных цветов:\n{details}\nВыбираем один {container_syn} случайно (равновероятно), затем извлекаем {draws} {item_syn_2} (без возвращения). Вопрос: {question}",
+      "en": "We have {count_containers} {container_syn}. Each {container_syn} contains {item_syn} of different colors:\n{details}\nWe pick one {container_syn} at random (equal probability) and then draw {draws} {item_syn_2} (without replacement). Question: {question}"
+    },
+    "steps": {
+      "ru": [
+        "Шаг 1: Вероятность выбора каждого {container_syn} = 1/{count_containers}.",
+        "Шаг 2: Для {container_syn} №{idx} вычислим вероятность события.",
+        "Шаг 3: Суммируем взвешенные вероятности.",
+        "Шаг 4: Упрощаем выражение."
+      ],
+      "en": [
+        "Step 1: Probability of picking each {container_syn} is 1/{count_containers}.",
+        "Step 2: For {container_syn} #{idx}, compute event probability.",
+        "Step 3: Sum weighted probabilities.",
+        "Step 4: Simplify the expression."
+      ]
+    },
+    "final_answer": {
+      "ru": "Итоговая вероятность события: {prob_value}",
+      "en": "The final probability of the event is: {prob_value}"
+    },
+    "questions_pool": {
+      "ru": [
+        "все {draws} {item_syn} окажутся {color}",
+        "хотя бы один {item_syn} будет {color}",
+        "ровно {x} из {draws} {item_syn} будут {color}"
+      ],
+      "en": [
+        "all {draws} {item_syn} drawn are {color}",
+        "at least one {item_syn} is {color}",
+        "exactly {x} out of {draws} {item_syn} are {color}"
+      ]
+    }
+  }
+}

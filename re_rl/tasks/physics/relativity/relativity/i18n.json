@@ -1,0 +1,40 @@
+{
+  "text": {
+    "s0": {
+      "ru": "t = {t:.4f} с",
+      "en": "t = {t:.4f} s"
+    },
+    "s1": {
+      "ru": "t = t₀·γ = {t0} × {gamma:.4f} = {t:.4f} с",
+      "en": "t = t₀·γ = {t0} × {gamma:.4f} = {t:.4f} s"
+    },
+    "s2": {
+      "ru": "L = {L:.4f} м",
+      "en": "L = {L:.4f} m"
+    },
+    "s3": {
+      "ru": "L = L₀/γ = {L0} / {gamma:.4f} = {L:.4f} м",
+      "en": "L = L₀/γ = {L0} / {gamma:.4f} = {L:.4f} m"
+    },
+    "s4": {
+      "ru": "E = {E_joules:.4e} Дж",
+      "en": "E = {E_joules:.4e} J"
+    },
+    "s5": {
+      "ru": "E = {E_joules:.4e} Дж = {E_eV:.4e} эВ",
+      "en": "E = {E_joules:.4e} J = {E_eV:.4e} eV"
+    },
+    "s6": {
+      "ru": "p = {p:.4e} кг·м/с",
+      "en": "p = {p:.4e} kg·m/s"
+    },
+    "s7": {
+      "ru": "p = γmv = {gamma:.4f} × {m} × {v:.4e} = {p:.4e} кг·м/с",
+      "en": "p = γmv = {gamma:.4f} × {m} × {v:.4e} = {p:.4e} kg·m/s"
+    },
+    "s8": {
+      "ru": "mass_energy_formula",
+      "en": "mass_energy_formula"
+    }
+  }
+}

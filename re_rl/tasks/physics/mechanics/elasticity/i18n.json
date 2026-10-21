@@ -1,0 +1,85 @@
+{
+  "text": {
+    "s0": {
+      "ru": "ru",
+      "en": "en"
+    },
+    "s6": {
+      "ru": "σ = {v0} Па",
+      "en": "σ = {v0} Pa"
+    },
+    "s7": {
+      "ru": "σ = {F}/{v1} = {v2} Па",
+      "en": "σ = {F}/{v1} = {v2} Pa"
+    },
+    "s8": {
+      "ru": "E = {v0} Па",
+      "en": "E = {v0} Pa"
+    },
+    "s9": {
+      "ru": "ΔL = {v0} м",
+      "en": "ΔL = {v0} m"
+    },
+    "s10": {
+      "ru": "E = {sigma}/{eps} = {v2} Па",
+      "en": "E = {sigma}/{eps} = {v2} Pa"
+    },
+    "s11": {
+      "ru": "ΔL = {F}·{L}/({v2}·{v3}) = {v4} м",
+      "en": "ΔL = {F}·{L}/({v2}·{v3}) = {v4} m"
+    }
+  },
+  "literals": {
+    "s1": "сталь",
+    "s2": "алюминий",
+    "s3": "медь",
+    "s4": "стекло",
+    "s5": "титан"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на упругие деформации (модуль Юнга).",
+      "en": "Solve the elasticity (Young's modulus) problem."
+    },
+    "problem": {
+      "stress": {
+        "ru": "К стержню с площадью поперечного сечения A = {A} мм² приложена растягивающая сила F = {F} Н. Найдите механическое напряжение σ (в Па).",
+        "en": "A rod with cross-sectional area A = {A} mm² is pulled by a force F = {F} N. Find the mechanical stress σ (in Pa)."
+      },
+      "strain": {
+        "ru": "Стержень длиной L = {L} м под нагрузкой удлинился на ΔL = {dL} мм. Найдите относительную деформацию ε.",
+        "en": "A rod of length L = {L} m elongates by ΔL = {dL} mm under load. Find the strain ε."
+      },
+      "young_modulus": {
+        "ru": "При напряжении σ = {sigma} Па относительная деформация равна ε = {eps}. Найдите модуль Юнга E (в Па).",
+        "en": "At a stress σ = {sigma} Pa the strain is ε = {eps}. Find Young's modulus E (in Pa)."
+      },
+      "elongation": {
+        "ru": "Стержень из материала «{mat}» длиной L = {L} м и площадью сечения A = {A} мм² растягивают силой F = {F} Н. Модуль Юнга E = {E} Па. Найдите удлинение ΔL (в м).",
+        "en": "A rod of material \"{mat}\" of length L = {L} m and cross-section A = {A} mm² is stretched by a force F = {F} N. Young's modulus E = {E} Pa. Find the elongation ΔL (in m)."
+      }
+    },
+    "steps": {
+      "stress_formula": {
+        "ru": "Механическое напряжение: σ = F/A (площадь в м²).",
+        "en": "Mechanical stress: σ = F/A (area in m²)."
+      },
+      "strain_formula": {
+        "ru": "Относительная деформация: ε = ΔL/L.",
+        "en": "Strain: ε = ΔL/L."
+      },
+      "young_formula": {
+        "ru": "Закон Гука: E = σ/ε.",
+        "en": "Hooke's law: E = σ/ε."
+      },
+      "elongation_formula": {
+        "ru": "Удлинение: ΔL = F·L/(A·E).",
+        "en": "Elongation: ΔL = F·L/(A·E)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

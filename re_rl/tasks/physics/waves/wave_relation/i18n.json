@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для волны v = f * λ.",
+      "en": "For a wave, v = f * λ."
+    },
+    "s1": {
+      "ru": "v = {frequency} * {wavelength} = {speed}.",
+      "en": "v = {frequency} * {wavelength} = {speed}."
+    },
+    "s2": {
+      "ru": "Частота f = {frequency}, длина волны λ = {wavelength}. Найдите скорость v.",
+      "en": "Frequency f = {frequency}, wavelength λ = {wavelength}. Find the speed v."
+    },
+    "s3": {
+      "ru": "Скорость v = {speed}, длина волны λ = {wavelength}. Найдите частоту f.",
+      "en": "Speed v = {speed}, wavelength λ = {wavelength}. Find the frequency f."
+    },
+    "s4": {
+      "ru": "Скорость v = {speed}, частота f = {frequency}. Найдите длину волны λ.",
+      "en": "Speed v = {speed}, frequency f = {frequency}. Find the wavelength λ."
+    }
+  }
+}

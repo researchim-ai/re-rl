@@ -1,0 +1,54 @@
+{
+  "text": {
+    "s0": {
+      "ru": "кг·м/с",
+      "en": "kg·m/s"
+    },
+    "s1": {
+      "ru": "Па",
+      "en": "Pa"
+    },
+    "s2": {
+      "ru": "Па",
+      "en": "Pa"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о давлении света.",
+      "en": "Solve the radiation-pressure problem."
+    },
+    "problem": {
+      "photon_momentum": {
+        "ru": "Найдите импульс фотона с длиной волны λ = {lam} м.",
+        "en": "Find the momentum of a photon of wavelength λ = {lam} m."
+      },
+      "pressure_absorbing": {
+        "ru": "На полностью поглощающую поверхность падает свет интенсивностью I = {I} Вт/м². Найдите давление света.",
+        "en": "Light of intensity I = {I} W/m² hits a fully absorbing surface. Find the radiation pressure."
+      },
+      "pressure_reflecting": {
+        "ru": "На идеально отражающую поверхность падает свет интенсивностью I = {I} Вт/м². Найдите давление света.",
+        "en": "Light of intensity I = {I} W/m² hits a perfectly reflecting surface. Find the radiation pressure."
+      }
+    },
+    "steps": {
+      "momentum_formula": {
+        "ru": "Импульс фотона: p = h/λ.",
+        "en": "Photon momentum: p = h/λ."
+      },
+      "absorbing_formula": {
+        "ru": "Давление на поглощающую поверхность: P = I/c.",
+        "en": "Pressure on an absorbing surface: P = I/c."
+      },
+      "reflecting_formula": {
+        "ru": "Давление на отражающую поверхность: P = 2·I/c.",
+        "en": "Pressure on a reflecting surface: P = 2·I/c."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

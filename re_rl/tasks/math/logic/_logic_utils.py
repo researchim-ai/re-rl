@@ -5,6 +5,9 @@
 """
 
 from __future__ import annotations
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, '_logic_utils_i18n.json')
+
 
 import ast
 import operator
@@ -13,8 +16,8 @@ from typing import List, Optional
 
 from re_rl.tasks.math._verify_utils import extract_answer_text
 
-_YES = {"yes", "да", "true", "верно", "истина", "истинно"}
-_NO = {"no", "нет", "false", "неверно", "ложь", "ложно"}
+_YES = {"yes", texts.literal('literals.s0'), "true", texts.literal('literals.s1'), texts.literal('literals.s2'), texts.literal('literals.s3')}
+_NO = {"no", texts.literal('literals.s4'), "false", texts.literal('literals.s5'), texts.literal('literals.s6'), texts.literal('literals.s7')}
 
 
 def clean(prediction: str) -> str:
@@ -23,7 +26,7 @@ def clean(prediction: str) -> str:
 
 
 def _words(text: str) -> List[str]:
-    return re.findall(r"[a-zA-Zа-яА-ЯёЁ]+", text.lower())
+    return re.findall(texts.literal('literals.s8'), text.lower())
 
 
 def parse_bool(prediction: str) -> Optional[bool]:
@@ -92,7 +95,7 @@ def verify_value(prediction: str, truth: float, tol: float = 1e-3) -> float:
 
 def normalize(text: str) -> str:
     """Нижний регистр, схлопнутые пробелы, без знаков препинания."""
-    text = extract_answer_text(text).lower().replace("ё", "е")
+    text = extract_answer_text(text).lower().replace(texts.literal('literals.s9'), texts.literal('literals.s10'))
     text = re.sub(r"[^\w\s]", " ", text)
     return re.sub(r"\s+", " ", text).strip()
 

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Прогнозы: {pred}. Истинные значения: {truth}.",
+      "en": "Predictions: {pred}. True values: {truth}."
+    },
+    "s1": {
+      "ru": "Сумма квадратов {v0}, среднее {v1}.",
+      "en": "Sum of squares {v0}, mean {v1}."
+    },
+    "s2": {
+      "ru": "Среднеквадратичная ошибка — среднее квадратов разностей. Найдите её. Ответ — целое или несократимая дробь.",
+      "en": "Mean squared error is the mean of the squared differences. Find it. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Найдите сумму квадратов разностей. Ответ — целое или несократимая дробь.",
+      "en": "Find the sum of squared differences. Answer with an integer or a reduced fraction."
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дата {v0}. Какой день недели будет через {delta} дней? Ответьте названием дня недели.",
+      "en": "The date is {v0}. What weekday is it {delta} days later? Answer with the weekday name."
+    },
+    "s1": {
+      "ru": "Какой день недели приходится на дату {v0}? Ответьте названием дня недели.",
+      "en": "What day of the week is {v0}? Answer with the weekday name."
+    },
+    "s2": {
+      "ru": "Сколько дней между датами {v0} и {v1}?",
+      "en": "How many days are there between {v0} and {v1}?"
+    },
+    "s3": {
+      "ru": "Считаем число дней между датами (с учётом високосных годов).",
+      "en": "Count the number of days between the dates (accounting for leap years)."
+    },
+    "s4": {
+      "ru": "Разница = {answer_int} дней.",
+      "en": "Difference = {answer_int} days."
+    },
+    "s5": {
+      "ru": "Определяем день недели по календарю.",
+      "en": "Determine the weekday from the calendar."
+    },
+    "s14": {
+      "ru": "day_of_week",
+      "en": "day_of_week"
+    },
+    "s15": {
+      "ru": "day_of_week",
+      "en": "day_of_week"
+    }
+  },
+  "literals": {
+    "s6": "понедельник",
+    "s7": "вторник",
+    "s8": "среда",
+    "s9": "четверг",
+    "s10": "пятница",
+    "s11": "суббота",
+    "s12": "воскресенье",
+    "s13": "day_of_week"
+  }
+}

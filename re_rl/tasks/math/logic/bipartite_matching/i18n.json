@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Двудольный граф: слева L0..L{v0}, справа R0..R{v1}. Допустимые пары: {es}.\nНайдите размер максимального паросочетания.",
+      "en": "Bipartite graph: left L0..L{v0}, right R0..R{v1}. Allowed pairs: {es}.\nFind the size of the maximum matching."
+    },
+    "s1": {
+      "ru": "нет рёбер",
+      "en": "no edges"
+    },
+    "s2": {
+      "ru": "Алгоритм Куна: ищем увеличивающие пути для каждой левой вершины.",
+      "en": "Kuhn's algorithm: find augmenting paths for each left vertex."
+    },
+    "s3": {
+      "ru": "Максимальное паросочетание = {_answer}.",
+      "en": "Maximum matching = {_answer}."
+    }
+  }
+}

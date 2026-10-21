@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цены акции по дням: {data}. Можно купить один раз и позже продать один раз. Если прибыли нет, ответ 0. Найдите максимальную прибыль.",
+      "en": "Stock prices by day: {data}. You may buy once and sell once later. If there is no profit, the answer is 0. Find the maximum profit."
+    },
+    "s1": {
+      "ru": "Минимум слева и лучшая разница справа дают {answer}.",
+      "en": "The best difference after a left-side minimum is {answer}."
+    }
+  }
+}

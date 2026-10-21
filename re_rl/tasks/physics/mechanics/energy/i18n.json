@@ -1,0 +1,148 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дж",
+      "en": "J"
+    },
+    "s2": {
+      "ru": "Дж",
+      "en": "J"
+    },
+    "s3": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s4": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s5": {
+      "ru": "energy_find_work",
+      "en": "energy_find_work"
+    },
+    "s6": {
+      "ru": "Дж",
+      "en": "J"
+    },
+    "s7": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s8": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s9": {
+      "ru": "energy_find_work",
+      "en": "energy_find_work"
+    },
+    "s11": {
+      "ru": "Дж",
+      "en": "J"
+    },
+    "s12": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s13": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s14": {
+      "ru": "energy_find_kinetic",
+      "en": "energy_find_kinetic"
+    },
+    "s16": {
+      "ru": "Вт",
+      "en": "W"
+    },
+    "s17": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s18": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s19": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s20": {
+      "ru": "energy_find_potential",
+      "en": "energy_find_potential"
+    },
+    "s22": {
+      "ru": "mgh = mv²/2 → v = √(2gh)",
+      "en": "mgh = mv²/2 → v = √(2gh)"
+    },
+    "s23": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s24": {
+      "ru": "Дж",
+      "en": "J"
+    },
+    "s25": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s26": {
+      "ru": "energy_find_power",
+      "en": "energy_find_power"
+    },
+    "s27": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s28": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s29": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s30": {
+      "ru": "energy_find_fall_velocity",
+      "en": "energy_find_fall_velocity"
+    },
+    "s31": {
+      "ru": "energy_conservation_note",
+      "en": "energy_conservation_note"
+    }
+  },
+  "literals": {
+    "s1": "[Н] × [м] = [Дж] ✓",
+    "s10": "[кг] × [м/с]² = [кг·м²/с²] = [Дж] ✓",
+    "s15": "[кг] × [м/с²] × [м] = [Дж] ✓",
+    "s21": "[Дж]/[с] = [Вт] ✓"
+  },
+  "inline_keys": {
+    "energy_find_fall_velocity": {
+      "ru": "скорость при падении",
+      "en": "velocity when falling"
+    },
+    "energy_find_power": {
+      "ru": "мощность",
+      "en": "power"
+    },
+    "energy_find_work": {
+      "ru": "работа силы",
+      "en": "work done"
+    },
+    "energy_conservation_note": {
+      "ru": "По закону сохранения энергии: mgh = mv²/2",
+      "en": "By energy conservation: mgh = mv²/2"
+    },
+    "energy_find_potential": {
+      "ru": "потенциальная энергия",
+      "en": "potential energy"
+    },
+    "energy_find_kinetic": {
+      "ru": "кинетическая энергия",
+      "en": "kinetic energy"
+    }
+  }
+}

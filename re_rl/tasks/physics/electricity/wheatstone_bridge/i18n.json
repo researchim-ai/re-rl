@@ -1,0 +1,50 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Rx = {v0} Ом",
+      "en": "Rx = {v0} Ohm"
+    },
+    "s1": {
+      "ru": "U_out = {v0} В",
+      "en": "U_out = {v0} V"
+    },
+    "s2": {
+      "ru": "Rx = {R2}·{R3}/{R1} = {v3} Ом",
+      "en": "Rx = {R2}·{R3}/{R1} = {v3} Ohm"
+    },
+    "s3": {
+      "ru": "U_out = {U}·({R2}/{v2} − {R4}/{v4}) = {v5} В",
+      "en": "U_out = {U}·({R2}/{v2} − {R4}/{v4}) = {v5} V"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о мосте Уитстона.",
+      "en": "Solve the Wheatstone-bridge problem."
+    },
+    "problem": {
+      "unknown_resistance": {
+        "ru": "Мост Уитстона сбалансирован: R1 = {R1} Ом, R2 = {R2} Ом, R3 = {R3} Ом. При балансе R1/R2 = R3/Rx. Найдите неизвестное сопротивление Rx (в Ом).",
+        "en": "A Wheatstone bridge is balanced: R1 = {R1} Ω, R2 = {R2} Ω, R3 = {R3} Ω. At balance R1/R2 = R3/Rx. Find the unknown resistance Rx (in Ω)."
+      },
+      "output_voltage": {
+        "ru": "К мосту приложено напряжение U = {U} В. Плечи делителей: R1 = {R1} Ом, R2 = {R2} Ом (первая ветвь), R3 = {R3} Ом, R4 = {R4} Ом (вторая ветвь). Найдите напряжение разбаланса между средними точками (в В).",
+        "en": "A voltage U = {U} V is applied to the bridge. Divider arms: R1 = {R1} Ω, R2 = {R2} Ω (first branch), R3 = {R3} Ω, R4 = {R4} Ω (second branch). Find the imbalance voltage between the midpoints (in V)."
+      }
+    },
+    "steps": {
+      "balance_formula": {
+        "ru": "Условие баланса: Rx = R2·R3/R1.",
+        "en": "Balance condition: Rx = R2·R3/R1."
+      },
+      "output_formula": {
+        "ru": "U_out = U·(R2/(R1+R2) − R4/(R3+R4)).",
+        "en": "U_out = U·(R2/(R1+R2) − R4/(R3+R4))."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

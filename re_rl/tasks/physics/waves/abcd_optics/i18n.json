@@ -1,0 +1,74 @@
+{
+  "text": {
+    "s0": {
+      "ru": "тонкая линза f={val} м",
+      "en": "thin lens f={val} m"
+    },
+    "s1": {
+      "ru": "свободный промежуток d={val} м",
+      "en": "free space d={val} m"
+    },
+    "s2": {
+      "ru": "f = {v0} м",
+      "en": "f = {v0} m"
+    },
+    "s3": {
+      "ru": "f = −1/({v0}) = {v1} м",
+      "en": "f = −1/({v0}) = {v1} m"
+    },
+    "s4": {
+      "ru": "s' = {v0} м",
+      "en": "s' = {v0} m"
+    },
+    "s5": {
+      "ru": "s' = {v0} м",
+      "en": "s' = {v0} m"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Используйте матричную оптику (ABCD) для системы элементов.",
+      "en": "Use ABCD matrix optics for the element sequence."
+    },
+    "problem": {
+      "effective_focal": {
+        "ru": "Оптическая система состоит из последовательности элементов (по ходу луча): {elements}. Найдите эффективное фокусное расстояние системы (в м).",
+        "en": "An optical system consists of the following elements (in ray order): {elements}. Find the effective focal length of the system (in m)."
+      },
+      "image_position": {
+        "ru": "Оптическая система (по ходу луча): {elements}. Предмет расположен на расстоянии s = {s} м перед первым элементом. Найдите расстояние до изображения за последним элементом (в м).",
+        "en": "Optical system (in ray order): {elements}. An object is at distance s = {s} m before the first element. Find the image distance behind the last element (in m)."
+      },
+      "magnification": {
+        "ru": "Оптическая система (по ходу луча): {elements}. Предмет на расстоянии s = {s} м перед первым элементом. Найдите линейное увеличение системы.",
+        "en": "Optical system (in ray order): {elements}. An object is at distance s = {s} m before the first element. Find the linear magnification of the system."
+      }
+    },
+    "steps": {
+      "matrices": {
+        "ru": "Свободный промежуток d: [[1, d],[0, 1]]; тонкая линза f: [[1, 0],[−1/f, 1]].",
+        "en": "Free space d: [[1, d],[0, 1]]; thin lens f: [[1, 0],[−1/f, 1]]."
+      },
+      "product": {
+        "ru": "Матрица системы M = M_n·…·M_1 (перемножение по ходу луча).",
+        "en": "System matrix M = M_n·…·M_1 (multiplied in ray order)."
+      },
+      "focal": {
+        "ru": "Эффективное фокусное: f = −1/C.",
+        "en": "Effective focal length: f = −1/C."
+      },
+      "image": {
+        "ru": "Изображение: элемент B полной матрицы (с промежутками s и s') равен нулю ⇒ s'.",
+        "en": "Imaging: the B element of the full matrix (with spaces s and s') is zero ⇒ s'."
+      },
+      "magnif": {
+        "ru": "Увеличение m = A полной матрицы при B = 0.",
+        "en": "Magnification m = A of the full matrix when B = 0."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

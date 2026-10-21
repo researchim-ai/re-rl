@@ -1,0 +1,35 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На круговой диаграмме показаны доли категорий. У какой категории самый маленький сектор? Укажите её букву.",
+      "en": "The pie chart shows category shares. Which category has the smallest slice? Give its letter."
+    },
+    "s1": {
+      "ru": "наибольший",
+      "en": "largest"
+    },
+    "s2": {
+      "ru": "наименьший",
+      "en": "smallest"
+    },
+    "s3": {
+      "ru": "На круговой диаграмме показаны доли категорий. У какой категории самый большой сектор? Укажите её букву.",
+      "en": "The pie chart shows category shares. Which category has the largest slice? Give its letter."
+    },
+    "s4": {
+      "ru": "Сравниваем площади секторов и находим {word}.",
+      "en": "Compare slice sizes and find the {word}."
+    },
+    "s5": {
+      "ru": "Ответ: категория {lbl}.",
+      "en": "Answer: category {lbl}."
+    },
+    "s7": {
+      "ru": "Круговая диаграмма",
+      "en": "Круговая диаграмма"
+    }
+  },
+  "literals": {
+    "s6": "pie_chart_read"
+  }
+}

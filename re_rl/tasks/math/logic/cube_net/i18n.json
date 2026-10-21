@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Развёртка куба (крест):\n{v0}\nЕсли сложить её в куб, какая грань окажется противоположной грани {query_label}?",
+      "en": "Cube net (cross):\n{v0}\nWhen folded into a cube, which face is opposite face {query_label}?"
+    },
+    "s1": {
+      "ru": "В кресте противоположны: центр и дальняя грань ряда, а также верх и низ.",
+      "en": "In a cross net, opposite pairs are: the center and the far face of the row, and top vs bottom."
+    },
+    "s2": {
+      "ru": "Противоположная грани {query_label} — {answer}.",
+      "en": "The face opposite {query_label} is {answer}."
+    }
+  }
+}

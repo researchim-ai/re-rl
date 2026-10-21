@@ -1,0 +1,43 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Взвешенный ориентированный граф, вершины {head_v}. Дуги (в скобках — вес): {v1}. Есть ли в графе отрицательный цикл? Ответьте да/нет.",
+      "en": "Weighted directed graph, vertices {head_v}. Arcs (weight in parentheses): {v1}. Does the graph contain a negative cycle? Answer yes/no."
+    },
+    "s1": {
+      "ru": "Ориентированный граф, вершины {head_v}. Дуги: {v1}. Сколько в нём компонент сильной связности?",
+      "en": "Directed graph, vertices {head_v}. Arcs: {v1}. How many strongly connected components does it have?"
+    },
+    "s2": {
+      "ru": "Неориентированный связный граф, вершины {head_v}. Рёбра: {v1}. Сколько в нём точек сочленения (вершин, удаление которых увеличивает число компонент)?",
+      "en": "Undirected connected graph, vertices {head_v}. Edges: {v1}. How many articulation points (cut vertices) does it have?"
+    },
+    "s3": {
+      "ru": "Неориентированный связный граф, вершины {head_v}. Рёбра: {v1}. Сколько в нём мостов (рёбер, удаление которых увеличивает число компонент)?",
+      "en": "Undirected connected graph, vertices {head_v}. Edges: {v1}. How many bridges does it have?"
+    },
+    "s4": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s5": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s6": {
+      "ru": "Конденсация по Косараджу: два обхода в глубину.",
+      "en": "Kosaraju's condensation: two DFS passes."
+    },
+    "s7": {
+      "ru": "Обход в глубину с метками disc/low (алгоритм Тарьяна).",
+      "en": "DFS with disc/low values (Tarjan's algorithm)."
+    },
+    "s9": {
+      "ru": "Беллман–Форд от виртуального истока; лишнее ослабление ⇒ отрицательный цикл.",
+      "en": "Bellman–Ford from a virtual source; an extra relaxation ⇒ a negative cycle."
+    }
+  },
+  "literals": {
+    "s8": "Обход в глубину с disc/low; ребро — мост, если low[w] > disc[u]."
+  }
+}

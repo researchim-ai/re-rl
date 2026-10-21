@@ -1,0 +1,52 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Неориентированный граф (вершины 0..{v0}). Рёбра: {v1}.",
+      "en": "Undirected graph (vertices 0..{v0}). Edges: {v1}."
+    },
+    "s1": {
+      "ru": " Найдите хроматическое число (минимальное число цветов правильной раскраски).",
+      "en": " Find the chromatic number (minimum number of colors for a proper coloring)."
+    },
+    "s2": {
+      "ru": " Можно ли правильно раскрасить граф в {k} цвета? Ответьте да/нет.",
+      "en": " Can the graph be properly colored with {k} colors? Answer yes/no."
+    },
+    "s3": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s4": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s5": {
+      "ru": "Ищем наименьшее k, для которого существует правильная k-раскраска (перебор с возвратом).",
+      "en": "Find the smallest k admitting a proper k-coloring (backtracking)."
+    },
+    "s6": {
+      "ru": "Хроматическое число = {chromatic}.",
+      "en": "Chromatic number = {chromatic}."
+    },
+    "s7": {
+      "ru": "Проверяем существование правильной раскраски в {k} цветов.",
+      "en": "Check whether a proper {k}-coloring exists."
+    },
+    "s8": {
+      "ru": "Хроматическое число = {chromatic}, поэтому {v1}",
+      "en": "Chromatic number = {chromatic}, so it is {v1}"
+    },
+    "s9": {
+      "ru": "нет рёбер",
+      "en": "нет рёбер"
+    },
+    "s10": {
+      "ru": "возможно.",
+      "en": "возможно."
+    },
+    "s11": {
+      "ru": "невозможно.",
+      "en": "невозможно."
+    }
+  }
+}

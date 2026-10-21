@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив прыжков, индексы с 0: {data}. Из i можно перейти в любой индекс от i+1 до i+a[i] включительно. Найдите минимальное число прыжков до последнего индекса.",
+      "en": "Jump array, indices start at 0: {data}. From i you may move to any index from i+1 through i+a[i]. Find the minimum number of jumps to the last index."
+    },
+    "s1": {
+      "ru": "Жадное расширение текущего окна даёт {answer} прыжков.",
+      "en": "Greedy expansion of the current window takes {answer} jumps."
+    }
+  },
+  "literals": {
+    "s2": "последняя клетка недостижима"
+  }
+}

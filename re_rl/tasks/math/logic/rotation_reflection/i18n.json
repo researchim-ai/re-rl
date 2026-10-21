@@ -1,0 +1,40 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дана фигура {r}×{c} (0/1):\n{v2}\nПримените преобразование: {v3}. Выпишите получившуюся сетку ({rr}×{cc}) — все {v6} клеток по строкам.",
+      "en": "Given a {r}×{c} pattern (0/1):\n{v2}\nApply the transformation: {v3}. Output the resulting grid ({rr}×{cc}) — all {v6} cells row by row."
+    },
+    "s1": {
+      "ru": "Применяем геометрическое преобразование к каждой клетке.",
+      "en": "Apply the geometric transformation to every cell."
+    },
+    "s2": {
+      "ru": "Результат (по строкам): {flat}.",
+      "en": "Result (row by row): {flat}."
+    },
+    "s3": {
+      "ru": "поворот на 90° по часовой стрелке",
+      "en": "rotate 90° clockwise"
+    },
+    "s4": {
+      "ru": "поворот на 90° против часовой стрелки",
+      "en": "rotate 90° counterclockwise"
+    },
+    "s5": {
+      "ru": "поворот на 180°",
+      "en": "rotate 180°"
+    },
+    "s6": {
+      "ru": "отражение по горизонтали (лево-право)",
+      "en": "flip horizontally (left-right)"
+    },
+    "s7": {
+      "ru": "отражение по вертикали (верх-низ)",
+      "en": "flip vertically (top-bottom)"
+    },
+    "s8": {
+      "ru": "транспонирование",
+      "en": "transpose"
+    }
+  }
+}

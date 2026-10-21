@@ -1,0 +1,46 @@
+{
+  "text": {
+    "s0": {
+      "ru": "lean_prove_theorem_prompt",
+      "en": "lean_prove_theorem_prompt"
+    },
+    "s1": {
+      "ru": "lean_sft_instruction",
+      "en": "lean_sft_instruction"
+    },
+    "s2": {
+      "ru": "lean_chat_system",
+      "en": "lean_chat_system"
+    },
+    "s3": {
+      "ru": "lean_chat_user",
+      "en": "lean_chat_user"
+    },
+    "s4": {
+      "ru": "No proof available in template",
+      "en": "No proof available in template"
+    }
+  },
+  "inline_keys": {
+    "tactic_label": {
+      "ru": "Тактика",
+      "en": "Tactic"
+    },
+    "lean_prove_theorem_prompt": {
+      "ru": "Докажите следующую теорему в Lean 4:\n\n{theorem}",
+      "en": "Prove the following theorem in Lean 4:\n\n{theorem}"
+    },
+    "lean_chat_system": {
+      "ru": "Ты — ассистент для доказательства теорем в Lean 4. Получив формулировку теоремы, выведи доказательство используя тактики Lean 4. Выводи только код, без объяснений.",
+      "en": "You are a Lean 4 theorem proving assistant. Given a theorem statement, output a proof using Lean 4 tactics. Output only the code, no explanations."
+    },
+    "lean_chat_user": {
+      "ru": "Докажи теорему:\n\n{theorem}",
+      "en": "Prove the theorem:\n\n{theorem}"
+    },
+    "lean_sft_instruction": {
+      "ru": "Докажите теорему в Lean 4, используя тактики. Выведите только код доказательства.",
+      "en": "Prove the theorem in Lean 4 using tactics. Output only the proof code."
+    }
+  }
+}

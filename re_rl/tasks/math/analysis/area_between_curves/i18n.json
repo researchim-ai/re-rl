@@ -1,0 +1,35 @@
+{
+  "text": {
+    "s1": {
+      "ru": "area_between_curves",
+      "en": "area_between_curves"
+    },
+    "s2": {
+      "ru": "area_between_curves",
+      "en": "area_between_curves"
+    }
+  },
+  "literals": {
+    "s0": "area_between_curves"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Найдите площадь фигуры, ограниченной кривыми y = {f} и y = {g} на отрезке [{a}, {b}].",
+        "Вычислите площадь области между графиками y = {f} и y = {g} при x ∈ [{a}, {b}]."
+      ],
+      "en": [
+        "Find the area of the region bounded by y = {f} and y = {g} on [{a}, {b}].",
+        "Compute the area between the curves y = {f} and y = {g} for x ∈ [{a}, {b}]."
+      ]
+    },
+    "step_setup": {
+      "ru": "Площадь = ∫[{a},{b}] |f(x) − g(x)| dx. Определяем, какая кривая выше, и интегрируем разность.",
+      "en": "Area = ∫[{a},{b}] |f(x) − g(x)| dx. Determine the upper curve and integrate the difference."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

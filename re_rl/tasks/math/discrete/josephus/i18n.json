@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В круге {n} человек, номера от 1 до {n_2}. Счёт начинается с номера 1 и идёт по возрастанию, после {n_3} снова к меньшим. Выбывает каждый {k}-й из ещё стоящих, следующий счёт начинается со следующего номера. Какой номер останется последним?",
+      "en": "There are {n} people in a circle, numbered 1 through {n_2}. Counting starts at 1 and increases, wrapping after {n_3}. Every {k}-th person still standing is eliminated, and the next count starts at the next number. Which number remains last?"
+    },
+    "s1": {
+      "ru": "Порядок выбывания: {gone}. Остаётся {answer}.",
+      "en": "Elimination order: {gone}. {answer} remains."
+    },
+    "s2": {
+      "ru": "—",
+      "en": "-"
+    }
+  }
+}

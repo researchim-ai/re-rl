@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело массы {m1} кг со скоростью {u} м/с ударяет покоящееся тело массы {m2} кг. Удар центральный, коэффициент восстановления e = {e}. Положительное направление — начальная скорость первого тела. Найдите скорость {v4} тела после удара, в м/с.",
+      "en": "A body of mass {m1} kg at {u} m/s hits a body of mass {m2} kg at rest. The collision is head-on with coefficient of restitution e = {e}. The positive direction is the first body's initial velocity. Find the speed of the {v4} body after impact, in m/s."
+    },
+    "s1": {
+      "ru": "импульс удара не сохранился",
+      "en": "импульс удара не сохранился"
+    },
+    "s2": {
+      "ru": "коэффициент восстановления не сошёлся",
+      "en": "коэффициент восстановления не сошёлся"
+    },
+    "s3": {
+      "ru": "первого",
+      "en": "first"
+    },
+    "s4": {
+      "ru": "второго",
+      "en": "второго"
+    }
+  }
+}

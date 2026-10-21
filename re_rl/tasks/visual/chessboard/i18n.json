@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На шахматной доске расставлены фигуры (тёмные кружки). Сколько всего фигур на доске?",
+      "en": "Pieces (dark circles) are placed on a chessboard. How many pieces are there in total?"
+    },
+    "s1": {
+      "ru": "На шахматной доске расставлены фигуры (тёмные кружки). Сколько фигур стоит на тёмных клетках?",
+      "en": "Pieces (dark circles) are placed on a chessboard. How many stand on dark squares?"
+    },
+    "s2": {
+      "ru": "На шахматной доске расставлены фигуры (тёмные кружки). Сколько фигур стоит на светлых клетках?",
+      "en": "Pieces (dark circles) are placed on a chessboard. How many stand on light squares?"
+    },
+    "s3": {
+      "ru": "Подсчитываем нужные фигуры на доске.",
+      "en": "Count the relevant pieces."
+    }
+  }
+}

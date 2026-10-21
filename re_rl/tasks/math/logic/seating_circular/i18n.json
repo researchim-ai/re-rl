@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "{a} не сидит рядом с {b}.",
+      "en": "{a} does not sit next to {b}."
+    },
+    "s1": {
+      "ru": "{n} человек сидят за круглым столом: {v1}.\nПодсказки:\n",
+      "en": "{n} people sit at a round table: {v1}.\nClues:\n"
+    },
+    "s2": {
+      "ru": "\nКто сидит рядом с {query}? Назовите обоих соседей.",
+      "en": "\nWho sits next to {query}? Name both neighbors."
+    },
+    "s3": {
+      "ru": "{a} сидит рядом с {b}.",
+      "en": "{a} sits next to {b}."
+    },
+    "s4": {
+      "ru": "Расставляем людей по кругу согласно подсказкам о соседстве.",
+      "en": "Seat people around the circle according to the adjacency clues."
+    },
+    "s5": {
+      "ru": "Соседи {query}: {nb}.",
+      "en": "Neighbors of {query}: {nb}."
+    }
+  }
+}

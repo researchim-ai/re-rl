@@ -1,0 +1,182 @@
+{
+  "text": {
+    "s0": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s2": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s3": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s4": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s5": {
+      "ru": "dynamics_find_acceleration",
+      "en": "dynamics_find_acceleration"
+    },
+    "s6": {
+      "ru": "dynamics_newton_note",
+      "en": "dynamics_newton_note"
+    },
+    "s8": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s9": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s10": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s11": {
+      "ru": "dynamics_find_force",
+      "en": "dynamics_find_force"
+    },
+    "s12": {
+      "ru": "N = mg, F_тр = μN",
+      "en": "N = mg, F_тр = μN"
+    },
+    "s13": {
+      "ru": "N = {m} × {g} = {v2} Н",
+      "en": "N = {m} × {g} = {v2} N"
+    },
+    "s14": {
+      "ru": "F_тр = {mu} × {v1}",
+      "en": "F_тр = {mu} × {v1}"
+    },
+    "s15": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s16": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s17": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s18": {
+      "ru": "dynamics_find_weight",
+      "en": "dynamics_find_weight"
+    },
+    "s19": {
+      "ru": "F_тр",
+      "en": "F_тр"
+    },
+    "s20": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s21": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s22": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s23": {
+      "ru": "dynamics_find_friction",
+      "en": "dynamics_find_friction"
+    },
+    "s24": {
+      "ru": "dynamics_friction_note",
+      "en": "dynamics_friction_note"
+    },
+    "s25": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s26": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s27": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s28": {
+      "ru": "dynamics_find_force_along_plane",
+      "en": "dynamics_find_force_along_plane"
+    },
+    "s29": {
+      "ru": "dynamics_decompose_gravity_note",
+      "en": "dynamics_decompose_gravity_note"
+    },
+    "s30": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s31": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s32": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s33": {
+      "ru": "dynamics_find_tension",
+      "en": "dynamics_find_tension"
+    },
+    "s34": {
+      "ru": "dynamics_atwood_note",
+      "en": "dynamics_atwood_note"
+    }
+  },
+  "literals": {
+    "s1": "[Н]/[кг] = [кг·м/с²]/[кг] = [м/с²] ✓",
+    "s7": "[кг] × [м/с²] = [Н] ✓"
+  },
+  "inline_keys": {
+    "dynamics_newton_note": {
+      "ru": "Применим второй закон Ньютона.",
+      "en": "Apply Newton's second law."
+    },
+    "dynamics_find_friction": {
+      "ru": "сила трения",
+      "en": "friction force"
+    },
+    "dynamics_find_force": {
+      "ru": "сила",
+      "en": "force"
+    },
+    "dynamics_find_acceleration": {
+      "ru": "ускорение",
+      "en": "acceleration"
+    },
+    "dynamics_decompose_gravity_note": {
+      "ru": "Разложим силу тяжести на составляющие.",
+      "en": "Decompose gravity into components."
+    },
+    "dynamics_find_force_along_plane": {
+      "ru": "сила вдоль плоскости",
+      "en": "force along the plane"
+    },
+    "dynamics_find_tension": {
+      "ru": "натяжение нити",
+      "en": "string tension"
+    },
+    "dynamics_find_weight": {
+      "ru": "вес тела",
+      "en": "weight"
+    },
+    "dynamics_atwood_note": {
+      "ru": "Система Атвуда. Из законов Ньютона для обоих тел выводим формулу натяжения.",
+      "en": "Atwood machine. From Newton's laws for both bodies we derive the tension formula."
+    },
+    "dynamics_friction_note": {
+      "ru": "Сила трения F_тр = μN, где N — сила нормальной реакции.",
+      "en": "Friction force F_fr = μN, where N is the normal force."
+    }
+  }
+}

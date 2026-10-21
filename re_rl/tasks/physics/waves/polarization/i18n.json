@@ -1,0 +1,62 @@
+{
+  "text": {
+    "s0": {
+      "ru": "I = {v0} Вт/м²",
+      "en": "I = {v0} Вт/м²"
+    },
+    "s1": {
+      "ru": "I = {I0}·cos²({angle}°) = {I0_2}·{v3} = {v4} Вт/м²",
+      "en": "I = {I0}·cos²({angle}°) = {I0_2}·{v3} = {v4} W/m²"
+    },
+    "s2": {
+      "ru": "I = {v0} Вт/м²",
+      "en": "I = {v0} Вт/м²"
+    },
+    "s3": {
+      "ru": "I₁ = {I0}/2 = {v1} Вт/м²",
+      "en": "I₁ = {I0}/2 = {v1} Вт/м²"
+    },
+    "s4": {
+      "ru": "I₂ = {v0}·cos²({angle}°) = {v2} Вт/м²",
+      "en": "I₂ = {v0}·cos²({angle}°) = {v2} W/m²"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на поляризацию света.",
+      "en": "Solve the light polarization problem."
+    },
+    "problem": {
+      "malus": {
+        "ru": "Поляризованный свет интенсивности I₀ = {I0} Вт/м² проходит через поляризатор, повёрнутый на угол {angle}°. Найдите интенсивность.",
+        "en": "Polarized light of intensity I₀ = {I0} W/m² passes through polarizer rotated by {angle}°. Find the intensity."
+      },
+      "brewster": {
+        "ru": "Найдите угол Брюстера для границы воздух-стекло (n = {n}).",
+        "en": "Find the Brewster angle for air-glass interface (n = {n})."
+      },
+      "two_polarizers": {
+        "ru": "Неполяризованный свет I₀ = {I0} проходит через два поляризатора с углом {angle}° между ними. Найдите конечную интенсивность.",
+        "en": "Unpolarized light I₀ = {I0} passes through two polarizers at angle {angle}°. Find final intensity."
+      }
+    },
+    "steps": {
+      "malus_law": {
+        "ru": "Закон Малюса: I = I₀·cos²(θ)",
+        "en": "Malus' law: I = I₀·cos²(θ)"
+      },
+      "brewster_formula": {
+        "ru": "Угол Брюстера: tan(θ_B) = n₂/n₁",
+        "en": "Brewster angle: tan(θ_B) = n₂/n₁"
+      },
+      "unpolarized": {
+        "ru": "После первого поляризатора: I₁ = I₀/2",
+        "en": "After first polarizer: I₁ = I₀/2"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

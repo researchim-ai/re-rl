@@ -1,0 +1,11 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — магический квадрат 3×3 из чисел 1..9 (каждое по разу); суммы по всем строкам, столбцам и двум диагоналям равны 15. Клетки со знаком «?» пусты. Заполните пропуски и выпишите все 9 чисел по строкам сверху вниз.",
+      "en": "The figure shows a 3×3 magic square using numbers 1..9 (each once); every row, column and both diagonals sum to 15. Cells with «?» are empty. Fill the blanks and list all 9 numbers row by row."
+    }
+  },
+  "literals": {
+    "s1": "magic_square_image"
+  }
+}

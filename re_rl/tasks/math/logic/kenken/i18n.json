@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "KenKen {n}×{n_2}. В каждой строке и столбце числа 1..{n_3} без повторений. Буквы обозначают группы клеток; для каждой группы указан результат операции над её числами (например, «7+» — сумма 7, «6×» — произведение 6, «2−» — разность 2, «2÷» — частное 2). Заполните сетку и выпишите все {v3} чисел по строкам.\nСетка групп:\n{letter_grid}\nПодсказки:\n{clues}",
+      "en": "{n}×{n_2} KenKen. Each row and column has 1..{n_3} once. Letters mark cages; each cage shows the result of an operation on its numbers (e.g. '7+' sum 7, '6×' product 6, '2−' difference 2, '2÷' quotient 2). Fill the grid and list all {v3} numbers row by row.\nCage grid:\n{letter_grid}\nClues:\n{clues}"
+    },
+    "s1": {
+      "ru": "Совмещаем ограничение латинского квадрата с арифметикой каждой группы.",
+      "en": "Combine the Latin-square constraint with each cage's arithmetic."
+    },
+    "s2": {
+      "ru": "Решение (по строкам): {nums}.",
+      "en": "Solution (row by row): {nums}."
+    }
+  }
+}

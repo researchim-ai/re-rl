@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Найдите площадь многоугольника с вершинами (в порядке обхода): {points}.",
+        "Вычислите площадь многоугольника по координатам вершин {points} (формула шнурков)."
+      ],
+      "en": [
+        "Find the area of the polygon with vertices (in order): {points}.",
+        "Compute the polygon area from vertices {points} (shoelace formula)."
+      ]
+    },
+    "step_setup": {
+      "ru": "Площадь = ½·|Σ (xᵢ·yᵢ₊₁ − xᵢ₊₁·yᵢ)| — формула шнурков.",
+      "en": "Area = ½·|Σ (xᵢ·yᵢ₊₁ − xᵢ₊₁·yᵢ)| — the shoelace formula."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

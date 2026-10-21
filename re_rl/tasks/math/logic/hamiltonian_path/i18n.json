@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Неориентированный граф (вершины 0..{v0}). Рёбра: {es}.\nСуществует ли гамильтонов путь (проходящий через каждую вершину ровно один раз)? Ответьте да/нет.",
+      "en": "Undirected graph (vertices 0..{v0}). Edges: {es}.\nDoes a Hamiltonian path (visiting every vertex exactly once) exist? Answer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "нет рёбер",
+      "en": "no edges"
+    },
+    "s4": {
+      "ru": "Перебираем пути с помощью ДП по подмножествам посещённых вершин.",
+      "en": "Search paths via dynamic programming over subsets of visited vertices."
+    },
+    "s5": {
+      "ru": "Гамильтонов путь найден.",
+      "en": "A Hamiltonian path exists."
+    },
+    "s6": {
+      "ru": "Гамильтонова пути нет.",
+      "en": "No Hamiltonian path."
+    }
+  }
+}

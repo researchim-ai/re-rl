@@ -1,0 +1,27 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пример {i}:\nВход:\n{v1}\nВыход:\n{v2}",
+      "en": "Example {i}:\nInput:\n{v1}\nOutput:\n{v2}"
+    },
+    "s1": {
+      "ru": "Определяем общее правило по примерам и применяем к тесту.",
+      "en": "Infer the common rule from the examples and apply it to the test."
+    },
+    "s2": {
+      "ru": "Выход (по строкам): {flat}.",
+      "en": "Output (row by row): {flat}."
+    },
+    "s4": {
+      "ru": "In all examples the input is transformed into the output by ONE hidden rule (grids of color numbers).\n\n{body}\n\nTest input:\n{v1}\nApply the same rule and output the grid ({ro}×{co}) — all numbers row by row.",
+      "en": "In all examples the input is transformed into the output by ONE hidden rule (grids of color numbers).\n\n{body}\n\nTest input:\n{v1}\nApply the same rule and output the grid ({ro}×{co}) — all numbers row by row."
+    },
+    "s5": {
+      "ru": "Во всех примерах вход преобразуется в выход по ОДНОМУ и тому же скрытому правилу (сетки из чисел-цветов).\n\n{body}\n\nТестовый вход:\n{v1}\nПримените то же правило и выпишите выходную сетку ({ro}×{co}) — все числа по строкам.",
+      "en": "Во всех примерах вход преобразуется в выход по ОДНОМУ и тому же скрытому правилу (сетки из чисел-цветов).\n\n{body}\n\nТестовый вход:\n{v1}\nПримените то же правило и выпишите выходную сетку ({ro}×{co}) — все числа по строкам."
+    }
+  },
+  "literals": {
+    "s3": "arc_grid_induction"
+  }
+}

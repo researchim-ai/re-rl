@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Точки (x, метка): {shown}. Классификатор сравнивает x с порогом и может смотреть в любую сторону. Разрешены и постоянные ответы. Найдите минимальное число ошибок.",
+      "en": "Points (x, label): {shown}. A classifier compares x with a threshold and may face either way. Constant predictions are allowed. Find the minimum number of mistakes."
+    },
+    "s1": {
+      "ru": "Перебор порогов и обоих направлений даёт {answer} ошибок.",
+      "en": "Searching thresholds and both directions gives {answer} mistakes."
+    }
+  }
+}

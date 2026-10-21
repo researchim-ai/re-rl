@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Наивный Байес, признаки бинарные, сглаживание Лапласа +1. P(класс) = (n_класса + 1) / (N + 2), P(признак=v | класс) = (число совпадений + 1) / (n_класса + 2). При равных оценках выбирается класс A.",
+      "en": "Naive Bayes, binary features, Laplace smoothing +1. P(class) = (n_class + 1) / (N + 2), P(feature=v | class) = (matches + 1) / (n_class + 2). Equal scores go to class A."
+    },
+    "s1": {
+      "ru": "Обучающие тройки (x1, x2, класс): {data}. Какой класс у запроса ({v1}, {v2})? Ответьте A или B.",
+      "en": "Training triples (x1, x2, class): {data}. Which class is predicted for ({v1}, {v2})? Answer A or B."
+    },
+    "s2": {
+      "ru": "Обучающие тройки (x1, x2, класс): {data}. Найдите P(x1 = {cond_value} | {cond_class}) со сглаживанием. Ответ — целое или несократимая дробь.",
+      "en": "Training triples (x1, x2, class): {data}. Find P(x1 = {cond_value} | {cond_class}) with smoothing. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Оценка A = {v0}, B = {v1}.",
+      "en": "Score A = {v0}, B = {v1}."
+    },
+    "s4": {
+      "ru": "P(x1 = {cond_value} | {cond_class}) = {shown}.",
+      "en": "P(x1 = {cond_value} | {cond_class}) = {shown}."
+    }
+  }
+}

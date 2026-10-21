@@ -1,3 +1,6 @@
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'rewards_i18n.json')
+
 import os
 import re
 import math
@@ -209,9 +212,9 @@ def parse_knights_knaves_answer(answer_text: str) -> Optional[Dict[str, str]]:
         return None
 
     # Роли на двух языках; используем для устойчивого извлечения пар из текста.
-    role_words = ["рыцарь", "лжец", "knight", "liar", "knave"]
+    role_words = [texts.literal('literals.s0'), texts.literal('literals.s1'), "knight", "liar", "knave"]
     role_alt = "|".join(role_words)
-    pattern = re.compile(rf"([A-Za-zА-Яа-яЁё]+)\s*[:\-]\s*({role_alt})", re.IGNORECASE)
+    pattern = re.compile(texts.t('s2', 'ru', role_alt=role_alt), re.IGNORECASE)
     found = pattern.findall(answer_text)
     if found:
         return {name.strip().lower(): role.strip().lower() for name, role in found}

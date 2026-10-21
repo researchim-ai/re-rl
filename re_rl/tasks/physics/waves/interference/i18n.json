@@ -1,0 +1,58 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Δx = {v0} мм",
+      "en": "Δx = {v0} мм"
+    },
+    "s1": {
+      "ru": "Δx = {wavelength}·10⁻⁹·{L}/({d}·10⁻³) = {v3} мм",
+      "en": "Δx = {wavelength}·10⁻⁹·{L}/({d}·10⁻³) = {v3} mm"
+    },
+    "s2": {
+      "ru": "δ = {v0} нм",
+      "en": "δ = {v0} нм"
+    },
+    "s3": {
+      "ru": "δ = 2·{n}·{t} = {v2} нм",
+      "en": "δ = 2·{n}·{t} = {v2} nm"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на интерференцию света.",
+      "en": "Solve the light interference problem."
+    },
+    "problem": {
+      "double_slit": {
+        "ru": "Опыт Юнга: расстояние между щелями d = {d} мм, до экрана L = {L} м, длина волны λ = {lambda} нм. Найдите расстояние между соседними максимумами.",
+        "en": "Young's experiment: slit separation d = {d} mm, screen distance L = {L} m, wavelength λ = {lambda} nm. Find the fringe spacing."
+      },
+      "thin_film": {
+        "ru": "Тонкая плёнка толщиной t = {t} нм с показателем преломления n = {n}. Свет с λ = {lambda} нм. Найдите разность хода.",
+        "en": "Thin film of thickness t = {t} nm with refractive index n = {n}. Light λ = {lambda} nm. Find the path difference."
+      },
+      "max_order": {
+        "ru": "Какой максимальный порядок интерференции можно наблюдать при d = {d} мкм и λ = {lambda} нм?",
+        "en": "What is the maximum interference order observable with d = {d} μm and λ = {lambda} nm?"
+      }
+    },
+    "steps": {
+      "fringe_spacing": {
+        "ru": "Расстояние между полосами: Δx = λL/d",
+        "en": "Fringe spacing: Δx = λL/d"
+      },
+      "path_difference": {
+        "ru": "Разность хода: δ = 2nt (плёнка)",
+        "en": "Path difference: δ = 2nt (film)"
+      },
+      "max_condition": {
+        "ru": "Условие максимума: d·sin(θ) = mλ",
+        "en": "Maximum condition: d·sin(θ) = mλ"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Q-learning, таблица в начале нулевая. Состояний {n_states}, действий 2, номера с 1. α = {v1}, γ = {v2}. Обновление: Q = Q + α * (r + γ * max Q(следующего) - Q). Записи по порядку, каждая: состояние, действие, награда, следующее состояние. {v3}. Лучшее действие при равенстве — меньший номер. Ответ — целое или несократимая дробь.",
+      "en": "Q-learning, the table starts at zero. There are {n_states} states and 2 actions, numbered from 1. α = {v1}, γ = {v2}. Update: Q = Q + α * (r + γ * max Q(next) - Q). Records in order, each is state, action, reward, next state. {v3}. The best action breaks ties toward the smaller index. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Q({v0}, {v1}) = {v2}, лучшее действие {best}.",
+      "en": "Q({v0}, {v1}) = {v2}, best action {best}."
+    },
+    "s2": {
+      "ru": "Найдите итоговую Q состояния {v0} и действия {v1}.",
+      "en": "Find the final Q of state {v0} and action {v1}."
+    },
+    "s3": {
+      "ru": "Какое действие лучше в состоянии {v0} после всех обновлений?",
+      "en": "Which action is best in state {v0} after all updates?"
+    }
+  }
+}

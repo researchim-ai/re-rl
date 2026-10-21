@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два бинарных вектора. A: {v0}. B: {v1}.",
+      "en": "Two binary vectors. A: {v0}. B: {v1}."
+    },
+    "s1": {
+      "ru": "Пересечение {intersection}, объединение {union}, индекс {v2}.",
+      "en": "Intersection {intersection}, union {union}, index {v2}."
+    },
+    "s2": {
+      "ru": "Индекс Жаккара — размер пересечения, делённый на размер объединения. Найдите его. Ответ — целое или несократимая дробь.",
+      "en": "The Jaccard index is the size of the intersection divided by the size of the union. Find it. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Сколько позиций, где обе координаты равны 1?",
+      "en": "How many positions have both coordinates equal to 1?"
+    }
+  }
+}

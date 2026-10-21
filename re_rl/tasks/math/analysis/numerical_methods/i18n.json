@@ -1,0 +1,31 @@
+{
+  "text": {
+    "s0": {
+      "ru": "f(x) = x - {root}. Отрезок [0, {span}]. Середина [L, R] — это (L+R)//2. Если f(L)*f(середина) <= 0, новый отрезок [L, середина], иначе [середина, R]. Чему равен левый конец после {steps} шагов?",
+      "en": "f(x) = x - {root}. Start from [0, {span}]. The midpoint of [L, R] is (L+R)//2. If f(L)*f(mid) <= 0 the new interval is [L, mid], otherwise [mid, R]. What is the left endpoint after {steps} steps?"
+    },
+    "s1": {
+      "ru": "Функция f(x) = {v0}. Сделайте один шаг метода Ньютона из точки x0 = {x0}: x1 = x0 - f(x0) / f'(x0). Чему равен x1?",
+      "en": "Let f(x) = {v0}. Take one Newton step from x0 = {x0}: x1 = x0 - f(x0) / f'(x0). What is x1?"
+    },
+    "s2": {
+      "ru": "Приблизьте интеграл f(x) = x^2 на отрезке [{a0}, {b}] методом трапеций с шагом h = 1 ({panels} отрезков). Ответ — число, при необходимости дробь a/2.",
+      "en": "Approximate the integral of f(x) = x^2 on [{a0}, {b}] by the trapezoidal rule with step h = 1 ({panels} panels). Answer with a number, or a fraction a/2."
+    },
+    "s3": {
+      "ru": "f({x0}) = {f}, f'({x0_2}) = {fp}, x1 = {x0_3} - {f_2}/{fp_2} = {answer}.",
+      "en": "f({x0}) = {f}, f'({x0_2}) = {fp}, x1 = {x0_3} - {f_2}/{fp_2} = {answer}."
+    },
+    "s4": {
+      "ru": "Значения f на узлах: {ys}. Сумма с коэффициентами = {acc}, делим на 2 и получаем {answer}.",
+      "en": "f at the nodes: {ys}. The weighted sum is {acc}; dividing by 2 gives {answer}."
+    },
+    "s5": {
+      "ru": "Отрезки: {v0}.",
+      "en": "Intervals: {v0}."
+    }
+  },
+  "literals": {
+    "s6": "шаг Ньютона должен быть целым"
+  }
+}

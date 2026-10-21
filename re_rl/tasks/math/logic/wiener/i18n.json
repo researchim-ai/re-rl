@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Связный неориентированный граф, вершины 1..{n}, рёбра: {shown}. Найдите индекс Винера: сумму расстояний по всем неупорядоченным парам вершин.",
+      "en": "A connected undirected graph, vertices 1..{n}, edges: {shown}. Find the Wiener index: the sum of distances over all unordered pairs of vertices."
+    },
+    "s1": {
+      "ru": "Сумма попарных расстояний равна {answer}.",
+      "en": "The sum of pairwise distances is {answer}."
+    }
+  },
+  "literals": {
+    "s2": "граф для индекса Винера несвязен"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Последовательность целых чисел: {shown}. Является ли она последовательностью степеней простого неориентированного графа без петель? Ответьте да/нет.",
+      "en": "Integer sequence: {shown}. Is it the degree sequence of a simple undirected graph without loops? Answer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "Алгоритм Гавела–Хакими {v0} последовательность.",
+      "en": "The Havel–Hakimi algorithm {v0} the sequence."
+    },
+    "s4": {
+      "ru": "принимает",
+      "en": "принимает"
+    },
+    "s5": {
+      "ru": "отвергает",
+      "en": "rejects"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Q(действие) = награда + γ * V(следующего состояния), γ = {gamma}. Оптимальная оценка состояния — максимум из двух Q.",
+      "en": "Q(action) = reward + γ * V(next state), γ = {gamma}. The optimal state value is the larger of the two Q-values."
+    },
+    "s1": {
+      "ru": "Действие A: награда {r_a}, V следующего = {v_a}. Действие B: награда {r_b}, V следующего = {v_b}.",
+      "en": "Action A: reward {r_a}, next V = {v_a}. Action B: reward {r_b}, next V = {v_b}."
+    },
+    "s2": {
+      "ru": "Найдите оптимальную оценку. Ответ — целое или несократимая дробь.",
+      "en": "Find the optimal value. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Какое действие жадное? Ответьте A или B.",
+      "en": "Which action is greedy? Answer A or B."
+    }
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "text": {
+    "s1": {
+      "ru": "a = {v0} м/с², T = {v1} Н",
+      "en": "a = {v0} m/s², T = {v1} N"
+    },
+    "s4": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s5": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s6": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s7": {
+      "ru": "кг",
+      "en": "kg"
+    },
+    "s8": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s9": {
+      "ru": "atwood_find_acc_tension",
+      "en": "atwood_find_acc_tension"
+    },
+    "s10": {
+      "ru": "atwood_motion_equations",
+      "en": "atwood_motion_equations"
+    },
+    "s11": {
+      "ru": "with_pulley_mass",
+      "en": "with_pulley_mass"
+    }
+  },
+  "literals": {
+    "s0": "with_pulley_mass",
+    "s2": "with_pulley_mass",
+    "s3": "with_pulley_mass"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на систему блоков (машина Атвуда).",
+      "en": "Solve the Atwood machine problem."
+    },
+    "problem": {
+      "basic": {
+        "ru": "Два груза массами m₁ = {m1} кг и m₂ = {m2} кг связаны нерастяжимой нитью, перекинутой через невесомый блок. Найдите ускорение системы и натяжение нити.",
+        "en": "Two masses m₁ = {m1} kg and m₂ = {m2} kg are connected by an inextensible string over a massless pulley. Find the acceleration and string tension."
+      },
+      "with_pulley_mass": {
+        "ru": "Два груза массами m₁ = {m1} кг и m₂ = {m2} кг связаны нитью через блок массой M = {M} кг и радиусом R = {R} м. Найдите ускорение системы.",
+        "en": "Two masses m₁ = {m1} kg and m₂ = {m2} kg are connected via a pulley of mass M = {M} kg and radius R = {R} m. Find the acceleration."
+      }
+    },
+    "steps": {
+      "equations": {
+        "ru": "Уравнения движения: m₁g - T = m₁a, T - m₂g = m₂a",
+        "en": "Equations of motion: m₁g - T = m₁a, T - m₂g = m₂a"
+      },
+      "acceleration": {
+        "ru": "Ускорение: a = (m₁ - m₂)g/(m₁ + m₂) = {a} м/с²",
+        "en": "Acceleration: a = (m₁ - m₂)g/(m₁ + m₂) = {a} m/s²"
+      },
+      "tension": {
+        "ru": "Натяжение: T = 2m₁m₂g/(m₁ + m₂) = {T} Н",
+        "en": "Tension: T = 2m₁m₂g/(m₁ + m₂) = {T} N"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: a = {a} м/с², T = {T} Н",
+      "en": "Answer: a = {a} m/s², T = {T} N"
+    }
+  },
+  "inline_keys": {
+    "atwood_find_acc_tension": {
+      "ru": "ускорение и натяжение нити",
+      "en": "acceleration and tension"
+    },
+    "atwood_motion_equations": {
+      "ru": "Записываем уравнения движения для каждого груза:\nm₁g - T = m₁a\nT - m₂g = m₂a",
+      "en": "Write equations of motion for each mass:\nm₁g - T = m₁a\nT - m₂g = m₂a"
+    }
+  }
+}

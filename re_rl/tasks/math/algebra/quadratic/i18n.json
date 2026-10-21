@@ -1,0 +1,138 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шаг 1: Записываем уравнение в стандартной форме: {equation_str}",
+      "en": "Step 1: Write the equation in standard form: {equation_str}"
+    },
+    "s1": {
+      "ru": "Шаг 2: Вычисляем дискриминант: ${disc_formula}$",
+      "en": "Step 2: Calculate discriminant: ${disc_formula}$"
+    },
+    "s2": {
+      "ru": "Шаг 3: Находим корни: {roots_display}",
+      "en": "Step 3: Find roots: {roots_display}"
+    },
+    "s13": {
+      "ru": "D = b^2 - 4ac = ({b})^2 - 4 \\cdot ({a}) \\cdot ({c}) = {discriminant}",
+      "en": "D = b^2 - 4ac = ({b})^2 - 4 \\cdot ({a}) \\cdot ({c}) = {discriminant}"
+    },
+    "s14": {
+      "ru": "ensure_integer_roots",
+      "en": "ensure_integer_roots"
+    }
+  },
+  "literals": {
+    "s3": "ensure_integer_roots",
+    "s4": "ensure_integer_roots",
+    "s5": "ensure_integer_roots",
+    "s6": "ensure_integer_roots",
+    "s7": "ensure_integer_roots",
+    "s8": "ensure_integer_roots",
+    "s9": "ensure_integer_roots",
+    "s10": "ensure_integer_roots",
+    "s11": "ensure_integer_roots",
+    "s12": "ensure_integer_roots"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите квадратное уравнение и выведите результат.\nФормат ответа:\n  <reasoning>\n    (Шаги решения, можно по пунктам)\n  </reasoning>\n  <answer>\n    (Корни уравнения)\n  </answer>\nПример:\n<reasoning>\n  Шаг 1: Привели уравнение к виду ...\n  Шаг 2: Нашли x=2\n</reasoning>\n<answer>\n  2\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the quadratic equation.\nAnswer format:\n  <reasoning>\n    (Step-by-step derivation)\n  </reasoning>\n  <answer>\n    (The roots)\n  </answer>\nExample:\n<reasoning>\n  Step 1: We rearranged the equation...\n  Step 2: Found x=2\n</reasoning>\n<answer>\n  2\n</answer>"
+    },
+    "problem": {
+      "ru": [
+        "Решите квадратное уравнение: {equation_pretty}",
+        "Найдите корни уравнения: {equation_pretty}",
+        "Решите уравнение: {equation_pretty}",
+        "Определите значения x: {equation_pretty}",
+        "Найдите x: {equation_pretty}",
+        "Для каких x выполняется {equation_pretty}?",
+        "Вычислите корни: {equation_pretty}"
+      ],
+      "en": [
+        "Solve the quadratic equation: {equation_pretty}",
+        "Find the roots of: {equation_pretty}",
+        "Solve: {equation_pretty}",
+        "Determine the values of x: {equation_pretty}",
+        "Find x: {equation_pretty}",
+        "For what values of x is {equation_pretty} satisfied?",
+        "Calculate the roots: {equation_pretty}"
+      ]
+    },
+    "step1": {
+      "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty} = 0",
+      "en": "Step 1: Write the equation in standard form:\n{equation_pretty} = 0"
+    },
+    "step2": {
+      "ru": "Шаг 2: Анализируем уравнение:\n- Коэффициент при x²: {a}\n- Коэффициент при x: {b}\n- Свободный член: {c}",
+      "en": "Step 2: Analyze the equation:\n- Coefficient of x²: {a}\n- Coefficient of x: {b}\n- Constant term: {c}"
+    },
+    "step3": {
+      "ru": "Шаг 3: Находим корни уравнения: {roots}",
+      "en": "Step 3: Find the roots of the equation: {roots}"
+    },
+    "step2_analysis": {
+      "ru": "Шаг 2: Анализируем уравнение:\n- Коэффициент при x²: {a}\n- Коэффициент при x: {b}\n- Свободный член: {c}",
+      "en": "Step 2: Analyze the equation:\n- Coefficient of x²: {a}\n- Coefficient of x: {b}\n- Constant term: {c}"
+    },
+    "step3_discriminant": {
+      "ru": "Шаг 3: Вычисляем дискриминант:\nD = b² - 4ac = {b}² - 4·{a}·{c} = {discriminant}",
+      "en": "Step 3: Calculate the discriminant:\nD = b² - 4ac = {b}² - 4·{a}·{c} = {discriminant}"
+    },
+    "step4_roots": {
+      "ru": "Шаг 4: Находим корни по формуле:\nx = (-b ± √D) / (2a)\nx = (-{b} ± √{discriminant}) / (2·{a})",
+      "en": "Step 4: Find roots using the formula:\nx = (-b ± √D) / (2a)\nx = (-{b} ± √{discriminant}) / (2·{a})"
+    },
+    "step5_verify": {
+      "ru": "Шаг 5: Проверяем корни, подставляя их в исходное уравнение:\n{equation_pretty} = 0",
+      "en": "Step 5: Verify the roots by substituting them into the original equation:\n{equation_pretty} = 0"
+    },
+    "step6_geom": {
+      "ru": "Шаг 6: Геометрическая интерпретация:\nУравнение {a}x² + {b}x + {c} = 0 представляет собой параболу, которая пересекает ось x в точках x = {roots}",
+      "en": "Step 6: Geometric interpretation:\nThe equation {a}x² + {b}x + {c} = 0 represents a parabola that intersects the x-axis at points x = {roots}"
+    },
+    "step7_alt": {
+      "ru": "Шаг 7: Альтернативный метод решения:\nМожно решить уравнение графически, построив график функции y = {a}x² + {b}x + {c}. Точки пересечения с осью x дадут корни x = {roots}",
+      "en": "Step 7: Alternative solution method:\nWe can solve the equation graphically by plotting the function y = {a}x² + {b}x + {c}. The x-intercepts give the roots x = {roots}"
+    },
+    "explanation": {
+      "ru": {
+        "step1": "Записываем уравнение в стандартной форме для дальнейшего решения",
+        "step2_analysis": "Анализируем структуру уравнения, определяя все его компоненты",
+        "step3_discriminant": "Вычисляем дискриминант для определения количества и типа корней",
+        "step4_roots": "Находим корни уравнения по формуле корней квадратного уравнения",
+        "step5_verify": "Проверяем корректность найденных корней подстановкой",
+        "step6_geom": "Рассматриваем геометрический смысл уравнения",
+        "step7_alt": "Рассматриваем альтернативный метод решения"
+      },
+      "en": {
+        "step1": "Write the equation in standard form for further solution",
+        "step2_analysis": "Analyze the structure of the equation, identifying all its components",
+        "step3_discriminant": "Calculate the discriminant to determine the number and type of roots",
+        "step4_roots": "Find the roots using the quadratic formula",
+        "step5_verify": "Verify the found roots by substitution",
+        "step6_geom": "Consider the geometric meaning of the equation",
+        "step7_alt": "Consider an alternative solution method"
+      }
+    },
+    "validation": {
+      "ru": {
+        "step1": "Уравнение записано корректно в стандартной форме",
+        "step2_analysis": "Анализ уравнения выполнен правильно",
+        "step3_discriminant": "Дискриминант вычислен верно",
+        "step4_roots": "Корни найдены по правильной формуле",
+        "step5_verify": "Проверка корней подтверждает их корректность",
+        "step6_geom": "Геометрическая интерпретация верна",
+        "step7_alt": "Альтернативный метод решения применим"
+      },
+      "en": {
+        "step1": "The equation is correctly written in standard form",
+        "step2_analysis": "Equation analysis is correct",
+        "step3_discriminant": "Discriminant is calculated correctly",
+        "step4_roots": "Roots are found using the correct formula",
+        "step5_verify": "Root verification confirms their correctness",
+        "step6_geom": "Geometric interpretation is correct",
+        "step7_alt": "Alternative solution method is applicable"
+      }
+    }
+  }
+}

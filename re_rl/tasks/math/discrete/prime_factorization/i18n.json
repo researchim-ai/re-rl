@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Разложите число {n} на простые множители.",
+        "Найдите каноническое разложение числа {n} на простые множители."
+      ],
+      "en": [
+        "Factor the number {n} into primes.",
+        "Find the prime factorization of {n}."
+      ]
+    },
+    "step_setup": {
+      "ru": "Последовательно делим число на наименьшие простые делители.",
+      "en": "Successively divide the number by its smallest prime factors."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

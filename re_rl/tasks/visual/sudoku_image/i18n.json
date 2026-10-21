@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — судоку {size}×{size_2}; пустые клетки обозначены точкой. Какое число должно стоять в выделенной красным клетке (строка {v2}, столбец {v3})?",
+      "en": "The figure shows a {size}×{size_2} Sudoku; empty cells are dots. Which number belongs in the red-highlighted cell (row {v2}, column {v3})?"
+    },
+    "s1": {
+      "ru": "Единственное число, допустимое в строке, столбце и блоке для этой клетки.",
+      "en": "The only number allowed by the row, column and block for that cell."
+    }
+  }
+}

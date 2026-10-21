@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дан массив: [{arr}]. Выполните {k} проход(а) сортировки пузырьком (за проход соседние элементы, где левый больше правого, меняются местами, слева направо). Выпишите массив после этих проходов.",
+      "en": "Given the array [{arr}]. Perform {k} bubble-sort pass(es) (each pass swaps adjacent out-of-order neighbors, left to right). Output the array after these passes."
+    },
+    "s1": {
+      "ru": "Дан массив: [{arr}]. Сколько в нём инверсий (пар i<j с a[i]>a[j])?",
+      "en": "Given the array [{arr}]. How many inversions (pairs i<j with a[i]>a[j]) does it have?"
+    },
+    "s2": {
+      "ru": "Считаем пары, стоящие в неправильном порядке.",
+      "en": "Count the pairs that are out of order."
+    },
+    "s3": {
+      "ru": "Число инверсий = {_answer}.",
+      "en": "Number of inversions = {_answer}."
+    },
+    "s4": {
+      "ru": "Проходим массив слева направо, меняя соседей местами при необходимости; повторяем нужное число раз.",
+      "en": "Sweep left to right swapping neighbors as needed; repeat the required number of times."
+    },
+    "s5": {
+      "ru": "Массив после {k} проход(ов): {v1}.",
+      "en": "Array after {k} pass(es): {v1}."
+    }
+  }
+}

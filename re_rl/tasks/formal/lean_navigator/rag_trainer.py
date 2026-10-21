@@ -15,6 +15,9 @@ RAG Trainer — обучение BERT-based retriever для тактик Lean 4
   - Adam lr=1e-5
   - FAISS IndexFlatL2
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'rag_trainer_i18n.json')
+
 
 import json
 import os
@@ -160,7 +163,7 @@ class TripletDataGenerator:
         build_ir = repo_path / ".lake" / "build" / "ir"
 
         if not build_ir.exists():
-            raise FileNotFoundError(f"Нет build/ir в {repo_dir}")
+            raise FileNotFoundError(texts.t('s23', self.language, repo_dir=repo_dir))
 
         # Если шаблоны не переданы, загрузим/сгенерируем
         if templates is None:
@@ -173,9 +176,9 @@ class TripletDataGenerator:
         self.all_templates = list(filtered_templates.keys())
 
         if not self.all_templates:
-            raise ValueError("Нет шаблонов с достаточной частотой")
+            raise ValueError(texts.t('s24', self.language))
 
-        print(f"Шаблонов для negative sampling: {len(self.all_templates)}")
+        print(texts.t('s7', self.language, v0=len(self.all_templates)))
 
         # Собираем AST файлы
         ast_files = sorted(build_ir.rglob("*.ast.json"))
@@ -189,7 +192,7 @@ class TripletDataGenerator:
         self.triplets = []
         errors = 0
 
-        iterator = tqdm(ast_files, desc="Генерация triplets") if TQDM_AVAILABLE else ast_files
+        iterator = tqdm(ast_files, desc=texts.t('s29', self.language)) if TQDM_AVAILABLE else ast_files
 
         for ast_file in iterator:
             try:
@@ -271,7 +274,7 @@ class TripletDataGenerator:
                 errors += 1
                 continue
 
-        print(f"✓ Сгенерировано {len(self.triplets)} троек ({errors} ошибок)")
+        print(texts.t('s8', self.language, v0=len(self.triplets), errors=errors))
         return self.triplets
 
     def generate_hard_negatives(
@@ -291,7 +294,7 @@ class TripletDataGenerator:
         Это даёт более информативные negative примеры для обучения.
         """
         if not self.triplets or not self.all_templates:
-            raise ValueError("Сначала вызовите generate_from_ast_dir()")
+            raise ValueError(texts.t('s25', self.language))
 
         print("Mining hard negatives...")
 
@@ -348,7 +351,7 @@ class TripletDataGenerator:
             hard_triplets.append((query, positive, hard_neg))
 
         self.triplets = hard_triplets
-        print(f"✓ {len(hard_triplets)} hard negatives сгенерировано")
+        print(texts.t('s9', self.language, v0=len(hard_triplets)))
         return self.triplets
 
     def save(self, path: str):
@@ -359,7 +362,7 @@ class TripletDataGenerator:
         }
         with open(path, 'w') as f:
             json.dump(data, f, ensure_ascii=False)
-        print(f"✓ {len(self.triplets)} троек сохранено в {path}")
+        print(texts.t('s10', self.language, v0=len(self.triplets), path=path))
 
     def load(self, path: str):
         """Загружает тройки из JSON."""
@@ -367,7 +370,7 @@ class TripletDataGenerator:
             data = json.load(f)
         self.triplets = [tuple(t) for t in data["triplets"]]
         self.all_templates = data["all_templates"]
-        print(f"✓ {len(self.triplets)} троек загружено из {path}")
+        print(texts.t('s11', self.language, v0=len(self.triplets), path=path))
         return self.triplets
 
 
@@ -409,7 +412,7 @@ class TacticBERTTrainer:
         else:
             self.device = torch.device(device)
 
-        print(f"Инициализация {model_name} на {self.device}...")
+        print(texts.t('s12', self.language, model_name=model_name, device=self.device))
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
         self.model = AutoModel.from_pretrained(model_name).to(self.device)
         self.loss_fn = TripletLoss(margin=margin)
@@ -463,8 +466,8 @@ class TacticBERTTrainer:
         num_batches = 0
         global_step = 0
 
-        print(f"Обучение: {len(triplets)} троек, {num_epochs} эпох, batch={batch_size}")
-        print(f"  Шагов за эпоху: {len(dataloader)}")
+        print(texts.t('s13', self.language, v0=len(triplets), num_epochs=num_epochs, batch_size=batch_size))
+        print(texts.t('s14', self.language, v0=len(dataloader)))
         print(f"  Device: {self.device}")
         print()
 
@@ -526,7 +529,7 @@ class TacticBERTTrainer:
                   f"avg_loss={epoch_avg:.4f}, time={elapsed:.1f}s")
 
         final_loss = total_loss / max(num_batches, 1)
-        print(f"\n✓ Обучение завершено: final_avg_loss={final_loss:.4f}")
+        print(texts.t('s15', self.language, final_loss=final_loss))
         return final_loss
 
     def _save_checkpoint(self, save_dir: str, step: int):
@@ -558,7 +561,7 @@ class TacticBERTTrainer:
             json.dump(meta, f, indent=2)
         with open(save_path / "train_losses.json", 'w') as f:
             json.dump(self.train_losses, f)
-        print(f"✓ Модель сохранена в {path}")
+        print(texts.t('s16', self.language, path=path))
 
     def encode_texts(self, texts: List[str], max_length: int = 64,
                      batch_size: int = 256) -> np.ndarray:
@@ -617,7 +620,7 @@ class TrainedTacticRAG:
 
     def load_model(self, model_path: str):
         """Загружает обученную BERT модель."""
-        print(f"Загрузка BERT из {model_path}...")
+        print(texts.t('s17', self.language, model_path=model_path))
         self.tokenizer = AutoTokenizer.from_pretrained(model_path)
         self.model = AutoModel.from_pretrained(model_path).to(self.device)
         self.model.eval()
@@ -627,15 +630,15 @@ class TrainedTacticRAG:
                     batch_size: int = 256):
         """Строит FAISS L2 индекс из шаблонов тактик."""
         if self.model is None:
-            raise ValueError("Сначала загрузите модель: load_model()")
+            raise ValueError(texts.t('s26', self.language))
 
         self.template_freq = {k: v for k, v in template_freq.items() if v >= min_freq}
         self.templates = list(self.template_freq.keys())
 
         if not self.templates:
-            raise ValueError("Нет шаблонов для индексации")
+            raise ValueError(texts.t('s27', self.language))
 
-        print(f"Строим FAISS L2 index для {len(self.templates)} шаблонов...")
+        print(texts.t('s18', self.language, v0=len(self.templates)))
 
         # Encode все шаблоны через обученный BERT
         embeddings = self._encode_batch(self.templates, max_length=64,
@@ -646,7 +649,7 @@ class TrainedTacticRAG:
         self.index = faiss.IndexFlatL2(dim)
         self.index.add(embeddings)
 
-        print(f"✓ FAISS L2 index: {len(self.templates)} шаблонов, dim={dim}")
+        print(texts.t('s19', self.language, v0=len(self.templates), dim=dim))
 
     def get_similar_templates(self, state: str, theorem_code: str = "",
                               num_returned: int = 200) -> List[Tuple[str, float]]:
@@ -656,7 +659,7 @@ class TrainedTacticRAG:
         Совместимо с TacticRAG API.
         """
         if self.index is None:
-            raise ValueError("Сначала вызовите build_index()")
+            raise ValueError(texts.t('s28', self.language))
 
         # Query формат как у авторов: theorem_code + ' # ' + state
         query = (theorem_code + ' # ' + state) if theorem_code else state
@@ -709,7 +712,7 @@ class TrainedTacticRAG:
                 "templates": self.templates,
                 "freq": self.template_freq,
             }, f, ensure_ascii=False)
-        print(f"✓ TrainedRAG сохранён в {path}")
+        print(texts.t('s20', self.language, path=path))
 
     def load(self, path: str):
         """Загружает индекс и метаданные."""
@@ -719,7 +722,7 @@ class TrainedTacticRAG:
             data = json.load(f)
         self.templates = data["templates"]
         self.template_freq = data["freq"]
-        print(f"✓ TrainedRAG загружен из {path}: {len(self.templates)} шаблонов")
+        print(texts.t('s21', self.language, path=path, v1=len(self.templates)))
 
 
 # ============================================================================
@@ -778,7 +781,7 @@ def train_tactic_rag(
 
     # === 1. Шаблоны тактик ===
     print("=" * 60)
-    print("Шаг 1: Загрузка шаблонов тактик")
+    print(texts.literal('literals.s0'))
     print("=" * 60)
 
     extractor = TacticTemplateExtractor()
@@ -788,11 +791,11 @@ def train_tactic_rag(
         extractor.extract_from_ast_dir(repo_dir)
         extractor.save(str(output_path / "tactic_templates.json"))
 
-    print(f"  Всего шаблонов: {len(extractor.templates)}")
+    print(texts.t('s1', 'ru', v0=len(extractor.templates)))
 
     # === 2. Triplet data ===
     print("\n" + "=" * 60)
-    print("Шаг 2: Генерация training triplets")
+    print(texts.literal('literals.s2'))
     print("=" * 60)
 
     generator = TripletDataGenerator()
@@ -815,7 +818,7 @@ def train_tactic_rag(
 
     # === 3. Обучение BERT ===
     print("\n" + "=" * 60)
-    print("Шаг 3: Обучение BERT retriever")
+    print(texts.literal('literals.s3'))
     print("=" * 60)
 
     trainer = TacticBERTTrainer(
@@ -836,7 +839,7 @@ def train_tactic_rag(
     # === 4. Hard negative mining (опционально) ===
     for round_idx in range(hard_negative_rounds):
         print(f"\n{'=' * 60}")
-        print(f"Шаг 4.{round_idx+1}: Hard negative mining (round {round_idx+1})")
+        print(texts.t('s22', 'ru', v0=round_idx + 1, v1=round_idx + 1))
         print("=" * 60)
 
         generator.generate_hard_negatives(
@@ -857,7 +860,7 @@ def train_tactic_rag(
 
     # === 6. Построение FAISS индекса ===
     print("\n" + "=" * 60)
-    print("Шаг 5: Построение FAISS L2 индекса")
+    print(texts.literal('literals.s4'))
     print("=" * 60)
 
     rag = TrainedTacticRAG(model_path=model_path)
@@ -866,8 +869,8 @@ def train_tactic_rag(
 
     total_time = time.time() - total_start
     print(f"\n{'=' * 60}")
-    print(f"✓ Обучение завершено за {total_time:.1f}с ({total_time/60:.1f} мин)")
-    print(f"  Модель: {model_path}")
+    print(texts.t('s5', 'ru', total_time=total_time, v1=total_time / 60))
+    print(texts.t('s6', 'ru', model_path=model_path))
     print(f"  RAG index: {output_path / 'trained_rag_index'}")
     print(f"  Final loss: {final_loss:.4f}")
     print(f"{'=' * 60}")

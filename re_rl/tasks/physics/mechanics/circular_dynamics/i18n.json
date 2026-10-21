@@ -1,0 +1,54 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Н",
+      "en": "N"
+    },
+    "s1": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s2": {
+      "ru": "м/с",
+      "en": "m/s"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на движение по окружности (центростремительная сила).",
+      "en": "Solve the circular-motion (centripetal force) problem."
+    },
+    "problem": {
+      "centripetal_force": {
+        "ru": "Тело массой {m} кг движется по окружности радиусом {r} м со скоростью {v} м/с. Найдите центростремительную силу.",
+        "en": "A body of mass {m} kg moves in a circle of radius {r} m at speed {v} m/s. Find the centripetal force."
+      },
+      "car_turn": {
+        "ru": "Автомобиль проходит горизонтальный поворот радиусом {r} м. Коэффициент трения между шинами и дорогой {mu}. Найдите максимальную скорость без заноса.",
+        "en": "A car takes a flat turn of radius {r} m. The tire–road friction coefficient is {mu}. Find the maximum speed without skidding."
+      },
+      "vertical_loop": {
+        "ru": "Найдите минимальную скорость в верхней точке «мёртвой петли» радиусом {r} м.",
+        "en": "Find the minimum speed at the top of a vertical loop of radius {r} m."
+      }
+    },
+    "steps": {
+      "centripetal_formula": {
+        "ru": "Центростремительная сила: F = m·v²/r.",
+        "en": "Centripetal force: F = m·v²/r."
+      },
+      "car_formula": {
+        "ru": "Трение обеспечивает центростремительную силу: μ·m·g = m·v²/r ⇒ v = √(μ·g·r).",
+        "en": "Friction provides the centripetal force: μ·m·g = m·v²/r ⇒ v = √(μ·g·r)."
+      },
+      "loop_formula": {
+        "ru": "В верхней точке m·g = m·v²/r ⇒ v = √(g·r).",
+        "en": "At the top m·g = m·v²/r ⇒ v = √(g·r)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

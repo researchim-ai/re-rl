@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Дана матрица переходов цепи Маркова:\n{matrix}\nНайдите стационарное распределение π (через запятую).",
+        "Найдите стационарное распределение цепи Маркова с матрицей переходов:\n{matrix}"
+      ],
+      "en": [
+        "Given the Markov chain transition matrix:\n{matrix}\nFind the stationary distribution π (comma-separated).",
+        "Find the stationary distribution of the Markov chain with transition matrix:\n{matrix}"
+      ]
+    },
+    "step_setup": {
+      "ru": "Решаем систему πP = π при Σπᵢ = 1.",
+      "en": "Solve πP = π subject to Σπᵢ = 1."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — P–V диаграмма замкнутого термодинамического цикла из {n} вершин (координаты каждой вершины (V, P) подписаны). Найдите работу газа за цикл (по модулю), равную площади, охватываемой контуром. Ответ в джоулях.",
+      "en": "The figure shows a P–V diagram of a closed thermodynamic cycle with {n} vertices (each vertex is labeled with its (V, P)). Find the work done by the gas per cycle (absolute value), equal to the area enclosed by the loop. Answer in joules."
+    },
+    "s1": {
+      "ru": "Работа газа за цикл по модулю равна площади, охватываемой контуром на P–V диаграмме.",
+      "en": "The gas work per cycle (absolute value) equals the area enclosed by the P–V loop."
+    },
+    "s2": {
+      "ru": "Площадь считаем формулой шнурков по координатам вершин.",
+      "en": "Compute the area via the shoelace formula over the vertices."
+    },
+    "s4": {
+      "ru": "W = {v0} Дж",
+      "en": "W = {v0} J"
+    },
+    "s5": {
+      "ru": "V, м³",
+      "en": "V, м³"
+    },
+    "s6": {
+      "ru": "P, Па",
+      "en": "P, Pa"
+    },
+    "s7": {
+      "ru": "P–V диаграмма цикла",
+      "en": "P–V диаграмма цикла"
+    },
+    "s8": {
+      "ru": "W = {v0} Дж",
+      "en": "W = {v0} J"
+    }
+  },
+  "literals": {
+    "s3": "pv_cycle_image"
+  }
+}

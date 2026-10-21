@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кольцевая дорога. На станциях пары (бензин, расход до следующей): {v0}. Индексы с 0. Найдите индекс станции, с которой можно объехать всё кольцо. Если это невозможно, ответьте -1.",
+      "en": "A circular road. Stations are pairs (gas, cost to the next): {v0}. Indices start at 0. Find the station index from which the whole circuit can be completed. If it is impossible, answer -1."
+    },
+    "s1": {
+      "ru": "Сравнение сумм и сброс бака на отрицательном префиксе дают старт {answer}.",
+      "en": "Comparing the totals and resetting the tank on a negative prefix gives start {answer}."
+    }
+  }
+}

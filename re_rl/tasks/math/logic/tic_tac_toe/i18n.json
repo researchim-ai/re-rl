@@ -1,0 +1,67 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Крестики-нолики (3×3). Клетки нумеруются 1..9 слева направо, сверху вниз («.» — пусто). Ходит {player}. Позиция:\n{v1}\n",
+      "en": "Tic-tac-toe (3×3). Cells are numbered 1..9 left-to-right, top-to-bottom ('.' empty). {player} to move. Position:\n{v1}\n"
+    },
+    "s1": {
+      "ru": "Каков исход при оптимальной игре обеих сторон? Ответьте: «первый (X)», «второй (O)» или «ничья».",
+      "en": "What is the outcome with optimal play by both sides? Answer: 'first (X)', 'second (O)', or 'draw'."
+    },
+    "s2": {
+      "ru": "Укажите номер клетки (1..9) — оптимальный ход для {player}.",
+      "en": "Give the cell number (1..9) of an optimal move for {player}."
+    },
+    "s3": {
+      "ru": "первый (X)",
+      "en": "first (X)"
+    },
+    "s4": {
+      "ru": "Полный перебор ходов (минимакс) с оптимальной игрой обеих сторон.",
+      "en": "Full move search (minimax) with optimal play by both sides."
+    },
+    "s5": {
+      "ru": "Исход: {res}.",
+      "en": "Outcome: {res}."
+    },
+    "s6": {
+      "ru": "Оцениваем каждый ход минимаксом и берём оптимальный по значению.",
+      "en": "Evaluate each move by minimax and pick one optimal in value."
+    },
+    "s7": {
+      "ru": "Оптимальный ход: клетка {v0}.",
+      "en": "An optimal move: cell {v0}."
+    },
+    "s8": {
+      "ru": "второй (O)",
+      "en": "second (O)"
+    },
+    "s9": {
+      "ru": "ничья",
+      "en": "draw"
+    },
+    "s11": {
+      "ru": "крестики",
+      "en": "крестики"
+    },
+    "s12": {
+      "ru": "первый",
+      "en": "первый"
+    },
+    "s13": {
+      "ru": "нолики",
+      "en": "нолики"
+    },
+    "s14": {
+      "ru": "второй",
+      "en": "второй"
+    },
+    "s15": {
+      "ru": "ничья",
+      "en": "ничья"
+    }
+  },
+  "literals": {
+    "s10": "tic_tac_toe"
+  }
+}

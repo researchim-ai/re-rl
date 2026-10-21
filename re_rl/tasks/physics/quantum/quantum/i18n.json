@@ -1,0 +1,119 @@
+{
+  "text": {
+    "s1": {
+      "ru": "Δλ = {v0} м",
+      "en": "Δλ = {v0} m"
+    },
+    "s2": {
+      "ru": "{v0} м",
+      "en": "{v0} m"
+    },
+    "s3": {
+      "ru": "ΔE = {v0:.4f} эВ, λ = {v1} м",
+      "en": "ΔE = {v0:.4f} eV, λ = {v1} m"
+    },
+    "s4": {
+      "ru": "Δp ≥ {v0} кг·м/с",
+      "en": "Δp ≥ {v0} kg·m/s"
+    },
+    "s5": {
+      "ru": "{E_n_eV:.4f} эВ",
+      "en": "{E_n_eV:.4f} eV"
+    },
+    "s6": {
+      "ru": "E_фотона = hν = {v0} × {v1} = {v2} Дж = {E_photon_eV:.2f} эВ",
+      "en": "E_фотона = hν = {v0} × {v1} = {v2} J = {E_photon_eV:.2f} eV"
+    },
+    "s7": {
+      "ru": "{E_kinetic_eV:.4f} эВ",
+      "en": "{E_kinetic_eV:.4f} eV"
+    },
+    "s8": {
+      "ru": "Фотоэффект не происходит (hν < A)",
+      "en": "Фотоэффект не происходит (hν < A)"
+    },
+    "s9": {
+      "ru": "λc = h/(m_e·c) = {v0} м",
+      "en": "λc = h/(m_e·c) = {v0} m"
+    },
+    "s10": {
+      "ru": "Δλ = λc(1 - cos {angle}°) = {v1} м",
+      "en": "Δλ = λc(1 - cos {angle}°) = {v1} m"
+    },
+    "s11": {
+      "ru": "λ' = λ + Δλ = {v0} м",
+      "en": "λ' = λ + Δλ = {v0} m"
+    },
+    "s12": {
+      "ru": "p = mv = {v0} × {v1} = {v2} кг·м/с",
+      "en": "p = mv = {v0} × {v1} = {v2} kg·m/s"
+    },
+    "s13": {
+      "ru": "λ = h/p = {v0} / {v1} = {v2} м",
+      "en": "λ = h/p = {v0} / {v1} = {v2} m"
+    },
+    "s14": {
+      "ru": "E_{n1} = -13.6/{n1_2}² = {E1:.4f} эВ",
+      "en": "E_{n1} = -13.6/{n1_2}² = {E1:.4f} eV"
+    },
+    "s15": {
+      "ru": "E_{n2} = -13.6/{n2_2}² = {E2:.4f} эВ",
+      "en": "E_{n2} = -13.6/{n2_2}² = {E2:.4f} eV"
+    },
+    "s16": {
+      "ru": "ΔE = E_{n2} - E_{n1} = {delta_E:.4f} эВ",
+      "en": "ΔE = E_{n2} - E_{n1} = {delta_E:.4f} eV"
+    },
+    "s17": {
+      "ru": "λ = hc/|ΔE| = {v0} м",
+      "en": "λ = hc/|ΔE| = {v0} m"
+    },
+    "s18": {
+      "ru": "ℏ = h/(2π) = {v0} Дж·с",
+      "en": "ℏ = h/(2π) = {v0} Дж·с"
+    },
+    "s19": {
+      "ru": "Δp ≥ ℏ/(2Δx) = {v0} / (2 × {v1}) = {v2} кг·м/с",
+      "en": "Δp ≥ ℏ/(2Δx) = {v0} / (2 × {v1}) = {v2} kg·m/s"
+    },
+    "s20": {
+      "ru": "E_{n} = {v1} Дж = {E_n_eV:.4f} эВ",
+      "en": "E_{n} = {v1} J = {E_n_eV:.4f} eV"
+    },
+    "s21": {
+      "ru": "Eₖ = hν - A = {E_photon_eV:.2f} - {work_function} = {E_kinetic_eV:.2f} эВ",
+      "en": "Eₖ = hν - A = {E_photon_eV:.2f} - {work_function} = {E_kinetic_eV:.2f} eV"
+    },
+    "s22": {
+      "ru": "Eₖ = hν - A = {E_photon_eV:.2f} - {work_function} = {E_kinetic_eV:.2f} эВ < 0",
+      "en": "Eₖ = hν - A = {E_photon_eV:.2f} - {work_function} = {E_kinetic_eV:.2f} eV < 0"
+    },
+    "s23": {
+      "ru": "Так как энергия фотона меньше работы выхода (hν < A), фотоэффект не происходит.",
+      "en": "Так как энергия фотона меньше работы выхода (hν < A), фотоэффект не происходит."
+    },
+    "s24": {
+      "ru": "de_broglie_formula",
+      "en": "de_broglie_formula"
+    },
+    "s25": {
+      "ru": "particle_box_formula",
+      "en": "particle_box_formula"
+    },
+    "s26": {
+      "ru": "particle_in_box",
+      "en": "particle_in_box"
+    },
+    "s27": {
+      "ru": "particle_in_box",
+      "en": "particle_in_box"
+    },
+    "s28": {
+      "ru": "particle_in_box",
+      "en": "particle_in_box"
+    }
+  },
+  "literals": {
+    "s0": "particle_in_box"
+  }
+}

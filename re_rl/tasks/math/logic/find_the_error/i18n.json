@@ -1,0 +1,39 @@
+{
+  "text": {
+    "s1": {
+      "ru": "find_the_error",
+      "en": "find_the_error"
+    },
+    "s2": {
+      "ru": "find_the_error",
+      "en": "find_the_error"
+    }
+  },
+  "literals": {
+    "s0": "find_the_error"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Ниже приведено решение, в котором ровно один шаг содержит ошибку. Укажите номер ошибочного шага.\n{steps}",
+        "В следующей цепочке вычислений допущена ровно одна ошибка. Назовите номер шага с ошибкой.\n{steps}"
+      ],
+      "en": [
+        "The solution below contains exactly one incorrect step. State the number of the erroneous step.\n{steps}",
+        "Exactly one step in the following chain is wrong. Name the number of the step with the error.\n{steps}"
+      ]
+    },
+    "step_label": {
+      "ru": "Шаг",
+      "en": "Step"
+    },
+    "step_check": {
+      "ru": "Проверяем шаг {n}: {a} {op} {b} = {shown}; правильно {correct}.",
+      "en": "Check step {n}: {a} {op} {b} = {shown}; correct value is {correct}."
+    },
+    "step_result": {
+      "ru": "Ошибка находится в шаге {n}.",
+      "en": "The error is in step {n}."
+    }
+  }
+}

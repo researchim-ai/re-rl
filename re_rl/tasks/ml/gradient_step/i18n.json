@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Модель y = w*x. Потеря L = (1/2) * sum (w*x_i - y_i)^2, градиент g = sum (w*x_i - y_i)*x_i, шаг обучения lr = 1, новый вес w_new = w - g.",
+      "en": "Model y = w*x. Loss L = (1/2) * sum (w*x_i - y_i)^2, gradient g = sum (w*x_i - y_i)*x_i, learning rate lr = 1, new weight w_new = w - g."
+    },
+    "s1": {
+      "ru": "Точки (x, y): {v0}. Текущий вес w = {w}.",
+      "en": "Points (x, y): {v0}. Current weight w = {w}."
+    },
+    "s2": {
+      "ru": "g = {terms} = {grad}. w_new = {w} - ({grad_2}) = {w_new}.",
+      "en": "g = {terms} = {grad}. w_new = {w} - ({grad_2}) = {w_new}."
+    },
+    "s3": {
+      "ru": "Чему равен градиент g?",
+      "en": "What is the gradient g?"
+    },
+    "s4": {
+      "ru": "Чему равен вес после одного шага?",
+      "en": "What is the weight after one step?"
+    }
+  }
+}

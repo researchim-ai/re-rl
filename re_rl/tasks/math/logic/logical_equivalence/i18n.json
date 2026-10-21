@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Эквивалентны ли две формулы над {v0} (совпадают на всех наборах)?\nA: {v1}\nB: {v2}\nОтветьте да/нет.",
+      "en": "Are the two formulas over {v0} equivalent (equal on all assignments)?\nA: {v1}\nB: {v2}\nAnswer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "Сравниваем значения обеих формул на всех наборах переменных.",
+      "en": "Compare both formulas' values across all assignments."
+    },
+    "s4": {
+      "ru": "Значения совпадают всюду — эквивалентны.",
+      "en": "They agree everywhere — equivalent."
+    },
+    "s5": {
+      "ru": "Есть набор с разными значениями — не эквивалентны.",
+      "en": "Some assignment differs — not equivalent."
+    }
+  }
+}

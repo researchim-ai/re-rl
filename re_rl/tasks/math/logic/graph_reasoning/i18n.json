@@ -1,0 +1,60 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Неориентированный граф с вершинами 0..{v0}. Рёбра: {v1}.",
+      "en": "Undirected graph with vertices 0..{v0}. Edges: {v1}."
+    },
+    "s1": {
+      "ru": " Найдите длину кратчайшего пути между вершинами {src} и {dst} (число рёбер; -1, если пути нет).",
+      "en": " Find the length of the shortest path between vertices {src} and {dst} (number of edges; -1 if no path)."
+    },
+    "s2": {
+      "ru": " Сколько компонент связности в графе?",
+      "en": " How many connected components does the graph have?"
+    },
+    "s3": {
+      "ru": " Является ли граф двудольным? Ответьте да/нет.",
+      "en": " Is the graph bipartite? Answer yes/no."
+    },
+    "s4": {
+      "ru": "Запускаем поиск в ширину (BFS) из стартовой вершины.",
+      "en": "Run breadth-first search (BFS) from the source vertex."
+    },
+    "s5": {
+      "ru": "Кратчайшее расстояние от {src} до {dst} = {_answer}.",
+      "en": "Shortest distance from {src} to {dst} = {_answer}."
+    },
+    "s6": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s7": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s8": {
+      "ru": "Обходим граф (DFS/union-find), считая непересекающиеся группы вершин.",
+      "en": "Traverse the graph (DFS/union-find), counting disjoint vertex groups."
+    },
+    "s9": {
+      "ru": "Число компонент связности = {_answer}.",
+      "en": "Number of connected components = {_answer}."
+    },
+    "s10": {
+      "ru": "Пробуем 2-раскраску BFS: соседи разного цвета.",
+      "en": "Attempt a 2-coloring via BFS: neighbors get opposite colors."
+    },
+    "s11": {
+      "ru": "Конфликтов нет — граф двудольный.",
+      "en": "No conflicts — the graph is bipartite."
+    },
+    "s12": {
+      "ru": "Найдено ребро между вершинами одного цвета — не двудольный.",
+      "en": "Found an edge within one color class — not bipartite."
+    },
+    "s13": {
+      "ru": "нет рёбер",
+      "en": "нет рёбер"
+    }
+  }
+}

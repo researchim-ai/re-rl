@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите объём, делённый на π. Ответ — целое или несократимая дробь.",
+      "en": "Find the volume divided by pi. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Цилиндр с радиусом {r} и высотой {h}.",
+      "en": "A cylinder of radius {r} and height {h}."
+    },
+    "s2": {
+      "ru": "Конус с радиусом основания {r} и высотой {h}.",
+      "en": "A cone of base radius {r} and height {h}."
+    },
+    "s3": {
+      "ru": "Шар радиуса {r}.",
+      "en": "A sphere of radius {r}."
+    }
+  }
+}

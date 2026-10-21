@@ -1,0 +1,61 @@
+{
+  "text": {
+    "s1": {
+      "ru": "(n+1)^2 - n^2 equals 2n for every integer n",
+      "en": "(n+1)^2 - n^2 equals 2n for every integer n"
+    },
+    "s2": {
+      "ru": "proof_cases_counterexample",
+      "en": "proof_cases_counterexample"
+    },
+    "s3": {
+      "ru": "n^2 + n + 1 is even for every integer n",
+      "en": "n^2 + n + 1 is even for every integer n"
+    },
+    "s4": {
+      "ru": "4 divides n^2 + n for every integer n",
+      "en": "4 divides n^2 + n for every integer n"
+    },
+    "s5": {
+      "ru": "If n is odd then n^2 is divisible by 8",
+      "en": "If n is odd then n^2 is divisible by 8"
+    },
+    "s6": {
+      "ru": "(n+1)^2 - n^2 equals 2n+1 for every integer n",
+      "en": "(n+1)^2 - n^2 equals 2n+1 for every integer n"
+    },
+    "s7": {
+      "ru": "n^2 + n is even for every integer n",
+      "en": "n^2 + n is even for every integer n"
+    },
+    "s8": {
+      "ru": "3 divides n^3 - n for every integer n",
+      "en": "3 divides n^3 - n for every integer n"
+    },
+    "s9": {
+      "ru": "If n is odd then n^2 is odd",
+      "en": "If n is odd then n^2 is odd"
+    }
+  },
+  "literals": {
+    "s0": "proof_cases_counterexample"
+  },
+  "prompt": {
+    "problem": {
+      "ru": "Докажите утверждение по случаям или приведите контрпример: {claim}.",
+      "en": "Prove the claim by cases or provide a counterexample: {claim}."
+    },
+    "step_cases": {
+      "ru": "Разбиваем рассуждение на случаи (чётность/остатки/структура выражения).",
+      "en": "Split reasoning by cases (parity/modular classes/expression structure)."
+    },
+    "step_prove": {
+      "ru": "Во всех случаях утверждение выполняется.",
+      "en": "The claim holds in all considered cases."
+    },
+    "step_counterexample": {
+      "ru": "Найден контрпример: n={n}.",
+      "en": "Counterexample found: n={n}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Определите время на циферблате. Ответ дайте в формате Ч:ММ (например, 3:45).",
+      "en": "Read the time on the clock. Answer in H:MM format (e.g., 3:45)."
+    },
+    "s1": {
+      "ru": "Короткая стрелка указывает часы, длинная — минуты.",
+      "en": "The short hand shows hours, the long hand shows minutes."
+    },
+    "s2": {
+      "ru": "Время: {v0}.",
+      "en": "Time: {v0}."
+    }
+  }
+}

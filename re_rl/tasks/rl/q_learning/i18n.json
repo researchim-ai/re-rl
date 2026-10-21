@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Обновление Q-learning: δ = r + γ * max_next - Q, Q_new = Q + α * δ. Ответ — целое или несократимая дробь.",
+      "en": "Q-learning update: δ = r + γ * max_next - Q, Q_new = Q + α * δ. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Q = {q}, α = {v1}, r = {reward}, γ = {v3}, max_next = {max_next}.",
+      "en": "Q = {q}, α = {v1}, r = {reward}, γ = {v3}, max_next = {max_next}."
+    },
+    "s2": {
+      "ru": "Найдите Q_new.",
+      "en": "Find Q_new."
+    },
+    "s3": {
+      "ru": "Найдите δ.",
+      "en": "Find δ."
+    }
+  }
+}

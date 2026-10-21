@@ -1,0 +1,23 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ориентированный граф из {n} вершин, номера с 1. Дуги: {v1}. Если дуга повторяется, остаётся меньший вес.",
+      "en": "Directed graph with {n} vertices, numbered from 1. Arcs: {v1}. If an arc is repeated, the smaller weight remains."
+    },
+    "s1": {
+      "ru": "Сумма расстояний {total}, диаметр {diameter}.",
+      "en": "Distance sum {total}, diameter {diameter}."
+    },
+    "s2": {
+      "ru": "Найдите сумму длин кратчайших путей по всем упорядоченным парам различных вершин.",
+      "en": "Find the sum of shortest-path lengths over all ordered pairs of distinct vertices."
+    },
+    "s3": {
+      "ru": "Найдите диаметр: наибольшую длину кратчайшего пути между различными вершинами.",
+      "en": "Find the diameter: the greatest shortest-path length between distinct vertices."
+    }
+  },
+  "literals": {
+    "s4": "граф не сильно связен"
+  }
+}

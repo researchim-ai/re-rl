@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На графике показана скорость v(t) (шаг по времени 1 с). Найдите ускорение на выделенном красным участке (в м/с²; может быть отрицательным).",
+      "en": "The graph shows velocity v(t) (time step 1 s). Find the acceleration on the red-highlighted segment (in m/s²; may be negative)."
+    },
+    "s1": {
+      "ru": "На графике показана скорость тела v(t) (шаг по времени 1 с). Найдите перемещение за всё время — площадь под графиком (в метрах).",
+      "en": "The graph shows a body's velocity v(t) (time step 1 s). Find the total displacement — the area under the graph (in meters)."
+    },
+    "s2": {
+      "ru": "Перемещение равно площади под v(t): сумма трапеций шириной 1 с.",
+      "en": "Displacement equals the area under v(t): sum of width-1 trapezoids."
+    },
+    "s3": {
+      "ru": "Ускорение — наклон участка: (v₂−v₁)/Δt при Δt = 1 с.",
+      "en": "Acceleration is the segment slope: (v₂−v₁)/Δt with Δt = 1 s."
+    },
+    "s4": {
+      "ru": "t, с",
+      "en": "t, с"
+    },
+    "s5": {
+      "ru": "v, м/с",
+      "en": "v, m/s"
+    },
+    "s6": {
+      "ru": "График скорости v(t)",
+      "en": "График скорости v(t)"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите длину наибольшей общей подстроки строк {a} и {b}. Подстрока — непрерывный фрагмент, не подпоследовательность.",
+      "en": "Find the length of the longest common substring of {a} and {b}. A substring is a contiguous fragment, not a subsequence."
+    },
+    "s1": {
+      "ru": "Динамика по совпадающим соседним символам даёт длину {answer}.",
+      "en": "The DP on adjacent matches gives length {answer}."
+    }
+  }
+}

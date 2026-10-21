@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В группе {total} человек. {A} знают английский, {B} знают немецкий, {both} знают оба языка.",
+      "en": "In a group of {total} people, {A} know English, {B} know German, {both} know both languages."
+    },
+    "s1": {
+      "ru": " Сколько человек знают хотя бы один из языков?",
+      "en": " How many people know at least one of the languages?"
+    },
+    "s2": {
+      "ru": "Используем принцип включения-исключения.",
+      "en": "Use the inclusion–exclusion principle."
+    },
+    "s3": {
+      "ru": " Сколько человек знают только английский?",
+      "en": " How many people know only English?"
+    },
+    "s4": {
+      "ru": " Сколько человек не знают ни одного из этих языков?",
+      "en": " How many people know neither language?"
+    },
+    "s5": {
+      "ru": "Только A = |A| − |A ∩ B| = {A} − {both} = {_answer}.",
+      "en": "Only A = |A| − |A ∩ B| = {A} − {both} = {_answer}."
+    },
+    "s6": {
+      "ru": "Ни одного = N − |A ∪ B| = {total} − {union} = {_answer}.",
+      "en": "Neither = N − |A ∪ B| = {total} − {union} = {_answer}."
+    }
+  }
+}

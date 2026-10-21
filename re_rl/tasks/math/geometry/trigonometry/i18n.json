@@ -1,0 +1,46 @@
+{
+  "text": {
+    "s0": {
+      "ru": "cos_neg_half",
+      "en": "cos_neg_half"
+    },
+    "s1": {
+      "ru": "trigonometry_find_side_c",
+      "en": "trigonometry_find_side_c"
+    },
+    "s2": {
+      "ru": "cos_neg_half",
+      "en": "cos_neg_half"
+    },
+    "s3": {
+      "ru": "basic_value_result",
+      "en": "basic_value_result"
+    },
+    "s4": {
+      "ru": "law_of_cosines",
+      "en": "law_of_cosines"
+    },
+    "s5": {
+      "ru": "basic_value_result",
+      "en": "basic_value_result"
+    },
+    "s6": {
+      "ru": "solutions_depend_on_value",
+      "en": "solutions_depend_on_value"
+    }
+  },
+  "inline_keys": {
+    "solutions_depend_on_value": {
+      "ru": "решения зависят от значения",
+      "en": "solutions depend on the value"
+    },
+    "trigonometry_find_side_c": {
+      "ru": "сторону c",
+      "en": "side c"
+    },
+    "undefined_value": {
+      "ru": "не определён",
+      "en": "undefined"
+    }
+  }
+}

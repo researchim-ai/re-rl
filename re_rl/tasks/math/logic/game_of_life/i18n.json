@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s0": {
+      "ru": "«Игра Жизнь» Конвея на поле {r}×{c} (клетки вне поля считаются мёртвыми). Начальное поле (1 — живая, 0 — мёртвая):\n{v2}\nКаким будет поле через {k} шаг(а)? Выпишите все {v4} клеток по строкам.",
+      "en": "Conway's Game of Life on a {r}×{c} board (cells outside are dead). Initial board (1 alive, 0 dead):\n{v2}\nWhat is the board after {k} step(s)? List all {v4} cells row by row."
+    },
+    "s1": {
+      "ru": "Применяем правила Жизни: живая выживает при 2–3 соседях, мёртвая оживает при 3.",
+      "en": "Apply Life rules: a live cell survives with 2–3 neighbors, a dead cell is born with 3."
+    },
+    "s2": {
+      "ru": "Итоговое поле:\n{v0}",
+      "en": "Final board:\n{v0}"
+    }
+  },
+  "literals": {
+    "s3": "game_of_life"
+  }
+}

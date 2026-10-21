@@ -1,0 +1,65 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начальное состояние:\n",
+      "en": "Initial state:\n"
+    },
+    "s1": {
+      "ru": "\n\nДействия по порядку:\n",
+      "en": "\n\nActions in order:\n"
+    },
+    "s2": {
+      "ru": "\n\nВ какой комнате окажется предмет «{target_item}» в конце? Назовите комнату.",
+      "en": "\n\nWhich room will the {target_item} be in at the end? Name the room."
+    },
+    "s3": {
+      "ru": "Последовательно применяем каждое действие, обновляя, где находится предмет и кто его несёт.",
+      "en": "Apply each action in order, updating where the item is and who carries it."
+    },
+    "s4": {
+      "ru": "Итог: предмет «{target_item}» находится в комнате «{answer_room}».",
+      "en": "Result: the {target_item} is in the {answer_room}."
+    },
+    "s5": {
+      "ru": "{p} находится в комнате «{v1}».",
+      "en": "{p} is in the {v1}."
+    },
+    "s6": {
+      "ru": "Предмет «{it}» лежит в комнате «{v1}».",
+      "en": "The {it} is in the {v1}."
+    },
+    "s7": {
+      "ru": "{p} переходит в комнату «{new_room}».",
+      "en": "{p} moves to the {new_room}."
+    },
+    "s8": {
+      "ru": "{p} берёт предмет «{it}».",
+      "en": "{p} picks up the {it}."
+    },
+    "s9": {
+      "ru": "{p} кладёт предмет «{it}» в текущей комнате.",
+      "en": "{p} drops the {it} in the current room."
+    },
+    "s10": {
+      "ru": "{p} берёт предмет «{it}».",
+      "en": "{p} picks up the {it}."
+    }
+  },
+  "literals": {
+    "s11": "кухня",
+    "s12": "спальня",
+    "s13": "гостиная",
+    "s14": "кабинет",
+    "s15": "прихожая",
+    "s16": "сад",
+    "s17": "Аня",
+    "s18": "Боря",
+    "s19": "Вика",
+    "s20": "Дима",
+    "s21": "ключ",
+    "s22": "книга",
+    "s23": "яблоко",
+    "s24": "лампа",
+    "s25": "мяч"
+  }
+}

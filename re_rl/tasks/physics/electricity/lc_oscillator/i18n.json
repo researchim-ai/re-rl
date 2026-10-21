@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Идеальный контур LC: квадрат циклической частоты ω^2 = 1 / (L*C). L и C даны в условных единицах. Ответ — целое или несократимая дробь.",
+      "en": "Ideal LC circuit: the square of the angular frequency is ω^2 = 1 / (L*C). L and C are in arbitrary units. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "L = {L}, C = {C}. Найдите ω^2.",
+      "en": "L = {L}, C = {C}. Find ω^2."
+    },
+    "s2": {
+      "ru": "C = {C}, ω^2 = {v1}. Найдите L.",
+      "en": "C = {C}, ω^2 = {v1}. Find L."
+    }
+  }
+}

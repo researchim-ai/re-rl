@@ -1,0 +1,23 @@
+{
+  "text": {
+    "s1": {
+      "ru": "Массив: {arr}. Найдите индекс числа {target}.",
+      "en": "Array: {arr}. Find the index of {target}."
+    },
+    "s2": {
+      "ru": "Массив: {arr}. Сколько сравнений сделает двоичный поиск числа {target}?",
+      "en": "Array: {arr}. How many comparisons does binary search make to find {target}?"
+    },
+    "s3": {
+      "ru": "Середины: {shown}. Индекс {index}, сравнений {comps}.",
+      "en": "Midpoints: {shown}. Index {index}, comparisons {comps}."
+    }
+  },
+  "literals": {
+    "s0": {
+      "ru": "Массив упорядочен по возрастанию, индексы с 0. Середина отрезка [lo, hi] равна (lo + hi) // 2. Каждое обращение к середине — одно сравнение.",
+      "en": "The array is sorted in increasing order, indices start at 0. The midpoint of [lo, hi] is (lo + hi) // 2. Each midpoint probe is one comparison."
+    },
+    "s4": "цель отсутствует в массиве"
+  }
+}

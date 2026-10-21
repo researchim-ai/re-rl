@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "answer_with_reason",
+      "en": "answer_with_reason"
+    },
+    "s1": {
+      "ru": "symmetric_not_abelian",
+      "en": "symmetric_not_abelian"
+    }
+  }
+}

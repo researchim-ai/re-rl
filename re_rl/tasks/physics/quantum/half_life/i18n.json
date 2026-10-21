@@ -1,0 +1,27 @@
+{
+  "text": {
+    "s0": {
+      "ru": "За каждый период полураспада количество и активность делятся ровно на 2.",
+      "en": "Each half-life divides both the number of nuclei and the activity by exactly 2."
+    },
+    "s1": {
+      "ru": "{n0} / 2^{k} = {remaining} ядер, активность {activity0} / 2^{k_2} = {activity}.",
+      "en": "{n0} / 2^{k} = {remaining} nuclei, activity {activity0} / 2^{k_2} = {activity}."
+    },
+    "s2": {
+      "ru": "Было {n0} ядер. Сколько останется через {k} периода полураспада?",
+      "en": "There were {n0} nuclei. How many remain after {k} half-lives?"
+    },
+    "s3": {
+      "ru": "Начальная активность {activity0}. Какая активность будет через {k} периода полураспада?",
+      "en": "The initial activity is {activity0}. What is the activity after {k} half-lives?"
+    },
+    "s4": {
+      "ru": "Число ядер уменьшилось с {n0} до {remaining}. Сколько периодов полураспада прошло?",
+      "en": "The number of nuclei fell from {n0} to {remaining}. How many half-lives passed?"
+    }
+  },
+  "literals": {
+    "s5": "half_life_steps"
+  }
+}

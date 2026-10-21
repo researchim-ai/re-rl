@@ -1,0 +1,54 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Минимум не наблюдается (sin(θ) > 1)",
+      "en": "Минимум не наблюдается (sin(θ) > 1)"
+    },
+    "s1": {
+      "ru": "Максимум {m}-го порядка не наблюдается",
+      "en": "Максимум {m}-го порядка не наблюдается"
+    },
+    "s2": {
+      "ru": "d = 1/{N_lines} мм = {v1:.2f} мкм",
+      "en": "d = 1/{N_lines} mm = {v1:.2f} мkm"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на дифракцию света.",
+      "en": "Solve the light diffraction problem."
+    },
+    "problem": {
+      "single_slit": {
+        "ru": "Дифракция на щели шириной a = {a} мкм, λ = {lambda} нм. Найдите угол первого минимума.",
+        "en": "Diffraction on slit of width a = {a} μm, λ = {lambda} nm. Find the angle of first minimum."
+      },
+      "grating": {
+        "ru": "Дифракционная решётка: {N} штрихов/мм, λ = {lambda} нм. Найдите угол максимума {m}-го порядка.",
+        "en": "Diffraction grating: {N} lines/mm, λ = {lambda} nm. Find the angle of {m}-order maximum."
+      },
+      "resolving_power": {
+        "ru": "Решётка с {N} штрихами. Найдите разрешающую способность в {m}-м порядке.",
+        "en": "Grating with {N} lines. Find the resolving power in {m}-th order."
+      }
+    },
+    "steps": {
+      "slit_minimum": {
+        "ru": "Минимум одиночной щели: a·sin(θ) = mλ",
+        "en": "Single slit minimum: a·sin(θ) = mλ"
+      },
+      "grating_maximum": {
+        "ru": "Максимум решётки: d·sin(θ) = mλ",
+        "en": "Grating maximum: d·sin(θ) = mλ"
+      },
+      "resolving": {
+        "ru": "Разрешающая способность: R = mN",
+        "en": "Resolving power: R = mN"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

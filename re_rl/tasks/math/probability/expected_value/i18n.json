@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Случайная величина принимает значения {values} с вероятностями {probs}. Найдите математическое ожидание E[X].",
+        "Найдите E[X] для дискретной случайной величины со значениями {values} и вероятностями {probs}."
+      ],
+      "en": [
+        "A random variable takes values {values} with probabilities {probs}. Find the expected value E[X].",
+        "Compute E[X] for a discrete random variable with values {values} and probabilities {probs}."
+      ]
+    },
+    "step_setup": {
+      "ru": "E[X] = Σ xᵢ·pᵢ — суммируем произведения значений на их вероятности.",
+      "en": "E[X] = Σ xᵢ·pᵢ — sum the products of values and their probabilities."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

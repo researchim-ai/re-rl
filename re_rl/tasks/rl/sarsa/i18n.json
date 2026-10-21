@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "SARSA: δ = r + γ * Q_next - Q, Q_new = Q + α * δ. Q_next — оценка именно выбранного следующего действия, не максимум. Ответ — целое или несократимая дробь.",
+      "en": "SARSA: δ = r + γ * Q_next - Q, Q_new = Q + α * δ. Q_next is the value of the action actually taken next, not the maximum. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Q = {q}, α = {v1}, r = {reward}, γ = {v3}, Q_next = {q_next}.",
+      "en": "Q = {q}, α = {v1}, r = {reward}, γ = {v3}, Q_next = {q_next}."
+    },
+    "s2": {
+      "ru": "Найдите Q_new.",
+      "en": "Find Q_new."
+    },
+    "s3": {
+      "ru": "Найдите δ.",
+      "en": "Find δ."
+    }
+  }
+}

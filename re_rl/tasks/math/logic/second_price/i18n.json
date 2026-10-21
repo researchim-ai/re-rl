@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Аукцион второй цены. Побеждает наибольшая ставка; при равенстве — меньший номер. Победитель платит наибольшую из остальных ставок.",
+      "en": "Second-price auction. The highest bid wins; ties go to the smaller id. The winner pays the highest of the other bids."
+    },
+    "s1": {
+      "ru": "Кто победил? Ответьте номером.",
+      "en": "Who wins? Answer with the id."
+    },
+    "s2": {
+      "ru": "Сколько платит победитель?",
+      "en": "How much does the winner pay?"
+    },
+    "s3": {
+      "ru": "Победитель {winner}, платёж {payment}.",
+      "en": "Winner {winner}, payment {payment}."
+    },
+    "s4": {
+      "ru": "Ставки (номер, ставка): ",
+      "en": "Bids (id, bid): "
+    }
+  }
+}

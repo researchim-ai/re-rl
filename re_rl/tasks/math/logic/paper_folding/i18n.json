@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Лист бумаги складывают пополам {k} раз(а), затем насквозь пробивают {h} отверстий. Сколько отверстий будет на полностью развёрнутом листе?",
+      "en": "A sheet of paper is folded in half {k} time(s), then {h} holes are punched through all layers. How many holes are on the fully unfolded sheet?"
+    },
+    "s1": {
+      "ru": "Лист бумаги складывают пополам {k} раз(а). Сколько слоёв бумаги получится?",
+      "en": "A sheet of paper is folded in half {k} time(s). How many layers of paper result?"
+    },
+    "s2": {
+      "ru": "Каждое складывание удваивает число слоёв: 2^{k} = {v1}.",
+      "en": "Each fold doubles the layers: 2^{k} = {v1}."
+    }
+  }
+}

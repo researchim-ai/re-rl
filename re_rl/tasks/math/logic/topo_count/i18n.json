@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ориентированный ациклический граф, вершины 1..{n}, рёбра: {shown}. Ребро a->b означает, что a стоит раньше b. Сколько существует топологических порядков?",
+      "en": "A directed acyclic graph, vertices 1..{n}, edges: {shown}. Edge a->b means a comes before b. How many topological orders are there?"
+    },
+    "s1": {
+      "ru": "Перебор допустимых масок даёт {answer} порядков.",
+      "en": "Enumeration of feasible masks gives {answer} orders."
+    }
+  }
+}

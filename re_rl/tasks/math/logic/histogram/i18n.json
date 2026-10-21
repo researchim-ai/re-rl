@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Высоты столбцов гистограммы слева направо: {data}. Ширина каждого столбца равна 1. Найдите наибольшую площадь прямоугольника, который целиком лежит под столбцами.",
+      "en": "Histogram bar heights from left to right: {data}. Each bar has width 1. Find the largest area of a rectangle that lies entirely under the bars."
+    },
+    "s1": {
+      "ru": "Наибольшая площадь равна {answer}.",
+      "en": "The largest area is {answer}."
+    }
+  }
+}

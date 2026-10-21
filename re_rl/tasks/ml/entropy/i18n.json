@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Какое распределение имеет большую энтропию Шеннона? A: кратности {a}. B: кратности {b}. Ответьте A или B.",
+      "en": "Which distribution has the larger Shannon entropy? A: counts {a}. B: counts {b}. Answer A or B."
+    },
+    "s1": {
+      "ru": "Дискретное распределение задано кратностями исходов: {counts}. Найдите энтропию Шеннона в битах. Ответ — целое или несократимая дробь.",
+      "en": "A discrete distribution is given by outcome counts: {counts}. Find its Shannon entropy in bits. Answer with an integer or a reduced fraction."
+    },
+    "s2": {
+      "ru": "H = {shown} бит.",
+      "en": "H = {shown} bits."
+    },
+    "s3": {
+      "ru": "H(A) = {v0} бит, H(B) = {v1} бит.",
+      "en": "H(A) = {v0} bits, H(B) = {v1} bits."
+    }
+  },
+  "literals": {
+    "s4": "сумма кратностей должна быть степенью двойки",
+    "s5": "кратность должна быть степенью двойки"
+  }
+}

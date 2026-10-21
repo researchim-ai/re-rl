@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Прирост Джини = G(все) - (nL/n) G(f=0) - (nR/n) G(f=1), G = 1 - sum (c/n)^2. Пустая ветка даёт прирост 0.",
+      "en": "Gini gain = G(all) - (nL/n) G(f=0) - (nR/n) G(f=1), G = 1 - sum (c/n)^2. An empty branch gives gain 0."
+    },
+    "s1": {
+      "ru": "Таблица объектов (класс y и признак fA; столбец fB не используйте):\n{table}\nНайдите прирост Джини при разбиении по fA. Ответ — целое или несократимая дробь.",
+      "en": "Objects (class y and feature fA; ignore column fB):\n{table}\nFind the Gini gain of splitting on fA. Answer with an integer or a reduced fraction."
+    },
+    "s2": {
+      "ru": "Таблица объектов:\n{table}\nКакой признак даёт больший прирост Джини, A или B? Ответьте A или B.",
+      "en": "Objects:\n{table}\nWhich feature has the larger Gini gain, A or B? Answer A or B."
+    },
+    "s3": {
+      "ru": "Прирост по fA равен {shown}.",
+      "en": "Gini gain of fA is {shown}."
+    },
+    "s4": {
+      "ru": "Прирост A = {v0}, B = {v1}.",
+      "en": "Gain A = {v0}, B = {v1}."
+    }
+  }
+}

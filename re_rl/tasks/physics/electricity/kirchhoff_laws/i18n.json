@@ -1,0 +1,38 @@
+{
+  "text": {
+    "s0": {
+      "ru": "А",
+      "en": "A"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу с применением правил Кирхгофа.",
+      "en": "Solve the problem using Kirchhoff's laws."
+    },
+    "problem": {
+      "single_loop": {
+        "ru": "В одном контуре включены встречно две ЭДС E1 = {E1} В и E2 = {E2} В и резисторы R1 = {R1} Ом и R2 = {R2} Ом. Найдите ток в контуре.",
+        "en": "A single loop contains two opposing EMFs E1 = {E1} V and E2 = {E2} V and resistors R1 = {R1} Ω and R2 = {R2} Ω. Find the loop current."
+      },
+      "two_loop": {
+        "ru": "Две ветви с ЭДС E1 = {E1} В (R1 = {R1} Ом) и E2 = {E2} В (R2 = {R2} Ом) соединены параллельно через общий резистор R3 = {R3} Ом. Найдите ток через R3.",
+        "en": "Two branches with EMFs E1 = {E1} V (R1 = {R1} Ω) and E2 = {E2} V (R2 = {R2} Ω) share a common resistor R3 = {R3} Ω. Find the current through R3."
+      }
+    },
+    "steps": {
+      "single_formula": {
+        "ru": "Закон Кирхгофа для контура: I = (E1 − E2)/(R1 + R2).",
+        "en": "Kirchhoff's voltage law: I = (E1 − E2)/(R1 + R2)."
+      },
+      "two_formula": {
+        "ru": "Система: E1 = I1·R1 + I3·R3; E2 = I2·R2 + I3·R3; I3 = I1 + I2. Решаем относительно I3.",
+        "en": "System: E1 = I1·R1 + I3·R3; E2 = I2·R2 + I3·R3; I3 = I1 + I2. Solve for I3."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

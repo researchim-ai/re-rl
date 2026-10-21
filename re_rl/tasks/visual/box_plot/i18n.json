@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — диаграмма размаха без выбросов. Числа есть только на оси.",
+      "en": "The figure is a box plot with no outliers. The numbers are only on the axis."
+    },
+    "s1": {
+      "ru": "Найдите медиану — значение оранжевой черты внутри ящика.",
+      "en": "Find the median — the value of the orange line inside the box."
+    },
+    "s2": {
+      "ru": "Найдите межквартильный размах: длина ящика, правый край минус левый.",
+      "en": "Find the interquartile range: the length of the box, right edge minus left edge."
+    },
+    "s3": {
+      "ru": "Найдите размах: от конца левого уса до конца правого.",
+      "en": "Find the range: from the end of the left whisker to the end of the right one."
+    },
+    "s4": {
+      "ru": "Оранжевая черта стоит на {med}.",
+      "en": "The orange line sits at {med}."
+    },
+    "s5": {
+      "ru": "Края ящика {q1} и {q3}, разность {answer}.",
+      "en": "Box edges are {q1} and {q3}, difference {answer}."
+    },
+    "s6": {
+      "ru": "Концы усов {lo} и {hi}, разность {answer}.",
+      "en": "Whisker ends are {lo} and {hi}, difference {answer}."
+    }
+  }
+}

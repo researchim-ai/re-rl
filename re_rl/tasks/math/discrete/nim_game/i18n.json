@@ -1,0 +1,56 @@
+{
+  "text": {
+    "s0": {
+      "ru": "find_winning_move",
+      "en": "find_winning_move"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Проанализируйте позицию в игре Ним.\nВ игре Ним два игрока по очереди берут предметы из кучек.\nЗа один ход можно взять любое количество предметов из одной кучки.\nПроигрывает тот, кто берёт последний предмет (или не может сделать ход).\nФормат ответа:\n  <reasoning>\n    (Анализ с использованием XOR/Sprague-Grundy)\n  </reasoning>\n  <answer>\n    (Выигрышный ход или вывод о позиции)\n  </answer>",
+      "en": "type: structured_text_with_tags\nDescription: Analyze the position in Nim game.\nIn Nim, two players take turns removing objects from piles.\nOn each turn, a player can take any number of objects from one pile.\nThe player who takes the last object loses (or cannot move).\nAnswer format:\n  <reasoning>\n    (Analysis using XOR/Sprague-Grundy)\n  </reasoning>\n  <answer>\n    (Winning move or position assessment)\n  </answer>"
+    },
+    "problem": {
+      "find_winner": {
+        "ru": "Игра Ним: есть кучки с {piles} предметами.\nСейчас ход первого игрока.\n\nКто победит при оптимальной игре? Если первый игрок побеждает, укажите выигрышный ход.",
+        "en": "Nim game: there are piles with {piles} objects.\nIt's the first player's turn.\n\nWho wins with optimal play? If the first player wins, specify the winning move."
+      },
+      "find_move": {
+        "ru": "Игра Ним: есть кучки с {piles} предметами.\nВаш ход.\n\nНайдите оптимальный ход (если он существует).",
+        "en": "Nim game: there are piles with {piles} objects.\nIt's your turn.\n\nFind the optimal move (if one exists)."
+      }
+    },
+    "steps": {
+      "compute_xor": {
+        "ru": "Вычисляем XOR (ним-сумму): {xor_computation} = {xor_result}",
+        "en": "Computing XOR (nim-sum): {xor_computation} = {xor_result}"
+      },
+      "xor_zero": {
+        "ru": "Ним-сумма = 0, это проигрышная позиция для ходящего.",
+        "en": "Nim-sum = 0, this is a losing position for the player to move."
+      },
+      "xor_nonzero": {
+        "ru": "Ним-сумма ≠ 0 ({xor_result}), это выигрышная позиция для ходящего.",
+        "en": "Nim-sum ≠ 0 ({xor_result}), this is a winning position for the player to move."
+      },
+      "find_winning_move": {
+        "ru": "Ищем выигрышный ход: нужно сделать ним-сумму равной 0.",
+        "en": "Finding winning move: need to make nim-sum equal to 0."
+      },
+      "winning_move": {
+        "ru": "Выигрышный ход: взять {take} из кучки {pile} (было {before}, станет {after}).",
+        "en": "Winning move: take {take} from pile {pile} (was {before}, becomes {after})."
+      }
+    },
+    "final_answer": {
+      "winning": {
+        "ru": "Первый игрок побеждает.\nВыигрышный ход: взять {take} предмет(ов) из кучки {pile}.\nПосле хода: {new_piles}.",
+        "en": "First player wins.\nWinning move: take {take} object(s) from pile {pile}.\nAfter move: {new_piles}."
+      },
+      "losing": {
+        "ru": "Второй игрок побеждает при оптимальной игре.\nТекущая позиция проигрышная (ним-сумма = 0).",
+        "en": "Second player wins with optimal play.\nCurrent position is losing (nim-sum = 0)."
+      }
+    }
+  }
+}

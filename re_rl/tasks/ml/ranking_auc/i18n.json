@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пары (метка, оценка). Метка 1 — положительный класс. Оценки различны. Согласованная пара — положительный объект с оценкой выше отрицательного. AUC = число согласованных пар / (число положительных * число отрицательных).",
+      "en": "Pairs (label, score). Label 1 is the positive class. Scores are unique. A concordant pair is a positive object scored higher than a negative one. AUC = concordant pairs / (positives * negatives)."
+    },
+    "s1": {
+      "ru": "Согласованных пар {pairs} из {n_pos}*{n_neg}. AUC = {shown}.",
+      "en": "{pairs} concordant pairs out of {n_pos}*{n_neg}. AUC = {shown}."
+    },
+    "s2": {
+      "ru": "Объекты: {data}. Сколько согласованных пар?",
+      "en": "Objects: {data}. How many concordant pairs?"
+    },
+    "s3": {
+      "ru": "Объекты: {data}. Чему равен AUC? Ответ — целое или несократимая дробь.",
+      "en": "Objects: {data}. What is the AUC? Answer with an integer or a reduced fraction."
+    }
+  }
+}

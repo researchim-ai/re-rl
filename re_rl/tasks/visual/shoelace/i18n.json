@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На координатной плоскости изображён многоугольник с {n} вершинами (их координаты подписаны). Найдите его площадь.",
+      "en": "The coordinate plane shows a polygon with {n} vertices (their coordinates are labeled). Find its area."
+    },
+    "s1": {
+      "ru": "Многоугольник по вершинам",
+      "en": "Многоугольник по вершинам"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ориентированный граф на вершинах 1..{n}, рёбра только вперёд: {shown}. Сколько различных путей из 1 в {n_2}?",
+      "en": "A directed graph on vertices 1..{n}, edges only forward: {shown}. How many distinct paths go from 1 to {n_2}?"
+    },
+    "s1": {
+      "ru": "Динамика по топологическому порядку даёт {answer} путей.",
+      "en": "DP in topological order gives {answer} paths."
+    }
+  }
+}

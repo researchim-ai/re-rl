@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Монеты номиналов {coins}, каждого номинала сколько угодно. Какое минимальное число монет нужно, чтобы набрать сумму {amount}?",
+      "en": "Coins of denominations {coins} are unlimited. What is the minimum number of coins needed to make {amount}?"
+    },
+    "s1": {
+      "ru": "Жадный выбор самых крупных монет даёт тот же минимум.",
+      "en": "Greedy selection of the largest coins gives the same minimum."
+    },
+    "s2": {
+      "ru": "Жадный выбор самых крупных монет даёт {greedy}, это больше оптимума.",
+      "en": "Greedy selection of the largest coins uses {greedy}, which is worse than optimal."
+    },
+    "s3": {
+      "ru": "Одна оптимальная комбинация: {combo} ({answer} шт.).",
+      "en": "One optimal combination: {combo} ({answer} coins)."
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Расстояние — манхэттенское |dx| + |dy|. При равенстве расстояний раньше берётся объект с меньшим номером. k нечётное, побеждает большинство.",
+      "en": "Distance is Manhattan |dx| + |dy|. Equal distances are broken by the smaller object index. k is odd, so the majority class wins."
+    },
+    "s1": {
+      "ru": "Обучающая выборка: {data}. Запрос ({qx}, {qy}), k = {k}. Какой класс получит запрос? Ответьте A или B.",
+      "en": "Training set: {data}. Query ({qx}, {qy}), k = {k}. Which class does the query get? Answer A or B."
+    },
+    "s2": {
+      "ru": "Обучающая выборка: {data}. Запрос ({qx}, {qy}). Какой номер у ближайшего объекта?",
+      "en": "Training set: {data}. Query ({qx}, {qy}). What is the index of the nearest object?"
+    },
+    "s3": {
+      "ru": "Соседи (номер/класс/расстояние): {v0}. Класс {label}.",
+      "en": "Neighbors (index/class/distance): {v0}. Class {label}."
+    },
+    "s4": {
+      "ru": "Ближайший — номер {nearest_index} (расстояния: {v1}).",
+      "en": "Nearest index is {nearest_index} (distances: {v1})."
+    }
+  }
+}

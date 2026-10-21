@@ -1,0 +1,56 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тот, кто пьёт {a}, занимается: {b}.",
+      "en": "The one who drinks {a} plays {b}."
+    },
+    "s1": {
+      "ru": "{n} человек ({v1}), у каждого свой напиток ({v2}) и свой вид спорта ({v3}).\nПодсказки:\n",
+      "en": "{n} people ({v1}), each with a unique drink ({v2}) and a unique sport ({v3}).\nClues:\n"
+    },
+    "s2": {
+      "ru": "{a} пьёт {b}.",
+      "en": "{a} drinks {b}."
+    },
+    "s3": {
+      "ru": "{a} не пьёт {b}.",
+      "en": "{a} does not drink {b}."
+    },
+    "s4": {
+      "ru": "{a} занимается: {b}.",
+      "en": "{a} plays {b}."
+    },
+    "s5": {
+      "ru": "\nЧто пьёт {query_person}?",
+      "en": "\nWhat does {query_person} drink?"
+    },
+    "s6": {
+      "ru": "\nКаким спортом занимается {query_person}?",
+      "en": "\nWhich sport does {query_person} play?"
+    },
+    "s7": {
+      "ru": "Комбинируем подсказки, сужая соответствие людей, напитков и спорта.",
+      "en": "Combine clues to pin down the person–drink–sport correspondence."
+    },
+    "s8": {
+      "ru": "ru",
+      "en": "en"
+    },
+    "s9": {
+      "ru": "ru",
+      "en": "en"
+    }
+  },
+  "literals": {
+    "s10": "чай",
+    "s11": "кофе",
+    "s12": "сок",
+    "s13": "молоко",
+    "s14": "какао",
+    "s15": "теннис",
+    "s16": "шахматы",
+    "s17": "футбол",
+    "s18": "плавание",
+    "s19": "бег"
+  }
+}

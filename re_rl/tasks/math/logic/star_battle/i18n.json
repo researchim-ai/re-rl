@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "«Битва звёзд» {n}×{n_2}. Поле разбито на {n_3} областей (буквы). Разместите звёзды так, чтобы в каждой строке, каждом столбце и каждой области было ровно по одной звезде, и никакие две звезды не соприкасались (даже по диагонали).\nОбласти:\n{rows}\nПеречислите координаты (строка, столбец) звёзд, нумерация с 1.",
+      "en": "{n}×{n_2} Star Battle. The board is split into {n_3} regions (letters). Place stars so each row, column and region has exactly one star, and no two stars touch (even diagonally).\nRegions:\n{rows}\nList the (row, column) coordinates of the stars, 1-indexed."
+    },
+    "s1": {
+      "ru": "По одной звезде в строке/столбце/области, без касаний — единственное согласованное размещение.",
+      "en": "One star per row/column/region, no touching — place them consistently."
+    },
+    "s2": {
+      "ru": "Звёзды: {coords}.",
+      "en": "Stars: {coords}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив: {data}. Сколько непустых непрерывных подмассивов имеют сумму {target}?",
+      "en": "Array: {data}. How many nonempty contiguous subarrays sum to {target}?"
+    },
+    "s1": {
+      "ru": "Сумму {target} дают {answer} подмассивов.",
+      "en": "{target} subarrays sum to {answer}."
+    },
+    "s2": {
+      "ru": "цель должна встречаться хотя бы в одном отрезке",
+      "en": "цель должна встречаться хотя бы в одном отрезке"
+    }
+  }
+}

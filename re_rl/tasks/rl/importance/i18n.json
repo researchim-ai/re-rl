@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пошаговые отношения политики к поведению, числитель/знаменатель: {v0}.",
+      "en": "Stepwise policy-to-behavior ratios, numerator/denominator: {v0}."
+    },
+    "s1": {
+      "ru": "Произведение {v0}, шагов с большим числителем {above}.",
+      "en": "Product {v0}, steps with a larger numerator {above}."
+    },
+    "s2": {
+      "ru": "Найдите произведение. Ответ — целое или несократимая дробь.",
+      "en": "Find the product. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "На скольких шагах числитель строго больше знаменателя, как они записаны?",
+      "en": "On how many steps is the numerator strictly greater than the denominator, as written?"
+    }
+  }
+}

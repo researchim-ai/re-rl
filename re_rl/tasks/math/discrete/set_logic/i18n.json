@@ -1,0 +1,114 @@
+{
+  "text": {
+    "s0": {
+      "ru": "| A | B | Результат |",
+      "en": "| A | B | Result |"
+    },
+    "s1": {
+      "ru": "|---|---|-----------|",
+      "en": "|---|---|--------|"
+    },
+    "s2": {
+      "ru": "| 0 | 0 |     {{}}    |",
+      "en": "| 0 | 0 |   {{}}   |"
+    },
+    "s3": {
+      "ru": "| 0 | 1 |     {{}}    |",
+      "en": "| 0 | 1 |   {{}}   |"
+    },
+    "s4": {
+      "ru": "| 1 | 0 |     {{}}    |",
+      "en": "| 1 | 0 |   {{}}   |"
+    },
+    "s5": {
+      "ru": "| 1 | 1 |     {{}}    |",
+      "en": "| 1 | 1 |   {{}}   |"
+    },
+    "s16": {
+      "ru": "max_set_size",
+      "en": "max_set_size"
+    },
+    "s17": {
+      "ru": "{v0} человек знают английский, {v1} человек знают французский, {both} человек знают оба языка.",
+      "en": "{v0} человек знают английский, {v1} человек знают французский, {both} человек знают оба языка."
+    },
+    "s18": {
+      "ru": "{v0} people know English, {v1} people know French, {both} people know both languages.",
+      "en": "{v0} people know English, {v1} people know French, {both} people know both languages."
+    },
+    "s19": {
+      "ru": "know neither language",
+      "en": "know neither language"
+    },
+    "s20": {
+      "ru": "truth_table_constructed",
+      "en": "truth_table_constructed"
+    },
+    "s21": {
+      "ru": "Total = {total}, know English = {a_total}, know French = {b_total}, both = {both}",
+      "en": "Total = {total}, know English = {a_total}, know French = {b_total}, both = {both}"
+    },
+    "s22": {
+      "ru": "max_set_size",
+      "en": "max_set_size"
+    },
+    "s23": {
+      "ru": "⊥ (ложь)",
+      "en": "⊥ (ложь)"
+    },
+    "s24": {
+      "ru": "⊤ (истина)",
+      "en": "⊤ (истина)"
+    },
+    "s25": {
+      "ru": "set_logic_neither_known",
+      "en": "set_logic_neither_known"
+    },
+    "s26": {
+      "ru": "set_logic_total_known_calc",
+      "en": "set_logic_total_known_calc"
+    },
+    "s27": {
+      "ru": "symmetric_diff_result",
+      "en": "symmetric_diff_result"
+    },
+    "s28": {
+      "ru": "power_set_formula",
+      "en": "power_set_formula"
+    },
+    "s29": {
+      "ru": "set_logic_neither_calc",
+      "en": "set_logic_neither_calc"
+    }
+  },
+  "literals": {
+    "s6": "max_set_size",
+    "s7": "max_set_size",
+    "s8": "max_set_size",
+    "s9": "max_set_size",
+    "s10": "max_set_size",
+    "s11": "max_set_size",
+    "s12": "max_set_size",
+    "s13": "max_set_size",
+    "s14": "max_set_size",
+    "s15": "max_set_size"
+  },
+  "inline_keys": {
+    "truth_table_constructed": {
+      "ru": "Таблица истинности построена",
+      "en": "Truth table constructed"
+    },
+    "set_logic_total_known_calc": {
+      "ru": "Всего = {total}, знают англ. = {a_total}, знают франц. = {b_total}, оба = {both}",
+      "en": "Total = {total}, know English = {a_total}, know French = {b_total}, both = {both}"
+    },
+    "set_logic_neither_known": {
+      "ru": "не знают ни одного из этих языков",
+      "en": "know neither of these languages"
+    },
+    "set_logic_neither_calc": {
+      "ru": "Ни одного = {total} - {a_total} - {b_total} + {both} = {neither}",
+      "en": "Neither = {total} - {a_total} - {b_total} + {both} = {neither}"
+    }
+  }
+}

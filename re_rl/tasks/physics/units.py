@@ -5,6 +5,9 @@
 
 Поддерживает конвертацию и форматирование физических величин.
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'units_i18n.json')
+
 
 from typing import Dict, Tuple, Optional
 import math
@@ -152,51 +155,51 @@ UNIT_CONVERSIONS: Dict[str, Dict[str, float]] = {
 # Названия единиц на русском и английском
 UNIT_NAMES: Dict[str, Dict[str, Tuple[str, str]]] = {
     "length": {
-        "m": ("м", "m"),
-        "km": ("км", "km"),
-        "cm": ("см", "cm"),
-        "mm": ("мм", "mm"),
+        "m": (texts.literal('literals.s0'), "m"),
+        "km": (texts.literal('literals.s1'), "km"),
+        "cm": (texts.literal('literals.s2'), "cm"),
+        "mm": (texts.literal('literals.s3'), "mm"),
     },
     "mass": {
-        "kg": ("кг", "kg"),
-        "g": ("г", "g"),
-        "t": ("т", "t"),
+        "kg": (texts.literal('literals.s4'), "kg"),
+        "g": (texts.literal('literals.s5'), "g"),
+        "t": (texts.literal('literals.s6'), "t"),
     },
     "time": {
-        "s": ("с", "s"),
-        "min": ("мин", "min"),
-        "h": ("ч", "h"),
+        "s": (texts.literal('literals.s7'), "s"),
+        "min": (texts.literal('literals.s8'), "min"),
+        "h": (texts.literal('literals.s9'), "h"),
     },
     "velocity": {
-        "m/s": ("м/с", "m/s"),
-        "km/h": ("км/ч", "km/h"),
+        "m/s": (texts.literal('literals.s10'), "m/s"),
+        "km/h": (texts.literal('literals.s11'), "km/h"),
     },
     "force": {
-        "N": ("Н", "N"),
-        "kN": ("кН", "kN"),
+        "N": (texts.literal('literals.s12'), "N"),
+        "kN": (texts.literal('literals.s13'), "kN"),
     },
     "energy": {
-        "J": ("Дж", "J"),
-        "kJ": ("кДж", "kJ"),
+        "J": (texts.literal('literals.s14'), "J"),
+        "kJ": (texts.literal('literals.s15'), "kJ"),
     },
     "power": {
-        "W": ("Вт", "W"),
-        "kW": ("кВт", "kW"),
+        "W": (texts.literal('literals.s16'), "W"),
+        "kW": (texts.literal('literals.s17'), "kW"),
     },
     "pressure": {
-        "Pa": ("Па", "Pa"),
-        "kPa": ("кПа", "kPa"),
-        "atm": ("атм", "atm"),
+        "Pa": (texts.literal('literals.s18'), "Pa"),
+        "kPa": (texts.literal('literals.s19'), "kPa"),
+        "atm": (texts.literal('literals.s20'), "atm"),
     },
     "temperature": {
-        "K": ("К", "K"),
+        "K": (texts.literal('literals.s21'), "K"),
         "C": ("°C", "°C"),
     },
     "voltage": {
-        "V": ("В", "V"),
+        "V": (texts.literal('literals.s22'), "V"),
     },
     "resistance": {
-        "Ω": ("Ом", "Ω"),
+        "Ω": (texts.literal('literals.s23'), "Ω"),
     },
 }
 
@@ -294,7 +297,7 @@ def format_with_units(
     # Получаем название единицы
     unit_type = find_unit_type(unit)
     if unit_type and unit_type in UNIT_NAMES and unit in UNIT_NAMES[unit_type]:
-        unit_name = UNIT_NAMES[unit_type][unit][0 if language == "ru" else 1]
+        unit_name = UNIT_NAMES[unit_type][unit][{"ru": 0, "en": 1}.get(language, 1)]
     else:
         unit_name = unit
     

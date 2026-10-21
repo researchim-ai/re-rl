@@ -1,0 +1,70 @@
+{
+  "text": {
+    "s0": {
+      "ru": "W = {v0} Дж",
+      "en": "W = {v0} J"
+    },
+    "s1": {
+      "ru": "W = {P}·({V2}−{V1}) = {v3} Дж",
+      "en": "W = {P}·({V2}−{V1}) = {v3} J"
+    },
+    "s2": {
+      "ru": "W = {v0} Дж",
+      "en": "W = {v0} J"
+    },
+    "s3": {
+      "ru": "ΔU = {v0} Дж",
+      "en": "ΔU = {v0} J"
+    },
+    "s4": {
+      "ru": "W = {n}·{R}·{T}·ln({V2}/{V1}) = {v5} Дж",
+      "en": "W = {n}·{R}·{T}·ln({V2}/{V1}) = {v5} J"
+    },
+    "s5": {
+      "ru": "ΔU = {Q} − ({W}) = {v2} Дж",
+      "en": "ΔU = {Q} − ({W}) = {v2} J"
+    },
+    "s6": {
+      "ru": "first_law_formula",
+      "en": "first_law_formula"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о работе газа и первом начале термодинамики.",
+      "en": "Solve the gas-work / first-law problem."
+    },
+    "problem": {
+      "isobaric_work": {
+        "ru": "Газ при постоянном давлении P = {P} Па расширяется от V1 = {V1} м³ до V2 = {V2} м³. Найдите работу газа (в Дж).",
+        "en": "A gas at constant pressure P = {P} Pa expands from V1 = {V1} m³ to V2 = {V2} m³. Find the work done by the gas (in J)."
+      },
+      "isothermal_work": {
+        "ru": "n = {n} моль идеального газа изотермически при T = {T} К расширяется от V1 = {V1} м³ до V2 = {V2} м³. Найдите работу газа (в Дж).",
+        "en": "n = {n} mol of an ideal gas expands isothermally at T = {T} K from V1 = {V1} m³ to V2 = {V2} m³. Find the work done by the gas (in J)."
+      },
+      "first_law": {
+        "ru": "Газу передали Q = {Q} Дж теплоты, и он совершил работу W = {W} Дж. Найдите изменение внутренней энергии ΔU (в Дж).",
+        "en": "A gas receives Q = {Q} J of heat and does W = {W} J of work. Find the change in internal energy ΔU (in J)."
+      }
+    },
+    "steps": {
+      "isobaric_formula": {
+        "ru": "Работа при изобарном процессе: W = P·(V2 − V1).",
+        "en": "Isobaric work: W = P·(V2 − V1)."
+      },
+      "isothermal_formula": {
+        "ru": "Работа при изотермическом процессе: W = n·R·T·ln(V2/V1).",
+        "en": "Isothermal work: W = n·R·T·ln(V2/V1)."
+      },
+      "first_law_formula": {
+        "ru": "Первое начало: ΔU = Q − W.",
+        "en": "First law: ΔU = Q − W."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

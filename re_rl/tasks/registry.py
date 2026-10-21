@@ -1,16 +1,9 @@
 from __future__ import annotations
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'registry_i18n.json')
 
-"""Central registry of all Task subclasses.
-Every concrete Task class is automatically added using the metaclass in
-`BaseTask`.  The mapping key is so-called *task type* – короткая строка
-(например, "linear", "quadratic"), которая используется генераторами
-задач и окружениями RL.
 
-External code should import `registry` and use:
-    cls = registry[task_type]
-
-Используйте `get` для безопасного доступа или ловите KeyError.
-"""
+texts.literal('literals.s0')
 
 from typing import Dict, Type
 

@@ -1,0 +1,18 @@
+{
+  "text": {
+    "s0": {
+      "ru": "gcd_lcm_answer",
+      "en": "gcd_lcm_answer"
+    },
+    "s1": {
+      "ru": "mod_exp_step",
+      "en": "mod_exp_step"
+    }
+  },
+  "inline_keys": {
+    "gcd_lcm_answer": {
+      "ru": "НОД = {gcd}, НОК = {lcm}",
+      "en": "GCD = {gcd}, LCM = {lcm}"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "text": {
+    "s0": {
+      "ru": "matrix_row_word",
+      "en": "matrix_row_word"
+    },
+    "s1": {
+      "ru": "Matrix is singular",
+      "en": "Matrix is singular"
+    },
+    "s2": {
+      "ru": "reduce_to_echelon",
+      "en": "reduce_to_echelon"
+    },
+    "s3": {
+      "ru": "count_nonzero_rows",
+      "en": "count_nonzero_rows"
+    },
+    "s4": {
+      "ru": "eigenvalue_char_poly",
+      "en": "eigenvalue_char_poly"
+    }
+  },
+  "inline_keys": {
+    "matrix_row_word": {
+      "ru": "строке",
+      "en": "row"
+    }
+  }
+}

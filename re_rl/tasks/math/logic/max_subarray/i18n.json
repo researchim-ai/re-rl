@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите наибольшую сумму непустого непрерывного фрагмента массива: {data}.",
+      "en": "Find the maximum sum of a nonempty contiguous subarray: {data}."
+    },
+    "s1": {
+      "ru": "Алгоритм Кадане даёт сумму {answer}.",
+      "en": "Kadane's algorithm gives sum {answer}."
+    }
+  }
+}

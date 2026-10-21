@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В выбранных единицах циклотронная частота ω = q * B / m. Ответ — целое или несократимая дробь.",
+      "en": "In the chosen units the cyclotron frequency is ω = q * B / m. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "ω = {charge} * {field} / {mass} = {v3}.",
+      "en": "ω = {charge} * {field} / {mass} = {v3}."
+    },
+    "s2": {
+      "ru": "q = {charge}, B = {field}, m = {mass}. Найдите ω.",
+      "en": "q = {charge}, B = {field}, m = {mass}. Find ω."
+    },
+    "s3": {
+      "ru": "ω = {omega}, B = {field}, m = {mass}. Найдите q.",
+      "en": "ω = {omega}, B = {field}, m = {mass}. Find q."
+    },
+    "s4": {
+      "ru": "ω = {omega}, q = {charge}, B = {field}. Найдите m.",
+      "en": "ω = {omega}, q = {charge}, B = {field}. Find m."
+    }
+  }
+}

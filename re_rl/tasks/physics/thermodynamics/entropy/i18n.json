@@ -1,0 +1,58 @@
+{
+  "text": {
+    "s0": {
+      "ru": "ΔS = {n}·{R}·ln({ratio}) = {v3} Дж/К",
+      "en": "ΔS = {n}·{R}·ln({ratio}) = {v3} J/K"
+    },
+    "s1": {
+      "ru": "ΔS = {Q}/{T} = {v2} Дж/К",
+      "en": "ΔS = {Q}/{T} = {v2} J/K"
+    },
+    "s2": {
+      "ru": "T_f = {v0} К",
+      "en": "T_f = {v0} K"
+    },
+    "s3": {
+      "ru": "ΔS = {v0} Дж/К",
+      "en": "ΔS = {v0} J/K"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на энтропию.",
+      "en": "Solve the entropy problem."
+    },
+    "problem": {
+      "isothermal": {
+        "ru": "При изотермическом расширении {n} моль газа при T = {T} К объём увеличился в {ratio} раз. Найдите изменение энтропии.",
+        "en": "{n} moles of gas expand isothermally at T = {T} K, volume increases {ratio} times. Find entropy change."
+      },
+      "heat_transfer": {
+        "ru": "Тело получает Q = {Q} Дж тепла при температуре T = {T} К. Найдите изменение энтропии.",
+        "en": "A body receives Q = {Q} J of heat at T = {T} K. Find the entropy change."
+      },
+      "mixing": {
+        "ru": "Смешиваются {m1} кг воды при {T1}°C и {m2} кг воды при {T2}°C. Найдите изменение энтропии.",
+        "en": "Mix {m1} kg of water at {T1}°C with {m2} kg at {T2}°C. Find the entropy change."
+      }
+    },
+    "steps": {
+      "definition": {
+        "ru": "Изменение энтропии: ΔS = Q/T (обратимый процесс)",
+        "en": "Entropy change: ΔS = Q/T (reversible process)"
+      },
+      "isothermal": {
+        "ru": "Изотермический: ΔS = nR·ln(V₂/V₁)",
+        "en": "Isothermal: ΔS = nR·ln(V₂/V₁)"
+      },
+      "mixing": {
+        "ru": "Смешивание: ΔS = m₁c·ln(T_f/T₁) + m₂c·ln(T_f/T₂)",
+        "en": "Mixing: ΔS = m₁c·ln(T_f/T₁) + m₂c·ln(T_f/T₂)"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: ΔS = {answer} Дж/К",
+      "en": "Answer: ΔS = {answer} J/K"
+    }
+  }
+}

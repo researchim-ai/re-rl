@@ -1,0 +1,66 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Q = {v0} мкКл",
+      "en": "Q = {v0} мкКл"
+    },
+    "s1": {
+      "ru": "Q = {v0}·(1 - e^(-{t}/{v2})) = {v3} мкКл",
+      "en": "Q = {v0}·(1 - e^(-{t}/{v2})) = {v3} uC"
+    },
+    "s2": {
+      "ru": "Q = {v0} мкКл",
+      "en": "Q = {v0} мкКл"
+    },
+    "s3": {
+      "ru": "τ = {v0} с = {v1} мс",
+      "en": "τ = {v0} с = {v1} мс"
+    },
+    "s4": {
+      "ru": "Q = {Q0}·e^(-{t}/{v2}) = {v3} мкКл",
+      "en": "Q = {Q0}·e^(-{t}/{v2}) = {v3} uC"
+    },
+    "s5": {
+      "ru": "τ = R·C = {R}·10³ · {C}·10⁻⁶ = {v2} с",
+      "en": "τ = R·C = {R}·10³ · {C}·10⁻⁶ = {v2} s"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на RC-цепь.",
+      "en": "Solve the RC circuit problem."
+    },
+    "problem": {
+      "charging": {
+        "ru": "RC-цепь: R = {R} Ом, C = {C} мкФ, ЭДС = {E} В. Найдите заряд конденсатора через t = {t} с.",
+        "en": "RC circuit: R = {R} Ω, C = {C} μF, EMF = {E} V. Find the charge on capacitor after t = {t} s."
+      },
+      "discharging": {
+        "ru": "Конденсатор C = {C} мкФ с зарядом Q₀ = {Q0} мкКл разряжается через R = {R} Ом. Найдите заряд через t = {t} с.",
+        "en": "Capacitor C = {C} μF with charge Q₀ = {Q0} μC discharges through R = {R} Ω. Find charge after t = {t} s."
+      },
+      "time_constant": {
+        "ru": "RC-цепь: R = {R} кОм, C = {C} мкФ. Найдите постоянную времени.",
+        "en": "RC circuit: R = {R} kΩ, C = {C} μF. Find the time constant."
+      }
+    },
+    "steps": {
+      "time_constant": {
+        "ru": "Постоянная времени: τ = RC = {tau} с",
+        "en": "Time constant: τ = RC = {tau} s"
+      },
+      "charging_formula": {
+        "ru": "Заряд при зарядке: Q(t) = CE(1 - e^(-t/τ))",
+        "en": "Charging: Q(t) = CE(1 - e^(-t/τ))"
+      },
+      "discharging_formula": {
+        "ru": "Заряд при разрядке: Q(t) = Q₀·e^(-t/τ)",
+        "en": "Discharging: Q(t) = Q₀·e^(-t/τ)"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

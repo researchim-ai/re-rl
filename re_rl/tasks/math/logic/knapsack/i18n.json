@@ -1,0 +1,22 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Рюкзак вмещает вес не более {capacity}. Предметы: {items}.\nКаждый предмет можно взять не более одного раза. Найдите максимальную суммарную ценность.",
+      "en": "A knapsack holds weight at most {capacity}. Items: {items}.\nEach item can be taken at most once. Find the maximum total value."
+    },
+    "s2": {
+      "ru": "Максимальная ценность = {_answer}.",
+      "en": "Maximum value = {_answer}."
+    },
+    "s3": {
+      "ru": "#{v0} (вес {v1}, ценность {v2})",
+      "en": "#{v0} (weight {v1}, value {v2})"
+    }
+  },
+  "literals": {
+    "s1": {
+      "ru": "Динамика по вместимости: dp[c] — макс. ценность при лимите веса c.",
+      "en": "DP over capacity: dp[c] is the best value with weight limit c."
+    }
+  }
+}

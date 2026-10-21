@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Используя каждое из чисел {nums} ровно один раз и операции + − × ÷ (со скобками), составьте выражение, равное {target}.",
+      "en": "Using each of the numbers {nums} exactly once and the operations + − × ÷ (with parentheses), build an expression equal to {target}."
+    },
+    "s1": {
+      "ru": "Комбинируем числа операциями, пока не получим цель.",
+      "en": "Combine the numbers with operations until the target is reached."
+    },
+    "s2": {
+      "ru": "Пример: {expr} = {target}.",
+      "en": "Example: {expr} = {target}."
+    }
+  }
+}

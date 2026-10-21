@@ -1,0 +1,29 @@
+{
+  "text": {
+    "s1": {
+      "ru": "sat_smt_mini",
+      "en": "sat_smt_mini"
+    }
+  },
+  "literals": {
+    "s0": "sat_smt_mini"
+  },
+  "prompt": {
+    "problem": {
+      "ru": "Определите, выполнима ли формула (SAT/UNSAT): {formula}. Если SAT — приведите пример присваивания.",
+      "en": "Determine whether this formula is SAT or UNSAT: {formula}. If SAT, provide a witness assignment."
+    },
+    "step_encode": {
+      "ru": "Кодируем формулу в булевы ограничения и запускаем решатель.",
+      "en": "Encode the formula into Boolean constraints and run a solver."
+    },
+    "step_sat": {
+      "ru": "Найдена модель: {assignment}.",
+      "en": "Found model: {assignment}."
+    },
+    "step_unsat": {
+      "ru": "Решатель вернул UNSAT: система ограничений противоречива.",
+      "en": "Solver returned UNSAT: constraints are contradictory."
+    }
+  }
+}

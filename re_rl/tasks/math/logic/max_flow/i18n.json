@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Транспортная сеть (вершины 0..{v0}), исток {s}, сток {t}. Ориентированные дуги с пропускными способностями: {es}.\nНайдите величину максимального потока из истока в сток.",
+      "en": "Flow network (vertices 0..{v0}), source {s}, sink {t}. Directed arcs with capacities: {es}.\nFind the maximum flow value from source to sink."
+    },
+    "s1": {
+      "ru": "Алгоритм Эдмондса–Карпа: ищем дополняющие пути BFS в остаточной сети.",
+      "en": "Edmonds–Karp: find augmenting paths via BFS in the residual network."
+    },
+    "s2": {
+      "ru": "Максимальный поток = {_answer}.",
+      "en": "Maximum flow = {_answer}."
+    }
+  }
+}

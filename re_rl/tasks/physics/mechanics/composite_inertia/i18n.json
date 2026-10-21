@@ -1,0 +1,49 @@
+{
+  "text": {
+    "s1": {
+      "ru": "I = {v0} кг·м²",
+      "en": "I = {v0} kg·m²"
+    },
+    "s2": {
+      "ru": "I = {v0} = {v1} кг·м²",
+      "en": "I = {v0} = {v1} kg·m²"
+    },
+    "s3": {
+      "ru": "I = {v0} = {v1} кг·м²",
+      "en": "I = {v0} = {v1} kg·m²"
+    }
+  },
+  "literals": {
+    "s0": "parallel_axis_shapes"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Найдите момент инерции составного тела.",
+      "en": "Find the moment of inertia of a composite body."
+    },
+    "problem": {
+      "point_masses": {
+        "ru": "Точечные массы закреплены на расстояниях от оси вращения. Пары (m [кг], r [м]): {pairs}. Найдите момент инерции системы (в кг·м²).",
+        "en": "Point masses are fixed at distances from the rotation axis. Pairs (m [kg], r [m]): {pairs}. Find the moment of inertia of the system (in kg·m²)."
+      },
+      "parallel_axis_shapes": {
+        "ru": "Несколько тел смещены от общей оси. Для каждого заданы момент инерции относительно собственного центра I_cm [кг·м²], масса m [кг] и смещение d [м]: {rows}. Найдите суммарный момент инерции относительно общей оси (теорема Штейнера, в кг·м²).",
+        "en": "Several bodies are offset from a common axis. For each: central moment of inertia I_cm [kg·m²], mass m [kg], offset d [m]: {rows}. Find the total moment of inertia about the common axis (parallel-axis theorem, in kg·m²)."
+      }
+    },
+    "steps": {
+      "point_formula": {
+        "ru": "I = Σ m_i·r_i².",
+        "en": "I = Σ m_i·r_i²."
+      },
+      "steiner_formula": {
+        "ru": "Теорема Штейнера: I = Σ (I_cm,i + m_i·d_i²).",
+        "en": "Parallel-axis theorem: I = Σ (I_cm,i + m_i·d_i²)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

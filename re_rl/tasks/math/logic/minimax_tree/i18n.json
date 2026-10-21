@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Корень максимизирует. Каждый ход ведёт к узлу, который берёт минимум своих листьев. При равенстве у корня выбирается меньший номер хода. {v0}",
+      "en": "The root maximizes. Each move leads to a node that takes the minimum of its leaves. Ties at the root take the smaller move index. {v0}"
+    },
+    "s1": {
+      "ru": "Оценка {value}, ход {choice}.",
+      "en": "Value {value}, move {choice}."
+    },
+    "s2": {
+      "ru": "Найдите оценку корня.",
+      "en": "Find the value of the root."
+    },
+    "s3": {
+      "ru": "Какой ход выбирает корень?",
+      "en": "Which move does the root choose?"
+    },
+    "s4": {
+      "ru": "Ход {v0}, листья минимума: {nums}.",
+      "en": "Move {v0}, leaves of the minimizing node: {nums}."
+    }
+  }
+}

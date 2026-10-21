@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Нужно перемножить матрицы {sizes} именно в этом порядке. Произведение матриц p x q и q x r стоит p*q*r скалярных умножений. Найдите минимальную стоимость по всем расстановкам скобок.",
+      "en": "Multiply the matrices {sizes} in this order. Multiplying a p x q matrix by a q x r matrix costs p*q*r scalar multiplications. Find the minimum cost over all parenthesizations."
+    },
+    "s1": {
+      "ru": "Динамика по длине цепочки даёт стоимость {answer}.",
+      "en": "The length-based DP gives cost {answer}."
+    }
+  }
+}

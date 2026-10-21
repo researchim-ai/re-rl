@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дерево на вершинах 1..{n}, рёбра: {shown}.",
+      "en": "A tree on vertices 1..{n}, edges: {shown}."
+    },
+    "s1": {
+      "ru": "Радиус {radius}, эксцентриситет {vertex} равен {v2}.",
+      "en": "Radius {radius}, eccentricity of {vertex} is {v2}."
+    },
+    "s2": {
+      "ru": "Найдите радиус: минимальный эксцентриситет вершины.",
+      "en": "Find the radius: the minimum vertex eccentricity."
+    },
+    "s3": {
+      "ru": "Найдите эксцентриситет вершины {vertex}: расстояние до самой дальней.",
+      "en": "Find the eccentricity of vertex {vertex}: the distance to the farthest vertex."
+    }
+  }
+}

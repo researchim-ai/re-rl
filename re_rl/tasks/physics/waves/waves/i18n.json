@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "λ = v/f = {v}/{f} = {wavelength:.4f} м",
+      "en": "λ = v/f = {v}/{f} = {wavelength:.4f} m"
+    },
+    "s1": {
+      "ru": "{f:.4f} Гц",
+      "en": "{f:.4f} Hz"
+    },
+    "s2": {
+      "ru": "f = v/λ = {v}/{lambda_} = {f:.4f} Гц",
+      "en": "f = v/λ = {v}/{lambda_} = {f:.4f} Hz"
+    },
+    "s3": {
+      "ru": "{T:.6f} с",
+      "en": "{T:.6f} s"
+    },
+    "s4": {
+      "ru": "T = 1/f = 1/{f} = {T:.6f} с",
+      "en": "T = 1/f = 1/{f} = {T:.6f} s"
+    },
+    "s5": {
+      "ru": "v = λf = {lambda_} × {f} = {v:.4f} м/с",
+      "en": "v = λf = {lambda_} × {f} = {v:.4f} m/s"
+    },
+    "s6": {
+      "ru": "{f_perceived:.4f} Гц",
+      "en": "{f_perceived:.4f} Hz"
+    },
+    "s7": {
+      "ru": "f' = {f_perceived:.4f} Гц",
+      "en": "f' = {f_perceived:.4f} Hz"
+    }
+  }
+}

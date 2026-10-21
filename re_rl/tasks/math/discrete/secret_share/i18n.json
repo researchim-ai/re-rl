@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Секрет разделён по схеме Шамира по модулю {prime}. Многочлен имеет степень меньше {k}, секрет — его значение в нуле. Точки: {v2}. Найдите секрет от 0 до {v3}.",
+      "en": "A secret is shared by Shamir's scheme modulo {prime}. The polynomial has degree less than {k}, and the secret is its value at zero. Points: {v2}. Find the secret from 0 to {v3}."
+    },
+    "s1": {
+      "ru": "Интерполяция в нуле даёт {answer}.",
+      "en": "Interpolation at zero gives {answer}."
+    },
+    "s2": {
+      "ru": "секрет Шамира не восстановился",
+      "en": "секрет Шамира не восстановился"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На доске {n}×{n_2} расставлено {n_3} ферзей (по одному в строке). Корректна ли расстановка, то есть никакие два ферзя не бьют друг друга (по вертикали, горизонтали или диагонали)? Ответьте да/нет.",
+      "en": "On an {n}×{n_2} board there are {n_3} queens (one per row). Is the placement valid, i.e. no two queens attack each other (same column, row or diagonal)? Answer yes/no."
+    },
+    "s1": {
+      "ru": "корректна",
+      "en": "valid"
+    },
+    "s2": {
+      "ru": "некорректна",
+      "en": "invalid"
+    },
+    "s3": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s4": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s5": {
+      "ru": "Проверяем пары ферзей на общий столбец и диагонали (строки уже различны).",
+      "en": "Check queen pairs for a shared column or diagonal (rows already differ)."
+    },
+    "s6": {
+      "ru": "Расстановка {verdict}.",
+      "en": "The placement is {verdict}."
+    }
+  },
+  "literals": {
+    "s7": "queens_check_image"
+  }
+}

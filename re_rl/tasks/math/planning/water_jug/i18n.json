@@ -1,0 +1,60 @@
+{
+  "text": {
+    "s0": {
+      "ru": "water_jug_state_item",
+      "en": "water_jug_state_item"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите задачу о кувшинах с водой.\nИспользуя кувшины заданных объёмов, отмерьте ровно нужное количество воды.\nДоступные операции: наполнить, опустошить, перелить.\nФормат ответа:\n  <reasoning>\n    (Стратегия и анализ)\n  </reasoning>\n  <answer>\n    (Последовательность действий)\n  </answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the water jug problem.\nUsing jugs of given capacities, measure exactly the required amount of water.\nAvailable operations: fill, empty, pour.\nAnswer format:\n  <reasoning>\n    (Strategy and analysis)\n  </reasoning>\n  <answer>\n    (Sequence of actions)\n  </answer>"
+    },
+    "problem": {
+      "ru": "Даны кувшины объёмом {capacities} литров.\nНачальное состояние: все кувшины пусты.\nИсточник воды неограничен.\n\nЦель: отмерить ровно {target} литров воды.\n\nНайдите последовательность действий.",
+      "en": "You have jugs with capacities of {capacities} liters.\nInitial state: all jugs are empty.\nWater source is unlimited.\n\nGoal: measure exactly {target} liters of water.\n\nFind the sequence of actions."
+    },
+    "operations": {
+      "fill": {
+        "ru": "Наполнить кувшин {jug} ({capacity} л)",
+        "en": "Fill jug {jug} ({capacity} L)"
+      },
+      "empty": {
+        "ru": "Опустошить кувшин {jug}",
+        "en": "Empty jug {jug}"
+      },
+      "pour": {
+        "ru": "Перелить из кувшина {from_jug} в кувшин {to_jug}",
+        "en": "Pour from jug {from_jug} to jug {to_jug}"
+      }
+    },
+    "steps": {
+      "action": {
+        "ru": "Шаг {n}: {action}. Состояние: {state}.",
+        "en": "Step {n}: {action}. State: {state}."
+      },
+      "gcd_hint": {
+        "ru": "Подсказка: НОД({a}, {b}) = {gcd}. Цель {target} достижима, т.к. {target} делится на {gcd}.",
+        "en": "Hint: GCD({a}, {b}) = {gcd}. Target {target} is achievable since {target} is divisible by {gcd}."
+      },
+      "impossible": {
+        "ru": "Невозможно: {target} не делится на НОД кувшинов = {gcd}.",
+        "en": "Impossible: {target} is not divisible by GCD of jugs = {gcd}."
+      }
+    },
+    "final_answer": {
+      "ru": "Решение за {n} шагов:\n{actions}\n\nИтог: в кувшине {jug} ровно {target} литров.",
+      "en": "Solution in {n} steps:\n{actions}\n\nResult: jug {jug} contains exactly {target} liters."
+    },
+    "no_solution": {
+      "ru": "Решение невозможно: нельзя отмерить {target} литров с кувшинами {capacities}.",
+      "en": "No solution: cannot measure {target} liters with jugs {capacities}."
+    }
+  },
+  "inline_keys": {
+    "water_jug_state_item": {
+      "ru": "J{idx}={value}л",
+      "en": "J{idx}={value}L"
+    }
+  }
+}

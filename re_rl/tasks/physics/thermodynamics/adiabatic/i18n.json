@@ -1,0 +1,60 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Обратимый адиабатический процесс, {gas} идеальный газ, γ = {gamma}.",
+      "en": "Reversible adiabatic process of a {gas} ideal gas, γ = {gamma}."
+    },
+    "s1": {
+      "ru": "ru",
+      "en": "en"
+    },
+    "s2": {
+      "ru": "Объём меняется от {V1} л до {V2} л, начальная температура {T1} К. Найдите конечную температуру в кельвинах.",
+      "en": "Volume changes from {V1} L to {V2} L, initial temperature {T1} K. Find the final temperature in kelvin."
+    },
+    "s3": {
+      "ru": "Объём меняется от {V1} л до {V2} л, начальное давление {P1} кПа. Найдите конечное давление в кПа.",
+      "en": "Volume changes from {V1} L to {V2} L, initial pressure {P1} kPa. Find the final pressure in kPa."
+    },
+    "s4": {
+      "ru": "Температура меняется от {T1} К до {T2} К, начальный объём {V1} л. Найдите конечный объём в литрах.",
+      "en": "Temperature changes from {T1} K to {T2} K, initial volume {V1} L. Find the final volume in liters."
+    },
+    "s5": {
+      "ru": "T2/T1 = {T2}/{T1} = {k}^{p_t}, значит объём уменьшился в {power} раз. V2 = {V1} / {power_2} = {V2}.",
+      "en": "T2/T1 = {T2}/{T1} = {k}^{p_t}, so the volume shrinks by {power}. V2 = {V1} / {power_2} = {V2}."
+    },
+    "s8": {
+      "ru": "адиабата: давление при расширении",
+      "en": "адиабата: давление при расширении"
+    },
+    "s9": {
+      "ru": "адиабата: давление при сжатии",
+      "en": "адиабата: давление при сжатии"
+    },
+    "s10": {
+      "ru": "адиабата: температура при расширении",
+      "en": "адиабата: температура при расширении"
+    },
+    "s11": {
+      "ru": "адиабата: температура при сжатии",
+      "en": "адиабата: температура при сжатии"
+    },
+    "s12": {
+      "ru": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, so the volume grows by {power}. V2 = {V1} * {power_2} = {V2}.",
+      "en": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, so the volume grows by {power}. V2 = {V1} * {power_2} = {V2}."
+    },
+    "s13": {
+      "ru": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, значит объём вырос в {k_2}^{q_t} = {power} раз. V2 = {V1} * {power_2} = {V2}.",
+      "en": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, значит объём вырос в {k_2}^{q_t} = {power} раз. V2 = {V1} * {power_2} = {V2}."
+    },
+    "s14": {
+      "ru": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, so the volume grows by {power}. V2 = {V1} * {power_2} = {V2}.",
+      "en": "T2/T1 = {T2}/{T1} = 1/{k}^{p_t}, so the volume grows by {power}. V2 = {V1} * {power_2} = {V2}."
+    }
+  },
+  "literals": {
+    "s6": "одноатомный",
+    "s7": "двухатомный"
+  }
+}

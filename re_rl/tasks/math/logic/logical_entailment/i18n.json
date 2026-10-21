@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Посылки:\n",
+      "en": "Premises:\n"
+    },
+    "s1": {
+      "ru": "\nЗаключение: {v0}\n",
+      "en": "\nConclusion: {v0}\n"
+    },
+    "s2": {
+      "ru": "Следует ли заключение из посылок? Ответьте да/нет.",
+      "en": "Does the conclusion follow from the premises? Answer yes/no."
+    },
+    "s3": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s4": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s5": {
+      "ru": "Перебираем все означивания переменных и проверяем строки, где все посылки истинны.",
+      "en": "Enumerate all truth assignments and inspect rows where all premises are true."
+    },
+    "s6": {
+      "ru": "Во всех таких строках заключение истинно — следствие есть.",
+      "en": "In all such rows the conclusion is true — it is entailed."
+    },
+    "s7": {
+      "ru": "Есть строка, где посылки истинны, а заключение ложно — следствия нет.",
+      "en": "There is a row with true premises and a false conclusion — not entailed."
+    }
+  }
+}

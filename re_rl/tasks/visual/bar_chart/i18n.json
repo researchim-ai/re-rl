@@ -1,0 +1,67 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На диаграмме показаны значения по категориям. Чему равна сумма всех значений?",
+      "en": "The chart shows values per category. What is the total of all values?"
+    },
+    "s1": {
+      "ru": "На столбчатой диаграмме показаны значения по категориям. У какой категории самый высокий столбец? Укажите её букву.",
+      "en": "The bar chart shows values per category. Which category has the tallest bar? Give its letter."
+    },
+    "s2": {
+      "ru": "На столбчатой диаграмме показаны значения по категориям. У какой категории самый низкий столбец? Укажите её букву.",
+      "en": "The bar chart shows values per category. Which category has the shortest bar? Give its letter."
+    },
+    "s3": {
+      "ru": "На диаграмме показаны значения по категориям. Чему равна разница между самым высоким и самым низким столбцами?",
+      "en": "The chart shows values per category. What is the difference between the tallest and the shortest bar?"
+    },
+    "s4": {
+      "ru": "наибольший",
+      "en": "largest"
+    },
+    "s5": {
+      "ru": "наименьший",
+      "en": "smallest"
+    },
+    "s6": {
+      "ru": "Сравниваем высоты столбцов и находим {word}.",
+      "en": "Compare bar heights and find the {word}."
+    },
+    "s7": {
+      "ru": "Ответ: категория {lbl} (значение {v1}).",
+      "en": "Answer: category {lbl} (value {v1})."
+    },
+    "s8": {
+      "ru": "Максимум = {v0}, минимум = {v1}.",
+      "en": "Max = {v0}, min = {v1}."
+    },
+    "s9": {
+      "ru": "Разница = {diff}.",
+      "en": "Difference = {diff}."
+    },
+    "s10": {
+      "ru": "Складываем высоты всех столбцов.",
+      "en": "Add up all bar heights."
+    },
+    "s11": {
+      "ru": "Сумма = {total}.",
+      "en": "Total = {total}."
+    },
+    "s13": {
+      "ru": "Категория",
+      "en": "Category"
+    },
+    "s14": {
+      "ru": "Значение",
+      "en": "Value"
+    },
+    "s15": {
+      "ru": "Диаграмма",
+      "en": "Chart"
+    }
+  },
+  "literals": {
+    "s12": "bar_chart_read"
+  }
+}

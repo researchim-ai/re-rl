@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дома стоят в ряд, ценности: {data}. Нельзя брать два соседних дома. Найдите максимальную сумму.",
+      "en": "Houses in a row have values: {data}. You cannot take two adjacent houses. Find the maximum sum."
+    },
+    "s1": {
+      "ru": "Динамика «взять или пропустить» даёт {answer}.",
+      "en": "The take-or-skip DP gives {answer}."
+    }
+  }
+}

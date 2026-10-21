@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Постоянная величина. Априорное среднее {prior_mean}, априорная дисперсия {prior_var}. Измерения по порядку: {v2}. Между ними дисперсия не увеличивается. K = p / (p + r), новое среднее = m + K * (z - m), новая дисперсия = p * r / (p + r). Ответ — целое или несократимая дробь.",
+      "en": "A constant quantity. Prior mean {prior_mean}, prior variance {prior_var}. Measurements in order: {v2}. Variance does not grow between them. K = p / (p + r), the new mean is m + K * (z - m), the new variance is p * r / (p + r). Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Среднее {v0}, дисперсия {v1}.",
+      "en": "Mean {v0}, variance {v1}."
+    },
+    "s2": {
+      "ru": "Найдите итоговое среднее.",
+      "en": "Find the final mean."
+    },
+    "s3": {
+      "ru": "Найдите итоговую дисперсию.",
+      "en": "Find the final variance."
+    }
+  }
+}

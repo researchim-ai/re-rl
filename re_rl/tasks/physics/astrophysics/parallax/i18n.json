@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Годичный параллакс: расстояние в парсеках d = 1 / p, где p — параллакс в угловых секундах. Ответ — целое или несократимая дробь.",
+      "en": "Annual parallax: the distance in parsecs is d = 1 / p, where p is the parallax in arcseconds. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "d = {v0} пк, p = {v1} угл. сек.",
+      "en": "d = {v0} pc, p = {v1} arcsec."
+    },
+    "s2": {
+      "ru": "Параллакс звезды {v0} угловой секунды. Найдите расстояние в парсеках.",
+      "en": "The star's parallax is {v0} arcseconds. Find the distance in parsecs."
+    },
+    "s3": {
+      "ru": "Звезда на расстоянии {v0} пк. Найдите её параллакс в угловых секундах.",
+      "en": "A star is {v0} pc away. Find its parallax in arcseconds."
+    },
+    "s4": {
+      "ru": "параллакс не обратен расстоянию",
+      "en": "параллакс не обратен расстоянию"
+    }
+  }
+}

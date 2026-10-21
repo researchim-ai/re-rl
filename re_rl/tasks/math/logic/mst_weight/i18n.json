@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Взвешенный связный граф (вершины 0..{v0}). Рёбра: {es}.\nНайдите суммарный вес минимального остовного дерева.",
+      "en": "Weighted connected graph (vertices 0..{v0}). Edges: {es}.\nFind the total weight of the minimum spanning tree."
+    },
+    "s1": {
+      "ru": "Алгоритм Крускала: сортируем рёбра по весу и добавляем, если не образуется цикл.",
+      "en": "Kruskal's algorithm: sort edges by weight, add each if it does not create a cycle."
+    },
+    "s2": {
+      "ru": "Вес минимального остовного дерева = {_answer}.",
+      "en": "Minimum spanning tree weight = {_answer}."
+    },
+    "s3": {
+      "ru": "({a}-{b}, вес {w})",
+      "en": "({a}-{b}, weight {w})"
+    }
+  }
+}

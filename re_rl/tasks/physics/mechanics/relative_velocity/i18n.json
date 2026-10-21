@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Прямая, вправо положительно. Скорость A относительно B равна vA - vB.",
+      "en": "A straight line, right is positive. The velocity of A relative to B is vA - vB."
+    },
+    "s1": {
+      "ru": "vA - vB = {va} - ({vb}) = {relative}.",
+      "en": "vA - vB = {va} - ({vb}) = {relative}."
+    },
+    "s2": {
+      "ru": "vA = {va} м/с, vB = {vb} м/с. Найдите скорость A относительно B.",
+      "en": "vA = {va} m/s, vB = {vb} m/s. Find the velocity of A relative to B."
+    },
+    "s3": {
+      "ru": "Скорость A относительно B равна {relative} м/с, vB = {vb} м/с. Найдите vA.",
+      "en": "The velocity of A relative to B is {relative} m/s, vB = {vb} m/s. Find vA."
+    }
+  }
+}

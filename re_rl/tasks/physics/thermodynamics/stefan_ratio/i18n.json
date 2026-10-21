@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две одинаковые площадки. Отношение светимостей L2/L1 = (T2/T1)^4. Ответ — целое или несократимая дробь.",
+      "en": "Two patches of equal area. The luminosity ratio is L2/L1 = (T2/T1)^4. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "T1 = {t1}, T2 = {t2}. Найдите L2/L1.",
+      "en": "T1 = {t1}, T2 = {t2}. Find L2/L1."
+    },
+    "s2": {
+      "ru": "T1 = {t1}, L2/L1 = {v1}. T2/T1 — положительное целое. Найдите T2.",
+      "en": "T1 = {t1}, L2/L1 = {v1}. T2/T1 is a positive integer. Find T2."
+    }
+  }
+}

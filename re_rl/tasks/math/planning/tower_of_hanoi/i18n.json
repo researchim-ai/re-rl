@@ -1,0 +1,58 @@
+{
+  "text": {
+    "s0": {
+      "ru": "tower_of_hanoi",
+      "en": "tower_of_hanoi"
+    },
+    "s1": {
+      "ru": "tower_of_hanoi",
+      "en": "tower_of_hanoi"
+    },
+    "s2": {
+      "ru": "tower_of_hanoi",
+      "en": "tower_of_hanoi"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите задачу 'Ханойская башня'.\nПереместите все диски с начального стержня на конечный.\nПравила:\n- Можно перемещать только один диск за раз\n- Нельзя класть больший диск на меньший\nФормат ответа:\n  <reasoning>\n    (Стратегия решения)\n  </reasoning>\n  <answer>\n    (Последовательность ходов)\n  </answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the Tower of Hanoi puzzle.\nMove all disks from the source peg to the target peg.\nRules:\n- Only one disk can be moved at a time\n- A larger disk cannot be placed on a smaller disk\nAnswer format:\n  <reasoning>\n    (Solution strategy)\n  </reasoning>\n  <answer>\n    (Sequence of moves)\n  </answer>"
+    },
+    "problem": {
+      "ru": "Дано {n} дисков разного размера на стержне A.\nДиски расположены по убыванию размера снизу вверх (самый большой внизу).\nПереместите все диски на стержень {target}, используя стержень {auxiliary} как вспомогательный.\n\nНайдите оптимальную последовательность ходов.",
+      "en": "There are {n} disks of different sizes on peg A.\nDisks are stacked in decreasing size from bottom to top (largest at bottom).\nMove all disks to peg {target}, using peg {auxiliary} as auxiliary.\n\nFind the optimal sequence of moves."
+    },
+    "steps": {
+      "move": {
+        "ru": "Ход {n}: переместить диск {disk} с {from_peg} на {to_peg}.",
+        "en": "Move {n}: move disk {disk} from {from_peg} to {to_peg}."
+      },
+      "recursive_explain": {
+        "ru": "Перемещаем {n} дисков с {from_peg} на {to_peg} через {aux_peg}.",
+        "en": "Moving {n} disks from {from_peg} to {to_peg} via {aux_peg}."
+      },
+      "base_case": {
+        "ru": "Базовый случай: перемещаем один диск напрямую.",
+        "en": "Base case: move single disk directly."
+      }
+    },
+    "pegs": {
+      "A": {
+        "ru": "A",
+        "en": "A"
+      },
+      "B": {
+        "ru": "B",
+        "en": "B"
+      },
+      "C": {
+        "ru": "C",
+        "en": "C"
+      }
+    },
+    "final_answer": {
+      "ru": "Решение за {n} ходов (минимально возможное: 2^{disks} - 1 = {optimal}):\n{moves}",
+      "en": "Solution in {n} moves (minimum possible: 2^{disks} - 1 = {optimal}):\n{moves}"
+    }
+  }
+}

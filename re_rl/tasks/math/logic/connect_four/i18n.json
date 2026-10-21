@@ -1,0 +1,68 @@
+{
+  "text": {
+    "s0": {
+      "ru": "«Четыре в ряд» на поле {W}×{H}, нужно собрать {K} подряд (по горизонтали, вертикали или диагонали). Фишки падают вниз по столбцам. «.» — пусто. Сейчас ходит {who}. Позиция (снизу — дно поля):\n{v4}\n",
+      "en": "Connect Four on a {W}×{H} board, need {K} in a row (horizontal, vertical or diagonal). Discs fall down the columns. '.' is empty. {who} to move. Position (bottom row is the floor):\n{v4}\n"
+    },
+    "s1": {
+      "ru": "Каков исход при оптимальной игре обеих сторон? Ответьте: «первый (X)», «второй (O)» или «ничья».",
+      "en": "What is the outcome with optimal play by both sides? Answer: 'first (X)', 'second (O)', or 'draw'."
+    },
+    "s2": {
+      "ru": "Укажите номер столбца (1..{W}) — оптимальный ход для {who}.",
+      "en": "Give the column number (1..{W}) of an optimal move for {who}."
+    },
+    "s3": {
+      "ru": "первый (X)",
+      "en": "first (X)"
+    },
+    "s4": {
+      "ru": "Полный перебор ходов (минимакс) с оптимальной игрой обеих сторон.",
+      "en": "Full move search (minimax) with optimal play by both sides."
+    },
+    "s5": {
+      "ru": "Исход: {res}.",
+      "en": "Outcome: {res}."
+    },
+    "s6": {
+      "ru": "Оцениваем каждый столбец минимаксом и берём оптимальный по значению.",
+      "en": "Evaluate each column by minimax and take one optimal in value."
+    },
+    "s7": {
+      "ru": "Оптимальный ход: столбец {v0}.",
+      "en": "An optimal move: column {v0}."
+    },
+    "s8": {
+      "ru": "второй (O)",
+      "en": "second (O)"
+    },
+    "s9": {
+      "ru": "ничья",
+      "en": "draw"
+    },
+    "s10": {
+      "ru": "{v0}\n{header}  (номера столбцов)",
+      "en": "{v0}\n{header}  (column numbers)"
+    },
+    "s11": {
+      "ru": "первый",
+      "en": "первый"
+    },
+    "s12": {
+      "ru": "крестики",
+      "en": "крестики"
+    },
+    "s13": {
+      "ru": "второй",
+      "en": "второй"
+    },
+    "s14": {
+      "ru": "нолики",
+      "en": "нолики"
+    },
+    "s15": {
+      "ru": "ничья",
+      "en": "ничья"
+    }
+  }
+}

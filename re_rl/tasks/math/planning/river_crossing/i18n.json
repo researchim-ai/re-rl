@@ -1,0 +1,80 @@
+{
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите задачу о переправе через реку.\nНайдите последовательность действий, чтобы переправить всех на другой берег.\nФормат ответа:\n  <reasoning>\n    (Анализ ограничений и план)\n  </reasoning>\n  <answer>\n    (Последовательность переправ)\n  </answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the river crossing puzzle.\nFind a sequence of actions to transport everyone to the other side.\nAnswer format:\n  <reasoning>\n    (Constraint analysis and plan)\n  </reasoning>\n  <answer>\n    (Sequence of crossings)\n  </answer>"
+    },
+    "problem": {
+      "classic": {
+        "ru": "Крестьянин должен переправить через реку волка, козу и капусту.\nЛодка вмещает только крестьянина и один предмет.\nОграничения:\n- Волк съест козу, если оставить их одних\n- Коза съест капусту, если оставить их одних\n\nНайдите последовательность переправ.",
+        "en": "A farmer must transport a wolf, a goat, and a cabbage across a river.\nThe boat can only carry the farmer and one item.\nConstraints:\n- The wolf will eat the goat if left alone together\n- The goat will eat the cabbage if left alone together\n\nFind the sequence of crossings."
+      },
+      "jealous_husbands": {
+        "ru": "{n} пар (мужья и жёны) должны переправиться через реку.\nЛодка вмещает {capacity} человек.\nОграничение: жена не может находиться с чужим мужем без своего мужа.\n\nНайдите последовательность переправ.",
+        "en": "{n} couples (husbands and wives) must cross a river.\nThe boat can carry {capacity} people.\nConstraint: a wife cannot be with another husband without her own husband present.\n\nFind the sequence of crossings."
+      },
+      "missionaries": {
+        "ru": "{missionaries} миссионеров и {cannibals} каннибалов должны переправиться через реку.\nЛодка вмещает {capacity} человек.\nОграничение: на любом берегу каннибалов не должно быть больше, чем миссионеров\n(иначе каннибалы съедят миссионеров).\n\nНайдите последовательность переправ.",
+        "en": "{missionaries} missionaries and {cannibals} cannibals must cross a river.\nThe boat can carry {capacity} people.\nConstraint: cannibals must never outnumber missionaries on either bank\n(otherwise the cannibals will eat the missionaries).\n\nFind the sequence of crossings."
+      }
+    },
+    "steps": {
+      "initial_state": {
+        "ru": "Начальное состояние: левый берег = {left}, правый берег = {right}, лодка на {boat_side} берегу.",
+        "en": "Initial state: left bank = {left}, right bank = {right}, boat on {boat_side} bank."
+      },
+      "crossing": {
+        "ru": "Переправа {n}: {items} переправляются на {direction} берег.",
+        "en": "Crossing {n}: {items} cross to the {direction} bank."
+      },
+      "state_after": {
+        "ru": "После переправы: левый = {left}, правый = {right}.",
+        "en": "After crossing: left = {left}, right = {right}."
+      },
+      "check_safe": {
+        "ru": "Проверка: состояние безопасно — {reason}.",
+        "en": "Check: state is safe — {reason}."
+      }
+    },
+    "directions": {
+      "left": {
+        "ru": "левый",
+        "en": "left"
+      },
+      "right": {
+        "ru": "правый",
+        "en": "right"
+      }
+    },
+    "items": {
+      "farmer": {
+        "ru": "крестьянин",
+        "en": "farmer"
+      },
+      "wolf": {
+        "ru": "волк",
+        "en": "wolf"
+      },
+      "goat": {
+        "ru": "коза",
+        "en": "goat"
+      },
+      "cabbage": {
+        "ru": "капуста",
+        "en": "cabbage"
+      },
+      "missionary": {
+        "ru": "миссионер",
+        "en": "missionary"
+      },
+      "cannibal": {
+        "ru": "каннибал",
+        "en": "cannibal"
+      }
+    },
+    "final_answer": {
+      "ru": "Решение за {n} переправ:\n{crossings}",
+      "en": "Solution in {n} crossings:\n{crossings}"
+    }
+  }
+}

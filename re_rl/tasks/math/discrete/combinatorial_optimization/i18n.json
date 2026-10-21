@@ -1,0 +1,26 @@
+{
+  "text": {
+    "s0": {
+      "ru": "problem_set_cover",
+      "en": "problem_set_cover"
+    }
+  },
+  "prompt": {
+    "problem_knapsack": {
+      "ru": "Задача рюкзака ({mode}): предметы (вес,ценность) = {items}, вместимость = {capacity}. Максимизируйте ценность.",
+      "en": "Knapsack ({mode}): items (weight,value) = {items}, capacity = {capacity}. Maximize value."
+    },
+    "problem_set_cover": {
+      "ru": "Set Cover ({mode}): universe={universe}, subsets={sets}. Найдите минимальное покрытие.",
+      "en": "Set Cover ({mode}): universe={universe}, subsets={sets}. Find minimum cover."
+    },
+    "problem_tsp": {
+      "ru": "TSP-small ({mode}): матрица расстояний {matrix}. Найдите минимальный гамильтонов цикл из 0.",
+      "en": "TSP-small ({mode}): distance matrix {matrix}. Find minimum Hamiltonian tour starting at 0."
+    },
+    "step_tradeoff": {
+      "ru": "Сравниваем кандидатов по целевой функции и ограничениям.",
+      "en": "Compare candidates by objective value under constraints."
+    }
+  }
+}

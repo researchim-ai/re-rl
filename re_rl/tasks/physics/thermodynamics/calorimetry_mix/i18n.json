@@ -1,0 +1,36 @@
+{
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о теплообмене нескольких тел.",
+      "en": "Solve the multi-body heat-exchange problem."
+    },
+    "problem": {
+      "equilibrium_temp": {
+        "ru": "В теплоизолированном сосуде смешивают вещества. Тройки (m [кг], c [Дж/(кг·К)], T [°C]): {rows}. Фазовых переходов нет. Найдите равновесную температуру (в °C).",
+        "en": "Substances are mixed in an insulated vessel. Triples (m [kg], c [J/(kg·K)], T [°C]): {rows}. No phase transitions. Find the equilibrium temperature (in °C)."
+      },
+      "missing_temperature": {
+        "ru": "В теплоизолированном сосуде смешивают вещества с известными тройками (m [кг], c [Дж/(кг·К)], T [°C]): {rows}. Ещё одно вещество имеет m = {m} кг, c = {c} Дж/(кг·К) и неизвестную начальную температуру. Равновесная температура смеси T = {Teq} °C. Найдите неизвестную начальную температуру (в °C).",
+        "en": "Substances with known triples (m [kg], c [J/(kg·K)], T [°C]): {rows} are mixed in an insulated vessel. One more substance has m = {m} kg, c = {c} J/(kg·K) and unknown initial temperature. The equilibrium temperature is T = {Teq} °C. Find the unknown initial temperature (in °C)."
+      }
+    },
+    "steps": {
+      "balance": {
+        "ru": "Баланс теплоты: Σ m_i·c_i·(T − T_i) = 0.",
+        "en": "Heat balance: Σ m_i·c_i·(T − T_i) = 0."
+      },
+      "equilibrium_formula": {
+        "ru": "T = Σ(m_i·c_i·T_i) / Σ(m_i·c_i).",
+        "en": "T = Σ(m_i·c_i·T_i) / Σ(m_i·c_i)."
+      },
+      "missing_formula": {
+        "ru": "T_x = [T·Σ(m·c)_все − Σ(m_i·c_i·T_i)_изв] / (m_x·c_x).",
+        "en": "T_x = [T·Σ(m·c)_all − Σ(m_i·c_i·T_i)_known] / (m_x·c_x)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

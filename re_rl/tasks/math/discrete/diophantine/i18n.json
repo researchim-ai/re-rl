@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Найдите какое-нибудь целочисленное решение (x, y) уравнения {a}·x + {b}·y = {c}.",
+        "Укажите целые x и y, удовлетворяющие уравнению {a}x + {b}y = {c}."
+      ],
+      "en": [
+        "Find an integer solution (x, y) of {a}·x + {b}·y = {c}.",
+        "Provide integers x and y satisfying {a}x + {b}y = {c}."
+      ]
+    },
+    "step_setup": {
+      "ru": "Уравнение разрешимо, так как gcd({a}, {b}) делит {c}. Используем расширенный алгоритм Евклида.",
+      "en": "It is solvable since gcd({a}, {b}) divides {c}. Use the extended Euclidean algorithm."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

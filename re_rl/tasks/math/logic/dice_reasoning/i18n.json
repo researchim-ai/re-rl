@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На стандартном кубике сумма противоположных граней равна 7. В одном углу видны три грани: {fs}. Чему равна сумма трёх граней, противоположных этим?",
+      "en": "On a standard die opposite faces sum to 7. At one corner three faces are visible: {fs}. What is the sum of the three faces opposite to them?"
+    },
+    "s1": {
+      "ru": "На стандартном игральном кубике сумма противоположных граней равна 7. На одной грани число {v}. Что на противоположной грани?",
+      "en": "On a standard die opposite faces sum to 7. One face shows {v}. What is on the opposite face?"
+    },
+    "s2": {
+      "ru": "Противоположная грань = 7 минус видимая.",
+      "en": "The opposite face = 7 minus the visible one."
+    }
+  }
+}

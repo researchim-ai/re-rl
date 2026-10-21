@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Чему равен y в точке, где прямая пересекает ось Oy?",
+      "en": "What is y where the line crosses the Oy axis?"
+    },
+    "s1": {
+      "ru": "На координатной сетке проведена прямая. Чему равен её наклон — на сколько меняется y, когда x увеличивается на 1?",
+      "en": "A straight line is drawn on the grid. What is its slope — how much does y change when x increases by 1?"
+    },
+    "s2": {
+      "ru": "От x = 0 до x = 1 величина y меняется на {m}.",
+      "en": "From x = 0 to x = 1, y changes by {m}."
+    },
+    "s3": {
+      "ru": "Прямая пересекает ось Oy в точке (0, {b}).",
+      "en": "The line crosses the Oy axis at (0, {b})."
+    }
+  }
+}

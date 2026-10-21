@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дана расстановка пятнашек 3×3 (_ — пустая клетка):\n{grid}\nЦель:\n{goal}\nЗа минимальное число ходов приведите поле к цели. Сколько ходов минимально?",
+      "en": "A 3×3 sliding puzzle (_ is the blank):\n{grid}\nGoal:\n{goal}\nReach the goal in the fewest moves. What is the minimum number of moves?"
+    },
+    "s1": {
+      "ru": "Дана расстановка пятнашек {n}×{n_2} (_ — пустая клетка):\n{grid}\nЦель — упорядочить плитки 1..{v3} с пустой клеткой в правом нижнем углу:\n{goal}\nРазрешима ли эта расстановка? (да/нет)",
+      "en": "A {n}×{n_2} sliding puzzle (_ is the blank):\n{grid}\nThe goal is tiles 1..{v3} in order with the blank at the bottom-right:\n{goal}\nIs this configuration solvable? (yes/no)"
+    },
+    "s2": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s3": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s4": {
+      "ru": "Число инверсий: {inv}.",
+      "en": "Number of inversions: {inv}."
+    },
+    "s5": {
+      "ru": "Для нечётной ширины расстановка разрешима ⇔ число инверсий чётно; для чётной ширины учитывается строка пустой клетки снизу.",
+      "en": "For odd width solvable ⇔ inversions even; for even width the blank's row from the bottom is added."
+    },
+    "s6": {
+      "ru": "Поиск A* с манхэттенской эвристикой находит кратчайший путь до цели.",
+      "en": "A* search with the Manhattan heuristic finds the shortest path to the goal."
+    },
+    "s7": {
+      "ru": "Минимум ходов: {answer_int}.",
+      "en": "Minimum moves: {answer_int}."
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "text": {
+    "s0": {
+      "ru": "S = ({v0} ± {v1}) м²",
+      "en": "S = ({v0} ± {v1}) м²"
+    },
+    "s1": {
+      "ru": "S = π·{x}² = {v1} м²",
+      "en": "S = π·{x}² = {v1} м²"
+    },
+    "s2": {
+      "ru": "ΔS = {v0}·{v1} = {v2} м²",
+      "en": "ΔS = {v0}·{v1} = {v2} м²"
+    },
+    "s3": {
+      "ru": "r = {x} ± {dx} м",
+      "en": "r = {x} ± {dx} m"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Рассчитайте погрешность результата измерений.",
+      "en": "Calculate the measurement error propagation."
+    },
+    "problem": {
+      "sum_difference": {
+        "ru": "A = {A} ± {dA}, B = {B} ± {dB}. Найдите погрешность суммы A + B.",
+        "en": "A = {A} ± {dA}, B = {B} ± {dB}. Find the error of sum A + B."
+      },
+      "product": {
+        "ru": "A = {A} ± {dA}, B = {B} ± {dB}. Найдите относительную погрешность произведения A·B.",
+        "en": "A = {A} ± {dA}, B = {B} ± {dB}. Find relative error of product A·B."
+      },
+      "power": {
+        "ru": "x = {x} ± {dx}. Найдите погрешность x^{n}.",
+        "en": "x = {x} ± {dx}. Find the error of x^{n}."
+      },
+      "formula": {
+        "ru": "Рассчитайте погрешность {formula}, если {variables}.",
+        "en": "Calculate error of {formula}, given {variables}."
+      }
+    },
+    "steps": {
+      "sum_rule": {
+        "ru": "Для суммы/разности: Δ(A±B) = √(ΔA² + ΔB²)",
+        "en": "For sum/difference: Δ(A±B) = √(ΔA² + ΔB²)"
+      },
+      "product_rule": {
+        "ru": "Для произведения: δ(A·B) = √(δA² + δB²), где δ = Δ/x",
+        "en": "For product: δ(A·B) = √(δA² + δB²), where δ = Δ/x"
+      },
+      "power_rule": {
+        "ru": "Для степени: δ(x^n) = n·δx",
+        "en": "For power: δ(x^n) = n·δx"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

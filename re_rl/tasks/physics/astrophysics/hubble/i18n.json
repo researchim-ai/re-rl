@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В выбранных единицах закон Хаббла: v = H * d.",
+      "en": "In the chosen units Hubble's law is v = H * d."
+    },
+    "s1": {
+      "ru": "v = {constant} * {distance} = {velocity}.",
+      "en": "v = {constant} * {distance} = {velocity}."
+    },
+    "s2": {
+      "ru": "H = {constant}, d = {distance}. Найдите скорость v.",
+      "en": "H = {constant}, d = {distance}. Find the speed v."
+    },
+    "s3": {
+      "ru": "v = {velocity}, H = {constant}. Найдите расстояние d.",
+      "en": "v = {velocity}, H = {constant}. Find the distance d."
+    },
+    "s4": {
+      "ru": "v = {velocity}, d = {distance}. Найдите постоянную H.",
+      "en": "v = {velocity}, d = {distance}. Find the constant H."
+    }
+  }
+}

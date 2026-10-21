@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Бинарная головоломка {n}×{n_2}. Правила: в каждой строке и столбце поровну 0 и 1; не более двух одинаковых подряд; все строки различны и все столбцы различны. Заполните «?» и выпишите все {v2} клеток по строкам.\n{v3}",
+      "en": "{n}×{n_2} binary puzzle. Rules: each row and column has equally many 0s and 1s; no more than two equal cells in a row; all rows distinct and all columns distinct. Fill the «?» and list all {v2} cells row by row.\n{v3}"
+    },
+    "s1": {
+      "ru": "Используем запреты трёх подряд и баланс 0/1, чтобы вывести значения.",
+      "en": "Use the no-three-in-a-row and 0/1 balance rules to deduce the values."
+    },
+    "s2": {
+      "ru": "Решение (по строкам): {flat}.",
+      "en": "Solution (row by row): {flat}."
+    }
+  }
+}

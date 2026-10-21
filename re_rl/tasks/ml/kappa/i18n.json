@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Бинарная матрица ошибок: {cells}. n — сумма четырёх клеток. po = (TP + TN) / n. pe = ((TP + FP) * (TP + FN) + (TN + FN) * (TN + FP)) / n^2. Каппа Коэна κ = (po - pe) / (1 - pe). Ответ — целое или несократимая дробь.",
+      "en": "Binary confusion matrix: {cells}. n is the sum of the four cells. po = (TP + TN) / n. pe = ((TP + FP) * (TP + FN) + (TN + FN) * (TN + FP)) / n^2. Cohen's kappa is κ = (po - pe) / (1 - pe). Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Найдите κ.",
+      "en": "Find κ."
+    },
+    "s2": {
+      "ru": "Найдите po.",
+      "en": "Find po."
+    },
+    "s3": {
+      "ru": "TP = {tp}, FP = {fp}, FN = {fn}, TN = {tn}",
+      "en": "TP = {tp}, FP = {fp}, FN = {fn}, TN = {tn}"
+    }
+  }
+}

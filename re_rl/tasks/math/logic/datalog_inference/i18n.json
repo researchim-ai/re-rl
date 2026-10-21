@@ -1,0 +1,48 @@
+{
+  "text": {
+    "s0": {
+      "ru": " и ",
+      "en": " and "
+    },
+    "s1": {
+      "ru": "если объект обладает {b}, то он обладает {head}",
+      "en": "if an object has {b}, then it has {head}"
+    },
+    "s2": {
+      "ru": "Факты:\n{{f}}\nПравила:\n{{r}}\n{{q}}",
+      "en": "Facts:\n{{f}}\nRules:\n{{r}}\n{{q}}"
+    },
+    "s3": {
+      "ru": "Вопрос: обладает ли объект {query_obj} свойством {target}? (да/нет)",
+      "en": "Question: does object {query_obj} have property {target}? (yes/no)"
+    },
+    "s4": {
+      "ru": "Вопрос: сколько объектов в итоге обладают свойством {target}?",
+      "en": "Question: how many objects end up having property {target}?"
+    },
+    "s5": {
+      "ru": "Прямой вывод: применяем правила к фактам каждого объекта до неподвижной точки.",
+      "en": "Forward chaining: apply rules to each object's facts until a fixpoint."
+    },
+    "s6": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s7": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s8": {
+      "ru": "- объект {o} обладает свойствами: {v1}",
+      "en": "- object {o} has properties: {v1}"
+    },
+    "s9": {
+      "ru": "Замыкание для {query_obj}: {cl}.",
+      "en": "Closure for {query_obj}: {cl}."
+    },
+    "s10": {
+      "ru": "Объектов со свойством {target}: {answer_int}.",
+      "en": "Objects with property {target}: {answer_int}."
+    }
+  }
+}

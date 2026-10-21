@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — неориентированный граф. Можно ли правильно раскрасить его вершины в {k} цвета? Ответьте да/нет.",
+      "en": "The figure shows an undirected graph. Can its vertices be properly colored with {k} colors? Answer yes/no."
+    },
+    "s1": {
+      "ru": "На рисунке — неориентированный граф. Найдите его хроматическое число (минимальное число цветов для правильной раскраски вершин).",
+      "en": "The figure shows an undirected graph. Find its chromatic number (minimum number of colors for a proper vertex coloring)."
+    },
+    "s3": {
+      "ru": "Неориентированный граф",
+      "en": "Неориентированный граф"
+    }
+  },
+  "literals": {
+    "s2": "graph_coloring_image"
+  }
+}

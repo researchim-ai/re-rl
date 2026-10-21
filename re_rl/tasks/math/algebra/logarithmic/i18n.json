@@ -1,0 +1,108 @@
+{
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите логарифмическое уравнение и выведите результат.\nФормат ответа:\n  <reasoning>\n    (Шаги решения, можно по пунктам)\n  </reasoning>\n  <answer>\n    (Итоговое значение x)\n  </answer>\nПример:\n<reasoning>\n  Шаг 1: Привели уравнение к виду ...\n  Шаг 2: Нашли x=2\n</reasoning>\n<answer>\n  2\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the logarithmic equation.\nAnswer format:\n  <reasoning>\n    (Step-by-step derivation)\n  </reasoning>\n  <answer>\n    (The final value of x)\n  </answer>\nExample:\n<reasoning>\n  Step 1: We rearranged the equation...\n  Step 2: Found x=2\n</reasoning>\n<answer>\n  2\n</answer>"
+    },
+    "problem": {
+      "ru": [
+        "Решите логарифмическое уравнение: {equation}",
+        "Найдите x в логарифмическом уравнении: {equation}",
+        "Решите уравнение: {equation}",
+        "Определите значение x: {equation}",
+        "Найдите x: {equation}"
+      ],
+      "en": [
+        "Solve the logarithmic equation: {equation}",
+        "Find x in the logarithmic equation: {equation}",
+        "Solve: {equation}",
+        "Determine the value of x: {equation}",
+        "Find x: {equation}"
+      ]
+    },
+    "step1": {
+      "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
+      "en": "Step 1: Write the equation in standard form:\n{equation_pretty}"
+    },
+    "step2_analysis": {
+      "ru": "Шаг 2: Анализируем уравнение:\n- Коэффициент при логарифме: {a}\n- Коэффициент при x в аргументе логарифма: {b}\n- Свободный член: {c}\n- Правая часть: {d}",
+      "en": "Step 2: Analyze the equation:\n- Coefficient of logarithm: {a}\n- Coefficient of x in logarithm argument: {b}\n- Constant term: {c}\n- Right side: {d}"
+    },
+    "step3_transfer": {
+      "ru": "Шаг 3: Переносим свободный член в правую часть:\n{left_side_statement}",
+      "en": "Step 3: Move the constant term to the right side:\n{left_side_statement}"
+    },
+    "step4_division": {
+      "ru": "Шаг 4: Делим на коэффициент при логарифме:\n{equation}",
+      "en": "Step 4: Divide by the coefficient of logarithm:\n{equation}"
+    },
+    "step5_exp": {
+      "ru": "Шаг 5: Применяем экспоненту к обеим частям:\n{equation}",
+      "en": "Step 5: Apply exponential function to both sides:\n{equation}"
+    },
+    "step6_solve": {
+      "ru": "Шаг 6: Решаем уравнение относительно x:\nx = e^{(d - c) / a} / b = {solution}",
+      "en": "Step 6: Solve for x:\nx = e^{(d - c) / a} / b = {solution}"
+    },
+    "step7_verify": {
+      "ru": "Шаг 7: Проверяем решение, подставляя x = {solution} в исходное уравнение:\n{equation_pretty}",
+      "en": "Step 7: Verify the solution by substituting x = {solution} into the original equation:\n{equation_pretty}"
+    },
+    "step8_geom": {
+      "ru": "Шаг 8: Геометрическая интерпретация:\nУравнение {a}*log({b}*x) + {c} = {d} представляет собой пересечение логарифмической и линейной функций",
+      "en": "Step 8: Geometric interpretation:\nThe equation {a}*log({b}*x) + {c} = {d} represents the intersection of logarithmic and linear functions"
+    },
+    "step9_domain": {
+      "ru": "Шаг 9: Проверяем область определения:\nАргумент логарифма {b}*x = {solution} должен быть положительным",
+      "en": "Step 9: Check the domain:\nThe logarithm argument {b}*x = {solution} must be positive"
+    },
+    "explanation": {
+      "ru": {
+        "step1": "Записываем уравнение в стандартной форме для дальнейшего решения",
+        "step2_analysis": "Анализируем структуру уравнения, определяя все его компоненты",
+        "step3_transfer": "Переносим свободный член в правую часть для изоляции логарифма",
+        "step4_division": "Делим обе части уравнения на коэффициент при логарифме",
+        "step5_exp": "Применяем экспоненту для избавления от логарифма",
+        "step6_solve": "Решаем уравнение относительно x",
+        "step7_verify": "Проверяем корректность решения подстановкой",
+        "step8_geom": "Рассматриваем геометрический смысл уравнения",
+        "step9_domain": "Проверяем область определения логарифма"
+      },
+      "en": {
+        "step1": "Write the equation in standard form for further solution",
+        "step2_analysis": "Analyze the structure of the equation, identifying all its components",
+        "step3_transfer": "Move the constant term to the right side to isolate the logarithm",
+        "step4_division": "Divide both sides by the coefficient of logarithm",
+        "step5_exp": "Apply exponential function to eliminate the logarithm",
+        "step6_solve": "Solve the equation for x",
+        "step7_verify": "Verify the solution by substitution",
+        "step8_geom": "Consider the geometric meaning of the equation",
+        "step9_domain": "Check the domain of the logarithm"
+      }
+    },
+    "validation": {
+      "ru": {
+        "step1": "Уравнение записано корректно в стандартной форме",
+        "step2_analysis": "Анализ уравнения выполнен правильно",
+        "step3_transfer": "Перенос слагаемых выполнен правильно",
+        "step4_division": "Деление на коэффициент выполнено правильно",
+        "step5_exp": "Применение экспоненты выполнено корректно",
+        "step6_solve": "Решение уравнения выполнено правильно",
+        "step7_verify": "Проверка решения подтверждает его корректность",
+        "step8_geom": "Геометрическая интерпретация верна",
+        "step9_domain": "Проверка области определения выполнена корректно"
+      },
+      "en": {
+        "step1": "The equation is correctly written in standard form",
+        "step2_analysis": "Equation analysis is correct",
+        "step3_transfer": "Term transfer is performed correctly",
+        "step4_division": "Division by coefficient is performed correctly",
+        "step5_exp": "Exponential application is correct",
+        "step6_solve": "Equation solving is performed correctly",
+        "step7_verify": "Solution verification confirms its correctness",
+        "step8_geom": "Geometric interpretation is correct",
+        "step9_domain": "Domain check is performed correctly"
+      }
+    }
+  }
+}

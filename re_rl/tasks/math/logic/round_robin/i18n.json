@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Круговая очередь, квант {quantum}. Все заявки приходят в момент 0 и сначала идут по номерам. Пары (номер, длительность): {jobs}. Незавершённый процесс встаёт в конец. Найдите суммарное {v2} (оборотное = время завершения при нулевом приходе).",
+      "en": "Round-robin, quantum {quantum}. Every job arrives at time 0 and starts in index order. Pairs (id, burst): {jobs}. A job that does not finish goes to the back of the queue. Find the total {v2} (turnaround is the completion time when arrival is 0)."
+    },
+    "s1": {
+      "ru": "Моменты завершения: {done}. Ожидание {wait}, оборотное {turnaround}.",
+      "en": "Completion times: {done}. Waiting {wait}, turnaround {turnaround}."
+    },
+    "s2": {
+      "ru": "время ожидания",
+      "en": "waiting time"
+    },
+    "s3": {
+      "ru": "оборотное время",
+      "en": "оборотное время"
+    }
+  }
+}

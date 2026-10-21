@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для математического маятника (T / 2π)^2 = L/g. Ответ — целое или несократимая дробь.",
+      "en": "For a simple pendulum, (T / 2π)^2 = L/g. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Длина L = {length}, g = {gravity}. Найдите L/g.",
+      "en": "Length L = {length}, g = {gravity}. Find L/g."
+    },
+    "s2": {
+      "ru": "g = {gravity}, L/g = {v1}. Найдите L.",
+      "en": "g = {gravity}, L/g = {v1}. Find L."
+    }
+  }
+}

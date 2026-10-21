@@ -1,0 +1,50 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дж",
+      "en": "J"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на релятивистскую энергию.",
+      "en": "Solve the relativistic-energy problem."
+    },
+    "problem": {
+      "kinetic": {
+        "ru": "Частица массой m = {m} кг движется со скоростью {beta}·c. Найдите её релятивистскую кинетическую энергию.",
+        "en": "A particle of mass m = {m} kg moves at {beta}·c. Find its relativistic kinetic energy."
+      },
+      "total": {
+        "ru": "Частица массой m = {m} кг движется со скоростью {beta}·c. Найдите её полную энергию.",
+        "en": "A particle of mass m = {m} kg moves at {beta}·c. Find its total energy."
+      },
+      "energy_momentum": {
+        "ru": "Частица массой m = {m} кг имеет импульс p = {p} кг·м/с. Найдите полную энергию (E² = (pc)² + (mc²)²).",
+        "en": "A particle of mass m = {m} kg has momentum p = {p} kg·m/s. Find the total energy (E² = (pc)² + (mc²)²)."
+      }
+    },
+    "steps": {
+      "gamma_formula": {
+        "ru": "Фактор Лоренца: γ = 1/√(1 − β²).",
+        "en": "Lorentz factor: γ = 1/√(1 − β²)."
+      },
+      "kinetic_formula": {
+        "ru": "Кинетическая энергия: KE = (γ − 1)·m·c².",
+        "en": "Kinetic energy: KE = (γ − 1)·m·c²."
+      },
+      "total_formula": {
+        "ru": "Полная энергия: E = γ·m·c².",
+        "en": "Total energy: E = γ·m·c²."
+      },
+      "em_formula": {
+        "ru": "E = √((p·c)² + (m·c²)²).",
+        "en": "E = √((p·c)² + (m·c²)²)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

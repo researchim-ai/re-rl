@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — расстановка пятнашек 3×3 (пустая клетка не подписана). Цель — упорядочить плитки {goal} с пустой клеткой снизу справа. За минимальное число ходов приведите поле к цели. Сколько ходов минимально?",
+      "en": "The figure shows a 3×3 sliding puzzle (the blank cell is empty). Goal: tiles {goal} in order with the blank at the bottom-right. What is the minimum number of moves to reach the goal?"
+    },
+    "s1": {
+      "ru": "На рисунке — расстановка пятнашек {n}×{n_2} (пустая клетка не подписана). Цель — упорядочить плитки {goal} с пустой клеткой в правом нижнем углу. Разрешима ли эта расстановка? (да/нет)",
+      "en": "The figure shows a {n}×{n_2} sliding puzzle (the blank cell is empty). Goal: tiles {goal} in order with the blank at the bottom-right. Is this configuration solvable? (yes/no)"
+    }
+  },
+  "literals": {
+    "s2": "sliding_puzzle_image"
+  }
+}

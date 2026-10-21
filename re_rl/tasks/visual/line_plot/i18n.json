@@ -1,0 +1,43 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На скольких шагах (переходах от x к x+1) значение y возрастает?",
+      "en": "On how many steps (from x to x+1) does y increase?"
+    },
+    "s1": {
+      "ru": "На графике отмечена вертикальная линия x = {k}. Чему равно значение y в этой точке?",
+      "en": "A vertical line x = {k} is marked on the plot. What is the y value there?"
+    },
+    "s2": {
+      "ru": "При каком значении x график достигает максимума?",
+      "en": "At which x does the plot reach its maximum?"
+    },
+    "s3": {
+      "ru": "Считываем y при x = {k}.",
+      "en": "Read y at x = {k}."
+    },
+    "s4": {
+      "ru": "Находим самую высокую точку графика.",
+      "en": "Find the highest point of the plot."
+    },
+    "s5": {
+      "ru": "Максимум при x = {answer}.",
+      "en": "Maximum at x = {answer}."
+    },
+    "s6": {
+      "ru": "Считаем участки, где линия идёт вверх.",
+      "en": "Count segments where the line goes up."
+    },
+    "s7": {
+      "ru": "Возрастаний: {answer}.",
+      "en": "Increases: {answer}."
+    },
+    "s9": {
+      "ru": "График",
+      "en": "График"
+    }
+  },
+  "literals": {
+    "s8": "line_plot_read"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "text": {
+    "s0": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s1": {
+      "ru": "К",
+      "en": "K"
+    },
+    "s2": {
+      "ru": "Вт",
+      "en": "W"
+    },
+    "s4": {
+      "ru": "temperature_from_wien",
+      "en": "temperature_from_wien"
+    },
+    "s5": {
+      "ru": "temperature_from_wien",
+      "en": "temperature_from_wien"
+    }
+  },
+  "literals": {
+    "s3": "temperature_from_wien"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу об излучении абсолютно чёрного тела.",
+      "en": "Solve the blackbody-radiation problem."
+    },
+    "problem": {
+      "wien": {
+        "ru": "Тело имеет температуру T = {T} К. Найдите длину волны максимума излучения (закон Вина, b = 2.898e-3 м·К).",
+        "en": "A body has temperature T = {T} K. Find the wavelength of maximum emission (Wien's law, b = 2.898e-3 m·K)."
+      },
+      "temperature_from_wien": {
+        "ru": "Максимум излучения тела приходится на λ_max = {lam} м. Найдите температуру (закон Вина, b = 2.898e-3 м·К).",
+        "en": "A body's emission peaks at λ_max = {lam} m. Find the temperature (Wien's law, b = 2.898e-3 m·K)."
+      },
+      "stefan": {
+        "ru": "Найдите мощность излучения абсолютно чёрного тела площадью S = {A} м² при температуре T = {T} К (ε = 1).",
+        "en": "Find the radiated power of a blackbody of area S = {A} m² at temperature T = {T} K (ε = 1)."
+      }
+    },
+    "steps": {
+      "wien_formula": {
+        "ru": "Закон смещения Вина: λ_max = b/T.",
+        "en": "Wien's displacement law: λ_max = b/T."
+      },
+      "temp_formula": {
+        "ru": "T = b/λ_max.",
+        "en": "T = b/λ_max."
+      },
+      "stefan_formula": {
+        "ru": "Закон Стефана–Больцмана: P = σ·ε·S·T⁴.",
+        "en": "Stefan–Boltzmann law: P = σ·ε·S·T⁴."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

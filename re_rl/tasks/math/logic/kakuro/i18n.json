@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Мини кросс-сумма. Пять клеток: A, B (верхний ряд) и C, D, E (нижний ряд); A над C, B над D. В каждой линии цифры от 1 до 9 различны и в сумме дают указанное число:\n- верхняя горизонталь (A, B) = {s1}\n- нижняя горизонталь (C, D, E) = {s2}\n- левая вертикаль (A, C) = {v1}\n- правая вертикаль (B, D) = {v2}\nНайдите цифры A, B, C, D, E (в этом порядке).",
+      "en": "Mini Kakuro. Five cells: A, B (top row) and C, D, E (bottom row); A above C, B above D. In each line digits 1..9 are distinct and add up to the given sum:\n- top row (A, B) = {s1}\n- bottom row (C, D, E) = {s2}\n- left column (A, C) = {v1}\n- right column (B, D) = {v2}\nFind the digits A, B, C, D, E (in this order)."
+    },
+    "s1": {
+      "ru": "Из пересечений линий выражаем клетки и подбираем цифры под суммы.",
+      "en": "Use the line intersections to express cells and fit digits to the sums."
+    },
+    "s2": {
+      "ru": "Единственное решение (A, B, C, D, E): {nums}.",
+      "en": "The unique solution (A, B, C, D, E): {nums}."
+    }
+  }
+}

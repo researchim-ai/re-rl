@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шаг метода Эйлера: y_new = y + h*f(x, y), x_new = x + h, h = 1.",
+      "en": "One Euler step is y_new = y + h*f(x, y), x_new = x + h, with h = 1."
+    },
+    "s1": {
+      "ru": "Узлы: ",
+      "en": "Nodes: "
+    },
+    "s2": {
+      "ru": "Дано y' = {rhs}, y({x0}) = {y0}. Чему равно y после {steps} {word}?",
+      "en": "Дано y' = {rhs}, y({x0}) = {y0}. Чему равно y после {steps} {word}?"
+    },
+    "s3": {
+      "ru": "Given y' = {rhs}, y({x0}) = {y0}. What is y after {steps} {word}?",
+      "en": "Given y' = {rhs}, y({x0}) = {y0}. What is y after {steps} {word}?"
+    },
+    "s4": {
+      "ru": "шага",
+      "en": "шага"
+    },
+    "s5": {
+      "ru": "шагов",
+      "en": "шагов"
+    }
+  }
+}

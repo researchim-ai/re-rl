@@ -1,0 +1,23 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Взвешенный неориентированный граф (вершины 0..{v0}). Рёбра: {v1}.\nНайдите вес кратчайшего пути между вершинами {src} и {dst}.",
+      "en": "Weighted undirected graph (vertices 0..{v0}). Edges: {v1}.\nFind the weight of the shortest path between vertices {src} and {dst}."
+    },
+    "s1": {
+      "ru": "Алгоритм Дейкстры: жадно расширяем множество вершин с известным минимальным расстоянием.",
+      "en": "Dijkstra's algorithm: greedily settle vertices with known minimum distance."
+    },
+    "s2": {
+      "ru": "Кратчайшее расстояние = {_answer}.",
+      "en": "Shortest distance = {_answer}."
+    },
+    "s4": {
+      "ru": "({a}-{b}, вес {w})",
+      "en": "({a}-{b}, weight {w})"
+    }
+  },
+  "literals": {
+    "s3": "weighted_shortest_path"
+  }
+}

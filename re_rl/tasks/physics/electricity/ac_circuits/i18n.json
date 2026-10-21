@@ -1,0 +1,62 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Z = {result} Ом",
+      "en": "Z = {result} Ohm"
+    },
+    "s1": {
+      "ru": "Z = √({R}² + ({v1} - {v2})²) = {v3} Ом",
+      "en": "Z = √({R}² + ({v1} - {v2})²) = {v3} Ohm"
+    },
+    "s2": {
+      "ru": "f₀ = {result} Гц",
+      "en": "f₀ = {result} Hz"
+    },
+    "s3": {
+      "ru": "f₀ = 1/(2π√({L}·{C}·10⁻⁶)) = {v2} Гц",
+      "en": "f₀ = 1/(2π√({L}·{C}·10⁻⁶)) = {v2} Hz"
+    },
+    "s4": {
+      "ru": "Z = √(R² + (X_L - X_C)²) = {v0} Ом",
+      "en": "Z = √(R² + (X_L - X_C)²) = {v0} Ohm"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на цепь переменного тока.",
+      "en": "Solve the AC circuit problem."
+    },
+    "problem": {
+      "impedance": {
+        "ru": "RLC-цепь: R = {R} Ом, L = {L} Гн, C = {C} мкФ, частота f = {f} Гц. Найдите импеданс.",
+        "en": "RLC circuit: R = {R} Ω, L = {L} H, C = {C} μF, frequency f = {f} Hz. Find the impedance."
+      },
+      "resonance": {
+        "ru": "RLC-цепь: L = {L} Гн, C = {C} мкФ. Найдите резонансную частоту.",
+        "en": "RLC circuit: L = {L} H, C = {C} μF. Find the resonant frequency."
+      },
+      "power_factor": {
+        "ru": "RLC-цепь: R = {R} Ом, X_L = {XL} Ом, X_C = {XC} Ом. Найдите коэффициент мощности.",
+        "en": "RLC circuit: R = {R} Ω, X_L = {XL} Ω, X_C = {XC} Ω. Find the power factor."
+      }
+    },
+    "steps": {
+      "reactances": {
+        "ru": "Реактивные сопротивления: X_L = ωL = {XL} Ом, X_C = 1/(ωC) = {XC} Ом",
+        "en": "Reactances: X_L = ωL = {XL} Ω, X_C = 1/(ωC) = {XC} Ω"
+      },
+      "impedance_formula": {
+        "ru": "Импеданс: Z = √(R² + (X_L - X_C)²)",
+        "en": "Impedance: Z = √(R² + (X_L - X_C)²)"
+      },
+      "resonance_formula": {
+        "ru": "Резонансная частота: f₀ = 1/(2π√(LC))",
+        "en": "Resonant frequency: f₀ = 1/(2π√(LC))"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "КПД = полезная работа / затраченная работа. Ответ — целое или несократимая дробь.",
+      "en": "Efficiency = useful work / input work. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "КПД = {useful}/{total} = {v2}.",
+      "en": "Efficiency = {useful}/{total} = {v2}."
+    },
+    "s2": {
+      "ru": "Полезная работа {useful}, затраченная {total}. Найдите КПД.",
+      "en": "Useful work is {useful}, input work is {total}. Find the efficiency."
+    },
+    "s3": {
+      "ru": "КПД = {v0}, затраченная работа {total}. Найдите полезную работу.",
+      "en": "Efficiency = {v0}, input work is {total}. Find the useful work."
+    }
+  }
+}

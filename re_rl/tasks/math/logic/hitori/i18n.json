@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Хитори {n}×{n_2}. Затените часть клеток так, чтобы: (1) в каждой строке и столбце среди НЕзатенённых не было повторяющихся чисел; (2) затенённые клетки не касались рёбрами; (3) все незатенённые клетки были связны (по рёбрам). Сетка (строки сверху вниз, столбцы слева направо, нумерация с 1):\n{rows}\nПеречислите координаты (строка, столбец) затеняемых клеток.",
+      "en": "{n}×{n_2} Hitori. Shade some cells so that: (1) no number repeats among the UNSHADED cells of any row or column; (2) shaded cells are not edge-adjacent; (3) all unshaded cells are connected (via edges). Grid (rows top-to-bottom, columns left-to-right, 1-indexed):\n{rows}\nList the (row, column) coordinates of the cells to shade."
+    },
+    "s1": {
+      "ru": "Затеняем дубликаты так, чтобы затенённые не касались и незатенённые оставались связными.",
+      "en": "Shade duplicates so shaded cells don't touch and unshaded cells stay connected."
+    },
+    "s2": {
+      "ru": "Затеняемые клетки: {coords}.",
+      "en": "Cells to shade: {coords}."
+    },
+    "s3": {
+      "ru": "нет",
+      "en": "none"
+    }
+  }
+}

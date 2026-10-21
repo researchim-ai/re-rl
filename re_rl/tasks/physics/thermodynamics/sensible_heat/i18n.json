@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Нагрев без фазового перехода: Q = c * m * dT.",
+      "en": "Heating without a phase change: Q = c * m * dT."
+    },
+    "s1": {
+      "ru": "Q = {specific} * {mass} * {delta} = {heat}.",
+      "en": "Q = {specific} * {mass} * {delta} = {heat}."
+    },
+    "s2": {
+      "ru": "c = {specific}, m = {mass}, dT = {delta}. Найдите Q.",
+      "en": "c = {specific}, m = {mass}, dT = {delta}. Find Q."
+    },
+    "s3": {
+      "ru": "Q = {heat}, c = {specific}, dT = {delta}. Найдите m.",
+      "en": "Q = {heat}, c = {specific}, dT = {delta}. Find m."
+    },
+    "s4": {
+      "ru": "Q = {heat}, m = {mass}, dT = {delta}. Найдите c.",
+      "en": "Q = {heat}, m = {mass}, dT = {delta}. Find c."
+    }
+  }
+}

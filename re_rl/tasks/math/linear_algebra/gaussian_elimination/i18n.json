@@ -1,0 +1,25 @@
+{
+  "literals": {
+    "s0": "[xхX]\\s*_?\\s*\\d+"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Решите систему линейных уравнений методом Гаусса:\n{system}",
+        "Методом исключения Гаусса найдите решение системы:\n{system}"
+      ],
+      "en": [
+        "Solve the system of linear equations by Gaussian elimination:\n{system}",
+        "Use Gaussian elimination to solve:\n{system}"
+      ]
+    },
+    "step_setup": {
+      "ru": "Приводим расширенную матрицу к ступенчатому виду и находим переменные обратным ходом.",
+      "en": "Reduce the augmented matrix to row echelon form and back-substitute."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

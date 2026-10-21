@@ -1,0 +1,74 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Δp ≥ {dp:.4e} кг·м/с",
+      "en": "Δp ≥ {dp:.4e} kg·m/s"
+    },
+    "s1": {
+      "ru": "Δp ≥ ħ/(2Δx) = {h_bar:.3e}/(2·{dx_m:.3e}) = {dp:.4e} кг·м/с",
+      "en": "Δp ≥ ħ/(2Δx) = {h_bar:.3e}/(2·{dx_m:.3e}) = {dp:.4e} kg·m/s"
+    },
+    "s2": {
+      "ru": "ΔE ≥ {dE_eV:.4e} эВ",
+      "en": "ΔE ≥ {dE_eV:.4e} eV"
+    },
+    "s3": {
+      "ru": "r ≈ 0.529 Å (боровский радиус)",
+      "en": "r ≈ 0.529 Å (боровский радиус)"
+    },
+    "s4": {
+      "ru": "ΔE ≥ ħ/(2τ) = {h_bar:.3e}/(2·{tau:.2e}) = {dE:.4e} Дж",
+      "en": "ΔE ≥ ħ/(2τ) = {h_bar:.3e}/(2·{tau:.2e}) = {dE:.4e} J"
+    },
+    "s5": {
+      "ru": "ΔE = {dE_eV:.4e} эВ",
+      "en": "ΔE = {dE_eV:.4e} eV"
+    },
+    "s6": {
+      "ru": "Минимизируем энергию E = p²/(2m) + U(r)",
+      "en": "Минимизируем энергию E = p²/(2m) + U(r)"
+    },
+    "s7": {
+      "ru": "r_min ≈ ħ²/(m_e·e²·k) ≈ a₀ = {v0:.4f} нм = 0.529 Å",
+      "en": "r_min ≈ ħ²/(m_e·e²·k) ≈ a₀ = {v0:.4f} nm = 0.529 Å"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на принцип неопределённости Гейзенберга.",
+      "en": "Solve the Heisenberg uncertainty principle problem."
+    },
+    "problem": {
+      "position_momentum": {
+        "ru": "Положение электрона определено с точностью Δx = {dx} нм. Найдите минимальную неопределённость импульса.",
+        "en": "Electron position is determined with accuracy Δx = {dx} nm. Find minimum momentum uncertainty."
+      },
+      "energy_time": {
+        "ru": "Время жизни возбуждённого состояния τ = {tau} с. Найдите естественную ширину спектральной линии.",
+        "en": "Excited state lifetime τ = {tau} s. Find the natural line width."
+      },
+      "atom_size": {
+        "ru": "Оцените минимальный размер атома водорода, используя принцип неопределённости.",
+        "en": "Estimate the minimum size of hydrogen atom using uncertainty principle."
+      }
+    },
+    "steps": {
+      "position_momentum": {
+        "ru": "Принцип неопределённости: Δx·Δp ≥ ħ/2",
+        "en": "Uncertainty principle: Δx·Δp ≥ ħ/2"
+      },
+      "energy_time": {
+        "ru": "Соотношение энергия-время: ΔE·Δt ≥ ħ/2",
+        "en": "Energy-time relation: ΔE·Δt ≥ ħ/2"
+      },
+      "min_uncertainty": {
+        "ru": "Минимальная неопределённость: Δp ≥ ħ/(2Δx)",
+        "en": "Minimum uncertainty: Δp ≥ ħ/(2Δx)"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

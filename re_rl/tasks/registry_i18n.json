@@ -1,0 +1,5 @@
+{
+  "literals": {
+    "s0": "Central registry of all Task subclasses.\nEvery concrete Task class is automatically added using the metaclass in\n`BaseTask`.  The mapping key is so-called *task type* – короткая строка\n(например, \"linear\", \"quadratic\"), которая используется генераторами\nзадач и окружениями RL.\n\nExternal code should import `registry` and use:\n    cls = registry[task_type]\n\nИспользуйте `get` для безопасного доступа или ловите KeyError.\n"
+  }
+}

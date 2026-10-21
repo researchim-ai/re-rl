@@ -1,0 +1,48 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Есть вершины 1..{n}, изначально каждая в своей компоненте. Выполнены объединения: {v1}. Повторное объединение уже связанных вершин ничего не меняет.",
+      "en": "Vertices 1..{n} each start in their own component. Unions performed: {v1}. Uniting vertices that are already connected changes nothing."
+    },
+    "s1": {
+      "ru": "Сколько компонент связности получилось?",
+      "en": "How many connected components are there?"
+    },
+    "s2": {
+      "ru": "Компонент: {answer}. Состав: {shown}.",
+      "en": "Components: {answer}. Members: {shown}."
+    },
+    "s3": {
+      "ru": "Лежат ли вершины {a} и {b} в одной компоненте? Ответьте да/нет.",
+      "en": "Are vertices {a} and {b} in the same component? Answer yes/no."
+    },
+    "s4": {
+      "ru": "Каков размер компоненты, содержащей вершину {x}?",
+      "en": "What is the size of the component containing vertex {x}?"
+    },
+    "s5": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s6": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s7": {
+      "ru": "Вершины {a} и {b} {v2}. Состав: {shown}.",
+      "en": "Vertices {a} and {b} are {v2}. Members: {shown}."
+    },
+    "s8": {
+      "ru": "Компонента вершины {x} содержит {answer} вершин. Состав: {shown}.",
+      "en": "The component of vertex {x} has {answer} vertices. Members: {shown}."
+    },
+    "s9": {
+      "ru": "в одной компоненте",
+      "en": "в одной компоненте"
+    },
+    "s10": {
+      "ru": "в разных компонентах",
+      "en": "в разных компонентах"
+    }
+  }
+}

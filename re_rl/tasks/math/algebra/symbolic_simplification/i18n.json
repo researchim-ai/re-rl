@@ -1,0 +1,32 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Упростите выражение: {expression}",
+        "Приведите выражение к простейшему виду: {expression}",
+        "Максимально упростите следующее алгебраическое выражение: {expression}"
+      ],
+      "en": [
+        "Simplify the expression: {expression}",
+        "Reduce the expression to its simplest form: {expression}",
+        "Simplify the following algebraic expression: {expression}"
+      ]
+    },
+    "step_original": {
+      "ru": "Исходное выражение: {expression}",
+      "en": "Original expression: {expression}"
+    },
+    "step_expand": {
+      "ru": "Раскрываем скобки и приводим подобные слагаемые.",
+      "en": "Expand the brackets and collect like terms."
+    },
+    "step_simplify": {
+      "ru": "После упрощения получаем: {result}",
+      "en": "After simplification we obtain: {result}"
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

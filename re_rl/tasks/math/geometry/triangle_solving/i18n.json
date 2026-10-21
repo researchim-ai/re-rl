@@ -1,0 +1,48 @@
+{
+  "text": {
+    "s0": {
+      "ru": "A right triangle has legs {a} and {b}. Find its area.",
+      "en": "A right triangle has legs {a} and {b}. Find its area."
+    },
+    "s1": {
+      "ru": "В прямоугольном треугольнике катеты равны {a} и {b}. Найдите площадь треугольника.",
+      "en": "В прямоугольном треугольнике катеты равны {a} и {b}. Найдите площадь треугольника."
+    },
+    "s2": {
+      "ru": "A triangle has two sides {a} and {b} with the included angle {theta}°. Find the square of the third side.",
+      "en": "A triangle has two sides {a} and {b} with the included angle {theta}°. Find the square of the third side."
+    },
+    "s3": {
+      "ru": "A right triangle has legs {a} and {b}. Find the square of the hypotenuse.",
+      "en": "A right triangle has legs {a} and {b}. Find the square of the hypotenuse."
+    },
+    "s4": {
+      "ru": "В треугольнике две стороны равны {a} и {b}, а угол между ними {theta}°. Найдите квадрат третьей стороны.",
+      "en": "В треугольнике две стороны равны {a} и {b}, а угол между ними {theta}°. Найдите квадрат третьей стороны."
+    },
+    "s5": {
+      "ru": "В прямоугольном треугольнике катеты равны {a} и {b}. Найдите квадрат гипотенузы.",
+      "en": "В прямоугольном треугольнике катеты равны {a} и {b}. Найдите квадрат гипотенузы."
+    }
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "{scenario}",
+        "{scenario}"
+      ],
+      "en": [
+        "{scenario}",
+        "{scenario}"
+      ]
+    },
+    "step_setup": {
+      "ru": "Применяем теоремы синусов/косинусов и формулы для треугольника.",
+      "en": "Apply the laws of sines/cosines and triangle formulas."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

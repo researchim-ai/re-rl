@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Одномерный элементарный клеточный автомат, правило {rule} (границы — нули). Начальная строка: {r0}. Какой будет строка через {k} шаг(а)? Выпишите {L} бит по порядку.",
+      "en": "One-dimensional elementary cellular automaton, rule {rule} (zero boundaries). Initial row: {r0}. What is the row after {k} step(s)? List the {L} bits in order."
+    },
+    "s1": {
+      "ru": "Для каждой клетки берём тройку (лево, центр, право) и по правилу {rule} находим новый бит.",
+      "en": "For each cell take the triple (left, center, right) and apply rule {rule}."
+    },
+    "s2": {
+      "ru": "Итоговая строка: {v0}.",
+      "en": "Final row: {v0}."
+    }
+  }
+}

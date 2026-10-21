@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кооперативная игра трёх игроков, v(пустая) = 0. {parts}. Запись v(12) — коалиция игроков 1 и 2. Найдите значение Шепли игрока {who}. Ответ — целое или несократимая дробь.",
+      "en": "A three-player cooperative game, v(empty) = 0. {parts}. v(12) means the coalition of players 1 and 2. Find the Shapley value of player {who}. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Среднее маргинального вклада по 6 перестановкам равно {shown}.",
+      "en": "The average marginal contribution over the 6 permutations is {shown}."
+    },
+    "s2": {
+      "ru": "вектор Шепли не суммируется в v(N)",
+      "en": "вектор Шепли не суммируется в v(N)"
+    }
+  }
+}

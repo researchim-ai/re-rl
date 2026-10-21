@@ -3,6 +3,9 @@ Shared helpers for tactic templates and RAG loading/building.
 """
 
 from __future__ import annotations
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'rag_io_i18n.json')
+
 
 from pathlib import Path
 from typing import Callable, Optional, Tuple, TYPE_CHECKING, Any
@@ -49,9 +52,9 @@ def load_or_build_templates(
         return extractor
 
     if repo_dir is None:
-        raise FileNotFoundError(f"Шаблоны не найдены: {templates_path}")
+        raise FileNotFoundError(texts.t('s1', 'ru', templates_path=templates_path))
 
-    log("Шаблоны не найдены — извлекаем из ast (один раз)...")
+    log(texts.literal('literals.s0'))
     extractor.extract_from_ast_dir(str(repo_dir))
     extractor.save(str(templates_path))
     return extractor

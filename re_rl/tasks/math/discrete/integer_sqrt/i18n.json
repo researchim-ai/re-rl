@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "q — наибольшее неотрицательное целое, для которого q^2 не превосходит {n}. Остаток равен {n_2} - q^2.",
+      "en": "q is the greatest nonnegative integer whose square does not exceed {n}. The remainder is {n_2} - q^2."
+    },
+    "s1": {
+      "ru": "q = {root}, остаток {remainder}.",
+      "en": "q = {root}, remainder {remainder}."
+    },
+    "s2": {
+      "ru": "Найдите q.",
+      "en": "Find q."
+    },
+    "s3": {
+      "ru": "Найдите остаток.",
+      "en": "Find the remainder."
+    }
+  }
+}

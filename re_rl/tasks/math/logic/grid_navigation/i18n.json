@@ -1,0 +1,62 @@
+{
+  "text": {
+    "s0": {
+      "ru": "повернуть направо",
+      "en": "turn right"
+    },
+    "s1": {
+      "ru": "Лабиринт (# — стена, . — свободно). Старт — левый верхний угол (0,0), цель — правый нижний ({v0},{v1}). Разрешены ходы вверх/вниз/влево/вправо.\n{grid_str}\nНайдите длину кратчайшего пути (число шагов; -1, если пути нет).",
+      "en": "Maze (# — wall, . — free). Start at top-left (0,0), goal at bottom-right ({v0},{v1}). Moves: up/down/left/right.\n{grid_str}\nFind the shortest path length (number of steps; -1 if unreachable)."
+    },
+    "s2": {
+      "ru": "пройти вперёд на {k}",
+      "en": "move forward {k}"
+    },
+    "s3": {
+      "ru": "повернуть налево",
+      "en": "turn left"
+    },
+    "s4": {
+      "ru": "Робот стоит в точке (0, 0) и смотрит на {dname}. Ось X — на восток, ось Y — на север.\nКоманды по порядку: ",
+      "en": "A robot is at (0, 0) facing {dname}. X axis points east, Y axis points north.\nCommands in order: "
+    },
+    "s5": {
+      "ru": "\nКакие итоговые координаты (x, y)?",
+      "en": "\nWhat are the final coordinates (x, y)?"
+    },
+    "s6": {
+      "ru": "\nВ каком направлении (север/восток/юг/запад) робот смотрит в конце?",
+      "en": "\nWhich direction (north/east/south/west) does the robot face at the end?"
+    },
+    "s7": {
+      "ru": "Отслеживаем координаты и направление, применяя команды по очереди.",
+      "en": "Track coordinates and heading, applying commands one by one."
+    },
+    "s8": {
+      "ru": "Итоговые координаты: ({end_x}, {end_y}).",
+      "en": "Final coordinates: ({end_x}, {end_y})."
+    },
+    "s9": {
+      "ru": "Каждый поворот меняет направление на 90°, движение вперёд его не меняет.",
+      "en": "Each turn rotates the heading by 90°; moving forward keeps it."
+    },
+    "s10": {
+      "ru": "Итоговое направление: {dname}.",
+      "en": "Final heading: {dname}."
+    },
+    "s11": {
+      "ru": "Запускаем BFS по свободным клеткам от старта к цели.",
+      "en": "Run BFS over free cells from start to goal."
+    },
+    "s12": {
+      "ru": "Длина кратчайшего пути = {_answer_maze}.",
+      "en": "Shortest path length = {_answer_maze}."
+    }
+  },
+  "literals": {
+    "s13": "север",
+    "s14": "восток",
+    "s15": "юг",
+    "s16": "запад"
+  }
+}

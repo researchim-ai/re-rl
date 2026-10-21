@@ -1,0 +1,130 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Переносим",
+      "en": "Переносим"
+    },
+    "s1": {
+      "ru": "Уравнение",
+      "en": "Уравнение"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите линейное уравнение и выведите результат.\nФормат ответа:\n  <reasoning>\n    (Шаги решения, можно по пунктам)\n  </reasoning>\n  <answer>\n    (Итоговое значение x)\n  </answer>\nПример:\n<reasoning>\n  Шаг 1: Привели уравнение к виду ...\n  Шаг 2: Нашли x=2\n</reasoning>\n<answer>\n  2\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the linear equation.\nAnswer format:\n  <reasoning>\n    (Step-by-step derivation)\n  </reasoning>\n  <answer>\n    (The final value of x)\n  </answer>\nExample:\n<reasoning>\n  Step 1: We rearranged the equation...\n  Step 2: Found x=2\n</reasoning>\n<answer>\n  2\n</answer>"
+    },
+    "problem": {
+      "ru": [
+        "Решите линейное уравнение: {equation}",
+        "Найдите x: {equation}",
+        "Решите уравнение: {equation}",
+        "Определите значение x в уравнении: {equation}",
+        "Найдите корень уравнения: {equation}",
+        "Для какого x верно равенство {equation}?",
+        "Вычислите x из уравнения: {equation}"
+      ],
+      "en": [
+        "Solve the linear equation: {equation}",
+        "Find x: {equation}",
+        "Solve: {equation}",
+        "Determine the value of x in: {equation}",
+        "Find the root of: {equation}",
+        "For what x is {equation} true?",
+        "Calculate x from: {equation}"
+      ]
+    },
+    "step1": {
+      "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
+      "en": "Step 1: Write the equation in standard form:\n{equation_pretty}"
+    },
+    "step2_analysis": {
+      "ru": "Шаг 2: Анализируем уравнение:\n- Коэффициент при x: {a}\n- Свободный член: {b}\n- Правая часть: {c}",
+      "en": "Step 2: Analyze the equation:\n- Coefficient of x: {a}\n- Constant term: {b}\n- Right side: {c}"
+    },
+    "step3_terms": {
+      "ru": "Шаг 3: Выделяем слагаемые:\n- Слагаемое с x: {a}x\n- Свободное слагаемое: {b}\n- Правая часть: {c}",
+      "en": "Step 3: Identify terms:\n- Term with x: {a}x\n- Constant term: {b}\n- Right side: {c}"
+    },
+    "step4_transfer": {
+      "ru": "Шаг 4: Переносим свободное слагаемое в правую часть:\n{c} - {b} = {right_side}",
+      "en": "Step 4: Move the constant term to the right side:\n{c} - {b} = {right_side}"
+    },
+    "step5_coef": {
+      "ru": "Шаг 5: Проверяем коэффициент при x:\nКоэффициент {a} не равен нулю, поэтому можно разделить обе части уравнения на {a}",
+      "en": "Step 5: Check the coefficient of x:\nCoefficient {a} is not zero, so we can divide both sides by {a}"
+    },
+    "step6_division": {
+      "ru": "Шаг 6: Делим обе части уравнения на {a}:\n{right_side} / {a} = {solution}",
+      "en": "Step 6: Divide both sides by {a}:\n{right_side} / {a} = {solution}"
+    },
+    "step7_check": {
+      "ru": "Шаг 7: Проверяем решение, подставляя x = {solution} в исходное уравнение:\n{equation}",
+      "en": "Step 7: Verify the solution by substituting x = {solution} into the original equation:\n{equation}"
+    },
+    "step8_geom": {
+      "ru": "Шаг 8: Геометрическая интерпретация:\nУравнение {a}x + {b} = {c} представляет собой прямую линию, которая пересекает ось x в точке x = {solution}",
+      "en": "Step 8: Geometric interpretation:\nThe equation {a}x + {b} = {c} represents a straight line that intersects the x-axis at x = {solution}"
+    },
+    "step9_alt": {
+      "ru": "Шаг 9: Альтернативный метод решения:\nМожно решить уравнение графически, построив графики функций y = {a}x + {b} и y = {c}. Точка их пересечения даст решение x = {solution}",
+      "en": "Step 9: Alternative solution method:\nWe can solve the equation graphically by plotting the functions y = {a}x + {b} and y = {c}. Their intersection point gives the solution x = {solution}"
+    },
+    "linear_extra_partition": {
+      "ru": "Шаг {n}: Разбиваем {c} - {b} на {n} равных частей:\n{parts}",
+      "en": "Step {n}: Partition {c} - {b} into {n} equal parts:\n{parts}"
+    },
+    "linear_extra_sum": {
+      "ru": "Шаг {n+1}: Проверяем сумму частей:\n{sum_value}",
+      "en": "Step {n+1}: Verify the sum of parts:\n{sum_value}"
+    },
+    "explanation": {
+      "ru": {
+        "step1": "Записываем уравнение в стандартной форме для дальнейшего решения",
+        "step2_analysis": "Анализируем структуру уравнения, определяя все его компоненты",
+        "step3_terms": "Выделяем и называем каждое слагаемое в уравнении",
+        "step4_transfer": "Переносим свободное слагаемое в правую часть для изоляции x",
+        "step5_coef": "Проверяем возможность деления на коэффициент при x",
+        "step6_division": "Делим обе части уравнения на коэффициент при x для получения решения",
+        "step7_check": "Проверяем корректность решения подстановкой",
+        "step8_geom": "Рассматриваем геометрический смысл уравнения",
+        "step9_alt": "Рассматриваем альтернативный метод решения"
+      },
+      "en": {
+        "step1": "Write the equation in standard form for further solution",
+        "step2_analysis": "Analyze the structure of the equation, identifying all its components",
+        "step3_terms": "Identify and name each term in the equation",
+        "step4_transfer": "Move the constant term to the right side to isolate x",
+        "step5_coef": "Check if we can divide by the coefficient of x",
+        "step6_division": "Divide both sides by the coefficient of x to get the solution",
+        "step7_check": "Verify the solution by substitution",
+        "step8_geom": "Consider the geometric meaning of the equation",
+        "step9_alt": "Consider an alternative solution method"
+      }
+    },
+    "validation": {
+      "ru": {
+        "step1": "Уравнение записано корректно в стандартной форме",
+        "step2_analysis": "Анализ уравнения выполнен правильно",
+        "step3_terms": "Слагаемые выделены корректно",
+        "step4_transfer": "Перенос слагаемых выполнен правильно",
+        "step5_coef": "Проверка коэффициента выполнена корректно",
+        "step6_division": "Деление на коэффициент выполнено правильно",
+        "step7_check": "Проверка решения подтверждает его корректность",
+        "step8_geom": "Геометрическая интерпретация верна",
+        "step9_alt": "Альтернативный метод решения применим"
+      },
+      "en": {
+        "step1": "The equation is correctly written in standard form",
+        "step2_analysis": "Equation analysis is correct",
+        "step3_terms": "Terms are correctly identified",
+        "step4_transfer": "Term transfer is performed correctly",
+        "step5_coef": "Coefficient check is correct",
+        "step6_division": "Division by coefficient is performed correctly",
+        "step7_check": "Solution verification confirms its correctness",
+        "step8_geom": "Geometric interpretation is correct",
+        "step9_alt": "Alternative solution method is applicable"
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "text": {
+    "s0": {
+      "ru": "T = C·√(l/g), где C = 2π",
+      "en": "T = C·√(l/g), где C = 2π"
+    },
+    "s1": {
+      "ru": "dimensional_left_part",
+      "en": "dimensional_left_part"
+    },
+    "s2": {
+      "ru": "dimensional_right_part",
+      "en": "dimensional_right_part"
+    },
+    "s3": {
+      "ru": "dimensional_left_part",
+      "en": "dimensional_left_part"
+    },
+    "s4": {
+      "ru": "dimensional_right_part",
+      "en": "dimensional_right_part"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Проверьте размерность формулы или выведите формулу методом размерностей.",
+      "en": "Check the formula dimensions or derive a formula using dimensional analysis."
+    },
+    "problem": {
+      "check_formula": {
+        "ru": "Проверьте размерность формулы: {formula}. Верна ли она?",
+        "en": "Check the dimensions of formula: {formula}. Is it correct?"
+      },
+      "derive_formula": {
+        "ru": "Период колебаний маятника T зависит от длины l и g. Выведите формулу методом размерностей.",
+        "en": "Pendulum period T depends on length l and g. Derive formula using dimensional analysis."
+      },
+      "find_units": {
+        "ru": "Найдите размерность величины, определённой формулой: {formula}.",
+        "en": "Find the dimensions of quantity defined by: {formula}."
+      }
+    },
+    "dimensions": {
+      "length": {
+        "ru": "длина [L]",
+        "en": "length [L]"
+      },
+      "mass": {
+        "ru": "масса [M]",
+        "en": "mass [M]"
+      },
+      "time": {
+        "ru": "время [T]",
+        "en": "time [T]"
+      },
+      "current": {
+        "ru": "сила тока [I]",
+        "en": "current [I]"
+      },
+      "temperature": {
+        "ru": "температура [Θ]",
+        "en": "temperature [Θ]"
+      }
+    },
+    "steps": {
+      "write_dimensions": {
+        "ru": "Запишем размерности: {dimensions}",
+        "en": "Write dimensions: {dimensions}"
+      },
+      "check_equality": {
+        "ru": "Проверяем равенство размерностей слева и справа",
+        "en": "Check dimension equality on both sides"
+      },
+      "conclusion": {
+        "ru": "Вывод: {result}",
+        "en": "Conclusion: {result}"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  },
+  "inline_keys": {
+    "dimensional_correct": {
+      "ru": "Формула размерностно верна",
+      "en": "Formula is dimensionally correct"
+    },
+    "dimensional_value": {
+      "ru": "Размерность: {value}",
+      "en": "Dimension: {value}"
+    },
+    "dimensional_incorrect": {
+      "ru": "Формула размерностно неверна",
+      "en": "Formula is dimensionally incorrect"
+    },
+    "dimensional_right_part": {
+      "ru": "Правая часть: {value}",
+      "en": "Right side: {value}"
+    },
+    "dimensional_left_part": {
+      "ru": "Левая часть: {value}",
+      "en": "Left side: {value}"
+    }
+  }
+}

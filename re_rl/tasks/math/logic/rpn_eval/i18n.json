@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вычислите выражение в обратной польской записи (постфикс): {expr}",
+      "en": "Evaluate the reverse Polish (postfix) expression: {expr}"
+    },
+    "s1": {
+      "ru": "Идём слева направо со стеком: число кладём в стек, оператор берёт два верхних значения.",
+      "en": "Scan left to right with a stack: push numbers, operators pop the top two values."
+    },
+    "s2": {
+      "ru": "Результат = {_answer}.",
+      "en": "Result = {_answer}."
+    }
+  }
+}

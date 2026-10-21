@@ -1,0 +1,70 @@
+{
+  "text": {
+    "s0": {
+      "ru": "f = {v0} Гц",
+      "en": "f = {v0} Hz"
+    },
+    "s1": {
+      "ru": "f = {f0}·{c_sound}/({c_sound_2} - {vs}) = {v4} Гц",
+      "en": "f = {f0}·{c_sound}/({c_sound_2} - {vs}) = {v4} Hz"
+    },
+    "s2": {
+      "ru": "f = {v0} Гц",
+      "en": "f = {v0} Hz"
+    },
+    "s3": {
+      "ru": "Δλ = {v0} нм, λ = {v1} нм",
+      "en": "Δλ = {v0} нм, λ = {v1} нм"
+    },
+    "s4": {
+      "ru": "f = {f0}·{c_sound}/({c_sound_2} + {vs}) = {v4} Гц",
+      "en": "f = {f0}·{c_sound}/({c_sound_2} + {vs}) = {v4} Hz"
+    },
+    "s5": {
+      "ru": "Δλ = {lambda0}·{v_galaxy}·10³/{c_light:.0e} = {v3} нм",
+      "en": "Δλ = {lambda0}·{v_galaxy}·10³/{c_light:.0e} = {v3} nm"
+    },
+    "s6": {
+      "ru": "λ = {lambda0} + {v1} = {v2} нм",
+      "en": "λ = {lambda0} + {v1} = {v2} nm"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на эффект Доплера.",
+      "en": "Solve the Doppler effect problem."
+    },
+    "problem": {
+      "approaching": {
+        "ru": "Источник звука частотой f₀ = {f0} Гц приближается со скоростью v_s = {vs} м/с. Скорость звука c = {c} м/с. Найдите наблюдаемую частоту.",
+        "en": "A sound source at f₀ = {f0} Hz approaches at v_s = {vs} m/s. Sound speed c = {c} m/s. Find observed frequency."
+      },
+      "receding": {
+        "ru": "Источник звука частотой f₀ = {f0} Гц удаляется со скоростью v_s = {vs} м/с. Найдите наблюдаемую частоту.",
+        "en": "A sound source at f₀ = {f0} Hz recedes at v_s = {vs} m/s. Find observed frequency."
+      },
+      "light_redshift": {
+        "ru": "Галактика удаляется со скоростью v = {v} км/с. Найдите красное смещение линии с λ₀ = {lambda0} нм.",
+        "en": "A galaxy recedes at v = {v} km/s. Find the redshift of a line at λ₀ = {lambda0} nm."
+      }
+    },
+    "steps": {
+      "sound_formula": {
+        "ru": "Эффект Доплера (звук): f = f₀·(c ± v_наб)/(c ∓ v_ист)",
+        "en": "Doppler (sound): f = f₀·(c ± v_obs)/(c ∓ v_src)"
+      },
+      "light_formula": {
+        "ru": "Эффект Доплера (свет): Δλ/λ₀ = v/c",
+        "en": "Doppler (light): Δλ/λ₀ = v/c"
+      },
+      "approaching": {
+        "ru": "Приближение: f = f₀·c/(c - v_s)",
+        "en": "Approaching: f = f₀·c/(c - v_s)"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — лабиринт {n}×{n_2}: тёмные клетки — стены, светлые — свободны. Старт S (зелёная, левый верхний угол), цель G (красная, правый нижний). Разрешены ходы вверх/вниз/влево/вправо. Найдите длину кратчайшего пути (число шагов; -1, если пути нет).",
+      "en": "The figure shows an {n}×{n_2} maze: dark cells are walls, light cells are free. Start S (green, top-left), goal G (red, bottom-right). Moves: up/down/left/right. Find the shortest path length (number of steps; -1 if unreachable)."
+    }
+  },
+  "literals": {
+    "s1": "grid_navigation_image"
+  }
+}

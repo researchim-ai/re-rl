@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s0": {
+      "ru": "наклон b",
+      "en": "the slope b"
+    },
+    "s1": {
+      "ru": "свободный член a",
+      "en": "the intercept a"
+    },
+    "s2": {
+      "ru": "Метод наименьших квадратов для прямой y = a + b*x. Точки: {v0}. Найдите {what}. Ответ — целое или несократимая дробь.",
+      "en": "Least squares for the line y = a + b*x. Points: {v0}. Find {what}. Answer with an integer or a reduced fraction."
+    }
+  },
+  "literals": {
+    "s3": "все x совпадают"
+  }
+}

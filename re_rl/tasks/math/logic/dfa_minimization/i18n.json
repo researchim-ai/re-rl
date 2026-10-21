@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "ДКА с состояниями 0..{v0}, начальное 0, принимающие состояния: {acc}, алфавит из символов a и b. Переходы: {trans}. Сколько состояний в эквивалентном минимальном ДКА (после удаления недостижимых и слияния неразличимых состояний)?",
+      "en": "DFA with states 0..{v0}, start 0, accepting states: {acc}, alphabet with symbols a and b. Transitions: {trans}. How many states does the equivalent minimal DFA have (after removing unreachable and merging indistinguishable states)?"
+    },
+    "s1": {
+      "ru": "Убираем недостижимые состояния, затем разбиваем оставшиеся по различимости (алгоритм Мура).",
+      "en": "Remove unreachable states, then partition the rest by distinguishability (Moore's algorithm)."
+    },
+    "s2": {
+      "ru": "Минимальный ДКА содержит {answer} состояний.",
+      "en": "The minimal DFA has {answer} states."
+    }
+  }
+}

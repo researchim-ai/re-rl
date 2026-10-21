@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вероятность действия = его вес / сумма весов. Оценка политики V = сумма π(a) * Q(a). Преимущество действия = Q(a) - V. Ответ — целое или несократимая дробь.",
+      "en": "An action's probability is its weight over the total weight. The policy value V is the sum of π(a) * Q(a). An action's advantage is Q(a) - V. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "V = {v0}, преимущество выбранного действия = {v1}.",
+      "en": "V = {v0}, advantage of the chosen action = {v1}."
+    },
+    "s2": {
+      "ru": "Найдите V.",
+      "en": "Find V."
+    },
+    "s3": {
+      "ru": "Найдите преимущество действия {v0}.",
+      "en": "Find the advantage of action {v0}."
+    },
+    "s4": {
+      "ru": "{v0}: вес {w}, Q {q}",
+      "en": "{v0}: weight {w}, Q {q}"
+    }
+  }
+}

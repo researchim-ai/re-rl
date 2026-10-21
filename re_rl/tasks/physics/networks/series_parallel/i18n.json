@@ -1,0 +1,81 @@
+{
+  "text": {
+    "s0": {
+      "ru": "последовательно",
+      "en": "series"
+    },
+    "s1": {
+      "ru": "параллельно",
+      "en": "parallel"
+    },
+    "s7": {
+      "ru": "Эквивалент = {v0} {u}",
+      "en": "Equivalent = {v0} {u}"
+    },
+    "s8": {
+      "ru": "series_parallel_network",
+      "en": "series_parallel_network"
+    },
+    "s9": {
+      "ru": "series_parallel_network",
+      "en": "series_parallel_network"
+    }
+  },
+  "literals": {
+    "s2": "series_parallel_network",
+    "s3": "Ом",
+    "s4": "мкФ",
+    "s5": "Н/м",
+    "s6": "К/Вт"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Сверните сеть из последовательных и параллельных элементов.",
+      "en": "Reduce a network of series and parallel elements."
+    },
+    "problem": {
+      "resistor": {
+        "ru": "Дана цепь резисторов (последовательно = сумма, параллельно = обратная сумма обратных): {net}. Найдите эквивалентное сопротивление (в Ом).",
+        "en": "A resistor network (series = sum, parallel = reciprocal of sum of reciprocals): {net}. Find the equivalent resistance (in Ω)."
+      },
+      "capacitor": {
+        "ru": "Дана цепь конденсаторов (параллельно = сумма, последовательно = обратная сумма обратных): {net}. Найдите эквивалентную ёмкость (в мкФ).",
+        "en": "A capacitor network (parallel = sum, series = reciprocal of sum of reciprocals): {net}. Find the equivalent capacitance (in µF)."
+      },
+      "spring": {
+        "ru": "Дана система пружин (параллельно = сумма жёсткостей, последовательно = обратная сумма обратных): {net}. Найдите эквивалентную жёсткость (в Н/м).",
+        "en": "A spring system (parallel = sum of stiffnesses, series = reciprocal of sum of reciprocals): {net}. Find the equivalent stiffness (in N/m)."
+      },
+      "thermal": {
+        "ru": "Дана система тепловых сопротивлений (последовательно = сумма, параллельно = обратная сумма обратных): {net}. Найдите эквивалентное тепловое сопротивление (в К/Вт).",
+        "en": "A thermal-resistance system (series = sum, parallel = reciprocal of sum of reciprocals): {net}. Find the equivalent thermal resistance (in K/W)."
+      }
+    },
+    "steps": {
+      "resistor_rule": {
+        "ru": "Последовательно: R = ΣR_i. Параллельно: 1/R = Σ(1/R_i).",
+        "en": "Series: R = ΣR_i. Parallel: 1/R = Σ(1/R_i)."
+      },
+      "capacitor_rule": {
+        "ru": "Параллельно: C = ΣC_i. Последовательно: 1/C = Σ(1/C_i).",
+        "en": "Parallel: C = ΣC_i. Series: 1/C = Σ(1/C_i)."
+      },
+      "spring_rule": {
+        "ru": "Параллельно: k = Σk_i. Последовательно: 1/k = Σ(1/k_i).",
+        "en": "Parallel: k = Σk_i. Series: 1/k = Σ(1/k_i)."
+      },
+      "thermal_rule": {
+        "ru": "Последовательно: R = ΣR_i. Параллельно: 1/R = Σ(1/R_i).",
+        "en": "Series: R = ΣR_i. Parallel: 1/R = Σ(1/R_i)."
+      },
+      "reduce": {
+        "ru": "Сворачиваем сеть от внутренних узлов к внешним.",
+        "en": "Reduce the network from inner nodes outward."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

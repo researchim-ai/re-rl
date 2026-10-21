@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цепочка из {n_vars} бинарных признаков. Каждый зависит только от предыдущего. Вероятность, что признак 1 равен 1: {v1}. Вероятность, что следующий равен 1: {chain}. Ответ — целое или несократимая дробь.",
+      "en": "A chain of {n_vars} binary features. Each depends only on the previous one. The probability that feature 1 equals 1 is {v1}. The probability that the next feature equals 1: {chain}. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Маргинальная вероятность последнего {v0}, апостериорная первого {v1}.",
+      "en": "Marginal probability of the last feature {v0}, posterior of the first {v1}."
+    },
+    "s2": {
+      "ru": "Найдите вероятность, что признак {n_vars} равен 1.",
+      "en": "Find the probability that feature {n_vars} equals 1."
+    },
+    "s3": {
+      "ru": "Найдите вероятность, что признак 1 равен 1, если признак {n_vars} равен 1.",
+      "en": "Find the probability that feature 1 equals 1 given that feature {n_vars} equals 1."
+    },
+    "s4": {
+      "ru": "признак {index}: если предыдущий 1, то {v1}; если предыдущий 0, то {v2}",
+      "en": "feature {index}: {v1} if the previous is 1; {v2} if the previous is 0"
+    }
+  }
+}

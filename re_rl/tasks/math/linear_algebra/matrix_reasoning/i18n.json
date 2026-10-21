@@ -1,0 +1,24 @@
+{
+  "prompt": {
+    "determinant": {
+      "ru": "Вычислите определитель матрицы:\n{matrix}",
+      "en": "Compute the determinant of the matrix:\n{matrix}"
+    },
+    "rank": {
+      "ru": "Найдите ранг матрицы:\n{matrix}",
+      "en": "Find the rank of the matrix:\n{matrix}"
+    },
+    "trace": {
+      "ru": "Найдите след (сумму диагональных элементов) матрицы:\n{matrix}",
+      "en": "Find the trace (sum of diagonal entries) of the matrix:\n{matrix}"
+    },
+    "eigenvalues": {
+      "ru": "Найдите собственные значения матрицы (через запятую):\n{matrix}",
+      "en": "Find the eigenvalues of the matrix (comma-separated):\n{matrix}"
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Find the midpoint of the segment with endpoints {p1} and {p2}.",
+      "en": "Find the midpoint of the segment with endpoints {p1} and {p2}."
+    },
+    "s1": {
+      "ru": "Найдите координаты середины отрезка с концами {p1} и {p2}.",
+      "en": "Найдите координаты середины отрезка с концами {p1} и {p2}."
+    },
+    "s2": {
+      "ru": "Find the slope of the line through the points {p1} and {p2}.",
+      "en": "Find the slope of the line through the points {p1} and {p2}."
+    },
+    "s3": {
+      "ru": "Find the squared distance between the points {p1} and {p2}.",
+      "en": "Find the squared distance between the points {p1} and {p2}."
+    },
+    "s4": {
+      "ru": "Найдите угловой коэффициент прямой, проходящей через точки {p1} и {p2}.",
+      "en": "Найдите угловой коэффициент прямой, проходящей через точки {p1} и {p2}."
+    },
+    "s5": {
+      "ru": "Найдите квадрат расстояния между точками {p1} и {p2}.",
+      "en": "Найдите квадрат расстояния между точками {p1} и {p2}."
+    }
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "{scenario}",
+        "{scenario}"
+      ],
+      "en": [
+        "{scenario}",
+        "{scenario}"
+      ]
+    },
+    "step_setup": {
+      "ru": "Используем формулы аналитической геометрии на плоскости.",
+      "en": "Apply coordinate-geometry formulas in the plane."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Прогнозы: {pred}. Истинные значения: {truth}.",
+      "en": "Predictions: {pred}. True values: {truth}."
+    },
+    "s1": {
+      "ru": "Сумма модулей {v0}, среднее {v1}.",
+      "en": "Sum of absolute values {v0}, mean {v1}."
+    },
+    "s2": {
+      "ru": "Средняя абсолютная ошибка — среднее модулей разностей. Найдите её. Ответ — целое или несократимая дробь.",
+      "en": "Mean absolute error is the mean of the absolute differences. Find it. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Найдите сумму модулей разностей. Ответ — целое или несократимая дробь.",
+      "en": "Find the sum of absolute differences. Answer with an integer or a reduced fraction."
+    }
+  }
+}

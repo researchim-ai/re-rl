@@ -11,6 +11,9 @@
 - SFT формат (instruction/input/output)
 - Chat формат (messages)
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'dataset_generator_i18n.json')
+
 
 import json
 import os
@@ -131,7 +134,7 @@ class LeanDatasetGenerator:
             from lean_dojo import LeanGitRepo, Theorem, trace
         except ImportError:
             raise ImportError(
-                "LeanDojo is required. Install with: pip install lean-dojo"
+                texts.t('s12', self.language)
             )
         
         start_time = time.time()
@@ -162,7 +165,7 @@ class LeanDatasetGenerator:
         # Обрабатываем теоремы
         for i, traced_thm in enumerate(theorems):
             if len(self.training_pairs) >= self.config.max_total_pairs:
-                logger.info("Reached max_total_pairs limit")
+                logger.info(texts.t('s13', self.language))
                 break
             
             try:
@@ -177,8 +180,7 @@ class LeanDatasetGenerator:
                 
                 if (i + 1) % 10 == 0:
                     logger.info(
-                        f"Processed {i+1}/{len(theorems)} theorems, "
-                        f"{len(self.training_pairs)} pairs collected"
+                        texts.t('s15', self.language, v0=i + 1, v1=len(theorems), v2=len(self.training_pairs))
                     )
                     
             except Exception as e:
@@ -241,7 +243,7 @@ class LeanDatasetGenerator:
         try:
             from lean_dojo import Dojo
         except ImportError:
-            raise ImportError("LeanDojo is required")
+            raise ImportError(texts.t('s14', self.language))
         
         with Dojo(theorem) as (dojo, state_0):
             return self._explorer.explore(
@@ -283,16 +285,9 @@ class LeanDatasetGenerator:
         Returns:
             Список словарей {instruction, input, output}
         """
-        if language == "ru":
-            instruction = (
-                "Сгенерируй следующую тактику Lean 4 для данного состояния доказательства. "
-                "Выведи только тактику, без объяснений."
-            )
-        else:
-            instruction = (
-                "Generate the next Lean 4 tactic for the given proof state. "
-                "Output only the tactic, no explanations."
-            )
+        instruction = (
+            texts.t('s0', language)
+        )
         
         result = []
         for pair in self.training_pairs:
@@ -302,7 +297,7 @@ class LeanDatasetGenerator:
                 "output": pair.tactic,
                 "metadata": {
                     "theorem_name": pair.theorem_name,
-                    "distance_to_proof": pair.distance_to_proof,
+                    texts.t('s16', language): pair.distance_to_proof,
                     "next_state": pair.next_state,
                 }
             })
@@ -319,18 +314,10 @@ class LeanDatasetGenerator:
         Returns:
             Список словарей с messages
         """
-        if language == "ru":
-            system = (
-                "Ты — ассистент для доказательства теорем в Lean 4. "
-                "Получив состояние доказательства, выведи следующую тактику."
-            )
-            user_prefix = "Состояние доказательства:\n"
-        else:
-            system = (
-                "You are a Lean 4 theorem proving assistant. "
-                "Given a proof state, output the next tactic."
-            )
-            user_prefix = "Proof state:\n"
+        system = (
+            texts.t('s1', language)
+        )
+        user_prefix = texts.t('s2', language)
         
         result = []
         for pair in self.training_pairs:
@@ -342,7 +329,7 @@ class LeanDatasetGenerator:
                 ],
                 "metadata": {
                     "theorem_name": pair.theorem_name,
-                    "distance_to_proof": pair.distance_to_proof,
+                    texts.t('s17', language): pair.distance_to_proof,
                 }
             })
         
@@ -369,22 +356,22 @@ class LeanDatasetGenerator:
         os.makedirs(output_dir, exist_ok=True)
         
         # Сохраняем сырые пары
-        raw_path = os.path.join(output_dir, "training_pairs.json")
+        raw_path = os.path.join(output_dir, texts.t('s3', language))
         with open(raw_path, 'w', encoding='utf-8') as f:
             json.dump(self.to_raw_pairs(), f, ensure_ascii=False, indent=2)
-        logger.info(f"Saved raw pairs to {raw_path}")
+        logger.info(texts.t('s4', language, raw_path=raw_path))
         
         # Сохраняем SFT формат
-        sft_path = os.path.join(output_dir, "sft_dataset.json")
+        sft_path = os.path.join(output_dir, texts.t('s5', language))
         with open(sft_path, 'w', encoding='utf-8') as f:
             json.dump(self.to_sft_format(language), f, ensure_ascii=False, indent=2)
-        logger.info(f"Saved SFT dataset to {sft_path}")
+        logger.info(texts.t('s6', language, sft_path=sft_path))
         
         # Сохраняем Chat формат
-        chat_path = os.path.join(output_dir, "chat_dataset.json")
+        chat_path = os.path.join(output_dir, texts.t('s7', language))
         with open(chat_path, 'w', encoding='utf-8') as f:
             json.dump(self.to_chat_format(language), f, ensure_ascii=False, indent=2)
-        logger.info(f"Saved Chat dataset to {chat_path}")
+        logger.info(texts.t('s8', language, chat_path=chat_path))
         
         # Сохраняем статистику
         stats_path = os.path.join(output_dir, "stats.json")
@@ -393,15 +380,15 @@ class LeanDatasetGenerator:
                 "stats": self.stats.to_dict(),
                 "config": self.config.to_dict(),
             }, f, ensure_ascii=False, indent=2)
-        logger.info(f"Saved stats to {stats_path}")
+        logger.info(texts.t('s9', language, stats_path=stats_path))
         
         # JSONL формат (для потоковой загрузки)
         if format in ("jsonl", "all"):
-            jsonl_path = os.path.join(output_dir, "training_pairs.jsonl")
+            jsonl_path = os.path.join(output_dir, texts.t('s10', language))
             with open(jsonl_path, 'w', encoding='utf-8') as f:
                 for pair in self.training_pairs:
                     f.write(json.dumps(pair.to_dict(), ensure_ascii=False) + '\n')
-            logger.info(f"Saved JSONL to {jsonl_path}")
+            logger.info(texts.t('s11', language, jsonl_path=jsonl_path))
 
 
 def generate_lean_dataset(

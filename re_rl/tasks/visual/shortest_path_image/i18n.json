@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — взвешенный неориентированный граф (числа на рёбрах — веса). Найдите вес кратчайшего пути между вершиной {src} (зелёная) и вершиной {dst} (красная).",
+      "en": "The figure shows a weighted undirected graph (numbers on edges are weights). Find the weight of the shortest path between vertex {src} (green) and vertex {dst} (red)."
+    },
+    "s2": {
+      "ru": "Взвешенный граф",
+      "en": "Взвешенный граф"
+    }
+  },
+  "literals": {
+    "s1": "shortest_path_image"
+  }
+}

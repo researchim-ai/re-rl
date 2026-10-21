@@ -1,0 +1,22 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дана строка: «{text}». Найдите длину наибольшей палиндромной подпоследовательности (символы не обязаны идти подряд).",
+      "en": "Given the string: '{text}'. Find the length of the longest palindromic subsequence (characters need not be contiguous)."
+    },
+    "s1": {
+      "ru": "Дана последовательность: {arr}. Найдите длину наибольшей строго возрастающей подпоследовательности (элементы не обязаны идти подряд).",
+      "en": "Given the sequence: {arr}. Find the length of the longest strictly increasing subsequence (elements need not be contiguous)."
+    }
+  },
+  "literals": {
+    "s2": {
+      "ru": "ДП: dp[i] — длина НВП, оканчивающейся на i-м элементе; берём максимум.",
+      "en": "DP: dp[i] is the LIS length ending at index i; take the maximum."
+    },
+    "s3": {
+      "ru": "ДП по подотрезкам: если концы равны, dp[i][j]=dp[i+1][j-1]+2, иначе max(dp[i+1][j], dp[i][j-1]).",
+      "en": "DP on subarrays: if the ends match, dp[i][j]=dp[i+1][j-1]+2, otherwise max(dp[i+1][j], dp[i][j-1])."
+    }
+  }
+}

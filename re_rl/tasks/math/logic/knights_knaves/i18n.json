@@ -1,0 +1,236 @@
+{
+  "text": {
+    "s0": {
+      "ru": "два",
+      "en": "two"
+    },
+    "s1": {
+      "ru": "три",
+      "en": "three"
+    },
+    "s2": {
+      "ru": "четыре",
+      "en": "four"
+    },
+    "s3": {
+      "ru": "пять",
+      "en": "five"
+    },
+    "s4": {
+      "ru": "Анализ высказывания {name}:\n",
+      "en": "Analysis of {name}'s statement:\n"
+    },
+    "s5": {
+      "ru": "- Возможные роли: {v0}\n",
+      "en": "- Possible roles: {v0}\n"
+    },
+    "s6": {
+      "ru": "- Логические следствия:",
+      "en": "- Logical implications:"
+    },
+    "s7": {
+      "ru": "Найденные противоречия:\n",
+      "en": "Found contradictions:\n"
+    },
+    "s8": {
+      "ru": "ы",
+      "en": "ы"
+    },
+    "s9": {
+      "ru": "at_least_one",
+      "en": "at_least_one"
+    },
+    "s10": {
+      "ru": "y_and_z_both_honest",
+      "en": "y_and_z_both_honest"
+    },
+    "s11": {
+      "ru": "y_and_z_both_liars",
+      "en": "y_and_z_both_liars"
+    },
+    "s12": {
+      "ru": "рыцарь",
+      "en": "knight"
+    },
+    "s13": {
+      "ru": "лжец",
+      "en": "knave"
+    },
+    "s14": {
+      "ru": "рыцарь",
+      "en": "knight"
+    },
+    "s15": {
+      "ru": "лжец",
+      "en": "knave"
+    },
+    "s16": {
+      "ru": "{name1} и {name2} противоречат друг другу",
+      "en": "{name1} и {name2} противоречат друг другу"
+    },
+    "s17": {
+      "ru": "at_least_one",
+      "en": "at_least_one"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Определите, кто из жителей острова рыцарь (всегда говорит правду), а кто лжец (всегда лжёт).\nФормат ответа:\n  <reasoning>\n    (Логические рассуждения по шагам)\n  </reasoning>\n  <answer>\n    (Роль каждого жителя: рыцарь/лжец)\n  </answer>",
+      "en": "type: structured_text_with_tags\nDescription: Determine which inhabitants are knights (always tell truth) and which are knaves (always lie).\nAnswer format:\n  <reasoning>\n    (Step-by-step logical reasoning)\n  </reasoning>\n  <answer>\n    (Role of each inhabitant: knight/knave)\n  </answer>"
+    },
+    "intro": {
+      "ru": "У нас есть три персонажей: {names}.",
+      "en": "We have three characters: {names}."
+    },
+    "names_pool": {
+      "ru": [
+        "Алекс",
+        "Борис",
+        "Виктор",
+        "Григорий",
+        "Дмитрий",
+        "Елена",
+        "Жанна",
+        "Зоя",
+        "Ирина",
+        "Карина",
+        "Леонид",
+        "Мария",
+        "Николай",
+        "Ольга",
+        "Павел",
+        "Роман",
+        "Светлана",
+        "Тимофей",
+        "Ульяна",
+        "Федор",
+        "Харитон",
+        "Цветана",
+        "Чеслав",
+        "Шарлотта",
+        "Эдуард",
+        "Юрий",
+        "Ярослав",
+        "Анна",
+        "Богдан",
+        "Валентина",
+        "Галина",
+        "Даниил",
+        "Евгений",
+        "Жорж",
+        "Зинаида",
+        "Игорь",
+        "Ксения",
+        "Лев",
+        "Маргарита",
+        "Наталья",
+        "Олег",
+        "Петр",
+        "Раиса",
+        "Сергей",
+        "Татьяна",
+        "Устин",
+        "Фаина",
+        "Христина",
+        "Цезарь",
+        "Чарльз"
+      ],
+      "en": [
+        "Alex",
+        "Bob",
+        "Charlie",
+        "David",
+        "Eve",
+        "Frank",
+        "George",
+        "Helen",
+        "Ivan",
+        "Jack",
+        "Kevin",
+        "Lily",
+        "Mike",
+        "Nina",
+        "Oliver",
+        "Peter",
+        "Quinn",
+        "Rachel",
+        "Sam",
+        "Tom",
+        "Uma",
+        "Victor",
+        "Wendy",
+        "Xavier",
+        "Yara",
+        "Zack",
+        "Alice",
+        "Ben",
+        "Clara",
+        "Dan",
+        "Emma",
+        "Fred",
+        "Gina",
+        "Henry",
+        "Iris",
+        "James",
+        "Kate",
+        "Leo",
+        "Maya",
+        "Nate",
+        "Oscar",
+        "Penny",
+        "Quinn",
+        "Rose",
+        "Steve",
+        "Tina",
+        "Uri",
+        "Vera",
+        "Wade",
+        "Xena"
+      ]
+    },
+    "problem": {
+      "ru": "Известно, что {statements}. Определите, кто из них рыцарь, а кто — лжец",
+      "en": "It is known that {statements}. Determine who is a knight and who is a knave"
+    },
+    "forms": {
+      "ru": {
+        "statement": "{name} говорит: \"{text}\"",
+        "about_self": "Я {role}",
+        "about_other": "{name} - {role}",
+        "and": "{name} и {other_name} оба {role}",
+        "or": "{name} или {other_name} - {role}",
+        "same": "{name} и {other_name} одного типа",
+        "different": "{name} и {other_name} разных типов",
+        "at_least_one": "Хотя бы один из нас - {role}",
+        "exactly_one": "Ровно один из нас - {role}"
+      },
+      "en": {
+        "statement": "{name} says: \"{text}\"",
+        "about_self": "I am a {role}",
+        "about_other": "{name} is a {role}",
+        "and": "Both {name} and {other_name} are {role}s",
+        "or": "Either {name} or {other_name} is a {role}",
+        "same": "{name} and {other_name} are of the same type",
+        "different": "{name} and {other_name} are of different types",
+        "at_least_one": "At least one of us is a {role}",
+        "exactly_one": "Exactly one of us is a {role}"
+      }
+    },
+    "step1": {
+      "ru": "Шаг 1: Проанализируем высказывания каждого жителя, учитывая, что рыцари всегда говорят правду, а лжецы всегда лгут.",
+      "en": "Step 1: Let's analyze each inhabitant's statement, considering that knights always tell the truth and knaves always lie."
+    },
+    "final_step": {
+      "ru": "На основе анализа высказываний и их логических следствий, мы можем определить роль каждого жителя.",
+      "en": "Based on the analysis of statements and their logical implications, we can determine each inhabitant's role."
+    },
+    "final_answer": {
+      "ru": "Роли жителей:\n{roles}",
+      "en": "Inhabitants' roles:\n{roles}"
+    },
+    "explanation": {
+      "ru": "Это решение основано на том, что рыцари всегда говорят правду, а лжецы всегда лгут.",
+      "en": "This solution is based on the fact that knights always tell the truth and knaves always lie."
+    }
+  }
+}

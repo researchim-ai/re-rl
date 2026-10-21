@@ -1,0 +1,42 @@
+{
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите головоломку судоку.\nПравила:\n- Каждая строка должна содержать числа от 1 до N без повторений\n- Каждый столбец должен содержать числа от 1 до N без повторений\n- Каждый блок должен содержать числа от 1 до N без повторений\nФормат ответа:\n  <reasoning>\n    (Шаги решения)\n  </reasoning>\n  <answer>\n    (Заполненная сетка)\n  </answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the Sudoku puzzle.\nRules:\n- Each row must contain numbers 1 to N without repetition\n- Each column must contain numbers 1 to N without repetition\n- Each block must contain numbers 1 to N without repetition\nAnswer format:\n  <reasoning>\n    (Solution steps)\n  </reasoning>\n  <answer>\n    (Filled grid)\n  </answer>"
+    },
+    "problem": {
+      "ru": "Решите судоку размера {size}x{size}:\n\n{grid}\n\nПустые клетки обозначены точкой (.).",
+      "en": "Solve the {size}x{size} Sudoku:\n\n{grid}\n\nEmpty cells are marked with a dot (.)."
+    },
+    "steps": {
+      "analyze_row": {
+        "ru": "Анализируем строку {row}: отсутствуют числа {missing}.",
+        "en": "Analyzing row {row}: missing numbers {missing}."
+      },
+      "analyze_col": {
+        "ru": "Анализируем столбец {col}: отсутствуют числа {missing}.",
+        "en": "Analyzing column {col}: missing numbers {missing}."
+      },
+      "analyze_block": {
+        "ru": "Анализируем блок ({block_row}, {block_col}): отсутствуют числа {missing}.",
+        "en": "Analyzing block ({block_row}, {block_col}): missing numbers {missing}."
+      },
+      "place_number": {
+        "ru": "Ставим {number} в клетку ({row}, {col}) — единственный возможный вариант.",
+        "en": "Placing {number} in cell ({row}, {col}) — the only possible option."
+      },
+      "naked_single": {
+        "ru": "Naked single: клетка ({row}, {col}) может содержать только {number}.",
+        "en": "Naked single: cell ({row}, {col}) can only contain {number}."
+      },
+      "hidden_single": {
+        "ru": "Hidden single: число {number} в строке {row} может быть только в столбце {col}.",
+        "en": "Hidden single: number {number} in row {row} can only be in column {col}."
+      }
+    },
+    "final_answer": {
+      "ru": "Решение судоку:\n{grid}",
+      "en": "Sudoku solution:\n{grid}"
+    }
+  }
+}

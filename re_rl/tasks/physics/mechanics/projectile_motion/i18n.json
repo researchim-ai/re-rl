@@ -1,0 +1,153 @@
+{
+  "text": {
+    "s1": {
+      "ru": "vₓ = {v0}·cos({v1}°) = {v2} м/с",
+      "en": "vₓ = {v0}·cos({v1}°) = {v2} m/s"
+    },
+    "s2": {
+      "ru": "vᵧ = {v0}·sin({v1}°) = {v2} м/с",
+      "en": "vᵧ = {v0}·sin({v1}°) = {v2} m/s"
+    },
+    "s3": {
+      "ru": "L = {v0} м",
+      "en": "L = {v0} m"
+    },
+    "s4": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s5": {
+      "ru": "H = {v0} м",
+      "en": "H = {v0} m"
+    },
+    "s6": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s7": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s8": {
+      "ru": "projectile_decompose_velocity_note",
+      "en": "projectile_decompose_velocity_note"
+    },
+    "s9": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s10": {
+      "ru": "T = {v0} с",
+      "en": "T = {v0} s"
+    },
+    "s11": {
+      "ru": "v = {v0} м/с",
+      "en": "v = {v0} m/s"
+    },
+    "s14": {
+      "ru": "projectile_find_range",
+      "en": "projectile_find_range"
+    },
+    "s15": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s16": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s17": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s18": {
+      "ru": "projectile_find_max_height",
+      "en": "projectile_find_max_height"
+    },
+    "s19": {
+      "ru": "projectile_find_flight_time",
+      "en": "projectile_find_flight_time"
+    },
+    "s20": {
+      "ru": "projectile_velocity_at_height",
+      "en": "projectile_velocity_at_height"
+    },
+    "s21": {
+      "ru": "velocity_at_height",
+      "en": "velocity_at_height"
+    }
+  },
+  "literals": {
+    "s0": "velocity_at_height",
+    "s12": "[м/с]²/[м/с²] = [м] ✓",
+    "s13": "[м/с] ✓"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на движение тела, брошенного под углом к горизонту.",
+      "en": "Solve the projectile motion problem."
+    },
+    "problem": {
+      "range": {
+        "ru": "Тело брошено под углом {angle}° к горизонту с начальной скоростью {v0} м/с. Найдите дальность полёта.",
+        "en": "A body is thrown at angle {angle}° to the horizontal with initial velocity {v0} m/s. Find the range."
+      },
+      "max_height": {
+        "ru": "Тело брошено под углом {angle}° к горизонту с начальной скоростью {v0} м/с. Найдите максимальную высоту подъёма.",
+        "en": "A body is thrown at angle {angle}° to the horizontal with initial velocity {v0} m/s. Find the maximum height."
+      },
+      "flight_time": {
+        "ru": "Тело брошено под углом {angle}° к горизонту с начальной скоростью {v0} м/с. Найдите время полёта.",
+        "en": "A body is thrown at angle {angle}° to the horizontal with initial velocity {v0} m/s. Find the flight time."
+      },
+      "velocity_at_height": {
+        "ru": "Тело брошено под углом {angle}° к горизонту с начальной скоростью {v0} м/с. Найдите скорость на высоте {h} м.",
+        "en": "A body is thrown at angle {angle}° to the horizontal with initial velocity {v0} m/s. Find the velocity at height {h} m."
+      }
+    },
+    "steps": {
+      "decompose": {
+        "ru": "Разложим скорость: v₀ₓ = v₀·cos(α) = {vx} м/с, v₀ᵧ = v₀·sin(α) = {vy} м/с",
+        "en": "Decompose velocity: v₀ₓ = v₀·cos(α) = {vx} m/s, v₀ᵧ = v₀·sin(α) = {vy} m/s"
+      },
+      "range_formula": {
+        "ru": "Дальность: L = v₀²·sin(2α)/g",
+        "en": "Range: L = v₀²·sin(2α)/g"
+      },
+      "height_formula": {
+        "ru": "Максимальная высота: H = v₀²·sin²(α)/(2g)",
+        "en": "Maximum height: H = v₀²·sin²(α)/(2g)"
+      },
+      "time_formula": {
+        "ru": "Время полёта: T = 2·v₀·sin(α)/g",
+        "en": "Flight time: T = 2·v₀·sin(α)/g"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  },
+  "inline_keys": {
+    "projectile_find_flight_time": {
+      "ru": "время полёта",
+      "en": "flight time"
+    },
+    "projectile_find_range": {
+      "ru": "дальность полёта",
+      "en": "range"
+    },
+    "projectile_velocity_at_height": {
+      "ru": "скорость на высоте {height} м",
+      "en": "velocity at height {height} m"
+    },
+    "projectile_decompose_velocity_note": {
+      "ru": "Разложим начальную скорость на горизонтальную и вертикальную составляющие.",
+      "en": "Decompose initial velocity into horizontal and vertical components."
+    },
+    "projectile_find_max_height": {
+      "ru": "максимальная высота",
+      "en": "maximum height"
+    }
+  }
+}

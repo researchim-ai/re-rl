@@ -1,0 +1,25 @@
+{
+  "text": {
+    "s0": {
+      "ru": "PageRank, затухание d = 1/2, вершины с 1. Дуги: {v0}. Ранг вершины равен (1 - d) / n плюс d, умноженное на сумму рангов предшественников, делённых на число их различных исходящих дуг. При равном наибольшем ранге берётся меньший номер. Ответ — целое или несократимая дробь.",
+      "en": "PageRank, damping d = 1/2, vertices start at 1. Arcs: {v0}. A vertex rank is (1 - d) / n plus d times the sum of predecessor ranks divided by their numbers of distinct outgoing arcs. The greatest rank breaks ties toward the smaller index. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Ранги: {ranks}. Наибольший у вершины {argmax}.",
+      "en": "Ranks: {ranks}. The greatest is at vertex {argmax}."
+    },
+    "s2": {
+      "ru": "Найдите ранг вершины {v0}.",
+      "en": "Find the rank of vertex {v0}."
+    },
+    "s3": {
+      "ru": "Какая вершина имеет наибольший ранг?",
+      "en": "Which vertex has the greatest rank?"
+    }
+  },
+  "literals": {
+    "s4": "ранги не дают единицу",
+    "s5": "система PageRank вырождена",
+    "s6": "у вершины нет исходящих дуг"
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сгенерируй следующую тактику Lean 4 для данного состояния доказательства. Выведи только тактику, без объяснений.",
+      "en": "Generate the next Lean 4 tactic for the given proof state. Output only the tactic, no explanations."
+    },
+    "s1": {
+      "ru": "Ты — ассистент для доказательства теорем в Lean 4. Получив состояние доказательства, выведи следующую тактику.",
+      "en": "You are a Lean 4 theorem proving assistant. Given a proof state, output the next tactic."
+    },
+    "s2": {
+      "ru": "Состояние доказательства:\n",
+      "en": "Proof state:\n"
+    },
+    "s3": {
+      "ru": "training_pairs.json",
+      "en": "training_pairs.json"
+    },
+    "s4": {
+      "ru": "Saved raw pairs to {raw_path}",
+      "en": "Saved raw pairs to {raw_path}"
+    },
+    "s5": {
+      "ru": "sft_dataset.json",
+      "en": "sft_dataset.json"
+    },
+    "s6": {
+      "ru": "Saved SFT dataset to {sft_path}",
+      "en": "Saved SFT dataset to {sft_path}"
+    },
+    "s7": {
+      "ru": "chat_dataset.json",
+      "en": "chat_dataset.json"
+    },
+    "s8": {
+      "ru": "Saved Chat dataset to {chat_path}",
+      "en": "Saved Chat dataset to {chat_path}"
+    },
+    "s9": {
+      "ru": "Saved stats to {stats_path}",
+      "en": "Saved stats to {stats_path}"
+    },
+    "s10": {
+      "ru": "training_pairs.jsonl",
+      "en": "training_pairs.jsonl"
+    },
+    "s11": {
+      "ru": "Saved JSONL to {jsonl_path}",
+      "en": "Saved JSONL to {jsonl_path}"
+    },
+    "s12": {
+      "ru": "LeanDojo is required. Install with: pip install lean-dojo",
+      "en": "LeanDojo is required. Install with: pip install lean-dojo"
+    },
+    "s13": {
+      "ru": "Reached max_total_pairs limit",
+      "en": "Reached max_total_pairs limit"
+    },
+    "s14": {
+      "ru": "LeanDojo is required",
+      "en": "LeanDojo is required"
+    },
+    "s15": {
+      "ru": "Processed {v0}/{v1} theorems, {v2} pairs collected",
+      "en": "Processed {v0}/{v1} theorems, {v2} pairs collected"
+    },
+    "s16": {
+      "ru": "distance_to_proof",
+      "en": "distance_to_proof"
+    },
+    "s17": {
+      "ru": "distance_to_proof",
+      "en": "distance_to_proof"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите длину самой длинной подпоследовательности-палиндрома в строке {text}. Символы не обязаны идти подряд, порядок сохраняется.",
+      "en": "Find the length of the longest palindromic subsequence of {text}. Characters need not be consecutive, and their order is preserved."
+    },
+    "s1": {
+      "ru": "Самая длинная палиндромная подпоследовательность имеет длину {answer}.",
+      "en": "The longest palindromic subsequence has length {answer}."
+    }
+  }
+}

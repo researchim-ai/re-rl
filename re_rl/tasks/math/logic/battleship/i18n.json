@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "«Морской бой» {n}×{n_2}. Разместите корабли длин [{fleet}] (по одной клетке в ширину, горизонтально или вертикально) так, чтобы они не касались друг друга (даже по диагонали). Число занятых клеток по строкам: {rc}; по столбцам: {cc}.\nВыпишите поле: {v5} значений по строкам (1 — корабль, 0 — вода).",
+      "en": "{n}×{n_2} Battleship. Place ships of lengths [{fleet}] (one cell wide, horizontal or vertical) so they don't touch each other (even diagonally). Occupied cells per row: {rc}; per column: {cc}.\nOutput the board: {v5} values row by row (1 ship, 0 water)."
+    },
+    "s1": {
+      "ru": "Используем счётчики по строкам/столбцам и правило непересечения, чтобы расставить корабли.",
+      "en": "Use the row/column counts and the non-touching rule to place the ships."
+    },
+    "s2": {
+      "ru": "Решение (по строкам): {flat}.",
+      "en": "Solution (row by row): {flat}."
+    }
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "text": {
+    "s0": {
+      "ru": "выполнено",
+      "en": "holds"
+    },
+    "s1": {
+      "ru": "не выполнено",
+      "en": "does not hold"
+    },
+    "s2": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s3": {
+      "ru": "верно",
+      "en": "true"
+    },
+    "s4": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s5": {
+      "ru": "неверно",
+      "en": "false"
+    }
+  },
+  "literals": {
+    "s6": "\\b(no|нет|false|неверно)\\b",
+    "s7": "\\b(yes|да|true|верно)\\b"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Верно ли, что для всех действительных x выполнено {expr} ≥ 0? Ответьте YES или NO.",
+        "Определите, справедливо ли неравенство {expr} ≥ 0 при всех действительных x. Ответ: YES или NO."
+      ],
+      "en": [
+        "Is it true that {expr} ≥ 0 for all real x? Answer YES or NO.",
+        "Determine whether {expr} ≥ 0 holds for all real x. Answer YES or NO."
+      ]
+    },
+    "step_discriminant": {
+      "ru": "Анализируем квадратичную форму: знак старшего коэффициента и дискриминант D = b² − 4ac.",
+      "en": "Analyze the quadratic: sign of the leading coefficient and discriminant D = b² − 4ac."
+    },
+    "step_result": {
+      "ru": "Неравенство {verdict} для всех x. Ответ: {answer}.",
+      "en": "The inequality {verdict} for all x. Answer: {answer}."
+    }
+  }
+}

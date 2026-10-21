@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Разрешённые слова: {words}. За один шаг можно заменить ровно одну букву, при этом получившееся слово тоже должно быть из списка. За наименьшее число шагов превратите «{start}» в «{target}». Сколько шагов нужно?",
+      "en": "Allowed words: {words}. In one step you may change exactly one letter, and the resulting word must also be in the list. Transform '{start}' into '{target}' in the fewest steps. How many steps are needed?"
+    },
+    "s1": {
+      "ru": "Поиск в ширину по графу слов, где рёбра — замена одной буквы.",
+      "en": "Breadth-first search over the word graph where edges are one-letter changes."
+    },
+    "s2": {
+      "ru": "Кратчайшая цепочка = {answer} шаг(ов).",
+      "en": "Shortest ladder = {answer} step(s)."
+    }
+  }
+}

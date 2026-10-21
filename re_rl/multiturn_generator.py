@@ -7,6 +7,9 @@
 - variations: Вариации задачи (изменение параметров)
 - correction: Исправление ошибок (для RLHF)
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'multiturn_generator_i18n.json')
+
 
 import random
 import math
@@ -160,7 +163,7 @@ class MultiturnGenerator:
         if reasoning_mode:
             system_prompt = get_prompt("common", "system_reasoning", language)
         else:
-            system_prompt = get_prompt("common", "system_step_by_step", language)
+            system_prompt = get_prompt("common", texts.t('s75', language), language)
         dialogue.add_system(system_prompt)
         
         if task_type == "arithmetic":
@@ -197,32 +200,32 @@ class MultiturnGenerator:
         if op == "+":
             result = a + b
             expr = f"{a} + {b}"
-            step = f"сложение {a} + {b} = {result}" if lang == "ru" else f"addition {a} + {b} = {result}"
+            step = (texts.t('s9', lang, a=a, b=b, result=result))
         elif op == "-":
             result = a - b
             expr = f"{a} - {b}"
-            step = f"вычитание {a} - {b} = {result}" if lang == "ru" else f"subtraction {a} - {b} = {result}"
+            step = (texts.t('s27', lang, a=a, b=b, result=result))
         else:
             result = a * b
             expr = f"{a} * {b}"
-            step = f"умножение {a} * {b} = {result}" if lang == "ru" else f"multiplication {a} * {b} = {result}"
+            step = (texts.t('s28', lang, a=a, b=b, result=result))
         
         user_msg = get_prompt("chain", "first_task", lang, expression=expr)
         dialogue.add_user(user_msg)
         
         if reasoning_mode:
-            assistant_msg = f"<think>\n{step}\n</think>\n<answer>{result}</answer>"
+            assistant_msg = texts.t('s62', self.language, step=step, result=result)
         else:
-            answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+            answer_prefix = (texts.t('s10', lang))
             assistant_msg = f"{step}\n\n{answer_prefix} {result}"
         dialogue.add_assistant(assistant_msg)
         
         # Последующие turns
         current_result = result
         operations = [
-            ("continue_add", lambda x, v: x + v, lambda x, v, l: f"сложение {x} + {v} = {x + v}" if l == "ru" else f"addition {x} + {v} = {x + v}"),
-            ("continue_subtract", lambda x, v: x - v, lambda x, v, l: f"вычитание {x} - {v} = {x - v}" if l == "ru" else f"subtraction {x} - {v} = {x - v}"),
-            ("continue_multiply", lambda x, v: x * v, lambda x, v, l: f"умножение {x} * {v} = {x * v}" if l == "ru" else f"multiplication {x} * {v} = {x * v}"),
+            ("continue_add", lambda x, v: x + v, lambda x, v, l: texts.t('s118', self.language, x=x, v=v, v2=x + v) if l == "ru" else f"addition {x} + {v} = {x + v}"),
+            ("continue_subtract", lambda x, v: x - v, lambda x, v, l: texts.t('s119', self.language, x=x, v=v, v2=x - v) if l == "ru" else f"subtraction {x} - {v} = {x - v}"),
+            ("continue_multiply", lambda x, v: x * v, lambda x, v, l: texts.t('s120', self.language, x=x, v=v, v2=x * v) if l == "ru" else f"multiplication {x} * {v} = {x * v}"),
         ]
         
         for _ in range(turns - 1):
@@ -233,7 +236,7 @@ class MultiturnGenerator:
             if op_key == "continue_multiply" and abs(current_result) > 1000:
                 op_key = "continue_add"
                 op_func = lambda x, v: x + v
-                step_func = lambda x, v, l: f"сложение {x} + {v} = {x + v}" if l == "ru" else f"addition {x} + {v} = {x + v}"
+                step_func = lambda x, v, l: texts.t('s121', self.language, x=x, v=v, v2=x + v) if l == "ru" else f"addition {x} + {v} = {x + v}"
             
             user_msg = get_prompt("chain", op_key, lang, value=value)
             dialogue.add_user(user_msg)
@@ -242,9 +245,9 @@ class MultiturnGenerator:
             step_text = step_func(current_result, value, lang)
             
             if reasoning_mode:
-                assistant_msg = f"<think>\n{step_text}\n</think>\n<answer>{new_result}</answer>"
+                assistant_msg = texts.t('s76', self.language, step_text=step_text, new_result=new_result)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+                answer_prefix = (texts.t('s29', lang))
                 assistant_msg = f"{step_text}\n\n{answer_prefix} {new_result}"
             
             dialogue.add_assistant(assistant_msg)
@@ -270,8 +273,8 @@ class MultiturnGenerator:
             x = (c - b) / a
             equation = f"{a}x + {b} = {c}" if b >= 0 else f"{a}x - {abs(b)} = {c}"
             
-            step1 = f"Переносим {b}: {a}x = {c} - {b} = {c - b}" if lang == "ru" else f"Move {b}: {a}x = {c} - {b} = {c - b}"
-            step2 = f"Делим на {a}: x = {c - b}/{a} = {x}" if lang == "ru" else f"Divide by {a}: x = {c - b}/{a} = {x}"
+            step1 = (texts.t('s11', lang, b=b, a=a, c=c, b_2=b, v4=c - b))
+            step2 = (texts.t('s12', lang, a=a, v1=c - b, a_2=a, x=x))
             steps = f"{step1}\n{step2}"
         else:  # quadratic
             # x^2 + bx + c = 0 с простыми корнями
@@ -283,17 +286,17 @@ class MultiturnGenerator:
             x = x1  # используем первый корень
             
             D = b*b - 4*c
-            step1 = f"D = {b}² - 4·1·{c} = {D}" if lang == "ru" else f"D = {b}² - 4·1·{c} = {D}"
+            step1 = (f"D = {b}² - 4·1·{c} = {D}")
             step2 = f"x₁ = {x1}, x₂ = {x2}"
             steps = f"{step1}\n{step2}"
         
-        user_msg = get_prompt("chain", "chain_equation_first", lang, equation=equation)
+        user_msg = get_prompt("chain", texts.t('s63', self.language), lang, equation=equation)
         dialogue.add_user(user_msg)
         
         if reasoning_mode:
-            assistant_msg = f"<think>\n{steps}\n</think>\n<answer>x = {x}</answer>"
+            assistant_msg = texts.t('s64', self.language, steps=steps, x=x)
         else:
-            answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+            answer_prefix = (texts.t('s13', lang))
             assistant_msg = f"{steps}\n\n{answer_prefix} x = {x}"
         dialogue.add_assistant(assistant_msg)
         
@@ -304,17 +307,17 @@ class MultiturnGenerator:
             addend = random.randint(-10, 10)
             expression = f"{multiplier}x + {addend}" if addend >= 0 else f"{multiplier}x - {abs(addend)}"
             
-            user_msg = get_prompt("chain", "chain_equation_substitute", lang, expression=expression)
+            user_msg = get_prompt("chain", texts.t('s77', self.language), lang, expression=expression)
             dialogue.add_user(user_msg)
             
             result = multiplier * current_value + addend
-            step_text = f"{multiplier} × {current_value} + {addend} = {result}" if lang == "ru" else f"{multiplier} × {current_value} + {addend} = {result}"
+            step_text = (texts.t('s14', lang, multiplier=multiplier, current_value=current_value, addend=addend, result=result))
             
             if reasoning_mode:
-                assistant_msg = f"<think>\nПодставляем x = {current_value}:\n{step_text}\n</think>\n<answer>{result}</answer>"
+                assistant_msg = texts.t('s78', self.language, current_value=current_value, step_text=step_text, result=result)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
-                subst_text = "Подставляем" if lang == "ru" else "Substituting"
+                answer_prefix = (texts.t('s30', lang))
+                subst_text = (texts.t('s31', lang))
                 assistant_msg = f"{subst_text} x = {current_value}:\n{step_text}\n\n{answer_prefix} {result}"
             
             dialogue.add_assistant(assistant_msg)
@@ -339,60 +342,54 @@ class MultiturnGenerator:
             
             # Первая задача: найти скорость
             v = v0 + a * t
-            problem = f"Тело движется с начальной скоростью {v0} м/с и ускорением {a} м/с². Найдите скорость через {t} с." if lang == "ru" else \
-                      f"A body moves with initial velocity {v0} m/s and acceleration {a} m/s². Find the velocity after {t} s."
+            problem = (texts.t('s15', lang, v0=v0, a=a, t=t))
             
-            steps = f"v = v₀ + at = {v0} + {a}×{t} = {v} м/с" if lang == "ru" else \
-                    f"v = v₀ + at = {v0} + {a}×{t} = {v} m/s"
+            steps = (texts.t('s16', lang, v0=v0, a=a, t=t, v=v))
             
-            user_msg = get_prompt("chain", "chain_physics_first", lang, problem=problem)
+            user_msg = get_prompt("chain", texts.t('s79', self.language), lang, problem=problem)
             dialogue.add_user(user_msg)
             
             if reasoning_mode:
-                assistant_msg = f"<think>\n{steps}\n</think>\n<answer>{v} м/с</answer>"
+                assistant_msg = texts.t('s80', self.language, steps=steps, v=v)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
-                assistant_msg = f"{steps}\n\n{answer_prefix} {v} м/с"
+                answer_prefix = (texts.t('s32', lang))
+                assistant_msg = texts.t('s81', self.language, steps=steps, answer_prefix=answer_prefix, v=v)
             dialogue.add_assistant(assistant_msg)
             
             # Второй turn: найти перемещение
             if turns >= 2:
                 s = v0 * t + a * t * t / 2
-                quantity = "перемещение за это время" if lang == "ru" else "displacement during this time"
-                user_msg = get_prompt("chain", "chain_physics_continue", lang, quantity=quantity)
+                quantity = (texts.t('s33', lang))
+                user_msg = get_prompt("chain", texts.t('s97', self.language), lang, quantity=quantity)
                 dialogue.add_user(user_msg)
                 
-                steps = f"s = v₀t + at²/2 = {v0}×{t} + {a}×{t}²/2 = {v0*t} + {a*t*t/2} = {s} м" if lang == "ru" else \
-                        f"s = v₀t + at²/2 = {v0}×{t} + {a}×{t}²/2 = {v0*t} + {a*t*t/2} = {s} m"
+                steps = (texts.t('s34', lang, v0=v0, t=t, a=a, t_2=t, v4=v0 * t, v5=a * t * t / 2, s=s))
                 
                 if reasoning_mode:
-                    assistant_msg = f"<think>\n{steps}\n</think>\n<answer>{s} м</answer>"
+                    assistant_msg = texts.t('s98', self.language, steps=steps, s=s)
                 else:
-                    answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
-                    assistant_msg = f"{steps}\n\n{answer_prefix} {s} м"
+                    answer_prefix = (texts.t('s50', lang))
+                    assistant_msg = texts.t('s99', self.language, steps=steps, answer_prefix=answer_prefix, s=s)
                 dialogue.add_assistant(assistant_msg)
             
             # Третий turn: что если изменить параметр
             if turns >= 3:
                 new_a = a * 2
-                user_msg = get_prompt("chain", "chain_physics_what_if", lang, 
-                                     parameter="ускорение" if lang == "ru" else "acceleration",
-                                     new_value=f"{new_a} м/с²")
+                user_msg = get_prompt("chain", texts.t('s100', self.language), lang, 
+                                     parameter=(texts.t('s59', lang)),
+                                     new_value=texts.t('s122', self.language, new_a=new_a))
                 dialogue.add_user(user_msg)
                 
                 new_v = v0 + new_a * t
                 new_s = v0 * t + new_a * t * t / 2
                 
-                if lang == "ru":
-                    steps = f"При a = {new_a} м/с²:\nv = {v0} + {new_a}×{t} = {new_v} м/с\ns = {v0}×{t} + {new_a}×{t}²/2 = {new_s} м"
-                else:
-                    steps = f"With a = {new_a} m/s²:\nv = {v0} + {new_a}×{t} = {new_v} m/s\ns = {v0}×{t} + {new_a}×{t}²/2 = {new_s} m"
+                steps = texts.t('s17', lang, new_a=new_a, v0=v0, new_a_2=new_a, t=t, new_v=new_v, v0_2=v0, t_2=t, new_a_3=new_a, t_3=t, new_s=new_s)
                 
                 if reasoning_mode:
-                    assistant_msg = f"<think>\n{steps}\n</think>\n<answer>v = {new_v} м/с, s = {new_s} м</answer>"
+                    assistant_msg = texts.t('s101', self.language, steps=steps, new_v=new_v, new_s=new_s)
                 else:
-                    answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
-                    assistant_msg = f"{steps}\n\n{answer_prefix} v = {new_v} м/с, s = {new_s} м"
+                    answer_prefix = (texts.t('s51', lang))
+                    assistant_msg = texts.t('s102', self.language, steps=steps, answer_prefix=answer_prefix, new_v=new_v, new_s=new_s)
                 dialogue.add_assistant(assistant_msg)
         
         else:  # dynamics: F = ma
@@ -400,36 +397,35 @@ class MultiturnGenerator:
             F = random.randint(10, 50 + difficulty * 10)
             a = round(F / m, 2)
             
-            problem = f"На тело массой {m} кг действует сила {F} Н. Найдите ускорение." if lang == "ru" else \
-                      f"A force of {F} N acts on a body of mass {m} kg. Find the acceleration."
+            problem = (texts.t('s18', lang, m=m, F=F))
             
-            steps = f"F = ma → a = F/m = {F}/{m} = {a} м/с²"
+            steps = texts.t('s65', self.language, F=F, m=m, a=a)
             
-            user_msg = get_prompt("chain", "chain_physics_first", lang, problem=problem)
+            user_msg = get_prompt("chain", texts.t('s82', self.language), lang, problem=problem)
             dialogue.add_user(user_msg)
             
             if reasoning_mode:
-                assistant_msg = f"<think>\n{steps}\n</think>\n<answer>{a} м/с²</answer>"
+                assistant_msg = texts.t('s83', self.language, steps=steps, a=a)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
-                assistant_msg = f"{steps}\n\n{answer_prefix} {a} м/с²"
+                answer_prefix = (texts.t('s35', lang))
+                assistant_msg = texts.t('s84', self.language, steps=steps, answer_prefix=answer_prefix, a=a)
             dialogue.add_assistant(assistant_msg)
             
             # Продолжение: найти скорость через время t
             if turns >= 2:
                 t = random.randint(2, 10)
                 v = round(a * t, 2)
-                quantity = f"скорость через {t} с (начальная скорость 0)" if lang == "ru" else f"velocity after {t} s (initial velocity 0)"
-                user_msg = get_prompt("chain", "chain_physics_continue", lang, quantity=quantity)
+                quantity = (texts.t('s36', lang, t=t))
+                user_msg = get_prompt("chain", texts.t('s103', self.language), lang, quantity=quantity)
                 dialogue.add_user(user_msg)
                 
-                steps = f"v = at = {a}×{t} = {v} м/с"
+                steps = texts.t('s85', self.language, a=a, t=t, v=v)
                 
                 if reasoning_mode:
-                    assistant_msg = f"<think>\n{steps}\n</think>\n<answer>{v} м/с</answer>"
+                    assistant_msg = texts.t('s104', self.language, steps=steps, v=v)
                 else:
-                    answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
-                    assistant_msg = f"{steps}\n\n{answer_prefix} {v} м/с"
+                    answer_prefix = (texts.t('s52', lang))
+                    assistant_msg = texts.t('s105', self.language, steps=steps, answer_prefix=answer_prefix, v=v)
                 dialogue.add_assistant(assistant_msg)
     
     # =========================================================================
@@ -456,7 +452,7 @@ class MultiturnGenerator:
         if reasoning_mode:
             system_prompt = get_prompt("common", "system_reasoning", language)
         else:
-            system_prompt = get_prompt("common", "system_step_by_step", language)
+            system_prompt = get_prompt("common", texts.t('s86', language), language)
         dialogue.add_system(system_prompt)
         
         # Генерируем основную задачу
@@ -477,9 +473,9 @@ class MultiturnGenerator:
                 final_answer = result["final_answer"]
                 
                 if reasoning_mode:
-                    assistant_msg = f"<think>\n{steps_text}\n</think>\n<answer>{final_answer}</answer>"
+                    assistant_msg = texts.t('s106', language, steps_text=steps_text, final_answer=final_answer)
                 else:
-                    answer_prefix = "Ответ:" if language == "ru" else "Answer:"
+                    answer_prefix = (texts.t('s53', language))
                     assistant_msg = f"{steps_text}\n\n{answer_prefix} {final_answer}"
                 dialogue.add_assistant(assistant_msg)
                 
@@ -518,22 +514,21 @@ class MultiturnGenerator:
             # Генерируем объяснение в зависимости от типа задачи
             method_explanations = {
                 "quadratic": {
-                    "ru": "Я использовал формулу дискриминанта, потому что это стандартный метод решения квадратных уравнений. Он даёт все корни и позволяет определить их количество по знаку дискриминанта.",
-                    "en": "I used the discriminant formula because it's the standard method for solving quadratic equations. It gives all roots and allows determining their number by the discriminant's sign."
+                    "ru": texts.t('s107', language),
+                    "en": texts.t('s108', language)
                 },
                 "linear": {
-                    "ru": "Я использовал метод переноса слагаемых и деления, потому что это самый прямой способ решения линейных уравнений.",
-                    "en": "I used the method of moving terms and division because it's the most direct way to solve linear equations."
+                    "ru": texts.t('s109', language),
+                    "en": texts.t('s110', language)
                 },
                 "kinematics": {
-                    "ru": "Я использовал кинематические формулы равноускоренного движения, так как в задаче дано постоянное ускорение.",
-                    "en": "I used kinematic equations for uniformly accelerated motion since the problem involves constant acceleration."
+                    "ru": texts.t('s111', language),
+                    "en": texts.t('s112', language)
                 }
             }
             
             explanation = method_explanations.get(task_type, {}).get(language, 
-                "Этот метод наиболее подходит для данного типа задач." if language == "ru" else 
-                "This method is most suitable for this type of problem.")
+                (texts.t('s37', language)))
             dialogue.add_assistant(explanation)
         
         elif followup_type == "alternative_method":
@@ -542,32 +537,28 @@ class MultiturnGenerator:
             
             alternatives = {
                 "quadratic": {
-                    "ru": "Да, можно также использовать разложение на множители или теорему Виета. Для уравнения x² + bx + c = 0 корни связаны соотношениями: x₁ + x₂ = -b и x₁ × x₂ = c.",
-                    "en": "Yes, we can also use factoring or Vieta's formulas. For equation x² + bx + c = 0, the roots satisfy: x₁ + x₂ = -b and x₁ × x₂ = c."
+                    "ru": texts.t('s123', language),
+                    "en": texts.t('s124', language)
                 },
                 "linear": {
-                    "ru": "Можно решить графически — построить прямую y = ax + b и найти точку пересечения с горизонтальной прямой y = c.",
-                    "en": "We can solve graphically — plot the line y = ax + b and find its intersection with the horizontal line y = c."
+                    "ru": texts.t('s125', language),
+                    "en": texts.t('s126', language)
                 },
                 "arithmetic": {
-                    "ru": "Можно группировать числа по-другому или использовать свойства операций (ассоциативность, коммутативность) для упрощения вычислений.",
-                    "en": "We can group numbers differently or use operation properties (associativity, commutativity) to simplify calculations."
+                    "ru": texts.t('s127', language),
+                    "en": texts.t('s128', language)
                 }
             }
             
             alternative = alternatives.get(task_type, {}).get(language,
-                "Для этой задачи использованный метод является оптимальным." if language == "ru" else
-                "For this problem, the method used is optimal.")
+                (texts.t('s54', language)))
             dialogue.add_assistant(alternative)
         
         elif followup_type == "check_answer":
             user_msg = get_prompt("followup", "check_answer", language)
             dialogue.add_user(user_msg)
             
-            if language == "ru":
-                check_text = f"Можно проверить подстановкой найденного значения в исходное уравнение/выражение. Если равенство выполняется — ответ верный."
-            else:
-                check_text = f"We can verify by substituting the found value into the original equation/expression. If the equality holds — the answer is correct."
+            check_text = texts.t('s38', language)
             dialogue.add_assistant(check_text)
         
         elif followup_type == "edge_cases":
@@ -576,22 +567,21 @@ class MultiturnGenerator:
             
             edge_cases = {
                 "quadratic": {
-                    "ru": "Особые случаи:\n- D < 0: нет вещественных корней\n- D = 0: один корень (кратный)\n- a = 0: уравнение становится линейным",
-                    "en": "Edge cases:\n- D < 0: no real roots\n- D = 0: one root (repeated)\n- a = 0: equation becomes linear"
+                    "ru": texts.t('s135', language),
+                    "en": texts.t('s136', language)
                 },
                 "linear": {
-                    "ru": "Особые случаи:\n- a = 0 и b = c: бесконечно много решений\n- a = 0 и b ≠ c: нет решений",
-                    "en": "Edge cases:\n- a = 0 and b = c: infinitely many solutions\n- a = 0 and b ≠ c: no solutions"
+                    "ru": texts.t('s137', language),
+                    "en": texts.t('s138', language)
                 },
                 "kinematics": {
-                    "ru": "Особые случаи:\n- a = 0: равномерное движение\n- v₀ = 0: движение из состояния покоя\n- t < 0: рассматриваем движение в прошлом",
-                    "en": "Edge cases:\n- a = 0: uniform motion\n- v₀ = 0: motion from rest\n- t < 0: considering past motion"
+                    "ru": texts.t('s139', language),
+                    "en": texts.t('s140', language)
                 }
             }
             
             edge_case = edge_cases.get(task_type, {}).get(language,
-                "Всегда проверяйте граничные значения параметров." if language == "ru" else
-                "Always check boundary values of parameters.")
+                (texts.t('s60', language)))
             dialogue.add_assistant(edge_case)
     
     def _generate_arithmetic_with_followups(
@@ -609,15 +599,15 @@ class MultiturnGenerator:
         b = random.randint(5, 30 + difficulty * 5)
         result = a * b
         
-        problem = f"Вычислите: {a} × {b}" if lang == "ru" else f"Calculate: {a} × {b}"
+        problem = (texts.t('s1', lang, a=a, b=b))
         dialogue.add_user(problem)
         
-        step = f"умножение {a} × {b} = {result}" if lang == "ru" else f"multiplication {a} × {b} = {result}"
+        step = (texts.t('s2', lang, a=a, b=b, result=result))
         
         if reasoning_mode:
-            assistant_msg = f"<think>\n{step}\n</think>\n<answer>{result}</answer>"
+            assistant_msg = texts.t('s66', self.language, step=step, result=result)
         else:
-            answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+            answer_prefix = (texts.t('s19', lang))
             assistant_msg = f"{step}\n\n{answer_prefix} {result}"
         dialogue.add_assistant(assistant_msg)
         
@@ -649,7 +639,7 @@ class MultiturnGenerator:
         if reasoning_mode:
             system_prompt = get_prompt("common", "system_reasoning", language)
         else:
-            system_prompt = get_prompt("common", "system_step_by_step", language)
+            system_prompt = get_prompt("common", texts.t('s87', language), language)
         dialogue.add_system(system_prompt)
         
         if task_type == "arithmetic":
@@ -678,45 +668,45 @@ class MultiturnGenerator:
         b = random.randint(5, 20 + difficulty * 5)
         result = a + b
         
-        problem = f"Вычислите: {a} + {b}" if lang == "ru" else f"Calculate: {a} + {b}"
+        problem = (texts.t('s3', lang, a=a, b=b))
         dialogue.add_user(problem)
         
-        step = f"сложение {a} + {b} = {result}" if lang == "ru" else f"addition {a} + {b} = {result}"
+        step = (texts.t('s4', lang, a=a, b=b, result=result))
         
         if reasoning_mode:
-            assistant_msg = f"<think>\n{step}\n</think>\n<answer>{result}</answer>"
+            assistant_msg = texts.t('s67', self.language, step=step, result=result)
         else:
-            answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+            answer_prefix = (texts.t('s20', lang))
             assistant_msg = f"{step}\n\n{answer_prefix} {result}"
         dialogue.add_assistant(assistant_msg)
         
         # Вариации
-        variation_types = ["what_if_double", "what_if_param", "what_if_negative"]
+        variation_types = [texts.t('s68', self.language), texts.t('s69', self.language), texts.t('s70', self.language)]
         
         for i in range(num_variations):
             var_type = variation_types[i % len(variation_types)]
             
-            if var_type == "what_if_double":
-                param_name = "первое число" if lang == "ru" else "the first number"
-                user_msg = get_prompt("variations", "what_if_double", lang, param_name=param_name)
+            if var_type == texts.t('s88', self.language):
+                param_name = (texts.t('s39', lang))
+                user_msg = get_prompt("variations", texts.t('s113', self.language), lang, param_name=param_name)
                 dialogue.add_user(user_msg)
                 
                 new_a = a * 2
                 new_result = new_a + b
                 step = f"{new_a} + {b} = {new_result}"
                 
-            elif var_type == "what_if_param":
+            elif var_type == texts.t('s114', self.language):
                 new_b = random.randint(50, 100)
-                param_name = "второе число" if lang == "ru" else "the second number"
-                user_msg = get_prompt("variations", "what_if_param", lang, param_name=param_name, new_value=new_b)
+                param_name = (texts.t('s55', lang))
+                user_msg = get_prompt("variations", texts.t('s129', self.language), lang, param_name=param_name, new_value=new_b)
                 dialogue.add_user(user_msg)
                 
                 new_result = a + new_b
                 step = f"{a} + {new_b} = {new_result}"
                 
             else:  # what_if_negative
-                param_name = "второе число" if lang == "ru" else "the second number"
-                user_msg = get_prompt("variations", "what_if_negative", lang, param_name=param_name)
+                param_name = (texts.t('s56', lang))
+                user_msg = get_prompt("variations", texts.t('s130', self.language), lang, param_name=param_name)
                 dialogue.add_user(user_msg)
                 
                 new_b = -b
@@ -724,9 +714,9 @@ class MultiturnGenerator:
                 step = f"{a} + ({new_b}) = {new_result}"
             
             if reasoning_mode:
-                assistant_msg = f"<think>\n{step}\n</think>\n<answer>{new_result}</answer>"
+                assistant_msg = texts.t('s89', self.language, step=step, new_result=new_result)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+                answer_prefix = (texts.t('s40', lang))
                 assistant_msg = f"{step}\n\n{answer_prefix} {new_result}"
             dialogue.add_assistant(assistant_msg)
     
@@ -748,16 +738,16 @@ class MultiturnGenerator:
             x1, x2 = 2, 3
             
             equation = f"x² - 5x + 6 = 0"
-            problem = f"Решите уравнение: {equation}" if lang == "ru" else f"Solve the equation: {equation}"
+            problem = (texts.t('s21', lang, equation=equation))
             dialogue.add_user(problem)
             
             D = b*b - 4*c
             steps = f"D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 2"
             
             if reasoning_mode:
-                assistant_msg = f"<think>\n{steps}\n</think>\n<answer>x = 2, x = 3</answer>"
+                assistant_msg = texts.t('s90', self.language, steps=steps)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+                answer_prefix = (texts.t('s41', lang))
                 assistant_msg = f"{steps}\n\n{answer_prefix} x = 2, x = 3"
             dialogue.add_assistant(assistant_msg)
             
@@ -766,8 +756,8 @@ class MultiturnGenerator:
                 if i == 0:
                     # Изменяем коэффициент b
                     new_b = -7
-                    param_name = "коэффициент при x" if lang == "ru" else "coefficient of x"
-                    user_msg = get_prompt("variations", "what_if_param", lang, param_name=param_name, new_value=new_b)
+                    param_name = (texts.t('s57', lang))
+                    user_msg = get_prompt("variations", texts.t('s131', self.language), lang, param_name=param_name, new_value=new_b)
                     dialogue.add_user(user_msg)
                     
                     # x² - 7x + 6 = 0 -> x = 1, x = 6
@@ -776,20 +766,16 @@ class MultiturnGenerator:
                     answer = "x = 1, x = 6"
                 else:
                     # Что если D < 0
-                    user_msg = get_prompt("followup", "when_no_solution", lang)
+                    user_msg = get_prompt("followup", texts.t('s132', self.language), lang)
                     dialogue.add_user(user_msg)
                     
-                    if lang == "ru":
-                        steps = "Уравнение не имеет вещественных решений, когда D < 0.\nНапример, x² - 2x + 5 = 0: D = 4 - 20 = -16 < 0"
-                        answer = "При D < 0 вещественных корней нет"
-                    else:
-                        steps = "The equation has no real solutions when D < 0.\nFor example, x² - 2x + 5 = 0: D = 4 - 20 = -16 < 0"
-                        answer = "When D < 0, there are no real roots"
+                    steps = texts.t('s42', lang)
+                    answer = texts.t('s43', lang)
                 
                 if reasoning_mode:
-                    assistant_msg = f"<think>\n{steps}\n</think>\n<answer>{answer}</answer>"
+                    assistant_msg = texts.t('s115', self.language, steps=steps, answer=answer)
                 else:
-                    answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+                    answer_prefix = (texts.t('s58', lang))
                     assistant_msg = f"{steps}\n\n{answer_prefix} {answer}"
                 dialogue.add_assistant(assistant_msg)
         else:
@@ -812,53 +798,47 @@ class MultiturnGenerator:
         a = 2
         t = 5
         
-        if lang == "ru":
-            problem = f"Тело движется с начальной скоростью {v0} м/с и ускорением {a} м/с². Найдите скорость через {t} с."
-        else:
-            problem = f"A body moves with initial velocity {v0} m/s and acceleration {a} m/s². Find the velocity after {t} s."
+        problem = texts.t('s0', lang, v0=v0, a=a, t=t)
         
         dialogue.add_user(problem)
         
         v = v0 + a * t
-        steps = f"v = v₀ + at = {v0} + {a}×{t} = {v} м/с"
+        steps = texts.t('s61', self.language, v0=v0, a=a, t=t, v=v)
         
         if reasoning_mode:
-            assistant_msg = f"<think>\n{steps}\n</think>\n<answer>{v} м/с</answer>"
+            assistant_msg = texts.t('s71', self.language, steps=steps, v=v)
         else:
-            answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
-            assistant_msg = f"{steps}\n\n{answer_prefix} {v} м/с"
+            answer_prefix = (texts.t('s22', lang))
+            assistant_msg = texts.t('s72', self.language, steps=steps, answer_prefix=answer_prefix, v=v)
         dialogue.add_assistant(assistant_msg)
         
         # Вариации
         for i in range(num_variations):
             if i == 0:
                 # Удвоить ускорение
-                param_name = "ускорение" if lang == "ru" else "acceleration"
-                user_msg = get_prompt("variations", "what_if_double", lang, param_name=param_name)
+                param_name = (texts.t('s44', lang))
+                user_msg = get_prompt("variations", texts.t('s116', self.language), lang, param_name=param_name)
                 dialogue.add_user(user_msg)
                 
                 new_a = a * 2
                 new_v = v0 + new_a * t
-                steps = f"При a = {new_a} м/с²:\nv = {v0} + {new_a}×{t} = {new_v} м/с"
-                answer = f"{new_v} м/с"
+                steps = texts.t('s91', self.language, new_a=new_a, v0=v0, new_a_2=new_a, t=t, new_v=new_v)
+                answer = texts.t('s92', self.language, new_v=new_v)
             else:
                 # Отрицательное ускорение (торможение)
-                param_name = "ускорение" if lang == "ru" else "acceleration"
-                user_msg = get_prompt("variations", "what_if_negative", lang, param_name=param_name)
+                param_name = (texts.t('s45', lang))
+                user_msg = get_prompt("variations", texts.t('s117', self.language), lang, param_name=param_name)
                 dialogue.add_user(user_msg)
                 
                 new_a = -a
                 new_v = v0 + new_a * t
-                if lang == "ru":
-                    steps = f"При отрицательном ускорении (торможение):\na = {new_a} м/с²\nv = {v0} + ({new_a})×{t} = {new_v} м/с"
-                else:
-                    steps = f"With negative acceleration (deceleration):\na = {new_a} m/s²\nv = {v0} + ({new_a})×{t} = {new_v} m/s"
-                answer = f"{new_v} м/с" if lang == "ru" else f"{new_v} m/s"
+                steps = texts.t('s23', lang, new_a=new_a, v0=v0, new_a_2=new_a, t=t, new_v=new_v)
+                answer = (texts.t('s46', lang, new_v=new_v))
             
             if reasoning_mode:
-                assistant_msg = f"<think>\n{steps}\n</think>\n<answer>{answer}</answer>"
+                assistant_msg = texts.t('s93', self.language, steps=steps, answer=answer)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+                answer_prefix = (texts.t('s47', lang))
                 assistant_msg = f"{steps}\n\n{answer_prefix} {answer}"
             dialogue.add_assistant(assistant_msg)
     
@@ -888,7 +868,7 @@ class MultiturnGenerator:
         if reasoning_mode:
             system_prompt = get_prompt("common", "system_reasoning", language)
         else:
-            system_prompt = get_prompt("common", "system_step_by_step", language)
+            system_prompt = get_prompt("common", texts.t('s94', language), language)
         dialogue.add_system(system_prompt)
         
         if task_type == "arithmetic":
@@ -917,16 +897,16 @@ class MultiturnGenerator:
         # Типичная ошибка: ошибка в умножении
         wrong_result = correct_result + random.randint(1, 20) * random.choice([-1, 1])
         
-        problem = f"Вычислите: {a} × {b}" if lang == "ru" else f"Calculate: {a} × {b}"
+        problem = (texts.t('s5', lang, a=a, b=b))
         dialogue.add_user(problem)
         
         # Неправильный ответ
-        wrong_step = f"умножение {a} × {b} = {wrong_result}" if lang == "ru" else f"multiplication {a} × {b} = {wrong_result}"
+        wrong_step = (texts.t('s6', lang, a=a, b=b, wrong_result=wrong_result))
         
         if reasoning_mode:
-            wrong_msg = f"<think>\n{wrong_step}\n</think>\n<answer>{wrong_result}</answer>"
+            wrong_msg = texts.t('s73', self.language, wrong_step=wrong_step, wrong_result=wrong_result)
         else:
-            answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+            answer_prefix = (texts.t('s24', lang))
             wrong_msg = f"{wrong_step}\n\n{answer_prefix} {wrong_result}"
         dialogue.add_assistant(wrong_msg)
         
@@ -936,12 +916,12 @@ class MultiturnGenerator:
         
         # Исправленный ответ
         acknowledgment = get_prompt("correction", "correction_acknowledgment", lang)
-        correct_step = f"умножение {a} × {b} = {correct_result}" if lang == "ru" else f"multiplication {a} × {b} = {correct_result}"
+        correct_step = (texts.t('s7', lang, a=a, b=b, correct_result=correct_result))
         
         if reasoning_mode:
-            correct_msg = f"{acknowledgment}\n<think>\n{correct_step}\n</think>\n<answer>{correct_result}</answer>"
+            correct_msg = texts.t('s74', self.language, acknowledgment=acknowledgment, correct_step=correct_step, correct_result=correct_result)
         else:
-            answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+            answer_prefix = (texts.t('s25', lang))
             correct_msg = f"{acknowledgment}\n{correct_step}\n\n{answer_prefix} {correct_result}"
         dialogue.add_assistant(correct_msg)
     
@@ -961,19 +941,16 @@ class MultiturnGenerator:
             correct_answer = "x = 2, x = 3"
             wrong_answer = "x = 2, x = 4"  # Ошибка в вычислении
             
-            problem = f"Решите уравнение: {equation}" if lang == "ru" else f"Solve the equation: {equation}"
+            problem = (texts.t('s26', lang, equation=equation))
             dialogue.add_user(problem)
             
             # Неправильное решение (ошибка в дискриминанте)
-            if lang == "ru":
-                wrong_steps = "D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 4  ← ошибка!"
-            else:
-                wrong_steps = "D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 4  ← error!"
+            wrong_steps = texts.t('s8', lang)
             
             if reasoning_mode:
-                wrong_msg = f"<think>\n{wrong_steps}\n</think>\n<answer>{wrong_answer}</answer>"
+                wrong_msg = texts.t('s95', self.language, wrong_steps=wrong_steps, wrong_answer=wrong_answer)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+                answer_prefix = (texts.t('s48', lang))
                 wrong_msg = f"{wrong_steps}\n\n{answer_prefix} {wrong_answer}"
             dialogue.add_assistant(wrong_msg)
             
@@ -983,15 +960,12 @@ class MultiturnGenerator:
             
             # Исправление
             acknowledgment = get_prompt("correction", "correction_acknowledgment", lang)
-            if lang == "ru":
-                correct_steps = "D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 2  ✓"
-            else:
-                correct_steps = "D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 2  ✓"
+            correct_steps = "D = 25 - 24 = 1\nx₁ = (5 + 1)/2 = 3\nx₂ = (5 - 1)/2 = 2  ✓"
             
             if reasoning_mode:
-                correct_msg = f"{acknowledgment}\n<think>\n{correct_steps}\n</think>\n<answer>{correct_answer}</answer>"
+                correct_msg = texts.t('s96', self.language, acknowledgment=acknowledgment, correct_steps=correct_steps, correct_answer=correct_answer)
             else:
-                answer_prefix = "Ответ:" if lang == "ru" else "Answer:"
+                answer_prefix = (texts.t('s49', lang))
                 correct_msg = f"{acknowledgment}\n{correct_steps}\n\n{answer_prefix} {correct_answer}"
             dialogue.add_assistant(correct_msg)
         else:
@@ -1170,7 +1144,7 @@ class MultiturnGenerator:
             
             iterator = range(samples_per_mode)
             if show_progress:
-                iterator = tqdm(iterator, desc=f"Генерация {mode}", unit="диалогов")
+                iterator = tqdm(iterator, desc=texts.t('s133', language, mode=mode), unit=texts.t('s134', language))
             
             for _ in iterator:
                 task_type = random.choice(selected_tasks)

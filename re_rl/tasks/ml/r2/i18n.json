@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Истинные значения: {truth}. Прогнозы: {pred}. SS_tot — сумма квадратов отклонений истины от её среднего. SS_res — сумма квадратов разностей прогноза и истины. R^2 = 1 - SS_res / SS_tot. Ответ — целое или несократимая дробь.",
+      "en": "True values: {truth}. Predictions: {pred}. SS_tot is the sum of squared deviations of the truth from its mean. SS_res is the sum of squared prediction errors. R^2 = 1 - SS_res / SS_tot. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "SS_tot = {v0}, SS_res = {v1}, R^2 = {v2}.",
+      "en": "SS_tot = {v0}, SS_res = {v1}, R^2 = {v2}."
+    },
+    "s2": {
+      "ru": "Найдите R^2.",
+      "en": "Find R^2."
+    },
+    "s3": {
+      "ru": "Найдите SS_tot.",
+      "en": "Find SS_tot."
+    }
+  }
+}

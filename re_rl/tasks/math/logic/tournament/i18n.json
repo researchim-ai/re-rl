@@ -1,0 +1,44 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Турнир на выбывание. Результаты матчей:\n{body}\nКто стал чемпионом?",
+      "en": "Single-elimination tournament. Match results:\n{body}\nWho is the champion?"
+    },
+    "s1": {
+      "ru": "Круговой турнир (победа — 3 очка, ничья — 1, поражение — 0). Результаты:\n{body}\nСколько очков набрала команда {query}?",
+      "en": "Round-robin (win 3 points, draw 1, loss 0). Results:\n{body}\nHow many points did team {query} score?"
+    },
+    "s2": {
+      "ru": "Начисляем очки по всем матчам команды и суммируем.",
+      "en": "Award points from each of the team's matches and sum them."
+    },
+    "s3": {
+      "ru": "Очки {query} = {answer}.",
+      "en": "{query} points = {answer}."
+    },
+    "s4": {
+      "ru": "Прослеживаем победителей по раундам до финала.",
+      "en": "Follow the winners round by round up to the final."
+    },
+    "s5": {
+      "ru": "Чемпион: {champion}.",
+      "en": "Champion: {champion}."
+    },
+    "s6": {
+      "ru": "{a} победил {b}",
+      "en": "{a} beat {b}"
+    },
+    "s7": {
+      "ru": "- Раунд {v0}: {a} vs {b} — победил {w}",
+      "en": "- Round {v0}: {a} vs {b} — {w} won"
+    },
+    "s8": {
+      "ru": "{b} победил {a}",
+      "en": "{b} beat {a}"
+    },
+    "s9": {
+      "ru": "{a} и {b} сыграли вничью",
+      "en": "{a} drew {b}"
+    }
+  }
+}

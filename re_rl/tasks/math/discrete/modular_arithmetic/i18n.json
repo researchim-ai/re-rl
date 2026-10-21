@@ -1,0 +1,28 @@
+{
+  "prompt": {
+    "modexp_problem": {
+      "ru": [
+        "Вычислите {a}^{b} mod {m}.",
+        "Найдите остаток от деления {a}^{b} на {m}."
+      ],
+      "en": [
+        "Compute {a}^{b} mod {m}.",
+        "Find {a} raised to the power {b}, modulo {m}."
+      ]
+    },
+    "dlog_problem": {
+      "ru": [
+        "Найдите наименьшее целое x ≥ 0, такое что {g}^x ≡ {h} (mod {p}).",
+        "Решите уравнение {g}^x ≡ {h} (mod {p}) относительно наименьшего x ≥ 0."
+      ],
+      "en": [
+        "Find the smallest integer x ≥ 0 such that {g}^x ≡ {h} (mod {p}).",
+        "Solve {g}^x ≡ {h} (mod {p}) for the smallest x ≥ 0."
+      ]
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

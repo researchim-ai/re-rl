@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Ортогонализуйте систему векторов методом Грама–Шмидта: {vectors}",
+        "Постройте ортогональный базис из векторов {vectors} (процесс Грама–Шмидта)."
+      ],
+      "en": [
+        "Orthogonalize the vectors by the Gram–Schmidt process: {vectors}",
+        "Build an orthogonal basis from {vectors} (Gram–Schmidt)."
+      ]
+    },
+    "step_setup": {
+      "ru": "Первый вектор оставляем, из каждого следующего вычитаем его проекции на уже построенные ортогональные векторы.",
+      "en": "Keep the first vector; from each next one subtract its projections onto the already built orthogonal vectors."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Загадан код из {L} цифр (каждая от 1 до {C}). Для каждой догадки указано число «точных» (верная цифра на верном месте) и «частичных» (верная цифра не на своём месте) совпадений.\n",
+      "en": "A secret code of {L} digits (each from 1 to {C}). For each guess we give the number of 'exact' (right digit, right place) and 'partial' (right digit, wrong place) matches.\n"
+    },
+    "s1": {
+      "ru": "\nОпределите скрытый код (перечислите цифры).",
+      "en": "\nDetermine the secret code (list the digits)."
+    },
+    "s2": {
+      "ru": "Оставляем только коды, совместимые со всеми подсказками.",
+      "en": "Keep only the codes consistent with every clue."
+    },
+    "s3": {
+      "ru": "Единственный совместимый код: {code}.",
+      "en": "The unique consistent code: {code}."
+    },
+    "s4": {
+      "ru": "Догадка [{gs}]: точных {e}, частичных {p}.",
+      "en": "Guess [{gs}]: exact {e}, partial {p}."
+    }
+  }
+}

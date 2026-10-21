@@ -1,0 +1,63 @@
+{
+  "text": {
+    "s1": {
+      "ru": "The figure shows several input→output examples transformed by ONE hidden rule (cells colored by number: {legend_en}). For the test input (last row) the output is hidden. Infer the rule and output the grid ({ro}×{co}) — all color numbers row by row.",
+      "en": "The figure shows several input→output examples transformed by ONE hidden rule (cells colored by number: {legend_en}). For the test input (last row) the output is hidden. Infer the rule and output the grid ({ro}×{co}) — all color numbers row by row."
+    },
+    "s2": {
+      "ru": "Примеры (вход → выход), затем тест:",
+      "en": "Примеры (вход → выход), затем тест:"
+    },
+    "s3": {
+      "ru": "На рисунке несколько примеров «вход → выход», преобразованных по ОДНОМУ скрытому правилу (клетки раскрашены по цифрам-цветам: {legend}). Для тестового входа (последняя строка) выход скрыт. Определите правило и выпишите выходную сетку ({ro}×{co}) — все числа-цвета по строкам.",
+      "en": "На рисунке несколько примеров «вход → выход», преобразованных по ОДНОМУ скрытому правилу (клетки раскрашены по цифрам-цветам: {legend}). Для тестового входа (последняя строка) выход скрыт. Определите правило и выпишите выходную сетку ({ro}×{co}) — все числа-цвета по строкам."
+    },
+    "s4": {
+      "ru": "тест",
+      "en": "тест"
+    },
+    "s5": {
+      "ru": "чёрный",
+      "en": "чёрный"
+    },
+    "s6": {
+      "ru": "синий",
+      "en": "синий"
+    },
+    "s7": {
+      "ru": "красный",
+      "en": "красный"
+    },
+    "s8": {
+      "ru": "зелёный",
+      "en": "зелёный"
+    },
+    "s9": {
+      "ru": "жёлтый",
+      "en": "жёлтый"
+    },
+    "s10": {
+      "ru": "серый",
+      "en": "серый"
+    },
+    "s11": {
+      "ru": "розовый",
+      "en": "розовый"
+    },
+    "s12": {
+      "ru": "оранжевый",
+      "en": "оранжевый"
+    },
+    "s13": {
+      "ru": "голубой",
+      "en": "голубой"
+    },
+    "s14": {
+      "ru": "бордовый",
+      "en": "бордовый"
+    }
+  },
+  "literals": {
+    "s0": "arc_grid_image"
+  }
+}

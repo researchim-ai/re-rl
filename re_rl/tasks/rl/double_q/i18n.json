@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Double Q-learning. Действие выбирает Q1: максимум, при равенстве меньший номер. Цель = r + γ * Q2(выбранного действия).",
+      "en": "Double Q-learning. Q1 selects the action: the maximum, ties go to the smaller index. The target is r + γ * Q2(selected action)."
+    },
+    "s1": {
+      "ru": "Действия: {v0}. r = {reward}, γ = {v2}.",
+      "en": "Actions: {v0}. r = {reward}, γ = {v2}."
+    },
+    "s2": {
+      "ru": "Действие {action}, цель {v1}.",
+      "en": "Action {action}, target {v1}."
+    },
+    "s3": {
+      "ru": "Какое действие выбрано? Ответьте номером.",
+      "en": "Which action is selected? Answer with its index."
+    },
+    "s4": {
+      "ru": "Найдите цель. Ответ — целое или несократимая дробь.",
+      "en": "Find the target. Answer with an integer or a reduced fraction."
+    }
+  }
+}

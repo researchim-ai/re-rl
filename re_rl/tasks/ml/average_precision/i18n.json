@@ -1,0 +1,23 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Метки уже стоят от лучшей оценки к худшей: {shown}. Единица — релевантный объект. Точность на позиции релевантного объекта — доля единиц от начала списка до него включительно. Средняя точность — среднее этих точностей. Ответ — целое или несократимая дробь.",
+      "en": "Labels are already ordered from the best score to the worst: {shown}. One means relevant. Precision at a relevant item is the fraction of ones from the start through that item. Average precision is the mean of those precisions. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Средняя точность {v0}, на последнем релевантном {v1}.",
+      "en": "Average precision {v0}, at the last relevant item {v1}."
+    },
+    "s2": {
+      "ru": "Найдите среднюю точность.",
+      "en": "Find the average precision."
+    },
+    "s3": {
+      "ru": "Найдите точность на последнем релевантном объекте.",
+      "en": "Find the precision at the last relevant item."
+    }
+  },
+  "literals": {
+    "s4": "mean_average_precision"
+  }
+}

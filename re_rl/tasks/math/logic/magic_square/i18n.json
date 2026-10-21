@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Магический квадрат 3×3 из чисел 1..9 (каждое по разу); суммы по всем строкам, столбцам и двум диагоналям равны 15. Заполните пропуски «?» и выпишите все 9 чисел по строкам сверху вниз.\n{v0}",
+      "en": "A 3×3 magic square using numbers 1..9 (each once); every row, column and both diagonals sum to 15. Fill the blanks «?» and write all 9 numbers row by row.\n{v0}"
+    },
+    "s1": {
+      "ru": "Используем, что все линии дают 15, и что центр равен 5.",
+      "en": "Use that every line sums to 15 and the center is 5."
+    },
+    "s2": {
+      "ru": "Заполненный квадрат: {nums}.",
+      "en": "The completed square: {nums}."
+    }
+  }
+}

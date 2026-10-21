@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Дана производящая функция G(x) = {gf}. Найдите коэффициент при x^{n} в её разложении в степенной ряд.",
+        "Найдите коэффициент при x^{n} в разложении функции {gf}."
+      ],
+      "en": [
+        "Given the generating function G(x) = {gf}, find the coefficient of x^{n} in its power series.",
+        "Find the coefficient of x^{n} in the expansion of {gf}."
+      ]
+    },
+    "step_setup": {
+      "ru": "Раскладываем функцию в степенной ряд и выделяем нужный коэффициент.",
+      "en": "Expand the function into a power series and extract the required coefficient."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

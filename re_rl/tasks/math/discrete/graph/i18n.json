@@ -1,0 +1,82 @@
+{
+  "text": {
+    "s0": {
+      "ru": "кратчайший путь между узлами {start} и {end}",
+      "en": "the shortest path between nodes {start} and {end}"
+    },
+    "s1": {
+      "ru": "minimum_spanning_tree",
+      "en": "minimum_spanning_tree"
+    },
+    "s2": {
+      "ru": "minimum_spanning_tree",
+      "en": "minimum_spanning_tree"
+    },
+    "s3": {
+      "ru": "минимальное остовное дерево данного графа",
+      "en": "минимальное остовное дерево данного графа"
+    },
+    "s4": {
+      "ru": "minimum_spanning_tree",
+      "en": "minimum_spanning_tree"
+    },
+    "s5": {
+      "ru": "диаметр данного графа",
+      "en": "диаметр данного графа"
+    },
+    "s6": {
+      "ru": "Final path: {{path}}.",
+      "en": "Final path: {{path}}."
+    },
+    "s7": {
+      "ru": "средний коэффициент кластеризации данного графа",
+      "en": "средний коэффициент кластеризации данного графа"
+    },
+    "s8": {
+      "ru": "Step {{iter}}: Selected {{u}} with distance {{d}}. Updates: {{updates}}.",
+      "en": "Step {{iter}}: Selected {{u}} with distance {{d}}. Updates: {{updates}}."
+    },
+    "s9": {
+      "ru": "shortest_path_final",
+      "en": "shortest_path_final"
+    },
+    "s10": {
+      "ru": "shortest_path_iter",
+      "en": "shortest_path_iter"
+    },
+    "s11": {
+      "ru": "Step: {{avg_coeff}}",
+      "en": "Step: {{avg_coeff}}"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Задача на граф (кратчайший путь, MST и т.д.).\nПример ответа:\n<reasoning>\n  (Шаги работы алгоритма)\n</reasoning>\n<answer>\n  (Итог: маршрут, дерево, диаметр)\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: A graph problem (shortest path, MST, etc.).\nExample:\n<reasoning>\n  (Algorithm steps)\n</reasoning>\n<answer>\n  (Final path, tree, diameter, etc.)\n</answer>"
+    },
+    "problem": {
+      "ru": "Найди {task_description}.",
+      "en": "Find {task_description}."
+    },
+    "shortest_path_iter": {
+      "ru": "Шаг {iter}: Выбран узел {u} с расстоянием {d}. Обновления: {updates}.",
+      "en": "Step {iter}: Selected node {u} with distance {d}. Updates: {updates}."
+    },
+    "shortest_path_final": {
+      "ru": "Итоговый путь: {path}.",
+      "en": "Final path: {path}."
+    },
+    "mst_step": {
+      "ru": "Шаг 2: Минимальное остовное дерево: {edges}.",
+      "en": "Step 2: The minimum spanning tree: {edges}."
+    },
+    "diameter_step": {
+      "ru": "Шаг 2: Диаметр графа: {diameter}.",
+      "en": "Step 2: The diameter of the graph is {diameter}."
+    },
+    "clustering_step": {
+      "ru": "Шаг 2: Средний коэффициент кластеризации: {avg_coeff}.",
+      "en": "Step 2: The average clustering coefficient is {avg_coeff}."
+    }
+  }
+}

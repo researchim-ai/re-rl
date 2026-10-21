@@ -1,0 +1,25 @@
+{
+  "literals": {
+    "s0": "[kbкб]\\s*="
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Методом наименьших квадратов найдите прямую y = k·x + b, приближающую точки: {points}. Укажите k и b.",
+        "Постройте линейную регрессию y = k·x + b по точкам {points} (метод наименьших квадратов)."
+      ],
+      "en": [
+        "Use least squares to fit a line y = k·x + b to the points: {points}. Report k and b.",
+        "Find the least-squares line y = k·x + b for the points {points}."
+      ]
+    },
+    "step_setup": {
+      "ru": "Считаем средние, ковариацию и дисперсию x: k = cov(x,y)/var(x), b = ȳ − k·x̄.",
+      "en": "Compute means, covariance and variance of x: k = cov(x,y)/var(x), b = ȳ − k·x̄."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

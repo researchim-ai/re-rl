@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Потеря примера max(0, 1 - y*(w1*x1 + w2*x2 + b)), метки +1 или -1.",
+      "en": "An example's loss is max(0, 1 - y*(w1*x1 + w2*x2 + b)); labels are +1 or -1."
+    },
+    "s1": {
+      "ru": "Веса w1 = {w1}, w2 = {w2}, b = {b}. Примеры: {data}.",
+      "en": "Weights w1 = {w1}, w2 = {w2}, b = {b}. Examples: {data}."
+    },
+    "s2": {
+      "ru": "Найдите суммарную потерю.",
+      "en": "Find the total loss."
+    },
+    "s3": {
+      "ru": "Сколько примеров имеют строго положительную потерю?",
+      "en": "How many examples have a strictly positive loss?"
+    },
+    "s4": {
+      "ru": "Потери по примерам: {shown}. Сумма {total}, ошибок {errors}.",
+      "en": "Per-example losses: {shown}. Sum {total}, errors {errors}."
+    }
+  }
+}

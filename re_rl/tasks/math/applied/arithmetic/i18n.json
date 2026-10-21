@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "max_nesting_depth",
+      "en": "max_nesting_depth"
+    },
+    "s1": {
+      "ru": "ensure_integer_result",
+      "en": "ensure_integer_result"
+    },
+    "s2": {
+      "ru": "Square root of negative number",
+      "en": "Square root of negative number"
+    },
+    "s3": {
+      "ru": "Unknown unary operation: {op}",
+      "en": "Unknown unary operation: {op}"
+    },
+    "s4": {
+      "ru": "step_calculate_expr",
+      "en": "step_calculate_expr"
+    },
+    "s5": {
+      "ru": "Division by zero",
+      "en": "Division by zero"
+    }
+  }
+}

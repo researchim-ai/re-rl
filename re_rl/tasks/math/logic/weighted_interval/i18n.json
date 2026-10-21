@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Работы заданы тройками (начало, конец, прибыль): {shown}. Две работы совместимы, если конец одной не позже начала другой. Найдите максимальную суммарную прибыль.",
+      "en": "Jobs are triples (start, end, profit): {shown}. Two jobs are compatible when one ends no later than the other starts. Find the maximum total profit."
+    },
+    "s1": {
+      "ru": "Динамика по работам, упорядоченным по концу, даёт {answer}.",
+      "en": "DP over jobs sorted by end time gives {answer}."
+    }
+  }
+}

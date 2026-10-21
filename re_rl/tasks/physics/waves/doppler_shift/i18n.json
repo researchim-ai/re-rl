@@ -1,0 +1,27 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Источник и наблюдатель сближаются. f' = f * (c + vo) / (c - vs), скорость звука c, источник медленнее звука.",
+      "en": "The source and the observer move toward each other. f' = f * (c + vo) / (c - vs), c is the speed of sound, and the source is slower than sound."
+    },
+    "s1": {
+      "ru": "f' = {frequency} * ({sound} + {observer}) / ({sound_2} - {source}) = {observed}.",
+      "en": "f' = {frequency} * ({sound} + {observer}) / ({sound_2} - {source}) = {observed}."
+    },
+    "s2": {
+      "ru": "f = {frequency}, c = {sound}, vs = {source}, vo = {observer}. Найдите f'.",
+      "en": "f = {frequency}, c = {sound}, vs = {source}, vo = {observer}. Find f'."
+    },
+    "s3": {
+      "ru": "f = {frequency}, f' = {observed}, c = {sound}, vo = {observer}. Найдите vs.",
+      "en": "f = {frequency}, f' = {observed}, c = {sound}, vo = {observer}. Find vs."
+    },
+    "s4": {
+      "ru": "f = {frequency}, f' = {observed}, c = {sound}, vs = {source}. Найдите vo.",
+      "en": "f = {frequency}, f' = {observed}, c = {sound}, vs = {source}. Find vo."
+    }
+  },
+  "literals": {
+    "s5": "частота не целая"
+  }
+}

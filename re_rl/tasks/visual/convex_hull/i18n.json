@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — набор точек на плоскости. Сколько вершин у их выпуклой оболочки (наименьшего выпуклого многоугольника, содержащего все точки)? Точки на ребре вершинами не считаются.",
+      "en": "The figure shows a set of points on the plane. How many vertices does their convex hull (the smallest convex polygon containing all points) have? Points on an edge do not count."
+    },
+    "s2": {
+      "ru": "Точки на плоскости",
+      "en": "Точки на плоскости"
+    }
+  },
+  "literals": {
+    "s1": "convex_hull_image"
+  }
+}

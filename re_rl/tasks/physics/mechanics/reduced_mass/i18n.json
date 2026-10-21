@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две массы: m1 = {m1}, m2 = {m2}.",
+      "en": "Two masses: m1 = {m1}, m2 = {m2}."
+    },
+    "s1": {
+      "ru": "Приведённая масса μ = m1 * m2 / (m1 + m2). Найдите μ. Ответ — целое или несократимая дробь.",
+      "en": "The reduced mass is μ = m1 * m2 / (m1 + m2). Find μ. Answer with an integer or a reduced fraction."
+    },
+    "s2": {
+      "ru": "Найдите 1/μ. Это сумма 1/m1 + 1/m2. Ответ — целое или несократимая дробь.",
+      "en": "Find 1/μ. It equals 1/m1 + 1/m2. Answer with an integer or a reduced fraction."
+    }
+  }
+}

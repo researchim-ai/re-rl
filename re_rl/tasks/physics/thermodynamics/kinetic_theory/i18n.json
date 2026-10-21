@@ -1,0 +1,70 @@
+{
+  "text": {
+    "s0": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s1": {
+      "ru": "{v0} Дж",
+      "en": "{v0} J"
+    },
+    "s2": {
+      "ru": "U = {v0} Дж",
+      "en": "U = {v0} J"
+    },
+    "s9": {
+      "ru": "⟨E⟩ = 1.5·{k_B:.3e}·{T} = {v2} Дж",
+      "en": "⟨E⟩ = 1.5·{k_B:.3e}·{T} = {v2} J"
+    },
+    "s10": {
+      "ru": "U = 1.5·{n}·{R:.3f}·{T} = {v3} Дж",
+      "en": "U = 1.5·{n}·{R:.3f}·{T} = {v3} J"
+    }
+  },
+  "literals": {
+    "s3": "водород",
+    "s4": "гелий",
+    "s5": "азот",
+    "s6": "кислород",
+    "s7": "углекислый газ",
+    "s8": "аргон"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу молекулярно-кинетической теории.",
+      "en": "Solve the kinetic-theory problem."
+    },
+    "problem": {
+      "rms_speed": {
+        "ru": "Найдите среднеквадратичную скорость молекул газа {gas} (молярная масса {M} кг/моль) при температуре {T} К.",
+        "en": "Find the root-mean-square speed of {gas} molecules (molar mass {M} kg/mol) at temperature {T} K."
+      },
+      "mean_ke": {
+        "ru": "Найдите среднюю кинетическую энергию поступательного движения одной молекулы при температуре {T} К.",
+        "en": "Find the mean translational kinetic energy of a single molecule at temperature {T} K."
+      },
+      "internal_energy": {
+        "ru": "Найдите внутреннюю энергию {n} моль одноатомного идеального газа при температуре {T} К.",
+        "en": "Find the internal energy of {n} mol of a monatomic ideal gas at temperature {T} K."
+      }
+    },
+    "steps": {
+      "rms_formula": {
+        "ru": "v_rms = √(3·R·T/M).",
+        "en": "v_rms = √(3·R·T/M)."
+      },
+      "ke_formula": {
+        "ru": "⟨E⟩ = (3/2)·k_B·T.",
+        "en": "⟨E⟩ = (3/2)·k_B·T."
+      },
+      "u_formula": {
+        "ru": "U = (3/2)·n·R·T.",
+        "en": "U = (3/2)·n·R·T."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

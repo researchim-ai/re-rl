@@ -1,0 +1,50 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В",
+      "en": "V"
+    },
+    "s1": {
+      "ru": "А",
+      "en": "A"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о трансформаторе.",
+      "en": "Solve the transformer problem."
+    },
+    "problem": {
+      "voltage_ratio": {
+        "ru": "У трансформатора N1 = {N1} витков (первичная) и N2 = {N2} витков (вторичная). На вход подано U1 = {U1} В. Найдите напряжение на выходе U2.",
+        "en": "A transformer has N1 = {N1} turns (primary) and N2 = {N2} turns (secondary). Input U1 = {U1} V. Find the output voltage U2."
+      },
+      "current_ratio": {
+        "ru": "Идеальный трансформатор: N1 = {N1}, N2 = {N2}. Ток в первичной обмотке I1 = {I1} А. Найдите ток во вторичной I2.",
+        "en": "Ideal transformer: N1 = {N1}, N2 = {N2}. Primary current I1 = {I1} A. Find the secondary current I2."
+      },
+      "efficiency": {
+        "ru": "Трансформатор потребляет мощность P1 = {P1} Вт и отдаёт P2 = {P2} Вт. Найдите КПД в процентах.",
+        "en": "A transformer draws P1 = {P1} W and delivers P2 = {P2} W. Find the efficiency in percent."
+      }
+    },
+    "steps": {
+      "voltage_formula": {
+        "ru": "U2 = U1·N2/N1.",
+        "en": "U2 = U1·N2/N1."
+      },
+      "current_formula": {
+        "ru": "Для идеального трансформатора I2 = I1·N1/N2.",
+        "en": "For an ideal transformer I2 = I1·N1/N2."
+      },
+      "efficiency_formula": {
+        "ru": "η = (P2/P1)·100 %.",
+        "en": "η = (P2/P1)·100 %."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

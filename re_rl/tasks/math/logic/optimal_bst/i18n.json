@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ключи уже упорядочены. Их частоты слева направо: {data}. Корень дерева имеет глубину 1, дети корня — глубину 2 и так далее. Стоимость дерева — сумма частот, умноженных на глубину ключа. Найдите минимальную стоимость.",
+      "en": "The keys are already sorted. Their frequencies from left to right: {data}. The root has depth 1, the root's children have depth 2, and so on. The cost of a tree is the sum of frequency times key depth. Find the minimum cost."
+    },
+    "s1": {
+      "ru": "Минимальная стоимость равна {answer}.",
+      "en": "The minimum cost is {answer}."
+    }
+  }
+}

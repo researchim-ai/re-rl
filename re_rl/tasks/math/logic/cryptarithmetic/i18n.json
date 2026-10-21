@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Реши ребус: {a} + {b} = {c}. Одинаковым буквам соответствуют одинаковые цифры, разным — разные; старшая цифра числа не может быть нулём. Ответ дайте в формате БУКВА=ЦИФРА через запятую.",
+        "Числовой ребус: {a} + {b} = {c}. Каждая буква — своя цифра (0–9), одинаковые буквы = одинаковые цифры, ведущая цифра ≠ 0. Укажите цифру для каждой буквы (формат БУКВА=ЦИФРА)."
+      ],
+      "en": [
+        "Solve the cryptarithm: {a} + {b} = {c}. Equal letters map to equal digits, different letters to different digits; a leading digit cannot be zero. Give the answer as LETTER=DIGIT separated by commas.",
+        "Verbal arithmetic: {a} + {b} = {c}. Each letter is a distinct digit (0–9); leading digit ≠ 0. Provide a digit for each letter (format LETTER=DIGIT)."
+      ]
+    },
+    "step_model": {
+      "ru": "Составляем ограничения: биекция буква→цифра, ведущие цифры ≠ 0, сложение по разрядам с переносами.",
+      "en": "Set up constraints: letter→digit bijection, nonzero leading digits, column-wise addition with carries."
+    },
+    "step_result": {
+      "ru": "Решение: {mapping}.",
+      "en": "Solution: {mapping}."
+    }
+  }
+}

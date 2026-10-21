@@ -1,0 +1,31 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько существует правильных скобочных последовательностей из {n} пар скобок?",
+      "en": "How many valid parentheses strings are there with {n} pairs?"
+    },
+    "s1": {
+      "ru": "Числа Каталана: C(0) = 1 и C(n) = C(n-1) * (4n - 2) / (n + 1). Найдите C({n}).",
+      "en": "Catalan numbers: C(0) = 1 and C(n) = C(n-1) * (4n - 2) / (n + 1). Find C({n})."
+    },
+    "s2": {
+      "ru": "Это число Каталана.",
+      "en": "Это число Каталана."
+    },
+    "s3": {
+      "ru": "По рекурренте.",
+      "en": "By the recurrence."
+    },
+    "s4": {
+      "ru": "This is the Catalan number.",
+      "en": "This is the Catalan number."
+    },
+    "s5": {
+      "ru": "By the recurrence.",
+      "en": "By the recurrence."
+    }
+  },
+  "literals": {
+    "s6": "число Каталана не целое"
+  }
+}

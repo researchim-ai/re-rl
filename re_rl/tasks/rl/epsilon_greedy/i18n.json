@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Одно случайное число u из полуинтервала от 0 до 1. Если u >= ε, выбирается действие с максимальным Q, при равенстве — меньший номер. Если u < ε, номер с нуля равен целой части (u/ε)*n, где n — число действий. В ответе номер с 1.",
+      "en": "One random number u is in the half-open interval from 0 to 1. If u >= ε, pick the action with the largest Q; ties go to the smaller index. If u < ε, the zero-based index is the integer part of (u/ε)*n, where n is the number of actions. Answer with the index starting at 1."
+    },
+    "s1": {
+      "ru": "Q по действиям: {qs}. ε = {epsilon}, u = {draw}.",
+      "en": "Q by action: {qs}. ε = {epsilon}, u = {draw}."
+    },
+    "s2": {
+      "ru": "Какое действие будет выбрано?",
+      "en": "Which action is selected?"
+    },
+    "s3": {
+      "ru": "Режим: {mode}. Действие {answer}.",
+      "en": "Mode: {mode}. Action {answer}."
+    },
+    "s4": {
+      "ru": "жадный выбор",
+      "en": "greedy choice"
+    },
+    "s5": {
+      "ru": "исследование",
+      "en": "исследование"
+    }
+  }
+}

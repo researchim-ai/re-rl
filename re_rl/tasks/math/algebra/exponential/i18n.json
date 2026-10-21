@@ -1,0 +1,118 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Уравнение",
+      "en": "Уравнение"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите показательное уравнение и выведите результат.\nФормат ответа:\n  <reasoning>\n    (Шаги решения, можно по пунктам)\n  </reasoning>\n  <answer>\n    (Значение x)\n  </answer>\nПример:\n<reasoning>\n  Шаг 1: Привели уравнение к виду ...\n  Шаг 2: Нашли x=2\n</reasoning>\n<answer>\n  2\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the exponential equation.\nAnswer format:\n  <reasoning>\n    (Step-by-step derivation)\n  </reasoning>\n  <answer>\n    (The value of x)\n  </answer>\nExample:\n<reasoning>\n  Step 1: We rearranged the equation...\n  Step 2: Found x=2\n</reasoning>\n<answer>\n  2\n</answer>"
+    },
+    "problem": {
+      "ru": [
+        "Решите показательное уравнение: {equation}",
+        "Найдите x в показательном уравнении: {equation}",
+        "Решите уравнение: {equation}",
+        "Определите x: {equation}",
+        "Найдите значение x: {equation}"
+      ],
+      "en": [
+        "Solve the exponential equation: {equation}",
+        "Find x in the exponential equation: {equation}",
+        "Solve: {equation}",
+        "Determine x: {equation}",
+        "Find the value of x: {equation}"
+      ]
+    },
+    "equation_label": {
+      "ru": "Уравнение",
+      "en": "Equation"
+    },
+    "step1": {
+      "ru": "Шаг 1: Записываем уравнение в стандартной форме:\n{equation_pretty}",
+      "en": "Step 1: Write the equation in standard form:\n{equation_pretty}"
+    },
+    "step2": {
+      "ru": "Шаг 2: Переносим свободный член {c} в правую часть:\n{left_side_statement}",
+      "en": "Step 2: Move the constant term {c} to the right side:\n{left_side_statement}"
+    },
+    "step3": {
+      "ru": "Шаг 3: Делим обе части уравнения на {a}:\n{right_side} / {a} = {ratio}",
+      "en": "Step 3: Divide both sides by {a}:\n{right_side} / {a} = {ratio}"
+    },
+    "step4": {
+      "ru": "Шаг 4: Применяем логарифм к обеим частям:\nlog({ratio}) / {b} = {solution}",
+      "en": "Step 4: Apply logarithm to both sides:\nlog({ratio}) / {b} = {solution}"
+    },
+    "step5_exp": {
+      "ru": "Шаг 5: Применяем экспоненту к обеим частям:\n{equation}",
+      "en": "Step 5: Apply exponential function to both sides:\n{equation}"
+    },
+    "step6_solve": {
+      "ru": "Шаг 6: Решаем уравнение относительно x:\nx = e^{(d - c) / a} / b = {solution}",
+      "en": "Step 6: Solve for x:\nx = e^{(d - c) / a} / b = {solution}"
+    },
+    "step7_verify": {
+      "ru": "Шаг 7: Проверяем решение, подставляя x = {solution} в исходное уравнение:\n{equation_pretty}",
+      "en": "Step 7: Verify the solution by substituting x = {solution} into the original equation:\n{equation_pretty}"
+    },
+    "step8_geom": {
+      "ru": "Шаг 8: Геометрическая интерпретация:\nУравнение {a}*log({b}*x) + {c} = {d} представляет собой пересечение логарифмической и линейной функций",
+      "en": "Step 8: Geometric interpretation:\nThe equation {a}*log({b}*x) + {c} = {d} represents the intersection of logarithmic and linear functions"
+    },
+    "step9_domain": {
+      "ru": "Шаг 9: Проверяем область определения:\nАргумент логарифма {b}*x = {solution} должен быть положительным",
+      "en": "Step 9: Check the domain:\nThe logarithm argument {b}*x = {solution} must be positive"
+    },
+    "explanation": {
+      "ru": {
+        "step1": "Записываем уравнение в стандартной форме для дальнейшего решения",
+        "step2_analysis": "Анализируем структуру уравнения, определяя все его компоненты",
+        "step3_discriminant": "Вычисляем дискриминант для определения количества и типа корней",
+        "step4_roots": "Находим корни уравнения по формуле корней квадратного уравнения",
+        "step5_verify": "Проверяем корректность найденных корней подстановкой",
+        "step6_geom": "Рассматриваем геометрический смысл уравнения",
+        "step7_verify": "Проверяем корректность решения подстановкой",
+        "step8_geom": "Рассматриваем геометрический смысл уравнения",
+        "step9_domain": "Проверяем область определения логарифма"
+      },
+      "en": {
+        "step1": "Write the equation in standard form for further solution",
+        "step2_analysis": "Analyze the structure of the equation, identifying all its components",
+        "step3_discriminant": "Calculate the discriminant to determine the number and type of roots",
+        "step4_roots": "Find the roots using the quadratic formula",
+        "step5_verify": "Verify the found roots by substitution",
+        "step6_geom": "Consider the geometric meaning of the equation",
+        "step7_verify": "Verify the solution by substitution",
+        "step8_geom": "Consider the geometric meaning of the equation",
+        "step9_domain": "Check the domain of the logarithm"
+      }
+    },
+    "validation": {
+      "ru": {
+        "step1": "Уравнение записано корректно в стандартной форме",
+        "step2_analysis": "Анализ уравнения выполнен правильно",
+        "step3_discriminant": "Дискриминант вычислен верно",
+        "step4_roots": "Корни найдены по правильной формуле",
+        "step5_verify": "Проверка корней подтверждает их корректность",
+        "step6_geom": "Геометрическая интерпретация верна",
+        "step7_verify": "Проверка решения подтверждает его корректность",
+        "step8_geom": "Геометрическая интерпретация верна",
+        "step9_domain": "Проверка области определения выполнена корректно"
+      },
+      "en": {
+        "step1": "The equation is correctly written in standard form",
+        "step2_analysis": "Equation analysis is correct",
+        "step3_discriminant": "Discriminant is calculated correctly",
+        "step4_roots": "Roots are found using the correct formula",
+        "step5_verify": "Root verification confirms their correctness",
+        "step6_geom": "Geometric interpretation is correct",
+        "step7_verify": "Solution verification confirms its correctness",
+        "step8_geom": "Geometric interpretation is correct",
+        "step9_domain": "Domain check is performed correctly"
+      }
+    }
+  }
+}

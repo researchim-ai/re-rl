@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Неориентированный граф (вершины 0..{v0}). Рёбра: {es}.\nСуществует ли эйлеров путь (проходящий по каждому ребру ровно один раз)? Ответьте да/нет.",
+      "en": "Undirected graph (vertices 0..{v0}). Edges: {es}.\nDoes an Eulerian path (using every edge exactly once) exist? Answer yes/no."
+    },
+    "s1": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s2": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s3": {
+      "ru": "Эйлеров путь существует, если граф связен (по рёбрам) и число вершин нечётной степени равно 0 или 2.",
+      "en": "An Eulerian path exists iff the graph is connected (over edges) and has 0 or 2 odd-degree vertices."
+    },
+    "s4": {
+      "ru": "Условие выполнено — путь существует.",
+      "en": "Condition holds — a path exists."
+    },
+    "s5": {
+      "ru": "Условие нарушено — пути нет.",
+      "en": "Condition fails — no path."
+    }
+  }
+}

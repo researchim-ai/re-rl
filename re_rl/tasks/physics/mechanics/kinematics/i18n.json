@@ -1,0 +1,245 @@
+{
+  "text": {
+    "s1": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s2": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s3": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s4": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s5": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s6": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s7": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s8": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s17": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s18": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s19": {
+      "ru": "kinematics_find_distance_traveled",
+      "en": "kinematics_find_distance_traveled"
+    },
+    "s20": {
+      "ru": "kinematics_uniform_motion_note",
+      "en": "kinematics_uniform_motion_note"
+    },
+    "s21": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s22": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s23": {
+      "ru": "kinematics_find_velocity",
+      "en": "kinematics_find_velocity"
+    },
+    "s24": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s25": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s26": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s27": {
+      "ru": "kinematics_find_distance",
+      "en": "kinematics_find_distance"
+    },
+    "s28": {
+      "ru": "kinematics_motion_from_rest_note",
+      "en": "kinematics_motion_from_rest_note"
+    },
+    "s29": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s30": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s31": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s32": {
+      "ru": "kinematics_find_final_velocity",
+      "en": "kinematics_find_final_velocity"
+    },
+    "s33": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s34": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s35": {
+      "ru": "kinematics_find_max_height",
+      "en": "kinematics_find_max_height"
+    },
+    "s36": {
+      "ru": "kinematics_projectile_height_note",
+      "en": "kinematics_projectile_height_note"
+    },
+    "s37": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s38": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s39": {
+      "ru": "kinematics_find_range",
+      "en": "kinematics_find_range"
+    },
+    "s40": {
+      "ru": "kinematics_projectile_range_note",
+      "en": "kinematics_projectile_range_note"
+    },
+    "s41": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s42": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s43": {
+      "ru": "kinematics_find_linear_velocity",
+      "en": "kinematics_find_linear_velocity"
+    },
+    "s44": {
+      "ru": "kinematics_circular_velocity_note",
+      "en": "kinematics_circular_velocity_note"
+    },
+    "s45": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s46": {
+      "ru": "м",
+      "en": "m"
+    },
+    "s47": {
+      "ru": "kinematics_find_centripetal_acc",
+      "en": "kinematics_find_centripetal_acc"
+    },
+    "s48": {
+      "ru": "kinematics_circular_acc_note",
+      "en": "kinematics_circular_acc_note"
+    },
+    "s49": {
+      "ru": "projectile_max_height",
+      "en": "projectile_max_height"
+    },
+    "s50": {
+      "ru": "projectile_max_height",
+      "en": "projectile_max_height"
+    },
+    "s51": {
+      "ru": "projectile_max_height",
+      "en": "projectile_max_height"
+    }
+  },
+  "literals": {
+    "s0": "projectile_max_height",
+    "s9": "[м/с] × [с] = [м] ✓",
+    "s10": "[м]/[с] = [м/с] ✓",
+    "s11": "[м/с²] × [с²] = [м] ✓",
+    "s12": "[м/с] + [м/с²]×[с] = [м/с] + [м/с] = [м/с] ✓",
+    "s13": "[м/с]²/[м/с²] = [м²/с²]/[м/с²] = [м] ✓",
+    "s14": "[м/с]² × [1] / [м/с²] = [м] ✓",
+    "s15": "[м]/[с] = [м/с] ✓",
+    "s16": "[м/с]²/[м] = [м²/с²]/[м] = [м/с²] ✓"
+  },
+  "inline_keys": {
+    "kinematics_find_centripetal_acc": {
+      "ru": "центростремительное ускорение",
+      "en": "centripetal acceleration"
+    },
+    "kinematics_find_velocity": {
+      "ru": "скорость",
+      "en": "velocity"
+    },
+    "kinematics_circular_velocity_note": {
+      "ru": "За один период T тело проходит длину окружности 2πr.",
+      "en": "In one period T the body travels the circumference 2πr."
+    },
+    "kinematics_find_distance": {
+      "ru": "пройденный путь",
+      "en": "distance"
+    },
+    "kinematics_projectile_range_note": {
+      "ru": "Баллистическая задача. Дальность полёта максимальна при угле 45°.",
+      "en": "Projectile motion problem. Maximum range is achieved at 45° angle."
+    },
+    "kinematics_circular_acc_note": {
+      "ru": "При движении по окружности возникает центростремительное ускорение, направленное к центру.",
+      "en": "Circular motion produces centripetal acceleration directed toward the center."
+    },
+    "kinematics_find_distance_traveled": {
+      "ru": "пройденный путь",
+      "en": "distance traveled"
+    },
+    "kinematics_projectile_height_note": {
+      "ru": "На максимальной высоте скорость равна нулю (v = 0).\nИспользуем связь скорости и перемещения: v² = v₀² - 2gh",
+      "en": "At maximum height velocity equals zero (v = 0).\nUse velocity-displacement relation: v² = v₀² - 2gh"
+    },
+    "kinematics_motion_from_rest_note": {
+      "ru": "Движение из состояния покоя (v₀ = 0) с постоянным ускорением.",
+      "en": "Motion from rest (v₀ = 0) with constant acceleration."
+    },
+    "kinematics_find_final_velocity": {
+      "ru": "конечная скорость",
+      "en": "final velocity"
+    },
+    "kinematics_uniform_motion_note": {
+      "ru": "Равномерное движение — скорость постоянна.",
+      "en": "Uniform motion — velocity is constant."
+    },
+    "kinematics_find_linear_velocity": {
+      "ru": "линейная скорость",
+      "en": "linear velocity"
+    },
+    "kinematics_find_range": {
+      "ru": "дальность полёта",
+      "en": "range"
+    },
+    "kinematics_find_max_height": {
+      "ru": "максимальная высота подъёма",
+      "en": "maximum height"
+    }
+  }
+}

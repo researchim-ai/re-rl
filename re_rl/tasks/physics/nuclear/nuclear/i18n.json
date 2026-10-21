@@ -1,0 +1,60 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Eсв = {binding_energy:.2f} МэВ ({binding_per_nucleon:.2f} МэВ/нуклон)",
+      "en": "Eсв = {binding_energy:.2f} MeV ({binding_per_nucleon:.2f} MeV/нуклон)"
+    },
+    "s1": {
+      "ru": "Δm = {mass_defect:.6f} а.е.м.",
+      "en": "Δm = {mass_defect:.6f} а.е.м."
+    },
+    "s2": {
+      "ru": "A = {activity:.4e} Бк",
+      "en": "A = {activity:.4e} Bq"
+    },
+    "s3": {
+      "ru": "Число периодов = log₂({v0:.2f}) = {n_halves:.2f}",
+      "en": "Number of periods = log₂({v0:.2f}) = {n_halves:.2f}"
+    },
+    "s4": {
+      "ru": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м.",
+      "en": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м."
+    },
+    "s5": {
+      "ru": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} а.е.м.",
+      "en": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} а.е.м."
+    },
+    "s6": {
+      "ru": "Eсв = {mass_defect:.6f} × 931.5 = {binding_energy:.2f} МэВ",
+      "en": "Eсв = {mass_defect:.6f} × 931.5 = {binding_energy:.2f} MeV"
+    },
+    "s7": {
+      "ru": "Eсв/A = {binding_energy:.2f}/{A} = {binding_per_nucleon:.2f} МэВ/нуклон",
+      "en": "Eсв/A = {binding_energy:.2f}/{A} = {binding_per_nucleon:.2f} MeV/нуклон"
+    },
+    "s8": {
+      "ru": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м.",
+      "en": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м."
+    },
+    "s9": {
+      "ru": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} а.е.м.",
+      "en": "Δm = {theoretical_mass:.6f} - {mass:.6f} = {mass_defect:.6f} а.е.м."
+    },
+    "s10": {
+      "ru": "λ = ln(2)/T½ = {decay_const:.6e} с⁻¹",
+      "en": "λ = ln(2)/T½ = {decay_const:.6e} с⁻¹"
+    },
+    "s11": {
+      "ru": "A = λN = {decay_const:.6e} × {N0} = {activity:.4e} Бк",
+      "en": "A = λN = {decay_const:.6e} × {N0} = {activity:.4e} Bq"
+    },
+    "s12": {
+      "ru": "half_life_formula",
+      "en": "half_life_formula"
+    },
+    "s13": {
+      "ru": "mass_defect_formula",
+      "en": "mass_defect_formula"
+    }
+  }
+}

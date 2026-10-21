@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Процессы 1..{n}. Ребро a->b значит, что a ждёт b. Рёбра: {v1}. Петля — цикл длины 1.",
+      "en": "Processes 1..{n}. Edge a->b means a waits for b. Edges: {v1}. A self-loop is a cycle of length 1."
+    },
+    "s1": {
+      "ru": "Есть ли взаимная блокировка (цикл ожидания)? Ответьте да/нет.",
+      "en": "Is there a deadlock (a cycle in the wait-for graph)? Answer yes/no."
+    },
+    "s2": {
+      "ru": "Сколько процессов лежат хотя бы на одном цикле?",
+      "en": "How many processes lie on at least one cycle?"
+    },
+    "s3": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s4": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s5": {
+      "ru": "Процессов на циклах: {count}.",
+      "en": "Processes on cycles: {count}."
+    },
+    "s6": {
+      "ru": "На циклах: {listed}.",
+      "en": "On cycles: {listed}."
+    }
+  }
+}

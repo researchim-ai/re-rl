@@ -1,0 +1,78 @@
+{
+  "text": {
+    "s0": {
+      "ru": "лет",
+      "en": "лет"
+    },
+    "s1": {
+      "ru": "дней",
+      "en": "дней"
+    },
+    "s2": {
+      "ru": "часов",
+      "en": "часов"
+    },
+    "s3": {
+      "ru": "с",
+      "en": "s"
+    },
+    "s4": {
+      "ru": "A = {v0} Бк",
+      "en": "A = {v0} Бк"
+    },
+    "s5": {
+      "ru": "A = {A0}·(1/2)^({t}/{T}) = {v3} Бк",
+      "en": "A = {A0}·(1/2)^({t}/{T}) = {v3} Bq"
+    },
+    "s6": {
+      "ru": "t = T₁/₂·ln(100/{percent})/ln(2) = {T}·ln({v2})/ln(2)",
+      "en": "t = T₁/₂·ln(100/{percent})/ln(2) = {T}·ln({v2})/ln(2)"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на радиоактивный распад.",
+      "en": "Solve the radioactive decay problem."
+    },
+    "problem": {
+      "remaining": {
+        "ru": "Период полураспада изотопа T₁/₂ = {T} лет. Какая доля останется через t = {t} лет?",
+        "en": "Half-life of isotope T₁/₂ = {T} years. What fraction remains after t = {t} years?"
+      },
+      "activity": {
+        "ru": "Начальная активность A₀ = {A0} Бк, T₁/₂ = {T} с. Найдите активность через t = {t} с.",
+        "en": "Initial activity A₀ = {A0} Bq, T₁/₂ = {T} s. Find activity after t = {t} s."
+      },
+      "age": {
+        "ru": "В образце осталось {percent}% исходного изотопа. T₁/₂ = {T} лет. Найдите возраст образца.",
+        "en": "Sample contains {percent}% of original isotope. T₁/₂ = {T} years. Find the sample age."
+      },
+      "decay_constant": {
+        "ru": "Период полураспада T₁/₂ = {T}. Найдите постоянную распада λ.",
+        "en": "Half-life T₁/₂ = {T}. Find the decay constant λ."
+      }
+    },
+    "steps": {
+      "decay_law": {
+        "ru": "Закон распада: N(t) = N₀·e^(-λt) = N₀·(1/2)^(t/T₁/₂)",
+        "en": "Decay law: N(t) = N₀·e^(-λt) = N₀·(1/2)^(t/T₁/₂)"
+      },
+      "decay_constant": {
+        "ru": "Постоянная распада: λ = ln(2)/T₁/₂",
+        "en": "Decay constant: λ = ln(2)/T₁/₂"
+      },
+      "activity": {
+        "ru": "Активность: A = λN = A₀·e^(-λt)",
+        "en": "Activity: A = λN = A₀·e^(-λt)"
+      },
+      "age_formula": {
+        "ru": "Возраст: t = T₁/₂·ln(N₀/N)/ln(2)",
+        "en": "Age: t = T₁/₂·ln(N₀/N)/ln(2)"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

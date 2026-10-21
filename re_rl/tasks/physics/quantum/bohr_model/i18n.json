@@ -1,0 +1,86 @@
+{
+  "text": {
+    "s0": {
+      "ru": "E = {v0} эВ",
+      "en": "E = {v0} eV"
+    },
+    "s1": {
+      "ru": "E_{n} = -13.6/{n_2}² = {v2} эВ",
+      "en": "E_{n} = -13.6/{n_2}² = {v2} eV"
+    },
+    "s2": {
+      "ru": "λ = {v0} нм",
+      "en": "λ = {v0} нм"
+    },
+    "s3": {
+      "ru": "ΔE = 13.6·(1/{n2}² - 1/{n1}²) = {v2} эВ",
+      "en": "ΔE = 13.6·(1/{n2}² - 1/{n1}²) = {v2} eV"
+    },
+    "s4": {
+      "ru": "λ = hc/ΔE = {v0} нм",
+      "en": "λ = hc/ΔE = {v0} nm"
+    },
+    "s5": {
+      "ru": "E_ион = {v0} эВ",
+      "en": "E_ион = {v0} эВ"
+    },
+    "s6": {
+      "ru": "r_{n} = {n_2}²·{a0} = {v3} Å = {v4} нм",
+      "en": "r_{n} = {n_2}²·{a0} = {v3} Å = {v4} nm"
+    },
+    "s7": {
+      "ru": "E_{n} = -13.6/{n_2}² = {v2} эВ",
+      "en": "E_{n} = -13.6/{n_2}² = {v2} eV"
+    },
+    "s8": {
+      "ru": "E_ионизации = |E_{n}| = {v1} эВ",
+      "en": "E_ионизации = |E_{n}| = {v1} эВ"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на модель атома Бора.",
+      "en": "Solve the Bohr model problem."
+    },
+    "problem": {
+      "energy_level": {
+        "ru": "Найдите энергию электрона на {n}-й орбите атома водорода.",
+        "en": "Find the electron energy on {n}-th orbit of hydrogen atom."
+      },
+      "transition": {
+        "ru": "Электрон в атоме водорода переходит с уровня n = {n1} на уровень n = {n2}. Найдите длину волны излучённого фотона.",
+        "en": "Electron in hydrogen transitions from n = {n1} to n = {n2}. Find the emitted photon wavelength."
+      },
+      "orbit_radius": {
+        "ru": "Найдите радиус {n}-й орбиты электрона в атоме водорода.",
+        "en": "Find the radius of {n}-th electron orbit in hydrogen atom."
+      },
+      "ionization": {
+        "ru": "Найдите энергию ионизации атома водорода из состояния n = {n}.",
+        "en": "Find the ionization energy of hydrogen atom from state n = {n}."
+      }
+    },
+    "steps": {
+      "energy_formula": {
+        "ru": "Энергия уровня: E_n = -13.6/n² эВ",
+        "en": "Energy level: E_n = -13.6/n² eV"
+      },
+      "radius_formula": {
+        "ru": "Радиус орбиты: r_n = n²·a₀ = n²·0.529 Å",
+        "en": "Orbit radius: r_n = n²·a₀ = n²·0.529 Å"
+      },
+      "transition_energy": {
+        "ru": "Энергия перехода: ΔE = 13.6·(1/n₂² - 1/n₁²) эВ",
+        "en": "Transition energy: ΔE = 13.6·(1/n₂² - 1/n₁²) eV"
+      },
+      "wavelength": {
+        "ru": "Длина волны: λ = hc/ΔE",
+        "en": "Wavelength: λ = hc/ΔE"
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Частоты символов: {pairs}. Построив оптимальный код Хаффмана, найдите минимальную суммарную длину закодированного сообщения (в битах) — сумму по всем символам частота×длина кода.",
+      "en": "Symbol frequencies: {pairs}. Using an optimal Huffman code, find the minimum total length of the encoded message (in bits) — the sum over symbols of frequency×code length."
+    },
+    "s1": {
+      "ru": "Жадно объединяем две наименьшие частоты; сумма всех промежуточных объединений равна стоимости кода.",
+      "en": "Greedily merge the two smallest frequencies; the sum of all merge values equals the code cost."
+    },
+    "s2": {
+      "ru": "Минимальная длина: {answer} бит.",
+      "en": "Minimum length: {answer} bits."
+    }
+  }
+}

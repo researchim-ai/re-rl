@@ -1,0 +1,54 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В·м",
+      "en": "V·m"
+    },
+    "s1": {
+      "ru": "Кл",
+      "en": "C"
+    },
+    "s2": {
+      "ru": "В/м",
+      "en": "V/m"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу с применением теоремы Гаусса.",
+      "en": "Solve the problem using Gauss's law."
+    },
+    "problem": {
+      "flux_charge": {
+        "ru": "Внутри замкнутой поверхности находится заряд Q = {Q} Кл. Найдите поток электрического поля через поверхность.",
+        "en": "A charge Q = {Q} C is enclosed by a closed surface. Find the electric flux through it."
+      },
+      "enclosed_charge": {
+        "ru": "Поток электрического поля через замкнутую поверхность Φ = {flux} В·м. Найдите заключённый заряд.",
+        "en": "The electric flux through a closed surface is Φ = {flux} V·m. Find the enclosed charge."
+      },
+      "sphere_field": {
+        "ru": "Найдите напряжённость поля на расстоянии r = {r} м от точечного заряда Q = {Q} Кл.",
+        "en": "Find the field magnitude at distance r = {r} m from a point charge Q = {Q} C."
+      }
+    },
+    "steps": {
+      "flux_formula": {
+        "ru": "Теорема Гаусса: Φ = Q/ε₀.",
+        "en": "Gauss's law: Φ = Q/ε₀."
+      },
+      "charge_formula": {
+        "ru": "Q = ε₀·Φ.",
+        "en": "Q = ε₀·Φ."
+      },
+      "field_formula": {
+        "ru": "E = Q/(4π·ε₀·r²).",
+        "en": "E = Q/(4π·ε₀·r²)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

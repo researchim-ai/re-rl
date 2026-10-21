@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В массиве {data} один элемент встречается строго больше половины раз. Найдите его.",
+      "en": "In the array {data} one element occurs strictly more than half the time. Find it."
+    },
+    "s1": {
+      "ru": "Элемент большинства — {answer}.",
+      "en": "The majority element is {answer}."
+    },
+    "s3": {
+      "ru": "большинство потерялось при генерации",
+      "en": "большинство потерялось при генерации"
+    }
+  },
+  "literals": {
+    "s2": "строгого большинства нет"
+  }
+}

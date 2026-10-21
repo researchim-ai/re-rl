@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Глобальное выравнивание строк {left} и {right}. Совпадение даёт +1, несовпадение даёт -1, дырка даёт -1. Найдите наибольший вес.",
+      "en": "Global alignment of {left} and {right}. A match scores +1, a mismatch scores -1, and a gap scores -1. Find the best score."
+    },
+    "s1": {
+      "ru": "Вес выравнивания равен {answer}.",
+      "en": "The alignment score is {answer}."
+    }
+  }
+}

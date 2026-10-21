@@ -1,0 +1,66 @@
+{
+  "text": {
+    "s0": {
+      "ru": "E = {v0} МэВ",
+      "en": "E = {v0} MeV"
+    },
+    "s1": {
+      "ru": "E = 2·{v0}·{v1}² = {v2} Дж = {v3} МэВ",
+      "en": "E = 2·{v0}·{v1}² = {v2} J = {v3} MeV"
+    },
+    "s2": {
+      "ru": "λ = {v0} м",
+      "en": "λ = {v0} m"
+    },
+    "s3": {
+      "ru": "KE = {v0} МэВ",
+      "en": "KE = {v0} MeV"
+    },
+    "s4": {
+      "ru": "λ = {v0}·{v1}/{v2} = {v3} м",
+      "en": "λ = {v0}·{v1}/{v2} = {v3} m"
+    },
+    "s5": {
+      "ru": "KE = {E} − {v1} = {v2} МэВ",
+      "en": "KE = {E} − {v1} = {v2} MeV"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о рождении электрон-позитронной пары.",
+      "en": "Solve the electron-positron pair-production problem."
+    },
+    "problem": {
+      "threshold_energy": {
+        "ru": "Найдите минимальную энергию гамма-кванта (в МэВ), необходимую для рождения электрон-позитронной пары.",
+        "en": "Find the minimum gamma-photon energy (in MeV) required to create an electron-positron pair."
+      },
+      "threshold_wavelength": {
+        "ru": "Найдите максимальную длину волны гамма-кванта (в м), способного породить электрон-позитронную пару.",
+        "en": "Find the maximum wavelength (in m) of a gamma photon able to create an electron-positron pair."
+      },
+      "excess_kinetic": {
+        "ru": "Гамма-квант энергией E = {E} МэВ рождает электрон-позитронную пару. Найдите суммарную кинетическую энергию частиц (в МэВ).",
+        "en": "A gamma photon of energy E = {E} MeV creates an electron-positron pair. Find the total kinetic energy of the particles (in MeV)."
+      }
+    },
+    "steps": {
+      "threshold_formula": {
+        "ru": "Порог: E = 2·m_e·c² ≈ 1.022 МэВ.",
+        "en": "Threshold: E = 2·m_e·c² ≈ 1.022 MeV."
+      },
+      "wavelength_formula": {
+        "ru": "λ = h·c/E = h/(2·m_e·c).",
+        "en": "λ = h·c/E = h/(2·m_e·c)."
+      },
+      "excess_formula": {
+        "ru": "Кинетическая энергия: KE = E − 2·m_e·c².",
+        "en": "Kinetic energy: KE = E − 2·m_e·c²."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

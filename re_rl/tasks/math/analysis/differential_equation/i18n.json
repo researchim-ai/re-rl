@@ -1,0 +1,52 @@
+{
+  "text": {
+    "s2": {
+      "ru": "linear_first_order",
+      "en": "linear_first_order"
+    },
+    "s3": {
+      "ru": "$\\frac{{dy}}{{dx}} = \\frac{{{a}x}}{{{b}y}}$",
+      "en": "$\\frac{{dy}}{{dx}} = \\frac{{{a}x}}{{{b}y}}$"
+    },
+    "s4": {
+      "ru": "linear_first_order",
+      "en": "linear_first_order"
+    },
+    "s5": {
+      "ru": "linear_first_order",
+      "en": "linear_first_order"
+    },
+    "s6": {
+      "ru": "homogeneous_second_order",
+      "en": "homogeneous_second_order"
+    },
+    "s7": {
+      "ru": "homogeneous_second_order",
+      "en": "homogeneous_second_order"
+    },
+    "s8": {
+      "ru": "homogeneous_second_order",
+      "en": "homogeneous_second_order"
+    },
+    "s9": {
+      "ru": "linear_first_order",
+      "en": "linear_first_order"
+    },
+    "s10": {
+      "ru": "$\\frac{{dy}}{{dx}} = {k}y$",
+      "en": "$\\frac{{dy}}{{dx}} = {k}y$"
+    },
+    "s11": {
+      "ru": "homogeneous_second_order",
+      "en": "homogeneous_second_order"
+    },
+    "s12": {
+      "ru": "$\\frac{{dy}}{{dx}} = {a}y$",
+      "en": "$\\frac{{dy}}{{dx}} = {a}y$"
+    }
+  },
+  "literals": {
+    "s0": "linear_first_order",
+    "s1": "homogeneous_second_order"
+  }
+}

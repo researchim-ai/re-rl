@@ -1,0 +1,54 @@
+{
+  "text": {
+    "s0": {
+      "ru": "W = {v0} Дж",
+      "en": "W = {v0} J"
+    },
+    "s1": {
+      "ru": "W = {v0} Дж",
+      "en": "W = {v0} J"
+    },
+    "s2": {
+      "ru": "W = {v0} Дж",
+      "en": "W = {v0} J"
+    },
+    "s3": {
+      "ru": "W = ({P1}+{P2})/2·({V2}−{V1}) = {v4} Дж",
+      "en": "W = ({P1}+{P2})/2·({V2}−{V1}) = {v4} J"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Найдите работу газа по PV-диаграмме.",
+      "en": "Find the gas work from the PV diagram."
+    },
+    "problem": {
+      "net_work": {
+        "ru": "Идеальный газ обходит замкнутый цикл через точки (V [м³], P [Па]) по прямым отрезкам на PV-диаграмме: {points}. Найдите работу, совершённую газом за цикл (в Дж; знак — по направлению обхода).",
+        "en": "An ideal gas traverses a closed cycle through the points (V [m³], P [Pa]) along straight PV segments: {points}. Find the work done by the gas over the cycle (in J; sign follows the traversal direction)."
+      },
+      "leg_work": {
+        "ru": "На участке PV-диаграммы газ переходит из состояния (V1 = {V1} м³, P1 = {P1} Па) в (V2 = {V2} м³, P2 = {P2} Па) по прямой. Найдите работу газа на этом участке (в Дж).",
+        "en": "Along a straight PV segment a gas goes from (V1 = {V1} m³, P1 = {P1} Pa) to (V2 = {V2} m³, P2 = {P2} Pa). Find the gas work on this segment (in J)."
+      }
+    },
+    "steps": {
+      "area_formula": {
+        "ru": "Работа газа = ∮P dV = площадь, охватываемая циклом на PV-диаграмме.",
+        "en": "Gas work = ∮P dV = area enclosed by the cycle on the PV diagram."
+      },
+      "trapezoid_formula": {
+        "ru": "Работа по отрезку: W = (P1 + P2)/2 · (V2 − V1).",
+        "en": "Work along a segment: W = (P1 + P2)/2 · (V2 − V1)."
+      },
+      "shoelace": {
+        "ru": "Суммируем работы по всем отрезкам (формула трапеций/шнуровки).",
+        "en": "Sum the segment works over the loop (trapezoid/shoelace)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

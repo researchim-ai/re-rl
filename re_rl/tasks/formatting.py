@@ -7,6 +7,9 @@
 - "latex": LaTeX формат ($x^{2} + 2x - 3$)
 - "unicode": Unicode символы (x² + 2x − 3)
 """
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'formatting_i18n.json')
+
 
 from typing import Union, Any, Literal
 import sympy as sp
@@ -209,19 +212,19 @@ class MathFormatter:
     
     # Физические единицы
     UNITS_TEXT = {
-        'm/s': 'м/с', 'm/s^2': 'м/с²', 'kg': 'кг', 'm': 'м', 's': 'с',
-        'N': 'Н', 'J': 'Дж', 'W': 'Вт', 'Pa': 'Па', 'K': 'К', 'C': 'Кл',
-        'V': 'В', 'A': 'А', 'Ohm': 'Ом', 'F': 'Ф', 'H': 'Гн', 'T': 'Тл',
-        'Hz': 'Гц', 'eV': 'эВ', 'MeV': 'МэВ',
+        'm/s': texts.literal('literals.s0'), 'm/s^2': texts.literal('literals.s1'), 'kg': texts.literal('literals.s2'), 'm': texts.literal('literals.s3'), 's': texts.literal('literals.s4'),
+        'N': texts.literal('literals.s5'), 'J': texts.literal('literals.s6'), 'W': texts.literal('literals.s7'), 'Pa': texts.literal('literals.s8'), 'K': texts.literal('literals.s9'), 'C': texts.literal('literals.s10'),
+        'V': texts.literal('literals.s11'), 'A': texts.literal('literals.s12'), 'Ohm': texts.literal('literals.s13'), 'F': texts.literal('literals.s14'), 'H': texts.literal('literals.s15'), 'T': texts.literal('literals.s16'),
+        'Hz': texts.literal('literals.s17'), 'eV': texts.literal('literals.s18'), 'MeV': texts.literal('literals.s19'),
     }
     
     UNITS_LATEX = {
-        'm/s': '\\text{м/с}', 'm/s^2': '\\text{м/с}^2', 'kg': '\\text{кг}',
-        'm': '\\text{м}', 's': '\\text{с}', 'N': '\\text{Н}', 'J': '\\text{Дж}',
-        'W': '\\text{Вт}', 'Pa': '\\text{Па}', 'K': '\\text{К}', 'C': '\\text{Кл}',
-        'V': '\\text{В}', 'A': '\\text{А}', 'Ohm': '\\Omega', 'F': '\\text{Ф}',
-        'H': '\\text{Гн}', 'T': '\\text{Тл}', 'Hz': '\\text{Гц}',
-        'eV': '\\text{эВ}', 'MeV': '\\text{МэВ}',
+        'm/s': texts.literal('literals.s20'), 'm/s^2': texts.literal('literals.s21'), 'kg': texts.literal('literals.s22'),
+        'm': texts.literal('literals.s23'), 's': texts.literal('literals.s24'), 'N': texts.literal('literals.s25'), 'J': texts.literal('literals.s26'),
+        'W': texts.literal('literals.s27'), 'Pa': texts.literal('literals.s28'), 'K': texts.literal('literals.s29'), 'C': texts.literal('literals.s30'),
+        'V': texts.literal('literals.s31'), 'A': texts.literal('literals.s32'), 'Ohm': '\\Omega', 'F': texts.literal('literals.s33'),
+        'H': texts.literal('literals.s34'), 'T': texts.literal('literals.s35'), 'Hz': texts.literal('literals.s36'),
+        'eV': texts.literal('literals.s37'), 'MeV': texts.literal('literals.s38'),
     }
     
     @classmethod

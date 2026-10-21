@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Истинные метки: {yt}. Предсказания: {yp}. Положительный класс — 1. Найдите {names}.{extra}",
+      "en": "True labels: {yt}. Predictions: {yp}. The positive class is 1. Find {names}.{extra}"
+    },
+    "s1": {
+      "ru": "TP = {v0}, FP = {v1}, FN = {v2}, TN = {v3}. Значение = {shown}.",
+      "en": "TP = {v0}, FP = {v1}, FN = {v2}, TN = {v3}. Value = {shown}."
+    },
+    "s2": {
+      "ru": "число истинно положительных (TP)",
+      "en": "the number of true positives (TP)"
+    },
+    "s3": {
+      "ru": "precision = TP / (TP + FP)",
+      "en": "precision = TP / (TP + FP)"
+    },
+    "s4": {
+      "ru": "recall = TP / (TP + FN)",
+      "en": "recall = TP / (TP + FN)"
+    },
+    "s5": {
+      "ru": "F1 = 2 TP / (2 TP + FP + FN)",
+      "en": "F1 = 2 TP / (2 TP + FP + FN)"
+    },
+    "s6": {
+      "ru": " Ответ — целое или несократимая дробь.",
+      "en": " Answer with an integer or a reduced fraction."
+    },
+    "s7": {
+      "ru": " Answer with an integer or a reduced fraction.",
+      "en": " Answer with an integer or a reduced fraction."
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Головка диска стоит на цилиндре {start}. Очередь запросов: {desc}. Дисциплина SSTF: каждый раз едем к ближайшему оставшемуся цилиндру; при равенстве расстояний выбирается меньший номер. Найдите суммарное перемещение.",
+      "en": "The disk head is at cylinder {start}. Requests: {desc}. SSTF always moves to the nearest remaining cylinder; ties go to the smaller cylinder number. Find the total seek distance."
+    },
+    "s1": {
+      "ru": "Невытесняющий SJF, все заявки приходят в момент 0. Пары (номер, длительность): {desc}. При равной длительности раньше обслуживается меньший номер. Найдите суммарное время ожидания.",
+      "en": "Non-preemptive SJF, every job arrives at time 0. Pairs (id, burst): {desc}. Equal bursts are broken by the smaller id. Find the total waiting time."
+    },
+    "s2": {
+      "ru": "Дисциплина FCFS. Заявки (номер, время прихода, длительность): {desc}. При равном времени прихода раньше идёт меньший номер. Найдите суммарное время ожидания.",
+      "en": "FCFS scheduling. Jobs (id, arrival, burst): {desc}. Equal arrival times are broken by the smaller id. Find the total waiting time."
+    },
+    "s3": {
+      "ru": "Порядок цилиндров: {path}.",
+      "en": "Cylinder order: {path}."
+    },
+    "s4": {
+      "ru": "Порядок обслуживания: {order}. Сумма ожиданий равна {answer}.",
+      "en": "Service order: {order}. The waiting times sum to {answer}."
+    }
+  }
+}

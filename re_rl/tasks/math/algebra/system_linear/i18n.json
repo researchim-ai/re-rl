@@ -1,0 +1,60 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матрица коэффициентов должна быть квадратной",
+      "en": "Coefficient matrix must be square"
+    },
+    "s1": {
+      "ru": "no_unique_solution",
+      "en": "no_unique_solution"
+    },
+    "s2": {
+      "ru": "no_unique_solution",
+      "en": "no_unique_solution"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите систему линейных уравнений.\nПример ответа:\n<reasoning>\n  (шаги по Крамеру)\n</reasoning>\n<answer>\n  x1=..., x2=...\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve a system of linear equations.\nExample:\n<reasoning>\n  (Cramer's rule steps)\n</reasoning>\n<answer>\n  x1=..., x2=...\n</answer>"
+    },
+    "problem": {
+      "ru": [
+        "Решите систему уравнений:\n{equations}",
+        "Найдите решение системы:\n{equations}",
+        "Решите систему линейных уравнений:\n{equations}",
+        "Определите значения переменных в системе:\n{equations}",
+        "Найдите x и y из системы:\n{equations}"
+      ],
+      "en": [
+        "Solve the following system of equations:\n{equations}",
+        "Find the solution of the system:\n{equations}",
+        "Solve the system of linear equations:\n{equations}",
+        "Determine the values of variables in:\n{equations}",
+        "Find x and y from the system:\n{equations}"
+      ]
+    },
+    "steps": {
+      "compute_det": {
+        "ru": "Шаг 1: Вычисляем главный определитель системы: det(A) = {det}",
+        "en": "Step 1: Compute main determinant: det(A) = {det}"
+      },
+      "replace_column": {
+        "ru": "Шаг {step_num}: Заменяем {col}-й столбец и вычисляем det(A_{col}) = {det}",
+        "en": "Step {step_num}: Replace column {col} and compute det(A_{col}) = {det}"
+      },
+      "compute_variable": {
+        "ru": "Шаг {step_num}: x{var} = det(A_{var}) / det(A) = {value}",
+        "en": "Step {step_num}: x{var} = det(A_{var}) / det(A) = {value}"
+      }
+    },
+    "step": {
+      "ru": "Шаг {step_num}: {message}",
+      "en": "Step {step_num}: {message}"
+    },
+    "no_unique_solution": {
+      "ru": "Нет единственного решения",
+      "en": "No unique solution"
+    }
+  }
+}

@@ -6,6 +6,9 @@
 """
 
 from __future__ import annotations
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, '_phys_utils_i18n.json')
+
 
 import re
 from typing import List
@@ -14,7 +17,7 @@ from re_rl.tasks.math._verify_utils import extract_answer_text, extract_numbers
 
 # Метка величины перед знаком равенства, например «R1 =», «I₃ =», «λ_max =».
 # Такие подписи вырезаются, чтобы их цифровые индексы не попадали в числа ответа.
-_LABEL_RE = re.compile(r"[A-Za-zА-Яа-яα-ωΑ-Ω_][\w₀-₉]*\s*=")
+_LABEL_RE = re.compile(texts.literal('literals.s0'))
 
 
 def fmt(value: float, precision: int = 6) -> str:

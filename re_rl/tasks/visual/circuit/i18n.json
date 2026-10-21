@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На схеме — сеть резисторов (номиналы указаны на элементах, в омах). Найдите эквивалентное сопротивление между точками A и B.",
+      "en": "The schematic shows a resistor network (values are labeled on the elements, in ohms). Find the equivalent resistance between points A and B."
+    },
+    "s2": {
+      "ru": "Схема резисторов",
+      "en": "Схема резисторов"
+    }
+  },
+  "literals": {
+    "s1": "circuit_resistance_image"
+  }
+}

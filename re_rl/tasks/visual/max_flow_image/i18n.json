@@ -1,0 +1,15 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — транспортная сеть (стрелки — дуги, числа — пропускные способности). Исток {s} (зелёный), сток {t} (красный). Найдите величину максимального потока из истока в сток.",
+      "en": "The figure shows a flow network (arrows are arcs, numbers are capacities). Source {s} (green), sink {t} (red). Find the maximum flow value from source to sink."
+    },
+    "s2": {
+      "ru": "Транспортная сеть",
+      "en": "Транспортная сеть"
+    }
+  },
+  "literals": {
+    "s1": "max_flow_image"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Даны два унифицируемых терма (заглавные — переменные, строчные — константы):\n  t1 = {a}\n  t2 = {b}\nПриведите терм, получающийся после применения наиболее общего унификатора.",
+      "en": "Two unifiable terms (uppercase = variables, lowercase = constants):\n  t1 = {a}\n  t2 = {b}\nGive the term obtained after applying the most general unifier."
+    },
+    "s1": {
+      "ru": "Даны два терма первого порядка (заглавные буквы — переменные, строчные — константы, f/g/h/k — функции):\n  t1 = {a}\n  t2 = {b}\nУнифицируемы ли они? (да/нет)",
+      "en": "Two first-order terms (uppercase = variables, lowercase = constants, f/g/h/k = functions):\n  t1 = {a}\n  t2 = {b}\nAre they unifiable? (yes/no)"
+    },
+    "s2": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s3": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s4": {
+      "ru": "Рекурсивно сопоставляем структуры термов, связывая переменства и проверяя вхождение (occurs-check).",
+      "en": "Recursively match term structures, binding variables with an occurs-check."
+    },
+    "s5": {
+      "ru": "Применяем алгоритм унификации и подставляем найденные значения переменных.",
+      "en": "Apply the unification algorithm and substitute the variable bindings."
+    },
+    "s6": {
+      "ru": "Результат: {res}.",
+      "en": "Result: {res}."
+    },
+    "s7": {
+      "ru": "Термы унифицируемы.",
+      "en": "The terms are unifiable."
+    },
+    "s8": {
+      "ru": "Термы не унифицируемы.",
+      "en": "The terms are not unifiable."
+    }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — треугольник с двумя подписанными углами (в градусах). Найдите величину третьего угла.",
+      "en": "The figure shows a triangle with two angles labeled (degrees). Find the third angle."
+    },
+    "s1": {
+      "ru": "На рисунке — прямоугольный треугольник с подписанными катетами a и b. Найдите его площадь.",
+      "en": "The figure shows a right triangle with legs a and b labeled. Find its area."
+    },
+    "s2": {
+      "ru": "На рисунке — треугольник с подписанными длинами трёх сторон. Найдите его периметр.",
+      "en": "The figure shows a triangle with all three side lengths labeled. Find its perimeter."
+    },
+    "s3": {
+      "ru": "Площадь прямоугольного треугольника S = a·b/2.",
+      "en": "Right-triangle area S = a·b/2."
+    },
+    "s4": {
+      "ru": "Периметр — сумма длин сторон.",
+      "en": "Perimeter is the sum of the sides."
+    },
+    "s5": {
+      "ru": "Сумма углов треугольника равна 180°.",
+      "en": "The angles of a triangle sum to 180°."
+    },
+    "s6": {
+      "ru": "γ = 180 − {alpha} − {beta} = {answer}°.",
+      "en": "γ = 180 − {alpha} − {beta} = {answer}°."
+    },
+    "s8": {
+      "ru": "right_triangle_area",
+      "en": "right_triangle_area"
+    },
+    "s9": {
+      "ru": "right_triangle_area",
+      "en": "right_triangle_area"
+    },
+    "s10": {
+      "ru": "right_triangle_area",
+      "en": "right_triangle_area"
+    },
+    "s11": {
+      "ru": "right_triangle_area",
+      "en": "right_triangle_area"
+    },
+    "s12": {
+      "ru": "right_triangle_area",
+      "en": "right_triangle_area"
+    },
+    "s13": {
+      "ru": "Прямоугольный треугольник",
+      "en": "Прямоугольный треугольник"
+    },
+    "s14": {
+      "ru": "Треугольник (стороны подписаны)",
+      "en": "Треугольник (стороны подписаны)"
+    },
+    "s15": {
+      "ru": "Найдите неизвестный угол",
+      "en": "Найдите неизвестный угол"
+    }
+  },
+  "literals": {
+    "s7": "right_triangle_area"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — взвешенный связный граф (числа на рёбрах — веса). Найдите суммарный вес минимального остовного дерева.",
+      "en": "The figure shows a weighted connected graph (numbers on edges are weights). Find the total weight of the minimum spanning tree."
+    },
+    "s1": {
+      "ru": "Взвешенный связный граф",
+      "en": "Взвешенный связный граф"
+    }
+  }
+}

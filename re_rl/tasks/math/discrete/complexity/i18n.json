@@ -1,0 +1,40 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дана рекуррента: {recur}, T(1) = Θ(1). Применив мастер-теорему, укажите асимптотику T(n) классом вида Θ(...).",
+      "en": "Given the recurrence: {recur}, T(1) = Θ(1). Using the Master theorem, give the asymptotics of T(n) as a class like Θ(...)."
+    },
+    "s1": {
+      "ru": "Оцените асимптотику времени работы псевдокода по n (вызов work() — O(1)). Ответьте классом вида Θ(...):\n",
+      "en": "Estimate the asymptotic running time of the pseudocode in terms of n (a work() call is O(1)). Answer with a class like Θ(...):\n"
+    },
+    "s2": {
+      "ru": "Перемножаем числа итераций вложенных циклов; последовательные блоки дают максимум.",
+      "en": "Multiply iteration counts of nested loops; sequential blocks take the max."
+    },
+    "s3": {
+      "ru": "Сравниваем d={d} и log_b(a)=log_{b}({a})={crit}: d {comp} log_b(a) → случай {case} мастер-теоремы.",
+      "en": "Compare d={d} and log_b(a)=log_{b}({a})={crit}: d {comp} log_b(a) → Master theorem case {case}."
+    },
+    "s4": {
+      "ru": "for i in range(n):\n    work()",
+      "en": "for i in range(n):\n    work()"
+    },
+    "s5": {
+      "ru": "for i in range(n):\n    j = 1\n    while j < n:\n        j = j * 2\n        work()",
+      "en": "for i in range(n):\n    j = 1\n    while j < n:\n        j = j * 2\n        work()"
+    },
+    "s6": {
+      "ru": "for i in range(n):\n    for j in range(n):\n        work()",
+      "en": "for i in range(n):\n    for j in range(n):\n        work()"
+    },
+    "s7": {
+      "ru": "for i in range(n):\n    for j in range(n):\n        for k in range(n):\n            work()",
+      "en": "for i in range(n):\n    for j in range(n):\n        for k in range(n):\n            work()"
+    },
+    "s8": {
+      "ru": "for p in range(n):\n    work()\n{code}",
+      "en": "for p in range(n):\n    work()\n{code}"
+    }
+  }
+}

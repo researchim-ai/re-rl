@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Игра 2×2. Выплаты строки: {v0}. Выплаты столбца: {v1}. p — вероятность верхней строки, делающая столбца безразличным: p = (низ-право - низ-лево) / (верх-лево - низ-лево - верх-право + низ-право) по выплатам столбца. q — вероятность левого столбца, делающая строку безразличной: q = (низ-право - верх-право) / (верх-лево - верх-право - низ-лево + низ-право) по выплатам строки. Ответ — целое или несократимая дробь.",
+      "en": "A 2×2 game. Row payoffs: {v0}. Column payoffs: {v1}. p is the probability of the top row that makes the column indifferent: p = (bottom-right - bottom-left) / (top-left - bottom-left - top-right + bottom-right) using the column payoffs. q is the probability of the left column that makes the row indifferent: q = (bottom-right - top-right) / (top-left - top-right - bottom-left + bottom-right) using the row payoffs. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Найдите p.",
+      "en": "Find p."
+    },
+    "s2": {
+      "ru": "Найдите q.",
+      "en": "Find q."
+    },
+    "s3": {
+      "ru": "top-left {v0}, top-right {v1}, bottom-left {v2}, bottom-right {v3}",
+      "en": "top-left {v0}, top-right {v1}, bottom-left {v2}, bottom-right {v3}"
+    },
+    "s4": {
+      "ru": "верх-лево {v0}, верх-право {v1}, низ-лево {v2}, низ-право {v3}",
+      "en": "верх-лево {v0}, верх-право {v1}, низ-лево {v2}, низ-право {v3}"
+    }
+  }
+}

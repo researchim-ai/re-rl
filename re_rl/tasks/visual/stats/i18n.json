@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На гистограмме показано, сколько раз встречается каждое значение. ",
+      "en": "The histogram shows how many times each value occurs. "
+    },
+    "s1": {
+      "ru": "Восстанавливаем набор данных по высотам столбцов и считаем нужную статистику.",
+      "en": "Reconstruct the data set from bar heights and compute the required statistic."
+    },
+    "s2": {
+      "ru": "какое значение встречается чаще всего (мода)?",
+      "en": "which value occurs most often (the mode)?"
+    },
+    "s3": {
+      "ru": "чему равна медиана набора данных?",
+      "en": "what is the median of the data set?"
+    },
+    "s4": {
+      "ru": "чему равен размах (максимальное значение минус минимальное среди присутствующих)?",
+      "en": "what is the range (maximum value minus minimum among those present)?"
+    },
+    "s5": {
+      "ru": "значение",
+      "en": "значение"
+    },
+    "s6": {
+      "ru": "частота",
+      "en": "частота"
+    },
+    "s7": {
+      "ru": "Гистограмма частот",
+      "en": "Гистограмма частот"
+    }
+  }
+}

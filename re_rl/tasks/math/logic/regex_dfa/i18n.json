@@ -1,0 +1,69 @@
+{
+  "text": {
+    "s0": {
+      "ru": "ru",
+      "en": "en"
+    },
+    "s1": {
+      "ru": "принадлежит",
+      "en": "belongs to"
+    },
+    "s2": {
+      "ru": "не принадлежит",
+      "en": "does not belong to"
+    },
+    "s16": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s17": {
+      "ru": "принадлежит",
+      "en": "принадлежит"
+    },
+    "s18": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s19": {
+      "ru": "не принадлежит",
+      "en": "не принадлежит"
+    }
+  },
+  "literals": {
+    "s3": "любое число символов 'a' (возможно ноль), за которыми идёт любое число 'b'",
+    "s4": "any number of 'a' (possibly zero) followed by any number of 'b'",
+    "s5": "повторение блока 'ab' ноль или более раз",
+    "s6": "the block 'ab' repeated zero or more times",
+    "s7": "строки чётной длины (включая пустую)",
+    "s8": "strings of even length (including the empty string)",
+    "s9": "[ab]*aa[ab]*",
+    "s10": "строки, содержащие подстроку 'aa'",
+    "s11": "strings containing the substring 'aa'",
+    "s12": "строки, начинающиеся на 'a' и заканчивающиеся на 'b'",
+    "s13": "strings that start with 'a' and end with 'b'",
+    "s14": "строки, содержащие ровно ноль или два символа 'a'",
+    "s15": "strings containing exactly zero or two 'a' characters",
+    "s20": "\\b(no|нет|false|не\\s+принадлеж\\w*)\\b",
+    "s21": "\\b(yes|да|true|принадлеж\\w*|belongs?)\\b"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Язык над алфавитом {{a, b}} задан описанием: {desc}. Принадлежит ли этому языку строка \"{string}\"? Ответьте YES или NO.",
+        "Формальный язык: {desc}. Верно ли, что строка \"{string}\" принадлежит языку? Ответ: YES или NO."
+      ],
+      "en": [
+        "A language over the alphabet {{a, b}} is defined as: {desc}. Does the string \"{string}\" belong to this language? Answer YES or NO.",
+        "Formal language: {desc}. Is the string \"{string}\" in the language? Answer YES or NO."
+      ]
+    },
+    "step_check": {
+      "ru": "Проверяем строку по описанию языка (регулярное выражение {pattern}).",
+      "en": "Match the string against the language description (regular expression {pattern})."
+    },
+    "step_result": {
+      "ru": "Строка {verdict} языку. Ответ: {answer}.",
+      "en": "The string {verdict} the language. Answer: {answer}."
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Гц",
+      "en": "Hz"
+    },
+    "s1": {
+      "ru": "f_биений = |{f1} − {f2}| = {f} {u}",
+      "en": "f_beat = |{f1} − {f2}| = {f} {u}"
+    }
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу о биениях.",
+      "en": "Solve the beats problem."
+    },
+    "problem": {
+      "beat_frequency": {
+        "ru": "Два камертона звучат с частотами {f1} Гц и {f2} Гц. Найдите частоту биений.",
+        "en": "Two tuning forks sound at {f1} Hz and {f2} Hz. Find the beat frequency."
+      }
+    },
+    "steps": {
+      "beat_formula": {
+        "ru": "f_биений = |f1 − f2|.",
+        "en": "f_beat = |f1 − f2|."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

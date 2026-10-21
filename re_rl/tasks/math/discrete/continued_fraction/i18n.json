@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Разложите дробь {p}/{q} в конечную цепную дробь (перечислите неполные частные через ; или запятую).",
+        "Найдите разложение числа {p}/{q} в цепную дробь [a0; a1, a2, ...]."
+      ],
+      "en": [
+        "Expand {p}/{q} into a finite continued fraction (list the partial quotients).",
+        "Find the continued fraction expansion [a0; a1, a2, ...] of {p}/{q}."
+      ]
+    },
+    "step_setup": {
+      "ru": "Применяем алгоритм Евклида: на каждом шаге берём целую часть и переходим к обратной дробной части.",
+      "en": "Run the Euclidean algorithm: take the integer part and invert the fractional part each step."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дисконт γ = {gamma}. Награда шага k умножается на γ^k, k с нуля.",
+      "en": "Discount γ = {gamma}. The reward at step k is multiplied by γ^k, k starting at 0."
+    },
+    "s1": {
+      "ru": "Полная отдача = {full}. Ответ = {shown}.",
+      "en": "Full return = {full}. Answer = {shown}."
+    },
+    "s2": {
+      "ru": "Награды: {rewards}. После последней награды бутстрап V = {v_boot}. Найдите n-шаговую отдачу. Ответ — целое или несократимая дробь.",
+      "en": "Rewards: {rewards}. After the last reward, bootstrap V = {v_boot}. Find the n-step return. Answer with an integer or a reduced fraction."
+    },
+    "s3": {
+      "ru": "Награды до конца эпизода: {rewards}. Оценка начального состояния V = {v_start}. Найдите преимущество: полная отдача минус V. Ответ — целое или несократимая дробь.",
+      "en": "Rewards until the end of the episode: {rewards}. The start-state value is V = {v_start}. Find the advantage: full return minus V. Answer with an integer or a reduced fraction."
+    },
+    "s4": {
+      "ru": "Награды до конца эпизода: {rewards}. Найдите полную дисконтированную отдачу. Ответ — целое или несократимая дробь.",
+      "en": "Rewards until the end of the episode: {rewards}. Find the full discounted return. Answer with an integer or a reduced fraction."
+    }
+  }
+}

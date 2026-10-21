@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Максимум-куча, индексы с 0. Дети i — это 2*i+1 и 2*i+2. При просеивании вниз вершина меняется с большим ребёнком.",
+      "en": "Max-heap, indices start at 0. Children of i are 2*i+1 and 2*i+2. Sifting down swaps a node with its larger child."
+    },
+    "s1": {
+      "ru": "Массив: {data}. Постройте кучу, просеивая внутренние вершины от конца к корню. Ответьте массивом через пробел.",
+      "en": "Array: {data}. Build the heap by sifting internal nodes from the end to the root. Answer with the array separated by spaces."
+    },
+    "s2": {
+      "ru": "Почти куча, испорчен только корень: {data}. Просейте корень вниз. Ответьте массивом через пробел.",
+      "en": "Almost a heap, only the root is broken: {data}. Sift the root down. Answer with the array separated by spaces."
+    },
+    "s3": {
+      "ru": "После просеивания: {shown}.",
+      "en": "After sifting: {shown}."
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два центроида. Точка относится к тому, у кого меньше квадрат расстояния (dx^2 + dy^2). При равенстве выбирается центроид 1.",
+      "en": "Two centroids. A point goes to the centroid with the smaller squared distance (dx^2 + dy^2). Ties go to centroid 1."
+    },
+    "s1": {
+      "ru": "Центроид 1 = {c1}, центроид 2 = {c2}.",
+      "en": "Centroid 1 = {c1}, centroid 2 = {c2}."
+    },
+    "s2": {
+      "ru": "К какому центроиду ближе точка {query}? Ответьте 1 или 2.",
+      "en": "Which centroid is closer to {query}? Answer 1 or 2."
+    },
+    "s3": {
+      "ru": "Квадраты расстояний до 1 и 2: {d1} и {d2}.",
+      "en": "Squared distances to 1 and 2: {d1} and {d2}."
+    },
+    "s4": {
+      "ru": "Точки: {v0}. Сколько из них попадёт в кластер 1?",
+      "en": "Points: {v0}. How many are assigned to cluster 1?"
+    },
+    "s5": {
+      "ru": "Точки: {v0}. После назначения найдите новую x-координату центроида 1 (среднее x точек кластера). Ответ — целое или несократимая дробь.",
+      "en": "Points: {v0}. After assignment, find the new x-coordinate of centroid 1 (the mean x of its points). Answer with an integer or a reduced fraction."
+    },
+    "s6": {
+      "ru": "В кластер 1 попадает {count} точек.",
+      "en": "{count} points go to cluster 1."
+    },
+    "s7": {
+      "ru": "Среднее x кластера 1 равно {shown}.",
+      "en": "Mean x of cluster 1 is {shown}."
+    }
+  }
+}

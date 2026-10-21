@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Корень максимизирует ожидаемую оценку. Каждый ход ведёт к узлу случая. При равенстве берётся меньший номер хода. {v0} Ответ — целое или несократимая дробь.",
+      "en": "The root maximizes expected value. Each move leads to a chance node. Ties take the smaller move index. {v0} Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Оценка {v0}, ход {choice}.",
+      "en": "Value {v0}, move {choice}."
+    },
+    "s2": {
+      "ru": "Ход {v0}: {bits}.",
+      "en": "Move {v0}: {bits}."
+    },
+    "s3": {
+      "ru": "Найдите оценку корня.",
+      "en": "Find the value of the root."
+    },
+    "s4": {
+      "ru": "Какой ход выбирает корень?",
+      "en": "Which move does the root choose?"
+    },
+    "s5": {
+      "ru": "исход {utility} с вероятностью {v1}",
+      "en": "outcome {utility} with probability {v1}"
+    }
+  }
+}

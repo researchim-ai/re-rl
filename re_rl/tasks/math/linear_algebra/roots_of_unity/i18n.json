@@ -1,0 +1,35 @@
+{
+  "text": {
+    "s1": {
+      "ru": "roots_of_unity",
+      "en": "roots_of_unity"
+    },
+    "s2": {
+      "ru": "roots_of_unity",
+      "en": "roots_of_unity"
+    }
+  },
+  "literals": {
+    "s0": "roots_of_unity"
+  },
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Найдите все комплексные корни уравнения z^{n} = {value} (в алгебраической или тригонометрической форме).",
+        "Перечислите все решения уравнения z^{n} = {value} в комплексных числах."
+      ],
+      "en": [
+        "Find all complex roots of z^{n} = {value} (algebraic or trigonometric form).",
+        "List all complex solutions of z^{n} = {value}."
+      ]
+    },
+    "step_setup": {
+      "ru": "Записываем {value} в тригонометрической форме и применяем формулу корней n-й степени.",
+      "en": "Write {value} in trigonometric form and apply the n-th root formula."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

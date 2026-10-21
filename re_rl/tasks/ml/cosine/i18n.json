@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Запрос q = {v0}, A = {v1}, B = {v2}.",
+      "en": "Query q = {v0}, A = {v1}, B = {v2}."
+    },
+    "s1": {
+      "ru": "Какой вектор ближе к q по косинусной близости? Ответьте A или B.",
+      "en": "Which vector is closer to q by cosine similarity? Answer A or B."
+    },
+    "s2": {
+      "ru": "Чему равно скалярное произведение q и A?",
+      "en": "What is the dot product of q and A?"
+    },
+    "s3": {
+      "ru": "Ближе вектор {choice}.",
+      "en": "Closer vector: {choice}."
+    }
+  }
+}

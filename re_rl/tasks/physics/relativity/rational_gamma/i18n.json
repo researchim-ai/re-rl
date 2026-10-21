@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скорость v/c = {speed}. Фактор Лоренца γ = 1/sqrt(1 - (v/c)^2) здесь рационален. Ответ — целое или несократимая дробь.",
+      "en": "The speed is v/c = {speed}. The Lorentz factor γ = 1/sqrt(1 - (v/c)^2) is rational here. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Найдите γ.",
+      "en": "Find γ."
+    },
+    "s2": {
+      "ru": "В лаборатории прошло t = {lab_time}. Собственное время τ = t / γ. Найдите τ.",
+      "en": "Laboratory time is t = {lab_time}. Proper time is τ = t / γ. Find τ."
+    }
+  },
+  "literals": {
+    "s3": "тройка не пифагорова"
+  }
+}

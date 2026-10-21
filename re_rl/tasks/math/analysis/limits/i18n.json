@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "$\\lim_{{x \\to \\infty}} {expr_latex}$",
+      "en": "$\\lim_{{x \\to \\infty}} {expr_latex}$"
+    },
+    "s1": {
+      "ru": "$\\lim_{{n \\to \\infty}} {expr_latex}$",
+      "en": "$\\lim_{{n \\to \\infty}} {expr_latex}$"
+    },
+    "s2": {
+      "ru": "divide_highest_power",
+      "en": "divide_highest_power"
+    },
+    "s3": {
+      "ru": "divide_highest_power",
+      "en": "divide_highest_power"
+    },
+    "s4": {
+      "ru": "Замечательный предел",
+      "en": "Замечательный предел"
+    },
+    "s5": {
+      "ru": "ln_one_plus_x",
+      "en": "ln_one_plus_x"
+    }
+  }
+}

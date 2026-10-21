@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив, позиции с 1: {data}. Прибавления по порядку: {v1}.",
+      "en": "Array, positions start at 1: {data}. Additions in order: {v1}."
+    },
+    "s1": {
+      "ru": "Сумма отрезка {range_sum}, сумма массива {total}.",
+      "en": "Range sum {range_sum}, array sum {total}."
+    },
+    "s2": {
+      "ru": "Найдите сумму с позиции {v0} по {v1} включительно.",
+      "en": "Find the sum from position {v0} through {v1}, inclusive."
+    },
+    "s3": {
+      "ru": "Найдите сумму всего массива после прибавлений.",
+      "en": "Find the sum of the whole array after the additions."
+    }
+  }
+}

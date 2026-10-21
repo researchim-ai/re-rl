@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Машина Тьюринга (состояния 0..{v0}, старт 0, головка на клетке 0, вне ленты — нули). Лента: {tape}. Правила: {rules}.\nСколько единиц будет на ленте после {steps} шагов?",
+      "en": "Turing machine (states 0..{v0}, start 0, head at cell 0, outside cells are zeros). Tape: {tape}. Rules: {rules}.\nHow many ones are on the tape after {steps} steps?"
+    },
+    "s1": {
+      "ru": "Пошагово применяем правила: читаем символ, пишем, двигаем головку, меняем состояние.",
+      "en": "Apply the rules step by step: read, write, move the head, change state."
+    },
+    "s2": {
+      "ru": "Единиц на ленте: {_answer}.",
+      "en": "Ones on the tape: {_answer}."
+    },
+    "s3": {
+      "ru": "({s},{r})→(пиши {w}, {v3}, состояние {ns})",
+      "en": "({s},{r})→(write {w}, {v3}, state {ns})"
+    }
+  }
+}

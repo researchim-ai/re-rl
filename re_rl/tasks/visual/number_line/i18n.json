@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Чему равна координата середины отрезка AB?",
+      "en": "What is the coordinate of the midpoint of segment AB?"
+    },
+    "s1": {
+      "ru": "Какое целое число указывает стрелка на числовой прямой?",
+      "en": "Which integer does the arrow indicate on the number line?"
+    },
+    "s2": {
+      "ru": "Чему равно расстояние между отметками A и B на числовой прямой?",
+      "en": "What is the distance between marks A and B on the number line?"
+    },
+    "s3": {
+      "ru": "Точка стоит на делении {a}.",
+      "en": "The dot is on tick {a}."
+    },
+    "s4": {
+      "ru": "Середина ({a} + {b}) / 2 = {answer}.",
+      "en": "Midpoint ({a} + {b}) / 2 = {answer}."
+    }
+  }
+}

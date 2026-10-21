@@ -1,0 +1,48 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Поле «Сапёра» {n}×{n_2}. Числа — количество мин среди 8 соседей клетки, «?» — скрытая клетка. Целевая клетка отмечена «?*» (строка {v2}, столбец {v3}).\n{v4}\nЯвляется ли целевая клетка миной? Ответьте «мина» или «безопасно».",
+      "en": "A {n}×{n_2} Minesweeper board. Numbers show how many of the 8 neighbors are mines, «?» is a hidden cell. The target cell is marked «?*» (row {v2}, column {v3}).\n{v4}\nIs the target cell a mine? Answer 'mine' or 'safe'."
+    },
+    "s1": {
+      "ru": "мина",
+      "en": "mine"
+    },
+    "s2": {
+      "ru": "безопасно",
+      "en": "safe"
+    },
+    "s3": {
+      "ru": "Рассматриваем все расстановки мин, совместимые с открытыми числами.",
+      "en": "Consider all mine placements consistent with the revealed numbers."
+    },
+    "s4": {
+      "ru": "Во всех них целевая клетка одинакова: {verdict}.",
+      "en": "In all of them the target cell is the same: {verdict}."
+    },
+    "s5": {
+      "ru": "мина",
+      "en": "мина"
+    },
+    "s6": {
+      "ru": "мину",
+      "en": "мину"
+    },
+    "s7": {
+      "ru": "заминирована",
+      "en": "заминирована"
+    },
+    "s8": {
+      "ru": "безопасно",
+      "en": "безопасно"
+    },
+    "s9": {
+      "ru": "безопасна",
+      "en": "безопасна"
+    },
+    "s10": {
+      "ru": "свободна",
+      "en": "свободна"
+    }
+  }
+}

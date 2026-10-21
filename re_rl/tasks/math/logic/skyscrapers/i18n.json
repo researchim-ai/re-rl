@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "«Небоскрёбы» {n}×{n_2}. В каждой строке и столбце высоты 1..{n_3} без повторений. Число у края — сколько небоскрёбов видно с этой стороны (высокие закрывают низкие). Заполните сетку и выпишите все {v3} высот по строкам сверху вниз.\n{grid}",
+      "en": "{n}×{n_2} Skyscrapers. Each row and column contains heights 1..{n_3} once. A border number tells how many skyscrapers are visible from that side (taller hide shorter). Fill the grid and list all {v3} heights row by row.\n{grid}"
+    },
+    "s1": {
+      "ru": "Клетка с краевым числом 1 содержит максимальную высоту; клетка с числом N — по возрастанию.",
+      "en": "A border clue of 1 forces the tallest first; a clue of N forces an increasing line."
+    },
+    "s2": {
+      "ru": "Решение (по строкам): {nums}.",
+      "en": "Solution (row by row): {nums}."
+    }
+  }
+}

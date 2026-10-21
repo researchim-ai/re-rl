@@ -1,0 +1,52 @@
+{
+  "text": {
+    "s0": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s1": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s2": {
+      "ru": "Проверяем каждый невыводной шаг: соответствует ли формула правилу и указанным ссылкам.",
+      "en": "Check each non-premise step: does the formula follow from the cited lines by its rule?"
+    },
+    "s3": {
+      "ru": "Все шаги корректны — вывод верен.",
+      "en": "All steps are correct — the derivation is valid."
+    },
+    "s4": {
+      "ru": "Найден ошибочный шаг — вывод неверен.",
+      "en": "A faulty step exists — the derivation is invalid."
+    },
+    "s5": {
+      "ru": "посылка",
+      "en": "premise"
+    },
+    "s6": {
+      "ru": "A propositional derivation is given. Rules: MP (from A and A→B infer B), MT (from A→B and ¬B infer ¬A), ∧-intro (from A and B infer A∧B), ∧-elim (from A∧B infer A or B). Each line cites the numbers of earlier lines.\n\n{body}\n\nIs the derivation correct (each step applies its rule properly)? Answer yes/no.",
+      "en": "A propositional derivation is given. Rules: MP (from A and A→B infer B), MT (from A→B and ¬B infer ¬A), ∧-intro (from A and B infer A∧B), ∧-elim (from A∧B infer A or B). Each line cites the numbers of earlier lines.\n\n{body}\n\nIs the derivation correct (each step applies its rule properly)? Answer yes/no."
+    },
+    "s7": {
+      "ru": "Дан пропозициональный вывод. Правила: MP (из A и A→B следует B), MT (из A→B и ¬B следует ¬A), ∧-введение (из A и B следует A∧B), ∧-удаление (из A∧B следует A или B). Каждая строка ссылается на номера предыдущих строк.\n\n{body}\n\nКорректен ли вывод (каждый шаг верно применяет своё правило)? Ответьте да/нет.",
+      "en": "Дан пропозициональный вывод. Правила: MP (из A и A→B следует B), MT (из A→B и ¬B следует ¬A), ∧-введение (из A и B следует A∧B), ∧-удаление (из A∧B следует A или B). Каждая строка ссылается на номера предыдущих строк.\n\n{body}\n\nКорректен ли вывод (каждый шаг верно применяет своё правило)? Ответьте да/нет."
+    },
+    "s8": {
+      "ru": "∧-введение",
+      "en": "∧-введение"
+    },
+    "s9": {
+      "ru": "∧-удаление",
+      "en": "∧-удаление"
+    },
+    "s10": {
+      "ru": "∧-удаление",
+      "en": "∧-удаление"
+    },
+    "s11": {
+      "ru": "посылка",
+      "en": "посылка"
+    }
+  }
+}

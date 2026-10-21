@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Один шаг V-trace. π/μ = {v0}, порог ρ̄ = {v1}. ρ = min(ρ̄, π/μ). Цель = V + ρ * (r + γ * V' - V). r = {reward}, γ = {v3}, V = {value}, V' = {nxt}. Ответ — целое или несократимая дробь.",
+      "en": "One V-trace step. π/μ = {v0}, threshold ρ̄ = {v1}. ρ = min(ρ̄, π/μ). The target is V + ρ * (r + γ * V' - V). r = {reward}, γ = {v3}, V = {value}, V' = {nxt}. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "ρ = {v0}, цель = {v1}.",
+      "en": "ρ = {v0}, target = {v1}."
+    },
+    "s2": {
+      "ru": "Найдите ρ.",
+      "en": "Find ρ."
+    },
+    "s3": {
+      "ru": "Найдите цель.",
+      "en": "Find the target."
+    }
+  }
+}

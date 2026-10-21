@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке несколько игральных костей. Чему равна сумма всех очков?",
+      "en": "The picture shows several dice. What is the total number of pips?"
+    },
+    "s1": {
+      "ru": "На картинке несколько игральных костей. Сколько из них показывают {value} очков?",
+      "en": "The picture shows several dice. How many of them show {value}?"
+    },
+    "s2": {
+      "ru": "Считаем кости со значением {value}.",
+      "en": "Count dice showing {value}."
+    },
+    "s3": {
+      "ru": "Таких костей: {answer}.",
+      "en": "Count: {answer}."
+    },
+    "s4": {
+      "ru": "Складываем очки: {v0}.",
+      "en": "Add pips: {v0}."
+    },
+    "s5": {
+      "ru": "Сумма: {answer}.",
+      "en": "Total: {answer}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Мягкое обновление: θ_new = τ * θ + (1 - τ) * θ_old, τ = {v0}. Координаты нумеруются с 1. Ответ — целое или несократимая дробь.",
+      "en": "Soft update: θ_new = τ * θ + (1 - τ) * θ_old, τ = {v0}. Coordinates start at 1. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Координата {v0}: новое значение {v1}.",
+      "en": "Coordinate {v0}: new value {v1}."
+    },
+    "s2": {
+      "ru": "Найдите координату {v0} нового вектора.",
+      "en": "Find coordinate {v0} of the new vector."
+    },
+    "s3": {
+      "ru": "Найдите приращение координаты {v0}: θ_new - θ_old.",
+      "en": "Find the change of coordinate {v0}: θ_new - θ_old."
+    }
+  }
+}

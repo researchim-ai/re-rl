@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "  строка {v0}: {v1}",
+      "en": "  row {v0}: {v1}"
+    },
+    "s1": {
+      "ru": "  столбец {v0}: {v1}",
+      "en": "  col {v0}: {v1}"
+    },
+    "s2": {
+      "ru": "Нонограмма {r}×{c}. Числа задают длины подряд идущих закрашенных клеток (1) в строке/столбце по порядку; 0 — пустая линия.\nПодсказки по строкам:\n{rows}\nПодсказки по столбцам:\n{cols}\nЗаполните сетку (1 — закрашено, 0 — пусто), выпишите все {v4} клеток по строкам.",
+      "en": "{r}×{c} nonogram. Numbers give the lengths of consecutive filled cells (1) in each line, in order; 0 means an empty line.\nRow clues:\n{rows}\nColumn clues:\n{cols}\nFill the grid (1 filled, 0 empty) and list all {v4} cells row by row."
+    },
+    "s3": {
+      "ru": "Сопоставляем подсказки строк и столбцов, определяя закрашенные клетки.",
+      "en": "Cross-reference row and column clues to determine filled cells."
+    },
+    "s4": {
+      "ru": "Решение (по строкам): {flat}.",
+      "en": "Solution (row by row): {flat}."
+    }
+  }
+}

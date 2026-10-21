@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Какое наименьшее число квадратов натуральных чисел в сумме даёт {n}? Единица тоже квадрат, повторы разрешены.",
+      "en": "What is the smallest number of squares of positive integers that sum to {n}? One is a square, and repeats are allowed."
+    },
+    "s1": {
+      "ru": "{n} раскладывается на {answer} квадратов.",
+      "en": "{n} decomposes into {answer} squares."
+    }
+  }
+}

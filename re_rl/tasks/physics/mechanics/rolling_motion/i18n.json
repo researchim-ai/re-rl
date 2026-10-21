@@ -1,0 +1,60 @@
+{
+  "text": {
+    "s0": {
+      "ru": "м/с²",
+      "en": "m/s²"
+    },
+    "s1": {
+      "ru": "м/с",
+      "en": "m/s"
+    },
+    "s6": {
+      "ru": "k = {k:.3f}; доля = k/(1+k) = {v1}",
+      "en": "k = {k:.3f}; доля = k/(1+k) = {v1}"
+    }
+  },
+  "literals": {
+    "s2": "обруч",
+    "s3": "диск",
+    "s4": "сплошной шар",
+    "s5": "сферическая оболочка"
+  },
+  "prompt": {
+    "instructions": {
+      "ru": "Решите задачу на качение без проскальзывания.",
+      "en": "Solve the rolling-without-slipping problem."
+    },
+    "problem": {
+      "incline_acceleration": {
+        "ru": "{shape} скатывается без проскальзывания по наклонной плоскости с углом {angle}°. Найдите ускорение центра масс.",
+        "en": "A {shape} rolls without slipping down an incline at angle {angle}°. Find the acceleration of the center of mass."
+      },
+      "final_speed": {
+        "ru": "{shape} скатывается без проскальзывания с высоты {h} м. Найдите скорость центра масс у основания.",
+        "en": "A {shape} rolls without slipping from height {h} m. Find the speed of the center of mass at the bottom."
+      },
+      "rotational_fraction": {
+        "ru": "Какая доля полной кинетической энергии катящегося тела ({shape}) приходится на вращение?",
+        "en": "What fraction of the total kinetic energy of a rolling {shape} is rotational?"
+      }
+    },
+    "steps": {
+      "accel_formula": {
+        "ru": "a = g·sin(α)/(1 + k), где k = I/(mR²).",
+        "en": "a = g·sin(α)/(1 + k), where k = I/(mR²)."
+      },
+      "speed_formula": {
+        "ru": "Сохранение энергии: v = √(2·g·h/(1 + k)).",
+        "en": "Energy conservation: v = √(2·g·h/(1 + k))."
+      },
+      "fraction_formula": {
+        "ru": "Доля вращательной энергии = k/(1 + k).",
+        "en": "Rotational fraction = k/(1 + k)."
+      }
+    },
+    "final_answer": {
+      "ru": "Ответ: {answer}",
+      "en": "Answer: {answer}"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "R — среднее наград. δ_t = r_t - R + V_(t+1) - V_t. Оценок V на одну больше, чем наград, последняя — бутстрап. Шаги с 0. Ответ — целое или несократимая дробь.",
+      "en": "R is the mean of the rewards. δ_t = r_t - R + V_(t+1) - V_t. There is one more V than rewards; the last is the bootstrap. Steps start at 0. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Награды: {rewards}. Оценки V: {values}.",
+      "en": "Rewards: {rewards}. Values V: {values}."
+    },
+    "s2": {
+      "ru": "Найдите R.",
+      "en": "Find R."
+    },
+    "s3": {
+      "ru": "Найдите δ_{t}.",
+      "en": "Find δ_{t}."
+    }
+  }
+}

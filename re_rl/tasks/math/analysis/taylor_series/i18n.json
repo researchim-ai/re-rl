@@ -1,0 +1,22 @@
+{
+  "prompt": {
+    "problem": {
+      "ru": [
+        "Найдите многочлен Тейлора порядка {order} функции f(x) = {func} в точке x = 0.",
+        "Разложите функцию f(x) = {func} в ряд Тейлора до члена x^{order} включительно (в окрестности 0)."
+      ],
+      "en": [
+        "Find the Taylor polynomial of order {order} of f(x) = {func} at x = 0.",
+        "Expand f(x) = {func} into a Taylor series up to the x^{order} term (around 0)."
+      ]
+    },
+    "step_setup": {
+      "ru": "Считаем производные в нуле и используем формулу Тейлора f(x) = Σ f⁽ᵏ⁾(0)/k! · xᵏ.",
+      "en": "Compute derivatives at zero and use f(x) = Σ f⁽ᵏ⁾(0)/k! · xᵏ."
+    },
+    "step_result": {
+      "ru": "Ответ: {result}",
+      "en": "Answer: {result}"
+    }
+  }
+}

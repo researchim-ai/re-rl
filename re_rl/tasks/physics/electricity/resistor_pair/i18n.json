@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два резистора: {r1} Ом и {r2} Ом.",
+      "en": "Two resistors: {r1} ohm and {r2} ohm."
+    },
+    "s1": {
+      "ru": "Последовательно {series}, параллельно {v1}.",
+      "en": "Series {series}, parallel {v1}."
+    },
+    "s2": {
+      "ru": "Найдите сопротивление при последовательном соединении.",
+      "en": "Find the resistance of the series connection."
+    },
+    "s3": {
+      "ru": "Найдите сопротивление при параллельном соединении. Ответ — целое или несократимая дробь.",
+      "en": "Find the resistance of the parallel connection. Answer with an integer or a reduced fraction."
+    }
+  }
+}

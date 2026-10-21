@@ -1,0 +1,32 @@
+{
+  "prompt": {
+    "instructions": {
+      "ru": "type: structured_text_with_tags\nОписание: Решите кубическое уравнение.\nПример ответа:\n<reasoning>\n  (Объяснение решения)\n</reasoning>\n<answer>\n  (Корни)\n</answer>",
+      "en": "type: structured_text_with_tags\nDescription: Solve the cubic equation.\nExample:\n<reasoning>\n  (Explain how you found the roots)\n</reasoning>\n<answer>\n  x1=..., x2=..., x3=...\n</answer>"
+    },
+    "problem": {
+      "ru": [
+        "Решите кубическое уравнение: {equation_pretty}",
+        "Найдите корни кубического уравнения: {equation_pretty}",
+        "Решите уравнение: {equation_pretty}",
+        "Найдите все значения x: {equation_pretty}",
+        "Определите корни: {equation_pretty}"
+      ],
+      "en": [
+        "Solve the cubic equation: {equation_pretty}",
+        "Find the roots of the cubic equation: {equation_pretty}",
+        "Solve: {equation_pretty}",
+        "Find all values of x: {equation_pretty}",
+        "Determine the roots: {equation_pretty}"
+      ]
+    },
+    "step1": {
+      "ru": "Шаг 1: Запишем уравнение: {equation_pretty}.",
+      "en": "Step 1: Write the equation: {equation_pretty}."
+    },
+    "step2": {
+      "ru": "Шаг 2: Находим корни: x = {roots}.",
+      "en": "Step 2: Find the roots: x = {roots}."
+    }
+  }
+}

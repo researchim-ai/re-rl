@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Детерминированный процесс, горизонт {horizon}, γ = {v1}. Состояния и действия нумеруются с 1, действий два. После последнего шага оценка равна 0. На каждом шаге берётся награда + γ * оценка следующего состояния; при равенстве — меньшее действие. Переходы: {v2}. Ответ — целое или несократимая дробь.",
+      "en": "Deterministic process, horizon {horizon}, γ = {v1}. States and actions start at 1, and there are two actions. The value after the last step is 0. Each step takes reward + γ * value of the next state; ties take the smaller action. Transitions: {v2}. Answer with an integer or a reduced fraction."
+    },
+    "s1": {
+      "ru": "Оценка состояния {v0} равна {v1}, действие {v2}.",
+      "en": "Value of state {v0} is {v1}, action {v2}."
+    },
+    "s2": {
+      "ru": "Найдите оценку состояния {v0} перед первым шагом.",
+      "en": "Find the value of state {v0} before the first step."
+    },
+    "s3": {
+      "ru": "Какое действие выбирается в состоянии {v0} перед первым шагом?",
+      "en": "Which action is chosen in state {v0} before the first step?"
+    }
+  }
+}

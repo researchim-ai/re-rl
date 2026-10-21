@@ -1,0 +1,19 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке — логическая схема из вентилей AND/OR/XOR/NOT с входами x1..x{k} (выход {out} выделен). Для скольких из {v2} наборов входов выход равен 1?",
+      "en": "The figure shows a logic circuit of AND/OR/XOR/NOT gates with inputs x1..x{k} (output {out} highlighted). For how many of the {v2} input combinations is the output 1?"
+    },
+    "s1": {
+      "ru": "На рисунке — логическая схема из вентилей AND/OR/XOR/NOT; входы x1..x{k} подписаны значениями, выход {out} выделен. Чему равен выход (0 или 1)?",
+      "en": "The figure shows a logic circuit of AND/OR/XOR/NOT gates; inputs x1..x{k} are labeled with values, the output {out} is highlighted. What is the output (0 or 1)?"
+    },
+    "s3": {
+      "ru": "Логическая схема (выход выделен розовым)",
+      "en": "Логическая схема (выход выделен розовым)"
+    }
+  },
+  "literals": {
+    "s2": "boolean_circuit_image"
+  }
+}

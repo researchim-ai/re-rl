@@ -1,3 +1,6 @@
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__, 'factory_i18n.json')
+
 # re_rl/tasks/factory.py
 
 import random
@@ -60,7 +63,7 @@ class MathTaskFactory:
             task = LogarithmicTask(a, b, c, d, language, detail_level)
 
         else:
-            raise ValueError("Неподдерживаемый тип уравнения.")
+            raise ValueError(texts.t('s2', language))
 
         if not only_valid:
             return task
@@ -99,8 +102,8 @@ class MathTaskFactory:
 
         elif task_category == "analogical":
             descriptions = [
-                "In biology, scientists use the structure of the human eye to understand how cameras work. How might this analogy be used to solve a problem with a malfunctioning camera?",
-                "City planners often use the analogy of a living organism to understand urban development. How might this analogy be used to address traffic congestion in a growing city?"
+                texts.t('s0', language),
+                texts.t('s1', language)
             ]
             desc = random.choice(descriptions)
             task = AnalogicalTask(desc, language=language, detail_level=detail_level)
@@ -127,7 +130,7 @@ class MathTaskFactory:
                 allow_overlapping=bool(random.getrandbits(1))
             )
         else:
-            raise ValueError("Unsupported task category.")
+            raise ValueError(texts.t('s3', language))
 
         if not only_valid:
             return task

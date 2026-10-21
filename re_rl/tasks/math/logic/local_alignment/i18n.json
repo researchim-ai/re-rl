@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Локальное выравнивание строк {left} и {right}. Совпадение даёт +1, несовпадение даёт -1, дырка даёт -1. Можно выровнять пустые куски, их вес 0. Найдите наибольший вес.",
+      "en": "Local alignment of {left} and {right}. A match scores +1, a mismatch scores -1, and a gap scores -1. Empty pieces may be aligned and score 0. Find the best score."
+    },
+    "s1": {
+      "ru": "Вес локального выравнивания равен {answer}.",
+      "en": "The local alignment score is {answer}."
+    }
+  }
+}

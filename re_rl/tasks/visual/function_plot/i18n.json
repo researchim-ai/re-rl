@@ -1,0 +1,27 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На рисунке показан график функции y = f(x). Чему равно значение точки пересечения графика с осью Y (то есть f(0))?",
+      "en": "The figure shows the graph of y = f(x). What is the value where the graph crosses the Y axis (i.e. f(0))?"
+    },
+    "s1": {
+      "ru": "На рисунке показан график функции y = f(x). Сколько раз график пересекает ось X (сколько у функции вещественных корней в показанном диапазоне)?",
+      "en": "The figure shows the graph of y = f(x). How many times does the graph cross the X axis (how many real roots are there in the shown range)?"
+    },
+    "s2": {
+      "ru": "Считаем точки пересечения кривой с горизонтальной осью.",
+      "en": "Count where the curve meets the horizontal axis."
+    },
+    "s3": {
+      "ru": "Пересечений с осью X: {n_roots}.",
+      "en": "X-axis crossings: {n_roots}."
+    },
+    "s4": {
+      "ru": "Смотрим, где кривая пересекает вертикальную ось (x = 0).",
+      "en": "Read where the curve meets the vertical axis (x = 0)."
+    }
+  },
+  "literals": {
+    "s5": "function_plot_read"
+  }
+}
