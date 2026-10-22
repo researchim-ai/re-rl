@@ -54,7 +54,7 @@ class SequenceTask(BaseMathTask):
         ("triangular", lambda n: n * (n + 1) // 2, "n(n+1)/2"),
         ("powers_of_2", lambda n: 2 ** n, "2^n"),
         ("factorial", lambda n: math.factorial(n), "n!"),
-        ("primes", None, texts.literal('literals.s1')),  # Обрабатывается отдельно
+        ("primes", None, None),  # Подпись зависит от языка и выбирается при решении
         (texts.literal('literals.s2'), lambda n: 2 * n + 1, "2n + 1"),
         ("alternating", lambda n: (-1) ** n * n, "(-1)^n × n"),
     ]
@@ -101,7 +101,8 @@ class SequenceTask(BaseMathTask):
         elif self.task_type in ["geometric_nth", "geometric_sum"]:
             self.a1 = self.kwargs.get("a1", random.randint(1, 10))
             self.r = self.kwargs.get("r", random.choice([-3, -2, 2, 3, 4, 5]))
-            self.n = self.kwargs.get("n", random.randint(3, min(10, self.max_n // 5)))
+            upper = max(3, min(10, self.max_n // 5))
+            self.n = self.kwargs.get("n", random.randint(3, upper))
         
         elif self.task_type == "fibonacci_nth":
             self.n = self.kwargs.get("n", random.randint(5, min(30, self.max_n)))
@@ -332,7 +333,8 @@ class SequenceTask(BaseMathTask):
         """Определение закономерности."""
         template = templates.get("pattern_identified", {}).get(self.language, "")
         
-        desc = texts.t('s0', self.language, pattern_desc=self.pattern_desc)
+        pattern_desc = texts.t('s1', self.language) if self.pattern_name == "primes" else self.pattern_desc
+        desc = texts.t('s0', self.language, pattern_desc=pattern_desc)
         
         self.solution_steps.append(template.format(step=1, pattern_description=desc))
         

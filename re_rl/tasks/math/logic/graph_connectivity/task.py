@@ -196,7 +196,7 @@ class GraphConnectivityTask(BaseMathTask):
         steps = {
             "scc": ((texts.t('s6', self.language))),
             "articulation_points": ((texts.t('s7', self.language))),
-            "bridges": ((texts.literal('literals.s8'))),
+            "bridges": ((texts.t('s8', self.language))),
             "negative_cycle": ((texts.t('s9', self.language))),
         }[self.task_type]
         if self.task_type == "negative_cycle":

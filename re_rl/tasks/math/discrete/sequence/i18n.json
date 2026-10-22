@@ -4,6 +4,10 @@
       "ru": "Каждый элемент вычисляется по формуле: {pattern_desc}",
       "en": "Each element is computed by the formula: {pattern_desc}"
     },
+    "s1": {
+      "ru": "простые числа",
+      "en": "prime numbers"
+    },
     "s3": {
       "ru": "1 + 1/2 + 1/4 + ... (геом.)",
       "en": "1 + 1/2 + 1/4 + ... (geometric)"
@@ -18,7 +22,6 @@
     }
   },
   "literals": {
-    "s1": "простые числа",
     "s2": "double_plus_one"
   }
 }

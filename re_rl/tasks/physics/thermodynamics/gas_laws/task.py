@@ -66,8 +66,18 @@ class GasLawsTask(BaseMathTask):
         
         self.n = n if n is not None else round(random.uniform(0.5, max_n), 2)
         self.T = T if T is not None else random.randint(250, max_T)
-        self.T1 = T1 if T1 is not None else random.randint(250, max_T // 2)
-        self.T2 = T2 if T2 is not None else random.randint(max_T // 2, max_T)
+        t_split = max_T // 2
+        if t_split >= 250:
+            self.T1 = T1 if T1 is not None else random.randint(250, t_split)
+            self.T2 = T2 if T2 is not None else random.randint(t_split, max_T)
+        else:
+            # Середина шкалы ниже 250 К: обе температуры берём из [250, max_T].
+            self.T1 = T1 if T1 is not None else random.randint(250, max_T)
+            if T2 is not None:
+                self.T2 = T2
+            else:
+                low = min(max(self.T1, 250), max_T)
+                self.T2 = random.randint(low, max_T)
         self.V = V if V is not None else random.randint(1, max_V)
         self.V1 = V1 if V1 is not None else random.randint(1, max_V // 2)
         self.V2 = V2 if V2 is not None else random.randint(max_V // 2, max_V)

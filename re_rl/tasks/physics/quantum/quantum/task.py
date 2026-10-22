@@ -84,9 +84,15 @@ class QuantumTask(BaseMathTask):
         # Работа выхода в эВ (типичные значения для металлов)
         self.work_function = work_function if work_function is not None else random.uniform(2.0, 5.0)
         
-        self.n = n if n is not None else random.randint(1, preset["max_n"])
-        self.n1 = n1 if n1 is not None else random.randint(1, 3)
-        self.n2 = n2 if n2 is not None else random.randint(self.n1 + 1, preset["max_n"])
+        max_n = int(preset["max_n"])
+        self.n = n if n is not None else random.randint(1, max_n)
+        n1_hi = max(1, max_n - 1)
+        self.n1 = n1 if n1 is not None else random.randint(1, min(3, n1_hi))
+        if n2 is not None:
+            self.n2 = n2
+        else:
+            low = self.n1 + 1
+            self.n2 = random.randint(low, max(low, max_n))
         
         self.velocity = velocity if velocity is not None else random.uniform(1e5, preset["max_v"])
         self.mass = mass if mass is not None else self.m_e

@@ -10,7 +10,7 @@
     },
     "s2": {
       "ru": "d = 1/{N_lines} мм = {v1:.2f} мкм",
-      "en": "d = 1/{N_lines} mm = {v1:.2f} мkm"
+      "en": "d = 1/{N_lines} mm = {v1:.2f} µm"
     }
   },
   "prompt": {

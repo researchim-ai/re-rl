@@ -366,7 +366,7 @@
     },
     "s91": {
       "ru": "При a = {new_a} м/с²:\nv = {v0} + {new_a_2}×{t} = {new_v} м/с",
-      "en": "При a = {new_a} m/s²:\nv = {v0} + {new_a_2}×{t} = {new_v} m/s"
+      "en": "With a = {new_a} m/s²:\nv = {v0} + {new_a_2}×{t} = {new_v} m/s"
     },
     "s92": {
       "ru": "{new_v} м/с",
@@ -406,7 +406,7 @@
     },
     "s101": {
       "ru": "<think>\n{steps}\n</think>\n<answer>v = {new_v} м/с, s = {new_s} м</answer>",
-      "en": "<think>\n{steps}\n</think>\n<answer>v = {new_v} m/s, s = {new_s} м</answer>"
+      "en": "<think>\n{steps}\n</think>\n<answer>v = {new_v} m/s, s = {new_s} m</answer>"
     },
     "s102": {
       "ru": "{steps}\n\n{answer_prefix} v = {new_v} м/с, s = {new_s} м",

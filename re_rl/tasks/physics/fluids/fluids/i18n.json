@@ -30,7 +30,7 @@
     },
     "s7": {
       "ru": "P_полн = P₀ + ρgh = {P0} + {P:.2f} = {P_total:.2f} Па",
-      "en": "P_полн = P₀ + ρgh = {P0} + {P:.2f} = {P_total:.2f} Pa"
+      "en": "P_total = P₀ + ρgh = {P0} + {P:.2f} = {P_total:.2f} Pa"
     },
     "s8": {
       "ru": "F_A = {F_a:.4f} Н",

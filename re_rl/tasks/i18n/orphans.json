@@ -334,7 +334,7 @@
         "en": "Find the {n}th Fibonacci number (F₁ = 1, F₂ = 1)."
       },
       "recurrence": {
-        "ru": "Дана рекуррентная формула: a_{n} = {formula}, a₁ = {a1}. Найдите a_{target}.",
+        "ru": "Дана рекуррентная формула: a_{{n}} = {formula}, a₁ = {a1}. Найдите a_{target}.",
         "en": "Given the recurrence: a_n = {formula}, a₁ = {a1}. Find a_{target}."
       },
       "pattern": {

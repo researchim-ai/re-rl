@@ -22,7 +22,7 @@
     },
     "s6": {
       "ru": "E_фотона = hν = {v0} × {v1} = {v2} Дж = {E_photon_eV:.2f} эВ",
-      "en": "E_фотона = hν = {v0} × {v1} = {v2} J = {E_photon_eV:.2f} eV"
+      "en": "E_photon = hν = {v0} × {v1} = {v2} J = {E_photon_eV:.2f} eV"
     },
     "s7": {
       "ru": "{E_kinetic_eV:.4f} эВ",

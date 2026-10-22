@@ -2,7 +2,7 @@
   "text": {
     "s0": {
       "ru": "Eсв = {binding_energy:.2f} МэВ ({binding_per_nucleon:.2f} МэВ/нуклон)",
-      "en": "Eсв = {binding_energy:.2f} MeV ({binding_per_nucleon:.2f} MeV/нуклон)"
+      "en": "E_b = {binding_energy:.2f} MeV ({binding_per_nucleon:.2f} MeV/nucleon)"
     },
     "s1": {
       "ru": "Δm = {mass_defect:.6f} а.е.м.",
@@ -26,11 +26,11 @@
     },
     "s6": {
       "ru": "Eсв = {mass_defect:.6f} × 931.5 = {binding_energy:.2f} МэВ",
-      "en": "Eсв = {mass_defect:.6f} × 931.5 = {binding_energy:.2f} MeV"
+      "en": "E_b = {mass_defect:.6f} × 931.5 = {binding_energy:.2f} MeV"
     },
     "s7": {
       "ru": "Eсв/A = {binding_energy:.2f}/{A} = {binding_per_nucleon:.2f} МэВ/нуклон",
-      "en": "Eсв/A = {binding_energy:.2f}/{A} = {binding_per_nucleon:.2f} MeV/нуклон"
+      "en": "E_b/A = {binding_energy:.2f}/{A} = {binding_per_nucleon:.2f} MeV/nucleon"
     },
     "s8": {
       "ru": "m_теор = {Z}×{M_PROTON} + {N}×{M_NEUTRON} = {theoretical_mass:.6f} а.е.м.",
