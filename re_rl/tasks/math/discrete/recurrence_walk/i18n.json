@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Последовательность начинается с {first}, {second}. Каждый следующий член равен сумме двух предыдущих. Найдите член номер {index}.",
+      "en": "A sequence starts with {first}, {second}. Each next term is the sum of the two preceding ones. Find term number {index}."
+    },
+    "s1": {
+      "ru": "Член {i}: {prev}+{older} = {value}.",
+      "en": "Term {i}: {prev}+{older} = {value}."
+    }
+  }
+}

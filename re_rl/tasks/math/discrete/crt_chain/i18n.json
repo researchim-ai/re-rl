@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите наименьшее неотрицательное целое x, удовлетворяющее {n} сравнениям: {listing}",
+      "en": "Find the smallest nonnegative integer x that satisfies these {n} congruences: {listing}"
+    },
+    "s1": {
+      "ru": "Система из {n} сравнений: {listing} Найдите следующее решение после наименьшего неотрицательного: то же число плюс произведение модулей.",
+      "en": "A system of {n} congruences: {listing} Find the next solution after the smallest nonnegative one: that number plus the product of the moduli."
+    },
+    "s2": {
+      "ru": "x ≡ {r} (mod {m}).",
+      "en": "x ≡ {r} (mod {m})."
+    },
+    "s3": {
+      "ru": "После сравнения {i}, x ≡ {r} (mod {m}): x = {value}, модуль произведения {mod}.",
+      "en": "After congruence {i}, x ≡ {r} (mod {m}): x = {value}, product modulus {mod}."
+    }
+  }
+}

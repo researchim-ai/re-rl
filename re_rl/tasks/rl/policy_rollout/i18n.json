@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Состояния 0..{last}. Старт в {start}. Политика по состояниям, +1 или -1: {policy}. Награды состояний: {rewards}. За {n} шагов агент переходит по политике; у края шаг наружу оставляет его на месте. Награда шага — награда состояния, в которое он пришёл. Найдите суммарную награду.",
+      "en": "States are 0..{last}. Start at {start}. The policy for each state is +1 or -1: {policy}. State rewards: {rewards}. For {n} steps the agent follows the policy; a step off either end leaves it in place. The reward of a step is the reward of the state it enters. Find the total reward."
+    },
+    "s1": {
+      "ru": "Состояния 0..{last}. Старт в {start}. Политика по состояниям, +1 или -1: {policy}. Награды состояний: {rewards}. За {n} шагов агент переходит по политике; у края шаг наружу оставляет его на месте. В каком состоянии он окажется?",
+      "en": "States are 0..{last}. Start at {start}. The policy for each state is +1 or -1: {policy}. State rewards: {rewards}. For {n} steps the agent follows the policy; a step off either end leaves it in place. Which state does it end in?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: из {pos} действие {action}, приход в {nxt}, награда {gain}, сумма {total}.",
+      "en": "Step {i}: from {pos} action {action}, arrive at {nxt}, reward {gain}, total {total}."
+    },
+    "s3": {
+      "ru": "Суммарная награда {reward}, конечное состояние {end}.",
+      "en": "The total reward is {reward}, and the final state is {end}."
+    }
+  }
+}

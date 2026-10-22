@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело проходит два одинаковых участка пути: первый со скоростью {v1} м/с, второй со скоростью {v2} м/с. Найдите среднюю скорость на всём пути, в м/с.",
+      "en": "A body travels two equal distances, the first at {v1} m/s and the second at {v2} m/s. Find the average speed over the whole trip, in m/s."
+    },
+    "s1": {
+      "ru": "Средняя скорость на двух одинаковых участках равна {average} м/с, скорость на первом участке {v1} м/с. Найдите скорость на втором участке, в м/с.",
+      "en": "The average speed over two equal distances is {average} m/s, and the speed on the first part is {v1} m/s. Find the speed on the second part, in m/s."
+    },
+    "s2": {
+      "ru": "v = 2·v1·v2/(v1+v2) = 2·{v1}·{v2}/({v1}+{v2}) = {average}.",
+      "en": "v = 2·v1·v2/(v1+v2) = 2·{v1}·{v2}/({v1}+{v2}) = {average}."
+    },
+    "s3": {
+      "ru": "v2 = v·v1/(2·v1-v) = {average}·{v1}/(2·{v1}-{average}) = {v2}.",
+      "en": "v2 = v·v1/(2·v1-v) = {average}·{v1}/(2·{v1}-{average}) = {v2}."
+    }
+  }
+}

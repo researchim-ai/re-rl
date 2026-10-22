@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два кубика с гранями от 1 до {faces}. Сколькими способами может выпасть сумма {total}?",
+      "en": "Two dice have faces from 1 to {faces}. In how many ways can their sum be {total}?"
+    },
+    "s1": {
+      "ru": "Два кубика с гранями от 1 до {faces}. Найдите наименьшую сумму, которая выпадает ровно {ways} способами.",
+      "en": "Two dice have faces from 1 to {faces}. Find the smallest sum that occurs in exactly {ways} ways."
+    },
+    "s2": {
+      "ru": "Число пар (a, b) с 1 ≤ a,b ≤ {faces} и a+b = {total} равно {ways}.",
+      "en": "The number of pairs (a, b) with 1 ≤ a, b ≤ {faces} and a + b = {total} is {ways}."
+    },
+    "s3": {
+      "ru": "Ровно {ways} способов у сумм {low} и {high}, меньшая равна {answer}.",
+      "en": "Exactly {ways} ways occur for the sums {low} and {high}; the smaller is {answer}."
+    },
+    "s4": {
+      "ru": "Ровно {ways} способов только у суммы {answer}.",
+      "en": "Exactly {ways} ways occur only for the sum {answer}."
+    }
+  }
+}

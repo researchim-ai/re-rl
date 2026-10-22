@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сеть из {n} резисторов. В записи сумма — последовательное соединение, знак || — параллельное соединение двух равных ветвей. Схема: {expr}. Найдите эквивалентное сопротивление в омах.",
+      "en": "A network of {n} resistors. In the expression, a sum is a series connection and || is a parallel connection of two equal branches. The circuit is {expr}. Find the equivalent resistance in ohms."
+    },
+    "s1": {
+      "ru": "Сеть из {n} резисторов. В записи сумма — последовательное соединение, знак || — параллельное соединение двух равных ветвей. Схема: {expr}. Найдите сумму сопротивлений всех листьев, в омах.",
+      "en": "A network of {n} resistors. In the expression, a sum is a series connection and || is a parallel connection of two equal branches. The circuit is {expr}. Find the sum of all leaf resistances, in ohms."
+    },
+    "s2": {
+      "ru": "{r}",
+      "en": "{r}"
+    },
+    "s3": {
+      "ru": "({left}+{right})",
+      "en": "({left}+{right})"
+    },
+    "s4": {
+      "ru": "({left}||{right})",
+      "en": "({left}||{right})"
+    },
+    "s5": {
+      "ru": "Последовательно: {left}+{right} = {value}.",
+      "en": "Series: {left}+{right} = {value}."
+    },
+    "s6": {
+      "ru": "Параллельно: {left}||{right} = {value}.",
+      "en": "Parallel: {left}||{right} = {value}."
+    }
+  }
+}

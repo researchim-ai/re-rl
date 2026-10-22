@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цепочка из {species} видов. В начале {start} ядер вида 1, остальные виды пусты. Вид {species} стабилен. За один тик половина ядер каждого нестабильного вида переходит в следующий вид; ядра, пришедшие в этом тике, не распадаются. Сколько ядер стабильного вида будет через {ticks} тиков?",
+      "en": "A chain has {species} species. It starts with {start} nuclei of species 1, and the other species are empty. Species {species} is stable. In one tick, half the nuclei of each unstable species move to the next species; nuclei that arrive during the tick do not decay. How many nuclei of the stable species are there after {ticks} ticks?"
+    },
+    "s1": {
+      "ru": "Цепочка из {species} видов. В начале {start} ядер вида 1, остальные виды пусты. Вид {species} стабилен. За один тик половина ядер каждого нестабильного вида переходит в следующий вид; ядра, пришедшие в этом тике, не распадаются. Сколько ядер вида 2 будет через {ticks} тиков?",
+      "en": "A chain has {species} species. It starts with {start} nuclei of species 1, and the other species are empty. Species {species} is stable. In one tick, half the nuclei of each unstable species move to the next species; nuclei that arrive during the tick do not decay. How many nuclei of species 2 are there after {ticks} ticks?"
+    },
+    "s2": {
+      "ru": "Тик {i}: {counts}.",
+      "en": "Tick {i}: {counts}."
+    },
+    "s3": {
+      "ru": "Стабильный вид {stable}, вид 2: {daughter}, исходный вид {source}.",
+      "en": "The stable species has {stable}, species 2 has {daughter}, and the source species has {source}."
+    }
+  }
+}

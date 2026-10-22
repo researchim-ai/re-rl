@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив из {length} чисел: {listing}. Окно ширины {k} едет слева направо на одну позицию. Найдите сумму максимумов всех окон.",
+      "en": "An array of {length} numbers: {listing}. A window of width {k} moves from left to right by one position. Find the sum of the maxima of all windows."
+    },
+    "s1": {
+      "ru": "Массив из {length} чисел: {listing}. Окно ширины {k} едет слева направо на одну позицию. Сколько раз максимум окна меняется по сравнению с предыдущим окном?",
+      "en": "An array of {length} numbers: {listing}. A window of width {k} moves from left to right by one position. How many times does the window maximum change from the previous window?"
+    },
+    "s2": {
+      "ru": "Окно {i}: {window}, максимум {value}.",
+      "en": "Window {i}: {window}, maximum {value}."
+    },
+    "s3": {
+      "ru": "Сумма максимумов {total}, смен максимума {changes}.",
+      "en": "The maxima sum to {total}, and the maximum changes {changes} times."
+    }
+  }
+}

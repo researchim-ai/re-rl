@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлен степени {degree} принимает в точках 0, 1, ..., {last} значения {listing}. Найдите его значение в точке {point}.",
+      "en": "A polynomial of degree {degree} takes the values {listing} at the points 0, 1, ..., {last}. Find its value at the point {point}."
+    },
+    "s1": {
+      "ru": "Многочлен степени {degree} принимает в точках 0, 1, ..., {last} значения {listing}. Чему равна его постоянная разность порядка {degree}?",
+      "en": "A polynomial of degree {degree} takes the values {listing} at the points 0, 1, ..., {last}. What is its constant difference of order {degree}?"
+    },
+    "s2": {
+      "ru": "Разности порядка {i}: {listing}.",
+      "en": "Differences of order {i}: {listing}."
+    },
+    "s3": {
+      "ru": "Постоянная разность {delta}. Значение в точке {point} равно {nxt}.",
+      "en": "The constant difference is {delta}. The value at point {point} is {nxt}."
+    }
+  }
+}

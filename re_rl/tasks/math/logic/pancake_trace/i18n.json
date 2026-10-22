@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стопка из {n} блинов сверху вниз: {start}. Переворот k разворачивает первые k блинов. Перевороты по порядку: {flips}. На какой позиции сверху окажется блин 1?",
+      "en": "A stack of {n} pancakes from top to bottom: {start}. A flip of k reverses the first k pancakes. The flips in order are {flips}. At which position from the top is pancake 1?"
+    },
+    "s1": {
+      "ru": "Стопка из {n} блинов сверху вниз: {start}. Переворот k разворачивает первые k блинов. Перевороты по порядку: {flips}. Найдите сумму i·p_i по позициям i с 1, где p_i — блин на этой позиции.",
+      "en": "A stack of {n} pancakes from top to bottom: {start}. A flip of k reverses the first k pancakes. The flips in order are {flips}. Find the sum of i·p_i over positions i starting at 1, where p_i is the pancake there."
+    },
+    "s2": {
+      "ru": "Переворот {i} ширины {width}: {state}.",
+      "en": "Flip {i} of width {width}: {state}."
+    },
+    "s3": {
+      "ru": "Блин 1 на позиции {place}. Контрольная сумма {checksum}.",
+      "en": "Pancake 1 is at position {place}. The checksum is {checksum}."
+    }
+  }
+}

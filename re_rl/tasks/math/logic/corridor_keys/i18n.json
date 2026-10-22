@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Коридор из {n} комнат с номерами 0..{last}. В комнату можно войти только по порядку. Замок «-» открыт, иначе нужен ключ с этим номером. Ключи комнаты перечислены после слэша и подбираются при входе. {listing} Каков номер самой дальней комнаты, куда удастся войти?",
+      "en": "A corridor has {n} rooms numbered 0..{last}. Rooms can be entered only in order. A lock written as - is open; otherwise that key number is required. Keys listed after the slash are picked up on entry. {listing} What is the number of the farthest room that can be entered?"
+    },
+    "s1": {
+      "ru": "Коридор из {n} комнат с номерами 0..{last}. В комнату можно войти только по порядку. Замок «-» открыт, иначе нужен ключ с этим номером. Ключи комнаты перечислены после слэша и подбираются при входе. {listing} Сколько ключей будет в руках после остановки?",
+      "en": "A corridor has {n} rooms numbered 0..{last}. Rooms can be entered only in order. A lock written as - is open; otherwise that key number is required. Keys listed after the slash are picked up on entry. {listing} How many keys are held when progress stops?"
+    },
+    "s2": {
+      "ru": "{i}: замок {lock} / ключи {keys}.",
+      "en": "{i}: lock {lock} / keys {keys}."
+    },
+    "s3": {
+      "ru": "Комната {room}: {state}, ключей {held}.",
+      "en": "Room {room}: {state}, keys {held}."
+    },
+    "s4": {
+      "ru": "Дальше комнаты {farthest} не пройти, ключей {keys}.",
+      "en": "Progress stops at room {farthest}, with {keys} keys."
+    },
+    "s5": {
+      "ru": "вход",
+      "en": "entered"
+    },
+    "s6": {
+      "ru": "закрыто",
+      "en": "closed"
+    }
+  }
+}

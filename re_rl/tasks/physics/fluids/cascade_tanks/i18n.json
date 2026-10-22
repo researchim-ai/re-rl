@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В первый бак льют {pour} л. Дальше {n} баков стоят цепочкой: полный бак переливает избыток в следующий. {listing} Сколько литров выльется из последнего бака?",
+      "en": "{pour} L is poured into the first tank. {n} tanks stand in a chain: a full tank spills the excess into the next one. {listing} How many liters spill out of the last tank?"
+    },
+    "s1": {
+      "ru": "В первый бак льют {pour} л. Дальше {n} баков стоят цепочкой: полный бак переливает избыток в следующий. {listing} Сколько литров останется в баке {k}?",
+      "en": "{pour} L is poured into the first tank. {n} tanks stand in a chain: a full tank spills the excess into the next one. {listing} How many liters remain in tank {k}?"
+    },
+    "s2": {
+      "ru": "{i}) вмещает {cap} л.",
+      "en": "{i}) holds {cap} L."
+    },
+    "s3": {
+      "ru": "Бак {i}: вмещает {cap}, принято {take}, дальше уходит {left}.",
+      "en": "Tank {i}: holds {cap}, keeps {take}, sends {left} onward."
+    }
+  }
+}

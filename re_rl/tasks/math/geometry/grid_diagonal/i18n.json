@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Прямоугольник составлен из единичных клеток: {m} по горизонтали и {n} по вертикали. Сколько клеток пересекает диагональ из угла в противоположный угол?",
+      "en": "A rectangle is tiled by unit squares, {m} across and {n} down. How many squares does the diagonal from one corner to the opposite corner cross?"
+    },
+    "s1": {
+      "ru": "Прямоугольник составлен из единичных клеток: {m} по горизонтали и {n} по вертикали. Сколько узлов сетки лежит строго внутри диагонали из угла в противоположный угол?",
+      "en": "A rectangle is tiled by unit squares, {m} across and {n} down. How many grid points lie strictly inside the diagonal from one corner to the opposite corner?"
+    },
+    "s2": {
+      "ru": "m + n - gcd(m, n) = {m} + {n} - {g} = {answer}.",
+      "en": "m + n - gcd(m, n) = {m} + {n} - {g} = {answer}."
+    },
+    "s3": {
+      "ru": "gcd(m, n) - 1 = {g} - 1 = {answer}.",
+      "en": "gcd(m, n) - 1 = {g} - 1 = {answer}."
+    }
+  }
+}

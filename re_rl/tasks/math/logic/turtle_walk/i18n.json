@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Черепаха стартует в (0, 0) и смотрит вправо. F d — вперёд на d, L — поворот налево на 90°, R — направо на 90°. Команд {n}: {listing} Найдите итоговую координату x.",
+      "en": "A turtle starts at (0, 0) facing right. F d means forward by d, L is a 90° left turn, and R is a 90° right turn. There are {n} commands: {listing} Find the final x coordinate."
+    },
+    "s1": {
+      "ru": "Черепаха стартует в (0, 0) и смотрит вправо. F d — вперёд на d, L — поворот налево на 90°, R — направо на 90°. Команд {n}: {listing} Найдите манхэттенское расстояние от старта до конечной точки.",
+      "en": "A turtle starts at (0, 0) facing right. F d means forward by d, L is a 90° left turn, and R is a 90° right turn. There are {n} commands: {listing} Find the Manhattan distance from the start to the final point."
+    },
+    "s2": {
+      "ru": "{i}) {token}.",
+      "en": "{i}) {token}."
+    },
+    "s3": {
+      "ru": "Команда {i}: {token}, позиция ({x}, {y}).",
+      "en": "Command {i}: {token}, position ({x}, {y})."
+    }
+  }
+}

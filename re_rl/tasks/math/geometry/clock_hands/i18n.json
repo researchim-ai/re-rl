@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько градусов в меньшем угле между часовой и минутной стрелками в {stamp}?",
+      "en": "What is the smaller angle, in degrees, between the hour and minute hands at {stamp}?"
+    },
+    "s1": {
+      "ru": "Сколько градусов в большем угле между часовой и минутной стрелками в {stamp}?",
+      "en": "What is the larger angle, in degrees, between the hour and minute hands at {stamp}?"
+    },
+    "s2": {
+      "ru": "|60·{hour} - 11·{minute}|/2 = {raw}. Меньший угол {smaller}°, больший {larger}°.",
+      "en": "|60·{hour} - 11·{minute}|/2 = {raw}. The smaller angle is {smaller}° and the larger is {larger}°."
+    }
+  }
+}

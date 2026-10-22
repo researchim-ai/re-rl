@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сложите {a} и {b}. Оба числа записаны в {n} разрядах.",
+      "en": "Add {a} and {b}. Both numbers are written with {n} digits."
+    },
+    "s1": {
+      "ru": "Сложите {a} и {b} в столбик. Оба числа записаны в {n} разрядах. Сколько раз возникал перенос в следующий разряд, не считая нулевого?",
+      "en": "Add {a} and {b} in columns. Both numbers are written with {n} digits. How many times is a non-zero carry passed to the next column?"
+    },
+    "s2": {
+      "ru": "Разряд {i} справа: {a}+{b}+{carry_in} = {total}, цифра {digit}, перенос {carry_out}.",
+      "en": "Column {i} from the right: {a}+{b}+{carry_in} = {total}, digit {digit}, carry {carry_out}."
+    },
+    "s3": {
+      "ru": "Сумма {sum}, ненулевых переносов {carries}.",
+      "en": "The sum is {sum}, with {carries} non-zero carries."
+    }
+  }
+}

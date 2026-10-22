@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "{n} тележек массой {mass} кг каждая слипаются при столкновении. Их скорости, в м/с: {listing}. Найдите скорость после слипания. Знак задаёт направление.",
+      "en": "{n} carts of mass {mass} kg each stick together in a collision. Their velocities, in m/s, are {listing}. Find the speed after they stick. The sign gives the direction."
+    },
+    "s1": {
+      "ru": "{n} тележек массой {mass} кг каждая слипаются при столкновении. Их скорости, в м/с: {listing}. Найдите суммарный импульс в кг·м/с. Знак задаёт направление.",
+      "en": "{n} carts of mass {mass} kg each stick together in a collision. Their velocities, in m/s, are {listing}. Find the total momentum in kg·m/s. The sign gives the direction."
+    },
+    "s2": {
+      "ru": "Тележка {i}: {mass}·{velocity} = {momentum}.",
+      "en": "Cart {i}: {mass}·{velocity} = {momentum}."
+    },
+    "s3": {
+      "ru": "Скорость {momentum}/{mass} = {speed} м/с.",
+      "en": "Speed {momentum}/{mass} = {speed} m/s."
+    }
+  }
+}

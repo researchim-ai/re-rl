@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начальное значение x = {start}, модуль {mod}. Выполняют {n} замен. {ops} Чему равен x?",
+      "en": "The initial value is x = {start}, and the modulus is {mod}. {n} updates are applied. {ops} What is x?"
+    },
+    "s1": {
+      "ru": "{i}) x → x·{factor}+{shift}.",
+      "en": "{i}) x → x·{factor}+{shift}."
+    },
+    "s2": {
+      "ru": "Шаг {i}: ({prev}·{factor}+{shift}) mod {mod} = {value}.",
+      "en": "Step {i}: ({prev}·{factor}+{shift}) mod {mod} = {value}."
+    }
+  }
+}

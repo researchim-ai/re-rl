@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В бригаде {n} работников. {crew} Заказ состоит из {job} деталей. За сколько дней бригада его выполнит?",
+      "en": "A crew has {n} workers. {crew} The order is {job} items. In how many days does the crew finish it?"
+    },
+    "s1": {
+      "ru": "{i}) {rate} дет/день.",
+      "en": "{i}) {rate} items/day."
+    },
+    "s2": {
+      "ru": "Работник {i} делает {rate} дет/день.",
+      "en": "Worker {i} makes {rate} items/day."
+    },
+    "s3": {
+      "ru": "Вместе {rate} дет/день, {job}/{rate} = {days} дн.",
+      "en": "Together they make {rate} items/day, so {job}/{rate} = {days} days."
+    }
+  }
+}

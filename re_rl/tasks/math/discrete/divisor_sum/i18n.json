@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько положительных делителей у числа {n}?",
+      "en": "How many positive divisors does {n} have?"
+    },
+    "s1": {
+      "ru": "Найдите сумму всех положительных делителей числа {n}.",
+      "en": "Find the sum of all positive divisors of {n}."
+    },
+    "s2": {
+      "ru": "Положительные делители: {divs}. Их {count}, сумма {total}.",
+      "en": "The positive divisors are {divs}. There are {count} of them, and their sum is {total}."
+    }
+  }
+}

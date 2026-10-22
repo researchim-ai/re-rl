@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Есть монеты достоинством {a} и {b}. Какую наибольшую сумму нельзя набрать этими монетами?",
+      "en": "Coins of values {a} and {b} are available. What is the largest amount that cannot be made with them?"
+    },
+    "s1": {
+      "ru": "Можно ли набрать сумму {amount} монетами достоинством {a} и {b}? Ответьте да или нет.",
+      "en": "Can the amount {amount} be made with coins of values {a} and {b}? Answer yes or no."
+    },
+    "s2": {
+      "ru": "ab-a-b = {a}·{b}-{a}-{b} = {largest}.",
+      "en": "ab-a-b = {a}·{b}-{a}-{b} = {largest}."
+    },
+    "s3": {
+      "ru": "{x}·{a} + {y}·{b} = {amount}.",
+      "en": "{x}·{a} + {y}·{b} = {amount}."
+    },
+    "s4": {
+      "ru": "Ни одно число {amount}-x·{a} при x ≥ 0 не делится на {b}.",
+      "en": "No value {amount}-x·{a} with x ≥ 0 is divisible by {b}."
+    },
+    "s5": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s6": {
+      "ru": "нет",
+      "en": "no"
+    }
+  }
+}

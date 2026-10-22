@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Палка высотой {stick} м отбрасывает тень {stick_shadow} м. В тот же момент тень столба равна {pole_shadow} м. Найдите высоту столба в метрах.",
+      "en": "A stick {stick} m tall casts a shadow {stick_shadow} m long. At the same moment a pole casts a shadow {pole_shadow} m long. Find the height of the pole, in meters."
+    },
+    "s1": {
+      "ru": "Столб высотой {pole} м отбрасывает тень {pole_shadow} м. Рядом стоит палка высотой {stick} м. Найдите длину её тени в метрах.",
+      "en": "A pole {pole} m tall casts a shadow {pole_shadow} m long. A stick {stick} m tall stands nearby. Find the length of its shadow, in meters."
+    },
+    "s2": {
+      "ru": "{pole}/{pole_shadow} = {stick}/{stick_shadow}.",
+      "en": "{pole}/{pole_shadow} = {stick}/{stick_shadow}."
+    }
+  }
+}

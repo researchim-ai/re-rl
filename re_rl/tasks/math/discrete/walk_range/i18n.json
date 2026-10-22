@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Точка стартует на высоте 0 и делает {n} шагов: {listing}. Найдите итоговую высоту.",
+      "en": "A point starts at height 0 and takes {n} steps: {listing}. Find the final height."
+    },
+    "s1": {
+      "ru": "Точка стартует на высоте 0 и делает {n} шагов: {listing}. Найдите наименьшую высоту на пути, считая старт.",
+      "en": "A point starts at height 0 and takes {n} steps: {listing}. Find the lowest height on the path, including the start."
+    },
+    "s2": {
+      "ru": "Шаг {i}: {delta}, высота {height}.",
+      "en": "Step {i}: {delta}, height {height}."
+    },
+    "s3": {
+      "ru": "Итог {final}, минимум {lowest}.",
+      "en": "The final height is {final} and the lowest is {lowest}."
+    }
+  }
+}

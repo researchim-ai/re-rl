@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Эстафета из {n} участков. {legs} Найдите общее время в секундах.",
+      "en": "A relay has {n} legs. {legs} Find the total time in seconds."
+    },
+    "s1": {
+      "ru": "{i}) {distance} м при {speed} м/с.",
+      "en": "{i}) {distance} m at {speed} m/s."
+    },
+    "s2": {
+      "ru": "Участок {i}: {distance}/{speed} = {time} с.",
+      "en": "Leg {i}: {distance}/{speed} = {time} s."
+    },
+    "s3": {
+      "ru": "Сумма времён равна {total} с.",
+      "en": "The times add up to {total} s."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вплотную составлены {n} тонких линз. {listing} Найдите суммарную оптическую силу в диоптриях.",
+      "en": "{n} thin lenses are placed in contact. {listing} Find the total optical power in diopters."
+    },
+    "s1": {
+      "ru": "{i}) {power} дптр.",
+      "en": "{i}) {power} D."
+    },
+    "s2": {
+      "ru": "Линза {i}: {power} дптр.",
+      "en": "Lens {i}: {power} D."
+    },
+    "s3": {
+      "ru": "Сумма сил равна {total} дптр.",
+      "en": "The powers add up to {total} D."
+    }
+  }
+}

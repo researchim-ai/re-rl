@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ведущая шестерня с {n1} зубьями вращается с частотой {w1} об/мин и сцеплена с шестернёй на {n2} зубьев. Найдите частоту ведомой шестерни в об/мин.",
+      "en": "A driving gear with {n1} teeth turns at {w1} rpm and meshes with a gear of {n2} teeth. Find the driven gear speed in rpm."
+    },
+    "s1": {
+      "ru": "Ведущая шестерня с {n1} зубьями делает {w1} об/мин, ведомая — {w2} об/мин. Сколько зубьев у ведомой шестерни?",
+      "en": "A driving gear with {n1} teeth turns at {w1} rpm, and the driven gear turns at {w2} rpm. How many teeth does the driven gear have?"
+    },
+    "s2": {
+      "ru": "{n1}·{w1} = {n2}·{w2}.",
+      "en": "{n1}·{w1} = {n2}·{w2}."
+    }
+  }
+}

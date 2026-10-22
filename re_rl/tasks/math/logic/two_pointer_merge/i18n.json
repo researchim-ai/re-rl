@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два неубывающих списка сливают в один. При равенстве берут из левого. Левый: {left}. Правый: {right}. Какой элемент стоит на месте {k} в слитом списке? Места нумеруются с 1.",
+      "en": "Two non-decreasing lists are merged into one. Ties are taken from the left list. Left: {left}. Right: {right}. Which element is at place {k} in the merged list? Places start at 1."
+    },
+    "s1": {
+      "ru": "Два неубывающих списка сливают в один. При равенстве берут из левого. Левый: {left}. Правый: {right}. Сколько раз элемент взят из правого списка, пока левый ещё не закончился?",
+      "en": "Two non-decreasing lists are merged into one. Ties are taken from the left list. Left: {left}. Right: {right}. How many times is an element taken from the right list while the left list is not yet exhausted?"
+    },
+    "s2": {
+      "ru": "Место {i}: {value} из {source}.",
+      "en": "Place {i}: {value} from {source}."
+    },
+    "s3": {
+      "ru": "На месте {k} стоит {kth}. Побед правого списка, пока левый не кончился: {wins}.",
+      "en": "Place {k} holds {kth}. Right-list wins while the left list remains: {wins}."
+    }
+  }
+}

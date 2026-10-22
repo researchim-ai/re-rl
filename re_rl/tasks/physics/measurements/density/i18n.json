@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело массой {mass} кг занимает объём {volume} м³. Найдите плотность в кг/м³.",
+      "en": "A body of mass {mass} kg occupies {volume} m³. Find the density in kg/m³."
+    },
+    "s1": {
+      "ru": "Плотность вещества {density} кг/м³, объём тела {volume} м³. Найдите массу в килограммах.",
+      "en": "The density is {density} kg/m³ and the volume is {volume} m³. Find the mass in kilograms."
+    },
+    "s2": {
+      "ru": "Плотность вещества {density} кг/м³, масса тела {mass} кг. Найдите объём в кубических метрах.",
+      "en": "The density is {density} kg/m³ and the mass is {mass} kg. Find the volume in cubic meters."
+    },
+    "s3": {
+      "ru": "ρ = m/V = {mass}/{volume} = {density}.",
+      "en": "ρ = m/V = {mass}/{volume} = {density}."
+    },
+    "s4": {
+      "ru": "m = ρV = {density}·{volume} = {mass}.",
+      "en": "m = ρV = {density}·{volume} = {mass}."
+    },
+    "s5": {
+      "ru": "V = m/ρ = {mass}/{density} = {volume}.",
+      "en": "V = m/ρ = {mass}/{density} = {volume}."
+    }
+  }
+}

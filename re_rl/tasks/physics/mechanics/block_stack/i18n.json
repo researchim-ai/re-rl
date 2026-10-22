@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стопка из {n} блоков, снизу вверх. {listing} Найдите общую массу в килограммах.",
+      "en": "A stack of {n} blocks, from the bottom up. {listing} Find the total mass in kilograms."
+    },
+    "s1": {
+      "ru": "Стопка из {n} блоков, снизу вверх. {listing} Центр каждого блока лежит на середине его толщины. Найдите момент массы относительно пола, в кг·м.",
+      "en": "A stack of {n} blocks, from the bottom up. {listing} The center of each block is at mid-thickness. Find the mass moment about the floor, in kg·m."
+    },
+    "s2": {
+      "ru": "{i}) масса {mass} кг, толщина {thickness} м.",
+      "en": "{i}) mass {mass} kg, thickness {thickness} m."
+    },
+    "s3": {
+      "ru": "Блок {i}: центр на высоте {center} м, вклад {mass}·{center} = {part}.",
+      "en": "Block {i}: center at height {center} m, contribution {mass}·{center} = {part}."
+    },
+    "s4": {
+      "ru": "Сумма масс равна {total} кг.",
+      "en": "The masses add up to {total} kg."
+    },
+    "s5": {
+      "ru": "Сумма вкладов равна {moment} кг·м.",
+      "en": "The contributions add up to {moment} kg·m."
+    }
+  }
+}

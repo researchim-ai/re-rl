@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сейчас одному человеку {older} лет, другому {young} лет. На сколько лет первый старше?",
+      "en": "One person is {older} years old and the other is {young}. By how many years is the first person older?"
+    },
+    "s1": {
+      "ru": "Старшему сейчас {older} лет, младшему {young} лет. Через сколько лет старшему будет ровно вдвое больше лет, чем младшему?",
+      "en": "The older person is {older} and the younger is {young}. In how many years will the older person be exactly twice as old as the younger one?"
+    },
+    "s2": {
+      "ru": "{older}-{young} = {gap}.",
+      "en": "{older}-{young} = {gap}."
+    },
+    "s3": {
+      "ru": "t = {older}-2·{young} = {years}.",
+      "en": "t = {older}-2·{young} = {years}."
+    }
+  }
+}

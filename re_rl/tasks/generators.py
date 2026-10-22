@@ -53,10 +53,18 @@ from re_rl.tasks.math.abstract_algebra.category_theory_task import CategoryTheor
 from re_rl.tasks.math.probability.urn_probability_task import UrnProbabilityTask
 from re_rl.tasks.math.probability.statistics_task import StatisticsTask
 from re_rl.tasks.math.probability.bayesian_reasoning_task import BayesianReasoningTask
+from re_rl.tasks.math.probability.dice_ways_task import DiceWaysTask
+from re_rl.tasks.math.applied.map_scale_task import MapScaleTask
+from re_rl.tasks.math.applied.age_gap_task import AgeGapTask
+from re_rl.tasks.math.applied.crew_work_task import CrewWorkTask
+from re_rl.tasks.math.applied.mix_chain_task import MixChainTask
 
 # Прикладная математика
 from re_rl.tasks.math.applied.financial_math_task import FinancialMathTask
 from re_rl.tasks.math.applied.arithmetic_task import ArithmeticTask
+from re_rl.tasks.math.applied.work_rates_task import WorkRatesTask
+from re_rl.tasks.math.applied.mixture_concentration_task import MixtureConcentrationTask
+from re_rl.tasks.math.applied.ratio_split_task import RatioSplitTask
 
 # Логика
 from re_rl.tasks.math.logic.contradiction_task import ContradictionTask
@@ -237,6 +245,46 @@ from re_rl.tasks.math.logic.havel_hakimi_task import HavelHakimiTask
 from re_rl.tasks.math.logic.spanning_trees_task import SpanningTreesTask
 from re_rl.tasks.math.logic.topo_count_task import TopoCountTask
 from re_rl.tasks.math.geometry.pick_theorem_task import PickTheoremTask
+from re_rl.tasks.math.geometry.clock_hands_task import ClockHandsTask
+from re_rl.tasks.math.geometry.polygon_angles_task import PolygonAnglesTask
+from re_rl.tasks.math.geometry.grid_diagonal_task import GridDiagonalTask
+from re_rl.tasks.math.geometry.triangle_sides_task import TriangleSidesTask
+from re_rl.tasks.math.discrete.divisor_sum_task import DivisorSumTask
+from re_rl.tasks.math.discrete.digital_root_task import DigitalRootTask
+from re_rl.tasks.math.discrete.frobenius_coin_task import FrobeniusCoinTask
+from re_rl.tasks.math.discrete.bit_count_task import BitCountTask
+from re_rl.tasks.math.discrete.odd_sum_task import OddSumTask
+from re_rl.tasks.math.discrete.mod_chain_task import ModChainTask
+from re_rl.tasks.math.discrete.gcd_chain_task import GcdChainTask
+from re_rl.tasks.math.discrete.recurrence_walk_task import RecurrenceWalkTask
+from re_rl.tasks.math.logic.turtle_walk_task import TurtleWalkTask
+from re_rl.tasks.math.logic.portal_walk_task import PortalWalkTask
+from re_rl.tasks.math.algebra.horner_eval_task import HornerEvalTask
+from re_rl.tasks.math.applied.ledger_guard_task import LedgerGuardTask
+from re_rl.tasks.math.applied.truck_trips_task import TruckTripsTask
+from re_rl.tasks.math.discrete.door_toggles_task import DoorTogglesTask
+from re_rl.tasks.math.discrete.greedy_coins_task import GreedyCoinsTask
+from re_rl.tasks.math.discrete.walk_range_task import WalkRangeTask
+from re_rl.tasks.math.discrete.carry_add_task import CarryAddTask
+from re_rl.tasks.math.logic.line_infection_task import LineInfectionTask
+from re_rl.tasks.math.logic.corridor_keys_task import CorridorKeysTask
+from re_rl.tasks.math.logic.next_greater_task import NextGreaterTask
+from re_rl.tasks.math.logic.window_max_task import WindowMaxTask
+from re_rl.tasks.math.logic.two_pointer_merge_task import TwoPointerMergeTask
+from re_rl.tasks.math.logic.cooldown_schedule_task import CooldownScheduleTask
+from re_rl.tasks.math.logic.pancake_trace_task import PancakeTraceTask
+from re_rl.tasks.math.logic.bracket_scan_task import BracketScanTask
+from re_rl.tasks.ml.kmeans_rounds_task import KMeansRoundsTask
+from re_rl.tasks.math.probability.bayes_updates_task import BayesUpdatesTask
+from re_rl.tasks.math.probability.polya_urn_task import PolyaUrnTask
+from re_rl.tasks.rl.policy_rollout_task import PolicyRolloutTask
+from re_rl.tasks.math.discrete.extended_euclid_task import ExtendedEuclidTask
+from re_rl.tasks.math.discrete.crt_chain_task import CrtChainTask
+from re_rl.tasks.math.discrete.cf_expand_task import CfExpandTask
+from re_rl.tasks.math.discrete.nim_sum_task import NimSumTask
+from re_rl.tasks.math.analysis.difference_table_task import DifferenceTableTask
+from re_rl.tasks.math.geometry.shadow_height_task import ShadowHeightTask
+from re_rl.tasks.math.geometry.manhattan_paths_task import ManhattanPathsTask
 from re_rl.tasks.math.logic.trapping_rain_task import TrappingRainTask
 from re_rl.tasks.math.logic.majority_task import MajorityTask
 from re_rl.tasks.math.discrete.euclid_task import EuclidTask
@@ -1787,6 +1835,54 @@ generate_random_havel_hakimi_task = _mk_generator(HavelHakimiTask)
 generate_random_spanning_trees_task = _mk_generator(SpanningTreesTask)
 generate_random_topo_count_task = _mk_generator(TopoCountTask)
 generate_random_pick_theorem_task = _mk_generator(PickTheoremTask)
+generate_random_work_rates_task = _mk_generator(WorkRatesTask)
+generate_random_mixture_concentration_task = _mk_generator(MixtureConcentrationTask)
+generate_random_ratio_split_task = _mk_generator(RatioSplitTask)
+generate_random_clock_hands_task = _mk_generator(ClockHandsTask)
+generate_random_polygon_angles_task = _mk_generator(PolygonAnglesTask)
+generate_random_grid_diagonal_task = _mk_generator(GridDiagonalTask)
+generate_random_triangle_sides_task = _mk_generator(TriangleSidesTask)
+generate_random_divisor_sum_task = _mk_generator(DivisorSumTask)
+generate_random_digital_root_task = _mk_generator(DigitalRootTask)
+generate_random_dice_ways_task = _mk_generator(DiceWaysTask)
+generate_random_map_scale_task = _mk_generator(MapScaleTask)
+generate_random_age_gap_task = _mk_generator(AgeGapTask)
+generate_random_crew_work_task = _mk_generator(CrewWorkTask)
+generate_random_mix_chain_task = _mk_generator(MixChainTask)
+generate_random_mod_chain_task = _mk_generator(ModChainTask)
+generate_random_gcd_chain_task = _mk_generator(GcdChainTask)
+generate_random_recurrence_walk_task = _mk_generator(RecurrenceWalkTask)
+generate_random_turtle_walk_task = _mk_generator(TurtleWalkTask)
+generate_random_portal_walk_task = _mk_generator(PortalWalkTask)
+generate_random_horner_eval_task = _mk_generator(HornerEvalTask)
+generate_random_ledger_guard_task = _mk_generator(LedgerGuardTask)
+generate_random_truck_trips_task = _mk_generator(TruckTripsTask)
+generate_random_door_toggles_task = _mk_generator(DoorTogglesTask)
+generate_random_greedy_coins_task = _mk_generator(GreedyCoinsTask)
+generate_random_walk_range_task = _mk_generator(WalkRangeTask)
+generate_random_carry_add_task = _mk_generator(CarryAddTask)
+generate_random_line_infection_task = _mk_generator(LineInfectionTask)
+generate_random_corridor_keys_task = _mk_generator(CorridorKeysTask)
+generate_random_next_greater_task = _mk_generator(NextGreaterTask)
+generate_random_window_max_task = _mk_generator(WindowMaxTask)
+generate_random_two_pointer_merge_task = _mk_generator(TwoPointerMergeTask)
+generate_random_cooldown_schedule_task = _mk_generator(CooldownScheduleTask)
+generate_random_pancake_trace_task = _mk_generator(PancakeTraceTask)
+generate_random_bracket_scan_task = _mk_generator(BracketScanTask)
+generate_random_kmeans_rounds_task = _mk_generator(KMeansRoundsTask)
+generate_random_bayes_updates_task = _mk_generator(BayesUpdatesTask)
+generate_random_polya_urn_task = _mk_generator(PolyaUrnTask)
+generate_random_policy_rollout_task = _mk_generator(PolicyRolloutTask)
+generate_random_extended_euclid_task = _mk_generator(ExtendedEuclidTask)
+generate_random_crt_chain_task = _mk_generator(CrtChainTask)
+generate_random_cf_expand_task = _mk_generator(CfExpandTask)
+generate_random_nim_sum_task = _mk_generator(NimSumTask)
+generate_random_difference_table_task = _mk_generator(DifferenceTableTask)
+generate_random_frobenius_coin_task = _mk_generator(FrobeniusCoinTask)
+generate_random_bit_count_task = _mk_generator(BitCountTask)
+generate_random_odd_sum_task = _mk_generator(OddSumTask)
+generate_random_shadow_height_task = _mk_generator(ShadowHeightTask)
+generate_random_manhattan_paths_task = _mk_generator(ManhattanPathsTask)
 generate_random_trapping_rain_task = _mk_generator(TrappingRainTask)
 generate_random_majority_element_task = _mk_generator(MajorityTask)
 generate_random_euclid_gcd_task = _mk_generator(EuclidTask)
@@ -2185,6 +2281,54 @@ ALL_TASK_GENERATORS = {
     "spanning_trees": generate_random_spanning_trees_task,
     "topo_count": generate_random_topo_count_task,
     "pick_theorem": generate_random_pick_theorem_task,
+    "work_rates": generate_random_work_rates_task,
+    "mixture_concentration": generate_random_mixture_concentration_task,
+    "ratio_split": generate_random_ratio_split_task,
+    "clock_hands": generate_random_clock_hands_task,
+    "polygon_angles": generate_random_polygon_angles_task,
+    "grid_diagonal": generate_random_grid_diagonal_task,
+    "triangle_sides": generate_random_triangle_sides_task,
+    "divisor_sum": generate_random_divisor_sum_task,
+    "digital_root": generate_random_digital_root_task,
+    "dice_ways": generate_random_dice_ways_task,
+    "map_scale": generate_random_map_scale_task,
+    "age_gap": generate_random_age_gap_task,
+    "crew_work": generate_random_crew_work_task,
+    "mix_chain": generate_random_mix_chain_task,
+    "mod_chain": generate_random_mod_chain_task,
+    "gcd_chain": generate_random_gcd_chain_task,
+    "recurrence_walk": generate_random_recurrence_walk_task,
+    "turtle_walk": generate_random_turtle_walk_task,
+    "portal_walk": generate_random_portal_walk_task,
+    "horner_eval": generate_random_horner_eval_task,
+    "ledger_guard": generate_random_ledger_guard_task,
+    "truck_trips": generate_random_truck_trips_task,
+    "door_toggles": generate_random_door_toggles_task,
+    "greedy_coins": generate_random_greedy_coins_task,
+    "walk_range": generate_random_walk_range_task,
+    "carry_add": generate_random_carry_add_task,
+    "line_infection": generate_random_line_infection_task,
+    "corridor_keys": generate_random_corridor_keys_task,
+    "next_greater": generate_random_next_greater_task,
+    "window_max": generate_random_window_max_task,
+    "two_pointer_merge": generate_random_two_pointer_merge_task,
+    "cooldown_schedule": generate_random_cooldown_schedule_task,
+    "pancake_trace": generate_random_pancake_trace_task,
+    "bracket_scan": generate_random_bracket_scan_task,
+    "kmeans_rounds": generate_random_kmeans_rounds_task,
+    "bayes_updates": generate_random_bayes_updates_task,
+    "polya_urn": generate_random_polya_urn_task,
+    "policy_rollout": generate_random_policy_rollout_task,
+    "extended_euclid": generate_random_extended_euclid_task,
+    "crt_chain": generate_random_crt_chain_task,
+    "cf_expand": generate_random_cf_expand_task,
+    "nim_sum": generate_random_nim_sum_task,
+    "difference_table": generate_random_difference_table_task,
+    "frobenius_coin": generate_random_frobenius_coin_task,
+    "bit_count": generate_random_bit_count_task,
+    "odd_sum": generate_random_odd_sum_task,
+    "shadow_height": generate_random_shadow_height_task,
+    "manhattan_paths": generate_random_manhattan_paths_task,
     "trapping_rain": generate_random_trapping_rain_task,
     "majority_element": generate_random_majority_element_task,
     "euclid_gcd": generate_random_euclid_gcd_task,

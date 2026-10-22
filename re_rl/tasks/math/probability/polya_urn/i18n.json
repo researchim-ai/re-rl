@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В урне {red} красных (R) и {blue} синих (B) шаров. Тянут шар, возвращают его и кладут ещё один того же цвета. Последовательность из {n} тиражей: {listing}. Найдите числитель сокращённой вероятности этой последовательности.",
+      "en": "An urn has {red} red balls (R) and {blue} blue balls (B). A ball is drawn, replaced, and another ball of the same color is added. The sequence of {n} draws is {listing}. Find the numerator of the probability of this sequence in lowest terms."
+    },
+    "s1": {
+      "ru": "В урне {red} красных (R) и {blue} синих (B) шаров. Тянут шар, возвращают его и кладут ещё один того же цвета. Последовательность из {n} тиражей: {listing}. Найдите знаменатель сокращённой вероятности этой последовательности.",
+      "en": "An urn has {red} red balls (R) and {blue} blue balls (B). A ball is drawn, replaced, and another ball of the same color is added. The sequence of {n} draws is {listing}. Find the denominator of the probability of this sequence in lowest terms."
+    },
+    "s2": {
+      "ru": "Тираж {i}: {color}, шанс {count}/{total}.",
+      "en": "Draw {i}: {color}, chance {count}/{total}."
+    },
+    "s3": {
+      "ru": "Сокращённая вероятность {numer}/{denom}.",
+      "en": "The probability in lowest terms is {numer}/{denom}."
+    }
+  }
+}

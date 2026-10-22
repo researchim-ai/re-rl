@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Коэффициенты многочлена от старшей степени к свободному члену: {listing}. Это {n} чисел. Вычислите многочлен при x = {x} схемой Горнера.",
+      "en": "The polynomial coefficients from the highest degree to the constant term are {listing}. There are {n} of them. Evaluate the polynomial at x = {x} by Horner's method."
+    },
+    "s1": {
+      "ru": "Шаг {i}: {prev}·{x}+({coeff}) = {acc}.",
+      "en": "Step {i}: {prev}·{x}+({coeff}) = {acc}."
+    }
+  }
+}

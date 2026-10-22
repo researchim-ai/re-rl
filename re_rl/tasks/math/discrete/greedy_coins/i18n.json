@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Монеты имеют достоинство 1, 3 и 4. Сумму {amount} набирают так: каждый раз берут наибольшую монету, которая не превышает остаток. Это не обязательно минимум монет. Сколько монет получится?",
+      "en": "Coins have values 1, 3 and 4. Make the amount {amount} by always taking the largest coin that does not exceed the remainder. This is not necessarily the fewest coins. How many coins does this rule use?"
+    },
+    "s1": {
+      "ru": "Монеты имеют достоинство 1, 3 и 4. Сумму {amount} набирают так: каждый раз берут наибольшую монету, которая не превышает остаток. На сколько монет такой набор длиннее самого короткого?",
+      "en": "Coins have values 1, 3 and 4. Make the amount {amount} by always taking the largest coin that does not exceed the remainder. By how many coins is this selection longer than the shortest one?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: берём {coin}, остаток {left}.",
+      "en": "Step {i}: take {coin}, remainder {left}."
+    },
+    "s3": {
+      "ru": "Жадный набор содержит {greedy} монет, кратчайший — {optimal}, разница {extra}.",
+      "en": "The greedy selection has {greedy} coins, the shortest has {optimal}, and the difference is {extra}."
+    }
+  }
+}

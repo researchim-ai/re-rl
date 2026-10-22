@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "По клетчатой плоскости из (0, 0) в ({x}, {y}) можно ходить только вправо и вверх на одну клетку. Какова длина кратчайшего пути в шагах?",
+      "en": "On a grid, moves from (0, 0) to ({x}, {y}) go only one cell right or one cell up. What is the length of a shortest path, in steps?"
+    },
+    "s1": {
+      "ru": "По клетчатой плоскости из (0, 0) в ({x}, {y}) можно ходить только вправо и вверх на одну клетку. Сколько существует кратчайших путей?",
+      "en": "On a grid, moves from (0, 0) to ({x}, {y}) go only one cell right or one cell up. How many shortest paths are there?"
+    },
+    "s2": {
+      "ru": "{x}+{y} = {answer}.",
+      "en": "{x}+{y} = {answer}."
+    },
+    "s3": {
+      "ru": "C({steps}, {x}) = {answer}.",
+      "en": "C({steps}, {x}) = {answer}."
+    }
+  }
+}

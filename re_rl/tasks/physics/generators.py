@@ -131,6 +131,26 @@ from re_rl.tasks.physics.electricity.inductor_energy_task import InductorEnergyT
 from re_rl.tasks.physics.waves.doppler_shift_task import DopplerShiftTask
 from re_rl.tasks.physics.astrophysics.hubble_task import HubbleTask
 from re_rl.tasks.physics.mechanics.free_fall_task import FreeFallTask
+from re_rl.tasks.physics.mechanics.hooke_law_task import HookeLawTask
+from re_rl.tasks.physics.measurements.density_task import DensityTask
+from re_rl.tasks.physics.mechanics.average_speed_task import AverageSpeedTask
+from re_rl.tasks.physics.mechanics.lever_balance_task import LeverBalanceTask
+from re_rl.tasks.physics.waves.echo_delay_task import EchoDelayTask
+from re_rl.tasks.physics.electricity.joule_heat_task import JouleHeatTask
+from re_rl.tasks.physics.mechanics.boat_current_task import BoatCurrentTask
+from re_rl.tasks.physics.mechanics.gear_ratio_task import GearRatioTask
+from re_rl.tasks.physics.waves.mirror_glance_task import MirrorGlanceTask
+from re_rl.tasks.physics.mechanics.gear_train_task import GearTrainTask
+from re_rl.tasks.physics.mechanics.relay_time_task import RelayTimeTask
+from re_rl.tasks.physics.electricity.voltage_divider_task import VoltageDividerTask
+from re_rl.tasks.physics.mechanics.spring_series_task import SpringSeriesTask
+from re_rl.tasks.physics.mechanics.block_stack_task import BlockStackTask
+from re_rl.tasks.physics.mechanics.sticking_chain_task import StickingChainTask
+from re_rl.tasks.physics.waves.lens_stack_task import LensStackTask
+from re_rl.tasks.physics.fluids.cascade_tanks_task import CascadeTanksTask
+from re_rl.tasks.physics.networks.network_reduce_task import NetworkReduceTask
+from re_rl.tasks.physics.quantum.decay_generations_task import DecayGenerationsTask
+from re_rl.tasks.physics.mechanics.bounce_heights_task import BounceHeightsTask
 
 
 ##################################################
@@ -705,6 +725,126 @@ def generate_random_free_fall_task(task_type: str = None, language: str = "ru",
                                              detail_level=detail_level, difficulty=difficulty,
                                              **kwargs)
 
+def generate_random_hooke_law_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HookeLawTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_density_task(task_type: str = None, language: str = "ru",
+                                 detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return DensityTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_average_speed_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return AverageSpeedTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_lever_balance_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return LeverBalanceTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_echo_delay_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return EchoDelayTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_joule_heat_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return JouleHeatTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_boat_current_task(task_type: str = None, language: str = "ru",
+                                      detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BoatCurrentTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_gear_ratio_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return GearRatioTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_mirror_glance_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return MirrorGlanceTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_gear_train_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return GearTrainTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_relay_time_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return RelayTimeTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_voltage_divider_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return VoltageDividerTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty,
+                                                   **kwargs)
+
+def generate_random_spring_series_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SpringSeriesTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_block_stack_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BlockStackTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_sticking_chain_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return StickingChainTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_lens_stack_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return LensStackTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_cascade_tanks_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return CascadeTanksTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_network_reduce_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return NetworkReduceTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_decay_generations_task(task_type: str = None, language: str = "ru",
+                                           detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return DecayGenerationsTask.generate_random_task(task_type=task_type, language=language,
+                                                     detail_level=detail_level, difficulty=difficulty,
+                                                     **kwargs)
+
+def generate_random_bounce_heights_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BounceHeightsTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
 def generate_random_calorimetry_mix_task(task_type: str = None, language: str = "ru",
                                          detail_level: int = 3, difficulty: int = 5):
     return CalorimetryMixTask.generate_random_task(task_type=task_type, language=language,
@@ -833,6 +973,26 @@ ALL_PHYSICS_TASK_GENERATORS = {
     "doppler_shift": generate_random_doppler_shift_task,
     "hubble_law": generate_random_hubble_law_task,
     "free_fall": generate_random_free_fall_task,
+    "hooke_law": generate_random_hooke_law_task,
+    "density": generate_random_density_task,
+    "average_speed": generate_random_average_speed_task,
+    "lever_balance": generate_random_lever_balance_task,
+    "echo_delay": generate_random_echo_delay_task,
+    "joule_heat": generate_random_joule_heat_task,
+    "boat_current": generate_random_boat_current_task,
+    "gear_ratio": generate_random_gear_ratio_task,
+    "mirror_glance": generate_random_mirror_glance_task,
+    "gear_train": generate_random_gear_train_task,
+    "relay_time": generate_random_relay_time_task,
+    "voltage_divider": generate_random_voltage_divider_task,
+    "spring_series": generate_random_spring_series_task,
+    "block_stack": generate_random_block_stack_task,
+    "sticking_chain": generate_random_sticking_chain_task,
+    "lens_stack": generate_random_lens_stack_task,
+    "cascade_tanks": generate_random_cascade_tanks_task,
+    "network_reduce": generate_random_network_reduce_task,
+    "decay_generations": generate_random_decay_generations_task,
+    "bounce_heights": generate_random_bounce_heights_task,
 }
 
 

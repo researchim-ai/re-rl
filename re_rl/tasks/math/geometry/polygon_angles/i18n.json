@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите сумму внутренних углов выпуклого {n}-угольника в градусах.",
+      "en": "Find the sum of the interior angles of a convex {n}-gon, in degrees."
+    },
+    "s1": {
+      "ru": "Найдите величину одного внутреннего угла правильного {n}-угольника в градусах.",
+      "en": "Find one interior angle of a regular {n}-gon, in degrees."
+    },
+    "s2": {
+      "ru": "Сколько диагоналей у выпуклого {n}-угольника?",
+      "en": "How many diagonals does a convex {n}-gon have?"
+    },
+    "s3": {
+      "ru": "(n-2)·180 = {nm2}·180 = {answer}.",
+      "en": "(n-2)·180 = {nm2}·180 = {answer}."
+    },
+    "s4": {
+      "ru": "((n-2)·180)/n = {total}/{n} = {answer}.",
+      "en": "((n-2)·180)/n = {total}/{n} = {answer}."
+    },
+    "s5": {
+      "ru": "n(n-3)/2 = {n}·{nm3}/2 = {answer}.",
+      "en": "n(n-3)/2 = {n}·{nm3}/2 = {answer}."
+    }
+  }
+}

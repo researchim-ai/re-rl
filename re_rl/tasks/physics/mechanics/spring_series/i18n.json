@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сила {force} Н растягивает {n} пружин, соединённых последовательно. {listing} Найдите общее удлинение в метрах.",
+      "en": "A force of {force} N stretches {n} springs connected in series. {listing} Find the total extension in meters."
+    },
+    "s1": {
+      "ru": "{i}) {k} Н/м.",
+      "en": "{i}) {k} N/m."
+    },
+    "s2": {
+      "ru": "Пружина {i}: {force}/{k} = {x} м.",
+      "en": "Spring {i}: {force}/{k} = {x} m."
+    },
+    "s3": {
+      "ru": "Сумма удлинений равна {total} м.",
+      "en": "The extensions add up to {total} m."
+    }
+  }
+}

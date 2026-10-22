@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Мяч отпускают с высоты {start} м. После каждого удара о землю он поднимается на половину предыдущей высоты. На какую высоту он поднимется после {n}-го удара?",
+      "en": "A ball is released from a height of {start} m. After each bounce it rises to half the previous height. How high does it rise after bounce {n}?"
+    },
+    "s1": {
+      "ru": "Мяч отпускают с высоты {start} м. После каждого удара о землю он поднимается на половину предыдущей высоты. На какую высоту он поднимется после удара номер {k}? Всего ударов рассматривается {n}.",
+      "en": "A ball is released from a height of {start} m. After each bounce it rises to half the previous height. How high does it rise after bounce number {k}? The sequence has {n} bounces."
+    },
+    "s2": {
+      "ru": "Удар {i}: {before}/2 = {height}.",
+      "en": "Bounce {i}: {before}/2 = {height}."
+    }
+  }
+}

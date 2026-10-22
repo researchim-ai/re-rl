@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В игре Ним {n} куч: {listing}. За ход берут любое положительное число предметов из одной кучи. Побеждает тот, кто берёт последний предмет. Найдите ним-сумму, то есть XOR всех куч.",
+      "en": "A Nim position has {n} heaps: {listing}. A move removes any positive number of objects from a single heap. The player who takes the last object wins. Find the nim-sum, the XOR of all heap sizes."
+    },
+    "s1": {
+      "ru": "В игре Ним {n} куч: {listing}. За ход берут любое положительное число предметов из одной кучи. Побеждает тот, кто берёт последний предмет. Верните 1, если позиция выигрышна для ходящего, и 0, если проигрышна.",
+      "en": "A Nim position has {n} heaps: {listing}. A move removes any positive number of objects from a single heap. The player who takes the last object wins. Return 1 if the position is winning for the player to move, and 0 if it is losing."
+    },
+    "s2": {
+      "ru": "Куча {i} размера {size}: текущий XOR {total}.",
+      "en": "Heap {i} of size {size}: running XOR {total}."
+    },
+    "s3": {
+      "ru": "Ним-сумма {nim}. Выигрышна: {winning}.",
+      "en": "The nim-sum is {nim}. Winning flag: {winning}."
+    }
+  }
+}

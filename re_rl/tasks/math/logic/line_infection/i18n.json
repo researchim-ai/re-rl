@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В шеренге {people} человек, строка {initial}: 1 — болен, 0 — здоров. Каждый день больной заражает соседей слева и справа и сам остаётся болен. Сколько больных будет через {days} дней?",
+      "en": "A line has {people} people, shown as {initial}: 1 is sick and 0 is healthy. Each day a sick person infects the neighbors on the left and on the right and stays sick. How many people are sick after {days} days?"
+    },
+    "s1": {
+      "ru": "День {i}: {bits}, больных {count}.",
+      "en": "Day {i}: {bits}, sick {count}."
+    }
+  }
+}

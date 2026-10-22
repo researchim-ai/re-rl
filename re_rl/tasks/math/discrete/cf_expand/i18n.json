@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цепная дробь из {n} неполных частных, по порядку: {listing}. Найдите числитель последней подходящей дроби.",
+      "en": "A continued fraction has {n} partial quotients, in order: {listing}. Find the numerator of the last convergent."
+    },
+    "s1": {
+      "ru": "Цепная дробь из {n} неполных частных, по порядку: {listing}. Найдите знаменатель последней подходящей дроби.",
+      "en": "A continued fraction has {n} partial quotients, in order: {listing}. Find the denominator of the last convergent."
+    },
+    "s2": {
+      "ru": "Частное {i} = {a}: числитель {numer}, знаменатель {denom}.",
+      "en": "Quotient {i} = {a}: numerator {numer}, denominator {denom}."
+    }
+  }
+}

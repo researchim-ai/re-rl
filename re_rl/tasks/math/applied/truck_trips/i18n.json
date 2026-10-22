@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кузов вмещает {capacity}. Грузы подают строго по порядку, переставлять их нельзя: {listing}. Это {n} грузов. Если очередной не влезает, начинается новый рейс, а старый уезжает. Сколько рейсов потребуется?",
+      "en": "The truck holds {capacity}. Packages arrive in this fixed order and cannot be rearranged: {listing}. There are {n} packages. If the next one does not fit, a new trip starts and the current one leaves. How many trips are needed?"
+    },
+    "s1": {
+      "ru": "Кузов вмещает {capacity}. Грузы подают строго по порядку, переставлять их нельзя: {listing}. Это {n} грузов. Если очередной не влезает, начинается новый рейс, а старый уезжает. Сколько занято в последнем рейсе?",
+      "en": "The truck holds {capacity}. Packages arrive in this fixed order and cannot be rearranged: {listing}. There are {n} packages. If the next one does not fit, a new trip starts and the current one leaves. How much is loaded on the last trip?"
+    },
+    "s2": {
+      "ru": "Груз {i} размера {size}: рейс {trip}, в кузове {load} из {capacity}.",
+      "en": "Package {i} of size {size}: trip {trip}, load {load} of {capacity}."
+    },
+    "s3": {
+      "ru": "Рейсов {trips}, в последнем занято {leftover}.",
+      "en": "There are {trips} trips, and the last one holds {leftover}."
+    }
+  }
+}

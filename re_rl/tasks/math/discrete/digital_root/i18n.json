@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите цифровой корень числа {n}: однозначное число, которое получается повторной заменой числа суммой его цифр.",
+      "en": "Find the digital root of {n}: the single digit obtained by repeatedly replacing the number with the sum of its digits."
+    },
+    "s1": {
+      "ru": "Сколько раз нужно заменить число {n} суммой его цифр, чтобы получить однозначное число?",
+      "en": "How many times must {n} be replaced by the sum of its digits to reach a single digit?"
+    },
+    "s2": {
+      "ru": "{chain}. Корень {root}, шагов {steps}.",
+      "en": "{chain}. The root is {root}, after {steps} steps."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Есть {n} дверей, сначала все закрыты. Проход k переключает каждую k-ю дверь, k от 1 до {n}. Сколько дверей останется открытыми?",
+      "en": "There are {n} doors, all closed at first. Pass k toggles every k-th door, for k from 1 to {n}. How many doors stay open?"
+    },
+    "s1": {
+      "ru": "Есть {n} дверей, сначала все закрыты. Проход k переключает каждую k-ю дверь, k от 1 до {n}. Каков номер самой большой двери, которая останется открытой?",
+      "en": "There are {n} doors, all closed at first. Pass k toggles every k-th door, for k from 1 to {n}. What is the number of the largest door that stays open?"
+    },
+    "s2": {
+      "ru": "Дверь {i}: {divisors} делителей, итог — {state}.",
+      "en": "Door {i}: {divisors} divisors, so it ends {state}."
+    },
+    "s3": {
+      "ru": "Открытых дверей {count}, наибольшая из них {largest}.",
+      "en": "There are {count} open doors, and the largest is {largest}."
+    },
+    "s4": {
+      "ru": "открыта",
+      "en": "open"
+    },
+    "s5": {
+      "ru": "закрыта",
+      "en": "closed"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В сосуде {volume} л раствора концентрации {start}%. Выполняют {n} замен, объём не меняется. {ops} Какова итоговая концентрация в процентах?",
+      "en": "A vessel holds {volume} L of solution at {start}%. {n} replacements are made, and the volume stays the same. {ops} What is the final concentration, in percent?"
+    },
+    "s1": {
+      "ru": "{i}) отлили {out} л и долили {added}%.",
+      "en": "{i}) pour out {out} L and refill with {added}%."
+    },
+    "s2": {
+      "ru": "Шаг {i}: (({volume}-{out})·{before} + {out}·{added})/{volume} = {after}.",
+      "en": "Step {i}: (({volume}-{out})·{before} + {out}·{added})/{volume} = {after}."
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Комнаты пронумерованы от 0 до {last}. Из комнаты i переход ведёт в комнату по списку {listing}. Стартуем в 0 и делаем {n} переходов. В какой комнате окажемся?",
+      "en": "Rooms are numbered from 0 to {last}. From room i the portal leads to the room in the list {listing}. Start at 0 and take {n} portals. Which room do we reach?"
+    },
+    "s1": {
+      "ru": "Шаг {i}: из {prev} в {room}.",
+      "en": "Step {i}: from {prev} to {room}."
+    }
+  }
+}

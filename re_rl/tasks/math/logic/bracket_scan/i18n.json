@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка из {n} скобок: {expr}. Открывающая увеличивает глубину, закрывающая уменьшает. Какова наибольшая глубина до первой ошибки? Если ошибки нет, это наибольшая глубина всей строки.",
+      "en": "A string of {n} parentheses: {expr}. An opening parenthesis increases the depth, and a closing one decreases it. What is the greatest depth before the first error? If there is no error, this is the greatest depth of the whole string."
+    },
+    "s1": {
+      "ru": "Строка из {n} скобок: {expr}. Открывающая увеличивает глубину, закрывающая уменьшает. Верните 0, если строка корректна. Иначе верните номер первой лишней закрывающей. Если в конце остались открывающие, верните {n_plus}.",
+      "en": "A string of {n} parentheses: {expr}. An opening parenthesis increases the depth, and a closing one decreases it. Return 0 if the string is valid. Otherwise return the position of the first extra closing parenthesis. If openings remain at the end, return {n_plus}."
+    },
+    "s2": {
+      "ru": "Символ {i}: {char}, глубина {depth}.",
+      "en": "Symbol {i}: {char}, depth {depth}."
+    },
+    "s3": {
+      "ru": "Наибольшая глубина до ошибки {depth}. Код ошибки {error}.",
+      "en": "The greatest depth before an error is {depth}. The error code is {error}."
+    }
+  }
+}

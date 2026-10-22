@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Величину {total} делят в отношении {a}:{b}. Чему равна первая часть?",
+      "en": "The quantity {total} is divided in the ratio {a}:{b}. What is the first share?"
+    },
+    "s1": {
+      "ru": "Величину {total} делят в отношении {a}:{b}. Чему равна вторая часть?",
+      "en": "The quantity {total} is divided in the ratio {a}:{b}. What is the second share?"
+    },
+    "s2": {
+      "ru": "Части равны {a}·k и {b}·k. Сумма ({a}+{b})·k = {sum_ab}·k = {total}, значит k = {k}. Первая часть {first}, вторая {second}.",
+      "en": "The shares are {a}·k and {b}·k. Their sum is ({a}+{b})·k = {sum_ab}·k = {total}, so k = {k}. The first share is {first} and the second is {second}."
+    }
+  }
+}

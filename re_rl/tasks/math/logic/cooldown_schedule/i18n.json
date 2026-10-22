@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Задачи нужно выполнить строго в порядке {listing}. Это {n} задач. Между двумя одинаковыми номерами должно быть не меньше {cooldown} других слотов, пустые слоты допустимы. Сколько слотов займёт расписание?",
+      "en": "The tasks must be done strictly in the order {listing}. There are {n} tasks. Two equal numbers must have at least {cooldown} other slots between them, and idle slots are allowed. How many slots does the schedule take?"
+    },
+    "s1": {
+      "ru": "Задачи нужно выполнить строго в порядке {listing}. Это {n} задач. Между двумя одинаковыми номерами должно быть не меньше {cooldown} других слотов, пустые слоты допустимы. Сколько пустых слотов придётся вставить?",
+      "en": "The tasks must be done strictly in the order {listing}. There are {n} tasks. Two equal numbers must have at least {cooldown} other slots between them, and idle slots are allowed. How many idle slots must be inserted?"
+    },
+    "s2": {
+      "ru": "Задача {i} с номером {task}: пустых слотов перед ней {idle}, она занимает слот {slot}.",
+      "en": "Task {i} with number {task}: {idle} idle slots before it, then it occupies slot {slot}."
+    },
+    "s3": {
+      "ru": "Всего слотов {time}, из них пустых {idles}.",
+      "en": "The schedule has {time} slots, of which {idles} are idle."
+    }
+  }
+}

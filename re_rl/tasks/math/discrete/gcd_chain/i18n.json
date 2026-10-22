@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите наибольший общий делитель {n} чисел: {listing}.",
+      "en": "Find the greatest common divisor of these {n} numbers: {listing}."
+    },
+    "s1": {
+      "ru": "Шаг {i}: gcd({prev}, {number}) = {value}.",
+      "en": "Step {i}: gcd({prev}, {number}) = {value}."
+    }
+  }
+}

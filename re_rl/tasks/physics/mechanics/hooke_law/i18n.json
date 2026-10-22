@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пружина жёсткостью {k} Н/м растянута на {x} м. Найдите силу упругости в ньютонах.",
+      "en": "A spring of stiffness {k} N/m is stretched by {x} m. Find the elastic force in newtons."
+    },
+    "s1": {
+      "ru": "Сила {force} Н растягивает пружину жёсткостью {k} Н/м. На сколько метров она удлинилась?",
+      "en": "A force of {force} N stretches a spring of stiffness {k} N/m. By how many meters does it extend?"
+    },
+    "s2": {
+      "ru": "Сила {force} Н удлиняет пружину на {x} м. Найдите жёсткость в Н/м.",
+      "en": "A force of {force} N extends a spring by {x} m. Find the stiffness in N/m."
+    },
+    "s3": {
+      "ru": "F = kx = {k}·{x} = {force}.",
+      "en": "F = kx = {k}·{x} = {force}."
+    },
+    "s4": {
+      "ru": "x = F/k = {force}/{k} = {x}.",
+      "en": "x = F/k = {force}/{k} = {x}."
+    },
+    "s5": {
+      "ru": "k = F/x = {force}/{x} = {k}.",
+      "en": "k = F/x = {force}/{x} = {k}."
+    }
+  }
+}

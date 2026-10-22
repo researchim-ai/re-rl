@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив из {n} чисел, позиции с 1: {listing}. У скольких элементов справа нет строго большего?",
+      "en": "An array of {n} numbers, positions starting at 1: {listing}. How many elements have no strictly greater value to the right?"
+    },
+    "s1": {
+      "ru": "Массив из {n} чисел, позиции с 1: {listing}. Для каждого элемента, у которого справа есть строго большее, сложите расстояние до ближайшего такого. Какова сумма?",
+      "en": "An array of {n} numbers, positions starting at 1: {listing}. For every element that has a strictly greater value to the right, add the distance to the nearest one. What is the sum?"
+    },
+    "s2": {
+      "ru": "Позиция {i}, значение {value}: справа большего нет.",
+      "en": "Position {i}, value {value}: no greater value to the right."
+    },
+    "s3": {
+      "ru": "Позиция {i}, значение {value}: ближайшее большее {greater} на позиции {j}, расстояние {dist}.",
+      "en": "Position {i}, value {value}: nearest greater {greater} is at position {j}, distance {dist}."
+    },
+    "s4": {
+      "ru": "Без большего справа: {missing}. Сумма расстояний: {total}.",
+      "en": "Without a greater value to the right: {missing}. Sum of distances: {total}."
+    }
+  }
+}

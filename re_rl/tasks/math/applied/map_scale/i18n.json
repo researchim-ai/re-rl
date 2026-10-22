@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Масштаб карты 1:{scale}. Отрезок на карте имеет длину {cm} см. Какова его длина на местности в метрах?",
+      "en": "A map has scale 1:{scale}. A segment on the map is {cm} cm long. What is its length on the ground, in meters?"
+    },
+    "s1": {
+      "ru": "На местности расстояние равно {real} м. Какой длины, в сантиметрах, будет этот отрезок на карте масштаба 1:{scale}?",
+      "en": "The distance on the ground is {real} m. How many centimeters long is this segment on a map of scale 1:{scale}?"
+    },
+    "s2": {
+      "ru": "{cm}·{scale}/100 = {real}.",
+      "en": "{cm}·{scale}/100 = {real}."
+    },
+    "s3": {
+      "ru": "{real}·100/{scale} = {cm}.",
+      "en": "{real}·100/{scale} = {cm}."
+    }
+  }
+}

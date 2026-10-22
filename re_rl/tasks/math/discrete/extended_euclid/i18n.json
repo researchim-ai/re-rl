@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите целый коэффициент при {a} в равенстве {a}·x + {b}·y = НОД({a}, {b}).",
+      "en": "Find an integer coefficient of {a} in the equation {a}·x + {b}·y = gcd({a}, {b})."
+    },
+    "s1": {
+      "ru": "Найдите целый коэффициент при {b} в равенстве {a}·x + {b}·y = НОД({a}, {b}).",
+      "en": "Find an integer coefficient of {b} in the equation {a}·x + {b}·y = gcd({a}, {b})."
+    },
+    "s2": {
+      "ru": "Шаг {i}: {a} = {q}·{b} + {r}.",
+      "en": "Step {i}: {a} = {q}·{b} + {r}."
+    },
+    "s3": {
+      "ru": "{a}·({x}) + {b}·({y}) = {gcd}.",
+      "en": "{a}·({x}) + {b}·({y}) = {gcd}."
+    }
+  }
+}

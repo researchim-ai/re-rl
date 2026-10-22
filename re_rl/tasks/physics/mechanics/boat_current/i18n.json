@@ -1,0 +1,36 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скорость лодки в стоячей воде {vb} м/с, скорость течения {vc} м/с. Найдите скорость лодки по течению, в м/с.",
+      "en": "A boat moves at {vb} m/s in still water, and the current is {vc} m/s. Find the downstream speed, in m/s."
+    },
+    "s1": {
+      "ru": "Скорость лодки в стоячей воде {vb} м/с, скорость течения {vc} м/с. Найдите скорость лодки против течения, в м/с.",
+      "en": "A boat moves at {vb} m/s in still water, and the current is {vc} m/s. Find the upstream speed, in m/s."
+    },
+    "s2": {
+      "ru": "По течению лодка идёт со скоростью {down} м/с, против течения — со скоростью {up} м/с. Найдите скорость лодки в стоячей воде, в м/с.",
+      "en": "The boat goes downstream at {down} m/s and upstream at {up} m/s. Find its speed in still water, in m/s."
+    },
+    "s3": {
+      "ru": "По течению лодка идёт со скоростью {down} м/с, против течения — со скоростью {up} м/с. Найдите скорость течения, в м/с.",
+      "en": "The boat goes downstream at {down} m/s and upstream at {up} m/s. Find the speed of the current, in m/s."
+    },
+    "s4": {
+      "ru": "v = {vb}+{vc} = {down}.",
+      "en": "v = {vb}+{vc} = {down}."
+    },
+    "s5": {
+      "ru": "v = {vb}-{vc} = {up}.",
+      "en": "v = {vb}-{vc} = {up}."
+    },
+    "s6": {
+      "ru": "v = ({down}+{up})/2 = {vb}.",
+      "en": "v = ({down}+{up})/2 = {vb}."
+    },
+    "s7": {
+      "ru": "u = ({down}-{up})/2 = {vc}.",
+      "en": "u = ({down}-{up})/2 = {vc}."
+    }
+  }
+}

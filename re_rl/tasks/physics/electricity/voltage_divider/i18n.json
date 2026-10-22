@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Последовательно соединены {n} резисторов. {listing} Ток в цепи {current} А. Найдите общее напряжение в вольтах.",
+      "en": "{n} resistors are connected in series. {listing} The current is {current} A. Find the total voltage in volts."
+    },
+    "s1": {
+      "ru": "Последовательно соединены {n} резисторов. {listing} Общее напряжение {total} В. Найдите напряжение на резисторе {k} в вольтах.",
+      "en": "{n} resistors are connected in series. {listing} The total voltage is {total} V. Find the voltage across resistor {k}, in volts."
+    },
+    "s2": {
+      "ru": "{i}) {r} Ом.",
+      "en": "{i}) {r} ohm."
+    },
+    "s3": {
+      "ru": "Резистор {i}: {current}·{r} = {drop} В.",
+      "en": "Resistor {i}: {current}·{r} = {drop} V."
+    },
+    "s4": {
+      "ru": "Сумма падений равна {total} В.",
+      "en": "The drops add up to {total} V."
+    },
+    "s5": {
+      "ru": "I = {total_v}/{total_r} = {current} А.",
+      "en": "I = {total_v}/{total_r} = {current} A."
+    },
+    "s6": {
+      "ru": "Сумма сопротивлений равна {total_r} Ом.",
+      "en": "The resistances add up to {total_r} ohm."
+    }
+  }
+}

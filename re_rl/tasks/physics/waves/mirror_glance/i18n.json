@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Луч падает на плоское зеркало под углом {angle}° к нормали. Под каким углом к поверхности зеркала идёт отражённый луч?",
+      "en": "A ray hits a flat mirror at {angle}° to the normal. At what angle to the mirror surface does the reflected ray travel?"
+    },
+    "s1": {
+      "ru": "Луч падает на плоское зеркало под углом {angle}° к нормали. На какой угол, в градусах, он поворачивается при отражении?",
+      "en": "A ray hits a flat mirror at {angle}° to the normal. Through what angle, in degrees, does the ray turn upon reflection?"
+    },
+    "s2": {
+      "ru": "90-{angle} = {answer}.",
+      "en": "90-{angle} = {answer}."
+    },
+    "s3": {
+      "ru": "180-2·{angle} = {answer}.",
+      "en": "180-2·{angle} = {answer}."
+    }
+  }
+}

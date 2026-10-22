@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Рычаг в равновесии. Слева груз {m1} кг на плече {d1} м, правое плечо {d2} м. Найдите массу справа, в килограммах.",
+      "en": "A lever is balanced. A load of {m1} kg sits {d1} m to the left of the fulcrum, and the right arm is {d2} m. Find the mass on the right, in kilograms."
+    },
+    "s1": {
+      "ru": "Рычаг в равновесии. Слева груз {m1} кг на плече {d1} м, справа груз {m2} кг. Найдите правое плечо в метрах.",
+      "en": "A lever is balanced. A load of {m1} kg sits {d1} m to the left of the fulcrum, and a load of {m2} kg sits on the right. Find the right arm, in meters."
+    },
+    "s2": {
+      "ru": "m1·d1 = m2·d2, поэтому {m1}·{d1} = {m2}·{d2}.",
+      "en": "m1·d1 = m2·d2, so {m1}·{d1} = {m2}·{d2}."
+    }
+  }
+}

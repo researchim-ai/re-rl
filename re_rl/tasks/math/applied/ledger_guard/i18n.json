@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На счёте сначала {start}. Дальше {n} операций, плюс — взнос, минус — снятие. Снятие больше остатка отклоняется и баланс не меняет. {listing} Найдите итоговый баланс.",
+      "en": "The account starts at {start}. Then {n} operations follow: plus is a deposit and minus is a withdrawal. A withdrawal larger than the balance is rejected and does not change it. {listing} Find the final balance."
+    },
+    "s1": {
+      "ru": "На счёте сначала {start}. Дальше {n} операций, плюс — взнос, минус — снятие. Снятие больше остатка отклоняется и баланс не меняет. {listing} Сколько операций отклонено?",
+      "en": "The account starts at {start}. Then {n} operations follow: plus is a deposit and minus is a withdrawal. A withdrawal larger than the balance is rejected and does not change it. {listing} How many operations are rejected?"
+    },
+    "s2": {
+      "ru": "{i}) {sign}{amount}.",
+      "en": "{i}) {sign}{amount}."
+    },
+    "s3": {
+      "ru": "Операция {i}: {sign}{amount}, баланс {balance}, отклонена: {flag}.",
+      "en": "Operation {i}: {sign}{amount}, balance {balance}, rejected: {flag}."
+    },
+    "s4": {
+      "ru": "нет",
+      "en": "no"
+    },
+    "s5": {
+      "ru": "да",
+      "en": "yes"
+    }
+  }
+}

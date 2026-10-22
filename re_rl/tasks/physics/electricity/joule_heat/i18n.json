@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "По резистору {r} Ом течёт ток {i} А в течение {t} с. Сколько джоулей тепла выделится?",
+      "en": "A current of {i} A flows through a {r} ohm resistor for {t} s. How many joules of heat are released?"
+    },
+    "s1": {
+      "ru": "На резисторе {r} Ом при токе {i} А выделилось {heat} Дж. Сколько секунд шёл ток?",
+      "en": "A {r} ohm resistor carrying {i} A released {heat} J of heat. For how many seconds did the current flow?"
+    },
+    "s2": {
+      "ru": "За {t} с на резисторе {r} Ом выделилось {heat} Дж. Найдите силу тока в амперах.",
+      "en": "A {r} ohm resistor released {heat} J in {t} s. Find the current in amperes."
+    },
+    "s3": {
+      "ru": "Q = I²Rt = {i}²·{r}·{t} = {heat}.",
+      "en": "Q = I²Rt = {i}²·{r}·{t} = {heat}."
+    },
+    "s4": {
+      "ru": "t = Q/(I²R) = {heat}/({i}²·{r}) = {time}.",
+      "en": "t = Q/(I²R) = {heat}/({i}²·{r}) = {time}."
+    },
+    "s5": {
+      "ru": "I² = Q/(Rt) = {heat}/({r}·{t}) = {square}, I = {i}.",
+      "en": "I² = Q/(Rt) = {heat}/({r}·{t}) = {square}, I = {i}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Смешали {v1} л раствора с концентрацией {c1}% и {v2} л раствора с концентрацией {c2}%. Какова концентрация смеси в процентах?",
+      "en": "Mix {v1} L of a {c1}% solution with {v2} L of a {c2}% solution. What is the concentration of the mixture, in percent?"
+    },
+    "s1": {
+      "ru": "Смесь концентрацией {result}% получили из {v1} л раствора {c1}% и {v2} л второго раствора. Какова концентрация второго раствора в процентах?",
+      "en": "A mixture of concentration {result}% is made from {v1} L of a {c1}% solution and {v2} L of a second solution. What is the concentration of the second solution, in percent?"
+    },
+    "s2": {
+      "ru": "c = ({c1}·{v1} + {c2}·{v2})/({v1}+{v2}) = {result}.",
+      "en": "c = ({c1}·{v1} + {c2}·{v2})/({v1}+{v2}) = {result}."
+    },
+    "s3": {
+      "ru": "c2 = ({result}·({v1}+{v2}) - {c1}·{v1})/{v2} = {c2}.",
+      "en": "c2 = ({result}·({v1}+{v2}) - {c1}·{v1})/{v2} = {c2}."
+    }
+  }
+}

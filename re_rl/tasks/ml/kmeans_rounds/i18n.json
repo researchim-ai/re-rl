@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Точки на прямой: {listing}. Два центра в начале — минимум и максимум выборки; если они совпали, второй центр на 1 правее. Раунд: точка идёт к ближайшему центру, при равенстве — к первому. Новый центр — нижняя медиана своего кластера. После {n} раундов сколько точек в первом кластере?",
+      "en": "Points on a line: {listing}. The two centers start at the sample minimum and maximum; if they coincide, the second center is 1 to the right. In a round, a point joins the nearest center, and ties go to the first. The new center is the lower median of its cluster. After {n} rounds, how many points are in the first cluster?"
+    },
+    "s1": {
+      "ru": "Точки на прямой: {listing}. Два центра в начале — минимум и максимум выборки; если они совпали, второй центр на 1 правее. Раунд: точка идёт к ближайшему центру, при равенстве — к первому. Новый центр — нижняя медиана своего кластера. Чему равен первый центр после {n} раундов?",
+      "en": "Points on a line: {listing}. The two centers start at the sample minimum and maximum; if they coincide, the second center is 1 to the right. In a round, a point joins the nearest center, and ties go to the first. The new center is the lower median of its cluster. What is the first center after {n} rounds?"
+    },
+    "s2": {
+      "ru": "Раунд {i}: центры {left} и {right}, в первом кластере {count}.",
+      "en": "Round {i}: centers {left} and {right}, first cluster has {count}."
+    }
+  }
+}

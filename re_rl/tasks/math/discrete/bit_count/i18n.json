@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько единиц в двоичной записи числа {n}?",
+      "en": "How many ones are in the binary representation of {n}?"
+    },
+    "s1": {
+      "ru": "Сколько двоичных разрядов нужно, чтобы записать число {n}?",
+      "en": "How many binary digits are needed to write {n}?"
+    },
+    "s2": {
+      "ru": "{n} = {binary}₂. Единиц {ones}, разрядов {width}.",
+      "en": "{n} = {binary}₂. There are {ones} ones and {width} bits."
+    }
+  }
+}

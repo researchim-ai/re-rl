@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Первый работник выполняет заказ за {a} дней, второй — за {b} дней. За сколько дней они выполнят этот заказ вместе?",
+      "en": "The first worker finishes a job in {a} days, and the second finishes it in {b} days. In how many days do they finish the same job together?"
+    },
+    "s1": {
+      "ru": "Вместе заказ выполняется за {together} дней, а первый работник один справляется за {a} дней. За сколько дней тот же заказ выполнит второй работник?",
+      "en": "Together they finish a job in {together} days, and the first worker alone needs {a} days. How many days does the second worker need to finish the same job alone?"
+    },
+    "s2": {
+      "ru": "1/t = 1/{a} + 1/{b} = ({a}+{b})/({a}·{b}) ⇒ t = {together}.",
+      "en": "1/t = 1/{a} + 1/{b} = ({a}+{b})/({a}·{b}) ⇒ t = {together}."
+    },
+    "s3": {
+      "ru": "b = a·t/(a-t) = {a}·{together}/({a}-{together}) = {b}.",
+      "en": "b = a·t/(a-t) = {a}·{together}/({a}-{together}) = {b}."
+    }
+  }
+}

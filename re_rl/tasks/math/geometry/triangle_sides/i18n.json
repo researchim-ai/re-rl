@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Могут ли отрезки длиной {a}, {b} и {c} быть сторонами треугольника? Ответьте да или нет.",
+      "en": "Can segments of lengths {a}, {b} and {c} be the sides of a triangle? Answer yes or no."
+    },
+    "s1": {
+      "ru": "Две стороны треугольника равны {a} и {b}. Какова наибольшая возможная целая длина третьей стороны?",
+      "en": "Two sides of a triangle are {a} and {b}. What is the greatest possible integer length of the third side?"
+    },
+    "s2": {
+      "ru": "{a}+{b} = {ab}, {a}+{c} = {ac}, {b}+{c} = {bc}. Ответ: {verdict}.",
+      "en": "{a}+{b} = {ab}, {a}+{c} = {ac}, {b}+{c} = {bc}. Answer: {verdict}."
+    },
+    "s3": {
+      "ru": "Третья сторона меньше {a}+{b}, поэтому наибольшее целое равно {answer}.",
+      "en": "The third side is shorter than {a}+{b}, so the greatest integer is {answer}."
+    },
+    "s4": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "s5": {
+      "ru": "нет",
+      "en": "no"
+    }
+  }
+}

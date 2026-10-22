@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Изначально гипотеза верна с вероятностью {start}%. Затем {n} независимых свидетельств. Отношение правдоподобия a:b значит, что шансы гипотезы умножаются на a/b. {listing} Каков итоговый процент, целое число?",
+      "en": "The hypothesis starts at {start}%. Then {n} independent pieces of evidence arrive. A likelihood ratio a:b means the odds of the hypothesis are multiplied by a/b. {listing} What is the final percent, as an integer?"
+    },
+    "s1": {
+      "ru": "Изначально гипотеза верна с вероятностью {start}%. Затем {n} независимых свидетельств. Отношение правдоподобия a:b значит, что шансы гипотезы умножаются на a/b. {listing} Сколько свидетельств повысили процент?",
+      "en": "The hypothesis starts at {start}%. Then {n} independent pieces of evidence arrive. A likelihood ratio a:b means the odds of the hypothesis are multiplied by a/b. {listing} How many pieces of evidence raised the percent?"
+    },
+    "s2": {
+      "ru": "{i}) {yes}:{no}.",
+      "en": "{i}) {yes}:{no}."
+    },
+    "s3": {
+      "ru": "Свидетельство {i}, отношение {yes}:{no}: было {old}%, стало {new}%.",
+      "en": "Evidence {i}, ratio {yes}:{no}: {old}% becomes {new}%."
+    },
+    "s4": {
+      "ru": "Итог {percent}%. Повышений {increases}.",
+      "en": "The result is {percent}%. Increases: {increases}."
+    }
+  }
+}

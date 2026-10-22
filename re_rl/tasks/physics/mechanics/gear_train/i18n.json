@@ -1,0 +1,12 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В ряду {n} шестерён числа зубьев равны {listing}. Первая вращается с частотой {rpm} об/мин. Найдите частоту последней шестерни в об/мин.",
+      "en": "A train of {n} gears has tooth counts {listing}. The first gear turns at {rpm} rpm. Find the speed of the last gear in rpm."
+    },
+    "s1": {
+      "ru": "Шестерня {i}: {t0}·{w0} = {t1}·{w1}.",
+      "en": "Gear {i}: {t0}·{w0} = {t1}·{w1}."
+    }
+  }
+}

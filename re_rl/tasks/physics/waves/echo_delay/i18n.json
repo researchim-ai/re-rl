@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скорость звука 340 м/с. Эхо от стены вернулось через {time} с. Найдите расстояние до стены в метрах.",
+      "en": "The speed of sound is 340 m/s. An echo from a wall returns after {time} s. Find the distance to the wall, in meters."
+    },
+    "s1": {
+      "ru": "Скорость звука 340 м/с. Стена находится на расстоянии {distance} м. Через сколько секунд вернётся эхо?",
+      "en": "The speed of sound is 340 m/s. A wall is {distance} m away. After how many seconds does the echo return?"
+    },
+    "s2": {
+      "ru": "s = v·t/2 = 340·{time}/2 = {distance}.",
+      "en": "s = v·t/2 = 340·{time}/2 = {distance}."
+    },
+    "s3": {
+      "ru": "t = 2s/v = 2·{distance}/340 = {time}.",
+      "en": "t = 2s/v = 2·{distance}/340 = {time}."
+    }
+  }
+}
