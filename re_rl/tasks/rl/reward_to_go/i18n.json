@@ -7,6 +7,10 @@
     "s1": {
       "ru": "Хвост наград с шага {t}: {v1}. Отдача {shown}.",
       "en": "Reward tail from step {t}: {v1}. Return {shown}."
+    },
+    "s3": {
+      "ru": "Шаг {k}: награда {reward}, множитель {power}, вклад {term}, отдача {acc}.",
+      "en": "Step {k}: reward {reward}, factor {power}, term {term}, return {acc}."
     }
   },
   "literals": {

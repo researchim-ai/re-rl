@@ -58,9 +58,18 @@ class AverageRewardTask(BaseMathTask):
         return f"{rule} {data} {ask}"
 
     def solve(self):
+        total = 0
+        steps = []
+        for index, reward in enumerate(self.rewards):
+            total += reward
+            steps.append(texts.t("s4", self.language, i=index, reward=reward, total=total))
+        steps.append(texts.t(
+            "s5", self.language, mean=fmt_fraction(self.mean),
+            t=self.t, delta=fmt_fraction(self.delta),
+        ))
         shown = fmt_fraction(self.answer)
-        step = ((f"R = {fmt_fraction(self.mean)}, δ_{self.t} = {fmt_fraction(self.delta)}."))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

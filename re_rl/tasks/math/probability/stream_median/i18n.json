@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа приходят по одному: {listing}. Всего их {n}. После каждого числа список сортируется по неубыванию. Медиана — элемент на месте (t + 1) // 2, места нумеруются с 1, t — сколько чисел уже пришло. При чётном t это левый из двух средних. Какова медиана в конце?",
+      "en": "Numbers arrive one by one: {listing}. There are {n} of them. After each arrival the list is sorted in nondecreasing order. The median is the entry in place (t + 1) // 2, with places numbered from 1 and t the count so far. When t is even, that is the left of the two middle entries. What is the final median?"
+    },
+    "s1": {
+      "ru": "Числа приходят по одному: {listing}. Всего их {n}. После каждого числа список сортируется по неубыванию. Медиана — элемент на месте (t + 1) // 2, места нумеруются с 1, t — сколько чисел уже пришло. При чётном t это левый из двух средних. Сколько раз медиана менялась после первого числа?",
+      "en": "Numbers arrive one by one: {listing}. There are {n} of them. After each arrival the list is sorted in nondecreasing order. The median is the entry in place (t + 1) // 2, with places numbered from 1 and t the count so far. When t is even, that is the left of the two middle entries. How many times does the median change after the first number?"
+    },
+    "s2": {
+      "ru": "Число {i} равно {value}. Медиана {median}.",
+      "en": "Number {i} is {value}. Median {median}."
+    }
+  }
+}

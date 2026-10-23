@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Основание {base}, модуль {modulus}. Степень начинает с 1. Каждый из {n} шагов умножает её на основание и берёт остаток по модулю. На каком шаге остаток впервые равен 1?",
+      "en": "Base {base}, modulus {modulus}. The power starts at 1. Each of the {n} steps multiplies it by the base and takes the remainder modulo the modulus. At which step is the remainder first equal to 1?"
+    },
+    "s1": {
+      "ru": "Основание {base}, модуль {modulus}. Степень начинает с 1. Каждый из {n} шагов умножает её на основание и берёт остаток по модулю. Каков остаток после шага {k}?",
+      "en": "Base {base}, modulus {modulus}. The power starts at 1. Each of the {n} steps multiplies it by the base and takes the remainder modulo the modulus. What is the remainder after step {k}?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: остаток {power}, порядок пока {order}.",
+      "en": "Step {i}: remainder {power}, order so far {order}."
+    }
+  }
+}

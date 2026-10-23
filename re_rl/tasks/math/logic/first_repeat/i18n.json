@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Поток из {n} чисел: {listing}. Повтор — число, которое уже было раньше. На какой позиции впервые стоит повтор? Нумерация с 1. Если повтора нет, ответ 0.",
+      "en": "A stream of {n} numbers: {listing}. A repeat is a number that already appeared earlier. At which position does the first repeat stand? Numbering starts at 1. If there is no repeat, the answer is 0."
+    },
+    "s1": {
+      "ru": "Поток из {n} чисел: {listing}. Повтор — число, которое уже было раньше. Какова длина начала потока до первого повтора, не считая сам повтор? Если повтора нет, ответ равен длине потока.",
+      "en": "A stream of {n} numbers: {listing}. A repeat is a number that already appeared earlier. How long is the head of the stream before the first repeat, not counting the repeat itself? If there is no repeat, the answer is the length of the stream."
+    },
+    "s2": {
+      "ru": "Позиция {i}: число {value}. Первый повтор {at}, длина начала {span}.",
+      "en": "Position {i}: number {value}. First repeat {at}, head length {span}."
+    }
+  }
+}

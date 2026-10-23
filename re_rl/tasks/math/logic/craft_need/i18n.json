@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Предметы 1, 2 и 3, запас нулевой. Команд {n}: {listing}. Собрать прибавляет один предмет. Сделать забирает один предмет 1 и один предмет 2 и даёт один предмет 3. Если чего-то не хватает, запас не меняется и это ошибка. Сколько предмета {k} в конце?",
+      "en": "Items are 1, 2 and 3, and the stock starts at zero. There are {n} commands: {listing}. Gather adds one item. Craft takes one item 1 and one item 2 and gives one item 3. If either is missing, the stock stays and that is an error. How many of item {k} are left?"
+    },
+    "s1": {
+      "ru": "Предметы 1, 2 и 3, запас нулевой. Команд {n}: {listing}. Собрать прибавляет один предмет. Сделать забирает один предмет 1 и один предмет 2 и даёт один предмет 3. Если чего-то не хватает, запас не меняется и это ошибка. Сколько было ошибок?",
+      "en": "Items are 1, 2 and 3, and the stock starts at zero. There are {n} commands: {listing}. Gather adds one item. Craft takes one item 1 and one item 2 and gives one item 3. If either is missing, the stock stays and that is an error. How many errors were there?"
+    },
+    "s2": {
+      "ru": "Команда {i}: {phrase}. Запас {a}, {b}, {c}. Ошибок {fails}.",
+      "en": "Command {i}: {phrase}. Stock {a}, {b}, {c}. Errors {fails}."
+    },
+    "s4": {
+      "ru": "собрать {item}",
+      "en": "gather {item}"
+    },
+    "s5": {
+      "ru": "сделать",
+      "en": "craft"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Последовательность Колакоски длины {n} состоит из 1 и 2. Она начинается с 1, 2, 2. Каждая следующая серия — это противоположный символ, повторённый столько раз, каков очередной член самой последовательности. Серии читаются с третьего члена, который равен 2. Каков символ на позиции {k}? Нумерация с 1.",
+      "en": "The Kolakoski sequence of length {n} is made of 1 and 2. It starts 1, 2, 2. Each next run is the other symbol, repeated as many times as the next term of the sequence itself. Runs are read from the third term, which is 2. What is the symbol in position {k}? Counting starts at 1."
+    },
+    "s1": {
+      "ru": "Последовательность Колакоски длины {n} состоит из 1 и 2. Она начинается с 1, 2, 2. Каждая следующая серия — это противоположный символ, повторённый столько раз, каков очередной член самой последовательности. Серии читаются с третьего члена, который равен 2. Сколько единиц в первых {n} символах?",
+      "en": "The Kolakoski sequence of length {n} is made of 1 and 2. It starts 1, 2, 2. Each next run is the other symbol, repeated as many times as the next term of the sequence itself. Runs are read from the third term, which is 2. How many ones are in the first {n} symbols?"
+    },
+    "s2": {
+      "ru": "Позиция {i}: символ {symbol}.",
+      "en": "Position {i}: symbol {symbol}."
+    }
+  }
+}

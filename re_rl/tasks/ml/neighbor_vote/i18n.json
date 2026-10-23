@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Точки на прямой заданы как координата:метка. Метка равна 0 или 1. Запрос находится в точке {query}. Точки: {listing}. Возьмите {n} ближайших к запросу. При равном расстоянии такой пары нет. Метка — это большинство. Если голоса равны, побеждает 0. Какая метка получится?",
+      "en": "Points on a line are written as coordinate:label. A label is 0 or 1. The query is at {query}. The points are {listing}. Use the {n} points nearest to the query. No two points are equally far from it. The label is the majority. On a tie, 0 wins. What label results?"
+    },
+    "s1": {
+      "ru": "Точки на прямой заданы как координата:метка. Метка равна 0 или 1. Запрос находится в точке {query}. Точки: {listing}. Возьмите {n} ближайших к запросу и добавляйте их от ближайшего к дальнему. При равном расстоянии такой пары нет. Текущая метка — большинство уже взятых, при равенстве голосов побеждает 0. Сколько раз метка меняется после первого соседа?",
+      "en": "Points on a line are written as coordinate:label. A label is 0 or 1. The query is at {query}. The points are {listing}. Take the {n} nearest points and add them from closest to farthest. No two points are equally far from the query. The running label is the majority of those already taken, and 0 wins a tie. How many times does the label change after the first neighbor?"
+    },
+    "s2": {
+      "ru": "Сосед {i}: точка {x}, метка {mark}. Голоса 1 и 0: {ones}, {zeros}. Текущая метка {label}, смен {flips}.",
+      "en": "Neighbor {i}: point {x}, label {mark}. Votes for 1 and 0: {ones}, {zeros}. Current label {label}, changes {flips}."
+    },
+    "s3": {
+      "ru": "Итоговая метка {label}, смен {flips}.",
+      "en": "The final label is {label}, and the number of changes is {flips}."
+    }
+  }
+}

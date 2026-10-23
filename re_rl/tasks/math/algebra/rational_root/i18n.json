@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлен задан коэффициентами от старшей степени: {coeffs}. Проверьте {n} целых кандидатов: {listing}. Кандидат — корень, если значение многочлена в нём равно нулю. Сколько среди них корней?",
+      "en": "A polynomial is given by coefficients from the highest degree: {coeffs}. Check {n} integer candidates: {listing}. A candidate is a root when the polynomial value there is zero. How many of them are roots?"
+    },
+    "s1": {
+      "ru": "Многочлен задан коэффициентами от старшей степени: {coeffs}. Проверьте {n} целых кандидатов: {listing}. Кандидат — корень, если значение многочлена в нём равно нулю. Каков наименьший корень среди кандидатов? Если корней нет, ответ 0.",
+      "en": "A polynomial is given by coefficients from the highest degree: {coeffs}. Check {n} integer candidates: {listing}. A candidate is a root when the polynomial value there is zero. What is the smallest root among the candidates? If there is none, the answer is 0."
+    },
+    "s2": {
+      "ru": "Кандидат {i}: точка {point}, значение {value}.",
+      "en": "Candidate {i}: point {point}, value {value}."
+    }
+  }
+}

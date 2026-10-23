@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начальное сопротивление равно {start}. Дальше {n} секций, запись — последовательное и параллельное сопротивления: {listing}. Сначала к текущему прибавляется последовательное, затем результат ставится параллельно второму: произведение делится на сумму, деление нацело. Каково итоговое сопротивление?",
+      "en": "The initial resistance is {start}. Then there are {n} sections. Each entry is the series resistance and the parallel resistance: {listing}. First add the series resistance to the current value, then place that result in parallel with the second resistance: the product is divided by the sum, and the division is exact. What is the final resistance?"
+    },
+    "s1": {
+      "ru": "Начальное сопротивление равно {start}. Дальше {n} секций, запись — последовательное и параллельное сопротивления: {listing}. Сначала к текущему прибавляется последовательное, затем результат ставится параллельно второму: произведение делится на сумму, деление нацело. Каково наибольшее эквивалентное сопротивление, включая начальное?",
+      "en": "The initial resistance is {start}. Then there are {n} sections. Each entry is the series resistance and the parallel resistance: {listing}. First add the series resistance to the current value, then place that result in parallel with the second resistance: the product is divided by the sum, and the division is exact. What is the greatest equivalent resistance, including the initial one?"
+    },
+    "s2": {
+      "ru": "Секция {i}: последовательно {series}, параллельно {parallel}. Эквивалент {value}.",
+      "en": "Section {i}: series {series}, parallel {parallel}. Equivalent {value}."
+    }
+  }
+}

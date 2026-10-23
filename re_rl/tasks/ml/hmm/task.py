@@ -122,10 +122,55 @@ class HmmDecodeTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        steps = []
+        alpha = [
+            self.start[state] * self.emit[state][self.observations[0]]
+            for state in range(self.n_states)
+        ]
+        steps.append(texts.t(
+            "s6", self.language, t=1, symbol=_SYMBOLS[self.observations[0]],
+            row=self._row(alpha), total=fmt_fraction(sum(alpha, Fraction(0))),
+        ))
+        for time in range(1, len(self.observations)):
+            alpha = [
+                sum(alpha[prev] * self.trans[prev][state] for prev in range(self.n_states))
+                * self.emit[state][self.observations[time]]
+                for state in range(self.n_states)
+            ]
+            steps.append(texts.t(
+                "s6", self.language, t=time + 1, symbol=_SYMBOLS[self.observations[time]],
+                row=self._row(alpha), total=fmt_fraction(sum(alpha, Fraction(0))),
+            ))
+        scores = [
+            self.start[state] * self.emit[state][self.observations[0]]
+            for state in range(self.n_states)
+        ]
+        steps.append(texts.t(
+            "s7", self.language, t=1, row=self._row(scores), prev=texts.t("s8", self.language),
+        ))
+        for time in range(1, len(self.observations)):
+            new_scores = []
+            back = []
+            for state in range(self.n_states):
+                best = None
+                arg = 0
+                for prev in range(self.n_states):
+                    cand = scores[prev] * self.trans[prev][state] * self.emit[state][self.observations[time]]
+                    if best is None or cand > best or (cand == best and prev < arg):
+                        best = cand
+                        arg = prev
+                new_scores.append(best)
+                back.append(arg + 1)
+            scores = new_scores
+            steps.append(texts.t(
+                "s7", self.language, t=time + 1, row=self._row(scores),
+                prev=", ".join(str(item) for item in back),
+            ))
         path = ", ".join(map(str, self.path))
         shown = fmt_fraction(self.likelihood) if self.task_type == "likelihood" else path
-        step = ((texts.t('s1', self.language, v0=fmt_fraction(self.likelihood), path=path)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.t("s1", self.language, v0=fmt_fraction(self.likelihood), path=path))
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

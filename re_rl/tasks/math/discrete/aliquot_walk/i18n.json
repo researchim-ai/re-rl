@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начните с {start}. {n} раз замените число суммой его положительных делителей, кроме него самого. Для 1 эта сумма равна 0. Каково число в конце?",
+      "en": "Start at {start}. Replace the number {n} times by the sum of its positive divisors except itself. For 1 that sum is 0. What is the number at the end?"
+    },
+    "s1": {
+      "ru": "Начните с {start}. {n} раз замените число суммой его положительных делителей, кроме него самого. Для 1 эта сумма равна 0. Каково наибольшее число среди полученных, без учёта старта?",
+      "en": "Start at {start}. Replace the number {n} times by the sum of its positive divisors except itself. For 1 that sum is 0. What is the largest number among the results, not counting the start?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: число {value}.",
+      "en": "Step {i}: number {value}."
+    }
+  }
+}

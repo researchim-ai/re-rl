@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Есть {n} подстановок чисел от 1 до {m}. Запись — образы 1, 2 и дальше по порядку: {listing}. Сначала применяется первая подстановка, затем вторая и так далее. Куда переходит число {k}?",
+      "en": "There are {n} permutations of the numbers from 1 to {m}. Each entry lists the images of 1, 2, and so on: {listing}. The first permutation is applied first, then the second, and so on. Where does {k} go?"
+    },
+    "s1": {
+      "ru": "Есть {n} подстановок чисел от 1 до {m}. Запись — образы 1, 2 и дальше по порядку: {listing}. Сначала применяется первая подстановка, затем вторая и так далее. Какова чётность композиции? Ответ 0, если она чётная, и 1, если нечётная.",
+      "en": "There are {n} permutations of the numbers from 1 to {m}. Each entry lists the images of 1, 2, and so on: {listing}. The first permutation is applied first, then the second, and so on. What is the parity of the composition? Answer 0 if it is even and 1 if it is odd."
+    },
+    "s2": {
+      "ru": "Подстановка {i}: {listing}. Инверсий {inversions}. Образ {item} равен {image}. Чётность {sign}.",
+      "en": "Permutation {i}: {listing}. Inversions {inversions}. Image of {item} is {image}. Parity {sign}."
+    }
+  }
+}

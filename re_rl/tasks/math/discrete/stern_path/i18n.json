@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дробь начинает с 1/1. Дальше {n} шагов: {listing}. Шаг влево заменяет a/b на a/(a+b). Шаг вправо заменяет a/b на (a+b)/b. Каков числитель в конце?",
+      "en": "A fraction starts at 1/1. Then it takes {n} steps: {listing}. A left step replaces a/b by a/(a+b). A right step replaces a/b by (a+b)/b. What is the numerator at the end?"
+    },
+    "s1": {
+      "ru": "Дробь начинает с 1/1. Дальше {n} шагов: {listing}. Шаг влево заменяет a/b на a/(a+b). Шаг вправо заменяет a/b на (a+b)/b. Каков знаменатель в конце?",
+      "en": "A fraction starts at 1/1. Then it takes {n} steps: {listing}. A left step replaces a/b by a/(a+b). A right step replaces a/b by (a+b)/b. What is the denominator at the end?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: {move}. Числитель {numer}, знаменатель {denom}.",
+      "en": "Step {i}: {move}. Numerator {numer}, denominator {denom}."
+    },
+    "s4": {
+      "ru": "влево",
+      "en": "left"
+    },
+    "s5": {
+      "ru": "вправо",
+      "en": "right"
+    }
+  }
+}

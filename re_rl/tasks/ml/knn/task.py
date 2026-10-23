@@ -91,18 +91,23 @@ class KNNClassifyTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        steps = []
         bits = []
-        for i in self.nn:
-            x, y, lab = self.train[i]
+        for rank, index in enumerate(self.nn, 1):
+            x, y, lab = self.train[index]
             dist = manhattan((x, y), self.query)
-            bits.append(f"{i + 1}/{lab}/d={dist}")
+            bits.append(f"{index + 1}/{lab}/d={dist}")
+            steps.append(texts.t(
+                "s5", self.language, rank=rank, index=index + 1, label=lab, dist=dist,
+            ))
         if self.task_type == "label":
-            step = ((texts.t('s3', self.language, v0=', '.join(bits), label=self.label)))
+            steps.append(texts.t("s3", self.language, v0=", ".join(bits), label=self.label))
             self.final_answer = self.label
         else:
-            step = ((texts.t('s4', self.language, nearest_index=self.nearest_index, v1=', '.join(bits))))
+            steps.append(texts.t("s4", self.language, nearest_index=self.nearest_index, v1=", ".join(bits)))
             self.final_answer = str(self.nearest_index)
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.final_answer)))]
+        steps.append(texts.common("answer_line", self.language, answer=self.final_answer))
+        self.solution_steps = steps
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

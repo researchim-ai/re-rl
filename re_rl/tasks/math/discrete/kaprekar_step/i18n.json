@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число начинает с {start} и всегда дополняется нулями слева до {width} цифр. Один шаг сортирует цифры по убыванию и по возрастанию и вычитает меньшее из большего. Какое число получится после {n} шагов?",
+      "en": "The number starts at {start} and is always padded on the left with zeros to {width} digits. One step sorts the digits descending and ascending, then subtracts the smaller from the larger. What number appears after {n} steps?"
+    },
+    "s1": {
+      "ru": "Число начинает с {start} и всегда дополняется нулями слева до {width} цифр. Один шаг сортирует цифры по убыванию и по возрастанию и вычитает меньшее из большего. Каково наибольшее число среди {n} результатов шагов?",
+      "en": "The number starts at {start} and is always padded on the left with zeros to {width} digits. One step sorts the digits descending and ascending, then subtracts the smaller from the larger. What is the greatest number among the {n} step results?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: получается {value}.",
+      "en": "Step {i}: the number is {value}."
+    }
+  }
+}

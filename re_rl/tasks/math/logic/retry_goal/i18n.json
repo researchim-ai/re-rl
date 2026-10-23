@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шаблон попыток {listing} повторяется по кругу. 1 — успех, 0 — неудача. Сколько попыток нужно, чтобы набрать {n} успехов?",
+      "en": "The attempt pattern {listing} repeats in a circle. 1 is a success and 0 is a failure. How many attempts are needed to collect {n} successes?"
+    },
+    "s1": {
+      "ru": "Шаблон попыток {listing} повторяется по кругу. 1 — успех, 0 — неудача. Сколько неудач случится, пока не наберётся {n} успехов?",
+      "en": "The attempt pattern {listing} repeats in a circle. 1 is a success and 0 is a failure. How many failures happen before {n} successes are collected?"
+    },
+    "s2": {
+      "ru": "Попытка {i}: успехов {got}, неудач {fails}.",
+      "en": "Attempt {i}: successes {got}, failures {fails}."
+    }
+  }
+}

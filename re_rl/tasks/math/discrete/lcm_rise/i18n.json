@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начинаем с 1. Дальше {n} чисел по порядку: {listing}. Наименьшее общее кратное двух чисел равно их произведению, делённому на их наибольший общий делитель. Каково наименьшее общее кратное всех этих чисел?",
+      "en": "Start from 1. Then take {n} numbers in order: {listing}. The least common multiple of two numbers is their product divided by their greatest common divisor. What is the least common multiple of all these numbers?"
+    },
+    "s1": {
+      "ru": "Начинаем с 1. Дальше {n} чисел по порядку: {listing}. Наименьшее общее кратное двух чисел равно их произведению, делённому на их наибольший общий делитель. Сколько раз это значение строго выросло?",
+      "en": "Start from 1. Then take {n} numbers in order: {listing}. The least common multiple of two numbers is their product divided by their greatest common divisor. How many times did this value strictly increase?"
+    },
+    "s2": {
+      "ru": "Число {i} равно {value}. Общее кратное {current}, ростов {rises}.",
+      "en": "Number {i} is {value}. Common multiple {current}, increases {rises}."
+    }
+  }
+}

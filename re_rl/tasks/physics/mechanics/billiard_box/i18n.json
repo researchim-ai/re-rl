@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Прямоугольный стол шириной {width} и высотой {height}. Шар стартует из угла (0, 0) и летит так, что за одно и то же время проходит одинаковые пути по горизонтали и по вертикали. Сторона 1 вертикальная: удар о неё меняет направление по горизонтали. Сторона 2 горизонтальная: удар меняет направление по вертикали. Попадание в угол останавливает шар и ударом о сторону не считается. Сколько ударов о стороны будет до первого угла?",
+      "en": "A rectangular table has width {width} and height {height}. A ball starts at corner (0, 0) and travels equal horizontal and vertical distances in the same time. Side 1 is vertical: a hit reverses the horizontal direction. Side 2 is horizontal: a hit reverses the vertical direction. Reaching a corner stops the ball and does not count as a side hit. How many side hits happen before the first corner?"
+    },
+    "s1": {
+      "ru": "Прямоугольный стол шириной {width} и высотой {height}. Шар стартует из угла (0, 0) и летит так, что за одно и то же время проходит одинаковые пути по горизонтали и по вертикали. Сторона 1 вертикальная: удар о неё меняет направление по горизонтали. Сторона 2 горизонтальная: удар меняет направление по вертикали. Попадание в угол останавливает шар и ударом о сторону не считается. Какова координата y удара номер {k}?",
+      "en": "A rectangular table has width {width} and height {height}. A ball starts at corner (0, 0) and travels equal horizontal and vertical distances in the same time. Side 1 is vertical: a hit reverses the horizontal direction. Side 2 is horizontal: a hit reverses the vertical direction. Reaching a corner stops the ball and does not count as a side hit. What is the y-coordinate of hit number {k}?"
+    },
+    "s2": {
+      "ru": "Удар {i}: сторона {side}, точка {x}, {y}.",
+      "en": "Hit {i}: side {side}, point {x}, {y}."
+    },
+    "s3": {
+      "ru": "Ударов о стороны {hits}. Первый угол: {x}, {y}.",
+      "en": "Side hits: {hits}. The first corner is {x}, {y}."
+    }
+  }
+}

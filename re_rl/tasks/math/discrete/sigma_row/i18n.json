@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для каждого числа от 1 до {n} сложите все его положительные делители, включая 1 и само число. Какова сумма этих сумм?",
+      "en": "For each number from 1 to {n}, add all its positive divisors, including 1 and the number itself. What is the sum of these sums?"
+    },
+    "s1": {
+      "ru": "Для каждого числа от 1 до {n} сложите все его положительные делители, включая 1 и само число. Какова сумма делителей числа {k}?",
+      "en": "For each number from 1 to {n}, add all its positive divisors, including 1 and the number itself. What is the sum of the divisors of {k}?"
+    },
+    "s2": {
+      "ru": "Число {i}: сумма делителей {sigma}, накоплено {total}.",
+      "en": "Number {i}: divisor sum {sigma}, running total {total}."
+    }
+  }
+}

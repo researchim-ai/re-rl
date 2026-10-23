@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сложите целые части i*{numer}/{denom} для i от 1 до {n}. Деление округляет вниз. Какова сумма?",
+      "en": "Add the integer parts of i*{numer}/{denom} for i from 1 to {n}. Division rounds down. What is the sum?"
+    },
+    "s1": {
+      "ru": "Сложите целые части i*{numer}/{denom} для i от 1 до {n}. Деление округляет вниз. На каком i сумма впервые достигает {threshold}? Если не достигает, ответ 0.",
+      "en": "Add the integer parts of i*{numer}/{denom} for i from 1 to {n}. Division rounds down. At which i does the sum first reach {threshold}? If it never does, the answer is 0."
+    },
+    "s2": {
+      "ru": "i = {i}: слагаемое {term}, сумма {total}, переход {cross}.",
+      "en": "i = {i}: term {term}, sum {total}, crossing {cross}."
+    }
+  }
+}

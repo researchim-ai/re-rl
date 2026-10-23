@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сложите {n} членов геометрической прогрессии. Первый член 1, каждый следующий умножается на {ratio}. Какова сумма?",
+      "en": "Add {n} terms of a geometric progression. The first term is 1, and each next term is multiplied by {ratio}. What is the sum?"
+    },
+    "s1": {
+      "ru": "В геометрической прогрессии {n} членов. Первый член 1, каждый следующий умножается на {ratio}. Каков последний член?",
+      "en": "A geometric progression has {n} terms. The first term is 1, and each next term is multiplied by {ratio}. What is the last term?"
+    },
+    "s2": {
+      "ru": "Член {i}: {power}. Сумма {total}.",
+      "en": "Term {i}: {power}. Sum {total}."
+    }
+  }
+}

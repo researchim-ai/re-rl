@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кандидатов {candidates}, номера с 1. Бюллетеней {n}, в каждом номер выбранного: {listing}. У кого больше голосов, тот побеждает. При равенстве побеждает меньший номер. Сколько голосов у кандидата {k}?",
+      "en": "There are {candidates} candidates, numbered from 1. There are {n} ballots, each with the chosen number: {listing}. Whoever has more votes wins. On a tie, the smaller number wins. How many votes does candidate {k} have?"
+    },
+    "s1": {
+      "ru": "Кандидатов {candidates}, номера с 1. Бюллетеней {n}, в каждом номер выбранного: {listing}. У кого больше голосов, тот побеждает. При равенстве побеждает меньший номер. Каков номер победителя?",
+      "en": "There are {candidates} candidates, numbered from 1. There are {n} ballots, each with the chosen number: {listing}. Whoever has more votes wins. On a tie, the smaller number wins. What is the winner's number?"
+    },
+    "s2": {
+      "ru": "Бюллетень {i}: голос {vote}. Лидер {winner}.",
+      "en": "Ballot {i}: vote {vote}. Leader {winner}."
+    }
+  }
+}

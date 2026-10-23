@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Точка начинает в (0, 0). Спираль идёт на восток, затем на север, затем две клетки на запад, две на юг, потом ноги становятся длиннее на 1 каждые два поворота. Восток увеличивает x, север увеличивает y. Какова координата x после {n} шагов?",
+      "en": "A point starts at (0, 0). The spiral goes east, then north, then two cells west, two cells south, and the legs grow by 1 after every two turns. East increases x and north increases y. What is the x coordinate after {n} steps?"
+    },
+    "s1": {
+      "ru": "Точка начинает в (0, 0). Спираль идёт на восток, затем на север, затем две клетки на запад, две на юг, потом ноги становятся длиннее на 1 каждые два поворота. Восток увеличивает x, север увеличивает y. Какова сумма модулей координат после {n} шагов?",
+      "en": "A point starts at (0, 0). The spiral goes east, then north, then two cells west, two cells south, and the legs grow by 1 after every two turns. East increases x and north increases y. What is the sum of the absolute values of the coordinates after {n} steps?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: x {x}, y {y}.",
+      "en": "Step {i}: x {x}, y {y}."
+    }
+  }
+}

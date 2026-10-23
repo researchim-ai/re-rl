@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "У {n} детей рейтинги слева направо: {listing}. Сначала у каждого одна конфета. Слева направо: если рейтинг выше, чем у левого соседа, конфет становится на одну больше, чем у него. Справа налево: если рейтинг выше, чем у правого соседа, конфет становится не меньше, чем на одну больше, чем у него. Сколько конфет нужно всего?",
+      "en": "There are {n} children with ratings from left to right: {listing}. Each starts with one candy. From left to right: if a rating is higher than the left neighbor's, the child gets one more candy than that neighbor. From right to left: if a rating is higher than the right neighbor's, the child gets at least one more candy than that neighbor. How many candies are needed in total?"
+    },
+    "s1": {
+      "ru": "У {n} детей рейтинги слева направо: {listing}. Сначала у каждого одна конфета. Слева направо: если рейтинг выше, чем у левого соседа, конфет становится на одну больше, чем у него. Справа налево: если рейтинг выше, чем у правого соседа, конфет становится не меньше, чем на одну больше, чем у него. Сколько конфет у ребёнка {k}? Дети нумеруются с 1.",
+      "en": "There are {n} children with ratings from left to right: {listing}. Each starts with one candy. From left to right: if a rating is higher than the left neighbor's, the child gets one more candy than that neighbor. From right to left: if a rating is higher than the right neighbor's, the child gets at least one more candy than that neighbor. How many candies does child {k} get? Children are numbered from 1."
+    },
+    "s2": {
+      "ru": "Слева направо, ребёнок {i}, рейтинг {rating}: конфет {candies}.",
+      "en": "Left to right, child {i}, rating {rating}: candies {candies}."
+    },
+    "s3": {
+      "ru": "После прохода справа, ребёнок {i}: конфет {candies}.",
+      "en": "After the right-to-left pass, child {i}: candies {candies}."
+    }
+  }
+}

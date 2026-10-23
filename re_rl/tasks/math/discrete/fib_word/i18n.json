@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка номер 1 состоит из символа 0. Чтобы получить следующую строку, каждый символ 0 заменяется на 01, а каждый символ 1 заменяется на 0. Какова длина строки номер {n}?",
+      "en": "String number 1 consists of the symbol 0. To get the next string, every symbol 0 is replaced by 01, and every symbol 1 is replaced by 0. What is the length of string number {n}?"
+    },
+    "s1": {
+      "ru": "Строка номер 1 состоит из символа 0. Чтобы получить следующую строку, каждый символ 0 заменяется на 01, а каждый символ 1 заменяется на 0. Сколько символов 1 в строке номер {n}?",
+      "en": "String number 1 consists of the symbol 0. To get the next string, every symbol 0 is replaced by 01, and every symbol 1 is replaced by 0. How many symbols 1 are in string number {n}?"
+    },
+    "s2": {
+      "ru": "Строка {i}: длина {length}, символов 1 равно {ones}.",
+      "en": "String {i}: length {length}, symbols 1 equal {ones}."
+    }
+  }
+}

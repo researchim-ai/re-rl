@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Есть {n} гирь массами {weights}. Груз массы {target} стоит на левой чаше. Каждую гирю ставят на левую чашу вместе с грузом, на правую чашу или не используют. В записи положения -1 означает левую чашу, 1 — правую, 0 — гиря не используется. Чаши должны уравновеситься. Найдите суммарную массу гирь на правой чаше.",
+      "en": "There are {n} weights of masses {weights}. An object of mass {target} is on the left pan. Each weight goes on the left pan with the object, on the right pan, or stays unused. In the placement code, -1 means the left pan, 1 means the right pan, and 0 means unused. The pans must balance. Find the total mass of the weights on the right pan."
+    },
+    "s1": {
+      "ru": "Есть {n} гирь массами {weights}. Груз массы {target} стоит на левой чаше. Каждую гирю ставят на левую чашу вместе с грузом, на правую чашу или не используют. В записи положения -1 означает левую чашу, 1 — правую, 0 — гиря не используется. Чаши должны уравновеситься. Сколько гирь использовано?",
+      "en": "There are {n} weights of masses {weights}. An object of mass {target} is on the left pan. Each weight goes on the left pan with the object, on the right pan, or stays unused. In the placement code, -1 means the left pan, 1 means the right pan, and 0 means unused. The pans must balance. How many weights are used?"
+    },
+    "s2": {
+      "ru": "Гиря {weight}: остаток {remainder}, положение {place}, текущее значение {left}.",
+      "en": "Weight {weight}: remainder {remainder}, placement {place}, current value {left}."
+    },
+    "s3": {
+      "ru": "Справа {right}, использовано гирь {used}.",
+      "en": "The right pan holds {right}, and {used} weights are used."
+    }
+  }
+}

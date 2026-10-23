@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Последовательность начинает с 0. На шаге t из текущего числа вычитается t, если результат положителен и ещё не встречался. Иначе t прибавляется. Каково число после {n} шагов?",
+      "en": "The sequence starts at 0. At step t, subtract t from the current number when the result is positive and has not occurred yet. Otherwise add t. What is the number after {n} steps?"
+    },
+    "s1": {
+      "ru": "Последовательность начинает с 0. На шаге t из текущего числа вычитается t, если результат положителен и ещё не встречался. Иначе t прибавляется. Сколько раз за {n} шагов удалось вычесть?",
+      "en": "The sequence starts at 0. At step t, subtract t from the current number when the result is positive and has not occurred yet. Otherwise add t. How many times during {n} steps was subtraction used?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: число {value}, вычитаний {subs}.",
+      "en": "Step {i}: number {value}, subtractions {subs}."
+    }
+  }
+}

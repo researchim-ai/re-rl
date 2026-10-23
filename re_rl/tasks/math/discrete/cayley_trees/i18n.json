@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число деревьев на {vertices} помеченных вершинах равно {vertices} в степени {n}. Начните с 1 и умножьте на {vertices} ровно {n} раз. Каково это число?",
+      "en": "The number of trees on {vertices} labeled vertices is {vertices} to the power {n}. Start at 1 and multiply by {vertices} exactly {n} times. What is that number?"
+    },
+    "s1": {
+      "ru": "Число деревьев на {vertices} помеченных вершинах равно {vertices} в степени {n}. Начните с 1 и умножьте на {vertices} ровно {n} раз. Каково произведение после {k} умножений?",
+      "en": "The number of trees on {vertices} labeled vertices is {vertices} to the power {n}. Start at 1 and multiply by {vertices} exactly {n} times. What is the product after {k} multiplications?"
+    },
+    "s2": {
+      "ru": "Умножение {i}: произведение {value}.",
+      "en": "Multiplication {i}: product {value}."
+    }
+  }
+}

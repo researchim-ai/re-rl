@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Запишите число {number} жадно суммой различных чисел из списка {listing}. Идём от больших к меньшим: если число не больше остатка, берём его. Соседние взятые числа не обязательны, жадный выбор сам их разводит. Сколько чисел взято?",
+      "en": "Write {number} greedily as a sum of distinct values from {listing}. Go from large to small: take a value when it does not exceed the remainder. How many values are taken?"
+    },
+    "s1": {
+      "ru": "Запишите число {number} жадно суммой различных чисел из списка {listing}. Идём от больших к меньшим: если число не больше остатка, берём его. Взят ли элемент номер {k}? Элементы нумеруются с 1 от меньшего к большему. Ответ 1, если взят, и 0, если нет.",
+      "en": "Write {number} greedily as a sum of distinct values from {listing}. Go from large to small: take a value when it does not exceed the remainder. Is entry number {k} taken? Entries are numbered from 1, from small to large. Answer 1 if it is taken and 0 if not."
+    },
+    "s2": {
+      "ru": "Число {i} равно {fib}. Берём {take}. Остаток {left}.",
+      "en": "Value {i} is {fib}. Taken {take}. Remainder {left}."
+    }
+  }
+}

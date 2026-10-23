@@ -15,6 +15,10 @@
     "s3": {
       "ru": "Найдите δ_{t}.",
       "en": "Find δ_{t}."
+    },
+    "s4": {
+      "ru": "С шага {i} назад: дельта {delta}, накопленное преимущество {acc}.",
+      "en": "Backward from step {i}: delta {delta}, accumulated advantage {acc}."
     }
   }
 }

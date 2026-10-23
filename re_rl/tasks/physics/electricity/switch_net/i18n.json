@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сеть из {n} выключателей. Запись i:1 означает, что выключатель i замкнут, i:0 — разомкнут. Знак & — последовательное соединение, оба участка должны проводить. Знак | — параллельное соединение, достаточно одного. Схема: {expr}. Проводит ли цепь от входа к выходу? Ответ 1, если да, и 0, если нет.",
+      "en": "A network has {n} switches. The mark i:1 means switch i is closed, and i:0 means it is open. The sign & is a series link: both parts must conduct. The sign | is a parallel link: either part is enough. The circuit is {expr}. Does current flow from the input to the output? Answer 1 if yes and 0 if no."
+    },
+    "s1": {
+      "ru": "Сеть из {n} выключателей. Запись i:1 означает, что выключатель i замкнут, i:0 — разомкнут. Знак & — последовательное соединение, оба участка должны проводить. Знак | — параллельное соединение, достаточно одного. Схема: {expr}. Изменится ли проводимость, если переключить выключатель {k}? Ответ 1, если изменится, и 0, если нет.",
+      "en": "A network has {n} switches. The mark i:1 means switch i is closed, and i:0 means it is open. The sign & is a series link: both parts must conduct. The sign | is a parallel link: either part is enough. The circuit is {expr}. Does the conductivity change if switch {k} is toggled? Answer 1 if it changes and 0 if it does not."
+    },
+    "s2": {
+      "ru": "Последовательно: {left} и {right} дают {value}.",
+      "en": "Series: {left} and {right} give {value}."
+    },
+    "s3": {
+      "ru": "Параллельно: {left} и {right} дают {value}.",
+      "en": "Parallel: {left} and {right} give {value}."
+    },
+    "s4": {
+      "ru": "После переключения {k}: было {before}, стало {after}, изменение {changes}.",
+      "en": "After toggling {k}: it was {before}, it became {after}, change {changes}."
+    }
+  }
+}

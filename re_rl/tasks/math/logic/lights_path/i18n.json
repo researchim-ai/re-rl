@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В ряду {n} ламп, 1 означает «горит». Начальное состояние: {state}. Кнопка i переключает лампы i и i+1. Последняя кнопка переключает только свою лампу. Каждое нажатие меняет 0 на 1 и 1 на 0. Сколько кнопок нужно нажать, чтобы все лампы погасли?",
+      "en": "A row has {n} lamps, and 1 means on. The initial state is {state}. Button i toggles lamps i and i+1. The last button toggles only its own lamp. Each press swaps 0 and 1. How many buttons must be pressed to turn every lamp off?"
+    },
+    "s1": {
+      "ru": "В ряду {n} ламп, 1 означает «горит». Начальное состояние: {state}. Кнопка i переключает лампы i и i+1. Последняя кнопка переключает только свою лампу. Каждое нажатие меняет 0 на 1 и 1 на 0. Нужно ли нажать кнопку {k}, чтобы все лампы погасли? Ответ 1, если да, и 0, если нет.",
+      "en": "A row has {n} lamps, and 1 means on. The initial state is {state}. Button i toggles lamps i and i+1. The last button toggles only its own lamp. Each press swaps 0 and 1. Must button {k} be pressed to turn every lamp off? Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "Кнопка {i}: нажатие {press}. Состояние после неё: {state}.",
+      "en": "Button {i}: press {press}. State afterwards: {state}."
+    }
+  }
+}

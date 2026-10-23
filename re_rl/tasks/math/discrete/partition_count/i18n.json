@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколькими способами можно разложить {n} на положительные слагаемые без учёта порядка? Слагаемые можно повторять. Одно число {n} тоже считается разложением.",
+      "en": "In how many ways can {n} be written as a sum of positive integers, ignoring order? Parts may be repeated. The number {n} itself counts as one way."
+    },
+    "s1": {
+      "ru": "Сколькими способами можно разложить {n} на положительные попарно различные слагаемые без учёта порядка? Одно число {n} тоже считается разложением.",
+      "en": "In how many ways can {n} be written as a sum of positive pairwise distinct integers, ignoring order? The number {n} itself counts as one way."
+    },
+    "s2": {
+      "ru": "После разрешения части {part} ({rule}) число способов для {n} равно {ways}.",
+      "en": "After allowing part {part} ({rule}) the number of ways for {n} is {ways}."
+    },
+    "s4": {
+      "ru": "повторы разрешены",
+      "en": "repeats allowed"
+    },
+    "s5": {
+      "ru": "части различны",
+      "en": "parts distinct"
+    }
+  }
+}

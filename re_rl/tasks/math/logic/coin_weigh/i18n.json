@@ -1,0 +1,32 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Предметов {items}, номера с 1. Ровно один тяжелее остальных, остальные равны. Взвешиваний {n}. Запись — левая чаша, правая чаша, исход: {listing}. Исход: лево значит левая чаша тяжелее, право — правая, ровно — чаши равны. Какой предмет тяжелее? Если по взвешиваниям он не единственный, ответ 0.",
+      "en": "There are {items} objects, numbered from 1. Exactly one is heavier, and the others are equal. There are {n} weighings. Each entry is the left pan, the right pan, and the outcome: {listing}. Outcome: left means the left pan is heavier, right means the right pan, even means the pans balance. Which object is heavier? If the weighings do not leave a single one, the answer is 0."
+    },
+    "s1": {
+      "ru": "Предметов {items}, номера с 1. Ровно один тяжелее остальных, остальные равны. Взвешиваний {n}. Запись — левая чаша, правая чаша, исход: {listing}. Исход: лево значит левая чаша тяжелее, право — правая, ровно — чаши равны. На каком взвешивании подозреваемый впервые остаётся один? Если так и не остаётся, ответ 0.",
+      "en": "There are {items} objects, numbered from 1. Exactly one is heavier, and the others are equal. There are {n} weighings. Each entry is the left pan, the right pan, and the outcome: {listing}. Outcome: left means the left pan is heavier, right means the right pan, even means the pans balance. At which weighing does a single suspect remain for the first time? If that never happens, the answer is 0."
+    },
+    "s2": {
+      "ru": "Взвешивание {i}: ещё возможны {possible}, впервые один на шаге {seen}, кандидат {only}.",
+      "en": "Weighing {i}: still possible {possible}, first unique at step {seen}, candidate {only}."
+    },
+    "s3": {
+      "ru": "Тяжёлый по всем взвешиваниям {heavy}. Впервые один на шаге {seen}.",
+      "en": "Heavy after all weighings {heavy}. First unique at step {seen}."
+    },
+    "s4": {
+      "ru": "лево",
+      "en": "left"
+    },
+    "s5": {
+      "ru": "право",
+      "en": "right"
+    },
+    "s6": {
+      "ru": "ровно",
+      "en": "even"
+    }
+  }
+}

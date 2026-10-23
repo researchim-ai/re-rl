@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке несколько обычных циферблатов, под каждым номер. Короткая стрелка часовая, длинная минутная. 12 стоит сверху. Час читается как число от 1 до 12. Чему равна сумма часов?",
+      "en": "The picture shows several ordinary clock faces, each with a number underneath. The short hand is the hour hand and the long hand is the minute hand. 12 is at the top. Read each hour as a number from 1 to 12. What is the sum of the hours?"
+    },
+    "s1": {
+      "ru": "На картинке несколько обычных циферблатов, под каждым номер. Короткая стрелка часовая, длинная минутная. 12 стоит сверху. Чему равна сумма минут?",
+      "en": "The picture shows several ordinary clock faces, each with a number underneath. The short hand is the hour hand and the long hand is the minute hand. 12 is at the top. What is the sum of the minutes?"
+    },
+    "s2": {
+      "ru": "Часы {i}: {hour} часов {minute} минут.",
+      "en": "Clock {i}: {hour} hours {minute} minutes."
+    },
+    "s3": {
+      "ru": "Сумма часов {hour_sum}, сумма минут {minute_sum}.",
+      "en": "The hour sum is {hour_sum}, and the minute sum is {minute_sum}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив из {n} чисел, индексы с 1: {listing}. Минимум на отрезке берётся по разреженной таблице: блок длины 2 в степени t равен минимуму двух половинок. Каков минимум с {left} по {right} включительно?",
+      "en": "An array of {n} numbers, indexes from 1: {listing}. A range minimum uses a sparse table: a block of length 2 to the power t is the minimum of its two halves. What is the minimum from {left} through {right}, ends included?"
+    },
+    "s1": {
+      "ru": "Массив из {n} чисел, индексы с 1: {listing}. Уровень 0 — сам массив. На уровне t в ячейке i стоит минимум блока длины 2 в степени t, который начинается в i. Каково значение ячейки {index} на уровне {level}? Нумерация ячеек и уровней с 1 для ячеек и с 0 для уровня в описании правила, а спрашиваемый уровень уже указан числом.",
+      "en": "An array of {n} numbers, indexes from 1: {listing}. Level 0 is the array itself. At level t, cell i stores the minimum of the block of length 2 to the power t that starts at i. What is cell {index} at level {level}? Cells are numbered from 1."
+    },
+    "s2": {
+      "ru": "Позиция {i}: значение {value}.",
+      "en": "Position {i}: value {value}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Четыре инструмента. Запись — номер, цена и типы через пробел: {tools}. Запросы по типам, всего {n}: {queries}. Для запроса берётся самый дешёвый инструмент, который умеет этот тип. При равной цене берётся меньший номер. Какова суммарная цена?",
+      "en": "There are four tools. Each entry is the number, the price, and the types separated by spaces: {tools}. Requests by type, {n} in total: {queries}. A request uses the cheapest tool that handles its type. If prices are equal, the smaller number wins. What is the total price?"
+    },
+    "s1": {
+      "ru": "Четыре инструмента. Запись — номер, цена и типы через пробел: {tools}. Запросы по типам, всего {n}: {queries}. Для запроса берётся самый дешёвый инструмент, который умеет этот тип. При равной цене берётся меньший номер. Какой инструмент берёт запрос {k}? Запросы нумеруются с 1.",
+      "en": "There are four tools. Each entry is the number, the price, and the types separated by spaces: {tools}. Requests by type, {n} in total: {queries}. A request uses the cheapest tool that handles its type. If prices are equal, the smaller number wins. Which tool takes request {k}? Requests are numbered from 1."
+    },
+    "s2": {
+      "ru": "Запрос {i}, тип {kind}: инструмент {tool}. Цена всего {cost}.",
+      "en": "Request {i}, type {kind}: tool {tool}. Price so far {cost}."
+    }
+  }
+}

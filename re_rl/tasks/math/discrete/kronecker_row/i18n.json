@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Символ Кронекера числа {number} по модулям от 1 до {n}. Если общий делитель больше 1, символ равен 0. Иначе вынесите из модуля все двойки: если их нечётное число и число даёт 3 или 5 при делении на 8, знак меняется на каждой такой двойке. Оставшийся нечётный модуль считается символом Якоби: двойки числителя выносятся с тем же правилом знака, а если и числитель, и модуль дают 3 при делении на 4, знак меняется и они меняются местами. Какова сумма символов?",
+      "en": "The Kronecker symbol of {number} at the moduli from 1 to {n}. If the two numbers have a common divisor greater than 1, the symbol is 0. Otherwise remove every factor of two from the modulus: if their count is odd and the number is 3 or 5 modulo 8, the sign flips for each such factor. The remaining odd modulus is a Jacobi symbol: factors of two in the numerator use the same sign rule, and if both the numerator and the modulus are 3 modulo 4, the sign flips and they are swapped. What is the sum of the symbols?"
+    },
+    "s1": {
+      "ru": "Символ Кронекера числа {number} по модулям от 1 до {n}. Если общий делитель больше 1, символ равен 0. Иначе вынесите из модуля все двойки: если их нечётное число и число даёт 3 или 5 при делении на 8, знак меняется на каждой такой двойке. Оставшийся нечётный модуль считается символом Якоби: двойки числителя выносятся с тем же правилом знака, а если и числитель, и модуль дают 3 при делении на 4, знак меняется и они меняются местами. Каков символ по модулю {k}?",
+      "en": "The Kronecker symbol of {number} at the moduli from 1 to {n}. If the two numbers have a common divisor greater than 1, the symbol is 0. Otherwise remove every factor of two from the modulus: if their count is odd and the number is 3 or 5 modulo 8, the sign flips for each such factor. The remaining odd modulus is a Jacobi symbol: factors of two in the numerator use the same sign rule, and if both the numerator and the modulus are 3 modulo 4, the sign flips and they are swapped. What is the symbol modulo {k}?"
+    },
+    "s2": {
+      "ru": "Модуль {m}: нод {common}, двоек {twos}, знак {sign}, нечётный остаток {odd}, символ {symbol}, сумма {total}.",
+      "en": "Modulus {m}: gcd {common}, twos {twos}, sign {sign}, odd part {odd}, symbol {symbol}, sum {total}."
+    }
+  }
+}

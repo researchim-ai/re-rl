@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Функция Эйлера числа 1 равна 1. Дальше для каждого i от 2 до {n}: если значение ещё равно i, число простое, и у каждого его кратного j значение заменяется на старое значение, делённое на i и умноженное на i-1. Чему равна функция Эйлера числа {n}?",
+      "en": "The Euler totient of 1 is 1. Then for each i from 2 to {n}: if the value is still i, the number is prime, and for every multiple j the value is replaced by the old value divided by i and multiplied by i-1. What is the Euler totient of {n}?"
+    },
+    "s1": {
+      "ru": "Функция Эйлера числа 1 равна 1. Дальше для каждого i от 2 до {n}: если значение ещё равно i, число простое, и у каждого его кратного j значение заменяется на старое значение, делённое на i и умноженное на i-1. Чему равна сумма значений функции Эйлера от 1 до {n}?",
+      "en": "The Euler totient of 1 is 1. Then for each i from 2 to {n}: if the value is still i, the number is prime, and for every multiple j the value is replaced by the old value divided by i and multiplied by i-1. What is the sum of the Euler totient from 1 through {n}?"
+    },
+    "s2": {
+      "ru": "Число {i}: значение {phi}, сумма {total}.",
+      "en": "Number {i}: value {phi}, sum {total}."
+    }
+  }
+}

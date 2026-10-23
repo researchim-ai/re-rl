@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тумблеров {n}, все начинают выключенными, номера с 1. Команды по порядку переключают тумблер: {listing}. Включён ли тумблер {k}? Ответ 1, если да, и 0, если нет.",
+      "en": "There are {n} switches, all starting off, numbered from 1. Commands toggle a switch in order: {listing}. Is switch {k} on? Answer 1 if yes and 0 if no."
+    },
+    "s1": {
+      "ru": "Тумблеров {n}, все начинают выключенными, номера с 1. Команды по порядку переключают тумблер: {listing}. Сколько тумблеров включено в конце?",
+      "en": "There are {n} switches, all starting off, numbered from 1. Commands toggle a switch in order: {listing}. How many switches are on at the end?"
+    },
+    "s2": {
+      "ru": "Команда {i}: тумблер {switch} теперь {bit}. Включено {ons}.",
+      "en": "Command {i}: switch {switch} is now {bit}. On {ons}."
+    }
+  }
+}

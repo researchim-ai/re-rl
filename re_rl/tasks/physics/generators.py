@@ -151,6 +151,49 @@ from re_rl.tasks.physics.fluids.cascade_tanks_task import CascadeTanksTask
 from re_rl.tasks.physics.networks.network_reduce_task import NetworkReduceTask
 from re_rl.tasks.physics.quantum.decay_generations_task import DecayGenerationsTask
 from re_rl.tasks.physics.mechanics.bounce_heights_task import BounceHeightsTask
+from re_rl.tasks.physics.electricity.charge_redistribute_task import ChargeRedistributeTask
+from re_rl.tasks.physics.relativity.boost_chain_task import BoostChainTask
+from re_rl.tasks.physics.mechanics.weighing_trace_task import WeighingTraceTask
+from re_rl.tasks.physics.electricity.switch_net_task import SwitchNetTask
+from re_rl.tasks.physics.mechanics.billiard_box_task import BilliardBoxTask
+from re_rl.tasks.physics.mechanics.mobile_torque_task import MobileTorqueTask
+from re_rl.tasks.physics.mechanics.traffic_light_task import TrafficLightTask
+from re_rl.tasks.physics.measurements.drop_cross_task import DropCrossTask
+from re_rl.tasks.physics.mechanics.ternary_balance_task import TernaryBalanceTask
+from re_rl.tasks.physics.mechanics.siding_counter_task import SidingCounterTask
+from re_rl.tasks.physics.mechanics.motion_segments_task import MotionSegmentsTask
+from re_rl.tasks.physics.mechanics.slope_run_task import SlopeRunTask
+from re_rl.tasks.physics.mechanics.echo_bounce_task import EchoBounceTask
+from re_rl.tasks.physics.mechanics.fall_ticks_task import FallTicksTask
+from re_rl.tasks.physics.mechanics.friction_slide_task import FrictionSlideTask
+from re_rl.tasks.physics.thermodynamics.heat_mix_task import HeatMixTask
+from re_rl.tasks.physics.thermodynamics.heat_rod_task import HeatRodTask
+from re_rl.tasks.physics.waves.wave_row_task import WaveRowTask
+from re_rl.tasks.physics.electricity.leak_charge_task import LeakChargeTask
+from re_rl.tasks.physics.electricity.resistor_ladder_task import ResistorLadderTask
+from re_rl.tasks.physics.waves.doppler_chain_task import DopplerChainTask
+from re_rl.tasks.physics.fluids.float_load_task import FloatLoadTask
+from re_rl.tasks.physics.thermodynamics.melt_heat_task import MeltHeatTask
+from re_rl.tasks.physics.mechanics.throw_ticks_task import ThrowTicksTask
+from re_rl.tasks.physics.mechanics.impulse_run_task import ImpulseRunTask
+from re_rl.tasks.physics.mechanics.beam_load_task import BeamLoadTask
+from re_rl.tasks.physics.mechanics.mass_shift_task import MassShiftTask
+from re_rl.tasks.physics.mechanics.spring_join_task import SpringJoinTask
+from re_rl.tasks.physics.waves.optic_path_task import OpticPathTask
+from re_rl.tasks.physics.waves.pulse_meet_task import PulseMeetTask
+from re_rl.tasks.physics.thermodynamics.cool_ticks_task import CoolTicksTask
+from re_rl.tasks.physics.electricity.series_cap_task import SeriesCapTask
+from re_rl.tasks.physics.fluids.column_pressure_task import ColumnPressureTask
+from re_rl.tasks.physics.mechanics.cradle_hit_task import CradleHitTask
+from re_rl.tasks.physics.quantum.photon_eject_task import PhotonEjectTask
+from re_rl.tasks.physics.astrophysics.orbit_years_task import OrbitYearsTask
+from re_rl.tasks.physics.waves.grating_order_task import GratingOrderTask
+from re_rl.tasks.physics.magnetism.wire_force_task import WireForceTask
+from re_rl.tasks.physics.astrophysics.escape_speed_task import EscapeSpeedTask
+from re_rl.tasks.physics.waves.harmonic_nodes_task import HarmonicNodesTask
+from re_rl.tasks.physics.waves.snell_shift_task import SnellShiftTask
+from re_rl.tasks.physics.thermodynamics.heat_steps_task import HeatStepsTask
+from re_rl.tasks.physics.fluids.hydraulic_lift_task import HydraulicLiftTask
 
 
 ##################################################
@@ -845,6 +888,264 @@ def generate_random_bounce_heights_task(task_type: str = None, language: str = "
                                                   detail_level=detail_level, difficulty=difficulty,
                                                   **kwargs)
 
+def generate_random_charge_redistribute_task(task_type: str = None, language: str = "ru",
+                                             detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ChargeRedistributeTask.generate_random_task(task_type=task_type, language=language,
+                                                       detail_level=detail_level, difficulty=difficulty,
+                                                       **kwargs)
+
+def generate_random_boost_chain_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BoostChainTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_weighing_trace_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return WeighingTraceTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_switch_net_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SwitchNetTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_billiard_box_task(task_type: str = None, language: str = "ru",
+                                      detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BilliardBoxTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_mobile_torque_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return MobileTorqueTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_traffic_light_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return TrafficLightTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_drop_cross_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return DropCrossTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_ternary_balance_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return TernaryBalanceTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty,
+                                                   **kwargs)
+
+def generate_random_siding_counter_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SidingCounterTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_motion_segments_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return MotionSegmentsTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty,
+                                                   **kwargs)
+
+def generate_random_slope_run_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SlopeRunTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_echo_bounce_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return EchoBounceTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_fall_ticks_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return FallTicksTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_friction_slide_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return FrictionSlideTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_heat_mix_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HeatMixTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_heat_rod_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HeatRodTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_wave_row_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return WaveRowTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_leak_charge_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return LeakChargeTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_resistor_ladder_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ResistorLadderTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty,
+                                                   **kwargs)
+
+def generate_random_doppler_chain_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return DopplerChainTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_float_load_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return FloatLoadTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_throw_ticks_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ThrowTicksTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_impulse_run_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ImpulseRunTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_beam_load_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BeamLoadTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_mass_shift_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return MassShiftTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_spring_join_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SpringJoinTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_optic_path_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return OpticPathTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_pulse_meet_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return PulseMeetTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_cool_ticks_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return CoolTicksTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_series_cap_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SeriesCapTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_cradle_hit_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return CradleHitTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_photon_eject_task(task_type: str = None, language: str = "ru",
+                                      detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return PhotonEjectTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_orbit_years_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return OrbitYearsTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_grating_order_task(task_type: str = None, language: str = "ru",
+                                       detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return GratingOrderTask.generate_random_task(task_type=task_type, language=language,
+                                                 detail_level=detail_level, difficulty=difficulty,
+                                                 **kwargs)
+
+def generate_random_wire_force_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return WireForceTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_escape_speed_task(task_type: str = None, language: str = "ru",
+                                      detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return EscapeSpeedTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_harmonic_nodes_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HarmonicNodesTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_snell_shift_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SnellShiftTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_heat_steps_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HeatStepsTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_hydraulic_lift_task(task_type: str = None, language: str = "ru",
+                                        detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HydraulicLiftTask.generate_random_task(task_type=task_type, language=language,
+                                                  detail_level=detail_level, difficulty=difficulty,
+                                                  **kwargs)
+
+def generate_random_column_pressure_task(task_type: str = None, language: str = "ru",
+                                         detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ColumnPressureTask.generate_random_task(task_type=task_type, language=language,
+                                                   detail_level=detail_level, difficulty=difficulty,
+                                                   **kwargs)
+
+def generate_random_melt_heat_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return MeltHeatTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
 def generate_random_calorimetry_mix_task(task_type: str = None, language: str = "ru",
                                          detail_level: int = 3, difficulty: int = 5):
     return CalorimetryMixTask.generate_random_task(task_type=task_type, language=language,
@@ -993,6 +1294,49 @@ ALL_PHYSICS_TASK_GENERATORS = {
     "network_reduce": generate_random_network_reduce_task,
     "decay_generations": generate_random_decay_generations_task,
     "bounce_heights": generate_random_bounce_heights_task,
+    "charge_redistribute": generate_random_charge_redistribute_task,
+    "boost_chain": generate_random_boost_chain_task,
+    "weighing_trace": generate_random_weighing_trace_task,
+    "switch_net": generate_random_switch_net_task,
+    "billiard_box": generate_random_billiard_box_task,
+    "mobile_torque": generate_random_mobile_torque_task,
+    "traffic_light": generate_random_traffic_light_task,
+    "drop_cross": generate_random_drop_cross_task,
+    "ternary_balance": generate_random_ternary_balance_task,
+    "siding_counter": generate_random_siding_counter_task,
+    "motion_segments": generate_random_motion_segments_task,
+    "slope_run": generate_random_slope_run_task,
+    "echo_bounce": generate_random_echo_bounce_task,
+    "fall_ticks": generate_random_fall_ticks_task,
+    "friction_slide": generate_random_friction_slide_task,
+    "heat_mix": generate_random_heat_mix_task,
+    "heat_rod": generate_random_heat_rod_task,
+    "wave_row": generate_random_wave_row_task,
+    "leak_charge": generate_random_leak_charge_task,
+    "resistor_ladder": generate_random_resistor_ladder_task,
+    "doppler_chain": generate_random_doppler_chain_task,
+    "float_load": generate_random_float_load_task,
+    "melt_heat": generate_random_melt_heat_task,
+    "throw_ticks": generate_random_throw_ticks_task,
+    "impulse_run": generate_random_impulse_run_task,
+    "beam_load": generate_random_beam_load_task,
+    "mass_shift": generate_random_mass_shift_task,
+    "spring_join": generate_random_spring_join_task,
+    "optic_path": generate_random_optic_path_task,
+    "pulse_meet": generate_random_pulse_meet_task,
+    "cool_ticks": generate_random_cool_ticks_task,
+    "series_cap": generate_random_series_cap_task,
+    "column_pressure": generate_random_column_pressure_task,
+    "cradle_hit": generate_random_cradle_hit_task,
+    "photon_eject": generate_random_photon_eject_task,
+    "orbit_years": generate_random_orbit_years_task,
+    "grating_order": generate_random_grating_order_task,
+    "wire_force": generate_random_wire_force_task,
+    "escape_speed": generate_random_escape_speed_task,
+    "harmonic_nodes": generate_random_harmonic_nodes_task,
+    "snell_shift": generate_random_snell_shift_task,
+    "heat_steps": generate_random_heat_steps_task,
+    "hydraulic_lift": generate_random_hydraulic_lift_task,
 }
 
 

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два состояния. Из состояния 1 выходят стрелки: {a0} в состояние 1 и {b0} в состояние 2. Из состояния 2: {a1} в состояние 1 и {b1} в состояние 2. В начале вес состояния 1 равен 1, вес состояния 2 равен 0. Новый вес состояния — это сумма весов источников, каждый умножен на число стрелок в это состояние. Какой вес будет у состояния 1 через {n} шагов?",
+      "en": "There are two states. State 1 has {a0} arrows to state 1 and {b0} arrows to state 2. State 2 has {a1} arrows to state 1 and {b1} arrows to state 2. Initially state 1 has weight 1 and state 2 has weight 0. The new weight of a state is the sum of each source weight times the number of arrows into that state. What is the weight of state 1 after {n} steps?"
+    },
+    "s1": {
+      "ru": "Два состояния. Из состояния 1 выходят стрелки: {a0} в состояние 1 и {b0} в состояние 2. Из состояния 2: {a1} в состояние 1 и {b1} в состояние 2. В начале вес состояния 1 равен 1, вес состояния 2 равен 0. Новый вес состояния — это сумма весов источников, каждый умножен на число стрелок в это состояние. Какой вес будет у состояния 2 через {n} шагов?",
+      "en": "There are two states. State 1 has {a0} arrows to state 1 and {b0} arrows to state 2. State 2 has {a1} arrows to state 1 and {b1} arrows to state 2. Initially state 1 has weight 1 and state 2 has weight 0. The new weight of a state is the sum of each source weight times the number of arrows into that state. What is the weight of state 2 after {n} steps?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: {w0}, {w1}.",
+      "en": "Step {i}: {w0}, {w1}."
+    }
+  }
+}

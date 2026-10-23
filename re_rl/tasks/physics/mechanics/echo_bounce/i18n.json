@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стены стоят в точках 0 и {length}. Звук стартует в точке {start} и сначала летит {way}. Скорость равна 1. Дойдя до стены, он разворачивается. Через сколько времени произойдёт удар номер {n}? Удары нумеруются с 1.",
+      "en": "Walls stand at 0 and {length}. Sound starts at {start} and first travels {way}. Its speed is 1. When it reaches a wall, it reverses. After how much time does hit number {n} happen? Hits are numbered from 1."
+    },
+    "s1": {
+      "ru": "Стены стоят в точках 0 и {length}. Звук стартует в точке {start} и сначала летит {way}. Скорость равна 1. Дойдя до стены, он разворачивается. Всего рассматривается {n} ударов. Через сколько времени произойдёт удар номер {k}?",
+      "en": "Walls stand at 0 and {length}. Sound starts at {start} and first travels {way}. Its speed is 1. When it reaches a wall, it reverses. The sequence has {n} hits. After how much time does hit number {k} happen?"
+    },
+    "s2": {
+      "ru": "Удар {i}: время {time}, стена {wall}.",
+      "en": "Hit {i}: time {time}, wall {wall}."
+    },
+    "s4": {
+      "ru": "к стене {length}",
+      "en": "toward the wall at {length}"
+    },
+    "s5": {
+      "ru": "к стене 0",
+      "en": "toward the wall at 0"
+    }
+  }
+}

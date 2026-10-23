@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Состояний {states}, оценки начинают с нуля. Проходов {n}. Запись — номер, награда политики, следующее состояние: {listing}. На проходе новая оценка равна награде плюс старая оценка следующего состояния. Старые оценки используются для всего прохода. Какова оценка состояния {k}?",
+      "en": "There are {states} states, and the values start at zero. There are {n} sweeps. Each entry is the index, the policy reward, and the next state: {listing}. On a sweep the new value is the reward plus the old value of the next state. The old values are used for the whole sweep. What is the value of state {k}?"
+    },
+    "s1": {
+      "ru": "Состояний {states}, оценки начинают с нуля. Проходов {n}. Запись — номер, награда политики, следующее состояние: {listing}. На проходе новая оценка равна награде плюс старая оценка следующего состояния. Старые оценки используются для всего прохода. Какова сумма оценок?",
+      "en": "There are {states} states, and the values start at zero. There are {n} sweeps. Each entry is the index, the policy reward, and the next state: {listing}. On a sweep the new value is the reward plus the old value of the next state. The old values are used for the whole sweep. What is the sum of the values?"
+    },
+    "s2": {
+      "ru": "Проход {i}: оценки {row}. Состояние из вопроса {value}, сумма {total}.",
+      "en": "Sweep {i}: values {row}. Asked state {value}, sum {total}."
+    }
+  }
+}

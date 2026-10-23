@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Запись из {n} битов, старший разряд слева: {listing}. Основание равно -2. Идём слева направо: накопленное значение умножается на -2 и к нему прибавляется очередной бит. Каково значение?",
+      "en": "A writing of {n} bits, with the high bit on the left: {listing}. The base is -2. Read from left to right: multiply the accumulated value by -2 and add the next bit. What is the value?"
+    },
+    "s1": {
+      "ru": "Запись из {n} битов, старший разряд слева: {listing}. Основание равно -2. Идём слева направо: накопленное значение умножается на -2 и к нему прибавляется очередной бит. Сколько единиц в записи?",
+      "en": "A writing of {n} bits, with the high bit on the left: {listing}. The base is -2. Read from left to right: multiply the accumulated value by -2 and add the next bit. How many ones are in the writing?"
+    },
+    "s2": {
+      "ru": "Бит {i} равен {bit}. Накопленное значение {value}.",
+      "en": "Bit {i} is {bit}. Accumulated value {value}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Опора балки в нуле. Грузов {n}, запись — сила и координата: {listing}. Момент груза равен силе, умноженной на координату, и моменты складываются. Каков итоговый момент?",
+      "en": "The beam's support is at zero. There are {n} loads, each entry a force and a coordinate: {listing}. A load's moment is the force times the coordinate, and the moments add. What is the final moment?"
+    },
+    "s1": {
+      "ru": "Опора балки в нуле. Грузов {n}, запись — сила и координата: {listing}. Момент груза равен силе, умноженной на координату, и моменты складываются. На каком грузе модуль момента впервые достигает {limit}? Если не достигает, ответ 0.",
+      "en": "The beam's support is at zero. There are {n} loads, each entry a force and a coordinate: {listing}. A load's moment is the force times the coordinate, and the moments add. At which load does the absolute moment first reach {limit}? If it never does, the answer is 0."
+    },
+    "s2": {
+      "ru": "Груз {i}: момент {moment}, опрокидывание {tip}.",
+      "en": "Load {i}: moment {moment}, tip {tip}."
+    }
+  }
+}

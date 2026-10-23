@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В начале включён только бит 1. Дальше {n} шагов, запись «нужен-ставится»: {listing}. Шаг срабатывает, только если нужный бит уже включён, и тогда включает свой бит. Сколько шагов сработает?",
+      "en": "Only bit 1 is on at the start. Then there are {n} steps. Each entry is need-set: {listing}. A step fires only when its needed bit is already on, and then it turns its own bit on. How many steps fire?"
+    },
+    "s1": {
+      "ru": "В начале включён только бит 1. Дальше {n} шагов, запись «нужен-ставится»: {listing}. Шаг срабатывает, только если нужный бит уже включён, и тогда включает свой бит. Включён ли бит {bit} в конце? Ответ 1, если да, и 0, если нет.",
+      "en": "Only bit 1 is on at the start. Then there are {n} steps. Each entry is need-set: {listing}. A step fires only when its needed bit is already on, and then it turns its own bit on. Is bit {bit} on at the end? Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "Шаг {i}: нужен {need}, ставится {put}. Сработало шагов {fired}.",
+      "en": "Step {i}: needs {need}, sets {put}. Steps fired {fired}."
+    }
+  }
+}

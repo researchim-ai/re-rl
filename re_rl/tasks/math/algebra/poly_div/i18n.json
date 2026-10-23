@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Коэффициенты идут от старшей степени к свободному члену. Делимое: {dividend}. Делитель приведённый: {divisor}. Найдите коэффициент частного при степени {degree}.",
+      "en": "Coefficients run from the highest degree to the constant term. Dividend: {dividend}. The divisor is monic: {divisor}. Find the coefficient of degree {degree} in the quotient."
+    },
+    "s1": {
+      "ru": "Коэффициенты идут от старшей степени к свободному члену. Делимое: {dividend}. Делитель приведённый: {divisor}. Найдите коэффициент остатка при степени {degree}.",
+      "en": "Coefficients run from the highest degree to the constant term. Dividend: {dividend}. The divisor is monic: {divisor}. Find the coefficient of degree {degree} in the remainder."
+    },
+    "s2": {
+      "ru": "Шаг {i}: коэффициент частного {coef}. Строка после вычитания: {rest}.",
+      "en": "Step {i}: quotient coefficient {coef}. Row after subtraction: {rest}."
+    }
+  }
+}

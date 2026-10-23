@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа x = {x} и y = {y} записаны {n} битами, недостающие старшие биты — нули. Код строится от старшего бита к младшему: на каждом разряде сначала берётся бит y, затем бит x. Каков полученный код?",
+      "en": "The numbers x = {x} and y = {y} are written with {n} bits; missing high bits are zeros. The code is built from the high bit to the low bit: at each place, take the bit of y and then the bit of x. What is the resulting code?"
+    },
+    "s1": {
+      "ru": "Числа x = {x} и y = {y} записаны {n} битами, недостающие старшие биты — нули. Код строится от старшего бита к младшему: на каждом разряде сначала берётся бит y, затем бит x. Каков бит номер {k} числа x? Биты нумеруются с 1 от младшего.",
+      "en": "The numbers x = {x} and y = {y} are written with {n} bits; missing high bits are zeros. The code is built from the high bit to the low bit: at each place, take the bit of y and then the bit of x. What is bit number {k} of x? Bits are numbered from 1 starting at the low bit."
+    },
+    "s2": {
+      "ru": "Разряд {i}: код {code}.",
+      "en": "Place {i}: code {code}."
+    }
+  }
+}

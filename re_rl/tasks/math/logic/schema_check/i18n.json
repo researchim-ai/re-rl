@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Записей {n}, в каждой три числа: {listing}. Запись верна, если первое число больше нуля и второе не равно третьему. Сколько записей верны?",
+      "en": "There are {n} records, each with three numbers: {listing}. A record is valid when the first number is greater than zero and the second differs from the third. How many records are valid?"
+    },
+    "s1": {
+      "ru": "Записей {n}, в каждой три числа: {listing}. Запись верна, если первое число больше нуля и второе не равно третьему. Каков номер первой неверной записи? Нумерация с 1. Если все верны, ответ 0.",
+      "en": "There are {n} records, each with three numbers: {listing}. A record is valid when the first number is greater than zero and the second differs from the third. What is the number of the first invalid record? Numbering starts at 1. If all are valid, the answer is 0."
+    },
+    "s2": {
+      "ru": "Запись {i}: верных {valid}, первая ошибка {first}.",
+      "en": "Record {i}: valid {valid}, first error {first}."
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число начинает с {start}. Дальше {n} шагов: {listing}. Каково число в конце?",
+      "en": "The number starts at {start}. Then there are {n} steps: {listing}. What is the number at the end?"
+    },
+    "s1": {
+      "ru": "Число начинает с {start}. Дальше {n} шагов: {listing}. Каково число в конце, если шаг {k} выкинуть?",
+      "en": "The number starts at {start}. Then there are {n} steps: {listing}. What is the number at the end if step {k} is removed?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: {op}. Число {value}.",
+      "en": "Step {i}: {op}. Number {value}."
+    },
+    "s4": {
+      "ru": "прибавить {value}",
+      "en": "add {value}"
+    },
+    "s5": {
+      "ru": "умножить на {value}",
+      "en": "multiply by {value}"
+    },
+    "s6": {
+      "ru": "Шаг {i} выкинут.",
+      "en": "Step {i} is removed."
+    }
+  }
+}

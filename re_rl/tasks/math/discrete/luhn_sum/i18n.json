@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цифры слева направо, всего {n}: {listing}. Идём справа налево. Крайняя правая цифра удваивается, следующая остаётся, и так через одну. Если удвоение больше 9, из него вычитается 9. Какова сумма полученных значений?",
+      "en": "Digits from left to right, {n} in total: {listing}. Read from right to left. The rightmost digit is doubled, the next is kept, and so on, alternating. If a doubled value is greater than 9, subtract 9 from it. What is the sum of the resulting values?"
+    },
+    "s1": {
+      "ru": "Цифры слева направо, всего {n}: {listing}. Идём справа налево. Крайняя правая цифра удваивается, следующая остаётся, и так через одну. Если удвоение больше 9, из него вычитается 9. Какую цифру дописать справа, чтобы сумма вместе с ней делилась на 10? Дописанная цифра не удваивается.",
+      "en": "Digits from left to right, {n} in total: {listing}. Read from right to left. The rightmost digit is doubled, the next is kept, and so on, alternating. If a doubled value is greater than 9, subtract 9 from it. Which digit should be appended on the right so that the sum, including it, is divisible by 10? The appended digit is not doubled."
+    },
+    "s2": {
+      "ru": "Справа цифра {i} равна {digit}. Вклад {value}, сумма {total}.",
+      "en": "From the right, digit {i} is {digit}. Contribution {value}, sum {total}."
+    }
+  }
+}

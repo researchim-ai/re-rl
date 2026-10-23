@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ищем целое x. Сначала оно лежит от {lo} до {hi} включительно. Дальше {n} ограничений по порядку: {listing}. Какое единственное целое им удовлетворяет?",
+      "en": "Find an integer x. It starts in the closed range from {lo} to {hi}. Then {n} constraints arrive in order: {listing}. What is the only integer that satisfies all of them?"
+    },
+    "s1": {
+      "ru": "Ищем целое x. Сначала оно лежит от {lo} до {hi} включительно. Дальше {n} ограничений по порядку: {listing}. Сколько из этих ограничений реально сузили текущий отрезок?",
+      "en": "Find an integer x. It starts in the closed range from {lo} to {hi}. Then {n} constraints arrive in order: {listing}. How many of these constraints actually shrink the current range?"
+    },
+    "s2": {
+      "ru": "Ограничение {i}: {piece}. Отрезок становится {lo}..{hi}.",
+      "en": "Constraint {i}: {piece}. The range becomes {lo}..{hi}."
+    },
+    "s3": {
+      "ru": "Единственное целое {value}. Сужающих ограничений {tight}.",
+      "en": "The only integer is {value}. Constraints that shrink the range: {tight}."
+    },
+    "s4": {
+      "ru": "x >= {value}",
+      "en": "x >= {value}"
+    },
+    "s5": {
+      "ru": "x <= {value}",
+      "en": "x <= {value}"
+    }
+  }
+}

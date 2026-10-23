@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка ограниченного роста длины {n}: {word}. Она начинается с 0, и каждая следующая буква не больше чем на 1 превышает максимум слева. Таблица D нумеруется с 0 и имеет {size} строк. Строка 0 вся из единиц. Для строки i от 1 до {n} и столбца j от 0 до {last}: если j не больше {n}-i, клетка равна j*клетка(i-1, j) + клетка(i-1, j+1), иначе 0. Ранг начинается с 0. Для позиции i от 1 до {last} прибавьте D(сколько букв строго правее, максимум строго слева + 1) * буква. Сколько букв строго правее позиции i равно {n}-i-1. Каков ранг?",
+      "en": "A restricted growth string of length {n}: {word}. It starts at 0, and each next letter is at most one more than the maximum on its left. Table D is indexed from 0 and has {size} rows. Row 0 is all ones. For row i from 1 to {n} and column j from 0 to {last}: if j is at most {n}-i, the cell is j*cell(i-1, j) + cell(i-1, j+1), otherwise 0. The rank starts at 0. For position i from 1 to {last}, add D(how many letters are strictly to the right, one plus the maximum strictly to the left) times the letter. The number of letters strictly to the right of position i is {n}-i-1. What is the rank?"
+    },
+    "s1": {
+      "ru": "Строка ограниченного роста длины {n}: {word}. Она начинается с 0, и каждая следующая буква не больше чем на 1 превышает максимум слева. Таблица D нумеруется с 0 и имеет {size} строк. Строка 0 вся из единиц. Для строки i от 1 до {n} и столбца j от 0 до {last}: если j не больше {n}-i, клетка равна j*клетка(i-1, j) + клетка(i-1, j+1), иначе 0. Ранг начинается с 0. Для позиции i от 1 до {last} прибавьте D(сколько букв строго правее, максимум строго слева + 1) * буква. Сколько букв строго правее позиции i равно {n}-i-1. Каков вклад позиции {k}? Нумерация позиций с 0.",
+      "en": "A restricted growth string of length {n}: {word}. It starts at 0, and each next letter is at most one more than the maximum on its left. Table D is indexed from 0 and has {size} rows. Row 0 is all ones. For row i from 1 to {n} and column j from 0 to {last}: if j is at most {n}-i, the cell is j*cell(i-1, j) + cell(i-1, j+1), otherwise 0. The rank starts at 0. For position i from 1 to {last}, add D(how many letters are strictly to the right, one plus the maximum strictly to the left) times the letter. The number of letters strictly to the right of position i is {n}-i-1. What is the contribution of position {k}? Positions are counted from 0."
+    },
+    "s2": {
+      "ru": "Строка 0: {size} клеток, каждая равна 1.",
+      "en": "Row 0: {size} cells, each equal to 1."
+    },
+    "s3": {
+      "ru": "Клетка ({i}, {j}) = {value}.",
+      "en": "Cell ({i}, {j}) = {value}."
+    },
+    "s4": {
+      "ru": "Позиция {i}: максимум слева {seen}, справа {rest}, буква {letter}, вклад {part}, ранг {rank}.",
+      "en": "Position {i}: maximum on the left {seen}, letters on the right {rest}, letter {letter}, contribution {part}, rank {rank}."
+    }
+  }
+}

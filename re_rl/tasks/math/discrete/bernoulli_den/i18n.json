@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Знаменатель числа Бернулли с чётным индексом {n}. Начните с 1. Для каждого d от 1 до {n}: если d делит {n} и d+1 простое, умножьте знаменатель на d+1. Каков знаменатель?",
+      "en": "The denominator of the Bernoulli number with even index {n}. Start at 1. For each d from 1 to {n}: if d divides {n} and d+1 is prime, multiply the denominator by d+1. What is the denominator?"
+    },
+    "s1": {
+      "ru": "Знаменатель числа Бернулли с чётным индексом {n}. Начните с 1. Для каждого d от 1 до {n}: если d делит {n} и d+1 простое, умножьте знаменатель на d+1. Сколько простых вошло в знаменатель?",
+      "en": "The denominator of the Bernoulli number with even index {n}. Start at 1. For each d from 1 to {n}: if d divides {n} and d+1 is prime, multiply the denominator by d+1. How many primes entered the denominator?"
+    },
+    "s2": {
+      "ru": "d = {d}: учтено {used}, знаменатель {den}, простых {count}.",
+      "en": "d = {d}: included {used}, denominator {den}, primes {count}."
+    }
+  }
+}

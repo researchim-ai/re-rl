@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В шеренге {n} человек, шляпы спереди назад: {listing}. Шляпа равна 0 или 1. Человек {n} видит всех впереди и называет сумму их шляп по модулю 2. Он спасён, если названное число совпало с его шляпой. Остальные слышат эту сумму и называют свои шляпы верно, поэтому спасены. Сколько человек спасено?",
+      "en": "A line has {n} people, with hats from front to back: {listing}. A hat is 0 or 1. Person {n} sees everyone in front and announces the sum of their hats modulo 2. That person is saved if the announced number matches their own hat. Everyone else hears the sum and announces their own hat correctly, so they are saved. How many people are saved?"
+    },
+    "s1": {
+      "ru": "В шеренге {n} человек, шляпы спереди назад: {listing}. Шляпа равна 0 или 1. Человек {n} видит всех впереди и называет сумму их шляп по модулю 2. Какое число он называет?",
+      "en": "A line has {n} people, with hats from front to back: {listing}. A hat is 0 or 1. Person {n} sees everyone in front and announces the sum of their hats modulo 2. What number does that person announce?"
+    },
+    "s2": {
+      "ru": "Человек {i}: шляпа {hat}, сумма по модулю 2 равна {parity}.",
+      "en": "Person {i}: hat {hat}, the sum modulo 2 is {parity}."
+    },
+    "s3": {
+      "ru": "Человек {n}: шляпа {hat}, объявлено {parity}, спасено {saved}.",
+      "en": "Person {n}: hat {hat}, announced {parity}, saved {saved}."
+    }
+  }
+}

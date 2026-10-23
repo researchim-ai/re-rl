@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка из {n} символов, позиции с 1: {listing}. Z в позиции i — сколько символов подряд с этой позиции совпадают с началом строки. Каково Z в позиции {k}?",
+      "en": "A string of {n} symbols, positions from 1: {listing}. Z at position i is how many symbols in a row from there match the start of the string. What is Z at position {k}?"
+    },
+    "s1": {
+      "ru": "Строка из {n} символов, позиции с 1: {listing}. Z в позиции i — сколько символов подряд с этой позиции совпадают с началом строки. Какова сумма Z по всем позициям, кроме первой?",
+      "en": "A string of {n} symbols, positions from 1: {listing}. Z at position i is how many symbols in a row from there match the start of the string. What is the sum of Z over every position except the first?"
+    },
+    "s2": {
+      "ru": "Позиция {i}: Z равно {value}.",
+      "en": "Position {i}: Z is {value}."
+    }
+  }
+}

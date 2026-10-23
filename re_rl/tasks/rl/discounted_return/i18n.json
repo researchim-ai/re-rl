@@ -19,6 +19,18 @@
     "s4": {
       "ru": "Награды до конца эпизода: {rewards}. Найдите полную дисконтированную отдачу. Ответ — целое или несократимая дробь.",
       "en": "Rewards until the end of the episode: {rewards}. Find the full discounted return. Answer with an integer or a reduced fraction."
+    },
+    "s5": {
+      "ru": "Шаг {k}: награда {reward}, множитель {power}, вклад {term}, сумма {acc}.",
+      "en": "Step {k}: reward {reward}, factor {power}, term {term}, sum {acc}."
+    },
+    "s6": {
+      "ru": "Бутстрап {boot} с множителем {power}, сумма {acc}.",
+      "en": "Bootstrap {boot} with factor {power}, sum {acc}."
+    },
+    "s7": {
+      "ru": "Полная отдача {full} минус оценка {vstart} равна {gap}.",
+      "en": "Full return {full} minus value {vstart} equals {gap}."
     }
   }
 }

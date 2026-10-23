@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для каждого числа от 1 до {n} посчитайте, сколько у него простых множителей с повторениями. У 1 это 0, у 12 = 2*2*3 это 3. Какова сумма этих количеств?",
+      "en": "For each number from 1 to {n}, count its prime factors with multiplicity. For 1 this is 0, and for 12 = 2*2*3 this is 3. What is the sum of these counts?"
+    },
+    "s1": {
+      "ru": "Для каждого числа от 1 до {n} посчитайте, сколько у него простых множителей с повторениями. У 1 это 0, у 12 = 2*2*3 это 3. Сколько простых множителей у числа {k}?",
+      "en": "For each number from 1 to {n}, count its prime factors with multiplicity. For 1 this is 0, and for 12 = 2*2*3 this is 3. How many prime factors does {k} have?"
+    },
+    "s2": {
+      "ru": "Число {i}: множителей {omega}, накоплено {total}.",
+      "en": "Number {i}: factors {omega}, running total {total}."
+    }
+  }
+}

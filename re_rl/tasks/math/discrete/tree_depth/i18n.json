@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В дереве {n} узлов. Узел 1 — корень, его глубина равна 0. Для остальных узлов запись «узел-родитель»: {listing}. Глубина узла на 1 больше глубины родителя. Какова глубина узла {k}?",
+      "en": "A tree has {n} nodes. Node 1 is the root, and its depth is 0. For the other nodes the entry is node-parent: {listing}. The depth of a node is one more than the depth of its parent. What is the depth of node {k}?"
+    },
+    "s1": {
+      "ru": "В дереве {n} узлов. Узел 1 — корень, его глубина равна 0. Для остальных узлов запись «узел-родитель»: {listing}. Глубина узла на 1 больше глубины родителя. Чему равна сумма глубин всех узлов?",
+      "en": "A tree has {n} nodes. Node 1 is the root, and its depth is 0. For the other nodes the entry is node-parent: {listing}. The depth of a node is one more than the depth of its parent. What is the sum of the depths of all nodes?"
+    },
+    "s2": {
+      "ru": "Узел {i}: родитель {parent}, глубина {depth}.",
+      "en": "Node {i}: parent {parent}, depth {depth}."
+    }
+  }
+}

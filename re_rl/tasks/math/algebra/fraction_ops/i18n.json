@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начинаем с целого числа {start}. Дальше {n} операций, после каждой дробь сокращается: {listing}. Найдите числитель итоговой дроби.",
+      "en": "Start with the integer {start}. Then {n} operations follow, and the fraction is reduced after each one: {listing}. Find the numerator of the final fraction."
+    },
+    "s1": {
+      "ru": "Начинаем с целого числа {start}. Дальше {n} операций, после каждой дробь сокращается: {listing}. Найдите знаменатель итоговой дроби.",
+      "en": "Start with the integer {start}. Then {n} operations follow, and the fraction is reduced after each one: {listing}. Find the denominator of the final fraction."
+    },
+    "s2": {
+      "ru": "Операция {i}: {op}. Получилось {numer}/{denom}.",
+      "en": "Operation {i}: {op}. The result is {numer}/{denom}."
+    },
+    "s4": {
+      "ru": "прибавить {num}/{den}",
+      "en": "add {num}/{den}"
+    },
+    "s5": {
+      "ru": "умножить на {num}/{den}",
+      "en": "multiply by {num}/{den}"
+    }
+  }
+}

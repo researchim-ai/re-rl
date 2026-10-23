@@ -79,10 +79,33 @@ class DiscountedReturnTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        acc = Fraction(0)
+        power = Fraction(1)
+        steps = []
+        for index, reward in enumerate(self.rewards):
+            term = power * reward
+            acc += term
+            steps.append(texts.t(
+                "s5", self.language, k=index, reward=reward,
+                power=fmt_fraction(power), term=fmt_fraction(term), acc=fmt_fraction(acc),
+            ))
+            power *= self.gamma
+        if self.task_type == "n_step":
+            acc += power * self.v_boot
+            steps.append(texts.t(
+                "s6", self.language, boot=self.v_boot,
+                power=fmt_fraction(power), acc=fmt_fraction(acc),
+            ))
+        elif self.task_type == "advantage":
+            full = acc
+            acc -= self.v_start
+            steps.append(texts.t(
+                "s7", self.language, full=fmt_fraction(full),
+                vstart=self.v_start, gap=fmt_fraction(acc),
+            ))
         shown = fmt_fraction(self.answer)
-        full = fmt_fraction(discounted(self.rewards, self.gamma))
-        step = ((texts.t('s1', self.language, full=full, shown=shown)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

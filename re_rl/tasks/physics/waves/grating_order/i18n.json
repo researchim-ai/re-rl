@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Период решётки {spacing}. Длин волн {n}: {listing}. Старший порядок — наибольшее целое m, для которого m, умноженное на длину волны, не больше периода. Если такого m нет, порядок 0. Каков старший порядок для длины волны номер {k}?",
+      "en": "The grating spacing is {spacing}. There are {n} wavelengths: {listing}. The highest order is the largest integer m such that m times the wavelength is not above the spacing. If there is no such m, the order is 0. What is the highest order for wavelength number {k}?"
+    },
+    "s1": {
+      "ru": "Период решётки {spacing}. Длин волн {n}: {listing}. Старший порядок — наибольшее целое m, для которого m, умноженное на длину волны, не больше периода. Если такого m нет, порядок 0. Какова сумма старших порядков?",
+      "en": "The grating spacing is {spacing}. There are {n} wavelengths: {listing}. The highest order is the largest integer m such that m times the wavelength is not above the spacing. If there is no such m, the order is 0. What is the sum of the highest orders?"
+    },
+    "s2": {
+      "ru": "Волна {i}: длина {wave}, порядок {orders}, сумма {total}.",
+      "en": "Wave {i}: length {wave}, order {orders}, sum {total}."
+    }
+  }
+}

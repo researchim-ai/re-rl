@@ -23,6 +23,18 @@
     "s5": {
       "ru": "состояние {v0}: {v1}",
       "en": "state {v0}: {v1}"
+    },
+    "s6": {
+      "ru": "Вперёд, момент {t}, символ {symbol}. Массы состояний {row}, сумма {total}.",
+      "en": "Forward, time {t}, symbol {symbol}. State masses {row}, sum {total}."
+    },
+    "s7": {
+      "ru": "Витерби, момент {t}. Оценки {row}. Предыдущие состояния: {prev}.",
+      "en": "Viterbi, time {t}. Scores {row}. Previous states: {prev}."
+    },
+    "s8": {
+      "ru": "старт",
+      "en": "start"
     }
   }
 }

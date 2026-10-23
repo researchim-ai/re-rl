@@ -74,9 +74,18 @@ class GaeTask(BaseMathTask):
         return f"{rule} {data} {ask}"
 
     def solve(self):
+        factor = self.gamma * self.lam
+        acc = Fraction(0)
+        steps = []
+        for index in range(len(self.rewards) - 1, self.t - 1, -1):
+            delta = td_delta(self.rewards, self.values, self.gamma, index)
+            acc = delta + factor * acc
+            steps.append(texts.t(
+                "s4", self.language, i=index, delta=fmt_fraction(delta), acc=fmt_fraction(acc),
+            ))
         shown = fmt_fraction(self.answer)
-        step = ((f"δ_{self.t} = {fmt_fraction(self.delta)}, A_{self.t} = {fmt_fraction(self.advantage)}."))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

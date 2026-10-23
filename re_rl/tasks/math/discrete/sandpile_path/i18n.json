@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В ряду {n} клеток, порог равен 2. В клетку {cell} кладут {chips} фишек. Если в клетке хотя бы 2 фишки, она отдаёт по одной соседу слева и соседу справа. У крайней клетки недостающий сосед означает потерю фишки. Обваливается самая левая готовая клетка. Сколько обвалов будет до устойчивости?",
+      "en": "A row has {n} cells and the threshold is 2. Cell {cell} receives {chips} chips. A cell with at least 2 chips gives one chip to the left neighbor and one to the right neighbor. A missing neighbor at an end loses that chip. The leftmost ready cell topples. How many topples happen before the row is stable?"
+    },
+    "s1": {
+      "ru": "В ряду {n} клеток, порог равен 2. В клетку {cell} кладут {chips} фишек. Если в клетке хотя бы 2 фишки, она отдаёт по одной соседу слева и соседу справа. У крайней клетки недостающий сосед означает потерю фишки. Обваливается самая левая готовая клетка. Сколько фишек останется в ряду?",
+      "en": "A row has {n} cells and the threshold is 2. Cell {cell} receives {chips} chips. A cell with at least 2 chips gives one chip to the left neighbor and one to the right neighbor. A missing neighbor at an end loses that chip. The leftmost ready cell topples. How many chips remain in the row?"
+    },
+    "s2": {
+      "ru": "Обвал {i}, клетка {cell}: {heights}.",
+      "en": "Topple {i}, cell {cell}: {heights}."
+    },
+    "s3": {
+      "ru": "Обвалов {topples}, осталось {remaining}, потеряно {lost}.",
+      "en": "Topples {topples}, remaining {remaining}, lost {lost}."
+    }
+  }
+}

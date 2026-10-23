@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа Пелля и соседний ряд. P(0) = 0, P(1) = 1, Q(0) = 1, Q(1) = 1. Дальше каждый следующий член равен 2*предыдущий + предпредыдущий. На каждом индексе Q^2 - 2*P^2 = (-1) в степени индекса. Каково P({n})?",
+      "en": "Pell numbers and the companion sequence. P(0) = 0, P(1) = 1, Q(0) = 1, Q(1) = 1. Each next term is 2 times the previous plus the one before that. At every index, Q squared minus 2 times P squared equals (-1) to that index. What is P({n})?"
+    },
+    "s1": {
+      "ru": "Числа Пелля и соседний ряд. P(0) = 0, P(1) = 1, Q(0) = 1, Q(1) = 1. Дальше каждый следующий член равен 2*предыдущий + предпредыдущий. На каждом индексе Q^2 - 2*P^2 = (-1) в степени индекса. Каково Q({n})?",
+      "en": "Pell numbers and the companion sequence. P(0) = 0, P(1) = 1, Q(0) = 1, Q(1) = 1. Each next term is 2 times the previous plus the one before that. At every index, Q squared minus 2 times P squared equals (-1) to that index. What is Q({n})?"
+    },
+    "s2": {
+      "ru": "Индекс {i}: P = {pell}, Q = {partner}.",
+      "en": "Index {i}: P = {pell}, Q = {partner}."
+    }
+  }
+}

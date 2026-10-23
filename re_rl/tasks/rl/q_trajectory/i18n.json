@@ -15,6 +15,10 @@
     "s3": {
       "ru": "Какое действие лучше в состоянии {v0} после всех обновлений?",
       "en": "Which action is best in state {v0} after all updates?"
+    },
+    "s4": {
+      "ru": "Шаг {i}: состояние {state}, действие {action}, награда {reward}, следующее {nxt}. Максимум следующего {best}. Новая Q {q}. Строка состояния: {row}.",
+      "en": "Step {i}: state {state}, action {action}, reward {reward}, next {nxt}. Max of the next state {best}. New Q {q}. State row: {row}."
     }
   }
 }

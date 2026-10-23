@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Объектов {n}, запись — оценка и метка, метка 1 положительная: {listing}. Идём от больших оценок к меньшим. При равной оценке раньше левый объект. На какой позиции в этом порядке впервые стоит положительная метка? Нумерация с 1.",
+      "en": "There are {n} objects, each entry a score and a label, where label 1 is positive: {listing}. Walk from larger scores to smaller ones. Equal scores keep the left object first. At which position in that order does the first positive label stand? Numbering starts at 1."
+    },
+    "s1": {
+      "ru": "Объектов {n}, запись — оценка и метка, метка 1 положительная: {listing}. Идём от больших оценок к меньшим. При равной оценке раньше левый объект. Сколько отрицательных меток стоит до первой положительной?",
+      "en": "There are {n} objects, each entry a score and a label, where label 1 is positive: {listing}. Walk from larger scores to smaller ones. Equal scores keep the left object first. How many negative labels stand before the first positive one?"
+    },
+    "s2": {
+      "ru": "Место {i}: оценка {score}, метка {label}. Положительных {hits}, отрицательных {traps}.",
+      "en": "Place {i}: score {score}, label {label}. Positives {hits}, negatives {traps}."
+    }
+  }
+}

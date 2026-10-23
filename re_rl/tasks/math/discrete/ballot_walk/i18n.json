@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Путь из {n} шагов, старт с нуля: {listing}. Единица прибавляет 1, ноль вычитает 1. Каков минимум суммы по ходу пути?",
+      "en": "A walk of {n} steps starts at zero: {listing}. A one adds 1, a zero subtracts 1. What is the minimum of the running sum?"
+    },
+    "s1": {
+      "ru": "Путь из {n} шагов, старт с нуля: {listing}. Единица прибавляет 1, ноль вычитает 1. На каком шаге сумма впервые становится отрицательной? Если такого шага нет, ответ 0.",
+      "en": "A walk of {n} steps starts at zero: {listing}. A one adds 1, a zero subtracts 1. At which step does the sum first become negative? If it never does, the answer is 0."
+    },
+    "s2": {
+      "ru": "Шаг {i}: сумма {height}, минимум {low}, первый спуск {fall}.",
+      "en": "Step {i}: sum {height}, minimum {low}, first drop {fall}."
+    }
+  }
+}

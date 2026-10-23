@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело получает {n} коллинеарных приращений скорости, в долях c: {listing}. Скорости складываются по правилу (u+v)/(1+u*v). Начальная скорость равна 0. Найдите числитель итоговой скорости после сокращения дроби.",
+      "en": "A body receives {n} collinear velocity boosts, as fractions of c: {listing}. Speeds combine by (u+v)/(1+u*v). The initial speed is 0. Find the numerator of the final speed after reducing the fraction."
+    },
+    "s1": {
+      "ru": "Тело получает {n} коллинеарных приращений скорости, в долях c: {listing}. Скорости складываются по правилу (u+v)/(1+u*v). Начальная скорость равна 0. Найдите знаменатель итоговой скорости после сокращения дроби.",
+      "en": "A body receives {n} collinear velocity boosts, as fractions of c: {listing}. Speeds combine by (u+v)/(1+u*v). The initial speed is 0. Find the denominator of the final speed after reducing the fraction."
+    },
+    "s2": {
+      "ru": "Приращение {i}: ({before}+{add})/(1+{before}*{add}) = {value}.",
+      "en": "Boost {i}: ({before}+{add})/(1+{before}*{add}) = {value}."
+    },
+    "s3": {
+      "ru": "Итоговая скорость {numer}/{denom}.",
+      "en": "The final speed is {numer}/{denom}."
+    }
+  }
+}

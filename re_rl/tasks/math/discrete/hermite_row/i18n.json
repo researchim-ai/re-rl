@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлены Эрмита в точке {point}. H0 = 1, H1 = 2*{point}. Для перехода от степени k к k+1 новый равен 2*{point}*текущий минус 2*k*предыдущий. Каков H степени {n}?",
+      "en": "Hermite polynomials at {point}. H0 = 1, H1 = 2*{point}. To move from degree k to k+1, the new one is 2*{point} times the current minus 2*k times the previous. What is H of degree {n}?"
+    },
+    "s1": {
+      "ru": "Многочлены Эрмита в точке {point}. H0 = 1, H1 = 2*{point}. Для перехода от степени k к k+1 новый равен 2*{point}*текущий минус 2*k*предыдущий. Какова сумма H от степени 0 до {n} включительно?",
+      "en": "Hermite polynomials at {point}. H0 = 1, H1 = 2*{point}. To move from degree k to k+1, the new one is 2*{point} times the current minus 2*k times the previous. What is the sum of H from degree 0 through {n}?"
+    },
+    "s2": {
+      "ru": "Степень {i}: значение {value}.",
+      "en": "Degree {i}: value {value}."
+    }
+  }
+}

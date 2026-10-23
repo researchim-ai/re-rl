@@ -42,6 +42,12 @@ from re_rl.tasks.visual.queens_task import QueensCheckVisualTask
 from re_rl.tasks.visual.mastermind_task import MastermindVisualTask
 from re_rl.tasks.visual.pv_cycle_task import PVCycleVisualTask
 from re_rl.tasks.visual.shoelace_task import ShoelaceAreaVisualTask
+from re_rl.tasks.visual.block_tower_task import BlockTowerTask
+from re_rl.tasks.visual.abacus_read_task import AbacusReadTask
+from re_rl.tasks.visual.domino_image_task import DominoImageTask
+from re_rl.tasks.visual.grid_squares_task import GridSquaresTask
+from re_rl.tasks.visual.arrow_path_task import ArrowPathTask
+from re_rl.tasks.visual.clock_row_task import ClockRowTask
 
 
 def _mk(task_cls):
@@ -67,6 +73,8 @@ VISUAL_TASK_CLASSES = [
     GameOfLifeVisualTask, MagicSquareVisualTask, GridNavigationVisualTask,
     ConvexHullVisualTask, ScatterPlotTask, CircuitResistanceVisualTask,
     BoxPlotTask, NumberLineTask, SlopeReadTask, BalanceScaleTask,
+    BlockTowerTask, AbacusReadTask, DominoImageTask,
+    GridSquaresTask, ArrowPathTask, ClockRowTask,
 ]
 
 ALL_VISUAL_TASK_GENERATORS = {cls.TASK_TYPE: _mk(cls) for cls in VISUAL_TASK_CLASSES}

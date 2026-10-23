@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Инвариант луча {invariant}. Слоёв {n}, запись — показатель и толщина: {listing}. Сдвиг в слое — инвариант, умноженный на толщину и делённый на показатель. Каков суммарный сдвиг?",
+      "en": "The ray invariant is {invariant}. There are {n} layers, each entry an index and a thickness: {listing}. The shift in a layer is the invariant times the thickness divided by the index. What is the total shift?"
+    },
+    "s1": {
+      "ru": "Инвариант луча {invariant}. Слоёв {n}, запись — показатель и толщина: {listing}. Сдвиг в слое — инвариант, умноженный на толщину и делённый на показатель. Каков сдвиг в слое {k}?",
+      "en": "The ray invariant is {invariant}. There are {n} layers, each entry an index and a thickness: {listing}. The shift in a layer is the invariant times the thickness divided by the index. What is the shift in layer {k}?"
+    },
+    "s2": {
+      "ru": "Слой {i}: сдвиг {shift}, сумма {total}.",
+      "en": "Layer {i}: shift {shift}, sum {total}."
+    }
+  }
+}

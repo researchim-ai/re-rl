@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В колбу капают {n} порций. Размеры по порядку: {listing}. Порог равен {threshold}. После какой капли накопленная сумма впервые становится не меньше порога? Капли нумеруются с 1.",
+      "en": "A flask receives {n} drops. Their sizes in order are {listing}. The threshold is {threshold}. After which drop does the running total first become at least the threshold? Drops are numbered from 1."
+    },
+    "s1": {
+      "ru": "В колбу капают {n} порций. Размеры по порядку: {listing}. Порог равен {threshold}. На сколько итоговая сумма превышает порог?",
+      "en": "A flask receives {n} drops. Their sizes in order are {listing}. The threshold is {threshold}. By how much does the final total exceed the threshold?"
+    },
+    "s2": {
+      "ru": "Капля {i}: размер {size}, сумма {total}.",
+      "en": "Drop {i}: size {size}, total {total}."
+    },
+    "s3": {
+      "ru": "Порог пройден на капле {cross}. Избыток в конце {excess}.",
+      "en": "The threshold is crossed at drop {cross}. The final excess is {excess}."
+    }
+  }
+}

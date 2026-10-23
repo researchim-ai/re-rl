@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке клетчатый прямоугольник. Квадрат может состоять из одной клетки или из нескольких. Сколько всего квадратов на рисунке?",
+      "en": "The picture shows a rectangular grid. A square may cover one cell or several cells. How many squares are there in the figure?"
+    },
+    "s1": {
+      "ru": "На картинке клетчатый прямоугольник. Сколько на нём квадратов со стороной в {k} клеток?",
+      "en": "The picture shows a rectangular grid. How many squares have a side of {k} cells?"
+    },
+    "s2": {
+      "ru": "Сторона {k}: {count} квадратов.",
+      "en": "Side {k}: {count} squares."
+    },
+    "s3": {
+      "ru": "Всего {total}. Квадратов со стороной {k}: {at_k}.",
+      "en": "The total is {total}. Squares of side {k}: {at_k}."
+    }
+  }
+}

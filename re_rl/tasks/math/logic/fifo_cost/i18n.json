@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Склад принимает {n} операций по порядку: {listing}. Покупка добавляет партию в конец очереди. Продажа списывает товар из самых ранних партий. Какова себестоимость проданного товара?",
+      "en": "A warehouse processes {n} operations in order: {listing}. A purchase adds a lot at the end of the queue. A sale removes goods from the earliest lots. What is the cost of the goods sold?"
+    },
+    "s1": {
+      "ru": "Склад принимает {n} операций по порядку: {listing}. Покупка добавляет партию в конец очереди. Продажа списывает товар из самых ранних партий. Какова стоимость товара, оставшегося на складе?",
+      "en": "A warehouse processes {n} operations in order: {listing}. A purchase adds a lot at the end of the queue. A sale removes goods from the earliest lots. What is the value of the goods still in the warehouse?"
+    },
+    "s2": {
+      "ru": "Операция {i}: {event}. Себестоимость продаж {cogs}, остаток {value}.",
+      "en": "Operation {i}: {event}. Cost of goods sold {cogs}, stock value {value}."
+    },
+    "s4": {
+      "ru": "покупка {qty} по {cost}",
+      "en": "buy {qty} at {cost}"
+    },
+    "s5": {
+      "ru": "продажа {qty}",
+      "en": "sell {qty}"
+    }
+  }
+}

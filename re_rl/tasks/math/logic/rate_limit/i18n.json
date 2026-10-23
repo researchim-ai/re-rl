@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Запросы приходят во времена {listing}, всего их {n}. Запрос обслуживается, если среди уже обслуженных в моменты от текущего времени минус {window} плюс 1 до текущего времени, не включая сам запрос, меньше {quota}. Каково число обслуженных запросов?",
+      "en": "Requests arrive at times {listing}, {n} in total. A request is served when fewer than {quota} requests were already served at times from the current time minus {window} plus 1 up to the current time, not counting the request itself. How many requests are served?"
+    },
+    "s1": {
+      "ru": "Запросы приходят во времена {listing}, всего их {n}. Запрос обслуживается, если среди уже обслуженных в моменты от текущего времени минус {window} плюс 1 до текущего времени, не включая сам запрос, меньше {quota}. Обслужен ли запрос {k}? Ответ 1, если да, и 0, если нет.",
+      "en": "Requests arrive at times {listing}, {n} in total. A request is served when fewer than {quota} requests were already served at times from the current time minus {window} plus 1 up to the current time, not counting the request itself. Is request {k} served? Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "Запрос {i} во время {time}: обслужен {flag}. Всего обслужено {served}.",
+      "en": "Request {i} at time {time}: served {flag}. Served in total {served}."
+    }
+  }
+}

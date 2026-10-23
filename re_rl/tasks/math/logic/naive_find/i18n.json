@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Текст {text}, образец {pattern}. Образец прикладывается к тексту {n} раз, сдвигаясь на один символ. На каждом прикладывании символы сравниваются слева, пока образец не кончится или символы не разойдутся. Какова позиция первого полного совпадения? Позиции текста нумеруются с 1. Если совпадения нет, ответ 0.",
+      "en": "Text {text}, pattern {pattern}. The pattern is aligned with the text {n} times, shifting by one symbol. At each alignment, symbols are compared from the left until the pattern ends or the symbols differ. What is the position of the first full match? Text positions are numbered from 1. If there is no match, the answer is 0."
+    },
+    "s1": {
+      "ru": "Текст {text}, образец {pattern}. Образец прикладывается к тексту {n} раз, сдвигаясь на один символ. На каждом прикладывании символы сравниваются слева, пока образец не кончится или символы не разойдутся. Сколько сравнений символов будет на всех прикладываниях?",
+      "en": "Text {text}, pattern {pattern}. The pattern is aligned with the text {n} times, shifting by one symbol. At each alignment, symbols are compared from the left until the pattern ends or the symbols differ. How many symbol comparisons happen across all alignments?"
+    },
+    "s2": {
+      "ru": "Прикладывание {i}: сравнений {used}.",
+      "en": "Alignment {i}: comparisons {used}."
+    }
+  }
+}

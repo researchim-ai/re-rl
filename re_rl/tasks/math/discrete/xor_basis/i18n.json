@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа, всего {n}: {listing}. Они вставляются по порядку в базис по исключающему или, со старшего бита. Если этот бит уже занят, из числа вычитается вектор базиса. Сколько чисел реально расширили базис?",
+      "en": "There are {n} numbers: {listing}. They are inserted in order into a basis under exclusive or, from the high bit. If that bit is already taken, the basis vector is subtracted from the number. How many numbers actually extended the basis?"
+    },
+    "s1": {
+      "ru": "Числа, всего {n}: {listing}. Они вставляются по порядку в базис по исключающему или, со старшего бита. Если этот бит уже занят, из числа вычитается вектор базиса. Можно ли набрать {target} исключающим или некоторого подмножества? Ответ 1, если да, и 0, если нет.",
+      "en": "There are {n} numbers: {listing}. They are inserted in order into a basis under exclusive or, from the high bit. If that bit is already taken, the basis vector is subtracted from the number. Can {target} be formed as the exclusive or of some subset? Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "Число {i} равно {value}. Ранг {rank}, цель достижима: {hit}.",
+      "en": "Number {i} is {value}. Rank {rank}, target reachable: {hit}."
+    }
+  }
+}

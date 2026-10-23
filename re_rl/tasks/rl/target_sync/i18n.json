@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Состояний {states}, обе таблицы начинают с нуля. Переходов {n}, запись — состояние, награда, следующее: {listing}. Онлайн-оценка состояния становится равна награде плюс целевая оценка следующего. Каждые {period} переходов целевая таблица копирует онлайн-таблицу, уже после этого шага. Какова онлайн-оценка состояния {k}?",
+      "en": "There are {states} states, and both tables start at zero. There are {n} transitions, each entry state, reward, next: {listing}. The online value of the state becomes the reward plus the target value of the next state. Every {period} transitions the target table copies the online table, after that step. What is the online value of state {k}?"
+    },
+    "s1": {
+      "ru": "Состояний {states}, обе таблицы начинают с нуля. Переходов {n}, запись — состояние, награда, следующее: {listing}. Онлайн-оценка состояния становится равна награде плюс целевая оценка следующего. Каждые {period} переходов целевая таблица копирует онлайн-таблицу, уже после этого шага. Какова целевая оценка состояния {k}?",
+      "en": "There are {states} states, and both tables start at zero. There are {n} transitions, each entry state, reward, next: {listing}. The online value of the state becomes the reward plus the target value of the next state. Every {period} transitions the target table copies the online table, after that step. What is the target value of state {k}?"
+    },
+    "s2": {
+      "ru": "Переход {i}: состояние {state}, награда {reward}, следующее {nxt}. Онлайн этого состояния {value}. Копия {copied}. Состояние {k} онлайн {online}, цель {target}.",
+      "en": "Transition {i}: state {state}, reward {reward}, next {nxt}. Online value of this state {value}. Copy {copied}. State asked online {online}, target {target}."
+    },
+    "s3": {
+      "ru": "Состояние {k}: онлайн {online}, цель {target}.",
+      "en": "State {k}: online {online}, target {target}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Мелодия начинается с высоты {start}. Дальше {n} интервалов, каждый прибавляется к текущей высоте: {listing}. Знак плюс поднимает высоту, знак минус опускает. Какая высота будет после последнего интервала?",
+      "en": "A melody starts at pitch {start}. Then {n} intervals are added to the current pitch: {listing}. A plus sign raises the pitch and a minus sign lowers it. What is the pitch after the last interval?"
+    },
+    "s1": {
+      "ru": "Мелодия начинается с высоты {start}. Дальше {n} интервалов, каждый прибавляется к текущей высоте: {listing}. Знак плюс поднимает высоту, знак минус опускает. Какая наибольшая высота встретится, считая и начало?",
+      "en": "A melody starts at pitch {start}. Then {n} intervals are added to the current pitch: {listing}. A plus sign raises the pitch and a minus sign lowers it. What is the highest pitch reached, including the start?"
+    },
+    "s2": {
+      "ru": "Интервал {i}: {interval}, высота {pitch}.",
+      "en": "Interval {i}: {interval}, pitch {pitch}."
+    },
+    "s3": {
+      "ru": "Конечная высота {final}, наибольшая {peak}.",
+      "en": "The final pitch is {final}, and the highest is {peak}."
+    }
+  }
+}

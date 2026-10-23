@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сложите два числа из {n} цифр. Списки идут от младшего разряда: {left} и {right}. На каждом разряде цифра суммы — остаток от деления на 10, перенос — частное. В конце старший перенос дописывается следующим разрядом. Какова сумма?",
+      "en": "Add two numbers of {n} digits. The lists run from the units place: {left} and {right}. In each place the sum digit is the remainder modulo 10, and the carry is the quotient. At the end the leading carry becomes the next place. What is the sum?"
+    },
+    "s1": {
+      "ru": "Сложите два числа из {n} цифр. Списки идут от младшего разряда: {left} и {right}. На каждом разряде цифра суммы — остаток от деления на 10, перенос — частное. В конце старший перенос дописывается следующим разрядом. Сколько разрядов дали ненулевой перенос?",
+      "en": "Add two numbers of {n} digits. The lists run from the units place: {left} and {right}. In each place the sum digit is the remainder modulo 10, and the carry is the quotient. At the end the leading carry becomes the next place. How many places produced a nonzero carry?"
+    },
+    "s2": {
+      "ru": "Разряд {i}: цифра {digit}, перенос {carry}, число без старшего переноса {value}, ненулевых переносов {carries}.",
+      "en": "Place {i}: digit {digit}, carry {carry}, number before the leading carry {value}, nonzero carries {carries}."
+    },
+    "s3": {
+      "ru": "Старший перенос {carry} дописан: сумма {value}.",
+      "en": "Leading carry {carry} is attached: sum {value}."
+    }
+  }
+}

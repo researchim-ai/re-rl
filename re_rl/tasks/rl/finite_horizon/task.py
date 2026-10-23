@@ -98,9 +98,36 @@ class FiniteHorizonTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        values = [Fraction(0) for _ in range(self.n_states)]
+        actions = [1 for _ in range(self.n_states)]
+        steps = []
+        for index in range(1, self.horizon + 1):
+            new_values = []
+            new_actions = []
+            for state in range(self.n_states):
+                best_value = None
+                best_action = 0
+                for action in range(self.n_actions):
+                    candidate = self.rewards[state][action] + self.gamma * values[self.nexts[state][action]]
+                    if best_value is None or candidate > best_value:
+                        best_value = candidate
+                        best_action = action
+                new_values.append(best_value)
+                new_actions.append(best_action + 1)
+            values = new_values
+            actions = new_actions
+            row = "; ".join(
+                f"{state + 1}: {fmt_fraction(values[state])}/{actions[state]}"
+                for state in range(self.n_states)
+            )
+            steps.append(texts.t("s4", self.language, i=index, row=row))
         shown = str(self.actions[self.state]) if self.task_type == "action" else fmt_fraction(self.values[self.state])
-        step = ((texts.t('s1', self.language, v0=self.state + 1, v1=fmt_fraction(self.values[self.state]), v2=self.actions[self.state])))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.t(
+            "s1", self.language, v0=self.state + 1,
+            v1=fmt_fraction(self.values[self.state]), v2=self.actions[self.state],
+        ))
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

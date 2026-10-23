@@ -15,6 +15,10 @@
     "s3": {
       "ru": "Какое действие лучше у головы {v0} в состоянии {v1}?",
       "en": "Which action is best for head {v0} in state {v1}?"
+    },
+    "s4": {
+      "ru": "Шаг {i}: голова {head}, состояние {state}, действие {action}, награда {reward}, следующее {nxt}. Действие цели {chosen}, его значение в другой голове {other}. Новая Q {q}.",
+      "en": "Step {i}: head {head}, state {state}, action {action}, reward {reward}, next {nxt}. Target action {chosen}, its value in the other head {other}. New Q {q}."
     }
   }
 }

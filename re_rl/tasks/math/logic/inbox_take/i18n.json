@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два агента, номера 1 и 2, ящики пусты. Команд {n}: {listing}. Письмо встаёт в конец ящика агента. Забрать достаёт самое старое письмо этого агента. Пустой ящик при заборе не меняется, его переднее значение 0. Каково переднее письмо агента {k}?",
+      "en": "Two agents, numbered 1 and 2, with empty inboxes. There are {n} commands: {listing}. A letter goes at the end of that agent's inbox. Take removes the oldest letter of that agent. Taking from an empty inbox changes nothing, and its front value is 0. What is the front letter of agent {k}?"
+    },
+    "s1": {
+      "ru": "Два агента, номера 1 и 2, ящики пусты. Команд {n}: {listing}. Письмо встаёт в конец ящика агента. Забрать достаёт самое старое письмо этого агента. Пустой ящик при заборе не меняется. Сколько писем осталось у агента {k}?",
+      "en": "Two agents, numbered 1 and 2, with empty inboxes. There are {n} commands: {listing}. A letter goes at the end of that agent's inbox. Take removes the oldest letter of that agent. Taking from an empty inbox changes nothing. How many letters remain for agent {k}?"
+    },
+    "s2": {
+      "ru": "Команда {i}: {phrase}. Переднее {front}, осталось {pending}.",
+      "en": "Command {i}: {phrase}. Front {front}, remaining {pending}."
+    },
+    "s4": {
+      "ru": "послать агенту {agent} письмо {value}",
+      "en": "send agent {agent} letter {value}"
+    },
+    "s5": {
+      "ru": "забрать у агента {agent}",
+      "en": "take from agent {agent}"
+    }
+  }
+}

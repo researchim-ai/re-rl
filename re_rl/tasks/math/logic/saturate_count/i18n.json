@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Счётчик начинает с нуля, потолок {cap}. Команд {n}: {listing}. Единица прибавляет один, пока значение ниже потолка. На потолке единица значение не меняет, но считается ударом. Ноль сбрасывает значение в ноль и ударом не считается. Каково конечное значение?",
+      "en": "The counter starts at zero, with ceiling {cap}. There are {n} commands: {listing}. A one adds one while the value is below the ceiling. On the ceiling a one leaves the value and counts as a hit. A zero resets the value to zero and is not a hit. What is the final value?"
+    },
+    "s1": {
+      "ru": "Счётчик начинает с нуля, потолок {cap}. Команд {n}: {listing}. Единица прибавляет один, пока значение ниже потолка. На потолке единица значение не меняет, но считается ударом. Ноль сбрасывает значение в ноль и ударом не считается. Сколько было ударов?",
+      "en": "The counter starts at zero, with ceiling {cap}. There are {n} commands: {listing}. A one adds one while the value is below the ceiling. On the ceiling a one leaves the value and counts as a hit. A zero resets the value to zero and is not a hit. How many hits were there?"
+    },
+    "s2": {
+      "ru": "Команда {i}: код {op}. Значение {value}, ударов {hits}.",
+      "en": "Command {i}: code {op}. Value {value}, hits {hits}."
+    }
+  }
+}

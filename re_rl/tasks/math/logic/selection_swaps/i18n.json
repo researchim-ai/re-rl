@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив из {n} чисел: {listing}. Сортировка выбором на каждом проходе, кроме последнего места, берёт минимум оставшегося хвоста. Обмен считается, только если этот минимум стоит не в начале хвоста. При равенстве берётся более левый. Сколько обменов будет?",
+      "en": "An array of {n} numbers: {listing}. Selection sort, on every pass except the last cell, takes the minimum of the remaining suffix. A swap is counted only when that minimum is not already at the start of the suffix. Ties keep the leftmost index. How many swaps happen?"
+    },
+    "s1": {
+      "ru": "Массив из {n} чисел: {listing}. Сортировка выбором на каждом проходе берёт минимум оставшегося хвоста. При равенстве берётся более левый. Каков номер позиции, выбранной на проходе {k}? Позиции и проходы нумеруются с 1.",
+      "en": "An array of {n} numbers: {listing}. Selection sort takes the minimum of the remaining suffix on every pass. Ties keep the leftmost index. What is the position chosen on pass {k}? Positions and passes are numbered from 1."
+    },
+    "s2": {
+      "ru": "Проход {i}: выбран индекс {pick}.",
+      "en": "Pass {i}: chosen index {pick}."
+    },
+    "s3": {
+      "ru": "Обменов {swaps}.",
+      "en": "Swaps {swaps}."
+    }
+  }
+}

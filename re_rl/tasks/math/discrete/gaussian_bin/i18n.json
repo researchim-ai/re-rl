@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Гауссов биномиальный коэффициент при основании {q}. Строка 0 состоит из числа 1. В строке m клетка k, нумерация с 0, равна клетке k предыдущей строки плюс {q} в степени (m-k), умноженное на клетку k-1 предыдущей строки. Если клетки нет, берите 0. Какова клетка {k} строки {n}?",
+      "en": "The Gaussian binomial coefficient at base {q}. Row 0 is the single number 1. In row m, cell k, counting from 0, is cell k of the previous row plus {q} to the power (m-k) times cell k-1 of the previous row. A missing cell counts as 0. What is cell {k} of row {n}?"
+    },
+    "s1": {
+      "ru": "Гауссов биномиальный коэффициент при основании {q}. Строка 0 состоит из числа 1. В строке m клетка k, нумерация с 0, равна клетке k предыдущей строки плюс {q} в степени (m-k), умноженное на клетку k-1 предыдущей строки. Если клетки нет, берите 0. Какова сумма клеток строки {n}?",
+      "en": "The Gaussian binomial coefficient at base {q}. Row 0 is the single number 1. In row m, cell k, counting from 0, is cell k of the previous row plus {q} to the power (m-k) times cell k-1 of the previous row. A missing cell counts as 0. What is the sum of the cells in row {n}?"
+    },
+    "s2": {
+      "ru": "Строка {m}, k = {k}: {left} + {power}*{down} = {value}.",
+      "en": "Row {m}, k = {k}: {left} + {power}*{down} = {value}."
+    },
+    "s3": {
+      "ru": "Строка 0, k = 0: 1.",
+      "en": "Row 0, k = 0: 1."
+    }
+  }
+}

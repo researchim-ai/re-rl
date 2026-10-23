@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Запас {gravity}. Планет {n}, радиусы: {listing}. Квадрат второй космической скорости — запас, делённый на радиус. Каков он у планеты {k}?",
+      "en": "The supply is {gravity}. There are {n} planets, radii: {listing}. The square of the escape speed is the supply divided by the radius. What is it for planet {k}?"
+    },
+    "s1": {
+      "ru": "Запас {gravity}. Планет {n}, радиусы: {listing}. Квадрат второй космической скорости — запас, делённый на радиус. Каков номер планеты с наибольшим квадратом скорости? При равенстве остаётся более ранняя. Нумерация с 1.",
+      "en": "The supply is {gravity}. There are {n} planets, radii: {listing}. The square of the escape speed is the supply divided by the radius. What is the number of the planet with the largest speed square? Ties keep the earlier one. Numbering starts at 1."
+    },
+    "s2": {
+      "ru": "Планета {i}: радиус {radius}, квадрат скорости {speed2}, лидер {which}.",
+      "en": "Planet {i}: radius {radius}, speed square {speed2}, leader {which}."
+    }
+  }
+}

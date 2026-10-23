@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Центральное число Деланнуа D({n}) равно сумме C({n}, k)*C({n}, k)*2^k по k от 0 до {n}. Коэффициент C(a, b) — произведение (a-b+i)/i по i от 1 до b. Каково D({n})?",
+      "en": "The central Delannoy number D({n}) is the sum of C({n}, k)*C({n}, k)*2^k for k from 0 to {n}. The coefficient C(a, b) is the product (a-b+i)/i for i from 1 to b. What is D({n})?"
+    },
+    "s1": {
+      "ru": "Центральное число Деланнуа D({n}) равно сумме C({n}, k)*C({n}, k)*2^k по k от 0 до {n}. Коэффициент C(a, b) — произведение (a-b+i)/i по i от 1 до b. Каково слагаемое при k = {k}?",
+      "en": "The central Delannoy number D({n}) is the sum of C({n}, k)*C({n}, k)*2^k for k from 0 to {n}. The coefficient C(a, b) is the product (a-b+i)/i for i from 1 to b. What is the summand at k = {k}?"
+    },
+    "s2": {
+      "ru": "k = {k}: C = {coefficient}, слагаемое {term}, сумма {running}.",
+      "en": "k = {k}: C = {coefficient}, summand {term}, sum {running}."
+    }
+  }
+}

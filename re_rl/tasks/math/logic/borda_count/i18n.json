@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кандидатов {candidates}, бюллетеней {n}. В бюллетене слева лучший: {listing}. Первое место даёт на один балл меньше, чем число кандидатов, каждое следующее место на балл меньше, последнее даёт 0. Сколько баллов у кандидата {k}?",
+      "en": "There are {candidates} candidates and {n} ballots. In a ballot the left name is best: {listing}. First place scores one less than the number of candidates, each next place scores one less, and last place scores 0. What is the score of candidate {k}?"
+    },
+    "s1": {
+      "ru": "Кандидатов {candidates}, бюллетеней {n}. В бюллетене слева лучший: {listing}. Первое место даёт на один балл меньше, чем число кандидатов, каждое следующее место на балл меньше, последнее даёт 0. Кто победитель? При равенстве баллов побеждает меньший номер.",
+      "en": "There are {candidates} candidates and {n} ballots. In a ballot the left name is best: {listing}. First place scores one less than the number of candidates, each next place scores one less, and last place scores 0. Who wins? On a tie the smaller number wins."
+    },
+    "s2": {
+      "ru": "Бюллетень {i}: баллы {scores}.",
+      "en": "Ballot {i}: scores {scores}."
+    },
+    "s3": {
+      "ru": "Кандидат {k} имеет {score}. Победитель {winner}.",
+      "en": "Candidate {k} has {score}. The winner is {winner}."
+    }
+  }
+}

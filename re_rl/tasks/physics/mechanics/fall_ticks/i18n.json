@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело начинает на высоте {height} со скоростью {speed}, направленной вверх. За каждый такт высота увеличивается на текущую скорость, затем скорость уменьшается на 1. Всего {n} тактов. Какова высота?",
+      "en": "A body starts at height {height} with upward speed {speed}. Each tick the height increases by the current speed, and then the speed decreases by 1. There are {n} ticks. What is the height?"
+    },
+    "s1": {
+      "ru": "Тело начинает на высоте {height} со скоростью {speed}, направленной вверх. За каждый такт высота увеличивается на текущую скорость, затем скорость уменьшается на 1. Всего {n} тактов. Какова скорость в конце? Вверх она положительна.",
+      "en": "A body starts at height {height} with upward speed {speed}. Each tick the height increases by the current speed, and then the speed decreases by 1. There are {n} ticks. What is the final speed? Upward speed is positive."
+    },
+    "s2": {
+      "ru": "Такт {i}: высота {height}, скорость {speed}.",
+      "en": "Tick {i}: height {height}, speed {speed}."
+    }
+  }
+}

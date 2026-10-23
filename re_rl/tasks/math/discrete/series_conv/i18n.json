@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Первый ряд длины {n}: {left}. Второй ряд: {right}. Полная свёртка: выход с номером k, нумерация с 0, складывает произведения членов, индексы которых в сумме дают k. Каков выход номер {k}? Здесь номер считается с 1.",
+      "en": "The first series has length {n}: {left}. The second series: {right}. The full convolution output number k, counting from 0, adds products of terms whose indices sum to k. What is output number {k}? Here the number counts from 1."
+    },
+    "s1": {
+      "ru": "Первый ряд длины {n}: {left}. Второй ряд: {right}. Полная свёртка: выход с номером k, нумерация с 0, складывает произведения членов, индексы которых в сумме дают k. Какова сумма всех выходов?",
+      "en": "The first series has length {n}: {left}. The second series: {right}. The full convolution output number k, counting from 0, adds products of terms whose indices sum to k. What is the sum of all outputs?"
+    },
+    "s2": {
+      "ru": "Выход {i}: {value}.",
+      "en": "Output {i}: {value}."
+    }
+  }
+}

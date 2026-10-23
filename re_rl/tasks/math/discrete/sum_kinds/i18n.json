@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Даны {n} положительных чисел: {listing}. Сумма подмножества может использовать каждое число не больше одного раза, пустое подмножество даёт 0. Сколько различных сумм получается?",
+      "en": "There are {n} positive numbers: {listing}. A subset sum may use each number at most once, and the empty subset sums to 0. How many distinct sums are there?"
+    },
+    "s1": {
+      "ru": "Даны {n} положительных чисел: {listing}. Сумма подмножества может использовать каждое число не больше одного раза, пустое подмножество даёт 0. Можно ли набрать сумму {target}? Ответ 1, если да, и 0, если нет.",
+      "en": "There are {n} positive numbers: {listing}. A subset sum may use each number at most once, and the empty subset sums to 0. Can the sum {target} be formed? Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "После числа {i}, равного {value}, различных сумм {kinds}.",
+      "en": "After number {i}, which is {value}, there are {kinds} distinct sums."
+    },
+    "s3": {
+      "ru": "После числа {i}, равного {value}, цель {target} достижима: {flag}.",
+      "en": "After number {i}, which is {value}, target {target} is reachable: {flag}."
+    }
+  }
+}

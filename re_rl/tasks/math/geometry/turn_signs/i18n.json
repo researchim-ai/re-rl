@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ломаная из точек, запись x y: {listing}. В каждой внутренней вершине знак поворота — произведение соседних сторон крест-накрест: (x2-x1) умножить на (y3-y2) минус (y2-y1) умножить на (x3-x2). Положительный знак — влево, отрицательный — вправо, ноль — прямо. Сколько поворотов влево? Внутренних вершин {n}.",
+      "en": "A polyline of points, each entry x y: {listing}. At each interior vertex the turn sign is the cross product of the neighboring sides: (x2-x1) times (y3-y2) minus (y2-y1) times (x3-x2). A positive sign turns left, a negative sign turns right, and zero goes straight. How many left turns are there? There are {n} interior vertices."
+    },
+    "s1": {
+      "ru": "Ломаная из точек, запись x y: {listing}. В каждой внутренней вершине знак поворота — произведение соседних сторон крест-накрест: (x2-x1) умножить на (y3-y2) минус (y2-y1) умножить на (x3-x2). Положительный знак — влево, отрицательный — вправо, ноль — прямо. Сколько поворотов вправо? Внутренних вершин {n}.",
+      "en": "A polyline of points, each entry x y: {listing}. At each interior vertex the turn sign is the cross product of the neighboring sides: (x2-x1) times (y3-y2) minus (y2-y1) times (x3-x2). A positive sign turns left, a negative sign turns right, and zero goes straight. How many right turns are there? There are {n} interior vertices."
+    },
+    "s2": {
+      "ru": "Вершина {i}: знак {cross}. Влево {lefts}, вправо {rights}.",
+      "en": "Vertex {i}: sign {cross}. Left {lefts}, right {rights}."
+    }
+  }
+}

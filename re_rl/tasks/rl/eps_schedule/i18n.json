@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шагов {n}. Порог начинает с {start}. Запись — случайное число от 0 до 9, исследовательское действие, жадное действие: {listing}. Если число строго меньше порога, берётся исследовательское действие, иначе жадное. После шага порог уменьшается на 1, но не ниже нуля. Сколько шагов были исследовательскими?",
+      "en": "There are {n} steps. The threshold starts at {start}. Each entry is a random number from 0 to 9, the explore action, and the greedy action: {listing}. If the number is strictly below the threshold, the explore action is taken, otherwise the greedy one. After the step the threshold falls by 1, but not below zero. How many steps were exploratory?"
+    },
+    "s1": {
+      "ru": "Шагов {n}. Порог начинает с {start}. Запись — случайное число от 0 до 9, исследовательское действие, жадное действие: {listing}. Если число строго меньше порога, берётся исследовательское действие, иначе жадное. После шага порог уменьшается на 1, но не ниже нуля. Какое действие взято на шаге {k}?",
+      "en": "There are {n} steps. The threshold starts at {start}. Each entry is a random number from 0 to 9, the explore action, and the greedy action: {listing}. If the number is strictly below the threshold, the explore action is taken, otherwise the greedy one. After the step the threshold falls by 1, but not below zero. Which action is taken at step {k}?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: число {draw}, порог {threshold}. Действие {action}, исследование {kind}. Исследований {explores}.",
+      "en": "Step {i}: number {draw}, threshold {threshold}. Action {action}, explore {kind}. Explores {explores}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сверните список {numbers} спариванием Кантора слева направо. Пара (x, y) получает номер (x+y)*(x+y+1)/2 + y. Начните с первого числа и {n} раз соедините накопленный номер со следующим числом. Каков номер в конце?",
+      "en": "Fold the list {numbers} from left to right by the Cantor pairing. The pair (x, y) receives the number (x+y)*(x+y+1)/2 + y. Start from the first number and join the accumulated number with the next one {n} times. What is the number at the end?"
+    },
+    "s1": {
+      "ru": "Сверните список {numbers} спариванием Кантора слева направо. Пара (x, y) получает номер (x+y)*(x+y+1)/2 + y. Начните с первого числа и {n} раз соедините накопленный номер со следующим числом. Каков номер после {k} соединений?",
+      "en": "Fold the list {numbers} from left to right by the Cantor pairing. The pair (x, y) receives the number (x+y)*(x+y+1)/2 + y. Start from the first number and join the accumulated number with the next one {n} times. What is the number after {k} joins?"
+    },
+    "s2": {
+      "ru": "Соединение {i}: ({left}, {right}) получает {value}.",
+      "en": "Join {i}: ({left}, {right}) receives {value}."
+    }
+  }
+}

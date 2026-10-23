@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В очереди {n} машин, все ждут с самого начала. Светофор начинает с зелёного: {g} тактов зелёного, затем {r} тактов красного, и цикл повторяется. За один зелёный такт выезжает одна машина. На красном никто не едет. Такты нумеруются с 1. На каком такте выедет последняя машина?",
+      "en": "{n} cars are waiting from the start. The light begins green: {g} green ticks, then {r} red ticks, and the cycle repeats. One car leaves on each green tick. Nobody leaves on red. Ticks are numbered from 1. On which tick does the last car leave?"
+    },
+    "s1": {
+      "ru": "В очереди {n} машин, все ждут с самого начала. Светофор начинает с зелёного: {g} тактов зелёного, затем {r} тактов красного, и цикл повторяется. За один зелёный такт выезжает одна машина. На красном никто не едет. Такты нумеруются с 1. На каком такте выедет машина номер {k}?",
+      "en": "{n} cars are waiting from the start. The light begins green: {g} green ticks, then {r} red ticks, and the cycle repeats. One car leaves on each green tick. Nobody leaves on red. Ticks are numbered from 1. On which tick does car number {k} leave?"
+    },
+    "s2": {
+      "ru": "Машина {i} выезжает на такте {t}.",
+      "en": "Car {i} leaves on tick {t}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На конденсаторе заряд {charge}. Дальше {n} шагов, делители: {listing}. На шаге утекает целая часть заряда, делённого на делитель, и заряд уменьшается на эту утечку. Какой заряд останется?",
+      "en": "A capacitor starts with charge {charge}. Then there are {n} steps with divisors {listing}. Each step leaks the integer quotient of the charge by the divisor, and the charge decreases by that leak. What charge remains?"
+    },
+    "s1": {
+      "ru": "На конденсаторе заряд {charge}. Дальше {n} шагов, делители: {listing}. На шаге утекает целая часть заряда, делённого на делитель, и заряд уменьшается на эту утечку. Сколько заряда утекло всего?",
+      "en": "A capacitor starts with charge {charge}. Then there are {n} steps with divisors {listing}. Each step leaks the integer quotient of the charge by the divisor, and the charge decreases by that leak. How much charge has leaked in total?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: делитель {divisor}. Осталось {left}, утекло всего {leaked}.",
+      "en": "Step {i}: divisor {divisor}. Remaining {left}, leaked in total {leaked}."
+    }
+  }
+}

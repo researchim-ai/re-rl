@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два класса, номера 1 и 2. Объектов {n}, запись — значение и класс: {listing}. Сумма и число объектов класса копятся по очереди. Какова сумма класса {k}?",
+      "en": "Two classes, numbered 1 and 2. There are {n} objects, each entry a value and a class: {listing}. A class sum and a class count accumulate in order. What is the sum of class {k}?"
+    },
+    "s1": {
+      "ru": "Два класса, номера 1 и 2. Объектов {n}, запись — значение и класс: {listing}. Сумма и число объектов класса копятся по очереди. Запрос {query}. Класс ближе, если модуль (сумма - запрос * число) * число другого класса меньше. При равенстве берётся класс 1. К какому классу ближе запрос?",
+      "en": "Two classes, numbered 1 and 2. There are {n} objects, each entry a value and a class: {listing}. A class sum and a class count accumulate in order. The query is {query}. A class is closer when abs(sum - query * count) * the other count is smaller. Ties take class 1. Which class is closer to the query?"
+    },
+    "s2": {
+      "ru": "Объект {i}: значение {value}, класс {label}. Суммы {sum1}, {sum2}. Числа {count1}, {count2}.",
+      "en": "Object {i}: value {value}, class {label}. Sums {sum1}, {sum2}. Counts {count1}, {count2}."
+    },
+    "s3": {
+      "ru": "Запрос {query} ближе к классу {label}. Сумма класса {k} равна {total}.",
+      "en": "Query {query} is closer to class {label}. The sum of class {k} is {total}."
+    }
+  }
+}

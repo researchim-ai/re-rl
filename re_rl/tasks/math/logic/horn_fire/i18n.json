@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Атом 1 уже известен. Атом 0 не известен и ниоткуда не выводится. Дальше {n} правил вида a+b->c: вывод c принимается только если и a, и b уже известны. Правила идут по порядку: {rules}. Сколько правил сработало?",
+      "en": "Atom 1 is already known. Atom 0 is not known and is never derived. Then there are {n} rules of the form a+b->c: conclusion c is accepted only when both a and b are already known. The rules run in order: {rules}. How many rules fired?"
+    },
+    "s1": {
+      "ru": "Атом 1 уже известен. Атом 0 не известен и ниоткуда не выводится. Дальше {n} правил вида a+b->c: вывод c принимается только если и a, и b уже известны. Правила идут по порядку: {rules}. Известен ли атом {k}? Ответьте 1 или 0.",
+      "en": "Atom 1 is already known. Atom 0 is not known and is never derived. Then there are {n} rules of the form a+b->c: conclusion c is accepted only when both a and b are already known. The rules run in order: {rules}. Is atom {k} known? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Правило {i}: {left}+{right}->{conclusion}, сработало {ok}, всего срабатываний {fired}.",
+      "en": "Rule {i}: {left}+{right}->{conclusion}, fired {ok}, firings so far {fired}."
+    }
+  }
+}

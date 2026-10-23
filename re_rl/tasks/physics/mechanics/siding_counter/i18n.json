@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В ряд стоят {width} стрелок, сначала все в положении 0. Вагон, пришедший на стрелку в положении 0, уходит в её тупик, а стрелка становится 1. Вагон, пришедший на стрелку в положении 1, переводит её в 0 и едет к следующей стрелке. Проезжает {n} вагонов. Какое положение у стрелки номер {k}? Стрелки нумеруются с 1 от входа.",
+      "en": "{width} switches stand in a row, all starting at position 0. A car that reaches a switch at 0 leaves into that siding, and the switch becomes 1. A car that reaches a switch at 1 sets it to 0 and continues to the next switch. {n} cars pass. What is the position of switch number {k}? Switches are numbered from 1 at the entrance."
+    },
+    "s1": {
+      "ru": "В ряд стоят {width} стрелок, сначала все в положении 0. Вагон, пришедший на стрелку в положении 0, уходит в её тупик, а стрелка становится 1. Вагон, пришедший на стрелку в положении 1, переводит её в 0 и едет к следующей стрелке. Проезжает {n} вагонов. В какой тупик уходит вагон номер {k}? Тупики нумеруются как стрелки, с 1.",
+      "en": "{width} switches stand in a row, all starting at position 0. A car that reaches a switch at 0 leaves into that siding, and the switch becomes 1. A car that reaches a switch at 1 sets it to 0 and continues to the next switch. {n} cars pass. Which siding does car number {k} leave into? Sidings are numbered like the switches, from 1."
+    },
+    "s2": {
+      "ru": "Вагон {i}: тупик {exit}. Стрелки: {state}.",
+      "en": "Car {i}: siding {exit}. Switches: {state}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Замкнутых отрезков {n}, запись левый правый: {listing}. Точка {point}. Сколько отрезков её содержат?",
+      "en": "There are {n} closed intervals, each entry left right: {listing}. The point is {point}. How many intervals contain it?"
+    },
+    "s1": {
+      "ru": "Замкнутых отрезков {n}, запись левый правый: {listing}. Точка {point}. Каков номер первого отрезка, который её содержит? Нумерация с 1. Если таких нет, ответ 0.",
+      "en": "There are {n} closed intervals, each entry left right: {listing}. The point is {point}. What is the number of the first interval that contains it? Numbering starts at 1. If none does, the answer is 0."
+    },
+    "s2": {
+      "ru": "Отрезок {i}: накрыто {count}, первый номер {first}.",
+      "en": "Interval {i}: covered {count}, first number {first}."
+    }
+  }
+}

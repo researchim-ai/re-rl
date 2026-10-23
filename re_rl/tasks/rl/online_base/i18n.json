@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Наград {n}: {listing}. База шага — целая часть суммы предыдущих наград на их число. На первом шаге база 0. Преимущество — награда минус база. Каково преимущество шага {k}?",
+      "en": "There are {n} rewards: {listing}. A step's baseline is the sum of the earlier rewards divided by their count, rounded down. On the first step the baseline is 0. The advantage is the reward minus the baseline. What is the advantage of step {k}?"
+    },
+    "s1": {
+      "ru": "Наград {n}: {listing}. База шага — целая часть суммы предыдущих наград на их число. На первом шаге база 0. После шага награда входит в сумму. Какова база после всех наград, то есть целая часть полной суммы на {n}?",
+      "en": "There are {n} rewards: {listing}. A step's baseline is the sum of the earlier rewards divided by their count, rounded down. On the first step the baseline is 0. After the step the reward joins the sum. What is the baseline after all rewards, the full sum divided by {n}, rounded down?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: награда {reward}, база {base}, преимущество {adv}, новое среднее {mean}.",
+      "en": "Step {i}: reward {reward}, baseline {base}, advantage {adv}, new mean {mean}."
+    }
+  }
+}

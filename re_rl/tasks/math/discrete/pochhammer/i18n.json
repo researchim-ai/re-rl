@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Возрастающий факториал из {n} множителей, начиная с {start}: {start} * ({start}+1) * ... * ({start}+{n}-1). Каково произведение?",
+      "en": "A rising factorial of {n} factors, starting at {start}: {start} * ({start}+1) * ... * ({start}+{n}-1). What is the product?"
+    },
+    "s1": {
+      "ru": "Возрастающий факториал из {n} множителей, начиная с {start}: {start} * ({start}+1) * ... * ({start}+{n}-1). Каков последний множитель?",
+      "en": "A rising factorial of {n} factors, starting at {start}: {start} * ({start}+1) * ... * ({start}+{n}-1). What is the last factor?"
+    },
+    "s2": {
+      "ru": "Множитель {i}: {factor}. Произведение {product}.",
+      "en": "Factor {i}: {factor}. Product {product}."
+    }
+  }
+}

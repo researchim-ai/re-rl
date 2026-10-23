@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На струне два импульса. Левый высоты {left} стоит в клетке 0 и за такт идёт вправо на 1. Правый высоты {right} стоит в клетке {gap} и идёт влево на 1. Тактов {n}. В одной клетке высоты складываются, иначе видна большая из двух. Какова наибольшая высота за эти такты?",
+      "en": "Two pulses are on a string. The left one, of height {left}, starts in cell 0 and moves right by 1 each tick. The right one, of height {right}, starts in cell {gap} and moves left by 1. There are {n} ticks. In the same cell the heights add; otherwise the larger of the two is seen. What is the greatest height during these ticks?"
+    },
+    "s1": {
+      "ru": "На струне два импульса. Левый высоты {left} стоит в клетке 0 и за такт идёт вправо на 1. Правый высоты {right} стоит в клетке {gap} и идёт влево на 1. Тактов {n}. В какой клетке они впервые оказываются вместе? Если не встречаются, ответ 0.",
+      "en": "Two pulses are on a string. The left one, of height {left}, starts in cell 0 and moves right by 1 each tick. The right one, of height {right}, starts in cell {gap} and moves left by 1. There are {n} ticks. In which cell are they first together? If they never meet, the answer is 0."
+    },
+    "s2": {
+      "ru": "Такт {i}: левый в {left}, правый в {right}. Пик {peak}, встреча {meet}, клетка {place}.",
+      "en": "Tick {i}: left at {left}, right at {right}. Peak {peak}, meeting {meet}, cell {place}."
+    }
+  }
+}

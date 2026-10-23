@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Нажатий {n}. Запись — входная сила, узкая площадь, широкая площадь: {listing}. Выходная сила равна входной, умноженной на широкую площадь и делённой на узкую. Какова выходная сила нажатия {k}?",
+      "en": "There are {n} presses. Each entry is the input force, the narrow area, and the wide area: {listing}. The output force is the input force times the wide area divided by the narrow area. What is the output force of press {k}?"
+    },
+    "s1": {
+      "ru": "Нажатий {n}. Запись — входная сила, узкая площадь, широкая площадь: {listing}. Выходная сила равна входной, умноженной на широкую площадь и делённой на узкую. Какова сумма выходных сил?",
+      "en": "There are {n} presses. Each entry is the input force, the narrow area, and the wide area: {listing}. The output force is the input force times the wide area divided by the narrow area. What is the sum of the output forces?"
+    },
+    "s2": {
+      "ru": "Нажатие {i}: выход {output}, сумма {total}.",
+      "en": "Press {i}: output {output}, sum {total}."
+    }
+  }
+}

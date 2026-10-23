@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скорость звука равна {sound}. Частота начинает с {start}. Наблюдатель покоится, источник движется к нему. Скорости источника по шагам: {listing}. Новая частота равна старой, умноженной на скорость звука и делённой на скорость звука минус скорость источника. Деление нацело. Какова частота после {n} шагов?",
+      "en": "The speed of sound is {sound}. The frequency starts at {start}. The observer is at rest, and the source moves toward the observer. Source speeds by step: {listing}. The new frequency is the old one times the speed of sound, divided by the speed of sound minus the source speed. The division is exact. What is the frequency after {n} steps?"
+    },
+    "s1": {
+      "ru": "Скорость звука равна {sound}. Частота начинает с {start}. Наблюдатель покоится, источник движется к нему. Скорости источника по шагам: {listing}. Новая частота равна старой, умноженной на скорость звука и делённой на скорость звука минус скорость источника. Деление нацело. Сколько раз частота строго выросла за {n} шагов?",
+      "en": "The speed of sound is {sound}. The frequency starts at {start}. The observer is at rest, and the source moves toward the observer. Source speeds by step: {listing}. The new frequency is the old one times the speed of sound, divided by the speed of sound minus the source speed. The division is exact. How many times does the frequency strictly increase over {n} steps?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: скорость источника {speed}. Частота {freq}, ростов {rises}.",
+      "en": "Step {i}: source speed {speed}. Frequency {freq}, increases {rises}."
+    }
+  }
+}

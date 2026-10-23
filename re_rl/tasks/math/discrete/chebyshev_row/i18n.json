@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлены Чебышёва в точке {point}. T0 = 1, T1 = {point}. Дальше каждый равен 2*{point}*предыдущий минус предпредыдущий. Каков T степени {n}?",
+      "en": "Chebyshev polynomials at {point}. T0 = 1, T1 = {point}. Each next one is 2*{point} times the previous minus the one before that. What is T of degree {n}?"
+    },
+    "s1": {
+      "ru": "Многочлены Чебышёва в точке {point}. T0 = 1, T1 = {point}. Дальше каждый равен 2*{point}*предыдущий минус предпредыдущий. Какова сумма T от степени 0 до {n} включительно?",
+      "en": "Chebyshev polynomials at {point}. T0 = 1, T1 = {point}. Each next one is 2*{point} times the previous minus the one before that. What is the sum of T from degree 0 through {n}?"
+    },
+    "s2": {
+      "ru": "Степень {i}: значение {value}.",
+      "en": "Degree {i}: value {value}."
+    }
+  }
+}

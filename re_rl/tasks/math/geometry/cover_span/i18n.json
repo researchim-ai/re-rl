@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Даны {n} замкнутых отрезков, запись — левый и правый концы: {listing}. Длина объединения — сколько целых шагов оно покрывает. Общая точка сама по себе длину не добавляет, но в правом конце отрезок ещё покрывает точку. Какова длина объединения?",
+      "en": "There are {n} closed segments. Each entry is the left and right endpoint: {listing}. The length of the union is how many integer steps it covers. A shared point adds no length by itself, but a segment still covers its right endpoint. What is the length of the union?"
+    },
+    "s1": {
+      "ru": "Даны {n} замкнутых отрезков, запись — левый и правый концы: {listing}. Глубина точки — сколько отрезков её содержат, концы включены. Какова наибольшая глубина?",
+      "en": "There are {n} closed segments. Each entry is the left and right endpoint: {listing}. The depth of a point is how many segments contain it, endpoints included. What is the greatest depth?"
+    },
+    "s2": {
+      "ru": "После отрезка {i} ({left}-{right}) длина {length}, глубина {depth}.",
+      "en": "After segment {i} ({left}-{right}) the length is {length} and the depth is {depth}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сигнал из {n} битов: {listing}. Фронт — это переход от 0 к 1. Перед первым битом сигнал считается нулём. Сколько фронтов в сигнале?",
+      "en": "A signal of {n} bits: {listing}. A rising edge is a change from 0 to 1. Before the first bit the signal is treated as zero. How many rising edges are there?"
+    },
+    "s1": {
+      "ru": "Сигнал из {n} битов: {listing}. Какова длина самой длинной непрерывной серии единиц? Если единиц нет, ответ 0.",
+      "en": "A signal of {n} bits: {listing}. What is the length of the longest contiguous run of ones? If there are no ones, the answer is 0."
+    },
+    "s2": {
+      "ru": "Бит {i} равен {bit}. Фронтов {rises}, самая длинная серия {longest}.",
+      "en": "Bit {i} is {bit}. Rising edges {rises}, longest run {longest}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Подряд записывают десятичные записи чисел от 1 до {n} без разделителей. Какова длина полученной строки?",
+      "en": "The decimal writings of the integers from 1 through {n} are written in a row with no separators. What is the length of the resulting string?"
+    },
+    "s1": {
+      "ru": "Подряд записывают десятичные записи чисел от 1 до {n} без разделителей. Какая цифра стоит на месте {k}? Места нумеруются с 1.",
+      "en": "The decimal writings of the integers from 1 through {n} are written in a row with no separators. Which digit stands in place {k}? Places are numbered from 1."
+    },
+    "s2": {
+      "ru": "После числа {i} длина равна {length}.",
+      "en": "After the number {i} the length is {length}."
+    }
+  }
+}

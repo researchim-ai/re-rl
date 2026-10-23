@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Рук {arms}, ходов {n}. Награды каждой руки по порядку её собственных ходов: {listing}. Сначала руки берутся по номерам, по одному разу. Дальше выбирается рука с наибольшим отношением (сумма её наград + число уже сделанных ходов) / число её ходов. При равенстве берётся меньший номер. Какова сумма полученных наград?",
+      "en": "There are {arms} arms and {n} pulls. Each arm's rewards, in the order of its own pulls: {listing}. Arms are taken once each, in index order, first. After that, pick the arm with the largest (its reward sum + pulls already made) / its pull count. Ties take the smaller index. What is the sum of the rewards received?"
+    },
+    "s1": {
+      "ru": "Рук {arms}, ходов {n}. Награды каждой руки по порядку её собственных ходов: {listing}. Сначала руки берутся по номерам, по одному разу. Дальше выбирается рука с наибольшим отношением (сумма её наград + число уже сделанных ходов) / число её ходов. При равенстве берётся меньший номер. Какая рука взята чаще всего? При равенстве — меньший номер.",
+      "en": "There are {arms} arms and {n} pulls. Each arm's rewards, in the order of its own pulls: {listing}. Arms are taken once each, in index order, first. After that, pick the arm with the largest (its reward sum + pulls already made) / its pull count. Ties take the smaller index. Which arm is pulled most often? Ties take the smaller index."
+    },
+    "s2": {
+      "ru": "Ход {i}: рука {arm}, награда {reward}, сумма {total}. Счётчики {counts}. Оценки выбора {scores}.",
+      "en": "Pull {i}: arm {arm}, reward {reward}, sum {total}. Counts {counts}. Selection scores {scores}."
+    },
+    "s3": {
+      "ru": "по номеру",
+      "en": "by index"
+    }
+  }
+}

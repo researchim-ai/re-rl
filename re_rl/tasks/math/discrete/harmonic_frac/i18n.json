@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Гармоническое число H({n}) — сумма дробей 1/1 + 1/2 + ... + 1/{n}. После каждого сложения сокращайте дробь. Каков числитель?",
+      "en": "The harmonic number H({n}) is the sum of the fractions 1/1 + 1/2 + ... + 1/{n}. Reduce the fraction after each addition. What is the numerator?"
+    },
+    "s1": {
+      "ru": "Гармоническое число H({n}) — сумма дробей 1/1 + 1/2 + ... + 1/{n}. После каждого сложения сокращайте дробь. Каков знаменатель?",
+      "en": "The harmonic number H({n}) is the sum of the fractions 1/1 + 1/2 + ... + 1/{n}. Reduce the fraction after each addition. What is the denominator?"
+    },
+    "s2": {
+      "ru": "После 1/{k}: {numer}/{denom}.",
+      "en": "After 1/{k}: {numer}/{denom}."
+    }
+  }
+}

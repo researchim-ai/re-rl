@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа слева направо: {listing}. Окно длины {width} едет слева направо с шагом 1. Всего окон {n}. Какова сумма чисел различных значений по всем окнам?",
+      "en": "Numbers from left to right: {listing}. A window of length {width} moves from left to right by one cell. There are {n} windows. What is the sum, over all windows, of how many distinct values each window holds?"
+    },
+    "s1": {
+      "ru": "Числа слева направо: {listing}. Окно длины {width} едет слева направо с шагом 1. Всего окон {n}. Сколько различных значений в окне номер {k}? Окна нумеруются с 1.",
+      "en": "Numbers from left to right: {listing}. A window of length {width} moves from left to right by one cell. There are {n} windows. How many distinct values are in window number {k}? Windows are numbered from 1."
+    },
+    "s2": {
+      "ru": "Окно {i}: различных {count}.",
+      "en": "Window {i}: distinct {count}."
+    }
+  }
+}

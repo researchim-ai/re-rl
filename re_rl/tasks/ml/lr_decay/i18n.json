@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вес начинает с {start}, множитель с {rate}. Градиентов {n}: {listing}. Вес уменьшается на множитель, умноженный на градиент. В конце каждого {period}-го шага множитель делится пополам с округлением вниз и не становится меньше 1. Каков конечный вес?",
+      "en": "The weight starts at {start} and the multiplier starts at {rate}. There are {n} gradients: {listing}. The weight decreases by the multiplier times the gradient. At the end of every {period}th step the multiplier is halved, rounded down, and does not fall below 1. What is the final weight?"
+    },
+    "s1": {
+      "ru": "Вес начинает с {start}, множитель с {rate}. Градиентов {n}: {listing}. Вес уменьшается на множитель, умноженный на градиент. В конце каждого {period}-го шага множитель делится пополам с округлением вниз и не становится меньше 1. Каков множитель после всех шагов?",
+      "en": "The weight starts at {start} and the multiplier starts at {rate}. There are {n} gradients: {listing}. The weight decreases by the multiplier times the gradient. At the end of every {period}th step the multiplier is halved, rounded down, and does not fall below 1. What is the multiplier after all steps?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: градиент {gradient}, взят множитель {used}. Вес {weight}, множитель дальше {rate}.",
+      "en": "Step {i}: gradient {gradient}, multiplier used {used}. Weight {weight}, multiplier next {rate}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Последовательность поворотов начинает пустой. Каждое сложение дописывает в конец 1, а затем зеркально перевёрнутую старую последовательность, где 1 заменён на 0 и 0 на 1. 1 означает влево, 0 означает вправо. Сколько поворотов влево после {n} сложений?",
+      "en": "The turn sequence starts empty. Each fold appends 1, then the old sequence reversed with 1 swapped for 0 and 0 swapped for 1. 1 means left and 0 means right. How many left turns are there after {n} folds?"
+    },
+    "s1": {
+      "ru": "Последовательность поворотов начинает пустой. Каждое сложение дописывает в конец 1, а затем зеркально перевёрнутую старую последовательность, где 1 заменён на 0 и 0 на 1. 1 означает влево, 0 означает вправо. Всего {n} сложений. Каков поворот на месте {k}? Места нумеруются с 1.",
+      "en": "The turn sequence starts empty. Each fold appends 1, then the old sequence reversed with 1 swapped for 0 and 0 swapped for 1. 1 means left and 0 means right. There are {n} folds. What is the turn in place {k}? Places are numbered from 1."
+    },
+    "s2": {
+      "ru": "Сложение {i}: влево {lefts}, длина {length}.",
+      "en": "Fold {i}: left turns {lefts}, length {length}."
+    }
+  }
+}

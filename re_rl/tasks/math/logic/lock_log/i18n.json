@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Замков {locks}, номера с 1, все свободны. Команд {n}: {listing}. Захват свободного замка занимает его. Повторный захват и отпуск свободного замка — ошибка, состояние не меняется. Сколько было ошибок?",
+      "en": "There are {locks} locks, numbered from 1, all free. There are {n} commands: {listing}. Acquiring a free lock takes it. Acquiring it again, or releasing a free lock, is an error and does not change the state. How many errors were there?"
+    },
+    "s1": {
+      "ru": "Замков {locks}, номера с 1, все свободны. Команд {n}: {listing}. Захват свободного замка занимает его. Повторный захват и отпуск свободного замка — ошибка, состояние не меняется. Занят ли замок {k}? Ответ 1, если да, и 0, если нет.",
+      "en": "There are {locks} locks, numbered from 1, all free. There are {n} commands: {listing}. Acquiring a free lock takes it. Acquiring it again, or releasing a free lock, is an error and does not change the state. Is lock {k} held? Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "Команда {i}: {phrase}. Ошибок {fails}. Замок из вопроса {held}.",
+      "en": "Command {i}: {phrase}. Errors {fails}. The asked lock is {held}."
+    },
+    "s4": {
+      "ru": "взять {lock}",
+      "en": "acquire {lock}"
+    },
+    "s5": {
+      "ru": "отпустить {lock}",
+      "en": "release {lock}"
+    }
+  }
+}

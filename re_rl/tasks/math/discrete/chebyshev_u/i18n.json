@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлены Чебышёва второго рода в точке {point}. U0 = 1, U1 = {twice}. Дальше каждый равен 2*{point}*предыдущий минус предпредыдущий. Каков U степени {n}?",
+      "en": "Chebyshev polynomials of the second kind at {point}. U0 = 1, U1 = {twice}. Each next one is 2*{point} times the previous minus the one before that. What is U of degree {n}?"
+    },
+    "s1": {
+      "ru": "Многочлены Чебышёва второго рода в точке {point}. U0 = 1, U1 = {twice}. Дальше каждый равен 2*{point}*предыдущий минус предпредыдущий. Какова сумма U от степени 0 до {n} включительно?",
+      "en": "Chebyshev polynomials of the second kind at {point}. U0 = 1, U1 = {twice}. Each next one is 2*{point} times the previous minus the one before that. What is the sum of U from degree 0 through {n}?"
+    },
+    "s2": {
+      "ru": "Степень {i}: значение {value}.",
+      "en": "Degree {i}: value {value}."
+    }
+  }
+}

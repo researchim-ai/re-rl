@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Потерь {n}: {listing}. Среднее начинает с 0. Новое среднее равно целой части половины старого плюс новая потеря. Каково среднее в конце?",
+      "en": "There are {n} losses: {listing}. The average starts at 0. The new average is half the old one, rounded down, plus the new loss. What is the average at the end?"
+    },
+    "s1": {
+      "ru": "Потерь {n}: {listing}. Среднее начинает с 0. Новое среднее равно целой части половины старого плюс новая потеря. Каково наибольшее среднее по ходу?",
+      "en": "There are {n} losses: {listing}. The average starts at 0. The new average is half the old one, rounded down, plus the new loss. What is the largest average along the way?"
+    },
+    "s2": {
+      "ru": "Потеря {i}: {loss}. Среднее {ema}, пик {peak}.",
+      "en": "Loss {i}: {loss}. Average {ema}, peak {peak}."
+    }
+  }
+}

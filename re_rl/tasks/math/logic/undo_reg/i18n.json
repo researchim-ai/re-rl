@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Регистр начинает с нуля, стопка отмены пуста. Команд {n}: {listing}. Запись кладёт текущее значение в стопку и ставит новое. Отмена достаёт верх стопки в регистр. Пустая стопка отмену игнорирует. Каково конечное значение регистра?",
+      "en": "The register starts at zero and the undo stack is empty. There are {n} commands: {listing}. A write pushes the current value and stores the new one. Undo pops the stack into the register. An empty stack ignores undo. What is the final register value?"
+    },
+    "s1": {
+      "ru": "Регистр начинает с нуля, стопка отмены пуста. Команд {n}: {listing}. Запись кладёт текущее значение в стопку и ставит новое. Отмена достаёт верх стопки в регистр. Пустая стопка отмену игнорирует. Какова высота стопки в конце?",
+      "en": "The register starts at zero and the undo stack is empty. There are {n} commands: {listing}. A write pushes the current value and stores the new one. Undo pops the stack into the register. An empty stack ignores undo. What is the stack height at the end?"
+    },
+    "s2": {
+      "ru": "Команда {i}: {phrase}. Регистр {value}, высота {depth}.",
+      "en": "Command {i}: {phrase}. Register {value}, height {depth}."
+    },
+    "s4": {
+      "ru": "записать {value}",
+      "en": "write {value}"
+    },
+    "s5": {
+      "ru": "отменить",
+      "en": "undo"
+    }
+  }
+}

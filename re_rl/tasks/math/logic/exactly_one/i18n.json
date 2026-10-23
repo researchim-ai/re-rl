@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Групп {n}, в каждой три бита. Группа подходит, если сумма битов равна 1. Группы по порядку: {groups}. Сколько групп подходит?",
+      "en": "There are {n} groups, each with three bits. A group counts when its bit sum is 1. The groups in order are: {groups}. How many groups count?"
+    },
+    "s1": {
+      "ru": "Групп {n}, в каждой три бита. Группа подходит, если сумма битов равна 1. Группы по порядку: {groups}. Подходит ли группа {k}? Ответьте 1 или 0. Нумерация с 1.",
+      "en": "There are {n} groups, each with three bits. A group counts when its bit sum is 1. The groups in order are: {groups}. Does group {k} count? Answer 1 or 0. Counting starts at 1."
+    },
+    "s2": {
+      "ru": "Группа {i}: подходит {hit}, всего {count}.",
+      "en": "Group {i}: counts {hit}, total {count}."
+    }
+  }
+}

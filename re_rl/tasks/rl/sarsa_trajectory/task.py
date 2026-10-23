@@ -85,10 +85,26 @@ class SarsaTrajectoryTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        table = [[Fraction(0) for _ in range(self.n_actions)] for _ in range(self.n_states)]
+        steps = []
+        for index, (state, action, reward, nxt, next_action) in enumerate(self.updates, 1):
+            target = table[nxt][next_action]
+            updated = table[state][action] + self.alpha * (reward + self.gamma * target - table[state][action])
+            table[state][action] = updated
+            row = ", ".join(fmt_fraction(value) for value in table[state])
+            steps.append(texts.t(
+                "s4", self.language, i=index, state=state + 1, action=action + 1,
+                reward=reward, nxt=nxt + 1, next_action=next_action + 1,
+                target=fmt_fraction(target), q=fmt_fraction(updated), row=row,
+            ))
         shown = (str(self.best) if self.task_type == "best_action"
                  else fmt_fraction(self.table[self.state][self.action]))
-        step = ((texts.t('s1', self.language, v0=self.state + 1, v1=self.action + 1, v2=fmt_fraction(self.table[self.state][self.action]), best=self.best)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.t(
+            "s1", self.language, v0=self.state + 1, v1=self.action + 1,
+            v2=fmt_fraction(self.table[self.state][self.action]), best=self.best,
+        ))
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

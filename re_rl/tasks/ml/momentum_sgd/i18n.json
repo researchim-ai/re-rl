@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вес начинается с {start}, скорость с 0. Дальше {n} градиентов: {listing}. На шаге скорость делится пополам с округлением вниз и к ней прибавляется градиент, затем вес уменьшается на скорость. Какой вес получится?",
+      "en": "The weight starts at {start} and the velocity starts at 0. Then {n} gradients follow: {listing}. On a step the velocity is divided by 2 and rounded down, the gradient is added, and the weight decreases by that velocity. What is the resulting weight?"
+    },
+    "s1": {
+      "ru": "Вес начинается с {start}, скорость с 0. Дальше {n} градиентов: {listing}. На шаге скорость делится пополам с округлением вниз и к ней прибавляется градиент, затем вес уменьшается на скорость. Какая скорость получится?",
+      "en": "The weight starts at {start} and the velocity starts at 0. Then {n} gradients follow: {listing}. On a step the velocity is divided by 2 and rounded down, the gradient is added, and the weight decreases by that velocity. What is the resulting velocity?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: градиент {gradient}, скорость {velocity}, вес {weight}.",
+      "en": "Step {i}: gradient {gradient}, velocity {velocity}, weight {weight}."
+    }
+  }
+}

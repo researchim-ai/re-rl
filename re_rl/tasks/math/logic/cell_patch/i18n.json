@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив из {n} ячеек начинает с нулей, индексы с 1. Записи идут по порядку, форма индекс=значение: {listing}. Повторная запись того же значения не меняет ячейку. Каково итоговое значение ячейки {k}?",
+      "en": "An array of {n} cells starts at zeros, with indexes from 1. Writes arrive in order as index=value: {listing}. Writing the value that is already there does not change the cell. What is the final value of cell {k}?"
+    },
+    "s1": {
+      "ru": "Массив из {n} ячеек начинает с нулей, индексы с 1. Записи идут по порядку, форма индекс=значение: {listing}. Повторная запись того же значения не меняет ячейку. Сколько записей реально изменили ячейку?",
+      "en": "An array of {n} cells starts at zeros, with indexes from 1. Writes arrive in order as index=value: {listing}. Writing the value that is already there does not change the cell. How many writes actually changed a cell?"
+    },
+    "s2": {
+      "ru": "Запись {i}: ячейка {index} становится {value}. Изменений {writes}.",
+      "en": "Write {i}: cell {index} becomes {value}. Changes {writes}."
+    }
+  }
+}

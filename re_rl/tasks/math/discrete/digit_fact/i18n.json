@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число начинает с {start}. Один шаг заменяет его суммой факториалов его десятичных цифр. Факториал нуля равен 1. Какое число получится после {n} шагов?",
+      "en": "The number starts at {start}. One step replaces it by the sum of the factorials of its decimal digits. The factorial of zero is 1. What number appears after {n} steps?"
+    },
+    "s1": {
+      "ru": "Число начинает с {start}. Один шаг заменяет его суммой факториалов его десятичных цифр. Факториал нуля равен 1. Каково наибольшее число среди начального и {n} результатов шагов?",
+      "en": "The number starts at {start}. One step replaces it by the sum of the factorials of its decimal digits. The factorial of zero is 1. What is the greatest number among the start and the {n} step results?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: получается {value}.",
+      "en": "Step {i}: the number is {value}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "У каждой из {n} вершин ровно один переход. Запись вершина-куда: {listing}. Старт в вершине {start}. Черепаха идёт на один переход, заяц на два, пока не встретятся. Длина цикла — сколько переходов нужно, чтобы вернуться из точки встречи в неё же. Какова длина цикла?",
+      "en": "Each of {n} vertices has exactly one outgoing step. Each entry is vertex-target: {listing}. Start at vertex {start}. The tortoise takes one step and the hare takes two, until they meet. The cycle length is how many steps return from the meeting vertex to itself. What is the cycle length?"
+    },
+    "s1": {
+      "ru": "У каждой из {n} вершин ровно один переход. Запись вершина-куда: {listing}. Старт в вершине {start}. Черепаха идёт на один переход, заяц на два, пока не встретятся. В какой вершине они встречаются?",
+      "en": "Each of {n} vertices has exactly one outgoing step. Each entry is vertex-target: {listing}. Start at vertex {start}. The tortoise takes one step and the hare takes two, until they meet. At which vertex do they meet?"
+    },
+    "s2": {
+      "ru": "Вершина {i} ведёт в {nxt}.",
+      "en": "Vertex {i} leads to {nxt}."
+    },
+    "s3": {
+      "ru": "Встреча в {meet}, длина цикла {cycle}.",
+      "en": "Meeting at {meet}, cycle length {cycle}."
+    }
+  }
+}

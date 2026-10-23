@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скорость в начале равна {speed}. За каждый такт тело проходит расстояние, равное текущей скорости, затем скорость уменьшается на трение этого такта, но не ниже нуля. Трение по тактам: {listing}. Каков пройденный путь после {n} тактов?",
+      "en": "The speed starts at {speed}. Each tick the body travels a distance equal to its current speed, and then the speed decreases by that tick's friction, but not below zero. Friction by tick: {listing}. What distance has it travelled after {n} ticks?"
+    },
+    "s1": {
+      "ru": "Скорость в начале равна {speed}. За каждый такт тело проходит расстояние, равное текущей скорости, затем скорость уменьшается на трение этого такта, но не ниже нуля. Трение по тактам: {listing}. Какова скорость после {n} тактов?",
+      "en": "The speed starts at {speed}. Each tick the body travels a distance equal to its current speed, and then the speed decreases by that tick's friction, but not below zero. Friction by tick: {listing}. What is the speed after {n} ticks?"
+    },
+    "s2": {
+      "ru": "Такт {i}: трение {friction}. Путь {place}, скорость {speed}.",
+      "en": "Tick {i}: friction {friction}. Distance {place}, speed {speed}."
+    }
+  }
+}

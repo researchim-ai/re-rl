@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вес начинает с {start}. Градиентов {n}: {listing}. На шаге затухание — целая часть половины текущего веса, округление вниз. Новый вес равен старому минус градиент минус затухание. Каков конечный вес?",
+      "en": "The weight starts at {start}. There are {n} gradients: {listing}. On a step the decay is half the current weight, rounded down. The new weight is the old one minus the gradient minus the decay. What is the final weight?"
+    },
+    "s1": {
+      "ru": "Вес начинает с {start}. Градиентов {n}: {listing}. На шаге затухание — целая часть половины текущего веса, округление вниз. Новый вес равен старому минус градиент минус затухание. Какова сумма затуханий?",
+      "en": "The weight starts at {start}. There are {n} gradients: {listing}. On a step the decay is half the current weight, rounded down. The new weight is the old one minus the gradient minus the decay. What is the sum of the decays?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: градиент {gradient}, затухание {decay}. Вес {weight}, сумма затуханий {total}.",
+      "en": "Step {i}: gradient {gradient}, decay {decay}. Weight {weight}, decay sum {total}."
+    }
+  }
+}

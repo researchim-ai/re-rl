@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для каждого числа от 1 до {n} сложите его простые множители с повторениями. У 1 сумма равна 0, у 12 = 2*2*3 сумма равна 7, у 8 = 2*2*2 сумма равна 6. Какова сумма этих сумм?",
+      "en": "For each number from 1 to {n}, add its prime factors with multiplicity. For 1 the sum is 0, for 12 = 2*2*3 the sum is 7, and for 8 = 2*2*2 the sum is 6. What is the sum of these sums?"
+    },
+    "s1": {
+      "ru": "Для каждого числа от 1 до {n} сложите его простые множители с повторениями. У 1 сумма равна 0, у 12 = 2*2*3 сумма равна 7, у 8 = 2*2*2 сумма равна 6. Какова такая сумма у числа {k}?",
+      "en": "For each number from 1 to {n}, add its prime factors with multiplicity. For 1 the sum is 0, for 12 = 2*2*3 the sum is 7, and for 8 = 2*2*2 the sum is 6. What is that sum for {k}?"
+    },
+    "s2": {
+      "ru": "Число {i}: сумма множителей {value}, накоплено {total}.",
+      "en": "Number {i}: factor sum {value}, running total {total}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Функция Мёбиуса: 0, если число делится на квадрат простого. Иначе это минус единица в степени числа различных простых множителей. Для 1 значение равно 1. Какова сумма значений от 1 до {n}?",
+      "en": "The Möbius function is 0 when a number is divisible by a prime square. Otherwise it is minus one to the number of distinct prime factors. For 1 the value is 1. What is the sum of the values from 1 to {n}?"
+    },
+    "s1": {
+      "ru": "Функция Мёбиуса: 0, если число делится на квадрат простого. Иначе это минус единица в степени числа различных простых множителей. Для 1 значение равно 1. Каково значение на числе {k}?",
+      "en": "The Möbius function is 0 when a number is divisible by a prime square. Otherwise it is minus one to the number of distinct prime factors. For 1 the value is 1. What is the value at {k}?"
+    },
+    "s2": {
+      "ru": "Число {i}: Мёбиус {mu}, сумма {total}.",
+      "en": "Number {i}: Möbius {mu}, sum {total}."
+    }
+  }
+}

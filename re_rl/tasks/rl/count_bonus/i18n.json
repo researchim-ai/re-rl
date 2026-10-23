@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Состояний {states}, номера с 1. Визитов {n}, запись — состояние и награда: {listing}. Запас {pool}. Добавка визита — целая часть запаса, делённого на 1 плюс число прошлых визитов этого состояния. Счётчик растёт после добавки. Какова сумма добавок?",
+      "en": "There are {states} states, numbered from 1. There are {n} visits, each entry a state and a reward: {listing}. The pool is {pool}. A visit bonus is the pool divided by 1 plus that state's earlier visits, rounded down. The counter grows after the bonus. What is the sum of the bonuses?"
+    },
+    "s1": {
+      "ru": "Состояний {states}, номера с 1. Визитов {n}, запись — состояние и награда: {listing}. Запас {pool}. Добавка визита — целая часть запаса, делённого на 1 плюс число прошлых визитов этого состояния. Счётчик растёт после добавки. Счёт визита — награда плюс добавка. Какова сумма счетов?",
+      "en": "There are {states} states, numbered from 1. There are {n} visits, each entry a state and a reward: {listing}. The pool is {pool}. A visit bonus is the pool divided by 1 plus that state's earlier visits, rounded down. The counter grows after the bonus. A visit score is the reward plus the bonus. What is the sum of the scores?"
+    },
+    "s2": {
+      "ru": "Визит {i}: состояние {state}, награда {reward}. Добавка {bonus}, сумма добавок {total}, сумма счетов {score}.",
+      "en": "Visit {i}: state {state}, reward {reward}. Bonus {bonus}, bonus sum {total}, score sum {score}."
+    }
+  }
+}

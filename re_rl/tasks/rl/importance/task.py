@@ -66,9 +66,21 @@ class ImportanceRatioTask(BaseMathTask):
         return f"{data} {ask}"
 
     def solve(self):
+        product = Fraction(1)
+        above = 0
+        steps = []
+        for index, (numer, denom) in enumerate(self.pairs, 1):
+            product *= Fraction(numer, denom)
+            if numer > denom:
+                above += 1
+            steps.append(texts.t(
+                "s4", self.language, i=index, numer=numer, denom=denom,
+                product=fmt_fraction(product), above=above,
+            ))
         shown = fmt_fraction(self.answer)
-        step = ((texts.t('s1', self.language, v0=fmt_fraction(self.product), above=self.above)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.t("s1", self.language, v0=fmt_fraction(self.product), above=self.above))
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

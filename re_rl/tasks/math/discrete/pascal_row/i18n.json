@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка 0 треугольника Паскаля состоит из числа 1. Каждая следующая строка получается сложением соседних чисел предыдущей, а по краям ставятся единицы. Чему равен элемент номер {k} в строке {n}? Нумерация в строке начинается с 1.",
+      "en": "Row 0 of Pascal's triangle is the single number 1. Each next row is built by adding neighboring numbers of the previous row, with 1 at both ends. What is entry number {k} in row {n}? Entries in a row are numbered from 1."
+    },
+    "s1": {
+      "ru": "Строка 0 треугольника Паскаля состоит из числа 1. Каждая следующая строка получается сложением соседних чисел предыдущей, а по краям ставятся единицы. Чему равен элемент номер {middle} в строке {n}? Нумерация в строке начинается с 1. Это середина строки.",
+      "en": "Row 0 of Pascal's triangle is the single number 1. Each next row is built by adding neighboring numbers of the previous row, with 1 at both ends. What is entry number {middle} in row {n}? Entries in a row are numbered from 1. This is the middle of the row."
+    },
+    "s2": {
+      "ru": "Строка {i}: {row}.",
+      "en": "Row {i}: {row}."
+    },
+    "s3": {
+      "ru": "Выбранный элемент {entry}, середина {middle}.",
+      "en": "The chosen entry is {entry}, and the middle is {middle}."
+    }
+  }
+}

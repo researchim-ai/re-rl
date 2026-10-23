@@ -83,15 +83,16 @@ class PerceptronUpdateTask(BaseMathTask):
         return f"{rule} {head} {ask}"
 
     def solve(self):
-        bits = []
-        for (x1, x2, y), w, b, updated in self.trace:
-            mark = (texts.t('s3', self.language) if updated else texts.t('s4', self.language))
-            bits.append(f"({x1}, {x2}, y={y}) -> ({w[0]}, {w[1]}, {b}), {mark}")
+        steps = []
+        for index, ((x1, x2, y), w, b, updated) in enumerate(self.trace, 1):
+            mark = texts.t("s3" if updated else "s4", self.language)
+            steps.append(texts.t(
+                "s6", self.language, i=index, x1=x1, x2=x2, y=y,
+                w1=w[0], w2=w[1], b=b, mark=mark,
+            ))
         shown = f"{self.w[0]}, {self.w[1]}, {self.b}"
-        self.solution_steps = [
-            (((texts.t('s5', self.language))) + "; ".join(bits) + "."),
-            ((texts.common('answer_line', self.language, answer=shown))),
-        ]
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

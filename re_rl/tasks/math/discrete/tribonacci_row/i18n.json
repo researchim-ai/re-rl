@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа трибоначчи: T(0) = 0, T(1) = 1, T(2) = 1. Дальше каждый член — сумма трёх предыдущих. Каково T({n})?",
+      "en": "Tribonacci numbers: T(0) = 0, T(1) = 1, T(2) = 1. Each next term is the sum of the three before it. What is T({n})?"
+    },
+    "s1": {
+      "ru": "Числа трибоначчи: T(0) = 0, T(1) = 1, T(2) = 1. Дальше каждый член — сумма трёх предыдущих. Какова сумма T от 0 до {n} включительно?",
+      "en": "Tribonacci numbers: T(0) = 0, T(1) = 1, T(2) = 1. Each next term is the sum of the three before it. What is the sum of T from 0 through {n}?"
+    },
+    "s2": {
+      "ru": "Индекс {i}: значение {value}.",
+      "en": "Index {i}: value {value}."
+    }
+  }
+}

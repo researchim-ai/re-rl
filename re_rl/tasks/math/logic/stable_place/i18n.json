@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Список из {n} чисел, позиции с 1: {listing}. Устойчивая сортировка ставит меньшие значения левее, а при равенстве сохраняет прежний порядок. На какое место попадёт исходная позиция {k}?",
+      "en": "A list of {n} numbers, positions from 1: {listing}. A stable sort puts smaller values to the left, and equal values keep their old order. Which place does original position {k} land on?"
+    },
+    "s1": {
+      "ru": "Список из {n} чисел, позиции с 1: {listing}. Устойчивая сортировка ставит меньшие значения левее, а при равенстве сохраняет прежний порядок. Какая исходная позиция окажется на месте {k}?",
+      "en": "A list of {n} numbers, positions from 1: {listing}. A stable sort puts smaller values to the left, and equal values keep their old order. Which original position ends up in place {k}?"
+    },
+    "s2": {
+      "ru": "Место {i}: исходная позиция {who}, значение {value}.",
+      "en": "Place {i}: original position {who}, value {value}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Доход равен {income}. Ступеней {n}. Для каждой указаны ширина и процент налога: {listing}. Доход заполняет ступени по порядку. Процент берётся только с той части, которая попала в ступень. Каков полный налог?",
+      "en": "The income is {income}. There are {n} brackets. Each entry gives the width and the tax percent: {listing}. Income fills the brackets in order. The percent applies only to the part that falls inside the bracket. What is the total tax?"
+    },
+    "s1": {
+      "ru": "Доход равен {income}. Ступеней {n}. Для каждой указаны ширина и процент налога: {listing}. Доход заполняет ступени по порядку. Процент берётся только с той части, которая попала в ступень. В какой ступени доход заканчивается? Ступени нумеруются с 1.",
+      "en": "The income is {income}. There are {n} brackets. Each entry gives the width and the tax percent: {listing}. Income fills the brackets in order. The percent applies only to the part that falls inside the bracket. In which bracket does the income end? Brackets are numbered from 1."
+    },
+    "s2": {
+      "ru": "Ступень {i}: попало {piece} под {rate} процентов, налог {part}, сумма {tax}.",
+      "en": "Bracket {i}: {piece} is taxed at {rate} percent, tax {part}, running total {tax}."
+    },
+    "s3": {
+      "ru": "Полный налог {tax}. Доход заканчивается в ступени {band}.",
+      "en": "The total tax is {tax}. The income ends in bracket {band}."
+    }
+  }
+}

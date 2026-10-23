@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Переходов {n}, запись — награда, оценка, следующая оценка: {listing}. Ошибка равна награде плюс следующая оценка минус текущая. Затем ошибка обрезается до отрезка от -{limit} до {limit}. Какова сумма обрезанных ошибок?",
+      "en": "There are {n} transitions, each entry reward, value, next value: {listing}. The error is the reward plus the next value minus the current value. Then the error is clipped to the range from -{limit} to {limit}. What is the sum of the clipped errors?"
+    },
+    "s1": {
+      "ru": "Переходов {n}, запись — награда, оценка, следующая оценка: {listing}. Ошибка равна награде плюс следующая оценка минус текущая. Затем ошибка обрезается до отрезка от -{limit} до {limit}. Сколько ошибок реально изменились при обрезке?",
+      "en": "There are {n} transitions, each entry reward, value, next value: {listing}. The error is the reward plus the next value minus the current value. Then the error is clipped to the range from -{limit} to {limit}. How many errors actually changed when clipped?"
+    },
+    "s2": {
+      "ru": "Переход {i}: сырая ошибка {raw}, после обрезки {clipped}. Сумма {total}, обрезок {clips}.",
+      "en": "Transition {i}: raw error {raw}, after clipping {clipped}. Sum {total}, clips {clips}."
+    }
+  }
+}

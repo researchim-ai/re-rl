@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Буфер вмещает {capacity} значений и начинает пустым. Записей {n}: {listing}. Новое значение встаёт в конец. Если буфер полон, самое старое, левое, выпадает. Какое значение стоит на месте {k} в конце? Нумерация с 1 слева направо.",
+      "en": "The buffer holds {capacity} values and starts empty. There are {n} records: {listing}. A new value goes at the end. If the buffer is full, the oldest value, the leftmost, drops out. Which value is in place {k} at the end? Numbering starts at 1 from left to right."
+    },
+    "s1": {
+      "ru": "Буфер вмещает {capacity} значений и начинает пустым. Записей {n}: {listing}. Новое значение встаёт в конец. Если буфер полон, самое старое, левое, выпадает. Сколько значений было вытеснено?",
+      "en": "The buffer holds {capacity} values and starts empty. There are {n} records: {listing}. A new value goes at the end. If the buffer is full, the oldest value, the leftmost, drops out. How many values were overwritten?"
+    },
+    "s2": {
+      "ru": "Запись {i}: значение {value}. Буфер {buffer}. Вытеснено {overwrites}.",
+      "en": "Record {i}: value {value}. Buffer {buffer}. Overwritten {overwrites}."
+    }
+  }
+}

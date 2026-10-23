@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В колбе {a} молекул A и {b} молекул B. Дальше {n} реакций. Для каждой записано, сколько молекул A и B нужно на одну молекулу продукта: {listing}. На шаге реакция повторяется столько раз, сколько позволяет меньший из двух запасов, и оба запаса уменьшаются. Сколько молекул продукта получится всего?",
+      "en": "A flask holds {a} molecules of A and {b} molecules of B. Then {n} reactions follow. Each entry says how many molecules of A and B one product molecule requires: {listing}. On a step the reaction repeats as many times as the smaller stock allows, and both stocks decrease. How many product molecules are made in total?"
+    },
+    "s1": {
+      "ru": "В колбе {a} молекул A и {b} молекул B. Дальше {n} реакций. Для каждой записано, сколько молекул A и B нужно на одну молекулу продукта: {listing}. На шаге реакция повторяется столько раз, сколько позволяет меньший из двух запасов, и оба запаса уменьшаются. Сколько молекул A останется?",
+      "en": "A flask holds {a} molecules of A and {b} molecules of B. Then {n} reactions follow. Each entry says how many molecules of A and B one product molecule requires: {listing}. On a step the reaction repeats as many times as the smaller stock allows, and both stocks decrease. How many molecules of A remain?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: реакция проходит {times} раз, осталось A {a}, B {b}, продукт {product}.",
+      "en": "Step {i}: the reaction runs {times} times, A left {a}, B left {b}, product {product}."
+    }
+  }
+}

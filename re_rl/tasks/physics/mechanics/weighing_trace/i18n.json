@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Подозреваемые монеты: {coins}. Ровно одна тяжелее остальных, остальные весят как эталон. Каждое из {n} взвешиваний сравнивает одну монету с эталоном. Если монета тяжелее, тяжёлая найдена. Если весы в равновесии, эта монета настоящая. Протокол: {listing}. Какой номер у тяжёлой монеты?",
+      "en": "The suspect coins are {coins}. Exactly one is heavier than the others, and the rest match the reference weight. Each of the {n} weighings compares one coin with the reference. If the coin is heavier, it is the heavy coin. If the scale balances, that coin is genuine. The record is {listing}. What is the number of the heavy coin?"
+    },
+    "s1": {
+      "ru": "Подозреваемые монеты: {coins}. Ровно одна тяжелее остальных, остальные весят как эталон. Каждое из {n} взвешиваний сравнивает одну монету с эталоном. Если монета тяжелее, тяжёлая найдена. Если весы в равновесии, эта монета настоящая. Протокол: {listing}. На каком взвешивании монета впервые оказалась тяжелее эталона? Если такого взвешивания нет, ответ 0.",
+      "en": "The suspect coins are {coins}. Exactly one is heavier than the others, and the rest match the reference weight. Each of the {n} weighings compares one coin with the reference. If the coin is heavier, it is the heavy coin. If the scale balances, that coin is genuine. The record is {listing}. On which weighing is a coin heavier than the reference for the first time? If that never happens, the answer is 0."
+    },
+    "s2": {
+      "ru": "После взвешивания {i} подозреваемые: {suspects}.",
+      "en": "After weighing {i} the suspects are {suspects}."
+    },
+    "s3": {
+      "ru": "Тяжёлая монета {heavy}. Первое перевешивание: {tipped}.",
+      "en": "The heavy coin is {heavy}. The first heavier result is {tipped}."
+    },
+    "s4": {
+      "ru": "{i}: монета {coin} в равновесии",
+      "en": "{i}: coin {coin} balances"
+    },
+    "s5": {
+      "ru": "{i}: монета {coin} тяжелее эталона",
+      "en": "{i}: coin {coin} is heavier"
+    }
+  }
+}

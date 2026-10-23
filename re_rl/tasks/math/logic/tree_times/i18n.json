@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В дереве {n} узлов. Узел 1 — корень. Для остальных запись узел-родитель: {listing}. Обход в глубину заходит в детей по возрастанию номеров. Время входа корня равно 1 и растёт на 1 при входе в новый узел. Каково время входа узла {k}?",
+      "en": "A tree has {n} nodes. Node 1 is the root. For the others the entry is node-parent: {listing}. A depth-first walk visits children in increasing order. The root is entered at time 1, and the time grows by 1 when a new node is entered. What is the entry time of node {k}?"
+    },
+    "s1": {
+      "ru": "В дереве {n} узлов. Узел 1 — корень. Для остальных запись узел-родитель: {listing}. Обход в глубину заходит в детей по возрастанию номеров. Размер узла — он сам плюс размеры детей. Каков размер поддерева узла {k}?",
+      "en": "A tree has {n} nodes. Node 1 is the root. For the others the entry is node-parent: {listing}. A depth-first walk visits children in increasing order. The size of a node is itself plus the sizes of its children. What is the subtree size of node {k}?"
+    },
+    "s2": {
+      "ru": "Узел {i}: вход {enter}, размер {size}.",
+      "en": "Node {i}: entry {enter}, size {size}."
+    }
+  }
+}

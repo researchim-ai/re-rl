@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Лифт начинает с этажа {start}. Остановки по порядку, всего {n}: {listing}. К каждой он едет сразу, путь — модуль разности этажей. Каков весь путь?",
+      "en": "The elevator starts at floor {start}. Stops in order, {n} in total: {listing}. It goes straight to each one, and the path is the absolute difference of the floors. What is the whole path?"
+    },
+    "s1": {
+      "ru": "Лифт начинает с этажа {start}. Остановки по порядку, всего {n}: {listing}. К каждой он едет сразу. На каком этаже он останавливается в конце?",
+      "en": "The elevator starts at floor {start}. Stops in order, {n} in total: {listing}. It goes straight to each one. On which floor does it stop at the end?"
+    },
+    "s2": {
+      "ru": "Остановка {i}: этаж {floor}. Путь {distance}.",
+      "en": "Stop {i}: floor {floor}. Path {distance}."
+    }
+  }
+}

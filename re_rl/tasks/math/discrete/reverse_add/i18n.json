@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начинаем с числа {start}. Один шаг переворачивает десятичную запись и прибавляет её к числу. Нули в начале перевёрнутой записи не пишутся. Какое число получится после {n} шагов?",
+      "en": "Start with {start}. One step reverses the decimal digits and adds that value to the number. Leading zeros of the reversed writing are dropped. What number appears after {n} steps?"
+    },
+    "s1": {
+      "ru": "Начинаем с числа {start}. Один шаг переворачивает десятичную запись и прибавляет её к числу. Нули в начале перевёрнутой записи не пишутся. Является ли число после {n} шагов палиндромом? Ответ 1, если да, и 0, если нет.",
+      "en": "Start with {start}. One step reverses the decimal digits and adds that value to the number. Leading zeros of the reversed writing are dropped. Is the number after {n} steps a palindrome? Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "Шаг {i}: получается {value}.",
+      "en": "Step {i}: the number is {value}."
+    }
+  }
+}

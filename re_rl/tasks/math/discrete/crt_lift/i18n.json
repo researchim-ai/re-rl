@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Найдите число от 0 до {m}*{n} - 1, которое даёт остаток {a} при делении на {m} и остаток {b} при делении на {n}. Перебирайте вид {a} + {m}*t, t от 0 до {n} - 1. Каково это число?",
+      "en": "Find the number from 0 up to {m}*{n} - 1 that leaves remainder {a} on division by {m} and remainder {b} on division by {n}. Try numbers of the form {a} + {m}*t, with t from 0 to {n} - 1. What is that number?"
+    },
+    "s1": {
+      "ru": "Найдите число вида {a} + {m}*t, которое даёт остаток {b} при делении на {n}. t берётся от 0 до {n} - 1, самое маленькое подходящее. Каково это t?",
+      "en": "Find a number of the form {a} + {m}*t that leaves remainder {b} on division by {n}. t runs from 0 to {n} - 1, and the smallest fitting t is used. What is that t?"
+    },
+    "s2": {
+      "ru": "t = {t}: число {value}, остаток {residue}, совпало {hit}.",
+      "en": "t = {t}: number {value}, remainder {residue}, matched {hit}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Точка начинает в нуле. Дальше {n} шагов: {listing}. Положительный шаг прибавляет 1, отрицательный вычитает 1. Какова конечная координата?",
+      "en": "A point starts at zero. Then it takes {n} steps: {listing}. A positive step adds 1, and a negative step subtracts 1. What is the final position?"
+    },
+    "s1": {
+      "ru": "Точка начинает в нуле. Дальше {n} шагов: {listing}. Положительный шаг прибавляет 1, отрицательный вычитает 1. После скольких шагов координата была строго больше нуля?",
+      "en": "A point starts at zero. Then it takes {n} steps: {listing}. A positive step adds 1, and a negative step subtracts 1. After how many steps was the position strictly greater than zero?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: сдвиг {move}. Координата {place}, положительных префиксов {highs}.",
+      "en": "Step {i}: shift {move}. Position {place}, positive prefixes {highs}."
+    }
+  }
+}

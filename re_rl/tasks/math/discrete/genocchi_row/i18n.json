@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число Генокки. Сначала B(0) = 1. Для m от 1 и дальше сумма C(m+1, k)*B(k) по k от 0 до m-1 меняет знак и делится на m+1. Коэффициент C(a, b) — произведение (a-b+i)/i по i от 1 до b. Дробь сокращайте. Затем G({n}) = 2*(1-2^{n})*B({n}). Индекс {n} чётный, и деление на знаменатель B целое. Каково G({n})?",
+      "en": "A Genocchi number. First B(0) = 1. For each m from 1 onward, the sum of C(m+1, k)*B(k) for k from 0 to m-1 changes sign and is divided by m+1. The coefficient C(a, b) is the product (a-b+i)/i for i from 1 to b. Reduce each fraction. Then G({n}) = 2*(1-2^{n})*B({n}). The index {n} is even, and division by the denominator of B is exact. What is G({n})?"
+    },
+    "s1": {
+      "ru": "Число Генокки. Сначала B(0) = 1. Для m от 1 и дальше сумма C(m+1, k)*B(k) по k от 0 до m-1 меняет знак и делится на m+1. Коэффициент C(a, b) — произведение (a-b+i)/i по i от 1 до b. Дробь сокращайте. Затем G({n}) = 2*(1-2^{n})*B({n}). Индекс {n} чётный, и деление на знаменатель B целое. Каков числитель сокращённой дроби B({n})?",
+      "en": "A Genocchi number. First B(0) = 1. For each m from 1 onward, the sum of C(m+1, k)*B(k) for k from 0 to m-1 changes sign and is divided by m+1. The coefficient C(a, b) is the product (a-b+i)/i for i from 1 to b. Reduce each fraction. Then G({n}) = 2*(1-2^{n})*B({n}). The index {n} is even, and division by the denominator of B is exact. What is the numerator of the reduced fraction B({n})?"
+    },
+    "s2": {
+      "ru": "B(0) = {numer}/{denom}.",
+      "en": "B(0) = {numer}/{denom}."
+    },
+    "s3": {
+      "ru": "Для B({m}), k = {k}: C({upper}, {k}) = {coefficient}, вклад {term_n}/{term_d}, сумма {sum_n}/{sum_d}.",
+      "en": "For B({m}), k = {k}: C({upper}, {k}) = {coefficient}, term {term_n}/{term_d}, sum {sum_n}/{sum_d}."
+    },
+    "s4": {
+      "ru": "B({m}) = {numer}/{denom}.",
+      "en": "B({m}) = {numer}/{denom}."
+    },
+    "s5": {
+      "ru": "G({n}) = {factor} * {numer}/{denom} = {value}.",
+      "en": "G({n}) = {factor} * {numer}/{denom} = {value}."
+    }
+  }
+}

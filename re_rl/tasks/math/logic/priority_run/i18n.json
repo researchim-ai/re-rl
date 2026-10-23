@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Заявок {n}, все готовы сразу. Запись — приоритет и длина: {listing}. На каждом такте работает заявка с большим приоритетом, у которой ещё осталась длина. При равенстве берётся меньший номер. Номера с 1. Какая заявка работает на такте {k}?",
+      "en": "There are {n} jobs, all ready at once. Each entry is priority and length: {listing}. Each tick runs the remaining job with the larger priority. Ties take the smaller index. Numbering starts at 1. Which job runs at tick {k}?"
+    },
+    "s1": {
+      "ru": "Заявок {n}, все готовы сразу. Запись — приоритет и длина: {listing}. На каждом такте работает заявка с большим приоритетом, у которой ещё осталась длина. При равенстве берётся меньший номер. Номера с 1. Сколько тактов занимает вся работа?",
+      "en": "There are {n} jobs, all ready at once. Each entry is priority and length: {listing}. Each tick runs the remaining job with the larger priority. Ties take the smaller index. Numbering starts at 1. How many ticks does the whole run take?"
+    },
+    "s2": {
+      "ru": "Такт {i}: заявка {job}.",
+      "en": "Tick {i}: job {job}."
+    }
+  }
+}

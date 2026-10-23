@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Знаки слева направо, всего {n}: {listing}. I означает 1, V означает 5, X означает 10, L означает 50, C означает 100. Если знак меньше следующего, он вычитается, иначе прибавляется. Каково итоговое значение?",
+      "en": "Symbols from left to right, {n} in total: {listing}. I means 1, V means 5, X means 10, L means 50, and C means 100. If a symbol is smaller than the next one, it is subtracted; otherwise it is added. What is the final value?"
+    },
+    "s1": {
+      "ru": "Знаки слева направо, всего {n}: {listing}. I означает 1, V означает 5, X означает 10, L означает 50, C означает 100. Если знак меньше следующего, он вычитается, иначе прибавляется. Сколько знаков вычтено?",
+      "en": "Symbols from left to right, {n} in total: {listing}. I means 1, V means 5, X means 10, L means 50, and C means 100. If a symbol is smaller than the next one, it is subtracted; otherwise it is added. How many symbols are subtracted?"
+    },
+    "s2": {
+      "ru": "Знак {i} равен {symbol}. Сумма {total}, вычтено {subs}.",
+      "en": "Symbol {i} is {symbol}. Sum {total}, subtracted {subs}."
+    }
+  }
+}

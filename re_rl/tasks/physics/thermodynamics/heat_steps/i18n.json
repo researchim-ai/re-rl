@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Температура {temp}, теплоёмкость {capacity}. Порций тепла {n}: {listing}. Порция прибавляется к остатку. Целая часть остатка, делённого на теплоёмкость, поднимает температуру, а остаток от деления сохраняется. Какова конечная температура?",
+      "en": "The temperature is {temp} and the heat capacity is {capacity}. There are {n} heat packets: {listing}. A packet is added to the remainder. The integer part of the remainder divided by the heat capacity raises the temperature, and the division remainder is kept. What is the final temperature?"
+    },
+    "s1": {
+      "ru": "Температура {temp}, теплоёмкость {capacity}. Порций тепла {n}: {listing}. Порция прибавляется к остатку. Целая часть остатка, делённого на теплоёмкость, поднимает температуру, а остаток от деления сохраняется. Сколько тепла осталось не израсходованным?",
+      "en": "The temperature is {temp} and the heat capacity is {capacity}. There are {n} heat packets: {listing}. A packet is added to the remainder. The integer part of the remainder divided by the heat capacity raises the temperature, and the division remainder is kept. How much heat is left unused?"
+    },
+    "s2": {
+      "ru": "Порция {i}: тепло {packet}. Прирост {gained}, температура {temp}, остаток {stored}.",
+      "en": "Packet {i}: heat {packet}. Gain {gained}, temperature {temp}, remainder {stored}."
+    }
+  }
+}

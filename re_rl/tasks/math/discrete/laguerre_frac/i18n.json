@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлен Лагерра в точке {point}. L степени 0 равен 1/1, степени 1 равен {first_n}/{first_d}. Дальше для n от 1: числитель следующего равен (2*n+1-{point})*числитель текущего * знаменатель предыдущего минус n*числитель предыдущего * знаменатель текущего. Знаменатель следующего равен произведению двух знаменателей и (n+1). Дробь сокращайте. Каков числитель L степени {n}?",
+      "en": "The Laguerre polynomial at {point}. Degree 0 is 1/1, and degree 1 is {first_n}/{first_d}. Then for n from 1: the next numerator is (2*n+1-{point}) times the current numerator times the previous denominator, minus n times the previous numerator times the current denominator. The next denominator is the product of the two denominators and (n+1). Reduce the fraction. What is the numerator of L of degree {n}?"
+    },
+    "s1": {
+      "ru": "Многочлен Лагерра в точке {point}. L степени 0 равен 1/1, степени 1 равен {first_n}/{first_d}. Дальше для n от 1: числитель следующего равен (2*n+1-{point})*числитель текущего * знаменатель предыдущего минус n*числитель предыдущего * знаменатель текущего. Знаменатель следующего равен произведению двух знаменателей и (n+1). Дробь сокращайте. Каков знаменатель L степени {n}?",
+      "en": "The Laguerre polynomial at {point}. Degree 0 is 1/1, and degree 1 is {first_n}/{first_d}. Then for n from 1: the next numerator is (2*n+1-{point}) times the current numerator times the previous denominator, minus n times the previous numerator times the current denominator. The next denominator is the product of the two denominators and (n+1). Reduce the fraction. What is the denominator of L of degree {n}?"
+    },
+    "s2": {
+      "ru": "Степень {n}: {numer}/{denom}.",
+      "en": "Degree {n}: {numer}/{denom}."
+    },
+    "s3": {
+      "ru": "Шаг n = {n}: степень {degree} равна {numer}/{denom}.",
+      "en": "Step n = {n}: degree {degree} is {numer}/{denom}."
+    }
+  }
+}

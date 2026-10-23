@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Символ Якоби числа {number} по нечётным модулям 1, 3, 5 и так далее, всего {n} модулей. Двойки в числителе выносятся: если их нечётное число и модуль даёт 3 или 5 при делении на 8, знак меняется. Если и числитель, и модуль дают 3 при делении на 4, знак меняется и они меняются местами. Ноль, если общий делитель больше 1. Какова сумма символов?",
+      "en": "The Jacobi symbol of {number} at the odd moduli 1, 3, 5, and so on, {n} moduli in total. Factors of two in the numerator are removed: if their count is odd and the modulus is 3 or 5 modulo 8, the sign flips. If both the numerator and the modulus are 3 modulo 4, the sign flips and they are swapped. The symbol is zero when they share a divisor greater than 1. What is the sum of the symbols?"
+    },
+    "s1": {
+      "ru": "Символ Якоби числа {number} по нечётным модулям 1, 3, 5 и так далее, всего {n} модулей. Двойки в числителе выносятся: если их нечётное число и модуль даёт 3 или 5 при делении на 8, знак меняется. Если и числитель, и модуль дают 3 при делении на 4, знак меняется и они меняются местами. Ноль, если общий делитель больше 1. Каков символ по модулю {modulus}? Это модуль номер {k}.",
+      "en": "The Jacobi symbol of {number} at the odd moduli 1, 3, 5, and so on, {n} moduli in total. Factors of two in the numerator are removed: if their count is odd and the modulus is 3 or 5 modulo 8, the sign flips. If both the numerator and the modulus are 3 modulo 4, the sign flips and they are swapped. The symbol is zero when they share a divisor greater than 1. What is the symbol modulo {modulus}? That is modulus number {k}."
+    },
+    "s2": {
+      "ru": "Модуль {i}, число {modulus}: символ {symbol}, сумма {total}.",
+      "en": "Modulus {i}, number {modulus}: symbol {symbol}, sum {total}."
+    }
+  }
+}

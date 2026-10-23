@@ -68,9 +68,21 @@ class KalmanUpdateTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        posterior = Fraction(self.prior_mean)
+        spread = Fraction(self.prior_var)
+        steps = []
+        for index, (measurement, noise) in enumerate(self.observations, 1):
+            gain = spread / (spread + noise)
+            posterior = posterior + gain * (measurement - posterior)
+            spread = spread * noise / (spread + noise)
+            steps.append(texts.t(
+                "s4", self.language, i=index, z=measurement, noise=noise,
+                gain=fmt_fraction(gain), mean=fmt_fraction(posterior), var=fmt_fraction(spread),
+            ))
         shown = fmt_fraction(self.answer)
-        step = ((texts.t('s1', self.language, v0=fmt_fraction(self.mean), v1=fmt_fraction(self.variance))))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.t("s1", self.language, v0=fmt_fraction(self.mean), v1=fmt_fraction(self.variance)))
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

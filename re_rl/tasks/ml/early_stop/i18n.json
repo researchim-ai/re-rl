@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Потери по эпохам, всего {n}: {listing}. Лучшая потеря обновляется только если новая строго меньше. Иначе ожидание растёт на 1. Терпение {patience}. Какова лучшая потеря за весь прогон?",
+      "en": "Losses by epoch, {n} in total: {listing}. The best loss updates only when the new one is strictly smaller. Otherwise the wait grows by 1. Patience is {patience}. What is the best loss over the whole run?"
+    },
+    "s1": {
+      "ru": "Потери по эпохам, всего {n}: {listing}. Лучшая потеря обновляется только если новая строго меньше. Иначе ожидание растёт на 1. Терпение {patience}. Остановка — номер эпохи, на которой ожидание впервые достигло терпения. Если такого нет, ответ 0. На какой эпохе наступает остановка?",
+      "en": "Losses by epoch, {n} in total: {listing}. The best loss updates only when the new one is strictly smaller. Otherwise the wait grows by 1. Patience is {patience}. The stop is the epoch where the wait first reaches patience. If that never happens, the answer is 0. At which epoch does the stop happen?"
+    },
+    "s2": {
+      "ru": "Эпоха {i}: потеря {loss}. Лучшая {best}, ожидание {wait}, остановка {stop}.",
+      "en": "Epoch {i}: loss {loss}. Best {best}, wait {wait}, stop {stop}."
+    }
+  }
+}

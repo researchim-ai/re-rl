@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Проверяются {n} сравнений: {listing}. Сколько из них верны?",
+      "en": "There are {n} comparisons to check: {listing}. How many of them are true?"
+    },
+    "s1": {
+      "ru": "Проверяются {n} сравнений: {listing}. Каков номер первого неверного? Нумерация с 1. Если все верны, ответ 0.",
+      "en": "There are {n} comparisons to check: {listing}. What is the number of the first false one? Numbering starts at 1. If all are true, the answer is 0."
+    },
+    "s2": {
+      "ru": "Сравнение {i}: {pred}. Верных {trues}, первое неверное {first}.",
+      "en": "Comparison {i}: {pred}. True ones {trues}, first false {first}."
+    }
+  }
+}

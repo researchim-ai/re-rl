@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Масса {mass}, импульс начинает с нуля. Толчков {n}, каждый задан импульсом: {listing}. Импульс тела складывает толчки. Скорость — импульс тела, делённый на массу. Какова конечная скорость?",
+      "en": "The mass is {mass}, and the momentum starts at zero. There are {n} kicks, each given as an impulse: {listing}. The body's momentum adds the kicks. The speed is the body's momentum divided by the mass. What is the final speed?"
+    },
+    "s1": {
+      "ru": "Масса {mass}, импульс начинает с нуля. Толчков {n}, каждый задан импульсом: {listing}. Импульс тела складывает толчки. Каков конечный импульс?",
+      "en": "The mass is {mass}, and the momentum starts at zero. There are {n} kicks, each given as an impulse: {listing}. The body's momentum adds the kicks. What is the final momentum?"
+    },
+    "s2": {
+      "ru": "Толчок {i}: импульс {impulse}. Импульс тела {momentum}, скорость {speed}.",
+      "en": "Kick {i}: impulse {impulse}. Body momentum {momentum}, speed {speed}."
+    }
+  }
+}

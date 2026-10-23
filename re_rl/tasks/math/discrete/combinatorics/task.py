@@ -103,13 +103,15 @@ class CombinatoricsTask(BaseMathTask):
             self.k = self.kwargs.get("k", random.randint(1, min(self.n, self.max_k)))
         
         elif self.task_type == "multinomial":
-            self.n = self.kwargs.get("n", random.randint(6, min(15, self.max_n)))
+            hi = min(15, max(4, self.max_n))
+            self.n = self.kwargs.get("n", random.randint(min(6, hi), hi))
             # Генерируем группы, сумма которых равна n
-            num_groups = random.randint(2, 4)
+            num_groups = random.randint(2, min(4, self.n))
             remaining = self.n
             self.groups = []
             for i in range(num_groups - 1):
-                g = random.randint(1, remaining - (num_groups - i - 1))
+                upper = remaining - (num_groups - i - 1)
+                g = random.randint(1, max(1, upper))
                 self.groups.append(g)
                 remaining -= g
             self.groups.append(remaining)

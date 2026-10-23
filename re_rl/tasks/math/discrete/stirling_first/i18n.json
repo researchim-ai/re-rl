@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа Стирлинга первого рода без знака. c(0, 0) = 1, а c(n, 0) = 0 при n больше 0. Дальше c(n, k) = (n-1)*c(n-1, k) + c(n-1, k-1), если предыдущей клетки нет, берите 0. Каково c({n}, {k})?",
+      "en": "Unsigned Stirling numbers of the first kind. c(0, 0) = 1, and c(n, 0) = 0 when n is greater than 0. Then c(n, k) = (n-1)*c(n-1, k) + c(n-1, k-1). A missing previous cell counts as 0. What is c({n}, {k})?"
+    },
+    "s1": {
+      "ru": "Числа Стирлинга первого рода без знака. c(0, 0) = 1, а c(n, 0) = 0 при n больше 0. Дальше c(n, k) = (n-1)*c(n-1, k) + c(n-1, k-1), если предыдущей клетки нет, берите 0. Какова сумма c({n}, k) по k от 0 до {n}?",
+      "en": "Unsigned Stirling numbers of the first kind. c(0, 0) = 1, and c(n, 0) = 0 when n is greater than 0. Then c(n, k) = (n-1)*c(n-1, k) + c(n-1, k-1). A missing previous cell counts as 0. What is the sum of c({n}, k) for k from 0 to {n}?"
+    },
+    "s2": {
+      "ru": "Порядок 0, циклы 0: {value}.",
+      "en": "Order 0, cycles 0: {value}."
+    },
+    "s3": {
+      "ru": "Порядок {n}, циклы {k}: {factor}*{same} + {left} = {value}.",
+      "en": "Order {n}, cycles {k}: {factor}*{same} + {left} = {value}."
+    }
+  }
+}

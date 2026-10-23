@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В сосуде лёд {ice} и вода {water} при температуре 0. Теплота плавления равна 1, теплоёмкость воды равна 1 на единицу массы. Порции тепла, всего {n}: {listing}. Тепло сначала плавит лёд. Остаток поднимает температуру воды, и он делится на массу воды нацело. Какова конечная температура?",
+      "en": "A vessel holds ice {ice} and water {water} at temperature 0. The heat of fusion is 1, and the heat capacity of water is 1 per unit of mass. Heat portions, {n} in total: {listing}. Heat melts ice first. The remainder raises the water temperature, and it divides the water mass exactly. What is the final temperature?"
+    },
+    "s1": {
+      "ru": "В сосуде лёд {ice} и вода {water} при температуре 0. Теплота плавления равна 1, теплоёмкость воды равна 1 на единицу массы. Порции тепла, всего {n}: {listing}. Тепло сначала плавит лёд. Остаток поднимает температуру воды, и он делится на массу воды нацело. Сколько льда останется?",
+      "en": "A vessel holds ice {ice} and water {water} at temperature 0. The heat of fusion is 1, and the heat capacity of water is 1 per unit of mass. Heat portions, {n} in total: {listing}. Heat melts ice first. The remainder raises the water temperature, and it divides the water mass exactly. How much ice remains?"
+    },
+    "s2": {
+      "ru": "Порция {i}: тепло {heat}. Температура {temp}, лёд {ice}, вода {water}.",
+      "en": "Portion {i}: heat {heat}. Temperature {temp}, ice {ice}, water {water}."
+    }
+  }
+}

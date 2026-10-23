@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В начале {healthy} здоровых и {sick} заразных, переболевших нет. За один тик заражается меньшее из двух чисел: число здоровых и число заразных. Затем половина прежних заразных, округлённая вниз, выздоравливает. Заражённые в этом тике не выздоравливают. Сколько переболевших будет через {n} тиков?",
+      "en": "There are {healthy} healthy people and {sick} infectious people at the start, and nobody has recovered. In one tick, the number of new infections is the smaller of the healthy count and the infectious count. Then half of the previous infectious people, rounded down, recover. People infected during that tick do not recover. How many recovered people are there after {n} ticks?"
+    },
+    "s1": {
+      "ru": "В начале {healthy} здоровых и {sick} заразных, переболевших нет. За один тик заражается меньшее из двух чисел: число здоровых и число заразных. Затем половина прежних заразных, округлённая вниз, выздоравливает. Заражённые в этом тике не выздоравливают. Сколько здоровых останется через {n} тиков?",
+      "en": "There are {healthy} healthy people and {sick} infectious people at the start, and nobody has recovered. In one tick, the number of new infections is the smaller of the healthy count and the infectious count. Then half of the previous infectious people, rounded down, recover. People infected during that tick do not recover. How many healthy people remain after {n} ticks?"
+    },
+    "s2": {
+      "ru": "Тик {i}: здоровые {healthy}, заразные {sick}, переболевшие {recovered}.",
+      "en": "Tick {i}: healthy {healthy}, infectious {sick}, recovered {recovered}."
+    }
+  }
+}

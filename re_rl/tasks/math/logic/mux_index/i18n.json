@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Адрес из {n} битов читается слева направо, старший бит первый: {bits}. Начните с 0 и для каждого бита удвойте адрес и прибавьте бит. Таблица значений с индекса 0: {values}. Каков адрес?",
+      "en": "An address of {n} bits is read from left to right, high bit first: {bits}. Start at 0 and, for each bit, double the address and add the bit. The value table, index 0 first, is {values}. What is the address?"
+    },
+    "s1": {
+      "ru": "Адрес из {n} битов читается слева направо, старший бит первый: {bits}. Начните с 0 и для каждого бита удвойте адрес и прибавьте бит. Таблица значений с индекса 0: {values}. Какое значение стоит по этому адресу?",
+      "en": "An address of {n} bits is read from left to right, high bit first: {bits}. Start at 0 and, for each bit, double the address and add the bit. The value table, index 0 first, is {values}. What value is stored at that address?"
+    },
+    "s2": {
+      "ru": "Бит {i} равен {bit}: адрес {address}.",
+      "en": "Bit {i} is {bit}: address {address}."
+    },
+    "s3": {
+      "ru": "Адрес {index}: значение {value}.",
+      "en": "Address {index}: value {value}."
+    }
+  }
+}

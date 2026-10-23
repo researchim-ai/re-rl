@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Имена 1, 2 и 3. Сначала есть одна внешняя область, все имена равны 0. Команд {n}: {listing}. Войти открывает внутреннюю область. Выйти закрывает её, внешнюю закрыть нельзя. Запись кладёт значение в текущую область. Поиск идёт изнутри наружу. Чему равно имя {k} в конце?",
+      "en": "Names are 1, 2 and 3. One outer scope starts open, and every name is 0. There are {n} commands: {listing}. Enter opens an inner scope. Leave closes it; the outer scope stays. A write stores the value in the current scope. Lookup goes from the inside outward. What is name {k} at the end?"
+    },
+    "s1": {
+      "ru": "Имена 1, 2 и 3. Сначала есть одна внешняя область, все имена равны 0. Команд {n}: {listing}. Войти открывает внутреннюю область. Выйти закрывает её, внешнюю закрыть нельзя. Запись кладёт значение в текущую область. Поиск идёт изнутри наружу. Сколько областей открыто в конце?",
+      "en": "Names are 1, 2 and 3. One outer scope starts open, and every name is 0. There are {n} commands: {listing}. Enter opens an inner scope. Leave closes it; the outer scope stays. A write stores the value in the current scope. Lookup goes from the inside outward. How many scopes are open at the end?"
+    },
+    "s2": {
+      "ru": "Команда {i}: {phrase}. Открыто {depth}. Имя из вопроса равно {value}.",
+      "en": "Command {i}: {phrase}. Open {depth}. The asked name is {value}."
+    },
+    "s4": {
+      "ru": "войти",
+      "en": "enter"
+    },
+    "s5": {
+      "ru": "выйти",
+      "en": "leave"
+    },
+    "s6": {
+      "ru": "записать {name} = {value}",
+      "en": "write {name} = {value}"
+    }
+  }
+}

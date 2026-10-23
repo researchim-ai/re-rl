@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Три примера с метками {labels}. Веса в начале равны 1. Дальше {n} раундов, в каждом три прогноза +1 или -1: {rounds}. Если прогноз не совпал с меткой, вес этого примера удваивается. Какой вес будет у примера {k}?",
+      "en": "Three examples have labels {labels}. Every weight starts at 1. Then {n} rounds each give three predictions, +1 or -1: {rounds}. If a prediction misses the label, that example's weight doubles. What is the weight of example {k}?"
+    },
+    "s1": {
+      "ru": "Три примера с метками {labels}. Веса в начале равны 1. Дальше {n} раундов, в каждом три прогноза +1 или -1: {rounds}. Если прогноз не совпал с меткой, вес этого примера удваивается. Чему равна сумма трёх весов?",
+      "en": "Three examples have labels {labels}. Every weight starts at 1. Then {n} rounds each give three predictions, +1 or -1: {rounds}. If a prediction misses the label, that example's weight doubles. What is the sum of the three weights?"
+    },
+    "s2": {
+      "ru": "Раунд {i}: веса {weights}.",
+      "en": "Round {i}: weights {weights}."
+    },
+    "s3": {
+      "ru": "Вес примера {k} равен {weight}, сумма {total}.",
+      "en": "Example {k} has weight {weight}, and the sum is {total}."
+    }
+  }
+}

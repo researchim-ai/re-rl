@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дробь {numer}/{denom} уже несократима и меньше 1. Порядок Фарея {n}. Следующая дробь c/d имеет наибольший знаменатель d от 1 до {n}, для которого {denom}*c - {numer}*d = 1. Каков числитель c?",
+      "en": "The fraction {numer}/{denom} is already reduced and less than 1. The Farey order is {n}. The next fraction c/d has the largest denominator d from 1 to {n} such that {denom}*c - {numer}*d = 1. What is the numerator c?"
+    },
+    "s1": {
+      "ru": "Дробь {numer}/{denom} уже несократима и меньше 1. Порядок Фарея {n}. Следующая дробь c/d имеет наибольший знаменатель d от 1 до {n}, для которого {denom}*c - {numer}*d = 1. Каков знаменатель d?",
+      "en": "The fraction {numer}/{denom} is already reduced and less than 1. The Farey order is {n}. The next fraction c/d has the largest denominator d from 1 to {n} such that {denom}*c - {numer}*d = 1. What is the denominator d?"
+    },
+    "s2": {
+      "ru": "Знаменатель-кандидат {d}: лучшая дробь {numer}/{denom}.",
+      "en": "Candidate denominator {d}: best fraction {numer}/{denom}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Конденсаторы соединены последовательно, заряд {charge} на каждом один и тот же. Ёмкостей {n}: {listing}. Напряжение одного — заряд, делённый на ёмкость. Напряжения складываются. Каково полное напряжение?",
+      "en": "Capacitors are in series, and the charge {charge} is the same on each. There are {n} capacitances: {listing}. One voltage is the charge divided by the capacitance. The voltages add. What is the total voltage?"
+    },
+    "s1": {
+      "ru": "Конденсаторы соединены последовательно, заряд {charge} на каждом один и тот же. Ёмкостей {n}: {listing}. Энергия одного — квадрат заряда, делённый на удвоенную ёмкость. Энергии складываются. Какова полная энергия?",
+      "en": "Capacitors are in series, and the charge {charge} is the same on each. There are {n} capacitances: {listing}. One energy is the square of the charge divided by twice the capacitance. The energies add. What is the total energy?"
+    },
+    "s2": {
+      "ru": "Конденсатор {i}: ёмкость {cap}. Напряжение {voltage}, энергия {energy}.",
+      "en": "Capacitor {i}: capacitance {cap}. Voltage {voltage}, energy {energy}."
+    }
+  }
+}

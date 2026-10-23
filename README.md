@@ -4,8 +4,8 @@
 
 ## Особенности
 
-- **387 типов задач**: 244 математических (включая формальную математику Lean 4, вычислительную геометрию и логические/ризонинг-головоломки) + 26 машинного обучения + 22 обучения с подкреплением + 95 физических
-- **Визуальные (VLM) задачи**: 39 типов с генерацией изображений — графики функций, столбчатые/круговые/линейные диаграммы, гистограммы, диаграммы размаха, диаграммы рассеяния, числовая прямая, наклон прямой, диаграммы Венна, площадь по графику, графики движения (v–t и траектории), геометрия, выпуклая оболочка, аналоговые часы, кости, шахматная доска, цветная сетка, взвешенные/ориентированные графы (кратчайший путь, MST, раскраска, топ-сортировка, макс. поток), диаграммы ДКА, схемы логических вентилей и резисторных цепей, чашечные весы и рычаг, «Сапёр», «Мастермайнд», ферзи, «Жизнь» Конвея, магический квадрат, лабиринт, P–V диаграммы, многоугольники, а также картиночные варианты судоку/пятнашек/ARC — картинка + текстовый ответ, плюс аугментации изображений
+- **697 типа задач**: 461 математических + 1 формальная (Lean 4) + 41 машинного обучения + 36 обучения с подкреплением + 158 физических
+- **Визуальные (VLM) задачи**: 45 типов с генерацией изображений — графики функций, столбчатые/круговые/линейные диаграммы, гистограммы, диаграммы размаха, диаграммы рассеяния, числовая прямая, наклон прямой, диаграммы Венна, площадь по графику, графики движения (v–t и траектории), геометрия, выпуклая оболочка, аналоговые часы и ряд циферблатов, кости, столбцы блоков, счёты, цепочка домино, клетчатые квадраты, путь по сетке, шахматная доска, цветная сетка, взвешенные/ориентированные графы (кратчайший путь, MST, раскраска, топ-сортировка, макс. поток), диаграммы ДКА, схемы логических вентилей и резисторных цепей, чашечные весы и рычаг, «Сапёр», «Мастермайнд», ферзи, «Жизнь» Конвея, магический квадрат, лабиринт, P–V диаграммы, многоугольники, а также картиночные варианты судоку/пятнашек/ARC — картинка + текстовый ответ, плюс аугментации изображений. Превью каждого типа: [`examples/previews/README.md`](examples/previews/README.md)
 - **Языки**: русский и английский
 - **Система сложности**: 10 уровней для каждого типа задач
 - **Пошаговые решения**: детальные цепочки рассуждений для SFT/RL обучения
@@ -110,7 +110,9 @@ chat_dataset = generator.generate_chat_dataset(
 
 ## Типы задач
 
-### Математика (244 типа)
+Полный перечень с примером условия и ответа открывается страницей [`examples/catalog.html`](examples/catalog.html). Ноутбук [`examples/Каталог_всех_задач.ipynb`](examples/Каталог_всех_задач.ipynb) собирает тот же реестр в Jupyter. Превью каждой визуальной задачи — [`examples/previews/README.md`](examples/previews/README.md). Таблицы ниже держат формулировку вопроса; счётчики в заголовках совпадают с реестром.
+
+### Математика (461 типов)
 
 | Категория | Задачи |
 |-----------|--------|
@@ -119,6 +121,7 @@ chat_dataset = generator.generate_chat_dataset(
 | **Геометрия** | geometry, trigonometry, vector_3d, coordinate_geometry, shoelace_area, triangle_solving, conic_sections, solid_volume, pick_theorem |
 | **Линейная алгебра** | matrix, complex_number, matrix_reasoning, gaussian_elimination, matrix_multiplication, gram_schmidt, least_squares, roots_of_unity |
 | **Дискретная математика** | number_theory, combinatorics, sequence, set_logic, graph, dynamic_programming, base_conversion, modular_arithmetic, recurrence, prime_factorization, diophantine, modular_inverse, continued_fraction, generating_function, catalan, stirling_second, gray_code, euclid_gcd, josephus, collatz_steps, min_squares, integer_sqrt, secret_share |
+| **Цепочки** | stern_path, partition_count, derange_count, gauss_mul, perm_compose, cover_span, reverse_add, stream_median, totient_row, coprime_count, digit_div, tree_depth, sign_walk, perm_rank, lcm_rise, zigzag_row, record_highs, sum_kinds, fib_word, mode_track, look_say, zeckendorf, roman_value, digit_stream, deque_trace, dragon_fold, permanent, bead_count, negabase, ulam_walk, luhn_sum, kaprekar_step, morton_code, stock_span, candy_row, digit_fact, recaman, xor_basis, palindrome_radius, squarefree_row, fenwick_sum, sparse_min, z_array, selection_swaps, rho_cycle, tree_times, dutch_flag, window_distinct, stable_place, naive_find, budget_take, skip_op, retry_goal, signal_edges, plan_gate, tool_pick, diff_count, cell_patch, pred_scan, rate_limit, lateness, switch_flip, turn_signs, first_fit, plurality, floor_run, saturate_count, undo_reg, cover_point, next_fit, scope_lookup, lock_log, path_toll, backoff_wait, priority_run, inbox_take, goal_match, craft_need, checkpoint_roll, schema_check, infix_value, ballot_walk, digit_root, crt_lift, mod_order, first_repeat, coupon_cover, coin_weigh, two_color, lattice_sum, horner_mod, rational_root, geom_sum, cyclo_eval, chebyshev_row, hermite_row, series_conv, transport_cost, pochhammer, binom_build, farey_next, mobius_sum, involution_count, jacobi_row, ruler_sum, thue_count, aliquot_walk, carmichael_row, cayley_trees, factoradic, stirling_first, bell_row, andre_row, bernoulli_den, chebyshev_u, sigma_row, prime_omega, motzkin_row, primorial, rgs_rank, bernoulli_numer, genocchi_row, kronecker_row, hook_length, legendre_frac, laguerre_frac, harmonic_frac, eulerian_row, fubini_row, delannoy_row, tau_row, prime_nu, sopfr_row, pell_row, tribonacci_row, narayana_row, schroder_row, gaussian_bin, kolakoski, cantor_pair, horn_fire, carry_row, lamp_trio, parity_sheet, mux_index, jury_veto, gate_fold, exactly_one, knave_next, priority_bit |
 | **Абстрактная алгебра** | group_theory, category_theory |
 | **Теория вероятностей** | urn_probability, statistics, bayesian_reasoning, expected_value, markov_chain, conditional_probability, hypothesis_testing |
 | **Прикладная** | financial_math, arithmetic |
@@ -134,7 +137,7 @@ chat_dataset = generator.generate_chat_dataset(
 | **Вычислительная геометрия** | computational_geometry (выпуклая оболочка, пересечение отрезков, точка в многоугольнике, ближайшая пара) |
 | **Алгоритмы, коды и системы** | stable_matching, hamming_code, page_replacement, tree_queries, os_scheduling, min_coins, union_find, direct_mapped_cache, knight_moves, binary_search, matrix_chain, common_substring, round_robin, deadlock, second_price, shapley_value, max_subarray, house_robber, rod_cutting, pair_sum, heap_array, weighted_interval, min_path_sum, stock_profit, jump_game, container_water, decode_ways, gas_station, trapping_rain, majority_element, histogram_area, target_sum, stock_unlimited, palindrome_subseq, subarray_sum, max_product, min_assignment, sequence_alignment, range_query, local_alignment, nussinov, optimal_bst, polynomial_product, range_add, subsequence_count |
 
-### Машинное обучение (26 типов)
+### Машинное обучение (41 тип)
 
 Считается точно: энтропия — только на кратностях-степенях двойки, расщепление — по Джини, дроби сравниваются как рациональные числа.
 
@@ -166,8 +169,23 @@ chat_dataset = generator.generate_chat_dataset(
 | `hmm_decode` | вероятность наблюдений или путь Витерби |
 | `elimination_query` | маргинальная вероятность конца цепочки или апостериорная вероятность начала |
 | `pagerank` | ранг вершины или вершина с наибольшим рангом при затухании 1/2 |
+| `kmeans_rounds` | центры одномерного k-means после нескольких раундов |
+| `boost_weights` | вес примера или сумма весов после раундов удвоения на ошибке |
+| `momentum_sgd` | вес или скорость после цепочки импульса |
+| `decision_list` | ответ первого сработавшего правила или его номер |
+| `neighbor_vote` | метка большинства ближайших соседей или число смен метки |
+| `sgd_online` | вес или сумма квадратов остатков после пошагового градиентного спуска |
+| `grad_clip` | вес или число обрезанных градиентов |
+| `weight_decay` | вес или сумма целочисленных затуханий |
+| `early_stop` | лучшая потеря или эпоха, где терпение впервые исчерпано |
+| `prototype_mean` | сумма класса или класс, ближайший к запросу |
+| `roc_walk` | позиция первой положительной метки при обходе оценок или число отрицательных до неё |
+| `ema_loss` | скользящее среднее потерь или его пик |
+| `lr_decay` | вес после шагов с убывающим множителем или множитель в конце |
+| `batch_grad` | вес после пакетов из двух примеров или градиент последнего пакета |
+| `best_margin` | разность лучшего положительного и лучшего отрицательного счёта или сам положительный счёт |
 
-### Обучение с подкреплением (22 типа)
+### Обучение с подкреплением (36 типов)
 
 γ и α — дроби, отдача и Q считаются точно.
 
@@ -195,8 +213,22 @@ chat_dataset = generator.generate_chat_dataset(
 | `q_trajectory` | Q пары после серии обновлений или лучшее действие состояния |
 | `sarsa_trajectory` | Q после серии обновлений SARSA, в цели стоит выбранное следующее действие |
 | `double_q_trajectory` | Q одной из двух голов после серии обновлений или её лучшее действие |
+| `policy_rollout` | сумма наград или конечное состояние при заданной политике |
+| `td_table` | оценка состояния или сумма оценок после серии TD(0) |
+| `trace_decay` | координата следа или сумма координат после серии визитов с делением на 2 |
+| `actor_critic` | оценка состояния или предпочтительное действие после серии переходов |
+| `ucb_bandit` | сумма наград или самая частая рука целочисленного выбора |
+| `target_sync` | онлайн-оценка или целевая оценка после редких копий таблицы |
+| `replay_fifo` | значение в ячейке буфера или число вытесненных записей |
+| `shape_reward` | сумма сформированных наград или сумма потенциальных добавок |
+| `eps_schedule` | число исследовательских шагов или действие на выбранном шаге |
+| `online_base` | преимущество шага относительно среднего прошлых наград или среднее в конце |
+| `td_clip` | сумма обрезанных TD-ошибок или число ошибок, которые обрезка изменила |
+| `count_bonus` | сумма добавок за редкие визиты или сумма наград с добавками |
+| `option_hold` | действие на такте при удержании опции или число тактов |
+| `policy_eval` | оценка состояния после проходов фиксированной политики или сумма оценок |
 
-### Физика (95 типов)
+### Физика (158 типов)
 
 | Категория | Задачи |
 |-----------|--------|
@@ -212,6 +244,7 @@ chat_dataset = generator.generate_chat_dataset(
 | **Астрофизика** | astrophysics, stellar_parallax, spectral_redshift, hubble_law |
 | **Измерения и анализ** | dimensional_analysis, error_propagation, unit_conversion |
 | **Масштабируемые сети** | series_parallel_network (резисторы/конденсаторы/пружины/тепловые сопротивления) |
+| **Цепочки механики** | motion_segments, slope_run, echo_bounce, fall_ticks, friction_slide, heat_mix, heat_rod, wave_row, leak_charge, resistor_ladder, doppler_chain, float_load, melt_heat, throw_ticks, impulse_run, beam_load, mass_shift, spring_join, optic_path, pulse_meet, cool_ticks, series_cap, column_pressure, cradle_hit, photon_eject, orbit_years, grating_order, wire_force, escape_speed, harmonic_nodes, snell_shift, heat_steps, hydraulic_lift |
 
 ### Визуальные (VLM) задачи
 

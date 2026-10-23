@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив длины {n} начинает с нулей, индексы с 1. Прибавления, запись — индекс и величина: {listing}. Какова сумма первых {k} ячеек после всех прибавлений?",
+      "en": "An array of length {n} starts at zeros, with indexes from 1. Additions are index and amount: {listing}. What is the sum of the first {k} cells after all additions?"
+    },
+    "s1": {
+      "ru": "Массив длины {n} начинает с нулей, индексы с 1. Прибавления идут в дерево Фенвика: к узлу i прибавляется величина, затем i увеличивается на его младший установленный бит. Запись — индекс и величина: {listing}. Каково значение узла {k} после всех прибавлений?",
+      "en": "An array of length {n} starts at zeros, with indexes from 1. Additions go into a Fenwick tree: the amount is added to node i, then i increases by its lowest set bit. Each entry is index and amount: {listing}. What is the value of node {k} after all additions?"
+    },
+    "s2": {
+      "ru": "Прибавление {i}: индекс {index}, величина {delta}. Сумма первых нужных ячеек {prefix}.",
+      "en": "Addition {i}: index {index}, amount {delta}. Sum of the requested prefix {prefix}."
+    }
+  }
+}

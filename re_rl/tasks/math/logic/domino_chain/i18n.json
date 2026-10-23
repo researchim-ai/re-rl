@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цепочка из {n} костей, поля записаны как левое-правое: {listing}. Стык верен, если правое поле кости равно левому полю следующей. Найдите номер первого неверного стыка, считая стыки с 1. Если вся цепочка верна, ответ 0.",
+      "en": "A chain has {n} dominoes, written as left-right: {listing}. A joint is valid when the right face equals the next left face. Find the number of the first invalid joint, counting joints from 1. If the whole chain is valid, the answer is 0."
+    },
+    "s1": {
+      "ru": "Цепочка из {n} костей, поля записаны как левое-правое: {listing}. Стык верен, если правое поле кости равно левому полю следующей. Сколько стыков верны подряд от начала до первого разрыва? Если разрыва нет, посчитайте все стыки.",
+      "en": "A chain has {n} dominoes, written as left-right: {listing}. A joint is valid when the right face equals the next left face. How many joints are valid in a row from the start up to the first break? If there is no break, count every joint."
+    },
+    "s2": {
+      "ru": "Кость 1: {a}-{b}.",
+      "en": "Domino 1: {a}-{b}."
+    },
+    "s3": {
+      "ru": "Кость {i}: {a}-{b}. Предыдущее правое поле {prev}, совпадение {ok}.",
+      "en": "Domino {i}: {a}-{b}. The previous right face is {prev}, match {ok}."
+    },
+    "s4": {
+      "ru": "Первый разрыв {break_at}, верных стыков до него {matched}.",
+      "en": "The first break is {break_at}, and valid joints before it: {matched}."
+    }
+  }
+}

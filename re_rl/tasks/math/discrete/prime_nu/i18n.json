@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для каждого числа от 1 до {n} посчитайте, сколько у него различных простых множителей. Повтор одного простого считается один раз. У 1 это 0, у 12 = 2*2*3 это 2. Какова сумма этих количеств?",
+      "en": "For each number from 1 to {n}, count its distinct prime factors. A repeated prime is counted once. For 1 this is 0, and for 12 = 2*2*3 this is 2. What is the sum of these counts?"
+    },
+    "s1": {
+      "ru": "Для каждого числа от 1 до {n} посчитайте, сколько у него различных простых множителей. Повтор одного простого считается один раз. У 1 это 0, у 12 = 2*2*3 это 2. Сколько различных простых множителей у числа {k}?",
+      "en": "For each number from 1 to {n}, count its distinct prime factors. A repeated prime is counted once. For 1 this is 0, and for 12 = 2*2*3 this is 2. How many distinct prime factors does {k} have?"
+    },
+    "s2": {
+      "ru": "Число {i}: различных простых {nu}, накоплено {total}.",
+      "en": "Number {i}: distinct primes {nu}, running total {total}."
+    }
+  }
+}

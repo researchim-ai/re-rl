@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлен задан {n} коэффициентами от старшей степени к свободному члену: {listing}. Считайте его в точке {point} схемой Горнера: накопитель начинает с 0, каждый шаг умножает его на {point} и прибавляет коэффициент. Каков остаток значения по модулю {modulus}?",
+      "en": "A polynomial is given by {n} coefficients from the highest degree down to the constant term: {listing}. Evaluate it at {point} by Horner's method: the accumulator starts at 0, and each step multiplies it by {point} and adds the coefficient. What is the remainder of the value modulo {modulus}?"
+    },
+    "s1": {
+      "ru": "Многочлен задан {n} коэффициентами от старшей степени к свободному члену: {listing}. Считайте его в точке {point} схемой Горнера: накопитель начинает с 0, каждый шаг умножает его на {point} и прибавляет коэффициент. Каково само значение, до модуля {modulus}?",
+      "en": "A polynomial is given by {n} coefficients from the highest degree down to the constant term: {listing}. Evaluate it at {point} by Horner's method: the accumulator starts at 0, and each step multiplies it by {point} and adds the coefficient. What is the value itself, before the modulus {modulus}?"
+    },
+    "s2": {
+      "ru": "Коэффициент {i}: значение {plain}, остаток {folded}.",
+      "en": "Coefficient {i}: value {plain}, remainder {folded}."
+    }
+  }
+}

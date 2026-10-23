@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цепочка из {n} кодонов: {listing}. Стоп-кодоны — это TAG, TAA и TGA. Сколько в цепочке стоп-кодонов?",
+      "en": "A chain has {n} codons: {listing}. The stop codons are TAG, TAA and TGA. How many stop codons are in the chain?"
+    },
+    "s1": {
+      "ru": "Цепочка из {n} кодонов: {listing}. Стоп-кодоны — это TAG, TAA и TGA. Какой номер у первого стоп-кодона, если считать с 1? Если стоп-кодона нет, ответ 0.",
+      "en": "A chain has {n} codons: {listing}. The stop codons are TAG, TAA and TGA. What is the number of the first stop codon, counting from 1? If there is no stop codon, the answer is 0."
+    },
+    "s2": {
+      "ru": "Кодон {i}: {codon}, стоп {hit}, всего стопов {stops}.",
+      "en": "Codon {i}: {codon}, stop {hit}, stop total {stops}."
+    },
+    "s3": {
+      "ru": "Стоп-кодонов {stops}. Первый на месте {first}.",
+      "en": "There are {stops} stop codons. The first is at position {first}."
+    }
+  }
+}

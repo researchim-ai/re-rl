@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дороги, запись откуда куда плата: {roads}. Маршрут из {n} шагов, вершины по порядку: {walk}. Плата ребра прибавляется, только если дорога перечислена. Первое отсутствующее ребро останавливает путь, дальше плата не растёт. Какова плата?",
+      "en": "Roads, each entry from to toll: {roads}. The route has {n} steps, vertices in order: {walk}. An edge toll is added only when that road is listed. The first missing edge stops the route, and the toll does not grow after that. What is the toll?"
+    },
+    "s1": {
+      "ru": "Дороги, запись откуда куда плата: {roads}. Маршрут из {n} шагов, вершины по порядку: {walk}. Плата ребра прибавляется, только если дорога перечислена. Первое отсутствующее ребро останавливает путь. Каков номер этого шага? Если путь прошёл целиком, ответ 0.",
+      "en": "Roads, each entry from to toll: {roads}. The route has {n} steps, vertices in order: {walk}. An edge toll is added only when that road is listed. The first missing edge stops the route. What is the number of that step? If the route finishes, the answer is 0."
+    },
+    "s2": {
+      "ru": "Шаг {i}: плата {toll}, остановка {stop}.",
+      "en": "Step {i}: toll {toll}, stop {stop}."
+    }
+  }
+}

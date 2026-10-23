@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цены {n} дней слева направо: {listing}. Размах дня равен 1 плюс число подряд идущих предыдущих дней, чья цена не больше сегодняшней. Более ранняя строго большая цена обрывает отсчёт. Какова сумма размахов?",
+      "en": "Prices of {n} days from left to right: {listing}. The span of a day is 1 plus the number of consecutive earlier days whose price is not greater than today's. An earlier strictly higher price stops the count. What is the sum of the spans?"
+    },
+    "s1": {
+      "ru": "Цены {n} дней слева направо: {listing}. Размах дня равен 1 плюс число подряд идущих предыдущих дней, чья цена не больше сегодняшней. Более ранняя строго большая цена обрывает отсчёт. Каков размах дня {k}? Дни нумеруются с 1.",
+      "en": "Prices of {n} days from left to right: {listing}. The span of a day is 1 plus the number of consecutive earlier days whose price is not greater than today's. An earlier strictly higher price stops the count. What is the span of day {k}? Days are numbered from 1."
+    },
+    "s2": {
+      "ru": "День {i}: цена {price}, размах {span}.",
+      "en": "Day {i}: price {price}, span {span}."
+    }
+  }
+}

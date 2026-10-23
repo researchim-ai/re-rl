@@ -90,10 +90,30 @@ class DoubleQTrajectoryTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        tables = [[[Fraction(0) for _ in range(self.n_actions)] for _ in range(self.n_states)] for _ in range(2)]
+        steps = []
+        for index, (state, action, reward, nxt, head) in enumerate(self.updates, 1):
+            other = 1 - head
+            row = tables[head][nxt]
+            best = max(row)
+            chosen = min(i for i, value in enumerate(row) if value == best)
+            other_value = tables[other][nxt][chosen]
+            current = tables[head][state][action]
+            updated = current + self.alpha * (reward + self.gamma * other_value - current)
+            tables[head][state][action] = updated
+            steps.append(texts.t(
+                "s4", self.language, i=index, head=head + 1, state=state + 1, action=action + 1,
+                reward=reward, nxt=nxt + 1, chosen=chosen + 1,
+                other=fmt_fraction(other_value), q=fmt_fraction(updated),
+            ))
         value = self.tables[self.head][self.state][self.action]
         shown = str(self.best) if self.task_type == "best_action" else fmt_fraction(value)
-        step = ((texts.t('s1', self.language, v0=self.head + 1, v1=self.state + 1, v2=self.action + 1, v3=fmt_fraction(value), best=self.best)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.t(
+            "s1", self.language, v0=self.head + 1, v1=self.state + 1, v2=self.action + 1,
+            v3=fmt_fraction(value), best=self.best,
+        ))
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

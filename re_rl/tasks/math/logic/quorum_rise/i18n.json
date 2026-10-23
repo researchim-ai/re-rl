@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Идут {n} голосований. В начале порог равен {q0}. Голоса «за» по порядку: {listing}. Если голосов не меньше порога, решение принято и порог увеличивается на 1. Иначе порог не меняется. Сколько решений принято?",
+      "en": "There are {n} votes. The threshold starts at {q0}. Yes-votes in order: {listing}. If the yes-votes are at least the threshold, the motion passes and the threshold increases by 1. Otherwise the threshold stays. How many motions pass?"
+    },
+    "s1": {
+      "ru": "Идут {n} голосований. В начале порог равен {q0}. Голоса «за» по порядку: {listing}. Если голосов не меньше порога, решение принято и порог увеличивается на 1. Иначе порог не меняется. Какой порог действует перед голосованием номер {k}?",
+      "en": "There are {n} votes. The threshold starts at {q0}. Yes-votes in order: {listing}. If the yes-votes are at least the threshold, the motion passes and the threshold increases by 1. Otherwise the threshold stays. What threshold is in force before vote number {k}?"
+    },
+    "s2": {
+      "ru": "Голосование {i}: порог {before}, голосов {votes}, принято {ok}, порог становится {after}.",
+      "en": "Vote {i}: threshold {before}, yes-votes {votes}, passed {ok}, the threshold becomes {after}."
+    },
+    "s3": {
+      "ru": "Принято {passed}. Итоговый порог {quorum}.",
+      "en": "Passed {passed}. The final threshold is {quorum}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для каждого числа от 1 до {n} возьмите, сколько раз оно делится на 2. У нечётного числа это 0. Какова сумма этих показателей?",
+      "en": "For each number from 1 to {n}, take how many times it is divisible by 2. For an odd number this is 0. What is the sum of these exponents?"
+    },
+    "s1": {
+      "ru": "Для каждого числа от 1 до {n} возьмите, сколько раз оно делится на 2. У нечётного числа это 0. Сколько раз на 2 делится число {k}?",
+      "en": "For each number from 1 to {n}, take how many times it is divisible by 2. For an odd number this is 0. How many times is {k} divisible by 2?"
+    },
+    "s2": {
+      "ru": "Число {i}: показатель {power}, сумма {total}.",
+      "en": "Number {i}: exponent {power}, sum {total}."
+    }
+  }
+}

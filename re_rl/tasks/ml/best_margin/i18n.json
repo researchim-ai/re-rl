@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Объектов {n}, запись — счёт и метка. Метка 1 положительная: {listing}. По ходу списка запоминается наибольший положительный счёт и наибольший отрицательный. Запас — их разность. Каков запас в конце?",
+      "en": "There are {n} objects, each entry a score and a label. Label 1 is positive: {listing}. Along the list, keep the largest positive score and the largest negative score. The margin is their difference. What is the margin at the end?"
+    },
+    "s1": {
+      "ru": "Объектов {n}, запись — счёт и метка. Метка 1 положительная: {listing}. По ходу списка запоминается наибольший положительный счёт и наибольший отрицательный. Каков наибольший положительный счёт?",
+      "en": "There are {n} objects, each entry a score and a label. Label 1 is positive: {listing}. Along the list, keep the largest positive score and the largest negative score. What is the largest positive score?"
+    },
+    "s2": {
+      "ru": "Объект {i}: лучший положительный {pos}, лучший отрицательный {neg}, запас {margin}.",
+      "en": "Object {i}: best positive {pos}, best negative {neg}, margin {margin}."
+    }
+  }
+}

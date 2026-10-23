@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В каждой из {n} строк четыре бита. Чётность строки — остаток суммы битов при делении на 2. Строки по порядку: {rows}. Сколько строк имеют нечётную сумму?",
+      "en": "Each of {n} rows has four bits. The parity of a row is the remainder of the bit sum modulo 2. The rows in order are: {rows}. How many rows have an odd sum?"
+    },
+    "s1": {
+      "ru": "В каждой из {n} строк четыре бита. Чётность строки — остаток суммы битов при делении на 2. Строки по порядку: {rows}. Какова чётность строки {k}? Нумерация с 1.",
+      "en": "Each of {n} rows has four bits. The parity of a row is the remainder of the bit sum modulo 2. The rows in order are: {rows}. What is the parity of row {k}? Counting starts at 1."
+    },
+    "s2": {
+      "ru": "Строка {i}: чётность {bit}, нечётных уже {odds}.",
+      "en": "Row {i}: parity {bit}, odd rows so far {odds}."
+    }
+  }
+}

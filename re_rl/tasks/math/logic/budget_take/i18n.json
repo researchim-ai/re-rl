@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Бюджет равен {budget}. Заявки идут по порядку, их стоимости: {listing}. Заявка берётся, если стоимость не больше остатка, и тогда остаток уменьшается. Слишком дорогая заявка пропускается, очередь на этом не кончается. Сколько заявок из {n} будет взято?",
+      "en": "The budget is {budget}. Requests arrive in order, with costs {listing}. A request is taken when its cost does not exceed the remainder, and then the remainder decreases. A request that is too expensive is skipped, and later requests are still considered. How many of the {n} requests are taken?"
+    },
+    "s1": {
+      "ru": "Бюджет равен {budget}. Заявки идут по порядку, их стоимости: {listing}. Заявка берётся, если стоимость не больше остатка, и тогда остаток уменьшается. Слишком дорогая заявка пропускается, очередь на этом не кончается. Какой остаток бюджета будет в конце?",
+      "en": "The budget is {budget}. Requests arrive in order, with costs {listing}. A request is taken when its cost does not exceed the remainder, and then the remainder decreases. A request that is too expensive is skipped, and later requests are still considered. What budget remains at the end?"
+    },
+    "s2": {
+      "ru": "Заявка {i}: стоимость {cost}, взята {flag}. Взято {taken}, остаток {left}.",
+      "en": "Request {i}: cost {cost}, taken {flag}. Taken {taken}, remainder {left}."
+    }
+  }
+}

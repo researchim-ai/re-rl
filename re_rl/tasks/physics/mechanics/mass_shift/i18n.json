@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две чаши блока. Слева {left}, справа {right}. Переносов {n}: каждый забирает 1 с левой чаши и кладёт на правую, если слева ещё есть масса. Тяга — левая масса минус правая. Какова тяга в конце?",
+      "en": "Two pans of a pulley. Left {left}, right {right}. There are {n} transfers: each takes 1 from the left pan and puts it on the right, while the left pan still has mass. The pull is the left mass minus the right mass. What is the pull at the end?"
+    },
+    "s1": {
+      "ru": "Две чаши блока. Слева {left}, справа {right}. Переносов {n}: каждый забирает 1 с левой чаши и кладёт на правую, если слева ещё есть масса. Тяга — левая масса минус правая. На каком переносе тяга впервые равна нулю? Если такого нет, ответ 0.",
+      "en": "Two pans of a pulley. Left {left}, right {right}. There are {n} transfers: each takes 1 from the left pan and puts it on the right, while the left pan still has mass. The pull is the left mass minus the right mass. At which transfer is the pull first zero? If that never happens, the answer is 0."
+    },
+    "s2": {
+      "ru": "Перенос {i}: слева {left}, справа {right}, тяга {pull}, равновесие {even}.",
+      "en": "Transfer {i}: left {left}, right {right}, pull {pull}, balance {even}."
+    }
+  }
+}

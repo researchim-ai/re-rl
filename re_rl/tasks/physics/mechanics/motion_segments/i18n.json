@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело стартует из покоя в точке 0. Дальше {n} участков с постоянным ускорением. Запись — ускорение и чётное время в секундах: {listing}. Скорость в конце участка равна скорости в начале плюс ускорение, умноженное на время. Координата прибавляет скорость в начале, умноженную на время, и половину ускорения, умноженного на квадрат времени. Какова конечная координата?",
+      "en": "A body starts at rest at position 0. Then it moves through {n} segments of constant acceleration. Each entry is the acceleration and an even duration in seconds: {listing}. The speed at the end of a segment is the starting speed plus acceleration times duration. The position gains the starting speed times the duration, plus half the acceleration times the duration squared. What is the final position?"
+    },
+    "s1": {
+      "ru": "Тело стартует из покоя в точке 0. Дальше {n} участков с постоянным ускорением. Запись — ускорение и чётное время в секундах: {listing}. Скорость в конце участка равна скорости в начале плюс ускорение, умноженное на время. Координата прибавляет скорость в начале, умноженную на время, и половину ускорения, умноженного на квадрат времени. Какова конечная скорость?",
+      "en": "A body starts at rest at position 0. Then it moves through {n} segments of constant acceleration. Each entry is the acceleration and an even duration in seconds: {listing}. The speed at the end of a segment is the starting speed plus acceleration times duration. The position gains the starting speed times the duration, plus half the acceleration times the duration squared. What is the final speed?"
+    },
+    "s2": {
+      "ru": "Участок {i}: ускорение {accel}, время {duration}. Координата {place}, скорость {speed}.",
+      "en": "Segment {i}: acceleration {accel}, duration {duration}. Position {place}, speed {speed}."
+    }
+  }
+}

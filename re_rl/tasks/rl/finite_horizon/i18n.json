@@ -15,6 +15,10 @@
     "s3": {
       "ru": "Какое действие выбирается в состоянии {v0} перед первым шагом?",
       "en": "Which action is chosen in state {v0} before the first step?"
+    },
+    "s4": {
+      "ru": "Проход {i} от конца горизонта. Оценки и действия: {row}.",
+      "en": "Pass {i} from the end of the horizon. Values and actions: {row}."
     }
   }
 }

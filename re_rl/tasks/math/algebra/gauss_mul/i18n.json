@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начинаем с 1. Дальше по порядку умножаем на {n} целых гауссовых чисел: {listing}. Произведение (a+bi)(c+di) имеет действительную часть ac-bd и мнимую ad+bc. Какова действительная часть результата?",
+      "en": "Start from 1. Then multiply, in order, by {n} Gaussian integers: {listing}. The product (a+bi)(c+di) has real part ac-bd and imaginary part ad+bc. What is the real part of the result?"
+    },
+    "s1": {
+      "ru": "Начинаем с 1. Дальше по порядку умножаем на {n} целых гауссовых чисел: {listing}. Произведение (a+bi)(c+di) имеет действительную часть ac-bd и мнимую ad+bc. Какова мнимая часть результата?",
+      "en": "Start from 1. Then multiply, in order, by {n} Gaussian integers: {listing}. The product (a+bi)(c+di) has real part ac-bd and imaginary part ad+bc. What is the imaginary part of the result?"
+    },
+    "s2": {
+      "ru": "Множитель {i}: {factor}. Действительная часть {real}, мнимая {imag}.",
+      "en": "Factor {i}: {factor}. Real part {real}, imaginary part {imag}."
+    }
+  }
+}

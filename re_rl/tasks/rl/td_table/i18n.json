@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В таблице {states} состояний, все оценки в начале равны 0. Дальше {n} переходов. Запись — номер, состояние, награда, следующее состояние: {listing}. Обновление такое: оценка состояния становится равной награде плюс текущая оценка следующего состояния. Какая оценка у состояния {k}?",
+      "en": "A table has {states} states, and every value starts at 0. Then {n} transitions follow. An entry is index, state, reward, next state: {listing}. The update sets the state's value to the reward plus the current value of the next state. What is the value of state {k}?"
+    },
+    "s1": {
+      "ru": "В таблице {states} состояний, все оценки в начале равны 0. Дальше {n} переходов. Запись — номер, состояние, награда, следующее состояние: {listing}. Обновление такое: оценка состояния становится равной награде плюс текущая оценка следующего состояния. Чему равна сумма оценок?",
+      "en": "A table has {states} states, and every value starts at 0. Then {n} transitions follow. An entry is index, state, reward, next state: {listing}. The update sets the state's value to the reward plus the current value of the next state. What is the sum of the values?"
+    },
+    "s2": {
+      "ru": "Переход {i}: состояние {state}, награда {reward}, следующее {nxt}, новая оценка {value}. Таблица: {values}.",
+      "en": "Transition {i}: state {state}, reward {reward}, next {nxt}, new value {value}. Table: {values}."
+    },
+    "s3": {
+      "ru": "Состояние {k}: {value}. Сумма {total}.",
+      "en": "State {k}: {value}. The sum is {total}."
+    }
+  }
+}

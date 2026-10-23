@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке счёты. Цифра стержня — это число чёрных косточек на нём. Правый стержень означает единицы, каждый следующий влево — следующий разряд. Какое число показано?",
+      "en": "The picture shows an abacus. A rod's digit is the number of black beads on it. The rightmost rod is the units place, and each rod to the left is the next higher place. What number is shown?"
+    },
+    "s1": {
+      "ru": "На картинке счёты. Цифра стержня — это число чёрных косточек на нём. Правый стержень означает единицы. Чему равна сумма цифр на всех стержнях?",
+      "en": "The picture shows an abacus. A rod's digit is the number of black beads on it. The rightmost rod is the units place. What is the sum of the digits on all rods?"
+    },
+    "s2": {
+      "ru": "Стержень {i}: цифра {digit}, разряд {place}.",
+      "en": "Rod {i}: digit {digit}, place {place}."
+    },
+    "s3": {
+      "ru": "Число {value}, сумма цифр {digit_sum}.",
+      "en": "The number is {value}, and the digit sum is {digit_sum}."
+    }
+  }
+}

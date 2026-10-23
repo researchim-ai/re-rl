@@ -15,6 +15,10 @@
     "s3": {
       "ru": "На скольких шагах числитель строго больше знаменателя, как они записаны?",
       "en": "On how many steps is the numerator strictly greater than the denominator, as written?"
+    },
+    "s4": {
+      "ru": "Шаг {i}: отношение {numer}/{denom}. Произведение {product}, больших числителей {above}.",
+      "en": "Step {i}: ratio {numer}/{denom}. Product {product}, larger numerators {above}."
     }
   }
 }

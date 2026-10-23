@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке столбцы из блоков, номера стоят под столбцами слева направо. Сколько блоков всего?",
+      "en": "The picture shows columns of blocks, numbered under the columns from left to right. How many blocks are there in total?"
+    },
+    "s1": {
+      "ru": "На картинке столбцы из блоков, номера стоят под столбцами слева направо. Сколько блоков в столбце {k}?",
+      "en": "The picture shows columns of blocks, numbered under the columns from left to right. How many blocks are in column {k}?"
+    },
+    "s2": {
+      "ru": "Столбец {i}: {height} блоков.",
+      "en": "Column {i}: {height} blocks."
+    },
+    "s3": {
+      "ru": "Всего {total}. Столбец {k} содержит {column}.",
+      "en": "The total is {total}. Column {k} has {column}."
+    }
+  }
+}

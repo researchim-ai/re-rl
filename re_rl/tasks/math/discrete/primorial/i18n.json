@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Возьмите первые {n} простых чисел и перемножьте их по порядку, начиная с 1. Каково произведение?",
+      "en": "Take the first {n} prime numbers and multiply them in order, starting from 1. What is the product?"
+    },
+    "s1": {
+      "ru": "Возьмите первые {n} простых чисел и перемножьте их по порядку, начиная с 1. Каково простое номер {k}? Нумерация с 1.",
+      "en": "Take the first {n} prime numbers and multiply them in order, starting from 1. What is prime number {k}? Counting starts at 1."
+    },
+    "s2": {
+      "ru": "Простое номер {i}: {prime}, произведение {product}.",
+      "en": "Prime number {i}: {prime}, product {product}."
+    }
+  }
+}

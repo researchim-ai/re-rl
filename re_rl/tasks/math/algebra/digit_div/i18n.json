@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число {number} записывается {n} цифрами слева направо: {listing}. Делим его на {divisor}. В начале остаток равен 0. Для очередной цифры остаток умножается на 10 и к нему прибавляется цифра. Цифра частного — сколько раз делитель укладывается в этот остаток, а новый остаток — то, что осталось. Ведущие нули частного не пишутся. Каково частное?",
+      "en": "The number {number} is written with {n} digits from left to right: {listing}. Divide it by {divisor}. The remainder starts at 0. For the next digit, multiply the remainder by 10 and add the digit. The quotient digit is how many times the divisor fits into that value, and the new remainder is what is left. Leading zeros of the quotient are not written. What is the quotient?"
+    },
+    "s1": {
+      "ru": "Число {number} записывается {n} цифрами слева направо: {listing}. Делим его на {divisor}. В начале остаток равен 0. Для очередной цифры остаток умножается на 10 и к нему прибавляется цифра. Цифра частного — сколько раз делитель укладывается в этот остаток, а новый остаток — то, что осталось. Каков остаток?",
+      "en": "The number {number} is written with {n} digits from left to right: {listing}. Divide it by {divisor}. The remainder starts at 0. For the next digit, multiply the remainder by 10 and add the digit. The quotient digit is how many times the divisor fits into that value, and the new remainder is what is left. What is the remainder?"
+    },
+    "s2": {
+      "ru": "Цифра {i} равна {digit}. Цифра частного {quot}, остаток {rem}.",
+      "en": "Digit {i} is {digit}. Quotient digit {quot}, remainder {rem}."
+    }
+  }
+}

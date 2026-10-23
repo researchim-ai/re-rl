@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Диаграмма Юнга со строками длины {shape}. Всего {n} клеток. Крюк клетки — число клеток справа в её строке, плюс число клеток ниже в её столбце, плюс она сама. Обход по строкам слева направо и сверху вниз. {fact} делится на произведение всех крюков. Сколько это частное?",
+      "en": "A Young diagram with row lengths {shape}. There are {n} cells in total. The hook of a cell is the number of cells to its right in the row, plus the number of cells below it in the column, plus the cell itself. Read rows from left to right and from top to bottom. Divide {fact} by the product of all hooks. What is the quotient?"
+    },
+    "s1": {
+      "ru": "Диаграмма Юнга со строками длины {shape}. Всего {n} клеток. Крюк клетки — число клеток справа в её строке, плюс число клеток ниже в её столбце, плюс она сама. Обход по строкам слева направо и сверху вниз. {fact} делится на произведение всех крюков. Каков крюк клетки номер {k}? Нумерация с 1.",
+      "en": "A Young diagram with row lengths {shape}. There are {n} cells in total. The hook of a cell is the number of cells to its right in the row, plus the number of cells below it in the column, plus the cell itself. Read rows from left to right and from top to bottom. Divide {fact} by the product of all hooks. What is the hook of cell number {k}? Counting starts at 1."
+    },
+    "s2": {
+      "ru": "Строка {row}, столбец {column}: крюк {hook}, произведение {product}.",
+      "en": "Row {row}, column {column}: hook {hook}, product {product}."
+    },
+    "s3": {
+      "ru": "{fact} / {product} = {dim}.",
+      "en": "{fact} / {product} = {dim}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Круговой многочлен номера {order}. Его коэффициенты от старшей степени: {listing}. Каково его значение в точке {point}? Считайте схемой Горнера.",
+      "en": "The cyclotomic polynomial of index {order}. Its coefficients from the highest degree: {listing}. What is its value at {point}? Use Horner's method."
+    },
+    "s1": {
+      "ru": "Круговой многочлен номера {order}. Его коэффициенты от старшей степени: {listing}. Какова его степень? Свободный член тоже входит в список.",
+      "en": "The cyclotomic polynomial of index {order}. Its coefficients from the highest degree: {listing}. What is its degree? The constant term is included in the list."
+    },
+    "s2": {
+      "ru": "Коэффициент {i}: накопитель {acc}.",
+      "en": "Coefficient {i}: accumulator {acc}."
+    }
+  }
+}

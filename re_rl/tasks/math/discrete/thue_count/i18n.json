@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Последовательность Туэ–Морса длины {n}, номера с 0. Бит номера — остаток от деления числа единиц в его двоичной записи на 2. Сколько единиц в этой последовательности?",
+      "en": "The Thue–Morse sequence of length {n}, indices starting at 0. The bit of an index is the remainder modulo 2 of the number of ones in its binary form. How many ones are in this sequence?"
+    },
+    "s1": {
+      "ru": "Последовательность Туэ–Морса длины {n}, номера с 0. Бит номера — остаток от деления числа единиц в его двоичной записи на 2. Каков бит номера {k}?",
+      "en": "The Thue–Morse sequence of length {n}, indices starting at 0. The bit of an index is the remainder modulo 2 of the number of ones in its binary form. What is the bit of index {k}?"
+    },
+    "s2": {
+      "ru": "Номер {i}: бит {bit}, единиц уже {ones}.",
+      "en": "Index {i}: bit {bit}, ones so far {ones}."
+    }
+  }
+}

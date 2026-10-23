@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько чисел от 1 до {limit} не делится ни на одно из {n} простых: {listing}?",
+      "en": "How many integers from 1 to {limit} are divisible by none of these {n} primes: {listing}?"
+    },
+    "s1": {
+      "ru": "Сколько чисел от 1 до {limit} делится хотя бы на одно из {n} простых: {listing}?",
+      "en": "How many integers from 1 to {limit} are divisible by at least one of these {n} primes: {listing}?"
+    },
+    "s2": {
+      "ru": "Набор {i}: простых {bits}, произведение {prod}, вклад {term}, свободно {free}.",
+      "en": "Subset {i}: {bits} primes, product {prod}, term {term}, free {free}."
+    }
+  }
+}

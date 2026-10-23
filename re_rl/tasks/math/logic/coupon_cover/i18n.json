@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Видов {kinds}, номера с 1. Лента из {n} значений: {listing}. На какой позиции впервые встречены все виды? Если набор так и не собран, ответ 0.",
+      "en": "There are {kinds} kinds, numbered from 1. A tape of {n} values: {listing}. At which position have all kinds been seen for the first time? If the set is never complete, the answer is 0."
+    },
+    "s1": {
+      "ru": "Видов {kinds}, номера с 1. Лента из {n} значений: {listing}. Сколько значений пришло после позиции, где впервые собраны все виды? Если набор не собран, ответ 0.",
+      "en": "There are {kinds} kinds, numbered from 1. A tape of {n} values: {listing}. How many values arrive after the position where all kinds are first complete? If the set is never complete, the answer is 0."
+    },
+    "s2": {
+      "ru": "Позиция {i}: значение {item}. Видов уже {seen}, сбор {cover}, лишних {extra}.",
+      "en": "Position {i}: value {item}. Kinds so far {seen}, cover {cover}, extras {extra}."
+    }
+  }
+}

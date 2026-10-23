@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стопка целей пуста. Команд {n}: {listing}. Положить кладёт цель наверх. Закрыть снимает цель, только если она равна верху. Иначе это ошибка, стопка не меняется. Закрыть пустую стопку тоже ошибка. Сколько было ошибок?",
+      "en": "The goal stack starts empty. There are {n} commands: {listing}. Push puts a goal on top. Close removes a goal only when it equals the top. Otherwise it is an error and the stack stays. Closing an empty stack is also an error. How many errors were there?"
+    },
+    "s1": {
+      "ru": "Стопка целей пуста. Команд {n}: {listing}. Положить кладёт цель наверх. Закрыть снимает цель, только если она равна верху. Иначе это ошибка, стопка не меняется. Закрыть пустую стопку тоже ошибка. Какова верхняя цель? Если стопка пуста, ответ 0.",
+      "en": "The goal stack starts empty. There are {n} commands: {listing}. Push puts a goal on top. Close removes a goal only when it equals the top. Otherwise it is an error and the stack stays. Closing an empty stack is also an error. What is the top goal? If the stack is empty, the answer is 0."
+    },
+    "s2": {
+      "ru": "Команда {i}: {phrase}. Верх {top}, ошибок {bad}.",
+      "en": "Command {i}: {phrase}. Top {top}, errors {bad}."
+    },
+    "s4": {
+      "ru": "положить {goal}",
+      "en": "push {goal}"
+    },
+    "s5": {
+      "ru": "закрыть {goal}",
+      "en": "close {goal}"
+    }
+  }
+}

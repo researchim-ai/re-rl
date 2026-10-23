@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Розыгрыш из {n} очков. Каждое очко достаётся команде 1 или команде 2: {listing}. Лидер — команда с большим счётом. При равенстве лидера нет, это записывается как 0. Кто лидирует в конце?",
+      "en": "A rally has {n} points. Each point goes to team 1 or team 2: {listing}. The leader is the team with the greater score. A tie has no leader and is written as 0. Who is leading at the end?"
+    },
+    "s1": {
+      "ru": "Розыгрыш из {n} очков. Каждое очко достаётся команде 1 или команде 2: {listing}. Лидер — команда с большим счётом. При равенстве лидера нет, это записывается как 0. Сколько раз лидер менялся, включая уход в ничью и выход из неё?",
+      "en": "A rally has {n} points. Each point goes to team 1 or team 2: {listing}. The leader is the team with the greater score. A tie has no leader and is written as 0. How many times did the leader change, including moves into and out of a tie?"
+    },
+    "s2": {
+      "ru": "Очко {i}: счёт {a}:{b}, лидер {leader}, смен {swings}.",
+      "en": "Point {i}: score {a}:{b}, leader {leader}, changes {swings}."
+    },
+    "s3": {
+      "ru": "Итоговый лидер {leader}, смен {swings}.",
+      "en": "The final leader is {leader}, and the number of changes is {swings}."
+    }
+  }
+}

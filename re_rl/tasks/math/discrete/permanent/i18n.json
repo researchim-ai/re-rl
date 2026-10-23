@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матрица {n} на {n} из нулей и единиц, строки через точку с запятой: {listing}. Перманент — сумма по всем наборам столбцов. Для набора берётся произведение по строкам сумм выбранных клеток, со знаком плюс, если число невыбранных столбцов чётно, и минус иначе. Каков перманент?",
+      "en": "A {n} by {n} matrix of zeros and ones. Rows are separated by semicolons: {listing}. The permanent is a sum over every set of columns. For a set, multiply the row sums of the chosen cells. The sign is plus when the number of unchosen columns is even, and minus otherwise. What is the permanent?"
+    },
+    "s1": {
+      "ru": "Матрица {n} на {n} из нулей и единиц, строки через точку с запятой: {listing}. Перманент — сумма по всем наборам столбцов. Для набора берётся произведение по строкам сумм выбранных клеток, со знаком плюс, если число невыбранных столбцов чётно, и минус иначе. Какова чётность перманента? Ответ 0, если чётный, и 1, если нечётный.",
+      "en": "A {n} by {n} matrix of zeros and ones. Rows are separated by semicolons: {listing}. The permanent is a sum over every set of columns. For a set, multiply the row sums of the chosen cells. The sign is plus when the number of unchosen columns is even, and minus otherwise. What is the parity of the permanent? Answer 0 if even and 1 if odd."
+    },
+    "s2": {
+      "ru": "Набор {i}: накопленная сумма {total}.",
+      "en": "Set {i}: running total {total}."
+    }
+  }
+}

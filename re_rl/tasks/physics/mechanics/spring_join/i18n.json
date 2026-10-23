@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пружины соединяют параллельно, сила {force}. Жёсткости по порядку, всего {n}: {listing}. Суммарная жёсткость складывается. Какова она в конце?",
+      "en": "Springs are joined in parallel, and the force is {force}. Stiffnesses in order, {n} in total: {listing}. The total stiffness is their sum. What is it at the end?"
+    },
+    "s1": {
+      "ru": "Пружины соединяют параллельно, сила {force}. Жёсткости по порядку, всего {n}: {listing}. Суммарная жёсткость складывается. Удлинение — сила, делённая на текущую сумму, деление целое. Каково удлинение в конце?",
+      "en": "Springs are joined in parallel, and the force is {force}. Stiffnesses in order, {n} in total: {listing}. The total stiffness is their sum. The extension is the force divided by the current sum, as an integer. What is the extension at the end?"
+    },
+    "s2": {
+      "ru": "Пружина {i}: сумма жёсткостей {stiffness}, удлинение {stretch}.",
+      "en": "Spring {i}: stiffness sum {stiffness}, extension {stretch}."
+    }
+  }
+}

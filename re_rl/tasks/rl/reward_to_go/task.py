@@ -51,9 +51,24 @@ class RewardToGoTask(BaseMathTask):
         return ((texts.t('s0', language, rewards=rewards, gamma=gamma, t=self.t)))
 
     def solve(self):
+        acc = Fraction(0)
+        power = Fraction(1)
+        steps = []
+        for offset, reward in enumerate(self.rewards[self.t:]):
+            term = power * reward
+            acc += term
+            steps.append(texts.t(
+                "s3", self.language, k=self.t + offset, reward=reward,
+                power=fmt_fraction(power), term=fmt_fraction(term), acc=fmt_fraction(acc),
+            ))
+            power *= self.gamma
         shown = fmt_fraction(self.answer)
-        step = ((texts.t('s1', self.language, t=self.t, v1=', '.join(map(str, self.rewards[self.t:])), shown=shown)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
+        steps.append(texts.t(
+            "s1", self.language, t=self.t,
+            v1=", ".join(map(str, self.rewards[self.t:])), shown=shown,
+        ))
+        steps.append(texts.common("answer_line", self.language, answer=shown))
+        self.solution_steps = steps
         self.final_answer = shown
 
     def verify(self, prediction: str) -> float:

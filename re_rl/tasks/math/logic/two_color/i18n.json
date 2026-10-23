@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вершин {n}, номера с 1. Рёбра: {listing}. Вершины красятся по порядку. Если у покрашенных соседей один цвет, вершина получает другой: цвета 1 и 2. Если соседей нет, цвет 1. Если у соседей оба цвета, это конфликт и вершина остаётся без цвета 0. Сколько конфликтов?",
+      "en": "There are {n} vertices, numbered from 1. Edges: {listing}. Vertices are colored in order. If the colored neighbors have one color, the vertex gets the other: colors are 1 and 2. If there are no neighbors, the color is 1. If the neighbors have both colors, that is a conflict and the vertex stays uncolored at 0. How many conflicts are there?"
+    },
+    "s1": {
+      "ru": "Вершин {n}, номера с 1. Рёбра: {listing}. Вершины красятся по порядку. Если у покрашенных соседей один цвет, вершина получает другой: цвета 1 и 2. Если соседей нет, цвет 1. Если у соседей оба цвета, это конфликт и вершина остаётся без цвета 0. Каков номер первого конфликта? Если конфликтов нет, ответ 0.",
+      "en": "There are {n} vertices, numbered from 1. Edges: {listing}. Vertices are colored in order. If the colored neighbors have one color, the vertex gets the other: colors are 1 and 2. If there are no neighbors, the color is 1. If the neighbors have both colors, that is a conflict and the vertex stays uncolored at 0. What is the number of the first conflict? If there is none, the answer is 0."
+    },
+    "s2": {
+      "ru": "Вершина {i}: цвет {color}. Конфликтов {conflicts}, первый {first}.",
+      "en": "Vertex {i}: color {color}. Conflicts {conflicts}, first {first}."
+    }
+  }
+}

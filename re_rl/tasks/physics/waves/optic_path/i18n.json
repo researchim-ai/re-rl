@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Луч идёт через {n} слоёв. Запись — показатель преломления и толщина: {listing}. Оптический путь слоя — показатель, умноженный на толщину. Каков весь путь?",
+      "en": "A ray passes through {n} layers. Each entry is the refractive index and the thickness: {listing}. A layer's optical path is the index times the thickness. What is the whole path?"
+    },
+    "s1": {
+      "ru": "Луч идёт через {n} слоёв. Запись — показатель преломления и толщина: {listing}. Оптический путь слоя — показатель, умноженный на толщину. Каков номер слоя с наибольшим вкладом? При равенстве остаётся более ранний. Нумерация с 1.",
+      "en": "A ray passes through {n} layers. Each entry is the refractive index and the thickness: {listing}. A layer's optical path is the index times the thickness. What is the number of the layer with the largest contribution? Ties keep the earlier one. Numbering starts at 1."
+    },
+    "s2": {
+      "ru": "Слой {i}: вклад {piece}, путь {path}, лидер {layer}.",
+      "en": "Layer {i}: contribution {piece}, path {path}, leader {layer}."
+    }
+  }
+}

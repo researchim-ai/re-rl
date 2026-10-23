@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ламп {n}, нумерация с 1, в начале все погашены. Нажатие лампы переключает её и обоих соседей. Соседа за краем нет. Нажатия по порядку: {presses}. Сколько ламп горит в конце?",
+      "en": "There are {n} lamps, numbered from 1, all off at the start. Pressing a lamp toggles it and both neighbors. There is no neighbor past an end. The presses in order are {presses}. How many lamps are on at the end?"
+    },
+    "s1": {
+      "ru": "Ламп {n}, нумерация с 1, в начале все погашены. Нажатие лампы переключает её и обоих соседей. Соседа за краем нет. Нажатия по порядку: {presses}. Горит ли лампа {k} в конце? Ответьте 1 или 0.",
+      "en": "There are {n} lamps, numbered from 1, all off at the start. Pressing a lamp toggles it and both neighbors. There is no neighbor past an end. The presses in order are {presses}. Is lamp {k} on at the end? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Нажатие {i}, лампа {press}: она теперь {bit}, горит всего {ons}.",
+      "en": "Press {i}, lamp {press}: it is now {bit}, lamps on {ons}."
+    }
+  }
+}

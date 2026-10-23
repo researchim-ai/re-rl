@@ -1,0 +1,44 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Подвес из стержней без собственной массы. {listing} На каждом стержне левое плечо, умноженное на левую массу, равно правому плечу, умноженному на правую массу. Найдите массу гири {k}.",
+      "en": "A mobile is built from rods of zero mass. {listing} On every rod the left arm times the left mass equals the right arm times the right mass. Find the mass of weight {k}."
+    },
+    "s1": {
+      "ru": "Подвес из стержней без собственной массы. {listing} На каждом стержне левое плечо, умноженное на левую массу, равно правому плечу, умноженному на правую массу. Найдите суммарную массу всех гирь: это нагрузка на крюк.",
+      "en": "A mobile is built from rods of zero mass. {listing} On every rod the left arm times the left mass equals the right arm times the right mass. Find the total mass of all weights: that is the load on the hook."
+    },
+    "s3": {
+      "ru": "Стержень {i}: плечо {al} к {left}, плечо {ar} к {right}.",
+      "en": "Rod {i}: arm {al} to {left}, arm {ar} to {right}."
+    },
+    "s4": {
+      "ru": "Гиря {i} весит {mass}.",
+      "en": "Weight {i} has mass {mass}."
+    },
+    "s5": {
+      "ru": "Гиря {i} неизвестна.",
+      "en": "Weight {i} is unknown."
+    },
+    "s6": {
+      "ru": "гире {i}",
+      "en": "weight {i}"
+    },
+    "s7": {
+      "ru": "стержню {i}",
+      "en": "rod {i}"
+    },
+    "s8": {
+      "ru": "Гиря {k} на стержне {rod}: {arm_s}*{sibling}/{arm_h} = {mass}.",
+      "en": "Weight {k} on rod {rod}: {arm_s}*{sibling}/{arm_h} = {mass}."
+    },
+    "s9": {
+      "ru": "Стержень {i}: массы {left} и {right}, вместе {total}.",
+      "en": "Rod {i}: masses {left} and {right}, together {total}."
+    },
+    "s10": {
+      "ru": "Скрытая гиря {hidden}, нагрузка на крюк {load}.",
+      "en": "The hidden weight is {hidden}, and the hook load is {load}."
+    }
+  }
+}

@@ -278,11 +278,210 @@ from re_rl.tasks.ml.kmeans_rounds_task import KMeansRoundsTask
 from re_rl.tasks.math.probability.bayes_updates_task import BayesUpdatesTask
 from re_rl.tasks.math.probability.polya_urn_task import PolyaUrnTask
 from re_rl.tasks.rl.policy_rollout_task import PolicyRolloutTask
+from re_rl.tasks.ml.boost_weights_task import BoostWeightsTask
+from re_rl.tasks.ml.momentum_sgd_task import MomentumSgdTask
+from re_rl.tasks.ml.decision_list_task import DecisionListTask
+from re_rl.tasks.rl.td_table_task import TdTableTask
 from re_rl.tasks.math.discrete.extended_euclid_task import ExtendedEuclidTask
 from re_rl.tasks.math.discrete.crt_chain_task import CrtChainTask
 from re_rl.tasks.math.discrete.cf_expand_task import CfExpandTask
 from re_rl.tasks.math.discrete.nim_sum_task import NimSumTask
 from re_rl.tasks.math.analysis.difference_table_task import DifferenceTableTask
+from re_rl.tasks.math.discrete.sandpile_path_task import SandpilePathTask
+from re_rl.tasks.math.probability.markov_steps_task import MarkovStepsTask
+from re_rl.tasks.math.probability.sir_ticks_task import SirTicksTask
+from re_rl.tasks.math.algebra.poly_div_task import PolyDivTask
+from re_rl.tasks.math.logic.johnson_span_task import JohnsonSpanTask
+from re_rl.tasks.math.logic.lights_path_task import LightsPathTask
+from re_rl.tasks.math.logic.domino_chain_task import DominoChainTask
+from re_rl.tasks.math.logic.bound_scan_task import BoundScanTask
+from re_rl.tasks.math.logic.claim_count_task import ClaimCountTask
+from re_rl.tasks.math.logic.quorum_rise_task import QuorumRiseTask
+from re_rl.tasks.math.logic.hat_line_task import HatLineTask
+from re_rl.tasks.math.logic.reagent_chain_task import ReagentChainTask
+from re_rl.tasks.math.logic.tax_brackets_task import TaxBracketsTask
+from re_rl.tasks.math.logic.codon_scan_task import CodonScanTask
+from re_rl.tasks.math.logic.dose_schedule_task import DoseScheduleTask
+from re_rl.tasks.math.logic.melody_walk_task import MelodyWalkTask
+from re_rl.tasks.math.logic.fifo_cost_task import FifoCostTask
+from re_rl.tasks.math.logic.borda_count_task import BordaCountTask
+from re_rl.tasks.math.logic.shift_add_task import ShiftAddTask
+from re_rl.tasks.math.logic.rally_lead_task import RallyLeadTask
+from re_rl.tasks.math.discrete.pascal_row_task import PascalRowTask
+from re_rl.tasks.math.algebra.fraction_ops_task import FractionOpsTask
+from re_rl.tasks.math.discrete.stern_path_task import SternPathTask
+from re_rl.tasks.math.discrete.partition_count_task import PartitionCountTask
+from re_rl.tasks.math.discrete.derange_count_task import DerangeCountTask
+from re_rl.tasks.math.algebra.gauss_mul_task import GaussMulTask
+from re_rl.tasks.math.discrete.perm_compose_task import PermComposeTask
+from re_rl.tasks.math.geometry.cover_span_task import CoverSpanTask
+from re_rl.tasks.math.discrete.reverse_add_task import ReverseAddTask
+from re_rl.tasks.math.probability.stream_median_task import StreamMedianTask
+from re_rl.tasks.math.discrete.totient_row_task import TotientRowTask
+from re_rl.tasks.math.discrete.coprime_count_task import CoprimeCountTask
+from re_rl.tasks.math.algebra.digit_div_task import DigitDivTask
+from re_rl.tasks.math.discrete.tree_depth_task import TreeDepthTask
+from re_rl.tasks.math.discrete.sign_walk_task import SignWalkTask
+from re_rl.tasks.math.discrete.perm_rank_task import PermRankTask
+from re_rl.tasks.math.discrete.lcm_rise_task import LcmRiseTask
+from re_rl.tasks.math.discrete.zigzag_row_task import ZigzagRowTask
+from re_rl.tasks.math.discrete.record_highs_task import RecordHighsTask
+from re_rl.tasks.math.discrete.sum_kinds_task import SumKindsTask
+from re_rl.tasks.math.discrete.fib_word_task import FibWordTask
+from re_rl.tasks.math.probability.mode_track_task import ModeTrackTask
+from re_rl.tasks.math.discrete.look_say_task import LookSayTask
+from re_rl.tasks.math.discrete.zeckendorf_task import ZeckendorfTask
+from re_rl.tasks.math.discrete.roman_value_task import RomanValueTask
+from re_rl.tasks.math.discrete.digit_stream_task import DigitStreamTask
+from re_rl.tasks.math.logic.deque_trace_task import DequeTraceTask
+from re_rl.tasks.math.discrete.dragon_fold_task import DragonFoldTask
+from re_rl.tasks.math.discrete.permanent_task import PermanentTask
+from re_rl.tasks.math.discrete.bead_count_task import BeadCountTask
+from re_rl.tasks.math.discrete.negabase_task import NegabaseTask
+from re_rl.tasks.math.geometry.ulam_walk_task import UlamWalkTask
+from re_rl.tasks.math.discrete.luhn_sum_task import LuhnSumTask
+from re_rl.tasks.math.discrete.kaprekar_step_task import KaprekarStepTask
+from re_rl.tasks.math.discrete.morton_code_task import MortonCodeTask
+from re_rl.tasks.math.logic.stock_span_task import StockSpanTask
+from re_rl.tasks.math.logic.candy_row_task import CandyRowTask
+from re_rl.tasks.math.discrete.digit_fact_task import DigitFactTask
+from re_rl.tasks.math.discrete.recaman_task import RecamanTask
+from re_rl.tasks.math.discrete.xor_basis_task import XorBasisTask
+from re_rl.tasks.math.discrete.palindrome_radius_task import PalindromeRadiusTask
+from re_rl.tasks.math.discrete.squarefree_row_task import SquarefreeRowTask
+from re_rl.tasks.math.logic.fenwick_sum_task import FenwickSumTask
+from re_rl.tasks.math.logic.sparse_min_task import SparseMinTask
+from re_rl.tasks.math.logic.z_array_task import ZArrayTask
+from re_rl.tasks.math.logic.selection_swaps_task import SelectionSwapsTask
+from re_rl.tasks.math.logic.rho_cycle_task import RhoCycleTask
+from re_rl.tasks.math.logic.tree_times_task import TreeTimesTask
+from re_rl.tasks.math.logic.dutch_flag_task import DutchFlagTask
+from re_rl.tasks.math.logic.window_distinct_task import WindowDistinctTask
+from re_rl.tasks.math.logic.stable_place_task import StablePlaceTask
+from re_rl.tasks.math.logic.naive_find_task import NaiveFindTask
+from re_rl.tasks.math.logic.budget_take_task import BudgetTakeTask
+from re_rl.tasks.math.logic.skip_op_task import SkipOpTask
+from re_rl.tasks.math.logic.retry_goal_task import RetryGoalTask
+from re_rl.tasks.math.logic.signal_edges_task import SignalEdgesTask
+from re_rl.tasks.math.logic.plan_gate_task import PlanGateTask
+from re_rl.tasks.math.logic.tool_pick_task import ToolPickTask
+from re_rl.tasks.math.logic.diff_count_task import DiffCountTask
+from re_rl.tasks.math.logic.cell_patch_task import CellPatchTask
+from re_rl.tasks.math.logic.pred_scan_task import PredScanTask
+from re_rl.tasks.math.logic.rate_limit_task import RateLimitTask
+from re_rl.tasks.math.logic.lateness_task import LatenessTask
+from re_rl.tasks.math.logic.switch_flip_task import SwitchFlipTask
+from re_rl.tasks.math.geometry.turn_signs_task import TurnSignsTask
+from re_rl.tasks.math.logic.first_fit_task import FirstFitTask
+from re_rl.tasks.math.logic.plurality_task import PluralityTask
+from re_rl.tasks.math.logic.floor_run_task import FloorRunTask
+from re_rl.tasks.math.logic.saturate_count_task import SaturateCountTask
+from re_rl.tasks.math.logic.undo_reg_task import UndoRegTask
+from re_rl.tasks.math.logic.cover_point_task import CoverPointTask
+from re_rl.tasks.math.logic.next_fit_task import NextFitTask
+from re_rl.tasks.ml.neighbor_vote_task import NeighborVoteTask
+from re_rl.tasks.ml.sgd_online_task import SgdOnlineTask
+from re_rl.tasks.ml.grad_clip_task import GradClipTask
+from re_rl.tasks.ml.weight_decay_task import WeightDecayTask
+from re_rl.tasks.ml.early_stop_task import EarlyStopTask
+from re_rl.tasks.ml.prototype_mean_task import PrototypeMeanTask
+from re_rl.tasks.rl.trace_decay_task import TraceDecayTask
+from re_rl.tasks.rl.actor_critic_task import ActorCriticTask
+from re_rl.tasks.rl.ucb_bandit_task import UcbBanditTask
+from re_rl.tasks.rl.target_sync_task import TargetSyncTask
+from re_rl.tasks.rl.replay_fifo_task import ReplayFifoTask
+from re_rl.tasks.rl.shape_reward_task import ShapeRewardTask
+from re_rl.tasks.rl.eps_schedule_task import EpsScheduleTask
+from re_rl.tasks.math.logic.scope_lookup_task import ScopeLookupTask
+from re_rl.tasks.math.logic.lock_log_task import LockLogTask
+from re_rl.tasks.math.logic.path_toll_task import PathTollTask
+from re_rl.tasks.math.logic.backoff_wait_task import BackoffWaitTask
+from re_rl.tasks.math.logic.priority_run_task import PriorityRunTask
+from re_rl.tasks.math.logic.inbox_take_task import InboxTakeTask
+from re_rl.tasks.math.logic.goal_match_task import GoalMatchTask
+from re_rl.tasks.math.logic.craft_need_task import CraftNeedTask
+from re_rl.tasks.math.logic.checkpoint_roll_task import CheckpointRollTask
+from re_rl.tasks.math.logic.schema_check_task import SchemaCheckTask
+from re_rl.tasks.math.algebra.infix_value_task import InfixValueTask
+from re_rl.tasks.math.discrete.ballot_walk_task import BallotWalkTask
+from re_rl.tasks.math.discrete.digit_root_task import DigitRootTask
+from re_rl.tasks.math.discrete.crt_lift_task import CrtLiftTask
+from re_rl.tasks.math.discrete.mod_order_task import ModOrderTask
+from re_rl.tasks.math.logic.first_repeat_task import FirstRepeatTask
+from re_rl.tasks.math.logic.coupon_cover_task import CouponCoverTask
+from re_rl.tasks.math.logic.coin_weigh_task import CoinWeighTask
+from re_rl.tasks.math.logic.two_color_task import TwoColorTask
+from re_rl.tasks.math.discrete.lattice_sum_task import LatticeSumTask
+from re_rl.tasks.math.algebra.horner_mod_task import HornerModTask
+from re_rl.tasks.math.algebra.rational_root_task import RationalRootTask
+from re_rl.tasks.math.analysis.geom_sum_task import GeomSumTask
+from re_rl.tasks.math.discrete.cyclo_eval_task import CycloEvalTask
+from re_rl.tasks.math.discrete.chebyshev_row_task import ChebyshevRowTask
+from re_rl.tasks.math.discrete.hermite_row_task import HermiteRowTask
+from re_rl.tasks.math.discrete.series_conv_task import SeriesConvTask
+from re_rl.tasks.math.probability.transport_cost_task import TransportCostTask
+from re_rl.tasks.math.discrete.pochhammer_task import PochhammerTask
+from re_rl.tasks.math.discrete.binom_build_task import BinomBuildTask
+from re_rl.tasks.math.discrete.farey_next_task import FareyNextTask
+from re_rl.tasks.math.discrete.mobius_sum_task import MobiusSumTask
+from re_rl.tasks.math.discrete.involution_count_task import InvolutionCountTask
+from re_rl.tasks.math.discrete.jacobi_row_task import JacobiRowTask
+from re_rl.tasks.math.discrete.ruler_sum_task import RulerSumTask
+from re_rl.tasks.math.discrete.thue_count_task import ThueCountTask
+from re_rl.tasks.math.discrete.aliquot_walk_task import AliquotWalkTask
+from re_rl.tasks.math.discrete.carmichael_row_task import CarmichaelRowTask
+from re_rl.tasks.math.discrete.cayley_trees_task import CayleyTreesTask
+from re_rl.tasks.math.discrete.factoradic_task import FactoradicTask
+from re_rl.tasks.math.discrete.stirling_first_task import StirlingFirstTask
+from re_rl.tasks.math.discrete.bell_row_task import BellRowTask
+from re_rl.tasks.math.discrete.andre_row_task import AndreRowTask
+from re_rl.tasks.math.discrete.bernoulli_den_task import BernoulliDenTask
+from re_rl.tasks.math.discrete.chebyshev_u_task import ChebyshevUTask
+from re_rl.tasks.math.discrete.sigma_row_task import SigmaRowTask
+from re_rl.tasks.math.discrete.prime_omega_task import PrimeOmegaTask
+from re_rl.tasks.math.discrete.motzkin_row_task import MotzkinRowTask
+from re_rl.tasks.math.discrete.primorial_task import PrimorialTask
+from re_rl.tasks.math.discrete.rgs_rank_task import RgsRankTask
+from re_rl.tasks.math.discrete.bernoulli_numer_task import BernoulliNumerTask
+from re_rl.tasks.math.discrete.genocchi_row_task import GenocchiRowTask
+from re_rl.tasks.math.discrete.kronecker_row_task import KroneckerRowTask
+from re_rl.tasks.math.discrete.hook_length_task import HookLengthTask
+from re_rl.tasks.math.discrete.legendre_frac_task import LegendreFracTask
+from re_rl.tasks.math.discrete.laguerre_frac_task import LaguerreFracTask
+from re_rl.tasks.math.discrete.harmonic_frac_task import HarmonicFracTask
+from re_rl.tasks.math.discrete.eulerian_row_task import EulerianRowTask
+from re_rl.tasks.math.discrete.fubini_row_task import FubiniRowTask
+from re_rl.tasks.math.discrete.delannoy_row_task import DelannoyRowTask
+from re_rl.tasks.math.discrete.tau_row_task import TauRowTask
+from re_rl.tasks.math.discrete.prime_nu_task import PrimeNuTask
+from re_rl.tasks.math.discrete.sopfr_row_task import SopfrRowTask
+from re_rl.tasks.math.discrete.pell_row_task import PellRowTask
+from re_rl.tasks.math.discrete.tribonacci_row_task import TribonacciRowTask
+from re_rl.tasks.math.discrete.narayana_row_task import NarayanaRowTask
+from re_rl.tasks.math.discrete.schroder_row_task import SchroderRowTask
+from re_rl.tasks.math.discrete.gaussian_bin_task import GaussianBinTask
+from re_rl.tasks.math.discrete.kolakoski_task import KolakoskiTask
+from re_rl.tasks.math.discrete.cantor_pair_task import CantorPairTask
+from re_rl.tasks.math.logic.horn_fire_task import HornFireTask
+from re_rl.tasks.math.logic.carry_row_task import CarryRowTask
+from re_rl.tasks.math.logic.lamp_trio_task import LampTrioTask
+from re_rl.tasks.math.logic.parity_sheet_task import ParitySheetTask
+from re_rl.tasks.math.logic.mux_index_task import MuxIndexTask
+from re_rl.tasks.math.logic.jury_veto_task import JuryVetoTask
+from re_rl.tasks.math.logic.gate_fold_task import GateFoldTask
+from re_rl.tasks.math.logic.exactly_one_task import ExactlyOneTask
+from re_rl.tasks.math.logic.knave_next_task import KnaveNextTask
+from re_rl.tasks.math.logic.priority_bit_task import PriorityBitTask
+from re_rl.tasks.ml.roc_walk_task import RocWalkTask
+from re_rl.tasks.ml.ema_loss_task import EmaLossTask
+from re_rl.tasks.ml.lr_decay_task import LrDecayTask
+from re_rl.tasks.ml.batch_grad_task import BatchGradTask
+from re_rl.tasks.ml.best_margin_task import BestMarginTask
+from re_rl.tasks.rl.online_base_task import OnlineBaseTask
+from re_rl.tasks.rl.td_clip_task import TdClipTask
+from re_rl.tasks.rl.count_bonus_task import CountBonusTask
+from re_rl.tasks.rl.option_hold_task import OptionHoldTask
+from re_rl.tasks.rl.policy_eval_task import PolicyEvalTask
 from re_rl.tasks.math.geometry.shadow_height_task import ShadowHeightTask
 from re_rl.tasks.math.geometry.manhattan_paths_task import ManhattanPathsTask
 from re_rl.tasks.math.logic.trapping_rain_task import TrappingRainTask
@@ -1873,11 +2072,210 @@ generate_random_kmeans_rounds_task = _mk_generator(KMeansRoundsTask)
 generate_random_bayes_updates_task = _mk_generator(BayesUpdatesTask)
 generate_random_polya_urn_task = _mk_generator(PolyaUrnTask)
 generate_random_policy_rollout_task = _mk_generator(PolicyRolloutTask)
+generate_random_boost_weights_task = _mk_generator(BoostWeightsTask)
+generate_random_momentum_sgd_task = _mk_generator(MomentumSgdTask)
+generate_random_decision_list_task = _mk_generator(DecisionListTask)
+generate_random_td_table_task = _mk_generator(TdTableTask)
 generate_random_extended_euclid_task = _mk_generator(ExtendedEuclidTask)
 generate_random_crt_chain_task = _mk_generator(CrtChainTask)
 generate_random_cf_expand_task = _mk_generator(CfExpandTask)
 generate_random_nim_sum_task = _mk_generator(NimSumTask)
 generate_random_difference_table_task = _mk_generator(DifferenceTableTask)
+generate_random_sandpile_path_task = _mk_generator(SandpilePathTask)
+generate_random_markov_steps_task = _mk_generator(MarkovStepsTask)
+generate_random_sir_ticks_task = _mk_generator(SirTicksTask)
+generate_random_poly_div_task = _mk_generator(PolyDivTask)
+generate_random_johnson_span_task = _mk_generator(JohnsonSpanTask)
+generate_random_lights_path_task = _mk_generator(LightsPathTask)
+generate_random_domino_chain_task = _mk_generator(DominoChainTask)
+generate_random_bound_scan_task = _mk_generator(BoundScanTask)
+generate_random_claim_count_task = _mk_generator(ClaimCountTask)
+generate_random_quorum_rise_task = _mk_generator(QuorumRiseTask)
+generate_random_hat_line_task = _mk_generator(HatLineTask)
+generate_random_reagent_chain_task = _mk_generator(ReagentChainTask)
+generate_random_tax_brackets_task = _mk_generator(TaxBracketsTask)
+generate_random_codon_scan_task = _mk_generator(CodonScanTask)
+generate_random_dose_schedule_task = _mk_generator(DoseScheduleTask)
+generate_random_melody_walk_task = _mk_generator(MelodyWalkTask)
+generate_random_fifo_cost_task = _mk_generator(FifoCostTask)
+generate_random_borda_count_task = _mk_generator(BordaCountTask)
+generate_random_shift_add_task = _mk_generator(ShiftAddTask)
+generate_random_rally_lead_task = _mk_generator(RallyLeadTask)
+generate_random_pascal_row_task = _mk_generator(PascalRowTask)
+generate_random_fraction_ops_task = _mk_generator(FractionOpsTask)
+generate_random_stern_path_task = _mk_generator(SternPathTask)
+generate_random_partition_count_task = _mk_generator(PartitionCountTask)
+generate_random_derange_count_task = _mk_generator(DerangeCountTask)
+generate_random_gauss_mul_task = _mk_generator(GaussMulTask)
+generate_random_perm_compose_task = _mk_generator(PermComposeTask)
+generate_random_cover_span_task = _mk_generator(CoverSpanTask)
+generate_random_reverse_add_task = _mk_generator(ReverseAddTask)
+generate_random_stream_median_task = _mk_generator(StreamMedianTask)
+generate_random_totient_row_task = _mk_generator(TotientRowTask)
+generate_random_coprime_count_task = _mk_generator(CoprimeCountTask)
+generate_random_digit_div_task = _mk_generator(DigitDivTask)
+generate_random_tree_depth_task = _mk_generator(TreeDepthTask)
+generate_random_sign_walk_task = _mk_generator(SignWalkTask)
+generate_random_perm_rank_task = _mk_generator(PermRankTask)
+generate_random_lcm_rise_task = _mk_generator(LcmRiseTask)
+generate_random_zigzag_row_task = _mk_generator(ZigzagRowTask)
+generate_random_record_highs_task = _mk_generator(RecordHighsTask)
+generate_random_sum_kinds_task = _mk_generator(SumKindsTask)
+generate_random_fib_word_task = _mk_generator(FibWordTask)
+generate_random_mode_track_task = _mk_generator(ModeTrackTask)
+generate_random_look_say_task = _mk_generator(LookSayTask)
+generate_random_zeckendorf_task = _mk_generator(ZeckendorfTask)
+generate_random_roman_value_task = _mk_generator(RomanValueTask)
+generate_random_digit_stream_task = _mk_generator(DigitStreamTask)
+generate_random_deque_trace_task = _mk_generator(DequeTraceTask)
+generate_random_dragon_fold_task = _mk_generator(DragonFoldTask)
+generate_random_permanent_task = _mk_generator(PermanentTask)
+generate_random_bead_count_task = _mk_generator(BeadCountTask)
+generate_random_negabase_task = _mk_generator(NegabaseTask)
+generate_random_ulam_walk_task = _mk_generator(UlamWalkTask)
+generate_random_luhn_sum_task = _mk_generator(LuhnSumTask)
+generate_random_kaprekar_step_task = _mk_generator(KaprekarStepTask)
+generate_random_morton_code_task = _mk_generator(MortonCodeTask)
+generate_random_stock_span_task = _mk_generator(StockSpanTask)
+generate_random_candy_row_task = _mk_generator(CandyRowTask)
+generate_random_digit_fact_task = _mk_generator(DigitFactTask)
+generate_random_recaman_task = _mk_generator(RecamanTask)
+generate_random_xor_basis_task = _mk_generator(XorBasisTask)
+generate_random_palindrome_radius_task = _mk_generator(PalindromeRadiusTask)
+generate_random_squarefree_row_task = _mk_generator(SquarefreeRowTask)
+generate_random_fenwick_sum_task = _mk_generator(FenwickSumTask)
+generate_random_sparse_min_task = _mk_generator(SparseMinTask)
+generate_random_z_array_task = _mk_generator(ZArrayTask)
+generate_random_selection_swaps_task = _mk_generator(SelectionSwapsTask)
+generate_random_rho_cycle_task = _mk_generator(RhoCycleTask)
+generate_random_tree_times_task = _mk_generator(TreeTimesTask)
+generate_random_dutch_flag_task = _mk_generator(DutchFlagTask)
+generate_random_window_distinct_task = _mk_generator(WindowDistinctTask)
+generate_random_stable_place_task = _mk_generator(StablePlaceTask)
+generate_random_naive_find_task = _mk_generator(NaiveFindTask)
+generate_random_budget_take_task = _mk_generator(BudgetTakeTask)
+generate_random_skip_op_task = _mk_generator(SkipOpTask)
+generate_random_retry_goal_task = _mk_generator(RetryGoalTask)
+generate_random_signal_edges_task = _mk_generator(SignalEdgesTask)
+generate_random_plan_gate_task = _mk_generator(PlanGateTask)
+generate_random_tool_pick_task = _mk_generator(ToolPickTask)
+generate_random_diff_count_task = _mk_generator(DiffCountTask)
+generate_random_cell_patch_task = _mk_generator(CellPatchTask)
+generate_random_pred_scan_task = _mk_generator(PredScanTask)
+generate_random_rate_limit_task = _mk_generator(RateLimitTask)
+generate_random_lateness_task = _mk_generator(LatenessTask)
+generate_random_switch_flip_task = _mk_generator(SwitchFlipTask)
+generate_random_turn_signs_task = _mk_generator(TurnSignsTask)
+generate_random_first_fit_task = _mk_generator(FirstFitTask)
+generate_random_plurality_task = _mk_generator(PluralityTask)
+generate_random_floor_run_task = _mk_generator(FloorRunTask)
+generate_random_saturate_count_task = _mk_generator(SaturateCountTask)
+generate_random_undo_reg_task = _mk_generator(UndoRegTask)
+generate_random_cover_point_task = _mk_generator(CoverPointTask)
+generate_random_next_fit_task = _mk_generator(NextFitTask)
+generate_random_neighbor_vote_task = _mk_generator(NeighborVoteTask)
+generate_random_sgd_online_task = _mk_generator(SgdOnlineTask)
+generate_random_grad_clip_task = _mk_generator(GradClipTask)
+generate_random_weight_decay_task = _mk_generator(WeightDecayTask)
+generate_random_early_stop_task = _mk_generator(EarlyStopTask)
+generate_random_prototype_mean_task = _mk_generator(PrototypeMeanTask)
+generate_random_trace_decay_task = _mk_generator(TraceDecayTask)
+generate_random_actor_critic_task = _mk_generator(ActorCriticTask)
+generate_random_ucb_bandit_task = _mk_generator(UcbBanditTask)
+generate_random_target_sync_task = _mk_generator(TargetSyncTask)
+generate_random_replay_fifo_task = _mk_generator(ReplayFifoTask)
+generate_random_shape_reward_task = _mk_generator(ShapeRewardTask)
+generate_random_eps_schedule_task = _mk_generator(EpsScheduleTask)
+generate_random_scope_lookup_task = _mk_generator(ScopeLookupTask)
+generate_random_lock_log_task = _mk_generator(LockLogTask)
+generate_random_path_toll_task = _mk_generator(PathTollTask)
+generate_random_backoff_wait_task = _mk_generator(BackoffWaitTask)
+generate_random_priority_run_task = _mk_generator(PriorityRunTask)
+generate_random_inbox_take_task = _mk_generator(InboxTakeTask)
+generate_random_goal_match_task = _mk_generator(GoalMatchTask)
+generate_random_craft_need_task = _mk_generator(CraftNeedTask)
+generate_random_checkpoint_roll_task = _mk_generator(CheckpointRollTask)
+generate_random_schema_check_task = _mk_generator(SchemaCheckTask)
+generate_random_infix_value_task = _mk_generator(InfixValueTask)
+generate_random_ballot_walk_task = _mk_generator(BallotWalkTask)
+generate_random_digit_root_task = _mk_generator(DigitRootTask)
+generate_random_crt_lift_task = _mk_generator(CrtLiftTask)
+generate_random_mod_order_task = _mk_generator(ModOrderTask)
+generate_random_first_repeat_task = _mk_generator(FirstRepeatTask)
+generate_random_coupon_cover_task = _mk_generator(CouponCoverTask)
+generate_random_coin_weigh_task = _mk_generator(CoinWeighTask)
+generate_random_two_color_task = _mk_generator(TwoColorTask)
+generate_random_lattice_sum_task = _mk_generator(LatticeSumTask)
+generate_random_horner_mod_task = _mk_generator(HornerModTask)
+generate_random_rational_root_task = _mk_generator(RationalRootTask)
+generate_random_geom_sum_task = _mk_generator(GeomSumTask)
+generate_random_cyclo_eval_task = _mk_generator(CycloEvalTask)
+generate_random_chebyshev_row_task = _mk_generator(ChebyshevRowTask)
+generate_random_hermite_row_task = _mk_generator(HermiteRowTask)
+generate_random_series_conv_task = _mk_generator(SeriesConvTask)
+generate_random_transport_cost_task = _mk_generator(TransportCostTask)
+generate_random_pochhammer_task = _mk_generator(PochhammerTask)
+generate_random_binom_build_task = _mk_generator(BinomBuildTask)
+generate_random_farey_next_task = _mk_generator(FareyNextTask)
+generate_random_mobius_sum_task = _mk_generator(MobiusSumTask)
+generate_random_involution_count_task = _mk_generator(InvolutionCountTask)
+generate_random_jacobi_row_task = _mk_generator(JacobiRowTask)
+generate_random_ruler_sum_task = _mk_generator(RulerSumTask)
+generate_random_thue_count_task = _mk_generator(ThueCountTask)
+generate_random_aliquot_walk_task = _mk_generator(AliquotWalkTask)
+generate_random_carmichael_row_task = _mk_generator(CarmichaelRowTask)
+generate_random_cayley_trees_task = _mk_generator(CayleyTreesTask)
+generate_random_factoradic_task = _mk_generator(FactoradicTask)
+generate_random_stirling_first_task = _mk_generator(StirlingFirstTask)
+generate_random_bell_row_task = _mk_generator(BellRowTask)
+generate_random_andre_row_task = _mk_generator(AndreRowTask)
+generate_random_bernoulli_den_task = _mk_generator(BernoulliDenTask)
+generate_random_chebyshev_u_task = _mk_generator(ChebyshevUTask)
+generate_random_sigma_row_task = _mk_generator(SigmaRowTask)
+generate_random_prime_omega_task = _mk_generator(PrimeOmegaTask)
+generate_random_motzkin_row_task = _mk_generator(MotzkinRowTask)
+generate_random_primorial_task = _mk_generator(PrimorialTask)
+generate_random_rgs_rank_task = _mk_generator(RgsRankTask)
+generate_random_bernoulli_numer_task = _mk_generator(BernoulliNumerTask)
+generate_random_genocchi_row_task = _mk_generator(GenocchiRowTask)
+generate_random_kronecker_row_task = _mk_generator(KroneckerRowTask)
+generate_random_hook_length_task = _mk_generator(HookLengthTask)
+generate_random_legendre_frac_task = _mk_generator(LegendreFracTask)
+generate_random_laguerre_frac_task = _mk_generator(LaguerreFracTask)
+generate_random_harmonic_frac_task = _mk_generator(HarmonicFracTask)
+generate_random_eulerian_row_task = _mk_generator(EulerianRowTask)
+generate_random_fubini_row_task = _mk_generator(FubiniRowTask)
+generate_random_delannoy_row_task = _mk_generator(DelannoyRowTask)
+generate_random_tau_row_task = _mk_generator(TauRowTask)
+generate_random_prime_nu_task = _mk_generator(PrimeNuTask)
+generate_random_sopfr_row_task = _mk_generator(SopfrRowTask)
+generate_random_pell_row_task = _mk_generator(PellRowTask)
+generate_random_tribonacci_row_task = _mk_generator(TribonacciRowTask)
+generate_random_narayana_row_task = _mk_generator(NarayanaRowTask)
+generate_random_schroder_row_task = _mk_generator(SchroderRowTask)
+generate_random_gaussian_bin_task = _mk_generator(GaussianBinTask)
+generate_random_kolakoski_task = _mk_generator(KolakoskiTask)
+generate_random_cantor_pair_task = _mk_generator(CantorPairTask)
+generate_random_horn_fire_task = _mk_generator(HornFireTask)
+generate_random_carry_row_task = _mk_generator(CarryRowTask)
+generate_random_lamp_trio_task = _mk_generator(LampTrioTask)
+generate_random_parity_sheet_task = _mk_generator(ParitySheetTask)
+generate_random_mux_index_task = _mk_generator(MuxIndexTask)
+generate_random_jury_veto_task = _mk_generator(JuryVetoTask)
+generate_random_gate_fold_task = _mk_generator(GateFoldTask)
+generate_random_exactly_one_task = _mk_generator(ExactlyOneTask)
+generate_random_knave_next_task = _mk_generator(KnaveNextTask)
+generate_random_priority_bit_task = _mk_generator(PriorityBitTask)
+generate_random_roc_walk_task = _mk_generator(RocWalkTask)
+generate_random_ema_loss_task = _mk_generator(EmaLossTask)
+generate_random_lr_decay_task = _mk_generator(LrDecayTask)
+generate_random_batch_grad_task = _mk_generator(BatchGradTask)
+generate_random_best_margin_task = _mk_generator(BestMarginTask)
+generate_random_online_base_task = _mk_generator(OnlineBaseTask)
+generate_random_td_clip_task = _mk_generator(TdClipTask)
+generate_random_count_bonus_task = _mk_generator(CountBonusTask)
+generate_random_option_hold_task = _mk_generator(OptionHoldTask)
+generate_random_policy_eval_task = _mk_generator(PolicyEvalTask)
 generate_random_frobenius_coin_task = _mk_generator(FrobeniusCoinTask)
 generate_random_bit_count_task = _mk_generator(BitCountTask)
 generate_random_odd_sum_task = _mk_generator(OddSumTask)
@@ -2319,11 +2717,210 @@ ALL_TASK_GENERATORS = {
     "bayes_updates": generate_random_bayes_updates_task,
     "polya_urn": generate_random_polya_urn_task,
     "policy_rollout": generate_random_policy_rollout_task,
+    "boost_weights": generate_random_boost_weights_task,
+    "momentum_sgd": generate_random_momentum_sgd_task,
+    "decision_list": generate_random_decision_list_task,
+    "td_table": generate_random_td_table_task,
     "extended_euclid": generate_random_extended_euclid_task,
     "crt_chain": generate_random_crt_chain_task,
     "cf_expand": generate_random_cf_expand_task,
     "nim_sum": generate_random_nim_sum_task,
     "difference_table": generate_random_difference_table_task,
+    "sandpile_path": generate_random_sandpile_path_task,
+    "markov_steps": generate_random_markov_steps_task,
+    "sir_ticks": generate_random_sir_ticks_task,
+    "poly_div": generate_random_poly_div_task,
+    "johnson_span": generate_random_johnson_span_task,
+    "lights_path": generate_random_lights_path_task,
+    "domino_chain": generate_random_domino_chain_task,
+    "bound_scan": generate_random_bound_scan_task,
+    "claim_count": generate_random_claim_count_task,
+    "quorum_rise": generate_random_quorum_rise_task,
+    "hat_line": generate_random_hat_line_task,
+    "reagent_chain": generate_random_reagent_chain_task,
+    "tax_brackets": generate_random_tax_brackets_task,
+    "codon_scan": generate_random_codon_scan_task,
+    "dose_schedule": generate_random_dose_schedule_task,
+    "melody_walk": generate_random_melody_walk_task,
+    "fifo_cost": generate_random_fifo_cost_task,
+    "borda_count": generate_random_borda_count_task,
+    "shift_add": generate_random_shift_add_task,
+    "rally_lead": generate_random_rally_lead_task,
+    "pascal_row": generate_random_pascal_row_task,
+    "fraction_ops": generate_random_fraction_ops_task,
+    "stern_path": generate_random_stern_path_task,
+    "partition_count": generate_random_partition_count_task,
+    "derange_count": generate_random_derange_count_task,
+    "gauss_mul": generate_random_gauss_mul_task,
+    "perm_compose": generate_random_perm_compose_task,
+    "cover_span": generate_random_cover_span_task,
+    "reverse_add": generate_random_reverse_add_task,
+    "stream_median": generate_random_stream_median_task,
+    "totient_row": generate_random_totient_row_task,
+    "coprime_count": generate_random_coprime_count_task,
+    "digit_div": generate_random_digit_div_task,
+    "tree_depth": generate_random_tree_depth_task,
+    "sign_walk": generate_random_sign_walk_task,
+    "perm_rank": generate_random_perm_rank_task,
+    "lcm_rise": generate_random_lcm_rise_task,
+    "zigzag_row": generate_random_zigzag_row_task,
+    "record_highs": generate_random_record_highs_task,
+    "sum_kinds": generate_random_sum_kinds_task,
+    "fib_word": generate_random_fib_word_task,
+    "mode_track": generate_random_mode_track_task,
+    "look_say": generate_random_look_say_task,
+    "zeckendorf": generate_random_zeckendorf_task,
+    "roman_value": generate_random_roman_value_task,
+    "digit_stream": generate_random_digit_stream_task,
+    "deque_trace": generate_random_deque_trace_task,
+    "dragon_fold": generate_random_dragon_fold_task,
+    "permanent": generate_random_permanent_task,
+    "bead_count": generate_random_bead_count_task,
+    "negabase": generate_random_negabase_task,
+    "ulam_walk": generate_random_ulam_walk_task,
+    "luhn_sum": generate_random_luhn_sum_task,
+    "kaprekar_step": generate_random_kaprekar_step_task,
+    "morton_code": generate_random_morton_code_task,
+    "stock_span": generate_random_stock_span_task,
+    "candy_row": generate_random_candy_row_task,
+    "digit_fact": generate_random_digit_fact_task,
+    "recaman": generate_random_recaman_task,
+    "xor_basis": generate_random_xor_basis_task,
+    "palindrome_radius": generate_random_palindrome_radius_task,
+    "squarefree_row": generate_random_squarefree_row_task,
+    "fenwick_sum": generate_random_fenwick_sum_task,
+    "sparse_min": generate_random_sparse_min_task,
+    "z_array": generate_random_z_array_task,
+    "selection_swaps": generate_random_selection_swaps_task,
+    "rho_cycle": generate_random_rho_cycle_task,
+    "tree_times": generate_random_tree_times_task,
+    "dutch_flag": generate_random_dutch_flag_task,
+    "window_distinct": generate_random_window_distinct_task,
+    "stable_place": generate_random_stable_place_task,
+    "naive_find": generate_random_naive_find_task,
+    "budget_take": generate_random_budget_take_task,
+    "skip_op": generate_random_skip_op_task,
+    "retry_goal": generate_random_retry_goal_task,
+    "signal_edges": generate_random_signal_edges_task,
+    "plan_gate": generate_random_plan_gate_task,
+    "tool_pick": generate_random_tool_pick_task,
+    "diff_count": generate_random_diff_count_task,
+    "cell_patch": generate_random_cell_patch_task,
+    "pred_scan": generate_random_pred_scan_task,
+    "rate_limit": generate_random_rate_limit_task,
+    "lateness": generate_random_lateness_task,
+    "switch_flip": generate_random_switch_flip_task,
+    "turn_signs": generate_random_turn_signs_task,
+    "first_fit": generate_random_first_fit_task,
+    "plurality": generate_random_plurality_task,
+    "floor_run": generate_random_floor_run_task,
+    "saturate_count": generate_random_saturate_count_task,
+    "undo_reg": generate_random_undo_reg_task,
+    "cover_point": generate_random_cover_point_task,
+    "next_fit": generate_random_next_fit_task,
+    "neighbor_vote": generate_random_neighbor_vote_task,
+    "sgd_online": generate_random_sgd_online_task,
+    "grad_clip": generate_random_grad_clip_task,
+    "weight_decay": generate_random_weight_decay_task,
+    "early_stop": generate_random_early_stop_task,
+    "prototype_mean": generate_random_prototype_mean_task,
+    "trace_decay": generate_random_trace_decay_task,
+    "actor_critic": generate_random_actor_critic_task,
+    "ucb_bandit": generate_random_ucb_bandit_task,
+    "target_sync": generate_random_target_sync_task,
+    "replay_fifo": generate_random_replay_fifo_task,
+    "shape_reward": generate_random_shape_reward_task,
+    "eps_schedule": generate_random_eps_schedule_task,
+    "scope_lookup": generate_random_scope_lookup_task,
+    "lock_log": generate_random_lock_log_task,
+    "path_toll": generate_random_path_toll_task,
+    "backoff_wait": generate_random_backoff_wait_task,
+    "priority_run": generate_random_priority_run_task,
+    "inbox_take": generate_random_inbox_take_task,
+    "goal_match": generate_random_goal_match_task,
+    "craft_need": generate_random_craft_need_task,
+    "checkpoint_roll": generate_random_checkpoint_roll_task,
+    "schema_check": generate_random_schema_check_task,
+    "infix_value": generate_random_infix_value_task,
+    "ballot_walk": generate_random_ballot_walk_task,
+    "digit_root": generate_random_digit_root_task,
+    "crt_lift": generate_random_crt_lift_task,
+    "mod_order": generate_random_mod_order_task,
+    "first_repeat": generate_random_first_repeat_task,
+    "coupon_cover": generate_random_coupon_cover_task,
+    "coin_weigh": generate_random_coin_weigh_task,
+    "two_color": generate_random_two_color_task,
+    "lattice_sum": generate_random_lattice_sum_task,
+    "horner_mod": generate_random_horner_mod_task,
+    "rational_root": generate_random_rational_root_task,
+    "geom_sum": generate_random_geom_sum_task,
+    "cyclo_eval": generate_random_cyclo_eval_task,
+    "chebyshev_row": generate_random_chebyshev_row_task,
+    "hermite_row": generate_random_hermite_row_task,
+    "series_conv": generate_random_series_conv_task,
+    "transport_cost": generate_random_transport_cost_task,
+    "pochhammer": generate_random_pochhammer_task,
+    "binom_build": generate_random_binom_build_task,
+    "farey_next": generate_random_farey_next_task,
+    "mobius_sum": generate_random_mobius_sum_task,
+    "involution_count": generate_random_involution_count_task,
+    "jacobi_row": generate_random_jacobi_row_task,
+    "ruler_sum": generate_random_ruler_sum_task,
+    "thue_count": generate_random_thue_count_task,
+    "aliquot_walk": generate_random_aliquot_walk_task,
+    "carmichael_row": generate_random_carmichael_row_task,
+    "cayley_trees": generate_random_cayley_trees_task,
+    "factoradic": generate_random_factoradic_task,
+    "stirling_first": generate_random_stirling_first_task,
+    "bell_row": generate_random_bell_row_task,
+    "andre_row": generate_random_andre_row_task,
+    "bernoulli_den": generate_random_bernoulli_den_task,
+    "chebyshev_u": generate_random_chebyshev_u_task,
+    "sigma_row": generate_random_sigma_row_task,
+    "prime_omega": generate_random_prime_omega_task,
+    "motzkin_row": generate_random_motzkin_row_task,
+    "primorial": generate_random_primorial_task,
+    "rgs_rank": generate_random_rgs_rank_task,
+    "bernoulli_numer": generate_random_bernoulli_numer_task,
+    "genocchi_row": generate_random_genocchi_row_task,
+    "kronecker_row": generate_random_kronecker_row_task,
+    "hook_length": generate_random_hook_length_task,
+    "legendre_frac": generate_random_legendre_frac_task,
+    "laguerre_frac": generate_random_laguerre_frac_task,
+    "harmonic_frac": generate_random_harmonic_frac_task,
+    "eulerian_row": generate_random_eulerian_row_task,
+    "fubini_row": generate_random_fubini_row_task,
+    "delannoy_row": generate_random_delannoy_row_task,
+    "tau_row": generate_random_tau_row_task,
+    "prime_nu": generate_random_prime_nu_task,
+    "sopfr_row": generate_random_sopfr_row_task,
+    "pell_row": generate_random_pell_row_task,
+    "tribonacci_row": generate_random_tribonacci_row_task,
+    "narayana_row": generate_random_narayana_row_task,
+    "schroder_row": generate_random_schroder_row_task,
+    "gaussian_bin": generate_random_gaussian_bin_task,
+    "kolakoski": generate_random_kolakoski_task,
+    "cantor_pair": generate_random_cantor_pair_task,
+    "horn_fire": generate_random_horn_fire_task,
+    "carry_row": generate_random_carry_row_task,
+    "lamp_trio": generate_random_lamp_trio_task,
+    "parity_sheet": generate_random_parity_sheet_task,
+    "mux_index": generate_random_mux_index_task,
+    "jury_veto": generate_random_jury_veto_task,
+    "gate_fold": generate_random_gate_fold_task,
+    "exactly_one": generate_random_exactly_one_task,
+    "knave_next": generate_random_knave_next_task,
+    "priority_bit": generate_random_priority_bit_task,
+    "roc_walk": generate_random_roc_walk_task,
+    "ema_loss": generate_random_ema_loss_task,
+    "lr_decay": generate_random_lr_decay_task,
+    "batch_grad": generate_random_batch_grad_task,
+    "best_margin": generate_random_best_margin_task,
+    "online_base": generate_random_online_base_task,
+    "td_clip": generate_random_td_clip_task,
+    "count_bonus": generate_random_count_bonus_task,
+    "option_hold": generate_random_option_hold_task,
+    "policy_eval": generate_random_policy_eval_task,
     "frobenius_coin": generate_random_frobenius_coin_task,
     "bit_count": generate_random_bit_count_task,
     "odd_sum": generate_random_odd_sum_task,

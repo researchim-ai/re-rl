@@ -15,6 +15,14 @@
     "s3": {
       "ru": "Найдите δ_{t}.",
       "en": "Find δ_{t}."
+    },
+    "s4": {
+      "ru": "Награда {i}: {reward}, сумма {total}.",
+      "en": "Reward {i}: {reward}, sum {total}."
+    },
+    "s5": {
+      "ru": "Среднее {mean}. На шаге {t} дельта {delta}.",
+      "en": "Mean {mean}. At step {t} the delta is {delta}."
     }
   }
 }

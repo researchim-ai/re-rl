@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В сосуде {mass} единиц вещества при температуре {temp}. Дальше {n} порций, запись — масса и температура: {listing}. Температура смеси равна общему теплу, делённому на новую массу, и деление выходит нацело. Какова конечная температура?",
+      "en": "A vessel holds {mass} units of material at temperature {temp}. Then {n} portions are added. Each entry is mass and temperature: {listing}. The mixture temperature is the total heat divided by the new mass, and the division is exact. What is the final temperature?"
+    },
+    "s1": {
+      "ru": "В сосуде {mass} единиц вещества при температуре {temp}. Дальше {n} порций, запись — масса и температура: {listing}. Температура смеси равна общему теплу, делённому на новую массу, и деление выходит нацело. Какова наибольшая температура, включая начальную?",
+      "en": "A vessel holds {mass} units of material at temperature {temp}. Then {n} portions are added. Each entry is mass and temperature: {listing}. The mixture temperature is the total heat divided by the new mass, and the division is exact. What is the greatest temperature, including the initial one?"
+    },
+    "s2": {
+      "ru": "Порция {i}: масса {add_mass}, температура {add_temp}. Смесь {temp}, наибольшая {peak}, масса {mass}.",
+      "en": "Portion {i}: mass {add_mass}, temperature {add_temp}. Mixture {temp}, greatest {peak}, mass {mass}."
+    }
+  }
+}

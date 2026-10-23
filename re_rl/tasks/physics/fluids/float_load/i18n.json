@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Плотность воды равна 1. Уровень не может подняться выше {limit}. Предметов {n}, запись вес-объём: {listing}. Если вес не больше объёма, предмет плавает и вытесняет вес. Если вес больше, предмет тонет и вытесняет объём. Каков итоговый уровень?",
+      "en": "The density of water is 1. The level cannot rise above {limit}. There are {n} objects. Each entry is weight-volume: {listing}. If the weight is not greater than the volume, the object floats and displaces its weight. If the weight is greater, it sinks and displaces its volume. What is the final level?"
+    },
+    "s1": {
+      "ru": "Плотность воды равна 1. Уровень не может подняться выше {limit}. Предметов {n}, запись вес-объём: {listing}. Если вес не больше объёма, предмет плавает и вытесняет вес. Если вес больше, предмет тонет и вытесняет объём. Какой предмет первым доводит уровень до предела? Если предел не достигнут, ответ 0. Нумерация с 1.",
+      "en": "The density of water is 1. The level cannot rise above {limit}. There are {n} objects. Each entry is weight-volume: {listing}. If the weight is not greater than the volume, the object floats and displaces its weight. If the weight is greater, it sinks and displaces its volume. Which object first brings the level to the limit? If the limit is not reached, the answer is 0. Numbering starts at 1."
+    },
+    "s2": {
+      "ru": "Предмет {i}: вес {weight}, объём {volume}. Уровень {level}, заполнение {full}.",
+      "en": "Object {i}: weight {weight}, volume {volume}. Level {level}, filled at {full}."
+    }
+  }
+}

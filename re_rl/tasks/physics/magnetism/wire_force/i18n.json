@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Участков провода {n}. Запись — ток, длина, поле: {listing}. Сила участка равна току, умноженному на длину и на поле. Какова сумма сил?",
+      "en": "There are {n} wire segments. Each entry is current, length, field: {listing}. A segment's force is the current times the length times the field. What is the sum of the forces?"
+    },
+    "s1": {
+      "ru": "Участков провода {n}. Запись — ток, длина, поле: {listing}. Сила участка равна току, умноженному на длину и на поле. Каков номер участка с наибольшей силой? При равенстве остаётся более ранний. Нумерация с 1.",
+      "en": "There are {n} wire segments. Each entry is current, length, field: {listing}. A segment's force is the current times the length times the field. What is the number of the segment with the largest force? Ties keep the earlier one. Numbering starts at 1."
+    },
+    "s2": {
+      "ru": "Участок {i}: сила {force}, сумма {total}, лидер {segment}.",
+      "en": "Segment {i}: force {force}, sum {total}, leader {segment}."
+    }
+  }
+}

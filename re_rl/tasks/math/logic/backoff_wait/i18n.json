@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Попыток {n}, времена по порядку: {listing}. Готовность начинает с 0, ожидание с 1. Попытка проходит, если её время не меньше готовности. Тогда готовность становится равна времени плюс ожидание, а ожидание удваивается. Иначе ожидание не меняется. Сколько попыток прошло?",
+      "en": "There are {n} attempts, times in order: {listing}. Readiness starts at 0 and the wait starts at 1. An attempt passes when its time is at least the readiness. Then readiness becomes the time plus the wait, and the wait doubles. Otherwise the wait stays. How many attempts passed?"
+    },
+    "s1": {
+      "ru": "Попыток {n}, времена по порядку: {listing}. Готовность начинает с 0, ожидание с 1. Попытка проходит, если её время не меньше готовности. Тогда готовность становится равна времени плюс ожидание, а ожидание удваивается. Иначе ожидание не меняется. Каково ожидание в конце?",
+      "en": "There are {n} attempts, times in order: {listing}. Readiness starts at 0 and the wait starts at 1. An attempt passes when its time is at least the readiness. Then readiness becomes the time plus the wait, and the wait doubles. Otherwise the wait stays. What is the wait at the end?"
+    },
+    "s2": {
+      "ru": "Попытка {i}: время {moment}, успех {flag}. Успехов {ok}, готовность {ready}, ожидание {wait}.",
+      "en": "Attempt {i}: time {moment}, success {flag}. Successes {ok}, readiness {ready}, wait {wait}."
+    }
+  }
+}

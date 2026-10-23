@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Модель y = w*x, примеров {n}. Старт w = {start}. Запись — x и y: {listing}. Остаток считается до шага: w*x - y. Затем w := w - x*остаток. Каков конечный вес?",
+      "en": "The model is y = w*x, with {n} examples. The start is w = {start}. Each entry is x and y: {listing}. The residual is computed before the step: w*x - y. Then w := w - x*residual. What is the final weight?"
+    },
+    "s1": {
+      "ru": "Модель y = w*x, примеров {n}. Старт w = {start}. Запись — x и y: {listing}. Остаток считается до шага: w*x - y. Затем w := w - x*остаток. Потеря — сумма квадратов остатков. Какова потеря?",
+      "en": "The model is y = w*x, with {n} examples. The start is w = {start}. Each entry is x and y: {listing}. The residual is computed before the step: w*x - y. Then w := w - x*residual. The loss is the sum of squared residuals. What is the loss?"
+    },
+    "s2": {
+      "ru": "Пример {i}: x={x}, y={y}. Остаток {residual}, вес {weight}, потеря {loss}.",
+      "en": "Example {i}: x={x}, y={y}. Residual {residual}, weight {weight}, loss {loss}."
+    }
+  }
+}

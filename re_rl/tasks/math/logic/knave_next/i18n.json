@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В шеренге {n} человек. 1 — рыцарь и говорит правду, 0 — лжец и говорит наоборот. Первый имеет тип {first}. Каждый, кроме последнего, говорит о следующем: 1 значит «следующий рыцарь», 0 значит «следующий лжец». Слова по порядку: {claims}. Сколько рыцарей в шеренге?",
+      "en": "A line has {n} people. 1 is a knight and tells the truth, 0 is a knave and says the opposite. The first person has type {first}. Everyone except the last speaks about the next person: 1 means the next is a knight, 0 means the next is a knave. The statements in order are {claims}. How many knights are in the line?"
+    },
+    "s1": {
+      "ru": "В шеренге {n} человек. 1 — рыцарь и говорит правду, 0 — лжец и говорит наоборот. Первый имеет тип {first}. Каждый, кроме последнего, говорит о следующем: 1 значит «следующий рыцарь», 0 значит «следующий лжец». Слова по порядку: {claims}. Каков тип человека {k}? Нумерация с 1.",
+      "en": "A line has {n} people. 1 is a knight and tells the truth, 0 is a knave and says the opposite. The first person has type {first}. Everyone except the last speaks about the next person: 1 means the next is a knight, 0 means the next is a knave. The statements in order are {claims}. What is the type of person {k}? Counting starts at 1."
+    },
+    "s2": {
+      "ru": "Человек 1 задан: тип {kind}, рыцарей {knights}.",
+      "en": "Person 1 is given: type {kind}, knights {knights}."
+    },
+    "s3": {
+      "ru": "Человек {i}: предыдущий тип {speaker} сказал {claim}, поэтому тип {kind}, рыцарей {knights}.",
+      "en": "Person {i}: previous type {speaker} said {claim}, so the type is {kind}, knights {knights}."
+    }
+  }
+}

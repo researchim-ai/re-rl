@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Модель y = w*x, вес начинает с {start}. Пакетов {n}, в каждом два примера x y: {listing}. Градиент пакета — сумма (w*x - y)*x по двум примерам при старом весе. Затем вес уменьшается на этот градиент. Каков конечный вес?",
+      "en": "The model is y = w*x, and the weight starts at {start}. There are {n} batches, each with two examples x y: {listing}. A batch gradient is the sum of (w*x - y)*x over the two examples at the old weight. Then the weight decreases by that gradient. What is the final weight?"
+    },
+    "s1": {
+      "ru": "Модель y = w*x, вес начинает с {start}. Пакетов {n}, в каждом два примера x y: {listing}. Градиент пакета — сумма (w*x - y)*x по двум примерам при старом весе. Затем вес уменьшается на этот градиент. Каков градиент последнего пакета?",
+      "en": "The model is y = w*x, and the weight starts at {start}. There are {n} batches, each with two examples x y: {listing}. A batch gradient is the sum of (w*x - y)*x over the two examples at the old weight. Then the weight decreases by that gradient. What is the gradient of the last batch?"
+    },
+    "s2": {
+      "ru": "Пакет {i}: градиент {grad}, вес {weight}.",
+      "en": "Batch {i}: gradient {grad}, weight {weight}."
+    }
+  }
+}

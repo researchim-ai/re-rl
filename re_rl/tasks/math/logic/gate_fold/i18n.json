@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Накопитель начинает с бита {start}. Дальше {n} вентилей по порядку, каждый берёт накопитель и следующий бит. Биты: {bits}. Коды вентилей в том же порядке: {ops}. Код 0 — и, 1 — или, 2 — исключающее или. Каков накопитель в конце?",
+      "en": "The accumulator starts at bit {start}. Then {n} gates run in order, each taking the accumulator and the next bit. The bits are {bits}. The gate codes in the same order are {ops}. Code 0 is and, 1 is or, 2 is exclusive or. What is the accumulator at the end?"
+    },
+    "s1": {
+      "ru": "Накопитель начинает с бита {start}. Дальше {n} вентилей по порядку, каждый берёт накопитель и следующий бит. Биты: {bits}. Коды вентилей в том же порядке: {ops}. Код 0 — и, 1 — или, 2 — исключающее или. Сколько шагов вентиля дали 1, не считая старта?",
+      "en": "The accumulator starts at bit {start}. Then {n} gates run in order, each taking the accumulator and the next bit. The bits are {bits}. The gate codes in the same order are {ops}. Code 0 is and, 1 is or, 2 is exclusive or. How many gate steps produced 1, not counting the start?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, и с битом {bit}: накопитель {acc}.",
+      "en": "Step {i}, and with bit {bit}: accumulator {acc}."
+    },
+    "s3": {
+      "ru": "Шаг {i}, или с битом {bit}: накопитель {acc}.",
+      "en": "Step {i}, or with bit {bit}: accumulator {acc}."
+    },
+    "s4": {
+      "ru": "Шаг {i}, исключающее или с битом {bit}: накопитель {acc}.",
+      "en": "Step {i}, exclusive or with bit {bit}: accumulator {acc}."
+    },
+    "s5": {
+      "ru": "Старт: накопитель {bit}.",
+      "en": "Start: accumulator {bit}."
+    }
+  }
+}

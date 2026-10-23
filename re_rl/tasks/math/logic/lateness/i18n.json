@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Заявки обслуживаются в данном порядке, всего {n}. Запись — длительность и срок: {listing}. Завершение копится. Опоздание заявки — насколько завершение позже срока, но не ниже нуля. Какова сумма опозданий?",
+      "en": "Jobs are served in the given order, {n} in total. Each entry is duration and deadline: {listing}. Completion time accumulates. A job's lateness is how far completion is past the deadline, but not below zero. What is the sum of the lateness?"
+    },
+    "s1": {
+      "ru": "Заявки обслуживаются в данном порядке, всего {n}. Запись — длительность и срок: {listing}. Завершение копится. Опоздание заявки — насколько завершение позже срока, но не ниже нуля. Сколько заявок опоздали?",
+      "en": "Jobs are served in the given order, {n} in total. Each entry is duration and deadline: {listing}. Completion time accumulates. A job's lateness is how far completion is past the deadline, but not below zero. How many jobs are late?"
+    },
+    "s2": {
+      "ru": "Заявка {i}: завершение {done}. Сумма опозданий {total}, опоздавших {late}.",
+      "en": "Job {i}: completion {done}. Lateness sum {total}, late jobs {late}."
+    }
+  }
+}

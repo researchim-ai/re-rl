@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа Белла: B(0) = 1. Дальше B(n) равно сумме C(n-1, k)*B(k) по k от 0 до n-1. Коэффициент C(a, b) собирается произведением (a-b+i)/i по i от 1 до b. Каково B({n})?",
+      "en": "Bell numbers: B(0) = 1. Then B(n) is the sum of C(n-1, k)*B(k) for k from 0 to n-1. The coefficient C(a, b) is the product (a-b+i)/i for i from 1 to b. What is B({n})?"
+    },
+    "s1": {
+      "ru": "Числа Белла: B(0) = 1. Дальше B(n) равно сумме C(n-1, k)*B(k) по k от 0 до n-1. Коэффициент C(a, b) собирается произведением (a-b+i)/i по i от 1 до b. Каково слагаемое с k = {k} в сумме для B({n})?",
+      "en": "Bell numbers: B(0) = 1. Then B(n) is the sum of C(n-1, k)*B(k) for k from 0 to n-1. The coefficient C(a, b) is the product (a-b+i)/i for i from 1 to b. What is the summand with k = {k} in the sum for B({n})?"
+    },
+    "s2": {
+      "ru": "B(0) = {value}.",
+      "en": "B(0) = {value}."
+    },
+    "s3": {
+      "ru": "Для B({n}), k = {k}: C({upper}, {k}) = {coefficient}, умножить на B({k}) = {bell}, слагаемое {term}, сумма {running}.",
+      "en": "For B({n}), k = {k}: C({upper}, {k}) = {coefficient}, times B({k}) = {bell}, summand {term}, sum {running}."
+    }
+  }
+}

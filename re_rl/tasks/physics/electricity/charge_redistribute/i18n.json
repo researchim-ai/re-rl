@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В ряд стоят {n} конденсаторов одинаковой ёмкости. Начальные заряды слева направо: {charges}. Пары соединяют в таком порядке, номера с 1: {links}. При соединении оба заряда становятся равны половине суммы. Найдите числитель итогового заряда конденсатора {k} после сокращения дроби.",
+      "en": "A row has {n} capacitors of equal capacitance. Initial charges from left to right: {charges}. Pairs are connected in this order, numbered from 1: {links}. On a connection, both charges become half the sum. Find the numerator of the final charge on capacitor {k} after reducing the fraction."
+    },
+    "s1": {
+      "ru": "В ряд стоят {n} конденсаторов одинаковой ёмкости. Начальные заряды слева направо: {charges}. Пары соединяют в таком порядке, номера с 1: {links}. При соединении оба заряда становятся равны половине суммы. Найдите знаменатель итогового заряда конденсатора {k} после сокращения дроби.",
+      "en": "A row has {n} capacitors of equal capacitance. Initial charges from left to right: {charges}. Pairs are connected in this order, numbered from 1: {links}. On a connection, both charges become half the sum. Find the denominator of the final charge on capacitor {k} after reducing the fraction."
+    },
+    "s2": {
+      "ru": "Соединение {i}: конденсаторы {left} и {right} получают {value}.",
+      "en": "Connection {i}: capacitors {left} and {right} each receive {value}."
+    },
+    "s3": {
+      "ru": "Конденсатор {k}: {numer}/{denom}.",
+      "en": "Capacitor {k}: {numer}/{denom}."
+    }
+  }
+}

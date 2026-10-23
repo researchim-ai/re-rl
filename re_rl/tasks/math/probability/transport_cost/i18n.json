@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два набора по {n} чисел. Первый: {left}. Второй: {right}. Упорядочьте каждый по возрастанию и сложите модули разностей стоящих напротив чисел. Какова сумма?",
+      "en": "Two sets of {n} numbers each. First: {left}. Second: {right}. Sort each in increasing order and add the absolute differences of the numbers that stand opposite each other. What is the sum?"
+    },
+    "s1": {
+      "ru": "Два набора по {n} чисел. Первый: {left}. Второй: {right}. Упорядочьте каждый по возрастанию. Каков модуль разности на месте {k}? Нумерация с 1.",
+      "en": "Two sets of {n} numbers each. First: {left}. Second: {right}. Sort each in increasing order. What is the absolute difference in place {k}? Numbering starts at 1."
+    },
+    "s2": {
+      "ru": "Место {i}: модуль {gap}.",
+      "en": "Place {i}: absolute difference {gap}."
+    }
+  }
+}

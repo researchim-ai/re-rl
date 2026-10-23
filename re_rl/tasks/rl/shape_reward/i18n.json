@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Состояний {states}, потенциалы с номера 1: {potentials}. Переходов {n}, запись — состояние, награда, следующее: {listing}. Добавка равна потенциалу следующего минус потенциал текущего. Сформированная награда равна награде плюс добавка. Какова сумма сформированных наград?",
+      "en": "There are {states} states, potentials from index 1: {potentials}. There are {n} transitions, each entry state, reward, next: {listing}. The bonus is the next potential minus the current potential. The shaped reward is the reward plus the bonus. What is the sum of the shaped rewards?"
+    },
+    "s1": {
+      "ru": "Состояний {states}, потенциалы с номера 1: {potentials}. Переходов {n}, запись — состояние, награда, следующее: {listing}. Добавка равна потенциалу следующего минус потенциал текущего. Сформированная награда равна награде плюс добавка. Какова сумма добавок?",
+      "en": "There are {states} states, potentials from index 1: {potentials}. There are {n} transitions, each entry state, reward, next: {listing}. The bonus is the next potential minus the current potential. The shaped reward is the reward plus the bonus. What is the sum of the bonuses?"
+    },
+    "s2": {
+      "ru": "Переход {i}: состояние {state}, награда {reward}, следующее {nxt}. Добавка {extra}, сформированная {shaped}. Сумма {total}, добавок {bonus}.",
+      "en": "Transition {i}: state {state}, reward {reward}, next {nxt}. Bonus {extra}, shaped {shaped}. Sum {total}, bonuses {bonus}."
+    }
+  }
+}

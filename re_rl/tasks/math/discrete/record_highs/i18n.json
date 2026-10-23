@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа слева направо, всего {n}: {listing}. Рекорд — число, которое строго больше всех предыдущих. Первое число всегда рекорд. Каково наибольшее значение?",
+      "en": "Numbers from left to right, {n} in total: {listing}. A record is a number strictly greater than every number before it. The first number is always a record. What is the greatest value?"
+    },
+    "s1": {
+      "ru": "Числа слева направо, всего {n}: {listing}. Рекорд — число, которое строго больше всех предыдущих. Первое число всегда рекорд. Сколько было рекордов?",
+      "en": "Numbers from left to right, {n} in total: {listing}. A record is a number strictly greater than every number before it. The first number is always a record. How many records are there?"
+    },
+    "s2": {
+      "ru": "Число {i} равно {value}. Наибольший рекорд {peak}, всего рекордов {records}.",
+      "en": "Number {i} is {value}. Greatest record {peak}, records so far {records}."
+    }
+  }
+}

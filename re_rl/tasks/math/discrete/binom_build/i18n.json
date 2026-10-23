@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Соберите число сочетаний C({upper}, {choose}). На шаге i от 1 до {choose} произведение умножается на ({upper}-{choose}+i) и делится на i. Деление каждый раз целое. Каково C({upper}, {choose})?",
+      "en": "Build the binomial coefficient C({upper}, {choose}). At step i from 1 to {choose}, the product is multiplied by ({upper}-{choose}+i) and divided by i. The division is exact every time. What is C({upper}, {choose})?"
+    },
+    "s1": {
+      "ru": "Соберите число сочетаний C({upper}, {choose}). На шаге i от 1 до {choose} произведение умножается на ({upper}-{choose}+i) и делится на i. Деление каждый раз целое. Каков остаток этого числа по модулю {modulus}?",
+      "en": "Build the binomial coefficient C({upper}, {choose}). At step i from 1 to {choose}, the product is multiplied by ({upper}-{choose}+i) and divided by i. The division is exact every time. What is the remainder of this number modulo {modulus}?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: произведение {value}.",
+      "en": "Step {i}: product {value}."
+    }
+  }
+}

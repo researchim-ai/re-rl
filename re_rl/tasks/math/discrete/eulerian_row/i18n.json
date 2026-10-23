@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Эйлерово число A(n, k) считает перестановки n элементов с k подъёмами. A(1, 0) = 1. Дальше A(n, k) = (k+1)*A(n-1, k) + (n-k)*A(n-1, k-1), а отсутствующая клетка равна 0. Индекс k идёт от 0 до n-1. Каково A({n}, {k})?",
+      "en": "The Eulerian number A(n, k) counts permutations of n elements with k ascents. A(1, 0) = 1. Then A(n, k) = (k+1)*A(n-1, k) + (n-k)*A(n-1, k-1), and a missing cell is 0. The index k runs from 0 to n-1. What is A({n}, {k})?"
+    },
+    "s1": {
+      "ru": "Эйлерово число A(n, k) считает перестановки n элементов с k подъёмами. A(1, 0) = 1. Дальше A(n, k) = (k+1)*A(n-1, k) + (n-k)*A(n-1, k-1), а отсутствующая клетка равна 0. Индекс k идёт от 0 до n-1. Какова сумма A({n}, k) по всем k?",
+      "en": "The Eulerian number A(n, k) counts permutations of n elements with k ascents. A(1, 0) = 1. Then A(n, k) = (k+1)*A(n-1, k) + (n-k)*A(n-1, k-1), and a missing cell is 0. The index k runs from 0 to n-1. What is the sum of A({n}, k) over every k?"
+    },
+    "s2": {
+      "ru": "A({n}, {k}) = {factor}*{same} + {other}*{left} = {value}.",
+      "en": "A({n}, {k}) = {factor}*{same} + {other}*{left} = {value}."
+    },
+    "s3": {
+      "ru": "A(1, 0) = 1.",
+      "en": "A(1, 0) = 1."
+    }
+  }
+}

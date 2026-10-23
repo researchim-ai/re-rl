@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вес начинает с {start}. Градиентов {n}: {listing}. Каждый градиент обрезается до отрезка от -{limit} до {limit}, затем вычитается из веса. Каков конечный вес?",
+      "en": "The weight starts at {start}. There are {n} gradients: {listing}. Each gradient is clipped to the range from -{limit} to {limit}, then subtracted from the weight. What is the final weight?"
+    },
+    "s1": {
+      "ru": "Вес начинает с {start}. Градиентов {n}: {listing}. Каждый градиент обрезается до отрезка от -{limit} до {limit}, затем вычитается из веса. Сколько градиентов реально изменились при обрезке?",
+      "en": "The weight starts at {start}. There are {n} gradients: {listing}. Each gradient is clipped to the range from -{limit} to {limit}, then subtracted from the weight. How many gradients actually changed when clipped?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: сырой градиент {raw}, после обрезки {clipped}. Вес {weight}, обрезок {clips}.",
+      "en": "Step {i}: raw gradient {raw}, after clipping {clipped}. Weight {weight}, clips {clips}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Квадрат скорости в начале равен 0. Дальше {n} участков. Запись — ускорение и длина: {listing}. На участке квадрат скорости меняется на удвоенное ускорение, умноженное на длину. Если результат отрицательный, тело останавливается на этом участке и дальше не едет. Каков квадрат скорости в конце?",
+      "en": "The square of the speed starts at 0. Then the body crosses {n} segments. Each entry is acceleration and length: {listing}. On a segment the speed squared changes by twice the acceleration times the length. If the result would be negative, the body stops on that segment and does not continue. What is the square of the speed at the end?"
+    },
+    "s1": {
+      "ru": "Квадрат скорости в начале равен 0. Дальше {n} участков. Запись — ускорение и длина: {listing}. На участке квадрат скорости меняется на удвоенное ускорение, умноженное на длину. Если результат отрицательный, тело останавливается на этом участке и дальше не едет. На каком участке оно остановилось? Если не остановилось, ответ 0. Участки нумеруются с 1.",
+      "en": "The square of the speed starts at 0. Then the body crosses {n} segments. Each entry is acceleration and length: {listing}. On a segment the speed squared changes by twice the acceleration times the length. If the result would be negative, the body stops on that segment and does not continue. On which segment does it stop? If it never stops, the answer is 0. Segments are numbered from 1."
+    },
+    "s2": {
+      "ru": "Участок {i}: ускорение {accel}, длина {length}. Квадрат скорости {speed2}, остановка {stop}.",
+      "en": "Segment {i}: acceleration {accel}, length {length}. Speed squared {speed2}, stop {stop}."
+    }
+  }
+}

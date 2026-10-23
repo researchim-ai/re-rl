@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число инволюций: I(0) = 1, I(1) = 1, дальше I(n) = I(n-1) + (n-1)*I(n-2). Каково I({n})?",
+      "en": "The number of involutions: I(0) = 1, I(1) = 1, then I(n) = I(n-1) + (n-1)*I(n-2). What is I({n})?"
+    },
+    "s1": {
+      "ru": "Число инволюций: I(0) = 1, I(1) = 1, дальше I(n) = I(n-1) + (n-1)*I(n-2). Каково второе слагаемое при переходе к I({n}), то есть ({n}-1)*I({n}-2)?",
+      "en": "The number of involutions: I(0) = 1, I(1) = 1, then I(n) = I(n-1) + (n-1)*I(n-2). What is the second term when moving to I({n}), that is ({n}-1)*I({n}-2)?"
+    },
+    "s2": {
+      "ru": "Порядок {i}: число {count}, добавка {added}.",
+      "en": "Order {i}: count {count}, added term {added}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Работа выхода {work}. Фотонов {n}, энергии: {listing}. Электрон вылетает, если энергия фотона не меньше работы выхода. Сколько электронов вылетело?",
+      "en": "The work function is {work}. There are {n} photons, energies: {listing}. An electron leaves when the photon energy is at least the work function. How many electrons left?"
+    },
+    "s1": {
+      "ru": "Работа выхода {work}. Фотонов {n}, энергии: {listing}. Электрон вылетает, если энергия фотона не меньше работы выхода. Его кинетическая энергия — энергия фотона минус работа выхода. Какова сумма кинетических энергий?",
+      "en": "The work function is {work}. There are {n} photons, energies: {listing}. An electron leaves when the photon energy is at least the work function. Its kinetic energy is the photon energy minus the work function. What is the sum of the kinetic energies?"
+    },
+    "s2": {
+      "ru": "Фотон {i}: энергия {energy}, кинетическая {gained}. Вылетело {count}, сумма {kinetic}.",
+      "en": "Photon {i}: energy {energy}, kinetic {gained}. Left {count}, sum {kinetic}."
+    }
+  }
+}

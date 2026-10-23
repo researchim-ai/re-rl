@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Опций {n}, запись — действие и сколько тактов его держать: {listing}. Опции идут по порядку, действие не меняется, пока его такты не кончатся. Какое действие на такте {k}? Нумерация тактов с 1.",
+      "en": "There are {n} options, each entry an action and how many ticks to hold it: {listing}. Options run in order, and the action stays until its ticks are done. Which action is on tick {k}? Tick numbering starts at 1."
+    },
+    "s1": {
+      "ru": "Опций {n}, запись — действие и сколько тактов его держать: {listing}. Опции идут по порядку, действие не меняется, пока его такты не кончатся. Сколько тактов занимает вся запись?",
+      "en": "There are {n} options, each entry an action and how many ticks to hold it: {listing}. Options run in order, and the action stays until its ticks are done. How many ticks does the whole record take?"
+    },
+    "s2": {
+      "ru": "Такт {i}: действие {action}.",
+      "en": "Tick {i}: action {action}."
+    }
+  }
+}

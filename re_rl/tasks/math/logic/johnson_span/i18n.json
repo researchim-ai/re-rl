@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "{n} работ. Сначала станок A, потом станок B. Длительности A и B по номерам: {listing}. Если A не больше B, работа попадает в левую группу и сортируется по A по возрастанию, при равенстве — по меньшему номеру. Иначе она попадает в правую группу и сортируется по B по убыванию, при равенстве — по меньшему номеру. Левая группа идёт раньше правой. Станок B начинает работу, когда она уже прошла A и сам станок свободен. Найдите момент окончания последней работы.",
+      "en": "{n} jobs. Each job runs on machine A and then on machine B. The A and B durations by job number: {listing}. If A is at most B, the job joins the left group, sorted by A ascending and then by the smaller number. Otherwise it joins the right group, sorted by B descending and then by the smaller number. The left group runs before the right group. Machine B starts a job when that job has finished A and the machine is free. Find the completion time of the last job."
+    },
+    "s1": {
+      "ru": "{n} работ. Сначала станок A, потом станок B. Длительности A и B по номерам: {listing}. Если A не больше B, работа попадает в левую группу и сортируется по A по возрастанию, при равенстве — по меньшему номеру. Иначе она попадает в правую группу и сортируется по B по убыванию, при равенстве — по меньшему номеру. Левая группа идёт раньше правой. Станок B начинает работу, когда она уже прошла A и сам станок свободен. На сколько минут станок B простаивает? Простой равен моменту окончания минус сумма длительностей на B.",
+      "en": "{n} jobs. Each job runs on machine A and then on machine B. The A and B durations by job number: {listing}. If A is at most B, the job joins the left group, sorted by A ascending and then by the smaller number. Otherwise it joins the right group, sorted by B descending and then by the smaller number. The left group runs before the right group. Machine B starts a job when that job has finished A and the machine is free. For how many minutes is machine B idle? Idle time is the completion time minus the sum of the B durations."
+    },
+    "s2": {
+      "ru": "Работа {job} попадает в {side} группу.",
+      "en": "Job {job} joins the {side} group."
+    },
+    "s3": {
+      "ru": "Работа {job}: A заканчивает в {t1}, B начинает в {begin} и заканчивает в {t2}.",
+      "en": "Job {job}: A finishes at {t1}, B starts at {begin} and finishes at {t2}."
+    },
+    "s4": {
+      "ru": "левую",
+      "en": "left"
+    },
+    "s5": {
+      "ru": "правую",
+      "en": "right"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа приходят по порядку, всего {n}: {listing}. Мода — значение, которое встречалось чаще всего. Если таких значений несколько, берётся меньшее. Какова мода в конце?",
+      "en": "Numbers arrive in order, {n} in total: {listing}. The mode is the value that has occurred most often. If several values are tied, the smaller one is chosen. What is the final mode?"
+    },
+    "s1": {
+      "ru": "Числа приходят по порядку, всего {n}: {listing}. Мода — значение, которое встречалось чаще всего. Если таких значений несколько, берётся меньшее. Сколько раз мода менялась после первого числа?",
+      "en": "Numbers arrive in order, {n} in total: {listing}. The mode is the value that has occurred most often. If several values are tied, the smaller one is chosen. How many times does the mode change after the first number?"
+    },
+    "s2": {
+      "ru": "Число {i} равно {value}. Мода {mode}, её кратность {count}.",
+      "en": "Number {i} is {value}. Mode {mode}, its count {count}."
+    }
+  }
+}

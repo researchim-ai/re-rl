@@ -1,0 +1,28 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Значение начинает с 0, отметки нет. Команд {n}: {listing}. Прибавить меняет значение. Запомнить кладёт текущее значение в единственную отметку и заменяет прошлую. Вернуться ставит значение равным отметке. Если отметки не было, значение становится 0. Каково значение в конце?",
+      "en": "The value starts at 0 and there is no mark. There are {n} commands: {listing}. Add changes the value. Save stores the current value in the single mark and replaces the previous one. Restore sets the value to the mark. If there was no mark, the value becomes 0. What is the value at the end?"
+    },
+    "s1": {
+      "ru": "Значение начинает с 0, отметки нет. Команд {n}: {listing}. Прибавить меняет значение. Запомнить кладёт текущее значение в единственную отметку и заменяет прошлую. Вернуться ставит значение равным отметке. Если отметки не было, значение становится 0. Сколько раз запоминали?",
+      "en": "The value starts at 0 and there is no mark. There are {n} commands: {listing}. Add changes the value. Save stores the current value in the single mark and replaces the previous one. Restore sets the value to the mark. If there was no mark, the value becomes 0. How many times was the value saved?"
+    },
+    "s2": {
+      "ru": "Команда {i}: {phrase}. Значение {value}, запоминаний {saves}.",
+      "en": "Command {i}: {phrase}. Value {value}, saves {saves}."
+    },
+    "s4": {
+      "ru": "прибавить {value}",
+      "en": "add {value}"
+    },
+    "s5": {
+      "ru": "запомнить",
+      "en": "save"
+    },
+    "s6": {
+      "ru": "вернуться",
+      "en": "restore"
+    }
+  }
+}

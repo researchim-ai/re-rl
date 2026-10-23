@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Столб из {n} слоёв, сверху вниз. Запись — плотность и высота: {listing}. g = 10. Давление слоя — плотность, умноженная на 10 и на высоту. Каково давление на дне?",
+      "en": "A column of {n} layers, from the top down. Each entry is density and height: {listing}. g = 10. A layer's pressure is the density times 10 times the height. What is the pressure at the bottom?"
+    },
+    "s1": {
+      "ru": "Столб из {n} слоёв, сверху вниз. Запись — плотность и высота: {listing}. g = 10. Давление слоя — плотность, умноженная на 10 и на высоту. Каков номер слоя с наибольшим вкладом? При равенстве остаётся более ранний. Нумерация с 1 сверху.",
+      "en": "A column of {n} layers, from the top down. Each entry is density and height: {listing}. g = 10. A layer's pressure is the density times 10 times the height. What is the number of the layer with the largest contribution? Ties keep the earlier one. Numbering starts at 1 from the top."
+    },
+    "s2": {
+      "ru": "Слой {i}: вклад {piece}, давление {pressure}, лидер {layer}.",
+      "en": "Layer {i}: contribution {piece}, pressure {pressure}, leader {layer}."
+    }
+  }
+}

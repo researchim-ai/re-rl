@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Струна отпущена из покоя, начальная форма {listing}. Предыдущая форма совпадает с начальной, концы остаются нулями. Новый сдвиг внутренней точки равен левому соседу плюс правому соседу минус её предыдущий сдвиг. После {n} шагов каков сдвиг точки {k}? Точки нумеруются с 1.",
+      "en": "A string is released from rest. Its initial shape is {listing}. The previous shape matches the initial one, and the ends stay at zero. The new displacement of an interior point is its left neighbor plus its right neighbor minus its previous displacement. After {n} steps, what is the displacement of point {k}? Points are numbered from 1."
+    },
+    "s1": {
+      "ru": "Струна отпущена из покоя, начальная форма {listing}. Предыдущая форма совпадает с начальной, концы остаются нулями. Новый сдвиг внутренней точки равен левому соседу плюс правому соседу минус её предыдущий сдвиг. После {n} шагов какова сумма квадратов сдвигов?",
+      "en": "A string is released from rest. Its initial shape is {listing}. The previous shape matches the initial one, and the ends stay at zero. The new displacement of an interior point is its left neighbor plus its right neighbor minus its previous displacement. After {n} steps, what is the sum of the squares of the displacements?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: {listing}.",
+      "en": "Step {i}: {listing}."
+    }
+  }
+}

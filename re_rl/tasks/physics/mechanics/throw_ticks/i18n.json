@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело бросают горизонтально. Высота {height}, горизонтальная скорость {vx}. Тактов {n}. За такт вертикальная скорость, сначала нулевая, растёт на 1, высота уменьшается на новую вертикальную скорость, по горизонтали прибавляется {vx}. Приземление — первый такт, когда высота не больше нуля. Какова горизонтальная координата в момент приземления? Если за эти такты оно не наступает, берите координату последнего такта.",
+      "en": "A body is thrown horizontally. Height {height}, horizontal speed {vx}. There are {n} ticks. Each tick the vertical speed, starting at zero, grows by 1, the height decreases by the new vertical speed, and the horizontal coordinate gains {vx}. Landing is the first tick when the height is not above zero. What is the horizontal coordinate at landing? If it does not land in these ticks, use the coordinate of the last tick."
+    },
+    "s1": {
+      "ru": "Тело бросают горизонтально. Высота {height}, горизонтальная скорость {vx}. Тактов {n}. За такт вертикальная скорость, сначала нулевая, растёт на 1, высота уменьшается на новую вертикальную скорость, по горизонтали прибавляется {vx}. На каком такте высота впервые становится не больше нуля? Если такого такта нет, ответ 0.",
+      "en": "A body is thrown horizontally. Height {height}, horizontal speed {vx}. There are {n} ticks. Each tick the vertical speed, starting at zero, grows by 1, the height decreases by the new vertical speed, and the horizontal coordinate gains {vx}. At which tick does the height first become no greater than zero? If there is no such tick, the answer is 0."
+    },
+    "s2": {
+      "ru": "Такт {i}: высота {y}, горизонталь {x}, приземление {land}, дальность {span}.",
+      "en": "Tick {i}: height {y}, horizontal {x}, landing {land}, range {span}."
+    }
+  }
+}

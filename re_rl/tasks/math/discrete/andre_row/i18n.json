@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа Андре считаются по треугольнику. Строка 0 состоит из числа 1. В строке n клетка k, нумерация с 0, равна предыдущей клетке этой строки плюс клетка предыдущей строки на позиции n-k. Если клетки нет, берите 0. Число Андре A(n) — последняя клетка строки n. Каково A({n})?",
+      "en": "Andre numbers are built by a triangle. Row 0 is the single number 1. In row n, cell k, counting from 0, is the previous cell of that row plus the cell of the previous row at position n-k. A missing cell counts as 0. The Andre number A(n) is the last cell of row n. What is A({n})?"
+    },
+    "s1": {
+      "ru": "Числа Андре считаются по треугольнику. Строка 0 состоит из числа 1. В строке n клетка k, нумерация с 0, равна предыдущей клетке этой строки плюс клетка предыдущей строки на позиции n-k. Если клетки нет, берите 0. Число Андре A(n) — последняя клетка строки n. Какова клетка {k} строки {n}?",
+      "en": "Andre numbers are built by a triangle. Row 0 is the single number 1. In row n, cell k, counting from 0, is the previous cell of that row plus the cell of the previous row at position n-k. A missing cell counts as 0. The Andre number A(n) is the last cell of row n. What is cell {k} of row {n}?"
+    },
+    "s2": {
+      "ru": "Строка {n}, позиция {k}: {left} + {above} = {value}.",
+      "en": "Row {n}, position {k}: {left} + {above} = {value}."
+    }
+  }
+}

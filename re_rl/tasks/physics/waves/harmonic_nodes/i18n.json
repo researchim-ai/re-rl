@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Струна закреплена на концах. Рассматриваются гармоники с 1 по {n}. У гармоники h внутренних узлов h - 1. Сколько внутренних узлов у гармоники {k}?",
+      "en": "A string is fixed at both ends. Harmonics from 1 through {n} are considered. Harmonic h has h - 1 interior nodes. How many interior nodes does harmonic {k} have?"
+    },
+    "s1": {
+      "ru": "Струна закреплена на концах. Рассматриваются гармоники с 1 по {n}. У гармоники h внутренних узлов h - 1. Какова сумма внутренних узлов всех этих гармоник?",
+      "en": "A string is fixed at both ends. Harmonics from 1 through {n} are considered. Harmonic h has h - 1 interior nodes. What is the sum of the interior nodes of all these harmonics?"
+    },
+    "s2": {
+      "ru": "Гармоника {i}: узлов {nodes}, сумма {total}.",
+      "en": "Harmonic {i}: nodes {nodes}, sum {total}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "След состоит из {states} координат, в начале все нули. Дальше {n} визитов, номера координат с 1: {listing}. На визите каждая координата делится на 2 с округлением вниз, затем к посещённой прибавляется 1. Чему равна координата {k}?",
+      "en": "A trace has {states} coordinates, all starting at 0. Then {n} visits follow, with coordinates numbered from 1: {listing}. On a visit every coordinate is divided by 2 and rounded down, then 1 is added to the visited coordinate. What is coordinate {k}?"
+    },
+    "s1": {
+      "ru": "След состоит из {states} координат, в начале все нули. Дальше {n} визитов, номера координат с 1: {listing}. На визите каждая координата делится на 2 с округлением вниз, затем к посещённой прибавляется 1. Чему равна сумма координат?",
+      "en": "A trace has {states} coordinates, all starting at 0. Then {n} visits follow, with coordinates numbered from 1: {listing}. On a visit every coordinate is divided by 2 and rounded down, then 1 is added to the visited coordinate. What is the sum of the coordinates?"
+    },
+    "s2": {
+      "ru": "Визит {i}: координата {visit}. След: {values}.",
+      "en": "Visit {i}: coordinate {visit}. Trace: {values}."
+    },
+    "s3": {
+      "ru": "Координата {k} равна {cell}, сумма {mass}.",
+      "en": "Coordinate {k} is {cell}, and the sum is {mass}."
+    }
+  }
+}

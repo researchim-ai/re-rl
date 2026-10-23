@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В выражении {n} операций. Умножение раньше сложения, скобки раньше обеих. Выражение: {expr}. Каково значение?",
+      "en": "The expression has {n} operations. Multiplication comes before addition, and parentheses come before both. Expression: {expr}. What is the value?"
+    },
+    "s1": {
+      "ru": "В выражении {n} операций. Умножение раньше сложения, скобки раньше обеих. Выражение: {expr}. Сколько умножений выполнено?",
+      "en": "The expression has {n} operations. Multiplication comes before addition, and parentheses come before both. Expression: {expr}. How many multiplications are performed?"
+    },
+    "s2": {
+      "ru": "Операция {i}: {op} даёт {value}. Умножений уже {muls}.",
+      "en": "Operation {i}: {op} gives {value}. Multiplications so far {muls}."
+    }
+  }
+}

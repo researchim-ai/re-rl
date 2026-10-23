@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Запишите число {number} в факториальной системе на {n} позиций. Позиция i, нумерация с 1, — это остаток от деления текущего числа на i+1, затем число заменяется частным. Какова цифра на позиции {k}?",
+      "en": "Write {number} in the factorial number system using {n} places. Place i, counting from 1, is the remainder of the current number divided by i+1, and then the number is replaced by the quotient. What is the digit in place {k}?"
+    },
+    "s1": {
+      "ru": "Запишите число {number} в факториальной системе на {n} позиций. Позиция i, нумерация с 1, — это остаток от деления текущего числа на i+1, затем число заменяется частным. Какова сумма цифр?",
+      "en": "Write {number} in the factorial number system using {n} places. Place i, counting from 1, is the remainder of the current number divided by i+1, and then the number is replaced by the quotient. What is the sum of the digits?"
+    },
+    "s2": {
+      "ru": "Позиция {i}: цифра {digit}.",
+      "en": "Place {i}: digit {digit}."
+    }
+  }
+}

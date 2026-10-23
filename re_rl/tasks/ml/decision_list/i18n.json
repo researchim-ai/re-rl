@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Список из {n} правил. Признаки примера по порядку: {bits}. Правило записано как «нужный бит -> ответ»: {rules}. Правила проверяются с первого. Первое совпадение бита с нужным значением даёт окончательный ответ. Если совпадения нет, ответ {default}. Какой ответ получится?",
+      "en": "A list has {n} rules. The example bits in order are {bits}. A rule is written as required bit -> label: {rules}. Rules are checked from the first. The first bit that matches its required value gives the final label. If none match, the label is {default}. What label results?"
+    },
+    "s1": {
+      "ru": "Список из {n} правил. Признаки примера по порядку: {bits}. Правило записано как «нужный бит -> ответ»: {rules}. Правила проверяются с первого. Первое совпадение бита с нужным значением даёт окончательный ответ. Если совпадения нет, ответ {default}. Какой номер у сработавшего правила? Если сработал запасной ответ, ответ 0.",
+      "en": "A list has {n} rules. The example bits in order are {bits}. A rule is written as required bit -> label: {rules}. Rules are checked from the first. The first bit that matches its required value gives the final label. If none match, the label is {default}. What is the number of the rule that fires? If the fallback label is used, the answer is 0."
+    },
+    "s2": {
+      "ru": "Правило {i}: бит {bit}, нужно {required}, ответ {label}, срабатывание {hit}.",
+      "en": "Rule {i}: bit {bit}, required {required}, label {label}, fires {hit}."
+    },
+    "s3": {
+      "ru": "Ответ {label}, правило {fired}, запасной {default}.",
+      "en": "The label is {label}, the rule is {fired}, and the fallback is {default}."
+    }
+  }
+}

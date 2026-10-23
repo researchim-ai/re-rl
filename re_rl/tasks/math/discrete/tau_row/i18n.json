@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для каждого числа от 1 до {n} посчитайте, сколько у него положительных делителей. У простого их 2, у 1 их 1. Какова сумма этих количеств?",
+      "en": "For each number from 1 to {n}, count its positive divisors. A prime has 2, and 1 has 1. What is the sum of these counts?"
+    },
+    "s1": {
+      "ru": "Для каждого числа от 1 до {n} посчитайте, сколько у него положительных делителей. У простого их 2, у 1 их 1. Сколько делителей у числа {k}?",
+      "en": "For each number from 1 to {n}, count its positive divisors. A prime has 2, and 1 has 1. How many divisors does {k} have?"
+    },
+    "s2": {
+      "ru": "Число {i}: делителей {tau}, накоплено {total}.",
+      "en": "Number {i}: divisors {tau}, running total {total}."
+    }
+  }
+}

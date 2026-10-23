@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ящик вмещает {capacity}. Предметов {n}, размеры по порядку: {listing}. Предмет кладётся в текущий ящик, если влезает. Иначе открывается новый ящик, и предмет идёт туда. Сколько ящиков открыто?",
+      "en": "A bin holds {capacity}. There are {n} items, sizes in order: {listing}. An item goes into the current bin if it fits. Otherwise a new bin is opened and the item goes there. How many bins are opened?"
+    },
+    "s1": {
+      "ru": "Ящик вмещает {capacity}. Предметов {n}, размеры по порядку: {listing}. Предмет кладётся в текущий ящик, если влезает. Иначе открывается новый ящик, и предмет идёт туда. Сколько места занято в последнем ящике?",
+      "en": "A bin holds {capacity}. There are {n} items, sizes in order: {listing}. An item goes into the current bin if it fits. Otherwise a new bin is opened and the item goes there. How much space is used in the last bin?"
+    },
+    "s2": {
+      "ru": "Предмет {i}: ящиков {bins}, в последнем занято {fill}.",
+      "en": "Item {i}: bins {bins}, last bin used {fill}."
+    }
+  }
+}

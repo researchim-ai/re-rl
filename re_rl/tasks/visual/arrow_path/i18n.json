@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке путь по узлам сетки. Зелёный кружок — начало, красный квадрат — конец. Каждый отрезок соединяет соседние узлы по горизонтали или вертикали. Сколько в пути отрезков?",
+      "en": "The picture shows a path along grid points. The green circle is the start and the red square is the end. Each segment joins neighboring points horizontally or vertically. How many segments are in the path?"
+    },
+    "s1": {
+      "ru": "На картинке путь по узлам сетки. Зелёный кружок — начало, красный квадрат — конец. Каждый отрезок соединяет соседние узлы по горизонтали или вертикали. Сколько раз путь меняет направление? Начало поворотом не считается.",
+      "en": "The picture shows a path along grid points. The green circle is the start and the red square is the end. Each segment joins neighboring points horizontally or vertically. How many times does the path change direction? The start does not count as a turn."
+    },
+    "s2": {
+      "ru": "Отрезок {i}: ({x0}, {y0}) -> ({x1}, {y1}).",
+      "en": "Segment {i}: ({x0}, {y0}) -> ({x1}, {y1})."
+    },
+    "s3": {
+      "ru": "Отрезков {steps}, поворотов {turns}.",
+      "en": "Segments {steps}, turns {turns}."
+    }
+  }
+}

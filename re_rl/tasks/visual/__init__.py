@@ -41,6 +41,12 @@ from re_rl.tasks.visual.queens_task import QueensCheckVisualTask
 from re_rl.tasks.visual.mastermind_task import MastermindVisualTask
 from re_rl.tasks.visual.pv_cycle_task import PVCycleVisualTask
 from re_rl.tasks.visual.shoelace_task import ShoelaceAreaVisualTask
+from re_rl.tasks.visual.block_tower_task import BlockTowerTask
+from re_rl.tasks.visual.abacus_read_task import AbacusReadTask
+from re_rl.tasks.visual.domino_image_task import DominoImageTask
+from re_rl.tasks.visual.grid_squares_task import GridSquaresTask
+from re_rl.tasks.visual.arrow_path_task import ArrowPathTask
+from re_rl.tasks.visual.clock_row_task import ClockRowTask
 
 __all__ = [
     "VisualTaskMixin",
@@ -87,4 +93,10 @@ __all__ = [
     "MastermindVisualTask",
     "PVCycleVisualTask",
     "ShoelaceAreaVisualTask",
+    "BlockTowerTask",
+    "AbacusReadTask",
+    "DominoImageTask",
+    "GridSquaresTask",
+    "ArrowPathTask",
+    "ClockRowTask",
 ]

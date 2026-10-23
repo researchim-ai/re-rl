@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Температура {temp}, комната {room}, делитель {divisor}. Тактов {n}. За такт температура теряет целую часть (температура - комната) / делитель. Какова температура в конце?",
+      "en": "The temperature is {temp}, the room is {room}, and the divisor is {divisor}. There are {n} ticks. Each tick the temperature loses the integer part of (temperature - room) / divisor. What is the temperature at the end?"
+    },
+    "s1": {
+      "ru": "Температура {temp}, комната {room}, делитель {divisor}. Тактов {n}. За такт температура теряет целую часть (температура - комната) / делитель. Какова разность температуры и комнаты в конце?",
+      "en": "The temperature is {temp}, the room is {room}, and the divisor is {divisor}. There are {n} ticks. Each tick the temperature loses the integer part of (temperature - room) / divisor. What is the difference between the temperature and the room at the end?"
+    },
+    "s2": {
+      "ru": "Такт {i}: температура {temp}, разность {gap}.",
+      "en": "Tick {i}: temperature {temp}, difference {gap}."
+    }
+  }
+}

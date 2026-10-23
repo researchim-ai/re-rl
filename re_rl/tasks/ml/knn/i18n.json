@@ -19,6 +19,10 @@
     "s4": {
       "ru": "Ближайший — номер {nearest_index} (расстояния: {v1}).",
       "en": "Nearest index is {nearest_index} (distances: {v1})."
+    },
+    "s5": {
+      "ru": "Сосед {rank}: объект {index}, класс {label}, расстояние {dist}.",
+      "en": "Neighbor {rank}: object {index}, class {label}, distance {dist}."
     }
   }
 }

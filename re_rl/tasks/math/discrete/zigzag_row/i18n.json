@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка 1 содержит число 1. В строке t первое число равно последнему числу предыдущей строки. Каждое следующее число равно предыдущему числу этой же строки плюс число предыдущей строки на месте t-k, где k — номер места с нумерацией от 1. Если такого места нет, второе слагаемое равно 0. Каково последнее число строки {n}?",
+      "en": "Row 1 contains the number 1. In row t the first number equals the last number of the previous row. Each next number equals the previous number of the same row plus the entry of the previous row in place t-k, where k is the place number starting at 1. If that place does not exist, the second term is 0. What is the last number of row {n}?"
+    },
+    "s1": {
+      "ru": "Строка 1 содержит число 1. В строке t первое число равно последнему числу предыдущей строки. Каждое следующее число равно предыдущему числу этой же строки плюс число предыдущей строки на месте t-k, где k — номер места с нумерацией от 1. Если такого места нет, второе слагаемое равно 0. Каково число на месте {k} строки {n}?",
+      "en": "Row 1 contains the number 1. In row t the first number equals the last number of the previous row. Each next number equals the previous number of the same row plus the entry of the previous row in place t-k, where k is the place number starting at 1. If that place does not exist, the second term is 0. What is the number in place {k} of row {n}?"
+    },
+    "s2": {
+      "ru": "Строка {i}: {listing}.",
+      "en": "Row {i}: {listing}."
+    }
+  }
+}

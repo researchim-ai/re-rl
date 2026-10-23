@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка начинает с цифры {start}. Один шаг группирует подряд идущие одинаковые цифры и заменяет каждую группу на число её длины и саму цифру. Какова длина строки после {n} шагов?",
+      "en": "The string starts with the digit {start}. One step groups consecutive equal digits and replaces each group by the count of its length and the digit itself. What is the length of the string after {n} steps?"
+    },
+    "s1": {
+      "ru": "Строка начинает с цифры {start}. Один шаг группирует подряд идущие одинаковые цифры и заменяет каждую группу на число её длины и саму цифру. Сколько раз цифра {digit} встречается после {n} шагов?",
+      "en": "The string starts with the digit {start}. One step groups consecutive equal digits and replaces each group by the count of its length and the digit itself. How many times does the digit {digit} occur after {n} steps?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: {word}. Длина {length}.",
+      "en": "Step {i}: {word}. Length {length}."
+    }
+  }
+}

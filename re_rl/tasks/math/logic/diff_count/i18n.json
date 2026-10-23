@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два журнала длины {n}. Первый: {left}. Второй: {right}. Сколько позиций различаются?",
+      "en": "Two logs of length {n}. The first is {left}. The second is {right}. How many positions differ?"
+    },
+    "s1": {
+      "ru": "Два журнала длины {n}. Первый: {left}. Второй: {right}. Какова позиция первого различия? Позиции нумеруются с 1. Если журналы совпали, ответ 0.",
+      "en": "Two logs of length {n}. The first is {left}. The second is {right}. What is the position of the first difference? Positions are numbered from 1. If the logs match, the answer is 0."
+    },
+    "s2": {
+      "ru": "Позиция {i}: {one} и {other}. Различий {diffs}, первое {first}.",
+      "en": "Position {i}: {one} and {other}. Differences {diffs}, first {first}."
+    }
+  }
+}

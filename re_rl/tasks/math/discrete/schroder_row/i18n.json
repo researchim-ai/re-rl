@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Большие числа Шрёдера: S(0) = 1, S(1) = 2. Для n от 2 числитель (6*n-3)*S(n-1) - (n-2)*S(n-2) делится на n+1 нацело. Каково S({n})?",
+      "en": "Large Schroder numbers: S(0) = 1, S(1) = 2. For n from 2, the numerator (6*n-3)*S(n-1) - (n-2)*S(n-2) divides evenly by n+1. What is S({n})?"
+    },
+    "s1": {
+      "ru": "Большие числа Шрёдера: S(0) = 1, S(1) = 2. Для n от 2 числитель (6*n-3)*S(n-1) - (n-2)*S(n-2) делится на n+1 нацело. Каков числитель при переходе к S({n}), до деления?",
+      "en": "Large Schroder numbers: S(0) = 1, S(1) = 2. For n from 2, the numerator (6*n-3)*S(n-1) - (n-2)*S(n-2) divides evenly by n+1. What is the numerator when moving to S({n}), before the division?"
+    },
+    "s2": {
+      "ru": "S({i}) = {value}.",
+      "en": "S({i}) = {value}."
+    },
+    "s3": {
+      "ru": "S({i}) = {numer} / {den} = {value}.",
+      "en": "S({i}) = {numer} / {den} = {value}."
+    }
+  }
+}

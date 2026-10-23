@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка из {n} символов: {listing}. Для каждого символа как центра радиус — сколько пар одинаковых символов стоит симметрично по обе стороны. Одиночный центр имеет радиус 0, длина такого палиндрома равна удвоенному радиусу плюс 1. Какова длина самого длинного?",
+      "en": "A string of {n} symbols: {listing}. For each symbol as a center, the radius is how many matching pairs sit symmetrically on both sides. A lone center has radius 0, and the palindrome length is twice the radius plus 1. What is the greatest length?"
+    },
+    "s1": {
+      "ru": "Строка из {n} символов: {listing}. Для каждого символа как центра радиус — сколько пар одинаковых символов стоит симметрично по обе стороны. Каков радиус центра {k}? Символы нумеруются с 1.",
+      "en": "A string of {n} symbols: {listing}. For each symbol as a center, the radius is how many matching pairs sit symmetrically on both sides. What is the radius of center {k}? Symbols are numbered from 1."
+    },
+    "s2": {
+      "ru": "Центр {i}: радиус {radius}.",
+      "en": "Center {i}: radius {radius}."
+    }
+  }
+}

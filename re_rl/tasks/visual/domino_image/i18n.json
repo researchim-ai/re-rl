@@ -1,0 +1,24 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке цепочка костей слева направо, под каждой стоит её номер. Сколько очков на всех полях вместе?",
+      "en": "The picture shows a chain of dominoes from left to right, with a number under each one. How many pips are there on all faces together?"
+    },
+    "s1": {
+      "ru": "На картинке цепочка костей слева направо, под каждой стоит её номер. Стык верен, если правое поле кости совпадает с левым полем следующей. Найдите номер первого неверного стыка, считая стыки с 1. Если цепочка верна, ответ 0.",
+      "en": "The picture shows a chain of dominoes from left to right, with a number under each one. A joint is valid when the right half matches the left half of the next domino. Find the number of the first invalid joint, counting joints from 1. If the chain is valid, the answer is 0."
+    },
+    "s2": {
+      "ru": "Кость 1: {a} и {b}.",
+      "en": "Domino 1: {a} and {b}."
+    },
+    "s3": {
+      "ru": "Кость {i}: {a} и {b}. Предыдущее правое поле {prev}, совпадение {ok}.",
+      "en": "Domino {i}: {a} and {b}. The previous right face is {prev}, match {ok}."
+    },
+    "s4": {
+      "ru": "Всего очков {pips}. Первый разрыв {break_at}.",
+      "en": "The pip total is {pips}. The first break is {break_at}."
+    }
+  }
+}

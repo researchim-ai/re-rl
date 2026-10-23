@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Очередь с двумя концами начинает пустой. Операций {n}: {listing}. L5 кладёт 5 слева, R5 кладёт 5 справа, l снимает слева, r снимает справа. Если очередь пуста, левый конец считается равным 0. Каков левый конец в конце?",
+      "en": "A double-ended queue starts empty. There are {n} operations: {listing}. L5 pushes 5 on the left, R5 pushes 5 on the right, l pops the left end, and r pops the right end. If the queue is empty, the left end is taken to be 0. What is the left end at the finish?"
+    },
+    "s1": {
+      "ru": "Очередь с двумя концами начинает пустой. Операций {n}: {listing}. L5 кладёт 5 слева, R5 кладёт 5 справа, l снимает слева, r снимает справа. Сколько чисел лежит в очереди в конце?",
+      "en": "A double-ended queue starts empty. There are {n} operations: {listing}. L5 pushes 5 on the left, R5 pushes 5 on the right, l pops the left end, and r pops the right end. How many numbers are in the queue at the finish?"
+    },
+    "s2": {
+      "ru": "Операция {i}: {op}. Левый конец {front}, размер {size}.",
+      "en": "Operation {i}: {op}. Left end {front}, size {size}."
+    }
+  }
+}

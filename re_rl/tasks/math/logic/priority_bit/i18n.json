@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Биты читаются слева направо, слева старший приоритет: {bits}. Номер первой единицы — её позиция, нумерация с 1. Если единиц нет, номер равен 0. Каков номер первой единицы?",
+      "en": "The bits are read from left to right, and the left side has priority: {bits}. The index of the first 1 is its position, counting from 1. If there is no 1, the index is 0. What is the index of the first 1?"
+    },
+    "s1": {
+      "ru": "Биты читаются слева направо, слева старший приоритет: {bits}. Номер первой единицы — её позиция, нумерация с 1. Если единиц нет, номер равен 0. Сколько нулей стоит строго левее первой единицы? Если единиц нет, это длина списка.",
+      "en": "The bits are read from left to right, and the left side has priority: {bits}. The index of the first 1 is its position, counting from 1. If there is no 1, the index is 0. How many zeros stand strictly left of the first 1? If there is no 1, that is the length of the list."
+    },
+    "s2": {
+      "ru": "Позиция {i}, бит {bit}: номер {found}, нулей слева {zeros}.",
+      "en": "Position {i}, bit {bit}: index {found}, zeros to the left {zeros}."
+    }
+  }
+}

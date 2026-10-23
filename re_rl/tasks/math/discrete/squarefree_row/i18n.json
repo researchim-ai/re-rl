@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число бесквадратно, если его не делит квадрат никакого простого. Единица бесквадратна. Сколько бесквадратных чисел от 1 до {n}?",
+      "en": "A number is squarefree when no square of a prime divides it. One is squarefree. How many squarefree numbers are there from 1 through {n}?"
+    },
+    "s1": {
+      "ru": "Число бесквадратно, если его не делит квадрат никакого простого. Единица бесквадратна. Является ли {k} бесквадратным? Числа рассматриваются от 1 до {n}. Ответ 1, если да, и 0, если нет.",
+      "en": "A number is squarefree when no square of a prime divides it. One is squarefree. Is {k} squarefree? The numbers under consideration run from 1 through {n}. Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "Число {i}: бесквадратное {free}.",
+      "en": "Number {i}: squarefree {free}."
+    }
+  }
+}

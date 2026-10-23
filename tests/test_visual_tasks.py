@@ -59,6 +59,72 @@ def test_wrong_answer_rejected(task_type):
             assert task.verify(f"<answer>{wrong}</answer>") < 1.0
 
 
+def test_picture_chains():
+    from re_rl.tasks.math.logic.domino_chain.task import first_break
+    from re_rl.tasks.visual.abacus_read.task import AbacusReadTask
+    from re_rl.tasks.visual.block_tower.task import BlockTowerTask
+    from re_rl.tasks.visual.domino_image.task import DominoImageTask, pip_sum
+
+    random.seed(2)
+    low = BlockTowerTask.generate_random_task(task_type="total", difficulty=1)
+    high = BlockTowerTask.generate_random_task(task_type="height", difficulty=10)
+    assert high.n > low.n
+    assert low.answer == sum(low.heights)
+    assert high.column == high.heights[high.k - 1]
+    assert len(high.solution_steps) >= high.n
+    assert high.render_image().size[0] > low.render_image().size[0]
+
+    random.seed(3)
+    abacus = AbacusReadTask.generate_random_task(task_type="value", difficulty=8)
+    rebuilt = 0
+    for digit in abacus.digits:
+        rebuilt = rebuilt * 10 + digit
+    assert abacus.value == rebuilt
+    assert abacus.digits[0] != 0
+    assert abacus.render_image().size[0] > 10
+    assert len(abacus.solution_steps) >= abacus.n
+
+    random.seed(4)
+    tiles = DominoImageTask.generate_random_task(task_type="break", difficulty=9)
+    assert tiles.pips == pip_sum(tiles.dominoes)
+    assert tiles.break_at == first_break(tiles.dominoes)[0]
+    assert len(tiles.solution_steps) >= tiles.n
+    assert "{" not in tiles.description and "}" not in tiles.description
+
+
+def test_picture_geometry():
+    from re_rl.tasks.visual.arrow_path.task import ArrowPathTask, count_turns
+    from re_rl.tasks.visual.clock_row.task import ClockRowTask, hand_tip, hour_degrees, minute_degrees
+    from re_rl.tasks.visual.grid_squares.task import GridSquaresTask, square_counts
+
+    random.seed(5)
+    low = GridSquaresTask.generate_random_task(task_type="all", difficulty=1)
+    high = GridSquaresTask.generate_random_task(task_type="size_k", difficulty=10)
+    assert high.n > low.n
+    assert low.total == sum(square_counts(low.rows, low.cols))
+    assert high.at_k == square_counts(high.rows, high.cols)[high.k - 1]
+    assert len(high.solution_steps) >= high.n
+
+    random.seed(6)
+    path = ArrowPathTask.generate_random_task(task_type="turns", difficulty=8)
+    assert len(path.points) == path.n + 1
+    assert path.turns == count_turns(path.points)
+    for start, end in zip(path.points, path.points[1:]):
+        assert abs(start[0] - end[0]) + abs(start[1] - end[1]) == 1
+    assert path.render_image().size[0] > 10
+
+    tip_x, tip_y = hand_tip(0, 0, 10, hour_degrees(3, 0))
+    assert abs(tip_x - 10) < 1e-6 and abs(tip_y) < 1e-6
+    tip_x, tip_y = hand_tip(0, 0, 10, minute_degrees(0))
+    assert abs(tip_x) < 1e-6 and abs(tip_y + 10) < 1e-6
+    random.seed(7)
+    clocks = ClockRowTask.generate_random_task(task_type="hour_sum", difficulty=6)
+    assert clocks.hour_sum == sum(hour for hour, _minute in clocks.clocks)
+    assert clocks.minute_sum == sum(minute for _hour, minute in clocks.clocks)
+    assert len(clocks.solution_steps) >= clocks.n
+    assert clocks.render_image().size[0] > clocks.render_image().size[1]
+
+
 def test_save_image(tmp_path):
     gen = ALL_VISUAL_TASK_GENERATORS["grid_color_count"]
     task = gen(language="ru", difficulty=5)

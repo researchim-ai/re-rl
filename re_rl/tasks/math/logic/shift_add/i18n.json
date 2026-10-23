@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Множимое равно {value}. Множитель задан {n} битами от младшего к старшему: {listing}. Начинаем с нуля и со сдвига, равного множимому. Если бит равен 1, сдвиг прибавляется к сумме. После каждого бита сдвиг удваивается. Чему равно произведение?",
+      "en": "The multiplicand is {value}. The multiplier has {n} bits from low to high: {listing}. Start from zero and from a shift equal to the multiplicand. If the bit is 1, add the shift to the sum. After every bit the shift doubles. What is the product?"
+    },
+    "s1": {
+      "ru": "Множимое равно {value}. Множитель задан {n} битами от младшего к старшему: {listing}. Начинаем с нуля и со сдвига, равного множимому. Если бит равен 1, сдвиг прибавляется к сумме. После каждого бита сдвиг удваивается. Сколько раз выполнено сложение?",
+      "en": "The multiplicand is {value}. The multiplier has {n} bits from low to high: {listing}. Start from zero and from a shift equal to the multiplicand. If the bit is 1, add the shift to the sum. After every bit the shift doubles. How many additions are performed?"
+    },
+    "s2": {
+      "ru": "Бит {i}: значение {bit}, сдвиг {shifted}, сумма {total}.",
+      "en": "Bit {i}: value {bit}, shift {shifted}, sum {total}."
+    },
+    "s3": {
+      "ru": "Произведение {product}, сложений {adds}.",
+      "en": "The product is {product}, and the number of additions is {adds}."
+    }
+  }
+}

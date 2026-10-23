@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Лекарство принимают {n} дней. В начале уровень равен 0. Каждое утро остаток делится пополам с округлением вниз, затем добавляется доза этого дня. Дозы по порядку: {listing}. Какой уровень будет после последней дозы?",
+      "en": "A medicine is taken for {n} days. The level starts at 0. Each morning the remainder is divided by 2 and rounded down, then that day's dose is added. The doses in order are {listing}. What is the level after the last dose?"
+    },
+    "s1": {
+      "ru": "Лекарство принимают {n} дней. В начале уровень равен 0. Каждое утро остаток делится пополам с округлением вниз, затем добавляется доза этого дня. Дозы по порядку: {listing}. Какой наибольший уровень был после очередной дозы?",
+      "en": "A medicine is taken for {n} days. The level starts at 0. Each morning the remainder is divided by 2 and rounded down, then that day's dose is added. The doses in order are {listing}. What is the highest level reached after a dose?"
+    },
+    "s2": {
+      "ru": "День {i}: доза {dose}, уровень {level}.",
+      "en": "Day {i}: dose {dose}, level {level}."
+    },
+    "s3": {
+      "ru": "Итоговый уровень {level}, наибольший {peak}.",
+      "en": "The final level is {level}, and the highest is {peak}."
+    }
+  }
+}

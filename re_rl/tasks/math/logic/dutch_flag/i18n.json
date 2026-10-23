@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Массив из {n} цветов 0, 1 и 2: {listing}. Указатели начинают так: левый и средний на первой клетке, правый на последней. Ноль меняется с левым указателем, оба левых сдвигаются вправо. Единица сдвигает только средний. Двойка меняется с правым указателем, и правый сдвигается влево. Обмен одинаковых позиций не считается. Сколько обменов будет?",
+      "en": "An array of {n} colors 0, 1, and 2: {listing}. The left and middle pointers start on the first cell, and the right pointer starts on the last. A zero is swapped with the left pointer, and both left pointers move right. A one moves only the middle pointer. A two is swapped with the right pointer, and the right pointer moves left. Swapping a cell with itself does not count. How many swaps happen?"
+    },
+    "s1": {
+      "ru": "Массив из {n} цветов 0, 1 и 2: {listing}. Указатели начинают так: левый и средний на первой клетке, правый на последней. Ноль меняется с левым указателем, оба левых сдвигаются вправо. Единица сдвигает только средний. Двойка меняется с правым указателем, и правый сдвигается влево. Обмен одинаковых позиций не считается. Сколько раз двойка реально поменялась местами с другой клеткой?",
+      "en": "An array of {n} colors 0, 1, and 2: {listing}. The left and middle pointers start on the first cell, and the right pointer starts on the last. A zero is swapped with the left pointer, and both left pointers move right. A one moves only the middle pointer. A two is swapped with the right pointer, and the right pointer moves left. Swapping a cell with itself does not count. How many times is a two actually swapped with a different cell?"
+    },
+    "s2": {
+      "ru": "Клетка {i}: цвет {color}.",
+      "en": "Cell {i}: color {color}."
+    },
+    "s3": {
+      "ru": "Обменов {swaps}, из них двойки {twos}.",
+      "en": "Swaps {swaps}, of which twos {twos}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Актор-критик, состояний {states}, действий 2, номера с 1. Переходов {n}. Оценки и предпочтения начинают с нуля. Запись — состояние, действие, награда, следующее: {listing}. Дельта = награда + оценка следующего - оценка текущего. Оценка текущего становится равна награде + оценка следующего. Положительная дельта прибавляет 1 к предпочтению действия, отрицательная вычитает 1. Какова оценка состояния {k}?",
+      "en": "Actor-critic, {states} states and 2 actions, numbered from 1. There are {n} transitions. Values and preferences start at zero. Each entry is state, action, reward, next: {listing}. The delta is reward + next value - current value. The current value becomes reward + next value. A positive delta adds 1 to the action preference, a negative delta subtracts 1. What is the value of state {k}?"
+    },
+    "s1": {
+      "ru": "Актор-критик, состояний {states}, действий 2, номера с 1. Переходов {n}. Оценки и предпочтения начинают с нуля. Запись — состояние, действие, награда, следующее: {listing}. Дельта = награда + оценка следующего - оценка текущего. Оценка текущего становится равна награде + оценка следующего. Положительная дельта прибавляет 1 к предпочтению действия, отрицательная вычитает 1. При равенстве предпочтений берётся меньший номер. Какое действие предпочтительно в состоянии {k}?",
+      "en": "Actor-critic, {states} states and 2 actions, numbered from 1. There are {n} transitions. Values and preferences start at zero. Each entry is state, action, reward, next: {listing}. The delta is reward + next value - current value. The current value becomes reward + next value. A positive delta adds 1 to the action preference, a negative delta subtracts 1. Ties take the smaller index. Which action is preferred in state {k}?"
+    },
+    "s2": {
+      "ru": "Переход {i}: состояние {state}, действие {action}, награда {reward}, следующее {nxt}. Дельта {delta}, оценка {value}. Предпочтения {left}, {right}.",
+      "en": "Transition {i}: state {state}, action {action}, reward {reward}, next {nxt}. Delta {delta}, value {value}. Preferences {left}, {right}."
+    },
+    "s3": {
+      "ru": "Состояние {k}: оценка {value}, предпочтительное действие {action}.",
+      "en": "State {k}: value {value}, preferred action {action}."
+    }
+  }
+}

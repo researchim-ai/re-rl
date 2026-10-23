@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа Нараяны порядка {n}. Для k от 1 до {n} значение равно C({n}, k)*C({n}, k-1)/{n}. Коэффициент C(a, b) — произведение (a-b+i)/i по i от 1 до b. Деление целое. Каково значение при k = {k}?",
+      "en": "Narayana numbers of order {n}. For k from 1 to {n} the value is C({n}, k)*C({n}, k-1)/{n}. The coefficient C(a, b) is the product (a-b+i)/i for i from 1 to b. The division is exact. What is the value at k = {k}?"
+    },
+    "s1": {
+      "ru": "Числа Нараяны порядка {n}. Для k от 1 до {n} значение равно C({n}, k)*C({n}, k-1)/{n}. Коэффициент C(a, b) — произведение (a-b+i)/i по i от 1 до b. Деление целое. Какова сумма значений по всем k?",
+      "en": "Narayana numbers of order {n}. For k from 1 to {n} the value is C({n}, k)*C({n}, k-1)/{n}. The coefficient C(a, b) is the product (a-b+i)/i for i from 1 to b. The division is exact. What is the sum of the values over every k?"
+    },
+    "s2": {
+      "ru": "k = {k}: C({n}, {k}) = {left}, C({n}, {km1}) = {right}, частное {value}.",
+      "en": "k = {k}: C({n}, {k}) = {left}, C({n}, {km1}) = {right}, quotient {value}."
+    }
+  }
+}

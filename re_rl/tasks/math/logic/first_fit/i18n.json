@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Лента из {tape} клеток свободна, клетки нумеруются с 1. Заявки по порядку просят сплошной кусок: {listing}. Кусок ставится в самую левую подходящую дырку. Если дырки нет, заявка отклоняется. Сколько заявок из {n} встало?",
+      "en": "A tape of {tape} cells starts free, cells numbered from 1. Requests in order ask for a contiguous block: {listing}. A block is placed in the leftmost fitting hole. If there is no hole, the request is rejected. How many of the {n} requests are placed?"
+    },
+    "s1": {
+      "ru": "Лента из {tape} клеток свободна, клетки нумеруются с 1. Заявки по порядку просят сплошной кусок: {listing}. Кусок ставится в самую левую подходящую дырку. Если дырки нет, заявка отклоняется. С какой клетки начинается заявка {k}? Если она отклонена, ответ 0.",
+      "en": "A tape of {tape} cells starts free, cells numbered from 1. Requests in order ask for a contiguous block: {listing}. A block is placed in the leftmost fitting hole. If there is no hole, the request is rejected. At which cell does request {k} start? If it is rejected, the answer is 0."
+    },
+    "s2": {
+      "ru": "Заявка {i}: длина {size}, старт {start}.",
+      "en": "Request {i}: length {size}, start {start}."
+    }
+  }
+}

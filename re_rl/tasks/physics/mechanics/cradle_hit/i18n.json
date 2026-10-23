@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Летят {moving} шаров одинаковой массы. Дальше {n} неподвижных групп, вплотную внутри группы: {listing}. При ударе улетает меньшее из числа летящих и числа шаров в группе. Дальше летит только эта улетевшая группа. Сколько шаров улетает от последней группы?",
+      "en": "{moving} balls of equal mass are moving. Then there are {n} stationary groups, each group packed together: {listing}. On impact, the smaller of the moving count and the group count flies off. Only that flying group continues. How many balls fly off the last group?"
+    },
+    "s1": {
+      "ru": "Летят {moving} шаров одинаковой массы. Дальше {n} неподвижных групп, вплотную внутри группы: {listing}. При ударе улетает меньшее из числа летящих и числа шаров в группе. Дальше летит только эта улетевшая группа. Какова сумма чисел улетевших шаров по всем ударам?",
+      "en": "{moving} balls of equal mass are moving. Then there are {n} stationary groups, each group packed together: {listing}. On impact, the smaller of the moving count and the group count flies off. Only that flying group continues. What is the sum of the flying counts over all impacts?"
+    },
+    "s2": {
+      "ru": "Группа {i}: в ней {cluster}. Улетает {fly}, дальше летит {moving}, сумма {total}.",
+      "en": "Group {i}: size {cluster}. Fly {fly}, continue {moving}, sum {total}."
+    }
+  }
+}

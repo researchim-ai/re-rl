@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Планет {n}. Радиусное число каждой, по порядку: {listing}. Период равен этому числу в кубе. Каков период планеты {k}?",
+      "en": "There are {n} planets. Each radius number, in order: {listing}. The period equals that number cubed. What is the period of planet {k}?"
+    },
+    "s1": {
+      "ru": "Планет {n}. Радиусное число каждой, по порядку: {listing}. Период равен этому числу в кубе. Год считается по периоду первой планеты. Сколько таких лет в периоде планеты {k}?",
+      "en": "There are {n} planets. Each radius number, in order: {listing}. The period equals that number cubed. A year is the period of the first planet. How many such years are in the period of planet {k}?"
+    },
+    "s2": {
+      "ru": "Планета {i}: радиусное число {radius}, период {period}, лет {years}.",
+      "en": "Planet {i}: radius number {radius}, period {period}, years {years}."
+    }
+  }
+}

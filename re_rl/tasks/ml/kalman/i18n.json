@@ -15,6 +15,10 @@
     "s3": {
       "ru": "Найдите итоговую дисперсию.",
       "en": "Find the final variance."
+    },
+    "s4": {
+      "ru": "Измерение {i}: z={z}, шум {noise}. Коэффициент {gain}, среднее {mean}, дисперсия {var}.",
+      "en": "Measurement {i}: z={z}, noise {noise}. Gain {gain}, mean {mean}, variance {var}."
     }
   }
 }

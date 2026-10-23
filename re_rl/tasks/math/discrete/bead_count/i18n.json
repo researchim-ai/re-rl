@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На {n} бусинах каждая бусина красится в один из двух цветов. Повороты считаются одним ожерельем. Для поворота на k мест, нумерация k с 0, неподвижных раскрасок 2 в степени нод(k, n). Число ожерелий — сумма этих чисел, делённая на {n}. Сколько разных ожерелий?",
+      "en": "Each of {n} beads is colored with one of two colors. Rotations count as the same necklace. For a rotation by k places, with k numbered from 0, the fixed colorings are 2 to the power of the gcd of k and n. The number of necklaces is the sum of these values divided by {n}. How many distinct necklaces are there?"
+    },
+    "s1": {
+      "ru": "На {n} бусинах каждая бусина красится в один из двух цветов. Повороты считаются одним ожерельем. Для поворота на k мест, нумерация k с 0, неподвижных раскрасок 2 в степени нод(k, n). Сколько раскрасок неподвижно при повороте номер {k}? Повороты нумеруются с 1 в том же порядке, начиная с поворота на 0 мест.",
+      "en": "Each of {n} beads is colored with one of two colors. Rotations count as the same necklace. For a rotation by k places, with k numbered from 0, the fixed colorings are 2 to the power of the gcd of k and n. How many colorings are fixed by rotation number {k}? Rotations are numbered from 1 in the same order, starting with the rotation by 0 places."
+    },
+    "s2": {
+      "ru": "Поворот {i}: нод {gap}, неподвижных {fixed}, сумма {total}.",
+      "en": "Rotation {i}: gcd {gap}, fixed {fixed}, sum {total}."
+    },
+    "s3": {
+      "ru": "Сумма {total} делится на {n} и даёт {count}.",
+      "en": "The sum {total} divided by {n} is {count}."
+    }
+  }
+}

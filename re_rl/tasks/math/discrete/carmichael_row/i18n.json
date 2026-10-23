@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Функция Кармайкла: для 1 и 2 равна 1. Для нечётного простого p в степени k это (p-1)*p^(k-1). Для 4 равна 2, для 2^k при k не меньше 3 равна 2^(k-2). Для произведения простых степеней берётся их наименьшее общее кратное. Каково значение на числе {k}? Числа идут от 1 до {n}.",
+      "en": "The Carmichael function is 1 at 1 and at 2. For an odd prime p to the power k it is (p-1)*p^(k-1). At 4 it is 2, and for 2^k with k at least 3 it is 2^(k-2). For a product of prime powers, take their least common multiple. What is the value at {k}? The numbers run from 1 to {n}."
+    },
+    "s1": {
+      "ru": "Функция Кармайкла: для 1 и 2 равна 1. Для нечётного простого p в степени k это (p-1)*p^(k-1). Для 4 равна 2, для 2^k при k не меньше 3 равна 2^(k-2). Для произведения простых степеней берётся их наименьшее общее кратное. Каково наименьшее общее кратное значений от 1 до {n}?",
+      "en": "The Carmichael function is 1 at 1 and at 2. For an odd prime p to the power k it is (p-1)*p^(k-1). At 4 it is 2, and for 2^k with k at least 3 it is 2^(k-2). For a product of prime powers, take their least common multiple. What is the least common multiple of the values from 1 to {n}?"
+    },
+    "s2": {
+      "ru": "Число {i}: значение {lam}, накопленный нок {lcm}.",
+      "en": "Number {i}: value {lam}, running lcm {lcm}."
+    }
+  }
+}

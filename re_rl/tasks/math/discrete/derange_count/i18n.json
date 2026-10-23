@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько перестановок {n} предметов не оставляет ни одного предмета на своём месте?",
+      "en": "How many permutations of {n} objects leave no object in its own place?"
+    },
+    "s1": {
+      "ru": "Сколькими способами можно переставить {n} предметов так, чтобы ровно {fixed} остались на своих местах?",
+      "en": "In how many ways can {n} objects be permuted so that exactly {fixed} stay in their own places?"
+    },
+    "s2": {
+      "ru": "Предметов {k}: перестановок без неподвижных точек {count}.",
+      "en": "Objects {k}: permutations with no fixed point {count}."
+    },
+    "s3": {
+      "ru": "Ровно {fixed} неподвижных точек: сочетаний {ways}, произведение {answer}.",
+      "en": "Exactly {fixed} fixed points: combinations {ways}, product {answer}."
+    }
+  }
+}

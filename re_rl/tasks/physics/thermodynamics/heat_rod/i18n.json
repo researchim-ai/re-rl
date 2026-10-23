@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Температуры стержня слева направо: {listing}. Крайние ячейки не меняются. Внутренняя ячейка прибавляет целую половину от суммы соседей минус удвоенное своё значение. После {n} шагов какова температура ячейки {k}? Ячейки нумеруются с 1.",
+      "en": "Temperatures along a rod, from left to right: {listing}. The end cells stay fixed. An interior cell adds the integer half of the sum of its neighbors minus twice its own value. After {n} steps, what is the temperature of cell {k}? Cells are numbered from 1."
+    },
+    "s1": {
+      "ru": "Температуры стержня слева направо: {listing}. Крайние ячейки не меняются. Внутренняя ячейка прибавляет целую половину от суммы соседей минус удвоенное своё значение. После {n} шагов какова сумма температур всех ячеек?",
+      "en": "Temperatures along a rod, from left to right: {listing}. The end cells stay fixed. An interior cell adds the integer half of the sum of its neighbors minus twice its own value. After {n} steps, what is the sum of the temperatures of all cells?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: {listing}.",
+      "en": "Step {i}: {listing}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Перестановка чисел от 1 до {n}: {listing}. Идём слева направо. Цифра кода — сколько ещё не вычеркнутых чисел меньше текущего, затем это число вычёркивается. Ранг — сумма таких цифр, умноженных на факториал числа позиций справа. У перестановки 1 2 3 ... ранг равен 0. Каков ранг?",
+      "en": "A permutation of the numbers from 1 to {n}: {listing}. Read it from left to right. The code digit is how many not-yet-crossed-out numbers are smaller than the current one, and then that number is crossed out. The rank is the sum of these digits times the factorial of the number of positions to the right. The permutation 1 2 3 ... has rank 0. What is the rank?"
+    },
+    "s1": {
+      "ru": "Перестановка чисел от 1 до {n}: {listing}. Идём слева направо. Цифра кода — сколько ещё не вычеркнутых чисел меньше текущего, затем это число вычёркивается. Какова цифра кода на месте {k}? Места нумеруются с 1.",
+      "en": "A permutation of the numbers from 1 to {n}: {listing}. Read it from left to right. The code digit is how many not-yet-crossed-out numbers are smaller than the current one, and then that number is crossed out. What is the code digit in place {k}? Places are numbered from 1."
+    },
+    "s2": {
+      "ru": "Место {i}: число {value}, цифра кода {digit}, ранг {rank}.",
+      "en": "Place {i}: number {value}, code digit {digit}, rank {rank}."
+    }
+  }
+}

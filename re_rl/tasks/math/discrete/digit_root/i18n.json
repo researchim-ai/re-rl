@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число из {n} цифр: {listing}. Складывайте цифры, пока не останется одна. Какова эта цифра?",
+      "en": "A number of {n} digits: {listing}. Add the digits until one digit remains. What is that digit?"
+    },
+    "s1": {
+      "ru": "Число из {n} цифр: {listing}. Складывайте цифры, пока не останется одна. Сколько раз число заменили суммой своих цифр? Первая сумма по исходным цифрам считается, если она сама ещё не одна цифра.",
+      "en": "A number of {n} digits: {listing}. Add the digits until one digit remains. How many times is the number replaced by the sum of its digits? The first sum of the original digits counts when that sum is still not a single digit."
+    },
+    "s2": {
+      "ru": "Цифра {i}: {digit}. Сумма цифр {total}.",
+      "en": "Digit {i}: {digit}. Digit sum {total}."
+    },
+    "s3": {
+      "ru": "Свёртка {i}: {before} даёт {after}.",
+      "en": "Fold {i}: {before} gives {after}."
+    }
+  }
+}

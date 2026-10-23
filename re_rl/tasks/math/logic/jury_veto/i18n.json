@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Присяжных {n}, голоса по порядку, 1 значит «за»: {votes}. Присяжный {veto} имеет вето: если он голосует 0, решение не принято. Иначе нужно не меньше {threshold} голосов «за». Сколько всего голосов «за»?",
+      "en": "There are {n} jurors. Votes in order, where 1 means yes: {votes}. Juror {veto} has a veto: if that juror votes 0, the decision fails. Otherwise at least {threshold} yes votes are required. How many yes votes are there in total?"
+    },
+    "s1": {
+      "ru": "Присяжных {n}, голоса по порядку, 1 значит «за»: {votes}. Присяжный {veto} имеет вето: если он голосует 0, решение не принято. Иначе нужно не меньше {threshold} голосов «за». Принято ли решение? Ответьте 1 или 0.",
+      "en": "There are {n} jurors. Votes in order, where 1 means yes: {votes}. Juror {veto} has a veto: if that juror votes 0, the decision fails. Otherwise at least {threshold} yes votes are required. Does the decision pass? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Присяжный {i} голосует {vote}: «за» уже {yes}, вето против {blocked}.",
+      "en": "Juror {i} votes {vote}: yes votes {yes}, veto against {blocked}."
+    }
+  }
+}

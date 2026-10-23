@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Говорят {n} человек. Каждый называет число рыцарей. Рыцарь всегда прав, лжец всегда ошибается, поэтому верным может быть только число, которое назвали ровно столько человек. Фразы по номерам, «рыцарей ровно»: {listing}. Сколько рыцарей?",
+      "en": "{n} people speak. Each states how many knights there are. A knight tells the truth and a knave is wrong, so the true number is one that was stated by exactly that many people. The statements by number, of the form there are exactly this many knights, are {listing}. How many knights are there?"
+    },
+    "s1": {
+      "ru": "Говорят {n} человек. Каждый называет число рыцарей. Рыцарь всегда прав, лжец всегда ошибается, поэтому верным может быть только число, которое назвали ровно столько человек. Фразы по номерам, «рыцарей ровно»: {listing}. Является ли человек {k} рыцарем? Ответ 1, если да, и 0, если нет.",
+      "en": "{n} people speak. Each states how many knights there are. A knight tells the truth and a knave is wrong, so the true number is one that was stated by exactly that many people. The statements by number, of the form there are exactly this many knights, are {listing}. Is person {k} a knight? Answer 1 if yes and 0 if no."
+    },
+    "s2": {
+      "ru": "Человек {i} называет {claim}. Это число уже прозвучало {votes} раз.",
+      "en": "Person {i} says {claim}. This number has now been said {votes} times."
+    },
+    "s3": {
+      "ru": "Рыцарей {count}. Человек {k}: рыцарь {knight}.",
+      "en": "There are {count} knights. Person {k}: knight {knight}."
+    }
+  }
+}
