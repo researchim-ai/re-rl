@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Место начинает с 0, запас равен {budget}. Действий {n}: {actions}. Ноль бесплатен и место не меняет. Плюс один и минус один стоят единицу запаса и сдвигают место. Если запаса не хватает, действие блокируется: место и запас остаются прежними. Каково место в конце?",
+      "en": "The place starts at 0, and the budget is {budget}. There are {n} actions: {actions}. Zero is free and does not move the place. Plus one and minus one cost one unit of budget and shift the place. If the budget is too small, the action is blocked: the place and the budget stay as they are. What is the final place?"
+    },
+    "s1": {
+      "ru": "Место начинает с 0, запас равен {budget}. Действий {n}: {actions}. Ноль бесплатен и место не меняет. Плюс один и минус один стоят единицу запаса и сдвигают место. Если запаса не хватает, действие блокируется: место и запас остаются прежними. Сколько действий заблокировано?",
+      "en": "The place starts at 0, and the budget is {budget}. There are {n} actions: {actions}. Zero is free and does not move the place. Plus one and minus one cost one unit of budget and shift the place. If the budget is too small, the action is blocked: the place and the budget stay as they are. How many actions are blocked?"
+    },
+    "s2": {
+      "ru": "Действие {i} равно {action}: место {place}, запас {budget}, блокировок {blocked}.",
+      "en": "Action {i} is {action}: place {place}, budget {budget}, blocks {blocked}."
+    }
+  }
+}

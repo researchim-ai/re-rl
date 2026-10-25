@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Накопитель начинает с 0. Чисел {n}: {values}. Каждое число соединяется с накопителем исключающим или: бит результата равен 1, если биты слагаемых различаются. Каков накопитель в конце?",
+      "en": "The accumulator starts at 0. There are {n} numbers: {values}. Each number is combined with the accumulator by exclusive or: a result bit is 1 when the bits of the two numbers differ. What is the final accumulator?"
+    },
+    "s1": {
+      "ru": "Накопитель начинает с 0. Чисел {n}: {values}. Каждое число соединяется с накопителем исключающим или: бит результата равен 1, если биты слагаемых различаются. Сколько раз после числа накопитель стал равен 0?",
+      "en": "The accumulator starts at 0. There are {n} numbers: {values}. Each number is combined with the accumulator by exclusive or: a result bit is 1 when the bits of the two numbers differ. How many times does the accumulator become 0 after a number?"
+    },
+    "s2": {
+      "ru": "Число {i} равно {value}: накопитель {acc}, нулей уже {zeros}.",
+      "en": "Number {i} is {value}: accumulator {acc}, zeros so far {zeros}."
+    }
+  }
+}

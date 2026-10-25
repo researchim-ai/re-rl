@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стек пуст. Команд {n}, в каждой код и число: {ops}. Код 0 кладёт число наверх. Код 1 снимает верхнее число, если стек не пуст. Снятие с пустого стека ничего не делает, а его число не используется. Каков минимум чисел, которые сейчас лежат в стеке? Если стек пуст, ответ 0.",
+      "en": "The stack starts empty. There are {n} commands, each a code and a number: {ops}. Code 0 pushes the number on top. Code 1 pops the top number when the stack is not empty. A pop of an empty stack does nothing, and its number is not used. What is the minimum of the numbers currently in the stack? If the stack is empty, the answer is 0."
+    },
+    "s1": {
+      "ru": "Стек пуст. Команд {n}, в каждой код и число: {ops}. Код 0 кладёт число наверх. Код 1 снимает верхнее число, если стек не пуст. Снятие с пустого стека ничего не делает, а его число не используется. Какова сумма снятых чисел?",
+      "en": "The stack starts empty. There are {n} commands, each a code and a number: {ops}. Code 0 pushes the number on top. Code 1 pops the top number when the stack is not empty. A pop of an empty stack does nothing, and its number is not used. What is the sum of the popped numbers?"
+    },
+    "s2": {
+      "ru": "Команда {i}, код {kind}, число {value}: минимум {low}, сумма снятых {popped}.",
+      "en": "Command {i}, code {kind}, number {value}: minimum {low}, sum of popped numbers {popped}."
+    }
+  }
+}

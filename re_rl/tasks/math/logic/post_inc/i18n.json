@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Переменная начинает с {start}. Операций {n}: {ops}. Код 0 отдаёт старое значение и только потом прибавляет 1. Код 1 сначала прибавляет 1 и отдаёт уже новое значение. Отданные значения складываются отдельно. Какова переменная в конце?",
+      "en": "The variable starts at {start}. There are {n} operations: {ops}. Code 0 yields the old value and only then adds 1. Code 1 first adds 1 and yields the new value. The yielded values are added separately. What is the variable at the end?"
+    },
+    "s1": {
+      "ru": "Переменная начинает с {start}. Операций {n}: {ops}. Код 0 отдаёт старое значение и только потом прибавляет 1. Код 1 сначала прибавляет 1 и отдаёт уже новое значение. Отданные значения складываются отдельно. Какова сумма отданных значений?",
+      "en": "The variable starts at {start}. There are {n} operations: {ops}. Code 0 yields the old value and only then adds 1. Code 1 first adds 1 and yields the new value. The yielded values are added separately. What is the sum of the yielded values?"
+    },
+    "s2": {
+      "ru": "Операция {i}, код {op}: переменная {value}, сумма отданных {used}.",
+      "en": "Operation {i}, code {op}: variable {value}, sum of yielded values {used}."
+    }
+  }
+}

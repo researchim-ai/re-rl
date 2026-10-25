@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Значение начинает с {start}. Дальше {n} шагов, в каждом вентиль и добавка: {steps}. Вентиль 1 прибавляет добавку. Вентиль 0 оставляет значение прежним. Каково значение в конце?",
+      "en": "The value starts at {start}. Then there are {n} steps, each with a gate and an addend: {steps}. Gate 1 adds the addend. Gate 0 leaves the value unchanged. What is the final value?"
+    },
+    "s1": {
+      "ru": "Значение начинает с {start}. Дальше {n} шагов, в каждом вентиль и добавка: {steps}. Вентиль 1 прибавляет добавку. Вентиль 0 оставляет значение прежним. Сколько вентилей было равно 1?",
+      "en": "The value starts at {start}. Then there are {n} steps, each with a gate and an addend: {steps}. Gate 1 adds the addend. Gate 0 leaves the value unchanged. How many gates were equal to 1?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, вентиль {gate}, добавка {delta}: значение {value}, открытых вентилей {opens}.",
+      "en": "Step {i}, gate {gate}, addend {delta}: value {value}, open gates {opens}."
+    }
+  }
+}

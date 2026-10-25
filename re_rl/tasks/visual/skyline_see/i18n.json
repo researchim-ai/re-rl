@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке здания стоят вплотную, взгляд идёт слева, его отмечает зелёная стрелка. Здание видно, если оно строго выше каждого здания левее себя. Здание той же высоты закрыто. Сколько зданий видно?",
+      "en": "The picture shows buildings standing side by side. The view comes from the left and is marked by the green arrow. A building is visible when it is strictly taller than every building to its left. A building of the same height is hidden. How many buildings are visible?"
+    },
+    "s1": {
+      "ru": "На картинке здания стоят вплотную, взгляд идёт слева, его отмечает зелёная стрелка. Здание видно, если оно строго выше каждого здания левее себя. Здание той же высоты закрыто. Каков номер последнего видимого здания? Нумерация слева, с 1.",
+      "en": "The picture shows buildings standing side by side. The view comes from the left and is marked by the green arrow. A building is visible when it is strictly taller than every building to its left. A building of the same height is hidden. What is the number of the last visible building? Numbering starts at 1 on the left."
+    },
+    "s2": {
+      "ru": "Здание {i}, высота {height}: видно уже {visible}, последнее видимое {last}, рекорд {best}.",
+      "en": "Building {i}, height {height}: visible so far {visible}, last visible {last}, record {best}."
+    }
+  }
+}

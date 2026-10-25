@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке квадратная сетка. Тёмная клетка и светлая различаются. Ось симметрии вертикальная. Сравните клетки, которые стоят на одном расстоянии от левого и от правого края. Средняя клетка при нечётном числе столбцов пары не имеет. Сколько таких пар не совпало?",
+      "en": "The picture shows a square grid. A dark cell and a light cell are different. The axis of symmetry is vertical. Compare cells that sit at the same distance from the left edge and the right edge. The middle cell has no pair when the number of columns is odd. How many such pairs disagree?"
+    },
+    "s1": {
+      "ru": "На картинке квадратная сетка. Тёмная клетка и светлая различаются. Ось симметрии вертикальная. Сравните клетки, которые стоят на одном расстоянии от левого и от правого края. Средняя клетка при нечётном числе столбцов пары не имеет. В скольких строках есть хотя бы одна несовпавшая пара?",
+      "en": "The picture shows a square grid. A dark cell and a light cell are different. The axis of symmetry is vertical. Compare cells that sit at the same distance from the left edge and the right edge. The middle cell has no pair when the number of columns is odd. In how many rows is there at least one disagreeing pair?"
+    },
+    "s2": {
+      "ru": "Строка {i}: несовпавших пар {bad}, всего пар {pairs}, несимметричных строк {rows}.",
+      "en": "Row {i}: disagreeing pairs {bad}, pairs so far {pairs}, asymmetric rows {rows}."
+    }
+  }
+}

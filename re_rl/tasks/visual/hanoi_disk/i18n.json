@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке три стержня. Диски лежат так, что более широкий всегда ниже более узкого. Самый узкий — диск 1, следующий шире — диск 2, и так далее. Цель — собрать все диски на правом стержне. За один ход переносится один верхний диск, и его нельзя класть на более узкий. Если диск k уже на нужном стержне, его стоимость равна стоимости более узких дисков на тот же стержень. Если нет, более узкие сначала собираются на оставшемся стержне, и стоимость равна этой сборке плюс степень двойки. Показатель степени на единицу меньше номера диска. Сколько ходов нужно?",
+      "en": "The picture shows three pegs. Disks are stacked so a wider disk is always below a narrower one. The narrowest disk is disk 1, the next wider disk is disk 2, and so on. The goal is to gather every disk on the right peg. One move carries one top disk, and it cannot be placed on a narrower disk. If disk k is already on the required peg, its cost equals the cost of the narrower disks onto that same peg. Otherwise the narrower disks are first gathered on the remaining peg, and the cost equals that gathering plus a power of two. The exponent is one less than the disk number. How many moves are needed?"
+    },
+    "s1": {
+      "ru": "На картинке три стержня. Диски лежат так, что более широкий всегда ниже более узкого. Цель — правый стержень. Сколько дисков уже лежит на правом стержне?",
+      "en": "The picture shows three pegs. Disks are stacked so a wider disk is always below a narrower one. The goal is the right peg. How many disks are already on the right peg?"
+    },
+    "s2": {
+      "ru": "Диск {k}, стержень {peg}: нужен перенос {flag}, стоимость этой подзадачи {cost}. Стержни нумеруются слева направо: 1, 2, 3.",
+      "en": "Disk {k}, peg {peg}: move needed {flag}, cost of this subproblem {cost}. Pegs are numbered 1, 2, 3 from left to right."
+    },
+    "s3": {
+      "ru": "Ходов {moves}, дисков на правом стержне {home}.",
+      "en": "Moves {moves}, disks on the right peg {home}."
+    }
+  }
+}

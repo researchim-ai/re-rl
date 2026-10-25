@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Функция Дедекинда: для 1 равна 1. Для каждого различного простого p в разложении числа текущее значение делится на p и умножается на p+1. Какова сумма значений от 1 до {n}?",
+      "en": "The Dedekind function is 1 at 1. For each distinct prime p in a number's factorization, divide the current value by p and multiply by p+1. What is the sum of the values from 1 to {n}?"
+    },
+    "s1": {
+      "ru": "Функция Дедекинда: для 1 равна 1. Для каждого различного простого p в разложении числа текущее значение делится на p и умножается на p+1. Каково значение на числе {k}?",
+      "en": "The Dedekind function is 1 at 1. For each distinct prime p in a number's factorization, divide the current value by p and multiply by p+1. What is the value at {k}?"
+    },
+    "s2": {
+      "ru": "Число {i}: значение {value}, сумма {total}.",
+      "en": "Number {i}: value {value}, sum {total}."
+    }
+  }
+}

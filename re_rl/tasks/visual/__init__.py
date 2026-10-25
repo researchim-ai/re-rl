@@ -47,6 +47,18 @@ from re_rl.tasks.visual.domino_image_task import DominoImageTask
 from re_rl.tasks.visual.grid_squares_task import GridSquaresTask
 from re_rl.tasks.visual.arrow_path_task import ArrowPathTask
 from re_rl.tasks.visual.clock_row_task import ClockRowTask
+from re_rl.tasks.visual.mirror_fault_task import MirrorFaultTask
+from re_rl.tasks.visual.blob_count_task import BlobCountTask
+from re_rl.tasks.visual.ink_spread_task import InkSpreadTask
+from re_rl.tasks.visual.mirror_ray_task import MirrorRayTask
+from re_rl.tasks.visual.shape_match_task import ShapeMatchTask
+from re_rl.tasks.visual.paint_order_task import PaintOrderTask
+from re_rl.tasks.visual.hanoi_disk_task import HanoiDiskTask
+from re_rl.tasks.visual.skyline_see_task import SkylineSeeTask
+from re_rl.tasks.visual.solid_block_task import SolidBlockTask
+from re_rl.tasks.visual.edge_flip_task import EdgeFlipTask
+from re_rl.tasks.visual.arrow_turn_task import ArrowTurnTask
+from re_rl.tasks.visual.nest_box_task import NestBoxTask
 
 __all__ = [
     "VisualTaskMixin",
@@ -99,4 +111,16 @@ __all__ = [
     "GridSquaresTask",
     "ArrowPathTask",
     "ClockRowTask",
+    "MirrorFaultTask",
+    "BlobCountTask",
+    "InkSpreadTask",
+    "MirrorRayTask",
+    "ShapeMatchTask",
+    "PaintOrderTask",
+    "HanoiDiskTask",
+    "SkylineSeeTask",
+    "SolidBlockTask",
+    "EdgeFlipTask",
+    "ArrowTurnTask",
+    "NestBoxTask",
 ]

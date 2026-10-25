@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вход из {n} меток: {labels}. Метка 0 — пустышка. Новая выходная метка записывается, только если она не пустышка и отличается от предыдущей входной метки. Одинаковые метки подряд схлопываются в одну, а пустышка позволяет той же метке появиться снова. Какова длина выхода?",
+      "en": "An input of {n} labels: {labels}. Label 0 is a blank. A new output label is written only when it is not a blank and differs from the previous input label. Identical labels in a row collapse to one, and a blank lets the same label appear again. What is the length of the output?"
+    },
+    "s1": {
+      "ru": "Вход из {n} меток: {labels}. Метка 0 — пустышка. Новая выходная метка записывается, только если она не пустышка и отличается от предыдущей входной метки. Одинаковые метки подряд схлопываются в одну, а пустышка позволяет той же метке появиться снова. Какова последняя выходная метка? Если выход пуст, ответ 0.",
+      "en": "An input of {n} labels: {labels}. Label 0 is a blank. A new output label is written only when it is not a blank and differs from the previous input label. Identical labels in a row collapse to one, and a blank lets the same label appear again. What is the last output label? If the output is empty, the answer is 0."
+    },
+    "s2": {
+      "ru": "Вход {i} равен {label}: длина выхода {length}, последняя метка {last}.",
+      "en": "Input {i} is {label}: output length {length}, last label {last}."
+    }
+  }
+}

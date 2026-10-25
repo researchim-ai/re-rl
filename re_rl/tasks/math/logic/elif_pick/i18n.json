@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Веток {n}. В каждой признак и добавка: {branches}. Ветки проверяются по порядку. Ноль пропускается. Первая единица выбирает свою добавку, и следующие ветки уже не могут заменить выбор. Если единицы нет, значение остаётся 0. Каково выбранное значение?",
+      "en": "There are {n} branches. Each one gives a flag and an addend: {branches}. The branches are tested in order. A zero is skipped. The first one selects its addend, and later branches cannot replace that choice. If there is no one, the value stays 0. What is the chosen value?"
+    },
+    "s1": {
+      "ru": "Веток {n}. В каждой признак и добавка: {branches}. Ветки проверяются по порядку. Ноль пропускается. Первая единица выбирает свою добавку, и следующие ветки уже не могут заменить выбор. Если единицы нет, значение остаётся 0. Каков номер выбранной ветки? Если выбора нет, ответ 0.",
+      "en": "There are {n} branches. Each one gives a flag and an addend: {branches}. The branches are tested in order. A zero is skipped. The first one selects its addend, and later branches cannot replace that choice. If there is no one, the value stays 0. What is the index of the chosen branch? If there is no choice, the answer is 0."
+    },
+    "s2": {
+      "ru": "Ветка {i}: признак {guard}, добавка {delta}, значение {value}, выбор {at}.",
+      "en": "Branch {i}: flag {guard}, addend {delta}, value {value}, choice {at}."
+    }
+  }
+}

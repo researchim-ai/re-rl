@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Переменные от 1 до {n} заданы по порядку: {rows}. У переменной 1 записан её бит. У каждой следующей три числа: родитель, код операции и бит шума. Код 0 копирует родителя, код 1 заменяет его на противоположный бит, код 2 — исключающее или родителя и шума. Наблюдение считает все уравнения. Вмешательство do({cut}={bit}) выбрасывает уравнение переменной {cut}, ставит её равной {bit} и заново считает остальных. Сколько переменных изменили значение?",
+      "en": "Variables from 1 to {n} are given in order: {rows}. Variable 1 shows its bit. Each later line has three numbers: the parent, an operation code, and a noise bit. Code 0 copies the parent, code 1 replaces it by the opposite bit, and code 2 is the exclusive or of the parent and the noise. Observation evaluates every equation. The intervention do({cut}={bit}) deletes the equation of variable {cut}, sets that variable to {bit}, and evaluates the others again. How many variables change their value?"
+    },
+    "s1": {
+      "ru": "Переменные от 1 до {n} заданы по порядку: {rows}. У переменной 1 записан её бит. У каждой следующей три числа: родитель, код операции и бит шума. Код 0 копирует родителя, код 1 заменяет его на противоположный бит, код 2 — исключающее или родителя и шума. Наблюдение считает все уравнения. Вмешательство do({cut}={bit}) выбрасывает уравнение переменной {cut}, ставит её равной {bit} и заново считает остальных. Каково значение переменной {k} после вмешательства?",
+      "en": "Variables from 1 to {n} are given in order: {rows}. Variable 1 shows its bit. Each later line has three numbers: the parent, an operation code, and a noise bit. Code 0 copies the parent, code 1 replaces it by the opposite bit, and code 2 is the exclusive or of the parent and the noise. Observation evaluates every equation. The intervention do({cut}={bit}) deletes the equation of variable {cut}, sets that variable to {bit}, and evaluates the others again. What is the value of variable {k} after the intervention?"
+    },
+    "s2": {
+      "ru": "Переменная {i}: было {old}, стало {new}, различий уже {shift}.",
+      "en": "Variable {i}: before {old}, after {new}, differences so far {shift}."
+    }
+  }
+}

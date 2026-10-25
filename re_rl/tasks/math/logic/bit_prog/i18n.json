@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Регистр начинает с {start} и хранит числа от 0 до 15. Команд {n}, в каждой код и маска: {ops}. Код 0 — и с маской, 1 — или с маской, 2 — исключающее или с маской. Код 3 сдвигает регистр на 1 влево и оставляет остаток от деления на 16. Маска при сдвиге не используется. Каков регистр в конце?",
+      "en": "The register starts at {start} and holds numbers from 0 to 15. There are {n} commands, each a code and a mask: {ops}. Code 0 is and with the mask, 1 is or with the mask, and 2 is exclusive or with the mask. Code 3 shifts the register left by 1 and keeps the remainder on division by 16. The mask is not used by a shift. What is the final register?"
+    },
+    "s1": {
+      "ru": "Регистр начинает с {start} и хранит числа от 0 до 15. Команд {n}, в каждой код и маска: {ops}. Код 0 — и с маской, 1 — или с маской, 2 — исключающее или с маской. Код 3 сдвигает регистр на 1 влево и оставляет остаток от деления на 16. Маска при сдвиге не используется. Сколько единиц в двоичной записи регистра в конце?",
+      "en": "The register starts at {start} and holds numbers from 0 to 15. There are {n} commands, each a code and a mask: {ops}. Code 0 is and with the mask, 1 is or with the mask, and 2 is exclusive or with the mask. Code 3 shifts the register left by 1 and keeps the remainder on division by 16. The mask is not used by a shift. How many ones are in the binary writing of the final register?"
+    },
+    "s2": {
+      "ru": "Команда {i}, код {code}, маска {mask}: регистр {reg}, единиц {ones}.",
+      "en": "Command {i}, code {code}, mask {mask}: register {reg}, ones {ones}."
+    }
+  }
+}

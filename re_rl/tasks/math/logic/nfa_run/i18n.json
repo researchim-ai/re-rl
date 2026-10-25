@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Недетерминированный автомат. Состояний {n}, номера от 0, старт в 0. Принимающие: {accept}. Слово из {n} символов: {word}. В записи стрелки перед двоеточием стоят состояние и символ, после двоеточия через пробел — все состояния, куда этот символ ведёт сразу. Стрелки: {trans}. После символа автомат находится во всех этих состояниях. Положение до слова не считается. Сколько символов привели в множество, где есть хотя бы одно принимающее состояние?",
+      "en": "A nondeterministic automaton has {n} states, numbered from 0, and starts at 0. Accepting states: {accept}. The word has {n} symbols: {word}. In an arrow entry, the state and the symbol stand before the colon, and every state reached at once stands after the colon, separated by spaces. Arrows: {trans}. After a symbol the automaton is in all those states. The position before the word does not count. How many symbols lead to a set that contains at least one accepting state?"
+    },
+    "s1": {
+      "ru": "Недетерминированный автомат. Состояний {n}, номера от 0, старт в 0. Принимающие: {accept}. Слово из {n} символов: {word}. В записи стрелки перед двоеточием стоят состояние и символ, после двоеточия через пробел — все состояния, куда этот символ ведёт сразу. Стрелки: {trans}. После символа автомат находится во всех этих состояниях. Есть ли в конечном множестве принимающее состояние? Ответьте 1 или 0.",
+      "en": "A nondeterministic automaton has {n} states, numbered from 0, and starts at 0. Accepting states: {accept}. The word has {n} symbols: {word}. In an arrow entry, the state and the symbol stand before the colon, and every state reached at once stands after the colon, separated by spaces. Arrows: {trans}. After a symbol the automaton is in all those states. Does the final set contain an accepting state? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Символ {i} равен {symbol}: сейчас состояний {reach}, среди них принимающее {hit}, таких символов уже {visits}.",
+      "en": "Symbol {i} is {symbol}: states now {reach}, an accepting state is among them {hit}, such symbols so far {visits}."
+    }
+  }
+}

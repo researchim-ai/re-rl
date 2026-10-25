@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Аргументы пронумерованы от 1 до {n}. Запись i:a b значит, что на i нападают a и b. Прочерк значит, что нападающих нет. Нападение идёт только от меньшего номера к большему: {attacks}. Идите по номерам. Аргумент принят, если ни один нападающий не принят. Иначе он отвергнут. Сколько аргументов принято?",
+      "en": "Arguments are numbered from 1 to {n}. The note i:a b means a and b attack i. A dash means there is no attacker. An attack always comes from a smaller number: {attacks}. Read in order. An argument is accepted when none of its attackers is accepted. Otherwise it is rejected. How many arguments are accepted?"
+    },
+    "s1": {
+      "ru": "Аргументы пронумерованы от 1 до {n}. Запись i:a b значит, что на i нападают a и b. Прочерк значит, что нападающих нет. Нападение идёт только от меньшего номера к большему: {attacks}. Идите по номерам. Аргумент принят, если ни один нападающий не принят. Иначе он отвергнут. Принят ли аргумент {k}? Ответьте 1 или 0.",
+      "en": "Arguments are numbered from 1 to {n}. The note i:a b means a and b attack i. A dash means there is no attacker. An attack always comes from a smaller number: {attacks}. Read in order. An argument is accepted when none of its attackers is accepted. Otherwise it is rejected. Is argument {k} accepted? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Аргумент {i}, нападающие {attackers}: принят {label}, принято уже {inside}.",
+      "en": "Argument {i}, attackers {attackers}: accepted {label}, accepted so far {inside}."
+    }
+  }
+}

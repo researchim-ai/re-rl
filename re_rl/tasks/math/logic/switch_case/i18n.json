@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Значение выбора равно {value}. Запасной результат равен {default}. Веток {n}, в каждой метка и результат: {rows}. Ветки идут по порядку. Первая метка, равная значению, отдаёт свой результат. Если совпадения нет, остаётся запасной результат. Каков результат?",
+      "en": "The selector value is {value}. The fallback result is {default}. There are {n} branches, each a label and a result: {rows}. The branches are read in order. The first label equal to the selector yields its result. If nothing matches, the fallback result stays. What is the result?"
+    },
+    "s1": {
+      "ru": "Значение выбора равно {value}. Запасной результат равен {default}. Веток {n}, в каждой метка и результат: {rows}. Ветки идут по порядку. Первая метка, равная значению, отдаёт свой результат. Если совпадения нет, остаётся запасной результат. Каков номер выбранной ветки? Если выбран запасной результат, ответ 0.",
+      "en": "The selector value is {value}. The fallback result is {default}. There are {n} branches, each a label and a result: {rows}. The branches are read in order. The first label equal to the selector yields its result. If nothing matches, the fallback result stays. What is the index of the chosen branch? If the fallback result is used, the answer is 0."
+    },
+    "s2": {
+      "ru": "Ветка {i}: метка {label}, результат {result}, выбранный результат {chosen}, номер выбора {at}.",
+      "en": "Branch {i}: label {label}, result {result}, chosen result {chosen}, choice index {at}."
+    }
+  }
+}

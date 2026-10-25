@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Поиск держит две гипотезы. В начале есть одна гипотеза со счётом 0. Шагов {n}, на каждом две оценки токенов 0 и 1: {rows}. Каждая живая гипотеза прибавляет одну из оценок. Остаются две наибольшие суммы. При равенстве раньше стоит гипотеза, которая была левее, а затем меньший номер токена. Какова лучшая сумма в конце?",
+      "en": "The search keeps two hypotheses. It starts with one hypothesis of score 0. There are {n} steps, and each gives the scores of tokens 0 and 1: {rows}. Every live hypothesis adds one of the scores. The two largest sums stay. On a tie the hypothesis that was further left comes first, and then the smaller token number. What is the best sum at the end?"
+    },
+    "s1": {
+      "ru": "Поиск держит две гипотезы. В начале есть одна гипотеза со счётом 0. Шагов {n}, на каждом две оценки токенов 0 и 1: {rows}. Каждая живая гипотеза прибавляет одну из оценок. Остаются две наибольшие суммы. При равенстве раньше стоит гипотеза, которая была левее, а затем меньший номер токена. Какой токен был добавлен к лучшей гипотезе на последнем шаге?",
+      "en": "The search keeps two hypotheses. It starts with one hypothesis of score 0. There are {n} steps, and each gives the scores of tokens 0 and 1: {rows}. Every live hypothesis adds one of the scores. The two largest sums stay. On a tie the hypothesis that was further left comes first, and then the smaller token number. Which token was added to the best hypothesis on the last step?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, оценки {left} и {right}: лучшая сумма {best}, вторая {second}, токен лучшей {token}.",
+      "en": "Step {i}, scores {left} and {right}: best sum {best}, second {second}, token of the best {token}."
+    }
+  }
+}

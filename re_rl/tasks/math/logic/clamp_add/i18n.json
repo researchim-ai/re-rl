@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число начинает с {start}. Верхняя граница равна {n}, нижняя равна 0. Прибавлений {n}: {deltas}. После прибавления число меньше 0 становится 0, а число больше {n} становится {n}. Такое удержание считается срабатыванием. Каково число в конце?",
+      "en": "The number starts at {start}. The upper bound is {n}, and the lower bound is 0. There are {n} additions: {deltas}. After an addition, a number below 0 becomes 0, and a number above {n} becomes {n}. Such a hold counts as a clip. What is the final number?"
+    },
+    "s1": {
+      "ru": "Число начинает с {start}. Верхняя граница равна {n}, нижняя равна 0. Прибавлений {n}: {deltas}. После прибавления число меньше 0 становится 0, а число больше {n} становится {n}. Такое удержание считается срабатыванием. Сколько раз сработало удержание?",
+      "en": "The number starts at {start}. The upper bound is {n}, and the lower bound is 0. There are {n} additions: {deltas}. After an addition, a number below 0 becomes 0, and a number above {n} becomes {n}. Such a hold counts as a clip. How many times did a clip occur?"
+    },
+    "s2": {
+      "ru": "Прибавление {i} равно {delta}: число {value}, удержаний {clips}.",
+      "en": "Addition {i} is {delta}: number {value}, clips {clips}."
+    }
+  }
+}

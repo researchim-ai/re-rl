@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Слов {n}, каждое из двух символов 0 или 1: {words}. Слова добавляются в дерево слева направо. Новый узел появляется, только если такого продолжения ещё не было. Корень не считается. Сколько узлов создано?",
+      "en": "There are {n} words, each made of two symbols 0 or 1: {words}. Words are added to the tree from left to right. A new node appears only when that continuation did not exist yet. The root is not counted. How many nodes are created?"
+    },
+    "s1": {
+      "ru": "Слов {n}, каждое из двух символов 0 или 1: {words}. Слова добавляются в дерево слева направо. Новый узел появляется, только если такого продолжения ещё не было. Корень не считается. Сколько слов создало хотя бы один новый узел?",
+      "en": "There are {n} words, each made of two symbols 0 or 1: {words}. Words are added to the tree from left to right. A new node appears only when that continuation did not exist yet. The root is not counted. How many words created at least one new node?"
+    },
+    "s2": {
+      "ru": "Слово {i}: {left} {right}, узлов {nodes}, новых слов {fresh}.",
+      "en": "Word {i}: {left} {right}, nodes {nodes}, words with a new node {fresh}."
+    }
+  }
+}

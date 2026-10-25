@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Команд {n}, выполнение с первой. В каждой код и число: {ops}. Код 0 прибавляет число к сумме и переходит к следующей команде. Код 1 прыгает вперёд на своё число команд: сама команда прыжка выполнена, а следующие за ней команды в этом промежутке пропускаются. Прыжок на 1 попадает на следующую команду. Какова сумма?",
+      "en": "There are {n} commands, and execution starts at the first. Each one gives a code and a number: {ops}. Code 0 adds the number to the sum and moves to the next command. Code 1 jumps forward by its number of commands: the jump command itself is executed, and the commands after it inside that span are skipped. A jump of 1 lands on the next command. What is the sum?"
+    },
+    "s1": {
+      "ru": "Команд {n}, выполнение с первой. В каждой код и число: {ops}. Код 0 прибавляет число к сумме и переходит к следующей команде. Код 1 прыгает вперёд на своё число команд: сама команда прыжка выполнена, а следующие за ней команды в этом промежутке пропускаются. Прыжок на 1 попадает на следующую команду. Сколько команд выполнено?",
+      "en": "There are {n} commands, and execution starts at the first. Each one gives a code and a number: {ops}. Code 0 adds the number to the sum and moves to the next command. Code 1 jumps forward by its number of commands: the jump command itself is executed, and the commands after it inside that span are skipped. A jump of 1 lands on the next command. How many commands are executed?"
+    },
+    "s2": {
+      "ru": "Команда {i}, код {code}, число {arg}: сумма {acc}, выполнено {ran}.",
+      "en": "Command {i}, code {code}, number {arg}: sum {acc}, executed {ran}."
+    }
+  }
+}

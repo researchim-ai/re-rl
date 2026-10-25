@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Миры от 1 до {n}. Атом p по мирам: {bits}. Между соседними мирами стоят двери: {doors}. Единица сливает два мира в один класс неразличимости, и слияние идёт по цепочке. Ноль оставляет миры различимыми. Агент знает p в мире, если во всех мирах его класса p равен 1. В скольких мирах агент знает p?",
+      "en": "Worlds run from 1 to {n}. Atom p across the worlds is {bits}. Doors between neighboring worlds are {doors}. A one merges the two worlds into one indistinguishability class, and merging continues along a chain. A zero keeps the worlds distinguishable. The agent knows p at a world when p is 1 in every world of its class. In how many worlds does the agent know p?"
+    },
+    "s1": {
+      "ru": "Миры от 1 до {n}. Атом p по мирам: {bits}. Между соседними мирами стоят двери: {doors}. Единица сливает два мира в один класс неразличимости, и слияние идёт по цепочке. Ноль оставляет миры различимыми. Агент знает p в мире, если во всех мирах его класса p равен 1. Знает ли агент p в мире {k}? Ответьте 1 или 0.",
+      "en": "Worlds run from 1 to {n}. Atom p across the worlds is {bits}. Doors between neighboring worlds are {doors}. A one merges the two worlds into one indistinguishability class, and merging continues along a chain. A zero keeps the worlds distinguishable. The agent knows p at a world when p is 1 in every world of its class. Does the agent know p at world {k}? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Мир {i}: знает {holds}, уже {known}.",
+      "en": "World {i}: knows {holds}, so far {known}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Список из {n} литералов: {literals}. Положительное число утверждает атом, отрицательное — его отрицание. Идите слева направо. Противоречие в тот момент, когда атом и его отрицание оба уже встретились. Каков номер этой позиции? Если противоречия нет, ответ 0.",
+      "en": "A list of {n} literals: {literals}. A positive number asserts an atom, a negative number asserts its negation. Read from left to right. A contradiction occurs when both an atom and its negation have already appeared. What is the index of that position? If there is no contradiction, the answer is 0."
+    },
+    "s1": {
+      "ru": "Список из {n} литералов: {literals}. Положительное число утверждает атом, отрицательное — его отрицание. Идите слева направо. Противоречие в тот момент, когда атом и его отрицание оба уже встретились. Каков номер атома в первом противоречии? Если противоречия нет, ответ 0.",
+      "en": "A list of {n} literals: {literals}. A positive number asserts an atom, a negative number asserts its negation. Read from left to right. A contradiction occurs when both an atom and its negation have already appeared. What is the atom number in the first contradiction? If there is no contradiction, the answer is 0."
+    },
+    "s2": {
+      "ru": "Позиция {i}, литерал {lit}: противоречие с позиции {at}, атом {var}.",
+      "en": "Position {i}, literal {lit}: contradiction from position {at}, atom {var}."
+    }
+  }
+}

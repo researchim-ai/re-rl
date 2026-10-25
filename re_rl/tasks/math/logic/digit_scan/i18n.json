@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Символов {n}: {tokens}. Число от 0 до 9 — цифра. Отрицательное число — стоп. Чтение идёт слева. Каждая цифра до стопа дописывается справа: старое число умножается на 10 и к нему прибавляется цифра. Стоп и всё после него в число не входят. Если стопа нет, читается весь список. Какое число получилось?",
+      "en": "There are {n} symbols: {tokens}. A number from 0 to 9 is a digit. A negative number is a stop. Reading goes from the left. Each digit before the stop is written on the right: the old number is multiplied by 10 and the digit is added. The stop and everything after it do not enter the number. If there is no stop, the whole list is read. What number is obtained?"
+    },
+    "s1": {
+      "ru": "Символов {n}: {tokens}. Число от 0 до 9 — цифра. Отрицательное число — стоп. Чтение идёт слева. Каждая цифра до стопа дописывается справа: старое число умножается на 10 и к нему прибавляется цифра. Стоп и всё после него в число не входят. Если стопа нет, читается весь список. Сколько цифр вошло в число?",
+      "en": "There are {n} symbols: {tokens}. A number from 0 to 9 is a digit. A negative number is a stop. Reading goes from the left. Each digit before the stop is written on the right: the old number is multiplied by 10 and the digit is added. The stop and everything after it do not enter the number. If there is no stop, the whole list is read. How many digits entered the number?"
+    },
+    "s2": {
+      "ru": "Символ {i} равен {token}: число {value}, цифр {length}, стоп {stop}.",
+      "en": "Symbol {i} is {token}: number {value}, digits {length}, stop {stop}."
+    }
+  }
+}

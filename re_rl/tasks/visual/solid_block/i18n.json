@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке сетка из тёмных и светлых клеток. Сплошной квадрат состоит только из тёмных клеток. Какова сторона самого большого сплошного квадрата, в клетках? Если тёмных клеток нет, ответ 0.",
+      "en": "The picture shows a grid of dark and light cells. A solid square is made only of dark cells. What is the side of the largest solid square, in cells? If there are no dark cells, the answer is 0."
+    },
+    "s1": {
+      "ru": "На картинке сетка из тёмных и светлых клеток. Сплошной квадрат состоит только из тёмных клеток. Сколько сплошных квадратов со стороной 2?",
+      "en": "The picture shows a grid of dark and light cells. A solid square is made only of dark cells. How many solid squares of side 2 are there?"
+    },
+    "s2": {
+      "ru": "Строка {i}: новых квадратов 2 на 2 с нижней стороной в этой строке {added}, всего {twos}.",
+      "en": "Row {i}: new 2 by 2 squares whose bottom lies in this row {added}, total {twos}."
+    },
+    "s3": {
+      "ru": "Самая большая сторона {side}, квадратов 2 на 2 ровно {twos}.",
+      "en": "Largest side {side}, 2 by 2 squares {twos}."
+    }
+  }
+}

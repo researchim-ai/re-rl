@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Клеток {n}, номера от 0 до {n} минус 1. В каждой клетке записан номер следующей: {nxt}. Старт в клетке 0. Шагов тоже {n}: каждый шаг переходит в номер, записанный в текущей клетке. В какой клетке окажемся в конце?",
+      "en": "There are {n} cells, numbered from 0 through {n} minus 1. Each cell stores the number of the next cell: {nxt}. The walk starts at cell 0. There are also {n} steps: each step moves to the number stored in the current cell. Which cell do we reach at the end?"
+    },
+    "s1": {
+      "ru": "Клеток {n}, номера от 0 до {n} минус 1. В каждой клетке записан номер следующей: {nxt}. Старт в клетке 0. Шагов тоже {n}: каждый шаг переходит в номер, записанный в текущей клетке. Сколько раз после шага мы оказались в клетке 0? Сам старт не считается.",
+      "en": "There are {n} cells, numbered from 0 through {n} minus 1. Each cell stores the number of the next cell: {nxt}. The walk starts at cell 0. There are also {n} steps: each step moves to the number stored in the current cell. How many times do we land on cell 0 after a step? The start itself does not count."
+    },
+    "s2": {
+      "ru": "Шаг {i}: клетка {place}, попаданий в 0 уже {zeros}.",
+      "en": "Step {i}: cell {place}, landings on 0 so far {zeros}."
+    }
+  }
+}

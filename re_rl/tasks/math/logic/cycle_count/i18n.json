@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Перестановка чисел от 1 до {n}. Образ числа i — это i-й элемент списка: {images}. Идите по числам от 1 до {n}. Если число ещё не встречалось, оно открывает цикл: идите по образам, пока не вернётесь. Сколько циклов?",
+      "en": "A permutation of the numbers from 1 to {n}. The image of i is item i of the list: {images}. Walk the numbers from 1 to {n}. If a number is new, it opens a cycle: follow images until you return. How many cycles are there?"
+    },
+    "s1": {
+      "ru": "Перестановка чисел от 1 до {n}. Образ числа i — это i-й элемент списка: {images}. Идите по числам от 1 до {n}. Если число ещё не встречалось, оно открывает цикл: идите по образам, пока не вернётесь. Какова длина цикла, в котором лежит {k}?",
+      "en": "A permutation of the numbers from 1 to {n}. The image of i is item i of the list: {images}. Walk the numbers from 1 to {n}. If a number is new, it opens a cycle: follow images until you return. What is the length of the cycle that contains {k}?"
+    },
+    "s2": {
+      "ru": "Число {i}: новый цикл {opened}, циклов {cycles}, длина его цикла {length}.",
+      "en": "Number {i}: new cycle {opened}, cycles {cycles}, length of its cycle {length}."
+    }
+  }
+}

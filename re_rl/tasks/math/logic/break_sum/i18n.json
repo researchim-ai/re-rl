@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шагов {n}. В каждом число и признак выхода: {rows}. Если признак равен 0, число прибавляется к сумме. Если признак равен 1, цикл выходит до прибавления, и это число не входит в сумму. Дальнейшие шаги тоже ничего не прибавляют. Какова сумма?",
+      "en": "There are {n} steps. Each one gives a number and an exit flag: {rows}. When the flag is 0, the number is added to the sum. When the flag is 1, the loop exits before the addition, and that number is not in the sum. Later steps add nothing either. What is the sum?"
+    },
+    "s1": {
+      "ru": "Шагов {n}. В каждом число и признак выхода: {rows}. Если признак равен 0, число прибавляется к сумме. Если признак равен 1, цикл выходит до прибавления, и это число не входит в сумму. Дальнейшие шаги тоже ничего не прибавляют. Каков номер шага выхода? Если выхода нет, ответ 0.",
+      "en": "There are {n} steps. Each one gives a number and an exit flag: {rows}. When the flag is 0, the number is added to the sum. When the flag is 1, the loop exits before the addition, and that number is not in the sum. Later steps add nothing either. What is the index of the exit step? If there is no exit, the answer is 0."
+    },
+    "s2": {
+      "ru": "Шаг {i}: число {value}, признак {flag}, сумма {total}, выход {stop}.",
+      "en": "Step {i}: number {value}, flag {flag}, sum {total}, exit {stop}."
+    }
+  }
+}

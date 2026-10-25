@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке сетка. Серые клетки — стены. Красная точка отмечает начало краски, эта клетка свободная. Краска переходит на соседнюю свободную клетку через общую сторону и не проходит сквозь стены. Сколько свободных клеток она достигает, считая клетку с точкой?",
+      "en": "The picture shows a grid. Gray cells are walls. The red dot marks where the ink starts, and that cell is open. The ink moves to a neighboring open cell across a shared side and does not pass through walls. How many open cells does it reach, counting the cell with the dot?"
+    },
+    "s1": {
+      "ru": "На картинке сетка. Серые клетки — стены. Красная точка отмечает начало краски, эта клетка свободная. Краска переходит на соседнюю свободную клетку через общую сторону и не проходит сквозь стены. Сколько свободных клеток она не достигает?",
+      "en": "The picture shows a grid. Gray cells are walls. The red dot marks where the ink starts, and that cell is open. The ink moves to a neighboring open cell across a shared side and does not pass through walls. How many open cells does it fail to reach?"
+    },
+    "s2": {
+      "ru": "После строки {i}: достигнуто {reached}, не достигнуто {missed}.",
+      "en": "After row {i}: reached {reached}, missed {missed}."
+    }
+  }
+}

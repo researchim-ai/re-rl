@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Очередь сделана из двух стеков, оба пусты. Команд {n}, в каждой код и число: {ops}. Код 0 кладёт число в левый стек. Код 1 снимает верх правого стека. Если правый стек пуст, весь левый переливается в правый одним переносом: верх левого становится низом правого, и это один перенос. Снятие из пустой очереди даёт 0. Какова сумма снятых чисел?",
+      "en": "The queue is made of two stacks, both empty. There are {n} commands, each a code and a number: {ops}. Code 0 pushes the number onto the left stack. Code 1 pops the top of the right stack. If the right stack is empty, the whole left stack is poured onto the right in one transfer: the top of the left becomes the bottom of the right, and that is one transfer. A pop from an empty queue yields 0. What is the sum of the popped numbers?"
+    },
+    "s1": {
+      "ru": "Очередь сделана из двух стеков, оба пусты. Команд {n}, в каждой код и число: {ops}. Код 0 кладёт число в левый стек. Код 1 снимает верх правого стека. Если правый стек пуст, весь левый переливается в правый одним переносом: верх левого становится низом правого, и это один перенос. Снятие из пустой очереди даёт 0. Сколько было переносов?",
+      "en": "The queue is made of two stacks, both empty. There are {n} commands, each a code and a number: {ops}. Code 0 pushes the number onto the left stack. Code 1 pops the top of the right stack. If the right stack is empty, the whole left stack is poured onto the right in one transfer: the top of the left becomes the bottom of the right, and that is one transfer. A pop from an empty queue yields 0. How many transfers were there?"
+    },
+    "s2": {
+      "ru": "Команда {i}, код {kind}, число {value}: снято {out}, сумма снятых {got}, переносов {pours}.",
+      "en": "Command {i}, code {kind}, number {value}: popped {out}, sum {got}, transfers {pours}."
+    }
+  }
+}

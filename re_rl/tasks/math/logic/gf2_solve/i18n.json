@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Система из {n} уравнений на битах. Плюс означает исключающее или. Уравнение i выражает атом i через предыдущие атомы и свободный бит. Уравнения: {equations}. Каков атом {k}?",
+      "en": "A system of {n} equations on bits. Plus means exclusive or. Equation i expresses atom i through earlier atoms and a constant bit. The equations are {equations}. What is atom {k}?"
+    },
+    "s1": {
+      "ru": "Система из {n} уравнений на битах. Плюс означает исключающее или. Уравнение i выражает атом i через предыдущие атомы и свободный бит. Уравнения: {equations}. Сколько атомов равны 1?",
+      "en": "A system of {n} equations on bits. Plus means exclusive or. Equation i expresses atom i through earlier atoms and a constant bit. The equations are {equations}. How many atoms are 1?"
+    },
+    "s2": {
+      "ru": "Атом {i} = {body} + {rhs} = {bit}.",
+      "en": "Atom {i} = {body} + {rhs} = {bit}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Перестановка: {values}. Инверсия — пара, в которой большее число стоит левее меньшего. Для каждого места посчитайте, сколько чисел правее него меньше его, и сложите. Сколько инверсий?",
+      "en": "The permutation is {values}. An inversion is a pair where the larger number stands left of the smaller one. For each place, count how many numbers to its right are smaller, and add these counts. How many inversions are there?"
+    },
+    "s1": {
+      "ru": "Перестановка: {values}. Инверсия — пара, в которой большее число стоит левее меньшего. Для каждого места посчитайте, сколько чисел правее него меньше его. Сколько таких чисел у места {k}? Нумерация с 1.",
+      "en": "The permutation is {values}. An inversion is a pair where the larger number stands left of the smaller one. For each place, count how many numbers to its right are smaller. How many such numbers does place {k} have? Counting starts at 1."
+    },
+    "s2": {
+      "ru": "Место {i}, число {value}: правее меньших {here}, инверсий уже {total}.",
+      "en": "Place {i}, number {value}: smaller on the right {here}, inversions so far {total}."
+    }
+  }
+}

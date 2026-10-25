@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Троек {n}. В каждой три числа на прямой: опорное, свой пример и чужой пример. Тройки: {rows}. Запас равен модулю разности опорного и чужого минус модуль разности опорного и своего. Тройка нарушает условие, если запас меньше {margin}. Сколько троек нарушают условие?",
+      "en": "There are {n} triples. Each has three numbers on a line: the anchor, its own example, and a foreign example. The triples are {rows}. The gap is the absolute difference of the anchor and the foreign example minus the absolute difference of the anchor and its own example. A triple violates the condition when the gap is less than {margin}. How many triples violate the condition?"
+    },
+    "s1": {
+      "ru": "Троек {n}. В каждой три числа на прямой: опорное, свой пример и чужой пример. Тройки: {rows}. Запас равен модулю разности опорного и чужого минус модуль разности опорного и своего. Каков наименьший запас?",
+      "en": "There are {n} triples. Each has three numbers on a line: the anchor, its own example, and a foreign example. The triples are {rows}. The gap is the absolute difference of the anchor and the foreign example minus the absolute difference of the anchor and its own example. What is the smallest gap?"
+    },
+    "s2": {
+      "ru": "Тройка {i}: {anchor} {positive} {negative}, запас {gap}, нарушений уже {bad}, наименьший запас {worst}.",
+      "en": "Triple {i}: {anchor} {positive} {negative}, gap {gap}, violations so far {bad}, smallest gap {worst}."
+    }
+  }
+}

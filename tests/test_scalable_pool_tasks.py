@@ -252,6 +252,112 @@ from re_rl.tasks.math.logic.gate_fold.task import gate_trace
 from re_rl.tasks.math.logic.exactly_one.task import exact_trace
 from re_rl.tasks.math.logic.knave_next.task import knave_trace
 from re_rl.tasks.math.logic.priority_bit.task import priority_trace
+from re_rl.tasks.math.logic.interval_merge.task import merge_trace as interval_trace
+from re_rl.tasks.math.logic.cycle_count.task import cycle_trace
+from re_rl.tasks.math.logic.stack_perm.task import stack_trace
+from re_rl.tasks.math.logic.inversion_row.task import inversion_trace
+from re_rl.tasks.math.logic.run_length.task import run_trace
+from re_rl.tasks.math.logic.median_merge.task import merge_trace as list_merge
+from re_rl.tasks.math.geometry.diag_cross.task import diag_quads
+from re_rl.tasks.math.geometry.billiard_cross.task import billiard_trace as cross_trace
+from re_rl.tasks.math.discrete.popcount_sum.task import pop_trace
+from re_rl.tasks.math.discrete.rencontres_row.task import rencontres_row
+from re_rl.tasks.math.discrete.ballot_tri.task import ballot_rows
+from re_rl.tasks.math.discrete.dedekind_psi.task import dedekind_psi, psi_trace
+from re_rl.tasks.math.discrete.jordan_tot.task import jordan_two
+from re_rl.tasks.math.discrete.sylvester_row.task import sylvester_trace
+from re_rl.tasks.math.discrete.lucas_row.task import lucas_trace
+from re_rl.tasks.math.discrete.liouville_row.task import liouville, liouville_trace
+from re_rl.tasks.math.discrete.necklace_count.task import necklace_trace
+from re_rl.tasks.math.discrete.hamming_smooth.task import hamming_trace
+from re_rl.tasks.math.discrete.menage_count.task import menage_trace
+from re_rl.tasks.math.logic.bracket_final.task import bracket_trace
+from re_rl.tasks.math.logic.unit_prop.task import unit_trace
+from re_rl.tasks.math.logic.gf2_solve.task import gf2_trace
+from re_rl.tasks.math.logic.resolve_proof.task import resolution_trace, resolve
+from re_rl.tasks.math.logic.bool_eq.task import eq_trace
+from re_rl.tasks.math.logic.assign_check.task import check_trace
+from re_rl.tasks.math.logic.pigeon_place.task import pigeon_trace
+from re_rl.tasks.math.logic.kripke_box.task import box_trace
+from re_rl.tasks.math.logic.all_are.task import all_trace
+from re_rl.tasks.math.logic.literal_clash.task import clash_trace
+from re_rl.tasks.math.logic.until_line.task import until_trace
+from re_rl.tasks.math.logic.dung_ground.task import ground_trace, grounded_labels
+from re_rl.tasks.math.logic.causal_do.task import causal_pair, causal_values
+from re_rl.tasks.math.logic.lukas_fold.task import lukas_apply, lukas_trace
+from re_rl.tasks.math.logic.doctrinal.task import doctrine_result
+from re_rl.tasks.math.logic.knows_line.task import knows_trace
+from re_rl.tasks.math.logic.rough_set.task import rough_trace
+from re_rl.tasks.math.logic.naf_fire.task import naf_trace, reduct_matches
+from re_rl.tasks.math.logic.agenda_vote.task import agenda_trace
+from re_rl.tasks.ml.ctc_collapse.task import ctc_trace
+from re_rl.tasks.ml.relu_chain.task import relu_trace
+from re_rl.tasks.ml.causal_pick.task import prefix_choice
+from re_rl.tasks.ml.triplet_gap.task import triplet_trace
+from re_rl.tasks.ml.beam_keep.task import beam_trace as keep_trace
+from re_rl.tasks.rl.hindsight_hit.task import hindsight_trace
+from re_rl.tasks.rl.legal_greedy.task import legal_trace
+from re_rl.tasks.rl.reward_machine.task import machine_trace
+from re_rl.tasks.rl.episode_cut.task import cut_trace
+from re_rl.tasks.rl.best_reply.task import reply_trace
+from re_rl.tasks.ml.draft_accept.task import draft_trace
+from re_rl.tasks.ml.class_margin.task import score_gap
+from re_rl.tasks.ml.bin_tally.task import bin_trace
+from re_rl.tasks.ml.grad_accum.task import accum_trace
+from re_rl.tasks.ml.skip_add.task import skip_trace
+from re_rl.tasks.rl.arm_rate.task import arm_trace
+from re_rl.tasks.rl.budget_step.task import budget_trace
+from re_rl.tasks.rl.done_boot.task import boot_trace
+from re_rl.tasks.rl.greedy_gap.task import gap_trace
+from re_rl.tasks.rl.switch_cost.task import switch_trace
+from re_rl.tasks.math.logic.short_circuit.task import short_trace
+from re_rl.tasks.math.logic.ref_count.task import ref_trace
+from re_rl.tasks.math.logic.wrap_index.task import wrap_trace
+from re_rl.tasks.math.logic.bit_prog.task import bit_trace
+from re_rl.tasks.math.logic.break_sum.task import break_trace
+from re_rl.tasks.math.logic.bounds_step.task import bounds_trace
+from re_rl.tasks.math.logic.reg_swap.task import reg_trace
+from re_rl.tasks.math.logic.elif_pick.task import elif_trace
+from re_rl.tasks.math.logic.post_inc.task import post_trace
+from re_rl.tasks.math.logic.min_hold.task import stack_min
+from re_rl.tasks.math.logic.jump_add.task import jump_trace
+from re_rl.tasks.math.logic.div_chain.task import div_trace
+from re_rl.tasks.math.logic.clamp_add.task import clamp_trace
+from re_rl.tasks.math.logic.ptr_walk.task import ptr_trace
+from re_rl.tasks.math.logic.continue_sum.task import cont_trace
+from re_rl.tasks.math.logic.delay_line.task import delay_trace
+from re_rl.tasks.math.logic.switch_case.task import case_trace
+from re_rl.tasks.math.logic.digit_scan.task import scan_trace
+from re_rl.tasks.math.logic.rot_nibble.task import rot_trace
+from re_rl.tasks.math.logic.buf_len.task import buf_trace
+from re_rl.tasks.math.logic.cmp_branch.task import cmp_trace
+from re_rl.tasks.math.logic.bit_set.task import bitset_trace
+from re_rl.tasks.math.logic.cell_write.task import write_trace
+from re_rl.tasks.math.logic.lcg_step.task import lcg_trace
+from re_rl.tasks.math.logic.two_stack.task import queue_trace
+from re_rl.tasks.math.logic.sorted_insert.task import rank_trace
+from re_rl.tasks.math.logic.brace_pair.task import brace_trace
+from re_rl.tasks.math.logic.hash_probe.task import probe_trace
+from re_rl.tasks.math.logic.part_count.task import part_trace
+from re_rl.tasks.math.logic.fill_forward.task import fill_trace
+from re_rl.tasks.math.logic.xor_fold.task import xor_trace
+from re_rl.tasks.math.logic.bubble_pass.task import bubble_trace
+from re_rl.tasks.math.logic.mtf_list.task import mtf_trace
+from re_rl.tasks.math.logic.turnstile.task import stile_trace
+from re_rl.tasks.math.logic.hamming_step.task import ham_trace
+from re_rl.tasks.math.logic.row_major.task import index_trace
+from re_rl.tasks.math.logic.union_count.task import link_trace
+from re_rl.tasks.math.logic.trie_node.task import trie_trace
+from re_rl.tasks.math.logic.minute_add.task import minute_trace
+from re_rl.tasks.math.logic.mod_accum.task import mod_ops
+from re_rl.tasks.math.logic.nfa_run.task import nfa_trace
+from re_rl.tasks.math.logic.moore_run.task import moore_trace
+from re_rl.tasks.math.logic.sync_run.task import image_trace
+from re_rl.tasks.math.logic.meet_run.task import meet_trace
+from re_rl.tasks.math.logic.lfsr_run.task import lfsr_trace
+from re_rl.tasks.math.logic.crc_rem.task import crc_trace
+from re_rl.tasks.math.logic.feistel_run.task import feistel_trace
+from re_rl.tasks.math.logic.elgamal_enc.task import elgamal_trace
 from re_rl.tasks.ml.neighbor_vote.task import nearest_votes
 from re_rl.tasks.rl.trace_decay.task import decay_visits
 from re_rl.tasks.ml.boost_weights.task import double_weights
@@ -547,6 +653,112 @@ POOL = [
     "exactly_one",
     "knave_next",
     "priority_bit",
+    "interval_merge",
+    "cycle_count",
+    "stack_perm",
+    "inversion_row",
+    "run_length",
+    "median_merge",
+    "diag_cross",
+    "billiard_cross",
+    "popcount_sum",
+    "rencontres_row",
+    "ballot_tri",
+    "dedekind_psi",
+    "jordan_tot",
+    "sylvester_row",
+    "lucas_row",
+    "liouville_row",
+    "necklace_count",
+    "hamming_smooth",
+    "menage_count",
+    "bracket_final",
+    "unit_prop",
+    "gf2_solve",
+    "resolve_proof",
+    "bool_eq",
+    "assign_check",
+    "pigeon_place",
+    "kripke_box",
+    "all_are",
+    "literal_clash",
+    "until_line",
+    "dung_ground",
+    "causal_do",
+    "lukas_fold",
+    "doctrinal",
+    "knows_line",
+    "rough_set",
+    "naf_fire",
+    "agenda_vote",
+    "ctc_collapse",
+    "relu_chain",
+    "causal_pick",
+    "triplet_gap",
+    "beam_keep",
+    "hindsight_hit",
+    "legal_greedy",
+    "reward_machine",
+    "episode_cut",
+    "best_reply",
+    "draft_accept",
+    "class_margin",
+    "bin_tally",
+    "grad_accum",
+    "skip_add",
+    "arm_rate",
+    "budget_step",
+    "done_boot",
+    "greedy_gap",
+    "switch_cost",
+    "short_circuit",
+    "ref_count",
+    "wrap_index",
+    "bit_prog",
+    "break_sum",
+    "bounds_step",
+    "reg_swap",
+    "elif_pick",
+    "post_inc",
+    "min_hold",
+    "jump_add",
+    "div_chain",
+    "clamp_add",
+    "ptr_walk",
+    "continue_sum",
+    "delay_line",
+    "switch_case",
+    "digit_scan",
+    "rot_nibble",
+    "buf_len",
+    "cmp_branch",
+    "bit_set",
+    "cell_write",
+    "lcg_step",
+    "two_stack",
+    "sorted_insert",
+    "brace_pair",
+    "hash_probe",
+    "part_count",
+    "fill_forward",
+    "xor_fold",
+    "bubble_pass",
+    "mtf_list",
+    "turnstile",
+    "hamming_step",
+    "row_major",
+    "union_count",
+    "trie_node",
+    "minute_add",
+    "mod_accum",
+    "nfa_run",
+    "moore_run",
+    "sync_run",
+    "meet_run",
+    "lfsr_run",
+    "crc_rem",
+    "feistel_run",
+    "elgamal_enc",
 ]
 
 
@@ -2505,3 +2717,582 @@ def test_chain_values():
     trace = priority_trace(priority.bits)
     assert trace == priority.trace
     assert priority.index == trace[-1][0] and priority.zeros == trace[-1][1]
+
+    assert interval_trace([(1, 3), (4, 6)])[-1] == (1, 6)
+    assert interval_trace([(1, 2), (4, 5)])[-1] == (2, 4)
+    merged = _one("interval_merge", "en", 8, "pieces", seed=4)
+    trace = interval_trace(merged.intervals)
+    assert trace == merged.trace
+    assert merged.pieces == trace[-1][0] and merged.cover == trace[-1][1]
+
+    trace, lengths = cycle_trace([0, 1, 2, 3])
+    assert trace[-1][1] == 3 and lengths == [0, 1, 1, 1]
+    cycled = _one("cycle_count", "en", 8, "cycles", seed=4)
+    trace, lengths = cycle_trace(cycled.perm)
+    assert trace == cycled.trace and cycled.cycles == trace[-1][1]
+    assert cycled.length == lengths[cycled.k]
+
+    assert stack_trace([1, 2, 3])[-1][3] == 1 and stack_trace([1, 2, 3])[-1][1] == 3
+    assert stack_trace([3, 1, 2])[-1][3] == 0
+    stacked = _one("stack_perm", "en", 8, "ok", seed=4)
+    trace = stack_trace(stacked.target)
+    assert trace == stacked.trace and stacked.ok == trace[-1][3] and stacked.pops == trace[-1][1]
+
+    assert inversion_trace([3, 2, 1])[-1] == (0, 3)
+    inverted = _one("inversion_row", "en", 8, "total", seed=4)
+    trace = inversion_trace(inverted.values)
+    assert trace == inverted.trace
+    assert inverted.total == trace[-1][1] and inverted.here == trace[inverted.k - 1][0]
+
+    trace, full = run_trace([1, 1, 1, 0])
+    assert trace[-1][1] == 2 and full[1] == 3
+    runs = _one("run_length", "en", 8, "runs", seed=4)
+    trace, full = run_trace(runs.symbols)
+    assert trace == runs.trace and runs.runs == trace[-1][1] and runs.span == full[runs.r]
+
+    merged_values, trace = list_merge([1, 3, 5], [2, 4, 6])
+    assert merged_values[2] == 3 and trace[2][2] == 2
+    middle = _one("median_merge", "en", 8, "median", seed=4)
+    values, trace = list_merge(middle.left, middle.right)
+    assert values == middle.merged and trace == middle.trace
+    assert middle.median == values[middle.n - 1] and middle.lefts == trace[middle.n - 1][2]
+
+    assert len(diag_quads(5)) == 5 and len(diag_quads(6)) == 15
+    diagonals = _one("diag_cross", "en", 8, "count", seed=4)
+    quads = diag_quads(diagonals.vertices)
+    assert quads == diagonals.quads and diagonals.count == len(quads)
+    assert diagonals.top == quads[diagonals.k - 1][3]
+
+    trace, corners = cross_trace(2, 3)
+    assert len(trace) == 4 and corners == 1
+    table = _one("billiard_cross", "en", 8, "squares", seed=4)
+    trace, corners = cross_trace(table.width, table.height)
+    assert trace == table.trace and table.squares == len(trace) and table.corners == corners
+
+    assert pop_trace(4)[-1] == (1, 5)
+    ones = _one("popcount_sum", "en", 8, "total", seed=4)
+    trace = pop_trace(ones.n)
+    assert trace == ones.trace and ones.total == trace[-1][1] and ones.bits == trace[ones.k - 1][0]
+
+    assert rencontres_row(5) == [44, 45, 20, 10, 0, 1]
+    fixed = _one("rencontres_row", "en", 8, "total", seed=4)
+    row = rencontres_row(fixed.n)
+    assert row == fixed.row and fixed.total == sum(row) and fixed.fixed == row[fixed.k]
+
+    assert ballot_rows(4)[4] == [1, 4, 9, 14, 14]
+    ballot = _one("ballot_tri", "en", 8, "catalan", seed=4)
+    rows = ballot_rows(ballot.n)
+    assert rows == ballot.rows and ballot.catalan == rows[-1][-1]
+    assert ballot.entry == rows[-1][ballot.k]
+
+    assert dedekind_psi(1) == 1 and dedekind_psi(6) == 12 and dedekind_psi(4) == 6
+    psi = _one("dedekind_psi", "en", 8, "total", seed=4)
+    trace = psi_trace(psi.n)
+    assert trace == psi.trace and psi.total == trace[-1][1] and psi.at == trace[psi.k - 1][0]
+
+    assert [jordan_two(i) for i in range(1, 7)] == [1, 3, 8, 12, 24, 24]
+    jordan = _one("jordan_tot", "en", 8, "total", seed=4)
+    assert jordan.at == jordan_two(jordan.k) and jordan.total == sum(jordan_two(i) for i in range(1, jordan.n + 1))
+
+    assert sylvester_trace(4) == [2, 3, 7, 43, 1807]
+    sylvester = _one("sylvester_row", "en", 8, "value", seed=4)
+    trace = sylvester_trace(sylvester.n)
+    assert trace == sylvester.trace and sylvester.value == trace[-1] and sylvester.prev == trace[-2]
+
+    assert lucas_trace(6)[-1] == 18
+    lucas = _one("lucas_row", "en", 8, "value", seed=4)
+    trace = lucas_trace(lucas.n)
+    assert trace == lucas.trace and lucas.value == trace[-1] and lucas.total == sum(trace)
+
+    assert liouville(1) == 1 and liouville(4) == 1 and liouville(12) == -1
+    assert liouville_trace(4)[-1] == (1, 0)
+    signs = _one("liouville_row", "en", 8, "sum", seed=4)
+    trace = liouville_trace(signs.n)
+    assert trace == signs.trace and signs.sum == trace[-1][1] and signs.at == trace[signs.k - 1][0]
+
+    assert necklace_trace(5)[-1] == 32
+    beads = _one("necklace_count", "en", 8, "count", seed=4)
+    trace = necklace_trace(beads.n)
+    assert trace == beads.trace and beads.power == trace[-1]
+    assert beads.count == (beads.power + (beads.n - 1) * 2) // beads.n
+
+    assert [item[0] for item in hamming_trace(10)] == [1, 2, 3, 4, 5, 6, 8, 9, 10, 12]
+    smooth = _one("hamming_smooth", "en", 8, "value", seed=4)
+    trace = hamming_trace(smooth.n)
+    assert trace == smooth.trace and smooth.value == trace[-1][0]
+    assert smooth.total == sum(item[0] for item in trace)
+
+    assert [item[1] for item in menage_trace(5)][-1] == 13
+    assert menage_trace(3)[-1][1] == 1 and menage_trace(4)[-1][1] == 2
+    seats = _one("menage_count", "en", 8, "value", seed=4)
+    trace = menage_trace(seats.n)
+    assert trace == seats.trace and seats.value == trace[-1][1] and seats.term == trace[seats.k][0]
+
+    trace, champion, finalist = bracket_trace([1, 4, 2, 3])
+    assert len(trace) == 3 and champion == 2 and finalist == 4
+    bracket = _one("bracket_final", "en", 8, "champion", seed=4)
+    trace, champion, finalist = bracket_trace(bracket.scores)
+    assert trace == bracket.trace and bracket.champion == champion and bracket.finalist == finalist
+
+    trace, values = unit_trace(1, [(1, 1, 2, 0), (2, 0, 3, 1)])
+    assert values[1:] == [1, 0, 1]
+    forced = _one("unit_prop", "en", 6, "bit", seed=4)
+    trace, values = unit_trace(forced.start, forced.rules)
+    assert trace == forced.trace and forced.bit == (2 if values[forced.k] is None else values[forced.k])
+
+    assert gf2_trace([([], 1), ([0], 1), ([0, 1], 0)]) == [1, 0, 1]
+    system = _one("gf2_solve", "en", 6, "weight", seed=4)
+    assert gf2_trace(system.equations) == system.values and system.weight == sum(system.values)
+
+    clauses, derived = resolution_trace(3, True)
+    assert derived[-1] == [] and resolve([1], [-1, 2], 1) == [2]
+    clauses, derived = resolution_trace(3, False)
+    assert derived[-1] == [4]
+    proof = _one("resolve_proof", "en", 6, "empty", seed=4)
+    _clauses, derived = resolution_trace(proof.n, bool(proof.cancel))
+    assert derived == proof.derived and proof.empty == (1 if not derived[-1] else 0)
+
+    assert eq_trace(2, [(1, 2, 0), (1, 2, 1)])[-1] == (0, 2)
+    assert eq_trace(2, [(1, 1, 0), (1, 2, 1)])[-1][0] == 1
+    equal = _one("bool_eq", "en", 6, "ok", seed=4)
+    trace = eq_trace(equal.n, equal.constraints)
+    assert trace == equal.trace and equal.ok == trace[-1][0] and equal.broke == trace[-1][1]
+
+    assert check_trace([[1, -2], [-1]], [0, 1, 0])[0][0] == 1
+    assert check_trace([[-1]], [0, 1])[-1][2] == 1
+    checked = _one("assign_check", "en", 6, "sat", seed=4)
+    trace = check_trace(checked.clauses, checked.bits)
+    assert trace == checked.trace and checked.sat == trace[-1][1] and checked.fail == trace[-1][2]
+
+    assert pigeon_trace(2, [1, 2, 1])[-1][0] == 1
+    birds = _one("pigeon_place", "en", 6, "hole", seed=4)
+    trace = pigeon_trace(birds.holes, birds.places)
+    assert trace == birds.trace and birds.hole == trace[-1][0] and birds.load == trace[-1][2]
+
+    assert box_trace([0, 1, 0]) == [(1, 1), (0, 1), (1, 2)]
+    worlds = _one("kripke_box", "en", 6, "boxes", seed=4)
+    trace = box_trace(worlds.bits)
+    assert trace == worlds.trace and worlds.boxes == trace[-1][1] and worlds.here == trace[worlds.k - 1][0]
+
+    assert all_trace([1, 1, 0, 1]) == [(1, 1), (2, 2), (2, 2), (2, 3)]
+    chain = _one("all_are", "en", 6, "far", seed=4)
+    trace = all_trace(chain.links)
+    assert trace == chain.trace and chain.far == trace[-1][0] and chain.opened == trace[-1][1]
+
+    assert clash_trace([1, 2, -1])[-1] == (3, 1)
+    assert clash_trace([1, 1, 2])[-1] == (0, 0)
+    clash = _one("literal_clash", "en", 6, "at", seed=4)
+    trace = clash_trace(clash.literals)
+    assert trace == clash.trace and clash.at == trace[-1][0] and clash.var == trace[-1][1]
+
+    assert until_trace([1, 1, 0], [0, 1, 0]) == [(1, 1), (1, 2), (0, 2)]
+    timed = _one("until_line", "en", 6, "count", seed=4)
+    trace = until_trace(timed.hold, timed.stop)
+    assert trace == timed.trace and timed.count == trace[-1][1] and timed.here == trace[timed.k - 1][0]
+
+    assert ground_trace([[], [1], [1]]) == [(1, 1), (0, 1), (0, 1)]
+    assert grounded_labels([[], [], [2]])[1:] == [1, 1, 0]
+    argued = _one("dung_ground", "en", 6, "inside", seed=4)
+    trace = ground_trace(argued.attacks)
+    assert trace == argued.trace and argued.inside == trace[-1][1]
+    assert grounded_labels(argued.attacks)[argued.k] == argued.here
+
+    assert causal_values(1, [(1, 1, 0)], 1, 0)[1:] == [0, 1]
+    assert causal_values(1, [(1, 1, 0)], 0, 0)[1:] == [1, 0]
+    caused = _one("causal_do", "en", 6, "shift", seed=4)
+    trace = causal_pair(caused.start, caused.rules, caused.cut, caused.bit)
+    assert trace == caused.trace and caused.shift == trace[-1][2] and caused.after == trace[caused.k - 1][1]
+
+    assert lukas_apply(4, 0, 4, 4) == 4
+    assert lukas_apply(3, 1, 3, 4) == 4
+    assert lukas_apply(4, 2, 0, 4) == 0
+    assert lukas_trace(4, [(2, 0), (0, 4)], 4) == [(0, 1), (0, 2)]
+    folded = _one("lukas_fold", "en", 6, "degree", seed=4)
+    trace = lukas_trace(folded.start, folded.ops, folded.bound)
+    assert trace == folded.trace and folded.degree == trace[-1][0] and folded.zeros == trace[-1][1]
+
+    trace, premise, stated, clash = doctrine_result([(1, 1), (1, 0), (0, 1)])
+    assert premise == 1 and stated == 0 and clash == 1
+    judges = _one("doctrinal", "en", 6, "premise", seed=4)
+    trace, premise, stated, clash = doctrine_result(judges.votes)
+    assert trace == judges.trace and judges.premise == premise and judges.clash == clash
+
+    assert knows_trace([1, 0], [0]) == [(1, 1), (0, 1)]
+    assert knows_trace([1, 0], [1]) == [(0, 0), (0, 0)]
+    assert knows_trace([1, 1], [1]) == [(1, 1), (1, 2)]
+    agent = _one("knows_line", "en", 6, "known", seed=4)
+    trace = knows_trace(agent.bits, agent.doors)
+    assert trace == agent.trace and agent.known == trace[-1][1] and agent.here == trace[agent.k - 1][0]
+
+    assert rough_trace([(1, 0, 1), (1, 0, 0)])[-1][2:] == (0, 2)
+    assert rough_trace([(1, 0, 1), (1, 0, 1)])[-1][2:] == (2, 2)
+    assert rough_trace([(1, 0, 0), (0, 1, 1)])[-1][2:] == (1, 1)
+    approx = _one("rough_set", "en", 6, "lower", seed=4)
+    trace = rough_trace(approx.rows)
+    assert trace == approx.trace and approx.lower == trace[-1][2] and approx.upper == trace[-1][3]
+
+    trace, values = naf_trace(1, [(0, 1), (2, 0)])
+    assert values[1:] == [1, 0, 0]
+    trace, values = naf_trace(0, [(0, 1)])
+    assert values[1:] == [0, 1]
+    reduct_matches(0, [(0, 1)], values)
+    program = _one("naf_fire", "en", 6, "trues", seed=4)
+    trace, values = naf_trace(program.fact, program.rules)
+    assert trace == program.trace and program.trues == trace[-1][1] and program.here == values[program.k]
+
+    pairs = [(1, 2, 1), (1, 3, 3), (2, 3, 2)]
+    assert agenda_trace([1, 2, 3], pairs)[-1][2:] == (3, 1)
+    ballot = _one("agenda_vote", "en", 6, "winner", seed=4)
+    trace = agenda_trace(ballot.agenda, ballot.pairs)
+    assert trace == ballot.trace and ballot.winner == trace[-1][2] and ballot.changes == trace[-1][3]
+
+    assert ctc_trace([1, 1, 0, 1]) == [(1, 1), (1, 1), (1, 1), (2, 1)]
+    assert ctc_trace([0, 0]) == [(0, 0), (0, 0)]
+    collapsed = _one("ctc_collapse", "en", 6, "length", seed=4)
+    trace = ctc_trace(collapsed.labels)
+    assert trace == collapsed.trace and collapsed.length == trace[-1][0] and collapsed.last == trace[-1][1]
+
+    assert relu_trace(1, [(0, 2), (1, 0)]) == [(2, 2, 0), (2, 2, 0)]
+    assert relu_trace(3, [(-1, 0)]) == [(-3, 0, 0)]
+    gated = _one("relu_chain", "en", 6, "final", seed=4)
+    trace = relu_trace(gated.start, gated.layers)
+    assert trace == gated.trace and gated.final == trace[-1][1] and gated.factor == trace[-1][2]
+
+    assert prefix_choice([2, 2, 1]) == [(1, 2, 0), (1, 2, 1), (1, 2, 2)]
+    picked = _one("causal_pick", "en", 6, "chosen", seed=4)
+    trace = prefix_choice(picked.scores)
+    assert trace == picked.trace and picked.chosen == trace[-1][0] and picked.look == trace[-1][2]
+
+    assert triplet_trace([(0, 1, 5), (0, 2, 1)]) == [(4, 0, 4), (-1, 1, -1)]
+    triples = _one("triplet_gap", "en", 6, "bad", seed=4)
+    trace = triplet_trace(triples.rows)
+    assert trace == triples.trace and triples.bad == trace[-1][1] and triples.worst == trace[-1][2]
+
+    assert keep_trace([(1, 3), (0, 2)]) == [(3, 1, 1), (5, 3, 1)]
+    beam = _one("beam_keep", "en", 6, "best", seed=4)
+    trace = keep_trace(beam.rows)
+    assert trace == beam.trace and beam.best == trace[-1][0] and beam.token == trace[-1][2]
+
+    assert hindsight_trace([1, 2, 1], 2) == [(0, 1), (1, 1), (1, 2)]
+    revised = _one("hindsight_hit", "en", 6, "revised", seed=4)
+    trace = hindsight_trace(revised.states, revised.goal)
+    assert trace == revised.trace and revised.original == trace[-1][0] and revised.revised == trace[-1][1]
+
+    assert legal_trace([(2, 9, 1, 0), (1, 4, 1, 1), (3, 3, 1, 1)]) == [(0, 0), (1, 1), (0, 1)]
+    masked = _one("legal_greedy", "en", 6, "total", seed=4)
+    trace = legal_trace(masked.rows)
+    assert trace == masked.trace and masked.total == trace[-1][1] and masked.last == trace[-1][0]
+
+    assert machine_trace([1, 2, 0, 1]) == [(1, 0, 0), (2, 4, 4), (2, 1, 5), (2, 1, 6)]
+    machine = _one("reward_machine", "en", 6, "reward", seed=4)
+    trace = machine_trace(machine.events)
+    assert trace == machine.trace and machine.reward == trace[-1][2] and machine.phase == trace[-1][0]
+
+    assert cut_trace([1, 2, 2], [3, -1, 4], 2) == [(3, 3, 0), (2, 2, 2), (2, 6, 2)]
+    episode = _one("episode_cut", "en", 6, "kept", seed=4)
+    trace = cut_trace(episode.states, episode.rewards, episode.goal)
+    assert trace == episode.trace and episode.kept == trace[-1][0] and episode.stop == trace[-1][2]
+
+    agent = ((1, 0), (0, 2))
+    opponent = ((0, 1), (2, 0))
+    assert reply_trace(agent, opponent, 0, 2) == [(0, 1, 1, 1), (1, 2, 0, 3)]
+    replies = _one("best_reply", "en", 6, "total", seed=4)
+    trace = reply_trace(replies.agent, replies.opponent, replies.opp, replies.n)
+    assert trace == replies.trace and replies.total == trace[-1][3] and replies.action == trace[-1][0]
+
+    assert draft_trace([(1, 1), (1, 0), (0, 0)]) == [(1, 0), (1, 2), (1, 2)]
+    assert draft_trace([(1, 1), (2, 2)])[-1] == (2, 0)
+    drafted = _one("draft_accept", "en", 6, "taken", seed=4)
+    trace = draft_trace(drafted.pairs)
+    assert trace == drafted.trace and drafted.taken == trace[-1][0] and drafted.at == trace[-1][1]
+
+    assert score_gap([(5, 1, 0, 0), (1, 3, 4, 0)]) == [(4, 0, 4), (-3, 1, -3)]
+    margins = _one("class_margin", "en", 6, "bad", seed=4)
+    trace = score_gap(margins.rows)
+    assert trace == margins.trace and margins.bad == trace[-1][1] and margins.worst == trace[-1][2]
+
+    assert bin_trace([(1, 1), (2, 0), (1, 0)], 1) == [(1, 0), (1, 0), (1, 1)]
+    binned = _one("bin_tally", "en", 6, "correct", seed=4)
+    trace = bin_trace(binned.rows, binned.bucket)
+    assert trace == binned.trace and binned.correct == trace[-1][0] and binned.wrong == trace[-1][1]
+
+    assert accum_trace(0, [1, 2, 3, 4]) == [(0, 0, 1), (3, -3, 0), (0, -3, 3), (7, -10, 0)]
+    accumulated = _one("grad_accum", "en", 6, "weight", seed=4)
+    trace = accum_trace(accumulated.start, accumulated.grads)
+    assert trace == accumulated.trace and accumulated.weight == trace[-1][1] and accumulated.pair == trace[-1][0]
+
+    assert skip_trace(2, [(1, 3), (0, 5), (1, -1)]) == [(5, 1), (5, 1), (4, 2)]
+    skipped = _one("skip_add", "en", 6, "value", seed=4)
+    trace = skip_trace(skipped.start, skipped.steps)
+    assert trace == skipped.trace and skipped.value == trace[-1][0] and skipped.opens == trace[-1][1]
+
+    assert arm_trace([(1, 1), (1, 0), (2, 1)]) == [(1, 1, 0, 1, 0), (1, 1, 0, 2, 0), (2, 1, 1, 2, 1)]
+    arms = _one("arm_rate", "en", 6, "leader", seed=4)
+    trace = arm_trace(arms.pulls)
+    assert trace == arms.trace and arms.leader == trace[-1][0] and arms.hits == trace[-1][1]
+
+    assert budget_trace(1, [1, 1, 0]) == [(1, 0, 0), (1, 0, 1), (1, 0, 1)]
+    spent = _one("budget_step", "en", 6, "place", seed=4)
+    trace = budget_trace(spent.budget, spent.actions)
+    assert trace == spent.trace and spent.place == trace[-1][0] and spent.blocked == trace[-1][2]
+
+    assert boot_trace([(2, 5, 0), (1, 9, 1)]) == [(7, 7, 0), (1, 8, 1)]
+    booted = _one("done_boot", "en", 6, "total", seed=4)
+    trace = boot_trace(booted.rows)
+    assert trace == booted.trace and booted.total == trace[-1][1] and booted.terminals == trace[-1][2]
+
+    assert gap_trace([(4, 1), (2, 2)]) == [(3, 3, 0), (0, 3, 1)]
+    gaps = _one("greedy_gap", "en", 6, "total", seed=4)
+    trace = gap_trace(gaps.rows)
+    assert trace == gaps.trace and gaps.total == trace[-1][1] and gaps.ties == trace[-1][2]
+
+    assert switch_trace([3, 1, 4], [0, 0, 1]) == [(0, 3, 3), (0, 4, 4), (1, 8, 7)]
+    switched = _one("switch_cost", "en", 6, "net", seed=4)
+    trace = switch_trace(switched.rewards, switched.actions)
+    assert trace == switched.trace and switched.net == trace[-1][2] and switched.switches == trace[-1][0]
+
+    assert short_trace(0, [(0, 1), (1, 1)]) == [(0, 1), (0, 1), (1, 2)]
+    assert short_trace(1, [(1, 0)]) == [(1, 1), (1, 1)]
+    gated = _one("short_circuit", "en", 6, "value", seed=4)
+    trace = short_trace(gated.start, gated.steps)
+    assert trace == gated.trace and gated.value == trace[-1][0] and gated.reads == trace[-1][1]
+
+    assert ref_trace([1, -1, -1, -1]) == [(2, 0), (1, 0), (0, 1), (0, 1)]
+    refs = _one("ref_count", "en", 6, "count", seed=4)
+    trace = ref_trace(refs.events)
+    assert trace == refs.trace and refs.count == trace[-1][0] and refs.frees == trace[-1][1]
+
+    assert wrap_trace(3, [1, 1, 1]) == [(1, 0), (2, 0), (0, 1)]
+    ring = _one("wrap_index", "en", 6, "index", seed=4)
+    trace = wrap_trace(ring.n, ring.steps)
+    assert trace == ring.trace and ring.index == trace[-1][0] and ring.visits == trace[-1][1]
+
+    assert bit_trace(3, [(3, 0), (0, 7), (2, 6)]) == [(6, 2), (6, 2), (0, 0)]
+    program = _one("bit_prog", "en", 6, "reg", seed=4)
+    trace = bit_trace(program.start, program.ops)
+    assert trace == program.trace and program.reg == trace[-1][0] and program.ones == trace[-1][1]
+
+    assert break_trace([(4, 0), (5, 1), (6, 0)]) == [(4, 0), (4, 2), (4, 2)]
+    broken = _one("break_sum", "en", 6, "total", seed=4)
+    trace = break_trace(broken.rows)
+    assert trace == broken.trace and broken.total == trace[-1][0] and broken.stop == trace[-1][1]
+
+    assert bounds_trace(3, [1, 1, 1]) == [(1, 0), (2, 0), (2, 1)]
+    bounded = _one("bounds_step", "en", 6, "index", seed=4)
+    trace = bounds_trace(bounded.n, bounded.steps)
+    assert trace == bounded.trace and bounded.index == trace[-1][0] and bounded.faults == trace[-1][1]
+
+    assert reg_trace(1, 2, -1, [0, 1, 2]) == [(2, 1, 1), (3, 1, 1), (3, 0, 1)]
+    regs = _one("reg_swap", "en", 6, "left", seed=4)
+    trace = reg_trace(regs.left, regs.right, regs.extra, regs.ops)
+    assert trace == regs.trace and regs.final_left == trace[-1][0] and regs.swaps == trace[-1][2]
+
+    assert elif_trace([(0, 5), (1, 3), (1, 9)]) == [(0, 0), (3, 2), (3, 2)]
+    chosen = _one("elif_pick", "en", 6, "value", seed=4)
+    trace = elif_trace(chosen.branches)
+    assert trace == chosen.trace and chosen.value == trace[-1][0] and chosen.at == trace[-1][1]
+
+    assert post_trace(3, [0, 1, 0]) == [(4, 3), (5, 8), (6, 13)]
+    posted = _one("post_inc", "en", 6, "value", seed=4)
+    trace = post_trace(posted.start, posted.ops)
+    assert trace == posted.trace and posted.value == trace[-1][0] and posted.used == trace[-1][1]
+
+    assert stack_min([(0, 3), (0, 1), (1, 0), (1, 0)]) == [(3, 0), (1, 0), (3, 1), (0, 4)]
+    held = _one("min_hold", "en", 6, "low", seed=4)
+    trace = stack_min(held.ops)
+    assert trace == held.trace and held.low == trace[-1][0] and held.popped == trace[-1][1]
+
+    assert jump_trace([(0, 2), (1, 2), (0, 5), (0, 1)]) == [(2, 1), (2, 2), (2, 2), (3, 3)]
+    jumped = _one("jump_add", "en", 6, "acc", seed=4)
+    trace = jump_trace(jumped.ops)
+    assert trace == jumped.trace and jumped.acc == trace[-1][0] and jumped.ran == trace[-1][1]
+
+    assert div_trace(17, [3, 2]) == [(5, 2), (2, 3)]
+    divided = _one("div_chain", "en", 6, "quot", seed=4)
+    trace = div_trace(divided.start, divided.divisors)
+    assert trace == divided.trace and divided.quot == trace[-1][0] and divided.rems == trace[-1][1]
+
+    assert clamp_trace(1, 3, [4, -5, 1]) == [(3, 1), (0, 2), (1, 2)]
+    clamped = _one("clamp_add", "en", 6, "value", seed=4)
+    trace = clamp_trace(clamped.start, clamped.n, clamped.deltas)
+    assert trace == clamped.trace and clamped.value == trace[-1][0] and clamped.clips == trace[-1][1]
+
+    assert ptr_trace([1, 2, 0]) == [(1, 0), (2, 0), (0, 1)]
+    walked = _one("ptr_walk", "en", 6, "land", seed=4)
+    trace = ptr_trace(walked.nxt)
+    assert trace == walked.trace and walked.land == trace[-1][0] and walked.zeros == trace[-1][1]
+
+    assert cont_trace([(4, 0), (5, 1), (6, 0)]) == [(4, 1), (4, 1), (10, 2)]
+    continued = _one("continue_sum", "en", 6, "total", seed=4)
+    trace = cont_trace(continued.rows)
+    assert trace == continued.trace and continued.total == trace[-1][0] and continued.kept == trace[-1][1]
+
+    assert delay_trace([4, 5, 6, 7]) == [(0, 0), (0, 0), (4, 4), (5, 9)]
+    delayed = _one("delay_line", "en", 6, "out", seed=4)
+    trace = delay_trace(delayed.values)
+    assert trace == delayed.trace and delayed.out == trace[-1][0] and delayed.total == trace[-1][1]
+
+    assert case_trace(2, [(1, 5), (2, 7), (2, 9)], 0) == [(0, 0), (7, 2), (7, 2)]
+    picked = _one("switch_case", "en", 6, "chosen", seed=4)
+    trace = case_trace(picked.value, picked.rows, picked.default)
+    assert trace == picked.trace and picked.chosen == trace[-1][0] and picked.at == trace[-1][1]
+
+    assert scan_trace([1, 2, -1, 4]) == [(1, 1, 0), (12, 2, 0), (12, 2, 3), (12, 2, 3)]
+    scanned = _one("digit_scan", "en", 6, "value", seed=4)
+    trace = scan_trace(scanned.tokens)
+    assert trace == scanned.trace and scanned.value == trace[-1][0] and scanned.length == trace[-1][1]
+
+    assert rot_trace(1, [1, 1]) == [(2, 1), (4, 2)]
+    assert rot_trace(9, [1]) == [(3, 1)]
+    rotated = _one("rot_nibble", "en", 6, "value", seed=4)
+    trace = rot_trace(rotated.start, rotated.shifts)
+    assert trace == rotated.trace and rotated.value == trace[-1][0] and rotated.changed == trace[-1][1]
+
+    assert buf_trace([(0, 3), (0, 2), (1, 4), (1, 1)]) == [(3, 3), (5, 5), (1, 5), (0, 5)]
+    buffer = _one("buf_len", "en", 6, "length", seed=4)
+    trace = buf_trace(buffer.ops)
+    assert trace == buffer.trace and buffer.length == trace[-1][0] and buffer.peak == trace[-1][1]
+
+    assert cmp_trace(4, [(5, 1, 10), (3, 2, -1)]) == [(5, 1), (4, 1)]
+    branched = _one("cmp_branch", "en", 6, "value", seed=4)
+    trace = cmp_trace(branched.start, branched.steps)
+    assert trace == branched.trace and branched.value == trace[-1][0] and branched.lows == trace[-1][1]
+
+    assert bitset_trace([(1, 0), (1, 0), (0, 0), (1, 1)]) == [(1, 1), (1, 1), (0, 1), (2, 2)]
+    bits = _one("bit_set", "en", 6, "mask", seed=4)
+    trace = bitset_trace(bits.ops)
+    assert trace == bits.trace and bits.mask == trace[-1][0] and bits.news == trace[-1][1]
+
+    assert write_trace(3, [(1, 4), (0, 2), (1, 7)], 1) == [(4, 4), (4, 6), (7, 9)]
+    cells = _one("cell_write", "en", 6, "cell", seed=4)
+    trace = write_trace(cells.n, cells.writes, cells.query)
+    assert trace == cells.trace and cells.cell == trace[-1][0] and cells.total == trace[-1][1]
+
+    assert lcg_trace(3, [(2, 1), (3, 0)]) == [(7, 0), (1, 0)]
+    generated = _one("lcg_step", "en", 6, "value", seed=4)
+    trace = lcg_trace(generated.start, generated.steps)
+    assert trace == generated.trace and generated.value == trace[-1][0] and generated.zeros == trace[-1][1]
+
+    assert queue_trace([(0, 4), (0, 5), (1, 0), (1, 0), (1, 0)]) == [
+        (0, 0, 0), (0, 0, 0), (4, 4, 1), (5, 9, 1), (0, 9, 1),
+    ]
+    queued = _one("two_stack", "en", 6, "got", seed=4)
+    trace = queue_trace(queued.ops)
+    assert trace == queued.trace and queued.got == trace[-1][1] and queued.pours == trace[-1][2]
+
+    assert rank_trace([3, 1, 3]) == [(1, 3), (1, 3), (3, 3)]
+    inserted = _one("sorted_insert", "en", 6, "rank", seed=4)
+    trace = rank_trace(inserted.values)
+    assert trace == inserted.trace and inserted.rank == trace[-1][0] and inserted.max == trace[-1][1]
+
+    trace, left_open = brace_trace([0, 2, 1])
+    assert trace == [(1, 0), (2, 0), (2, 1)] and left_open == 2
+    braces = _one("brace_pair", "en", 6, "errors", seed=4)
+    trace, left_open = brace_trace(braces.tokens)
+    assert trace == braces.trace and braces.errors == trace[-1][1] and braces.open == left_open
+
+    assert probe_trace(4, [1, 5, 2]) == [(1, 1), (2, 3), (3, 5)]
+    probed = _one("hash_probe", "en", 6, "slot", seed=4)
+    trace = probe_trace(probed.n, probed.keys)
+    assert trace == probed.trace and probed.slot == trace[-1][0] and probed.probes == trace[-1][1]
+
+    assert part_trace([3, 1, 4, 1], 3) == [(0, 1), (1, 1), (1, 1), (2, 1)]
+    parts = _one("part_count", "en", 6, "left", seed=4)
+    trace = part_trace(parts.values, parts.pivot)
+    assert trace == parts.trace and parts.left == trace[-1][0] and parts.equal == trace[-1][1]
+
+    assert fill_trace([0, 4, 0, 0, 2]) == [(0, 0, 0), (4, 4, 0), (4, 8, 1), (4, 12, 2), (2, 14, 2)]
+    filled = _one("fill_forward", "en", 6, "total", seed=4)
+    trace = fill_trace(filled.values)
+    assert trace == filled.trace and filled.total == trace[-1][1] and filled.replaced == trace[-1][2]
+
+    assert xor_trace([3, 1, 2]) == [(3, 0), (2, 0), (0, 1)]
+    folded = _one("xor_fold", "en", 6, "acc", seed=4)
+    trace = xor_trace(folded.values)
+    assert trace == folded.trace and folded.acc == trace[-1][0] and folded.zeros == trace[-1][1]
+
+    assert bubble_trace([3, 1, 2]) == [(1, 1), (2, 1)]
+    bubbled = _one("bubble_pass", "en", 6, "swaps", seed=4)
+    trace = bubble_trace(bubbled.values)
+    assert trace == bubbled.trace and bubbled.swaps == trace[-1][0] and bubbled.first == trace[-1][1]
+
+    assert mtf_trace(3, [2, 2, 0]) == [(2, 2), (0, 2), (1, 3)]
+    moved = _one("mtf_list", "en", 6, "cost", seed=4)
+    trace = mtf_trace(moved.n, moved.queries)
+    assert trace == moved.trace and moved.cost == trace[-1][1] and moved.place == trace[-1][0]
+
+    assert stile_trace([0, 1, 1, 0, 1]) == [(1, 0), (0, 1), (0, 1), (1, 1), (0, 2)]
+    gate = _one("turnstile", "en", 6, "entries", seed=4)
+    trace = stile_trace(gate.events)
+    assert trace == gate.trace and gate.entries == trace[-1][1] and gate.state == trace[-1][0]
+
+    assert ham_trace([1, 3, 0]) == [(1, 1, 1), (2, 3, 2)]
+    bits = _one("hamming_step", "en", 6, "total", seed=4)
+    trace = ham_trace(bits.values)
+    assert trace == bits.trace and bits.total == trace[-1][1] and bits.peak == trace[-1][2]
+
+    assert index_trace(4, [5, 0, 7]) == [(1, 1, 1), (0, 0, 1), (1, 3, 4)]
+    grid = _one("row_major", "en", 6, "row", seed=4)
+    trace = index_trace(grid.n, grid.indices)
+    assert trace == grid.trace and grid.row == trace[-1][0] and grid.cols == trace[-1][2]
+
+    assert link_trace(4, [(0, 1), (1, 2), (0, 2)]) == [(3, 1), (2, 2), (2, 2)]
+    linked = _one("union_count", "en", 6, "parts", seed=4)
+    trace = link_trace(linked.n, linked.pairs)
+    assert trace == linked.trace and linked.parts == trace[-1][0] and linked.joined == trace[-1][1]
+
+    assert trie_trace([(0, 1), (0, 1), (1, 0)]) == [(2, 1), (2, 1), (4, 2)]
+    tree = _one("trie_node", "en", 6, "nodes", seed=4)
+    trace = trie_trace(tree.words)
+    assert trace == tree.trace and tree.nodes == trace[-1][0] and tree.fresh == trace[-1][1]
+
+    assert minute_trace(1, 50, [20, 70]) == [(10, 2, 1), (20, 3, 2)]
+    clock = _one("minute_add", "en", 6, "minute", seed=4)
+    trace = minute_trace(clock.hour, clock.minute, clock.adds)
+    assert trace == clock.trace and clock.final_minute == trace[-1][0] and clock.carries == trace[-1][2]
+
+    assert mod_ops(4, [(0, 8), (1, 3), (2, 3)]) == [(2, 0), (9, 0), (7, 0)]
+    reduced = _one("mod_accum", "en", 6, "value", seed=4)
+    trace = mod_ops(reduced.start, reduced.ops)
+    assert trace == reduced.trace and reduced.value == trace[-1][0] and reduced.zeros == trace[-1][1]
+
+    nfa_trans = [[(1, 2), (0,)], [(1,), (0, 2)], [(2,), (1,)]]
+    assert nfa_trace(nfa_trans, [2], [0, 1]) == [(2, 1, 1), (3, 1, 2)]
+    branched = _one("nfa_run", "en", 6, "visits", seed=4)
+    trace = nfa_trace(branched.trans, branched.accept, branched.word)
+    assert trace == branched.trace and branched.visits == trace[-1][2] and branched.hit == trace[-1][1]
+
+    assert moore_trace([2, 0, 4], [[1, 0], [1, 2], [0, 2]], [0, 1]) == [(1, 0, 2), (2, 4, 6)]
+    printed = _one("moore_run", "en", 6, "total", seed=4)
+    trace = moore_trace(printed.outputs, printed.trans, printed.word)
+    assert trace == printed.trace and printed.total == trace[-1][2] and printed.last == trace[-1][1]
+
+    assert image_trace([[1, 0], [1, 2], [1, 0]], [1, 0]) == [(2, 0), (1, 1)]
+    glued = _one("sync_run", "en", 6, "left", seed=4)
+    trace = image_trace(glued.trans, glued.word)
+    assert trace == glued.trace and glued.left == trace[-1][0] and glued.synced == trace[-1][1]
+
+    assert meet_trace([[1, 0], [1, 0]], [1], [[1, 0], [0, 1]], [1], [0, 1]) == [(1, 1, 1, 1), (0, 1, 1, 0)]
+    paired = _one("meet_run", "en", 6, "both", seed=4)
+    trace = meet_trace(paired.trans_a, paired.accept_a, paired.trans_b, paired.accept_b, paired.word)
+    assert trace == paired.trace and paired.both == trace[-1][2] and paired.at_end == trace[-1][3]
+
+    assert lfsr_trace([1, 0, 1], [0, 2]) == [(1, 1, 2), (0, 1, 4), (1, 2, 1)]
+    shifted = _one("lfsr_run", "en", 6, "ones", seed=4)
+    trace = lfsr_trace(shifted.bits, shifted.taps)
+    assert trace == shifted.trace and shifted.ones == trace[-1][1] and shifted.reg == trace[-1][2]
+
+    assert crc_trace([1, 1, 0, 1, 1], 5) == [(1, 0), (3, 0), (6, 0), (13, 0), (14, 1)]
+    summed = _one("crc_rem", "en", 6, "rem", seed=4)
+    trace = crc_trace(summed.bits, summed.mask)
+    assert trace == summed.trace and summed.rem == trace[-1][0] and summed.xors == trace[-1][1]
+
+    assert feistel_trace(3, 1, [2, 1]) == [(1, 0), (0, 0)]
+    rounds = _one("feistel_run", "en", 6, "left", seed=4)
+    trace = feistel_trace(rounds.left, rounds.right, rounds.keys)
+    assert trace == rounds.trace and rounds.final_left == trace[-1][0] and rounds.pack == trace[-1][0] * 16 + trace[-1][1]
+
+    assert elgamal_trace(3, 5, 7, [1, 0], 17) == [(3, 1), (9, 5)]
+    hidden = _one("elgamal_enc", "en", 6, "hint", seed=4)
+    trace = elgamal_trace(hidden.base, hidden.public, hidden.message, hidden.bits, hidden.prime)
+    assert trace == hidden.trace and hidden.hint == trace[-1][0] and hidden.mask == trace[-1][1]

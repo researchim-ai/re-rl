@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Атомы от 1 до {n}. Атом 1 задан фактом {fact}. У каждого следующего атома одна строка i:p q. Число p — положительная посылка, число q — атом под отрицанием по умолчанию. Ноль значит, что этой посылки нет: {rules}. Атом истинен, когда каждая имеющаяся положительная посылка истинна, а каждый атом под отрицанием ложен. Посылки смотрят только на более ранние атомы. Сколько атомов истинны?",
+      "en": "Atoms run from 1 to {n}. Atom 1 is fixed by the fact {fact}. Each later atom has one line i:p q. The number p is a positive premise, and q is an atom under negation by failure. Zero means that premise is absent: {rules}. An atom is true when every present positive premise is true and every negated atom is false. Premises refer only to earlier atoms. How many atoms are true?"
+    },
+    "s1": {
+      "ru": "Атомы от 1 до {n}. Атом 1 задан фактом {fact}. У каждого следующего атома одна строка i:p q. Число p — положительная посылка, число q — атом под отрицанием по умолчанию. Ноль значит, что этой посылки нет: {rules}. Атом истинен, когда каждая имеющаяся положительная посылка истинна, а каждый атом под отрицанием ложен. Посылки смотрят только на более ранние атомы. Истинен ли атом {k}? Ответьте 1 или 0.",
+      "en": "Atoms run from 1 to {n}. Atom 1 is fixed by the fact {fact}. Each later atom has one line i:p q. The number p is a positive premise, and q is an atom under negation by failure. Zero means that premise is absent: {rules}. An atom is true when every present positive premise is true and every negated atom is false. Premises refer only to earlier atoms. Is atom {k} true? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Атом {i}: посылка {pos}, отрицание {neg}, значение {bit}, истинно уже {trues}.",
+      "en": "Atom {i}: premise {pos}, negation {neg}, value {bit}, true so far {trues}."
+    }
+  }
+}

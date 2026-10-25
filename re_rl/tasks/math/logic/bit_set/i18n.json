@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Маска начинает с 0. Биты нумеруются от 0 до 3. Команд {n}, в каждой код и номер бита: {ops}. Код 1 поднимает бит. Код 0 опускает бит. Повторный подъём уже поднятого бита маску не меняет. Какова маска в конце, как обычное число?",
+      "en": "The mask starts at 0. Bits are numbered from 0 to 3. There are {n} commands, each a code and a bit number: {ops}. Code 1 raises the bit. Code 0 lowers the bit. Raising a bit that is already raised does not change the mask. What is the final mask, as an ordinary number?"
+    },
+    "s1": {
+      "ru": "Маска начинает с 0. Биты нумеруются от 0 до 3. Команд {n}, в каждой код и номер бита: {ops}. Код 1 поднимает бит. Код 0 опускает бит. Повторный подъём уже поднятого бита маску не меняет. Сколько раз подъём включил бит, который перед этим был опущен?",
+      "en": "The mask starts at 0. Bits are numbered from 0 to 3. There are {n} commands, each a code and a bit number: {ops}. Code 1 raises the bit. Code 0 lowers the bit. Raising a bit that is already raised does not change the mask. How many times did a raise turn on a bit that was off before it?"
+    },
+    "s2": {
+      "ru": "Команда {i}, код {kind}, бит {bit}: маска {mask}, новых включений {news}.",
+      "en": "Command {i}, code {kind}, bit {bit}: mask {mask}, new raises {news}."
+    }
+  }
+}

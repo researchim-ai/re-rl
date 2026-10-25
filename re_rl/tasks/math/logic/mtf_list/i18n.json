@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В списке {n} номеров, сначала они стоят по возрастанию от 0. Запросов {n}: {queries}. Цена запроса — его место до переноса, считая с 0. После запроса номер переносится в начало, остальные сдвигаются вправо. Какова сумма цен?",
+      "en": "The list has {n} numbers, initially in increasing order from 0. There are {n} queries: {queries}. The cost of a query is its place before the move, counting from 0. After the query the number moves to the front, and the others shift right. What is the sum of the costs?"
+    },
+    "s1": {
+      "ru": "В списке {n} номеров, сначала они стоят по возрастанию от 0. Запросов {n}: {queries}. Цена запроса — его место до переноса, считая с 0. После запроса номер переносится в начало, остальные сдвигаются вправо. Какова цена последнего запроса?",
+      "en": "The list has {n} numbers, initially in increasing order from 0. There are {n} queries: {queries}. The cost of a query is its place before the move, counting from 0. After the query the number moves to the front, and the others shift right. What is the cost of the last query?"
+    },
+    "s2": {
+      "ru": "Запрос {i}, номер {query}: место {place}, сумма цен {cost}.",
+      "en": "Query {i}, number {query}: place {place}, cost sum {cost}."
+    }
+  }
+}

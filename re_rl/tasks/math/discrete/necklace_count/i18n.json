@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ожерелье из {n} бусин, {n} простое, каждая бусина одного из двух цветов. Два ожерелья одинаковы, если одно получается из другого поворотом. Их число равно (2^{n} + ({n}-1)*2) / {n}, и деление целое. Начните с 1 и умножьте на 2 ровно {n} раз. Сколько различных ожерелий?",
+      "en": "A necklace has {n} beads, {n} is prime, and each bead has one of two colors. Two necklaces are the same when one is a rotation of the other. Their number is (2^{n} + ({n}-1)*2) / {n}, and the division is exact. Start at 1 and multiply by 2 exactly {n} times. How many distinct necklaces are there?"
+    },
+    "s1": {
+      "ru": "Ожерелье из {n} бусин, {n} простое, каждая бусина одного из двух цветов. Два ожерелья одинаковы, если одно получается из другого поворотом. Их число равно (2^{n} + ({n}-1)*2) / {n}, и деление целое. Начните с 1 и умножьте на 2 ровно {n} раз. Какова степень двойки 2^{n}?",
+      "en": "A necklace has {n} beads, {n} is prime, and each bead has one of two colors. Two necklaces are the same when one is a rotation of the other. Their number is (2^{n} + ({n}-1)*2) / {n}, and the division is exact. Start at 1 and multiply by 2 exactly {n} times. What is the power of two, 2^{n}?"
+    },
+    "s2": {
+      "ru": "Умножение {i}: степень {power}.",
+      "en": "Multiplication {i}: power {power}."
+    },
+    "s3": {
+      "ru": "({power} + ({n}-1)*2) / {n} = {count}.",
+      "en": "({power} + ({n}-1)*2) / {n} = {count}."
+    }
+  }
+}

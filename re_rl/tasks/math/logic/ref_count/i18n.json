@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "У объекта сначала одна ссылка. Дальше {n} событий, плюс один или минус один: {events}. Плюс один добавляет ссылку. Минус один снимает ссылку, но не опускает счёт ниже нуля. Когда счёт становится нулём, объект освобождён. Следующий плюс один снова ставит одну ссылку. Каков счёт в конце?",
+      "en": "An object starts with one reference. Then there are {n} events, plus one or minus one: {events}. Plus one adds a reference. Minus one removes a reference, but the count does not fall below zero. When the count becomes zero, the object is freed. The next plus one sets the count to one again. What is the final count?"
+    },
+    "s1": {
+      "ru": "У объекта сначала одна ссылка. Дальше {n} событий, плюс один или минус один: {events}. Плюс один добавляет ссылку. Минус один снимает ссылку, но не опускает счёт ниже нуля. Когда счёт становится нулём, объект освобождён. Следующий плюс один снова ставит одну ссылку. Минус один при нуле ничего не делает и новым освобождением не считается. Сколько раз объект был освобождён?",
+      "en": "An object starts with one reference. Then there are {n} events, plus one or minus one: {events}. Plus one adds a reference. Minus one removes a reference, but the count does not fall below zero. When the count becomes zero, the object is freed. The next plus one sets the count to one again. Minus one at zero does nothing and is not another free. How many times was the object freed?"
+    },
+    "s2": {
+      "ru": "Событие {i} равно {event}: счёт {count}, освобождений уже {frees}.",
+      "en": "Event {i} is {event}: count {count}, frees so far {frees}."
+    }
+  }
+}

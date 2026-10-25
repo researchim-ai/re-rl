@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке сетка. Тёмные клетки образуют фигуры. Две тёмные клетки принадлежат одной фигуре, если от одной до другой можно пройти по тёмным клеткам, каждый раз переходя через общую сторону. Касание только углом фигуры не соединяет. Сколько фигур на картинке?",
+      "en": "The picture shows a grid. The dark cells form figures. Two dark cells belong to one figure when a walk along dark cells can go from one to the other, each step crossing a shared side. Touching at a corner only does not join figures. How many figures are in the picture?"
+    },
+    "s1": {
+      "ru": "На картинке сетка. Тёмные клетки образуют фигуры. Две тёмные клетки принадлежат одной фигуре, если от одной до другой можно пройти по тёмным клеткам, каждый раз переходя через общую сторону. Касание только углом фигуры не соединяет. Сколько клеток в самой большой фигуре?",
+      "en": "The picture shows a grid. The dark cells form figures. Two dark cells belong to one figure when a walk along dark cells can go from one to the other, each step crossing a shared side. Touching at a corner only does not join figures. How many cells are in the largest figure?"
+    },
+    "s2": {
+      "ru": "После строки {i}: фигур {parts}, в самой большой {largest} клеток.",
+      "en": "After row {i}: figures {parts}, largest has {largest} cells."
+    }
+  }
+}

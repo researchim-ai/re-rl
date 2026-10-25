@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "У игрока и соперника по два действия, 0 и 1. Награда игрока при его действии и действии соперника: {agent}. Награда соперника в том же порядке: {opponent}. Соперник начинает с действия {opp}. Ходов игрока {n}. Игрок выбирает действие с большей своей наградой при текущем действии соперника. При равенстве берёт 0. Затем соперник так же отвечает на действие игрока, и его выбор становится текущим. Какова сумма наград игрока?",
+      "en": "The player and the opponent each have actions 0 and 1. The player's reward for its action and the opponent's action is {agent}. The opponent's reward in the same order is {opponent}. The opponent starts with action {opp}. The player moves {n} times. The player chooses the action with the larger own reward given the opponent's current action. On a tie it takes 0. The opponent then replies to the player's action in the same way, and that choice becomes current. What is the sum of the player's rewards?"
+    },
+    "s1": {
+      "ru": "У игрока и соперника по два действия, 0 и 1. Награда игрока при его действии и действии соперника: {agent}. Награда соперника в том же порядке: {opponent}. Соперник начинает с действия {opp}. Ходов игрока {n}. Игрок выбирает действие с большей своей наградой при текущем действии соперника. При равенстве берёт 0. Затем соперник так же отвечает на действие игрока, и его выбор становится текущим. Какое действие игрок выбрал на последнем ходе?",
+      "en": "The player and the opponent each have actions 0 and 1. The player's reward for its action and the opponent's action is {agent}. The opponent's reward in the same order is {opponent}. The opponent starts with action {opp}. The player moves {n} times. The player chooses the action with the larger own reward given the opponent's current action. On a tie it takes 0. The opponent then replies to the player's action in the same way, and that choice becomes current. Which action does the player choose on the last move?"
+    },
+    "s2": {
+      "ru": "Ход {i}: игрок берёт {action} и получает {payoff}, соперник отвечает {opp}, сумма игрока {total}.",
+      "en": "Move {i}: the player takes {action} and receives {payoff}, the opponent replies {opp}, player sum {total}."
+    }
+  }
+}

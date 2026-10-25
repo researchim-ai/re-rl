@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Судей {n}, число нечётное. Каждый судья согласован: заключение он принимает ровно тогда, когда принимает обе посылки. Голоса по двум посылкам по порядку: {votes}. Посылка проходит, если за неё строго больше половины судей. Посылочное заключение равно 1, только если прошли обе посылки. Каково посылочное заключение?",
+      "en": "There are {n} judges, and that number is odd. Each judge is consistent: the conclusion is accepted exactly when both premises are accepted. The votes on the two premises, in order, are {votes}. A premise passes when strictly more than half of the judges accept it. The premise-based conclusion is 1 only when both premises pass. What is the premise-based conclusion?"
+    },
+    "s1": {
+      "ru": "Судей {n}, число нечётное. Каждый судья согласован: заключение он принимает ровно тогда, когда принимает обе посылки. Голоса по двум посылкам по порядку: {votes}. Посылка проходит, если за неё строго больше половины судей. Посылочное заключение равно 1, только если прошли обе посылки. Записанное заключение судьи — это его собственная конъюнкция. Различаются ли посылочное заключение и большинство записанных заключений? Ответьте 1 или 0.",
+      "en": "There are {n} judges, and that number is odd. Each judge is consistent: the conclusion is accepted exactly when both premises are accepted. The votes on the two premises, in order, are {votes}. A premise passes when strictly more than half of the judges accept it. The premise-based conclusion is 1 only when both premises pass. A judge's recorded conclusion is that judge's own conjunction. Do the premise-based conclusion and the majority of the recorded conclusions differ? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Судья {i}: посылки {p} {q}, заключение {c}. За посылки {yp} и {yq}, за заключение {yc}.",
+      "en": "Judge {i}: premises {p} {q}, conclusion {c}. Premise totals {yp} and {yq}, conclusion total {yc}."
+    }
+  }
+}

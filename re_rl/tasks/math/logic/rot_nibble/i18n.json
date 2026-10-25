@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число начинает с {start} и хранит четыре бита, от 0 до 15. Сдвигов {n}, каждый от 0 до 3: {shifts}. Сдвиг влево циклический: биты, вышедшие за 15, возвращаются справа. Сдвиг на 0 ничего не меняет. Каково число в конце?",
+      "en": "The number starts at {start} and holds four bits, from 0 to 15. There are {n} shifts, each from 0 to 3: {shifts}. A left shift is cyclic: bits that pass beyond 15 return on the right. A shift of 0 changes nothing. What is the final number?"
+    },
+    "s1": {
+      "ru": "Число начинает с {start} и хранит четыре бита, от 0 до 15. Сдвигов {n}, каждый от 0 до 3: {shifts}. Сдвиг влево циклический: биты, вышедшие за 15, возвращаются справа. Сдвиг на 0 ничего не меняет. Сколько сдвигов изменили число?",
+      "en": "The number starts at {start} and holds four bits, from 0 to 15. There are {n} shifts, each from 0 to 3: {shifts}. A left shift is cyclic: bits that pass beyond 15 return on the right. A shift of 0 changes nothing. How many shifts changed the number?"
+    },
+    "s2": {
+      "ru": "Сдвиг {i} на {shift}: число {value}, изменений уже {changed}.",
+      "en": "Shift {i} by {shift}: number {value}, changes so far {changed}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В массиве {n} клеток, номера от 0 до {n} минус 1. Сначала везде 0. Записей {n}, в каждой номер клетки и новое значение: {writes}. Повторная запись в ту же клетку затирает старое значение. Каково значение клетки {query} в конце?",
+      "en": "The array has {n} cells, numbered from 0 through {n} minus 1. Every cell starts at 0. There are {n} writes, each a cell number and a new value: {writes}. A later write to the same cell replaces the old value. What is the value of cell {query} at the end?"
+    },
+    "s1": {
+      "ru": "В массиве {n} клеток, номера от 0 до {n} минус 1. Сначала везде 0. Записей {n}, в каждой номер клетки и новое значение: {writes}. Повторная запись в ту же клетку затирает старое значение. Какова сумма всех клеток в конце?",
+      "en": "The array has {n} cells, numbered from 0 through {n} minus 1. Every cell starts at 0. There are {n} writes, each a cell number and a new value: {writes}. A later write to the same cell replaces the old value. What is the sum of all cells at the end?"
+    },
+    "s2": {
+      "ru": "Запись {i}: клетка {place} получает {value}. Клетка запроса {cell}, сумма {total}.",
+      "en": "Write {i}: cell {place} receives {value}. Query cell {cell}, sum {total}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шагов {n}. В каждом награда, следующее значение и признак конца: {rows}. Если признак конца равен 1, цель шага равна награде. Если он равен 0, цель равна награде плюс следующее значение. Какова сумма целей?",
+      "en": "There are {n} steps. Each one gives a reward, a next value, and a done flag: {rows}. When the done flag is 1, the step target equals the reward. When it is 0, the target equals the reward plus the next value. What is the sum of the targets?"
+    },
+    "s1": {
+      "ru": "Шагов {n}. В каждом награда, следующее значение и признак конца: {rows}. Если признак конца равен 1, цель шага равна награде. Если он равен 0, цель равна награде плюс следующее значение. На скольких шагах признак конца равен 1?",
+      "en": "There are {n} steps. Each one gives a reward, a next value, and a done flag: {rows}. When the done flag is 1, the step target equals the reward. When it is 0, the target equals the reward plus the next value. On how many steps is the done flag 1?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: награда {reward}, следующее {nxt}, конец {done}, цель {target}, сумма {total}.",
+      "en": "Step {i}: reward {reward}, next {nxt}, done {done}, target {target}, sum {total}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ряд: {values}. Один проход слева направо делает {n} сравнений соседних чисел. Если левое больше правого, они меняются местами. Равные числа не меняются. Сколько обменов произошло?",
+      "en": "The row is {values}. One pass from left to right makes {n} comparisons of neighboring numbers. If the left number is greater than the right number, they are exchanged. Equal numbers stay. How many exchanges happened?"
+    },
+    "s1": {
+      "ru": "Ряд: {values}. Один проход слева направо делает {n} сравнений соседних чисел. Если левое больше правого, они меняются местами. Равные числа не меняются. Каково первое число ряда после прохода?",
+      "en": "The row is {values}. One pass from left to right makes {n} comparisons of neighboring numbers. If the left number is greater than the right number, they are exchanged. Equal numbers stay. What is the first number of the row after the pass?"
+    },
+    "s2": {
+      "ru": "Сравнение {i}: обменов {swaps}, первое число {first}.",
+      "en": "Comparison {i}: exchanges {swaps}, first number {first}."
+    }
+  }
+}

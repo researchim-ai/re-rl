@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число начинает с {start}. Модуль равен {mod}. Шагов {n}, в каждом множитель и прибавка: {steps}. Новое число — остаток от деления на {mod} произведения старого числа на множитель плюс прибавка. Каково число в конце?",
+      "en": "The number starts at {start}. The modulus is {mod}. There are {n} steps, each a multiplier and an addend: {steps}. The new number is the remainder on division by {mod} of the old number times the multiplier plus the addend. What is the final number?"
+    },
+    "s1": {
+      "ru": "Число начинает с {start}. Модуль равен {mod}. Шагов {n}, в каждом множитель и прибавка: {steps}. Новое число — остаток от деления на {mod} произведения старого числа на множитель плюс прибавка. Сколько раз после шага число стало равно 0?",
+      "en": "The number starts at {start}. The modulus is {mod}. There are {n} steps, each a multiplier and an addend: {steps}. The new number is the remainder on division by {mod} of the old number times the multiplier plus the addend. How many times does the number become 0 after a step?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, множитель {mul}, прибавка {add}: число {value}, нулей уже {zeros}.",
+      "en": "Step {i}, multiplier {mul}, addend {add}: number {value}, zeros so far {zeros}."
+    }
+  }
+}

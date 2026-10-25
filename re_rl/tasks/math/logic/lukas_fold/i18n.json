@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Степени истинности — целые от 0 до {bound}. Накопитель начинает со значения {start}. Дальше {n} шагов, в каждом код операции и степень: {steps}. Код 0 — конъюнкция: большее из 0 и суммы накопителя и степени минус {bound}. Код 1 — дизъюнкция: меньшее из {bound} и суммы накопителя и степени. Код 2 — импликация из накопителя в эту степень: меньшее из {bound} и {bound} минус накопитель плюс степень. Какова степень накопителя в конце?",
+      "en": "Truth degrees are integers from 0 to {bound}. The accumulator starts at {start}. Then there are {n} steps, each giving an operation code and a degree: {steps}. Code 0 is conjunction: the larger of 0 and the accumulator plus the degree minus {bound}. Code 1 is disjunction: the smaller of {bound} and the accumulator plus the degree. Code 2 is implication from the accumulator to that degree: the smaller of {bound} and {bound} minus the accumulator plus the degree. What is the final accumulator?"
+    },
+    "s1": {
+      "ru": "Степени истинности — целые от 0 до {bound}. Накопитель начинает со значения {start}. Дальше {n} шагов, в каждом код операции и степень: {steps}. Код 0 — конъюнкция: большее из 0 и суммы накопителя и степени минус {bound}. Код 1 — дизъюнкция: меньшее из {bound} и суммы накопителя и степени. Код 2 — импликация из накопителя в эту степень: меньшее из {bound} и {bound} минус накопитель плюс степень. На скольких шагах результат равен 0?",
+      "en": "Truth degrees are integers from 0 to {bound}. The accumulator starts at {start}. Then there are {n} steps, each giving an operation code and a degree: {steps}. Code 0 is conjunction: the larger of 0 and the accumulator plus the degree minus {bound}. Code 1 is disjunction: the smaller of {bound} and the accumulator plus the degree. Code 2 is implication from the accumulator to that degree: the smaller of {bound} and {bound} minus the accumulator plus the degree. On how many steps is the result 0?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, код {op}, степень {other}: накопитель {acc}, нулей уже {zeros}.",
+      "en": "Step {i}, code {op}, degree {other}: accumulator {acc}, zeros so far {zeros}."
+    }
+  }
+}

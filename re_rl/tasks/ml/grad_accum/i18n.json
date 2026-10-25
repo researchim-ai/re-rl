@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вес начинает с {start}. Дальше {n} готовых градиентов: {grads}. Нечётный шаг прибавляет градиент к накопителю и вес не меняет. Чётный шаг вычитает весь накопитель из веса и обнуляет накопитель. Каков вес в конце?",
+      "en": "The weight starts at {start}. Then there are {n} given gradients: {grads}. An odd step adds its gradient to the accumulator and leaves the weight unchanged. An even step subtracts the whole accumulator from the weight and clears the accumulator. What is the final weight?"
+    },
+    "s1": {
+      "ru": "Вес начинает с {start}. Дальше {n} готовых градиентов: {grads}. Нечётный шаг прибавляет градиент к накопителю и вес не меняет. Чётный шаг вычитает весь накопитель из веса и обнуляет накопитель. Какова сумма, вычтенная на последнем чётном шаге?",
+      "en": "The weight starts at {start}. Then there are {n} given gradients: {grads}. An odd step adds its gradient to the accumulator and leaves the weight unchanged. An even step subtracts the whole accumulator from the weight and clears the accumulator. What sum is subtracted on the last even step?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, градиент {grad}: вычтено {applied}, вес {weight}, накопитель {running}.",
+      "en": "Step {i}, gradient {grad}: subtracted {applied}, weight {weight}, accumulator {running}."
+    }
+  }
+}

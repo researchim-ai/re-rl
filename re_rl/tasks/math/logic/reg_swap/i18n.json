@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две переменные начинают с {left} и {right}. Постоянное слагаемое равно {extra}. Команд {n}: {ops}. Код 0 меняет переменные местами. Код 1 прибавляет вторую к первой. Код 2 прибавляет постоянное слагаемое ко второй. Какова первая переменная в конце?",
+      "en": "Two variables start at {left} and {right}. The constant addend is {extra}. There are {n} commands: {ops}. Code 0 exchanges the variables. Code 1 adds the second to the first. Code 2 adds the constant addend to the second. What is the first variable at the end?"
+    },
+    "s1": {
+      "ru": "Две переменные начинают с {left} и {right}. Постоянное слагаемое равно {extra}. Команд {n}: {ops}. Код 0 меняет переменные местами. Код 1 прибавляет вторую к первой. Код 2 прибавляет постоянное слагаемое ко второй. Сколько раз переменные менялись местами?",
+      "en": "Two variables start at {left} and {right}. The constant addend is {extra}. There are {n} commands: {ops}. Code 0 exchanges the variables. Code 1 adds the second to the first. Code 2 adds the constant addend to the second. How many times were the variables exchanged?"
+    },
+    "s2": {
+      "ru": "Команда {i}, код {op}: первая {left}, вторая {right}, обменов {swaps}.",
+      "en": "Command {i}, code {op}: first {left}, second {right}, exchanges {swaps}."
+    }
+  }
+}

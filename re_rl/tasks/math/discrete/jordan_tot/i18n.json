@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Функция Жордана порядка 2. Начните с квадрата числа. Для каждого различного простого p в его разложении разделите значение на p*p и умножьте на p*p-1. Для 1 значение равно 1. Какова сумма значений от 1 до {n}?",
+      "en": "The Jordan function of order 2. Start from the square of the number. For each distinct prime p in its factorization, divide the value by p*p and multiply by p*p-1. At 1 the value is 1. What is the sum of the values from 1 to {n}?"
+    },
+    "s1": {
+      "ru": "Функция Жордана порядка 2. Начните с квадрата числа. Для каждого различного простого p в его разложении разделите значение на p*p и умножьте на p*p-1. Для 1 значение равно 1. Каково значение на числе {k}?",
+      "en": "The Jordan function of order 2. Start from the square of the number. For each distinct prime p in its factorization, divide the value by p*p and multiply by p*p-1. At 1 the value is 1. What is the value at {k}?"
+    },
+    "s2": {
+      "ru": "Число {i}: значение {value}, сумма {total}.",
+      "en": "Number {i}: value {value}, sum {total}."
+    }
+  }
+}

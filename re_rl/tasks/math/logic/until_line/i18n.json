@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Миры от 1 до {n}. Атом p: {hold}. Атом q: {stop}. Формула «p пока не q» в мире i истинна, если правее или в самом i есть мир с q, а во всех мирах строго между ними p истинен. Если раньше встретился мир без p и без q, формула ложна. В скольких мирах формула истинна?",
+      "en": "Worlds run from 1 to {n}. Atom p is {hold}. Atom q is {stop}. The formula p-until-q is true at world i when some world at i or to its right has q, and p is true in every world strictly between them. If a world with neither p nor q appears first, the formula is false. In how many worlds is the formula true?"
+    },
+    "s1": {
+      "ru": "Миры от 1 до {n}. Атом p: {hold}. Атом q: {stop}. Формула «p пока не q» в мире i истинна, если правее или в самом i есть мир с q, а во всех мирах строго между ними p истинен. Если раньше встретился мир без p и без q, формула ложна. Истинна ли формула в мире {k}? Ответьте 1 или 0.",
+      "en": "Worlds run from 1 to {n}. Atom p is {hold}. Atom q is {stop}. The formula p-until-q is true at world i when some world at i or to its right has q, and p is true in every world strictly between them. If a world with neither p nor q appears first, the formula is false. Is the formula true at world {k}? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Мир {i}: формула {holds}, уже {total}.",
+      "en": "World {i}: formula {holds}, so far {total}."
+    }
+  }
+}

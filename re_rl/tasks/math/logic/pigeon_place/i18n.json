@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Голубей {n}, лунок {holes}. Голубь i садится в лунку из списка: {places}. Каков наименьший номер лунки, в которой оказалось хотя бы два голубя?",
+      "en": "There are {n} pigeons and {holes} holes. Pigeon i sits in the hole from the list {places}. What is the smallest hole number that received at least two pigeons?"
+    },
+    "s1": {
+      "ru": "Голубей {n}, лунок {holes}. Голубь i садится в лунку из списка: {places}. Каково наибольшее число голубей в одной лунке?",
+      "en": "There are {n} pigeons and {holes} holes. Pigeon i sits in the hole from the list {places}. What is the largest number of pigeons in one hole?"
+    },
+    "s2": {
+      "ru": "Голубь {i} в лунку {place}: первая переполненная {hole}, в ней сейчас {count}, максимум {load}.",
+      "en": "Pigeon {i} into hole {place}: first crowded hole {hole}, its current count {count}, maximum {load}."
+    }
+  }
+}

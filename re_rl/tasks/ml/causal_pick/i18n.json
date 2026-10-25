@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Оценки ключей по позициям от 1 до {n}: {scores}. На позиции i видны только ключи от 1 до i. Выбирается ключ с наибольшей оценкой. При равенстве остаётся более ранний ключ. Каков номер ключа, выбранного на последней позиции?",
+      "en": "Key scores from position 1 through {n} are {scores}. At position i only keys from 1 through i are visible. The key with the largest score is chosen. On a tie the earlier key stays. What is the number of the key chosen at the last position?"
+    },
+    "s1": {
+      "ru": "Оценки ключей по позициям от 1 до {n}: {scores}. На позиции i видны только ключи от 1 до i. Выбирается ключ с наибольшей оценкой. При равенстве остаётся более ранний ключ. На скольких позициях выбранный ключ стоит раньше самой позиции?",
+      "en": "Key scores from position 1 through {n} are {scores}. At position i only keys from 1 through i are visible. The key with the largest score is chosen. On a tie the earlier key stays. At how many positions is the chosen key earlier than the position itself?"
+    },
+    "s2": {
+      "ru": "Позиция {i}, оценка {score}: выбран ключ {chosen} с оценкой {best}, ранних выборов уже {look}.",
+      "en": "Position {i}, score {score}: key {chosen} is chosen with score {best}, earlier choices so far {look}."
+    }
+  }
+}

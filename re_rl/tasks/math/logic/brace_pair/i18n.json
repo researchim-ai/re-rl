@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скобок {n}: {tokens}. Код 0 открывает круглую, 1 закрывает круглую, 2 открывает квадратную, 3 закрывает квадратную. Закрытие снимает такую же открытую скобку с вершины. Если вершина другая или стек пуст, это ошибка, и стек не меняется. Сколько таких ошибок?",
+      "en": "There are {n} brackets: {tokens}. Code 0 opens a round bracket, 1 closes a round bracket, 2 opens a square bracket, and 3 closes a square bracket. A close removes the same open bracket from the top. If the top is different or the stack is empty, that is an error, and the stack stays unchanged. How many such errors are there?"
+    },
+    "s1": {
+      "ru": "Скобок {n}: {tokens}. Код 0 открывает круглую, 1 закрывает круглую, 2 открывает квадратную, 3 закрывает квадратную. Закрытие снимает такую же открытую скобку с вершины. Если вершина другая или стек пуст, это ошибка, и стек не меняется. Сколько открытых скобок осталось в стеке?",
+      "en": "There are {n} brackets: {tokens}. Code 0 opens a round bracket, 1 closes a round bracket, 2 opens a square bracket, and 3 closes a square bracket. A close removes the same open bracket from the top. If the top is different or the stack is empty, that is an error, and the stack stays unchanged. How many open brackets remain in the stack?"
+    },
+    "s2": {
+      "ru": "Скобка {i}, код {token}: глубина {depth}, ошибок {errors}.",
+      "en": "Bracket {i}, code {token}: depth {depth}, errors {errors}."
+    },
+    "s3": {
+      "ru": "Ошибок закрытия {errors}, незакрытых скобок {open}.",
+      "en": "Close errors {errors}, unclosed brackets {open}."
+    }
+  }
+}

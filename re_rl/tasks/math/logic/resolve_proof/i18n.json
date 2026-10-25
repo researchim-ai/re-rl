@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Клаузы записаны числами: положительное число — атом, отрицательное — его отрицание. Набор: {clauses}. Шаг i берёт текущую клаузу и клаузу номер i+1 и вычёркивает переменную i, которая входит в них с противоположными знаками. Остальные литералы склеиваются. Пустая клауза обозначается 0. Получится ли пустая клауза за {n} шагов? Ответьте 1 или 0.",
+      "en": "Clauses are written as numbers: a positive number is an atom, a negative number is its negation. The set is {clauses}. Step i takes the current clause and clause number i+1 and cancels variable i, which occurs in them with opposite signs. The other literals are joined. The empty clause is written 0. Does the empty clause appear within {n} steps? Answer 1 or 0."
+    },
+    "s1": {
+      "ru": "Клаузы записаны числами: положительное число — атом, отрицательное — его отрицание. Набор: {clauses}. Шаг i берёт текущую клаузу и клаузу номер i+1 и вычёркивает переменную i, которая входит в них с противоположными знаками. Остальные литералы склеиваются. Пустая клауза обозначается 0. Какова длина клаузы после {n} шагов?",
+      "en": "Clauses are written as numbers: a positive number is an atom, a negative number is its negation. The set is {clauses}. Step i takes the current clause and clause number i+1 and cancels variable i, which occurs in them with opposite signs. The other literals are joined. The empty clause is written 0. What is the length of the clause after {n} steps?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, переменная {var}: клауза {clause}, длина {length}.",
+      "en": "Step {i}, variable {var}: clause {clause}, length {length}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число начинает с {start}. Делителей {n}, каждый не меньше 2: {divisors}. На шаге остаток от деления прибавляется к сумме остатков, а частное, округлённое вниз, становится новым числом. Каково частное в конце?",
+      "en": "The number starts at {start}. There are {n} divisors, each at least 2: {divisors}. At a step the remainder is added to the remainder sum, and the quotient rounded down becomes the new number. What is the final quotient?"
+    },
+    "s1": {
+      "ru": "Число начинает с {start}. Делителей {n}, каждый не меньше 2: {divisors}. На шаге остаток от деления прибавляется к сумме остатков, а частное, округлённое вниз, становится новым числом. Какова сумма остатков?",
+      "en": "The number starts at {start}. There are {n} divisors, each at least 2: {divisors}. At a step the remainder is added to the remainder sum, and the quotient rounded down becomes the new number. What is the sum of the remainders?"
+    },
+    "s2": {
+      "ru": "Делитель {i} равен {divisor}: частное {quot}, сумма остатков {rems}.",
+      "en": "Divisor {i} is {divisor}: quotient {quot}, remainder sum {rems}."
+    }
+  }
+}

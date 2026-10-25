@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число менáжа порядка {n}. Для k от 0 до {n} слагаемое равно (-1)^k * 2*{n}*(2*{n}-k-1)!*( {n}-k)! / (k!*(2*{n}-2*k)!). Деление целое. Какова сумма слагаемых?",
+      "en": "The menage number of order {n}. For k from 0 to {n} the term is (-1)^k * 2*{n}*(2*{n}-k-1)!*({n}-k)! / (k!*(2*{n}-2*k)!). The division is exact. What is the sum of the terms?"
+    },
+    "s1": {
+      "ru": "Число менáжа порядка {n}. Для k от 0 до {n} слагаемое равно (-1)^k * 2*{n}*(2*{n}-k-1)!*( {n}-k)! / (k!*(2*{n}-2*k)!). Деление целое. Каково слагаемое с номером k = {k}, уже со знаком?",
+      "en": "The menage number of order {n}. For k from 0 to {n} the term is (-1)^k * 2*{n}*(2*{n}-k-1)!*({n}-k)! / (k!*(2*{n}-2*k)!). The division is exact. What is the term with index k = {k}, including its sign?"
+    },
+    "s2": {
+      "ru": "k = {k}: слагаемое {term}, сумма {total}.",
+      "en": "k = {k}: term {term}, sum {total}."
+    }
+  }
+}

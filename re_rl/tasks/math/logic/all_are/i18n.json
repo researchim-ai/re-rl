@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Элемент лежит в множестве 0. Есть {n} связей по порядку: {links}. Единица на месте i значит, что все элементы множества i-1 лежат в множестве i. Ноль значит, что этого утверждения нет. Как далеко по непрерывному началу единиц доходит элемент? Это номер последнего множества, куда он точно попадает.",
+      "en": "An element belongs to set 0. There are {n} links in order: {links}. A one in place i means every element of set i-1 belongs to set i. A zero means that claim is absent. How far does the element travel along the initial unbroken run of ones? That is the index of the last set it is certain to belong to."
+    },
+    "s1": {
+      "ru": "Элемент лежит в множестве 0. Есть {n} связей по порядку: {links}. Единица на месте i значит, что все элементы множества i-1 лежат в множестве i. Ноль значит, что этого утверждения нет. Сколько единиц в списке связей, включая те, что стоят после разрыва?",
+      "en": "An element belongs to set 0. There are {n} links in order: {links}. A one in place i means every element of set i-1 belongs to set i. A zero means that claim is absent. How many ones are in the link list, including those after a break?"
+    },
+    "s2": {
+      "ru": "Связь {i} равна {link}: элемент дошёл до множества {far}, единиц уже {opened}.",
+      "en": "Link {i} is {link}: the element has reached set {far}, ones so far {opened}."
+    }
+  }
+}

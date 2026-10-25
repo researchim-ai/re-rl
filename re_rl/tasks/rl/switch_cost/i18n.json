@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шагов {n}. Награды: {rewards}. Действия в том же порядке, каждое 0 или 1: {actions}. Смена — действие, отличное от предыдущего. Первое действие сменой не считается. Итог равен сумме наград минус число смен. Каков итог?",
+      "en": "There are {n} steps. The rewards are {rewards}. The actions in the same order, each 0 or 1, are {actions}. A switch is an action different from the previous one. The first action is not a switch. The net equals the sum of the rewards minus the number of switches. What is the net?"
+    },
+    "s1": {
+      "ru": "Шагов {n}. Награды: {rewards}. Действия в том же порядке, каждое 0 или 1: {actions}. Смена — действие, отличное от предыдущего. Первое действие сменой не считается. Итог равен сумме наград минус число смен. Сколько было смен?",
+      "en": "There are {n} steps. The rewards are {rewards}. The actions in the same order, each 0 or 1, are {actions}. A switch is an action different from the previous one. The first action is not a switch. The net equals the sum of the rewards minus the number of switches. How many switches were there?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: награда {reward}, действие {action}, смен {switches}, сумма наград {total}, итог {net}.",
+      "en": "Step {i}: reward {reward}, action {action}, switches {switches}, reward sum {total}, net {net}."
+    }
+  }
+}

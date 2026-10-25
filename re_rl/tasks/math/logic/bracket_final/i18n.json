@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В сетке на выбывание {players} игроков, места по порядку, их счёта: {scores}. Соседи текущего ряда играют, проходит больший счёт. Если игрок последний без пары, он проходит без матча. Матчей будет {n}. Каков номер победителя? Нумерация мест с 1.",
+      "en": "A single-elimination bracket has {players} players in seat order, with scores {scores}. Neighbors in the current row play, and the higher score advances. A last player without a pair advances without a match. There will be {n} matches. What is the winner's seat number? Seats are counted from 1."
+    },
+    "s1": {
+      "ru": "В сетке на выбывание {players} игроков, места по порядку, их счёта: {scores}. Соседи текущего ряда играют, проходит больший счёт. Если игрок последний без пары, он проходит без матча. Матчей будет {n}. Каков номер игрока, который проиграл финал? Нумерация мест с 1.",
+      "en": "A single-elimination bracket has {players} players in seat order, with scores {scores}. Neighbors in the current row play, and the higher score advances. A last player without a pair advances without a match. There will be {n} matches. What is the seat number of the player who lost the final? Seats are counted from 1."
+    },
+    "s2": {
+      "ru": "Матч {i}: места {left} и {right}, проходит {winner}.",
+      "en": "Match {i}: seats {left} and {right}, advances {winner}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Буфер пуст. Команд {n}, в каждой код и число: {ops}. Код 0 дописывает столько символов. Код 1 стирает столько символов, но не больше текущей длины. Длина не опускается ниже нуля. Какова длина в конце?",
+      "en": "The buffer starts empty. There are {n} commands, each a code and a number: {ops}. Code 0 appends that many symbols. Code 1 deletes that many symbols, but not more than the current length. The length does not fall below zero. What is the final length?"
+    },
+    "s1": {
+      "ru": "Буфер пуст. Команд {n}, в каждой код и число: {ops}. Код 0 дописывает столько символов. Код 1 стирает столько символов, но не больше текущей длины. Длина не опускается ниже нуля. Какова наибольшая длина за всё время?",
+      "en": "The buffer starts empty. There are {n} commands, each a code and a number: {ops}. Code 0 appends that many symbols. Code 1 deletes that many symbols, but not more than the current length. The length does not fall below zero. What is the greatest length reached?"
+    },
+    "s2": {
+      "ru": "Команда {i}, код {kind}, число {amount}: длина {length}, рекорд {peak}.",
+      "en": "Command {i}, code {kind}, number {amount}: length {length}, record {peak}."
+    }
+  }
+}

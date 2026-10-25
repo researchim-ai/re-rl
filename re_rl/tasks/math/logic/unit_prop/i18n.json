@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Атомы от 1 до {n}. Сначала атом 1 равен {start}. Дальше правила вида a=u->b=v: если атом a уже равен u, атом b становится равен v. Если a неизвестен или равен другому биту, b не выводится. Неизвестный бит в ответе кодируйте числом 2. Правила по порядку: {rules}. Чему равен атом {k}?",
+      "en": "Atoms run from 1 to {n}. Atom 1 starts equal to {start}. Then rules have the form a=u->b=v: if atom a is already u, atom b becomes v. If a is unknown or has another bit, b is not derived. Encode an unknown bit as 2. The rules in order are {rules}. What is atom {k}?"
+    },
+    "s1": {
+      "ru": "Атомы от 1 до {n}. Сначала атом 1 равен {start}. Дальше правила вида a=u->b=v: если атом a уже равен u, атом b становится равен v. Если a неизвестен или равен другому биту, b не выводится. Неизвестный бит в ответе кодируйте числом 2. Правила по порядку: {rules}. Сколько атомов оказались равны 1?",
+      "en": "Atoms run from 1 to {n}. Atom 1 starts equal to {start}. Then rules have the form a=u->b=v: if atom a is already u, atom b becomes v. If a is unknown or has another bit, b is not derived. Encode an unknown bit as 2. The rules in order are {rules}. How many atoms ended equal to 1?"
+    },
+    "s2": {
+      "ru": "Атом 1: значение {shown}, единиц {trues}.",
+      "en": "Atom 1: value {shown}, ones {trues}."
+    },
+    "s3": {
+      "ru": "Атом {i}, правило {source}={need}->{dest}={target}: значение {shown}, единиц {trues}.",
+      "en": "Atom {i}, rule {source}={need}->{dest}={target}: value {shown}, ones {trues}."
+    }
+  }
+}

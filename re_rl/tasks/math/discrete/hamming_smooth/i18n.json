@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа Хэмминга — положительные числа, в разложении которых только простые 2, 3 и 5. Первое равно 1. Следующее — наименьшее из трёх: удвоенное, утроенное или упятерённое уже построенное число, без повторов. Если минимум получается несколькими способами, сдвиньте каждый такой указатель. Каково число номер {n}? Нумерация с 1.",
+      "en": "Hamming numbers are the positive integers whose prime factors are only 2, 3, and 5. The first is 1. The next is the smallest of three candidates: twice, three times, or five times an already built number, with no repeats. If the minimum arises in several ways, advance each such pointer. What is number {n}? Counting starts at 1."
+    },
+    "s1": {
+      "ru": "Числа Хэмминга — положительные числа, в разложении которых только простые 2, 3 и 5. Первое равно 1. Следующее — наименьшее из трёх: удвоенное, утроенное или упятерённое уже построенное число, без повторов. Если минимум получается несколькими способами, сдвиньте каждый такой указатель. Какова сумма первых {n} таких чисел?",
+      "en": "Hamming numbers are the positive integers whose prime factors are only 2, 3, and 5. The first is 1. The next is the smallest of three candidates: twice, three times, or five times an already built number, with no repeats. If the minimum arises in several ways, advance each such pointer. What is the sum of the first {n} such numbers?"
+    },
+    "s2": {
+      "ru": "Номер {i}: число {value}, указатели {i2}, {i3}, {i5}.",
+      "en": "Index {i}: number {value}, pointers {i2}, {i3}, {i5}."
+    }
+  }
+}

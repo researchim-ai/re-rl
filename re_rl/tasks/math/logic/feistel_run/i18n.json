@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сеть Фейстеля. Половины — числа от 0 до 15. Левая равна {left}, правая равна {right}. Раундов {n}, ключи: {keys}. Функция раунда — правая половина плюс ключ, по модулю {half}. Новая левая половина равна старой правой. Новая правая равна побитовой сумме по модулю 2 старой левой и результата функции. Какова левая половина в конце?",
+      "en": "A Feistel network. The halves are numbers from 0 to 15. The left half is {left} and the right half is {right}. There are {n} rounds, and the keys are {keys}. The round function is the right half plus the key, modulo {half}. The new left half is the old right half. The new right half is the bitwise sum modulo 2 of the old left half and the round function. What is the final left half?"
+    },
+    "s1": {
+      "ru": "Сеть Фейстеля. Половины — числа от 0 до 15. Левая равна {left}, правая равна {right}. Раундов {n}, ключи: {keys}. Функция раунда — правая половина плюс ключ, по модулю {half}. Новая левая половина равна старой правой. Новая правая равна побитовой сумме по модулю 2 старой левой и результата функции. Каково число блока в конце? Это левая половина, умноженная на {half}, плюс правая.",
+      "en": "A Feistel network. The halves are numbers from 0 to 15. The left half is {left} and the right half is {right}. There are {n} rounds, and the keys are {keys}. The round function is the right half plus the key, modulo {half}. The new left half is the old right half. The new right half is the bitwise sum modulo 2 of the old left half and the round function. What is the final block as one number? It is the left half times {half}, plus the right half."
+    },
+    "s2": {
+      "ru": "Раунд {i}, ключ {item}: левая {left}, правая {right}.",
+      "en": "Round {i}, key {item}: left {left}, right {right}."
+    }
+  }
+}

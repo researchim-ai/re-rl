@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Автомат начинает в фазе 0. Событий {n}: {events}. В фазе 0 событие 1 переводит в фазу 1 и даёт награду 0. В фазе 1 событие 2 переводит в фазу 2 и даёт награду 4. В фазе 2 любое событие оставляет фазу 2 и даёт награду 1. Во всех остальных случаях фаза не меняется и награда 0. Какова сумма наград?",
+      "en": "The machine starts in phase 0. There are {n} events: {events}. In phase 0, event 1 moves to phase 1 and gives reward 0. In phase 1, event 2 moves to phase 2 and gives reward 4. In phase 2, any event stays in phase 2 and gives reward 1. In every other case the phase stays and the reward is 0. What is the sum of the rewards?"
+    },
+    "s1": {
+      "ru": "Автомат начинает в фазе 0. Событий {n}: {events}. В фазе 0 событие 1 переводит в фазу 1 и даёт награду 0. В фазе 1 событие 2 переводит в фазу 2 и даёт награду 4. В фазе 2 любое событие оставляет фазу 2 и даёт награду 1. Во всех остальных случаях фаза не меняется и награда 0. Какова фаза после последнего события?",
+      "en": "The machine starts in phase 0. There are {n} events: {events}. In phase 0, event 1 moves to phase 1 and gives reward 0. In phase 1, event 2 moves to phase 2 and gives reward 4. In phase 2, any event stays in phase 2 and gives reward 1. In every other case the phase stays and the reward is 0. What is the phase after the last event?"
+    },
+    "s2": {
+      "ru": "Событие {i} равно {event}: фаза {phase}, награда {reward}, сумма {total}.",
+      "en": "Event {i} is {event}: phase {phase}, reward {reward}, sum {total}."
+    }
+  }
+}

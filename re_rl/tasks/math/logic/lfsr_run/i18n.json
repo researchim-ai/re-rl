@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Линейный регистр сдвига длины {n}. Биты слева направо: {bits}. Левый бит выходит первым. Обратные связи стоят на позициях {taps}, счёт позиций начинается с нуля. Новый бит — сумма по модулю 2 битов на этих позициях. Регистр сдвигается влево, и новый бит встаёт справа. Шагов {n}. Сколько единиц вышло?",
+      "en": "A linear feedback shift register has length {n}. The bits from left to right are {bits}. The leftmost bit leaves first. Feedback is taken at positions {taps}, counting from zero. The new bit is the sum modulo 2 of the bits at those positions. The register shifts left, and the new bit enters on the right. There are {n} steps. How many ones leave the register?"
+    },
+    "s1": {
+      "ru": "Линейный регистр сдвига длины {n}. Биты слева направо: {bits}. Левый бит выходит первым. Обратные связи стоят на позициях {taps}, счёт позиций начинается с нуля. Новый бит — сумма по модулю 2 битов на этих позициях. Регистр сдвигается влево, и новый бит встаёт справа. Шагов {n}. Какое число записано в регистре в конце? Левый бит — старший разряд.",
+      "en": "A linear feedback shift register has length {n}. The bits from left to right are {bits}. The leftmost bit leaves first. Feedback is taken at positions {taps}, counting from zero. The new bit is the sum modulo 2 of the bits at those positions. The register shifts left, and the new bit enters on the right. There are {n} steps. What number is stored in the register at the end? The leftmost bit is the high digit."
+    },
+    "s2": {
+      "ru": "Шаг {i}: вышел бит {out}, единиц {ones}, регистр {reg}.",
+      "en": "Step {i}: bit {out} left, ones {ones}, register {reg}."
+    }
+  }
+}

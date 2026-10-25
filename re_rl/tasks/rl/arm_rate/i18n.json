@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две руки, номера 1 и 2. Попыток {n}, в каждой номер руки и успех 0 или 1: {pulls}. Рука без попыток не лидирует. Если попытки есть у обеих, сравните успехи первой, умноженные на попытки второй, с успехами второй, умноженными на попытки первой. Большее произведение лидирует. При равенстве лидер 0. Какой номер лидирует в конце?",
+      "en": "There are two arms, numbered 1 and 2. There are {n} pulls, each giving an arm number and a success of 0 or 1: {pulls}. An arm with no pulls does not lead. When both arms have pulls, compare the successes of the first times the pulls of the second with the successes of the second times the pulls of the first. The larger product leads. On a tie the leader is 0. Which number leads at the end?"
+    },
+    "s1": {
+      "ru": "Две руки, номера 1 и 2. Попыток {n}, в каждой номер руки и успех 0 или 1: {pulls}. Рука без попыток не лидирует. Если попытки есть у обеих, сравните успехи первой, умноженные на попытки второй, с успехами второй, умноженными на попытки первой. Большее произведение лидирует. При равенстве лидер 0. Сколько успехов собрала рука 1?",
+      "en": "There are two arms, numbered 1 and 2. There are {n} pulls, each giving an arm number and a success of 0 or 1: {pulls}. An arm with no pulls does not lead. When both arms have pulls, compare the successes of the first times the pulls of the second with the successes of the second times the pulls of the first. The larger product leads. On a tie the leader is 0. How many successes did arm 1 collect?"
+    },
+    "s2": {
+      "ru": "Попытка {i}: рука {arm}, успех {reward}. Лидер {leader}. Успехи {s1} и {s2}, попытки {c1} и {c2}.",
+      "en": "Pull {i}: arm {arm}, success {reward}. Leader {leader}. Successes {s1} and {s2}, pulls {c1} and {c2}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "У выпуклого {n}-угольника вершины занумерованы от 1 до {n} по обходу. Любые четыре различные вершины определяют ровно одну внутреннюю точку пересечения диагоналей, и разные четвёрки дают разные точки. Сколько таких точек?",
+      "en": "A convex {n}-gon has vertices numbered from 1 to {n} in order around the boundary. Any four distinct vertices determine exactly one interior crossing of diagonals, and different fours give different points. How many such points are there?"
+    },
+    "s1": {
+      "ru": "У выпуклого {n}-угольника вершины занумерованы от 1 до {n} по обходу. Четвёрки вершин идут в лексикографическом порядке возрастающих номеров. Какова наибольшая вершина четвёрки номер {k}? Нумерация четвёрок с 1.",
+      "en": "A convex {n}-gon has vertices numbered from 1 to {n} in order around the boundary. Fours of vertices run in lexicographic order of increasing numbers. What is the largest vertex of four number {k}? Fours are counted from 1."
+    },
+    "s2": {
+      "ru": "Четвёрка {i}: {a}, {b}, {c}, {d}.",
+      "en": "Four {i}: {a}, {b}, {c}, {d}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке цветные прямоугольники. Один лежит строго внутри другого, если все его клетки внутри и он не касается границы внешнего. Касание границы внутрь не считается. Сколько пар прямоугольников связаны такой вложенностью?",
+      "en": "The picture shows colored rectangles. One lies strictly inside another when all of its cells are inside and it does not touch the outer border. Touching the border does not count as inside. How many pairs of rectangles are related by this nesting?"
+    },
+    "s1": {
+      "ru": "На картинке цветные прямоугольники. Один лежит строго внутри другого, если все его клетки внутри и он не касается границы внешнего. Касание границы внутрь не считается. Сколько прямоугольников содержат хотя бы один другой?",
+      "en": "The picture shows colored rectangles. One lies strictly inside another when all of its cells are inside and it does not touch the outer border. Touching the border does not count as inside. How many rectangles contain at least one other rectangle?"
+    },
+    "s2": {
+      "ru": "Прямоугольник {i}: содержит {held}, пар уже {pairs}, содержащих прямоугольников {outers}.",
+      "en": "Rectangle {i}: contains {held}, pairs so far {pairs}, containing rectangles {outers}."
+    }
+  }
+}

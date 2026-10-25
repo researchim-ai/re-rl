@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строка из {n} символов 0 и 1: {symbols}. Серия — максимальный кусок одинаковых символов подряд. Сколько серий?",
+      "en": "A string of {n} symbols, each 0 or 1: {symbols}. A run is a maximal block of the same symbol. How many runs are there?"
+    },
+    "s1": {
+      "ru": "Строка из {n} символов 0 и 1: {symbols}. Серия — максимальный кусок одинаковых символов подряд. Какова длина серии номер {r}? Нумерация серий с 1.",
+      "en": "A string of {n} symbols, each 0 or 1: {symbols}. A run is a maximal block of the same symbol. What is the length of run number {r}? Runs are counted from 1."
+    },
+    "s2": {
+      "ru": "Позиция {i}, символ {symbol}: длина текущей серии {length}, серий {runs}.",
+      "en": "Position {i}, symbol {symbol}: current run length {length}, runs {runs}."
+    }
+  }
+}

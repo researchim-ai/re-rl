@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В массиве {n} клеток, номера от 0 до {n} минус 1. Индекс начинает с 0. Шагов {n}, каждый равен 1 или -1: {steps}. Если новый номер внутри массива, индекс туда переходит. Если номер меньше 0 или не меньше {n}, индекс остаётся, и это ошибка границы. Каков индекс в конце?",
+      "en": "The array has {n} cells, numbered from 0 through {n} minus 1. The index starts at 0. There are {n} steps, each 1 or -1: {steps}. If the new number is inside the array, the index moves there. If the number is below 0 or not below {n}, the index stays, and that is a bounds error. What is the final index?"
+    },
+    "s1": {
+      "ru": "В массиве {n} клеток, номера от 0 до {n} минус 1. Индекс начинает с 0. Шагов {n}, каждый равен 1 или -1: {steps}. Если новый номер внутри массива, индекс туда переходит. Если номер меньше 0 или не меньше {n}, индекс остаётся, и это ошибка границы. Сколько ошибок границы?",
+      "en": "The array has {n} cells, numbered from 0 through {n} minus 1. The index starts at 0. There are {n} steps, each 1 or -1: {steps}. If the new number is inside the array, the index moves there. If the number is below 0 or not below {n}, the index stays, and that is a bounds error. How many bounds errors are there?"
+    },
+    "s2": {
+      "ru": "Шаг {i} равен {step}: индекс {place}, ошибок {faults}.",
+      "en": "Step {i} is {step}: index {place}, errors {faults}."
+    }
+  }
+}

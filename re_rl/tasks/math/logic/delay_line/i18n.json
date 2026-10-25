@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На вход по очереди приходят {n} чисел: {values}. Линия задержки равна {delay}. На шаге выход равен числу, которое пришло {delay} шага назад. Пока такого числа нет, выход равен 0. Каков выход на последнем шаге?",
+      "en": "{n} numbers arrive in order: {values}. The delay line has length {delay}. At a step the output is the number that arrived {delay} steps earlier. Until that number exists, the output is 0. What is the output on the last step?"
+    },
+    "s1": {
+      "ru": "На вход по очереди приходят {n} чисел: {values}. Линия задержки равна {delay}. На шаге выход равен числу, которое пришло {delay} шага назад. Пока такого числа нет, выход равен 0. Какова сумма всех выходов?",
+      "en": "{n} numbers arrive in order: {values}. The delay line has length {delay}. At a step the output is the number that arrived {delay} steps earlier. Until that number exists, the output is 0. What is the sum of all outputs?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, вход {value}: выход {out}, сумма выходов {total}.",
+      "en": "Step {i}, input {value}: output {out}, output sum {total}."
+    }
+  }
+}

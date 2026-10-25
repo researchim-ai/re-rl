@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Предметов {n}. У каждого корзина от 1 до 3 и метка: {rows}. Метка 1 значит верный ответ, метка 0 значит ошибку. Сколько верных ответов попало в корзину {bucket}?",
+      "en": "There are {n} items. Each one has a bin from 1 to 3 and a label: {rows}. Label 1 means a correct answer, and label 0 means an error. How many correct answers fell into bin {bucket}?"
+    },
+    "s1": {
+      "ru": "Предметов {n}. У каждого корзина от 1 до 3 и метка: {rows}. Метка 1 значит верный ответ, метка 0 значит ошибку. Сколько ошибок попало в корзину {bucket}?",
+      "en": "There are {n} items. Each one has a bin from 1 to 3 and a label: {rows}. Label 1 means a correct answer, and label 0 means an error. How many errors fell into bin {bucket}?"
+    },
+    "s2": {
+      "ru": "Предмет {i}: корзина {bin_id}, метка {label}, верных в выбранной корзине {correct}, ошибок {wrong}.",
+      "en": "Item {i}: bin {bin_id}, label {label}, correct in the chosen bin {correct}, errors {wrong}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Таблица из {n} клеток пуста, номера от 0 до {n} минус 1. Ключи вставляются по порядку: {keys}. Первое место — остаток от деления ключа на {n}. Если клетка занята, поиск идёт в следующую, а после последней возвращается к нулю. Проба — каждая проверенная клетка, включая ту, куда ключ встал. В какую клетку встал последний ключ?",
+      "en": "A table of {n} cells starts empty, numbered from 0 through {n} minus 1. Keys are inserted in order: {keys}. The first place is the remainder of the key divided by {n}. If the cell is occupied, the search moves to the next cell, and after the last cell it returns to zero. A probe is each checked cell, including the cell where the key lands. Which cell receives the last key?"
+    },
+    "s1": {
+      "ru": "Таблица из {n} клеток пуста, номера от 0 до {n} минус 1. Ключи вставляются по порядку: {keys}. Первое место — остаток от деления ключа на {n}. Если клетка занята, поиск идёт в следующую, а после последней возвращается к нулю. Проба — каждая проверенная клетка, включая ту, куда ключ встал. Сколько проб было всего?",
+      "en": "A table of {n} cells starts empty, numbered from 0 through {n} minus 1. Keys are inserted in order: {keys}. The first place is the remainder of the key divided by {n}. If the cell is occupied, the search moves to the next cell, and after the last cell it returns to zero. A probe is each checked cell, including the cell where the key lands. How many probes were there in total?"
+    },
+    "s2": {
+      "ru": "Ключ {i} равен {item}: клетка {slot}, проб уже {probes}.",
+      "en": "Key {i} is {item}: cell {slot}, probes so far {probes}."
+    }
+  }
+}

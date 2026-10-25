@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Эпизод из {n} шагов. Состояния: {states}. Награды в том же порядке: {rewards}. Цель равна {goal}. Награда шага, на котором состояние впервые равно цели, ещё входит в сумму. Награды следующих шагов не входят. Если цель не встретилась, входит вся сумма. Чему равна учтённая сумма?",
+      "en": "An episode has {n} steps. The states are {states}. The rewards in the same order are {rewards}. The goal is {goal}. The reward of the step where the state first equals the goal is still included. Rewards of the later steps are not included. If the goal never appears, the whole sum is included. What is the included sum?"
+    },
+    "s1": {
+      "ru": "Эпизод из {n} шагов. Состояния: {states}. Награды в том же порядке: {rewards}. Цель равна {goal}. Награда шага, на котором состояние впервые равно цели, ещё входит в сумму. Награды следующих шагов не входят. Если цель не встретилась, входит вся сумма. На каком шаге цель встретилась впервые? Если не встретилась, ответ 0.",
+      "en": "An episode has {n} steps. The states are {states}. The rewards in the same order are {rewards}. The goal is {goal}. The reward of the step where the state first equals the goal is still included. Rewards of the later steps are not included. If the goal never appears, the whole sum is included. On which step does the goal first appear? If it never appears, the answer is 0."
+    },
+    "s2": {
+      "ru": "Шаг {i}, состояние {state}, награда {reward}: учтено {kept}, полная сумма {full}, шаг цели {stop}.",
+      "en": "Step {i}, state {state}, reward {reward}: included {kept}, full sum {full}, goal step {stop}."
+    }
+  }
+}

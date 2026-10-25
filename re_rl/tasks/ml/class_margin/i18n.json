@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Примеров {n}. У каждого три счёта классов 0, 1 и 2, затем стрелка и номер верного класса: {rows}. Запас равен счёту верного класса минус больший из двух остальных. Промах — запас меньше 1. Сколько промахов?",
+      "en": "There are {n} examples. Each one gives the scores of classes 0, 1, and 2, then an arrow and the true class: {rows}. The margin is the true class score minus the larger of the other two. A miss is a margin below 1. How many misses are there?"
+    },
+    "s1": {
+      "ru": "Примеров {n}. У каждого три счёта классов 0, 1 и 2, затем стрелка и номер верного класса: {rows}. Запас равен счёту верного класса минус больший из двух остальных. Каков наименьший запас?",
+      "en": "There are {n} examples. Each one gives the scores of classes 0, 1, and 2, then an arrow and the true class: {rows}. The margin is the true class score minus the larger of the other two. What is the smallest margin?"
+    },
+    "s2": {
+      "ru": "Пример {i}: запас {gap}, промахов уже {bad}, наименьший запас {worst}.",
+      "en": "Example {i}: margin {gap}, misses so far {bad}, smallest margin {worst}."
+    }
+  }
+}

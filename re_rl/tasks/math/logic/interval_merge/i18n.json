@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Отрезки уже идут по возрастанию левого конца: {listed}. Концы целые и входят в отрезок. Новый отрезок склеивается с текущим куском, если его левый конец не больше правого конца куска плюс 1. Иначе начинается новый кусок. Сколько кусков получится?",
+      "en": "The segments are already ordered by the left end: {listed}. Ends are integers and belong to the segment. A new segment joins the current piece when its left end is at most one more than the piece's right end. Otherwise a new piece starts. How many pieces result?"
+    },
+    "s1": {
+      "ru": "Отрезки уже идут по возрастанию левого конца: {listed}. Концы целые и входят в отрезок. Новый отрезок склеивается с текущим куском, если его левый конец не больше правого конца куска плюс 1. Иначе начинается новый кусок. Какова суммарная длина кусков?",
+      "en": "The segments are already ordered by the left end: {listed}. Ends are integers and belong to the segment. A new segment joins the current piece when its left end is at most one more than the piece's right end. Otherwise a new piece starts. What is the total length of the pieces?"
+    },
+    "s2": {
+      "ru": "Отрезок {i}, {left}-{right}: кусков {pieces}, покрыто {cover}.",
+      "en": "Segment {i}, {left}-{right}: pieces {pieces}, covered {cover}."
+    }
+  }
+}

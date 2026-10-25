@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шифрование Эль-Гамаля по модулю {p}. Основание {g}, открытый ключ {y}, сообщение {m}. Показатель задан {n} битами, старший бит слева: {bits}. Обе степени начинают с 1. На каждом бите обе степени возводят в квадрат по модулю {p}. Если бит равен 1, первую степень умножают на {g}, а вторую на {y}. Первая часть шифртекста — первая степень. Вторая часть — сообщение, умноженное на вторую степень, по модулю {p}. Какова первая часть?",
+      "en": "ElGamal encryption works modulo {p}. The base is {g}, the public key is {y}, and the message is {m}. The exponent has {n} bits, with the high bit on the left: {bits}. Both powers start at 1. On each bit, square both powers modulo {p}. If the bit is 1, multiply the first power by {g} and the second power by {y}. The first ciphertext part is the first power. The second part is the message times the second power, modulo {p}. What is the first part?"
+    },
+    "s1": {
+      "ru": "Шифрование Эль-Гамаля по модулю {p}. Основание {g}, открытый ключ {y}, сообщение {m}. Показатель задан {n} битами, старший бит слева: {bits}. Обе степени начинают с 1. На каждом бите обе степени возводят в квадрат по модулю {p}. Если бит равен 1, первую степень умножают на {g}, а вторую на {y}. Первая часть шифртекста — первая степень. Вторая часть — сообщение, умноженное на вторую степень, по модулю {p}. Какова вторая часть?",
+      "en": "ElGamal encryption works modulo {p}. The base is {g}, the public key is {y}, and the message is {m}. The exponent has {n} bits, with the high bit on the left: {bits}. Both powers start at 1. On each bit, square both powers modulo {p}. If the bit is 1, multiply the first power by {g} and the second power by {y}. The first ciphertext part is the first power. The second part is the message times the second power, modulo {p}. What is the second part?"
+    },
+    "s2": {
+      "ru": "Бит {i} равен {bit}: первая часть {hint}, вторая часть {mask}.",
+      "en": "Bit {i} is {bit}: first part {hint}, second part {mask}."
+    }
+  }
+}

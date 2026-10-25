@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке стрелки слева направо. Направление кодируется так: 1 вверх, 2 направо, 3 вниз, 4 налево. Поворот налево — это смена на четверть оборота против часовой стрелки: от 2 к 1, от 1 к 4, от 4 к 3, от 3 к 2. Первая стрелка поворота не даёт. Прямой ход, поворот направо и разворот не считаются. Сколько поворотов налево?",
+      "en": "The picture shows arrows from left to right. Directions are coded as 1 up, 2 right, 3 down, and 4 left. A left turn is a quarter turn counterclockwise: from 2 to 1, from 1 to 4, from 4 to 3, and from 3 to 2. The first arrow is not a turn. A straight step, a right turn, and a reversal do not count. How many left turns are there?"
+    },
+    "s1": {
+      "ru": "На картинке стрелки слева направо. Направление кодируется так: 1 вверх, 2 направо, 3 вниз, 4 налево. Каково направление последней стрелки?",
+      "en": "The picture shows arrows from left to right. Directions are coded as 1 up, 2 right, 3 down, and 4 left. What is the direction of the last arrow?"
+    },
+    "s2": {
+      "ru": "Стрелка {i}: направление {code}, поворот налево {turned}, левых поворотов уже {lefts}.",
+      "en": "Arrow {i}: direction {code}, left turn {turned}, left turns so far {lefts}."
+    }
+  }
+}

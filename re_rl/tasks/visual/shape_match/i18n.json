@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Слева в зелёной рамке образец. Справа от него фигуры по порядку. Фигура совпадает с образцом, если её можно повернуть на 0, 90, 180 или 270 градусов и наложить на образец. Отражение не считается поворотом. Сколько фигур справа совпадают с образцом?",
+      "en": "The sample is on the left, in the green frame. The figures to its right are in order. A figure matches the sample when it can be turned by 0, 90, 180, or 270 degrees and laid on the sample. A reflection does not count as a turn. How many figures on the right match the sample?"
+    },
+    "s1": {
+      "ru": "Слева в зелёной рамке образец. Справа от него фигуры по порядку. Фигура совпадает с образцом, если её можно повернуть на 0, 90, 180 или 270 градусов и наложить на образец. Отражение не считается поворотом. Совпадает ли фигура номер {k} справа с образцом? Ответьте 1 или 0.",
+      "en": "The sample is on the left, in the green frame. The figures to its right are in order. A figure matches the sample when it can be turned by 0, 90, 180, or 270 degrees and laid on the sample. A reflection does not count as a turn. Does figure number {k} on the right match the sample? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Фигура {i}: совпадение {flag}, совпадений уже {matches}.",
+      "en": "Figure {i}: match {flag}, matches so far {matches}."
+    }
+  }
+}

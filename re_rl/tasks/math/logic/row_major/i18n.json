@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Таблица имеет {n} столбцов, нумерация клеток идёт слева направо и сверху вниз с нуля. Номеров {n}: {indices}. Номер строки — частное от деления на {n}, номер столбца — остаток. Каков номер строки у последнего номера?",
+      "en": "The table has {n} columns. Cell numbers run left to right and top to bottom, starting at zero. There are {n} numbers: {indices}. The row number is the quotient on division by {n}, and the column number is the remainder. What is the row number of the last number?"
+    },
+    "s1": {
+      "ru": "Таблица имеет {n} столбцов, нумерация клеток идёт слева направо и сверху вниз с нуля. Номеров {n}: {indices}. Номер строки — частное от деления на {n}, номер столбца — остаток. Какова сумма номеров столбцов?",
+      "en": "The table has {n} columns. Cell numbers run left to right and top to bottom, starting at zero. There are {n} numbers: {indices}. The row number is the quotient on division by {n}, and the column number is the remainder. What is the sum of the column numbers?"
+    },
+    "s2": {
+      "ru": "Номер {i} равен {item}: строка {row}, столбец {col}, сумма столбцов {cols}.",
+      "en": "Number {i} is {item}: row {row}, column {col}, column sum {cols}."
+    }
+  }
+}

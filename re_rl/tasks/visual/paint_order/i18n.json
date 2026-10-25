@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке прямоугольники на клетчатом поле. Справа легенда: номер — порядок покраски, номер 1 лежит ниже всех. Более поздний прямоугольник закрывает клетки более раннего. Сколько клеток покрыто хотя бы одним прямоугольником?",
+      "en": "The picture shows rectangles on a grid. The legend on the right gives the painting order: number 1 lies under the others. A later rectangle covers the cells of an earlier one. How many cells are covered by at least one rectangle?"
+    },
+    "s1": {
+      "ru": "На картинке прямоугольники на клетчатом поле. Справа легенда: номер — порядок покраски, номер 1 лежит ниже всех. Более поздний прямоугольник закрывает клетки более раннего. Сколько клеток всё ещё показывают цвет номер 1?",
+      "en": "The picture shows rectangles on a grid. The legend on the right gives the painting order: number 1 lies under the others. A later rectangle covers the cells of an earlier one. How many cells still show color number 1?"
+    },
+    "s2": {
+      "ru": "После прямоугольника {i}: покрыто {cover}, цвет 1 виден на {first} клетках.",
+      "en": "After rectangle {i}: covered {cover}, color 1 is visible on {first} cells."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сейчас {hour} часов и {minute} минут. Прибавлений {n}: {adds}. Каждые 60 минут дают один час, а час после 23 снова становится 0. Каково число минут в конце, от 0 до 59?",
+      "en": "The time is {hour} hours and {minute} minutes. There are {n} additions: {adds}. Every 60 minutes make one hour, and the hour after 23 becomes 0 again. What is the final minute count, from 0 to 59?"
+    },
+    "s1": {
+      "ru": "Сейчас {hour} часов и {minute} минут. Прибавлений {n}: {adds}. Каждые 60 минут дают один час, а час после 23 снова становится 0. Сколько раз минуты перешли через 60?",
+      "en": "The time is {hour} hours and {minute} minutes. There are {n} additions: {adds}. Every 60 minutes make one hour, and the hour after 23 becomes 0 again. How many times did the minutes pass through 60?"
+    },
+    "s2": {
+      "ru": "Прибавление {i} равно {add}: минуты {minute}, час {hour}, переносов {carries}.",
+      "en": "Addition {i} is {add}: minutes {minute}, hour {hour}, carries {carries}."
+    }
+  }
+}

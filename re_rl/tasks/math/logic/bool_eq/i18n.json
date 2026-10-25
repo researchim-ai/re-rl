@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Атомы от 1 до {n} истинны или ложны. Ограничения по порядку, где != значит «различаются»: {constraints}. Новое ограничение противоречит, если из предыдущих уже следует обратное. Совместна ли система? Ответьте 1 или 0.",
+      "en": "Atoms from 1 to {n} are true or false. The constraints in order, where != means the atoms differ, are {constraints}. A new constraint contradicts when the earlier ones already imply the opposite. Is the system consistent? Answer 1 or 0."
+    },
+    "s1": {
+      "ru": "Атомы от 1 до {n} истинны или ложны. Ограничения по порядку, где != значит «различаются»: {constraints}. Новое ограничение противоречит, если из предыдущих уже следует обратное. Каков номер первого противоречивого ограничения? Если противоречия нет, ответ 0. Нумерация с 1.",
+      "en": "Atoms from 1 to {n} are true or false. The constraints in order, where != means the atoms differ, are {constraints}. A new constraint contradicts when the earlier ones already imply the opposite. What is the index of the first contradictory constraint? If there is none, the answer is 0. Counting starts at 1."
+    },
+    "s2": {
+      "ru": "Ограничение {i}: {left}{mark}{right}, ещё совместно {ok}, номер противоречия {broke}.",
+      "en": "Constraint {i}: {left}{mark}{right}, still consistent {ok}, contradiction index {broke}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два детерминированных автомата читают одно слово. У каждого {n} состояний, старт в 0. Слово из {n} символов: {word}. У стрелки перед двоеточием стоят состояние и символ, после двоеточия — одно следующее состояние. Первый автомат, принимающие {accept_a}. Стрелки: {trans_a}. Второй автомат, принимающие {accept_b}. Стрелки: {trans_b}. Положение до слова не считается. После скольких символов оба автомата сразу оказались в принимающих состояниях?",
+      "en": "Two deterministic automata read one word. Each has {n} states and starts at 0. The word has {n} symbols: {word}. In an arrow, the state and the symbol stand before the colon, and the single next state stands after it. The first automaton has accepting states {accept_a}. Arrows: {trans_a}. The second automaton has accepting states {accept_b}. Arrows: {trans_b}. The position before the word does not count. After how many symbols are both automata in accepting states?"
+    },
+    "s1": {
+      "ru": "Два детерминированных автомата читают одно слово. У каждого {n} состояний, старт в 0. Слово из {n} символов: {word}. У стрелки перед двоеточием стоят состояние и символ, после двоеточия — одно следующее состояние. Первый автомат, принимающие {accept_a}. Стрелки: {trans_a}. Второй автомат, принимающие {accept_b}. Стрелки: {trans_b}. Принимают ли оба автомата в конце? Ответьте 1 или 0.",
+      "en": "Two deterministic automata read one word. Each has {n} states and starts at 0. The word has {n} symbols: {word}. In an arrow, the state and the symbol stand before the colon, and the single next state stands after it. The first automaton has accepting states {accept_a}. Arrows: {trans_a}. The second automaton has accepting states {accept_b}. Arrows: {trans_b}. Are both automata accepting at the end? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Символ {i} равен {symbol}: первый в {first}, второй в {second}, совместных принятий {both}.",
+      "en": "Symbol {i} is {symbol}: first at {first}, second at {second}, joint accepts {both}."
+    }
+  }
+}

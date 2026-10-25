@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Чисел {n}: {values}. Ненулевое число запоминается и выходит само. Ноль заменяется последним запомненным ненулевым. Ноль до первого ненулевого остаётся нулём. Какова сумма выходов?",
+      "en": "There are {n} numbers: {values}. A nonzero number is remembered and is emitted itself. A zero is replaced by the last remembered nonzero number. A zero before the first nonzero stays zero. What is the sum of the outputs?"
+    },
+    "s1": {
+      "ru": "Чисел {n}: {values}. Ненулевое число запоминается и выходит само. Ноль заменяется последним запомненным ненулевым. Ноль до первого ненулевого остаётся нулём и заменой не считается. Сколько нулей было заменено?",
+      "en": "There are {n} numbers: {values}. A nonzero number is remembered and is emitted itself. A zero is replaced by the last remembered nonzero number. A zero before the first nonzero stays zero and does not count as a replacement. How many zeros were replaced?"
+    },
+    "s2": {
+      "ru": "Число {i} равно {value}: выход {out}, сумма {total}, замен {replaced}.",
+      "en": "Number {i} is {value}: output {out}, sum {total}, replacements {replaced}."
+    }
+  }
+}

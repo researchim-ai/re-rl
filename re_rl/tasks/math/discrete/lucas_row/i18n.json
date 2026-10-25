@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа Люка: L(0) = 2, L(1) = 1, дальше каждый член — сумма двух предыдущих. Каково L({n})?",
+      "en": "Lucas numbers: L(0) = 2, L(1) = 1, then each term is the sum of the two before it. What is L({n})?"
+    },
+    "s1": {
+      "ru": "Числа Люка: L(0) = 2, L(1) = 1, дальше каждый член — сумма двух предыдущих. Какова сумма L от 0 до {n} включительно?",
+      "en": "Lucas numbers: L(0) = 2, L(1) = 1, then each term is the sum of the two before it. What is the sum of L from 0 through {n}?"
+    },
+    "s2": {
+      "ru": "Индекс {i}: значение {value}.",
+      "en": "Index {i}: value {value}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Начальное значение {start}. Дальше {n} слоёв, у каждого вес и сдвиг: {layers}. Вход слоя равен вес умножить на текущее значение плюс сдвиг. Если вход неположителен, выход слоя равен 0, а множитель начального значения становится 0 и таким остаётся. Если вход положителен, выход равен этому входу, а множитель умножается на вес. Каков выход последнего слоя?",
+      "en": "The initial value is {start}. Then there are {n} layers, each with a weight and a bias: {layers}. A layer input is the weight times the current value plus the bias. If that input is not positive, the layer output is 0, and the multiplier of the initial value becomes 0 and stays 0. If the input is positive, the output equals that input, and the multiplier is multiplied by the weight. What is the output of the last layer?"
+    },
+    "s1": {
+      "ru": "Начальное значение {start}. Дальше {n} слоёв, у каждого вес и сдвиг: {layers}. Вход слоя равен вес умножить на текущее значение плюс сдвиг. Если вход неположителен, выход слоя равен 0, а множитель начального значения становится 0 и таким остаётся. Если вход положителен, выход равен этому входу, а множитель умножается на вес. Каков множитель начального значения после всех слоёв?",
+      "en": "The initial value is {start}. Then there are {n} layers, each with a weight and a bias: {layers}. A layer input is the weight times the current value plus the bias. If that input is not positive, the layer output is 0, and the multiplier of the initial value becomes 0 and stays 0. If the input is positive, the output equals that input, and the multiplier is multiplied by the weight. What is the multiplier of the initial value after every layer?"
+    },
+    "s2": {
+      "ru": "Слой {i}, вес {weight}, сдвиг {bias}: вход {pre}, выход {value}, множитель {factor}.",
+      "en": "Layer {i}, weight {weight}, bias {bias}: input {pre}, output {value}, multiplier {factor}."
+    }
+  }
+}

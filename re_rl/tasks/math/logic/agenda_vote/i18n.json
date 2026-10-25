@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Альтернатив {alts}. Запись a>b значит, что при прямом сравнении побеждает a: {pairs}. Повестка: {agenda}. Текущий победитель — первый в повестке. Каждый следующий вызывает его на сравнение и занимает место, если побеждает в этой паре. Кто останется победителем?",
+      "en": "There are {alts} alternatives. The note a>b means a wins the direct comparison: {pairs}. The agenda is {agenda}. The current winner starts as the first entry. Each later alternative challenges it and takes the place when it wins that pair. Who is the winner at the end?"
+    },
+    "s1": {
+      "ru": "Альтернатив {alts}. Запись a>b значит, что при прямом сравнении побеждает a: {pairs}. Повестка: {agenda}. Текущий победитель — первый в повестке. Каждый следующий вызывает его на сравнение и занимает место, если побеждает в этой паре. Сколько раз текущий победитель сменился?",
+      "en": "There are {alts} alternatives. The note a>b means a wins the direct comparison: {pairs}. The agenda is {agenda}. The current winner starts as the first entry. Each later alternative challenges it and takes the place when it wins that pair. How many times does the current winner change?"
+    },
+    "s2": {
+      "ru": "Вызов {i}: {challenger} против {previous}, победитель {current}, смен уже {changes}.",
+      "en": "Challenge {i}: {challenger} against {previous}, winner {current}, changes so far {changes}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Последовательность Сильвестра: s(0) = 2, дальше s(n) = s(n-1)*(s(n-1)-1) + 1. Каково s({n})?",
+      "en": "The Sylvester sequence: s(0) = 2, then s(n) = s(n-1)*(s(n-1)-1) + 1. What is s({n})?"
+    },
+    "s1": {
+      "ru": "Последовательность Сильвестра: s(0) = 2, дальше s(n) = s(n-1)*(s(n-1)-1) + 1. Каково s({n}-1), то есть член перед s({n})?",
+      "en": "The Sylvester sequence: s(0) = 2, then s(n) = s(n-1)*(s(n-1)-1) + 1. What is s({n}-1), the term before s({n})?"
+    },
+    "s2": {
+      "ru": "s({i}) = {value}.",
+      "en": "s({i}) = {value}."
+    },
+    "s3": {
+      "ru": "s({i}) = {prev}*({prev}-1) + 1 = {value}.",
+      "en": "s({i}) = {prev}*({prev}-1) + 1 = {value}."
+    }
+  }
+}

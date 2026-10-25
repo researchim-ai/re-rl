@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Треугольник бюллетеня. B(0, 0) = 1, и B(n, 0) = 1. Для k от 1 до n клетка B(n, k) равна клетке сверху B(n-1, k) плюс клетка слева B(n, k-1). Если клетки сверху нет, берите 0. Каково B({n}, {k})?",
+      "en": "The ballot triangle. B(0, 0) = 1, and B(n, 0) = 1. For k from 1 to n, cell B(n, k) is the cell above, B(n-1, k), plus the cell to the left, B(n, k-1). If there is no cell above, use 0. What is B({n}, {k})?"
+    },
+    "s1": {
+      "ru": "Треугольник бюллетеня. B(0, 0) = 1, и B(n, 0) = 1. Для k от 1 до n клетка B(n, k) равна клетке сверху B(n-1, k) плюс клетка слева B(n, k-1). Если клетки сверху нет, берите 0. Какова последняя клетка строки {n}?",
+      "en": "The ballot triangle. B(0, 0) = 1, and B(n, 0) = 1. For k from 1 to n, cell B(n, k) is the cell above, B(n-1, k), plus the cell to the left, B(n, k-1). If there is no cell above, use 0. What is the last cell of row {n}?"
+    },
+    "s2": {
+      "ru": "B({n}, {k}) = {above} + {left} = {value}.",
+      "en": "B({n}, {k}) = {above} + {left} = {value}."
+    },
+    "s3": {
+      "ru": "B({n}, 0) = {value}.",
+      "en": "B({n}, 0) = {value}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Порог равен {pivot}. Чисел {n}: {values}. Число меньше порога идёт влево. Число, равное порогу, считается отдельно. Число больше порога не входит ни влево, ни в равные. Сколько чисел меньше порога?",
+      "en": "The threshold is {pivot}. There are {n} numbers: {values}. A number below the threshold goes to the left. A number equal to the threshold is counted separately. A number above the threshold goes neither to the left nor to the equals. How many numbers are below the threshold?"
+    },
+    "s1": {
+      "ru": "Порог равен {pivot}. Чисел {n}: {values}. Число меньше порога идёт влево. Число, равное порогу, считается отдельно. Число больше порога не входит ни влево, ни в равные. Сколько чисел равно порогу?",
+      "en": "The threshold is {pivot}. There are {n} numbers: {values}. A number below the threshold goes to the left. A number equal to the threshold is counted separately. A number above the threshold goes neither to the left nor to the equals. How many numbers equal the threshold?"
+    },
+    "s2": {
+      "ru": "Число {i} равно {value}: слева {left}, равных {equal}.",
+      "en": "Number {i} is {value}: left {left}, equals {equal}."
+    }
+  }
+}

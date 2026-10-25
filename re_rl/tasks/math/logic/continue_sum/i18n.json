@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шагов {n}. В каждом число и признак пропуска: {rows}. Если признак равен 1, число не прибавляется, но цикл идёт к следующему шагу. Если признак равен 0, число входит в сумму. Какова сумма?",
+      "en": "There are {n} steps. Each one gives a number and a skip flag: {rows}. When the flag is 1, the number is not added, but the loop goes on to the next step. When the flag is 0, the number enters the sum. What is the sum?"
+    },
+    "s1": {
+      "ru": "Шагов {n}. В каждом число и признак пропуска: {rows}. Если признак равен 1, число не прибавляется, но цикл идёт к следующему шагу. Если признак равен 0, число входит в сумму. Сколько чисел вошло в сумму?",
+      "en": "There are {n} steps. Each one gives a number and a skip flag: {rows}. When the flag is 1, the number is not added, but the loop goes on to the next step. When the flag is 0, the number enters the sum. How many numbers entered the sum?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: число {value}, пропуск {skip}, сумма {total}, вошло {kept}.",
+      "en": "Step {i}: number {value}, skip {skip}, sum {total}, entered {kept}."
+    }
+  }
+}

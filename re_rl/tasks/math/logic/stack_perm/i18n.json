@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа от 1 до {n} можно класть в стек только по возрастанию. Нужный выход: {target}. Пока вершина стека не равна очередному нужному числу, кладите следующее число. Если вершина равна нужному, снимите её. Если класть уже нечего, а вершина другая, выход невозможен. Возможен ли этот выход? Ответьте 1 или 0.",
+      "en": "The numbers from 1 to {n} may enter a stack only in increasing order. The desired output is {target}. While the stack top is not the next desired number, push the next number. If the top equals the desired number, pop it. If nothing remains to push and the top is different, the output is impossible. Is this output possible? Answer 1 or 0."
+    },
+    "s1": {
+      "ru": "Числа от 1 до {n} можно класть в стек только по возрастанию. Нужный выход: {target}. Пока вершина стека не равна очередному нужному числу, кладите следующее число. Если вершина равна нужному, снимите её. Если класть уже нечего, а вершина другая, выход невозможен. Сколько чисел удалось снять до первой невозможности включительно, если она есть?",
+      "en": "The numbers from 1 to {n} may enter a stack only in increasing order. The desired output is {target}. While the stack top is not the next desired number, push the next number. If the top equals the desired number, pop it. If nothing remains to push and the top is different, the output is impossible. How many numbers were popped, including none after the first failure?"
+    },
+    "s2": {
+      "ru": "Нужно {want}: положили {pushed}, снято всего {pops}, высота {height}, ещё возможно {ok}.",
+      "en": "Need {want}: pushed {pushed}, popped so far {pops}, height {height}, still possible {ok}."
+    }
+  }
+}

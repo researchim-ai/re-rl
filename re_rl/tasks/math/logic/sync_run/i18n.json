@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Детерминированный автомат из {n} состояний. Одно слово читают сразу из каждого состояния. У стрелки перед двоеточием стоят состояние и символ, после двоеточия — одно следующее состояние. Стрелки: {trans}. Слово из {n} символов: {word}. После символа остаётся множество состояний, в которые привели стрелки. Сколько состояний останется в конце?",
+      "en": "A deterministic automaton has {n} states. One word is read from every state at once. In an arrow, the state and the symbol stand before the colon, and the single next state stands after it. Arrows: {trans}. The word has {n} symbols: {word}. After a symbol the states reached by the arrows remain. How many states remain at the end?"
+    },
+    "s1": {
+      "ru": "Детерминированный автомат из {n} состояний. Одно слово читают сразу из каждого состояния. У стрелки перед двоеточием стоят состояние и символ, после двоеточия — одно следующее состояние. Стрелки: {trans}. Слово из {n} символов: {word}. После символа остаётся множество состояний, в которые привели стрелки. Собрались ли все прогоны в одном состоянии? Ответьте 1 или 0.",
+      "en": "A deterministic automaton has {n} states. One word is read from every state at once. In an arrow, the state and the symbol stand before the colon, and the single next state stands after it. Arrows: {trans}. The word has {n} symbols: {word}. After a symbol the states reached by the arrows remain. Did every run end in one common state? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Символ {i} равен {symbol}: осталось {left}, общее состояние {synced}.",
+      "en": "Symbol {i} is {symbol}: remaining {left}, one common state {synced}."
+    }
+  }
+}

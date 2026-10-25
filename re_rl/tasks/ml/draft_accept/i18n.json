@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Позиций {n}. В каждой паре слева черновик, справа проверка: {pairs}. Идите слева направо. Пока числа совпадают, позиция принята. Первое различие останавливает принятие, дальше позиции не принимаются. Сколько позиций принято?",
+      "en": "There are {n} positions. In each pair the draft is on the left and the check is on the right: {pairs}. Read from left to right. A position is accepted while the two numbers match. The first difference stops acceptance, and later positions are not accepted. How many positions are accepted?"
+    },
+    "s1": {
+      "ru": "Позиций {n}. В каждой паре слева черновик, справа проверка: {pairs}. Идите слева направо. Пока числа совпадают, позиция принята. Первое различие останавливает принятие. Каков номер первой непринятой позиции? Если расхождения нет, ответ 0.",
+      "en": "There are {n} positions. In each pair the draft is on the left and the check is on the right: {pairs}. Read from left to right. A position is accepted while the two numbers match. The first difference stops acceptance. What is the index of the first position that is not accepted? If there is no difference, the answer is 0."
+    },
+    "s2": {
+      "ru": "Позиция {i}: черновик {draft}, проверка {target}, принято {taken}, первое различие {at}.",
+      "en": "Position {i}: draft {draft}, check {target}, accepted {taken}, first difference {at}."
+    }
+  }
+}

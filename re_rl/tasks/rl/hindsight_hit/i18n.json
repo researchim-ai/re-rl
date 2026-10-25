@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Эпизод из {n} состояний: {states}. Исходная цель равна {goal}. Попадание — состояние, равное цели. Сколько попаданий в исходную цель?",
+      "en": "An episode of {n} states: {states}. The original goal is {goal}. A hit is a state equal to the goal. How many hits of the original goal are there?"
+    },
+    "s1": {
+      "ru": "Эпизод из {n} состояний: {states}. Исходная цель равна {goal}. После эпизода цель заменяют на последнее состояние и заново считают попадания, включая сам последний шаг. Сколько попаданий в эту новую цель?",
+      "en": "An episode of {n} states: {states}. The original goal is {goal}. After the episode the goal is replaced by the last state, and the hits are counted again, including the last step itself. How many hits of this new goal are there?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, состояние {state}: попаданий в исходную цель {original}, в последнее состояние {revised}.",
+      "en": "Step {i}, state {state}: hits of the original goal {original}, hits of the last state {revised}."
+    }
+  }
+}

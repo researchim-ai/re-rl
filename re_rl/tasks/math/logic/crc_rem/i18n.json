@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Контрольная сумма держит регистр из {width} битов, в начале он равен 0. Битов сообщения {n}: {bits}. Маска равна {mask}. Для каждого бита сначала запоминают старший бит регистра. Потом регистр сдвигается влево, а бит сообщения входит справа. Если запомненный бит был равен 1, регистр складывают по модулю 2 с маской. Каков регистр в конце, числом от 0 до 15?",
+      "en": "A checksum keeps a register of {width} bits, starting at 0. The message has {n} bits: {bits}. The mask is {mask}. For each bit, first remember the high bit of the register. Then shift the register left and let the message bit enter on the right. If the remembered bit was 1, add the mask to the register modulo 2. What is the final register as a number from 0 to 15?"
+    },
+    "s1": {
+      "ru": "Контрольная сумма держит регистр из {width} битов, в начале он равен 0. Битов сообщения {n}: {bits}. Маска равна {mask}. Для каждого бита сначала запоминают старший бит регистра. Потом регистр сдвигается влево, а бит сообщения входит справа. Если запомненный бит был равен 1, регистр складывают по модулю 2 с маской. Сколько раз маска была применена?",
+      "en": "A checksum keeps a register of {width} bits, starting at 0. The message has {n} bits: {bits}. The mask is {mask}. For each bit, first remember the high bit of the register. Then shift the register left and let the message bit enter on the right. If the remembered bit was 1, add the mask to the register modulo 2. How many times is the mask applied?"
+    },
+    "s2": {
+      "ru": "Бит {i} равен {bit}: регистр {reg}, применений маски {xors}.",
+      "en": "Bit {i} is {bit}: register {reg}, mask uses {xors}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Для каждого числа от 1 до {n} посчитайте, сколько единиц в его двоичной записи, и сложите эти количества. Какова сумма?",
+      "en": "For each number from 1 to {n}, count the ones in its binary form and add these counts. What is the sum?"
+    },
+    "s1": {
+      "ru": "Для каждого числа от 1 до {n} посчитайте, сколько единиц в его двоичной записи. Сколько единиц у числа {k}?",
+      "en": "For each number from 1 to {n}, count the ones in its binary form. How many ones does {k} have?"
+    },
+    "s2": {
+      "ru": "Число {i}: единиц {bits}, сумма {total}.",
+      "en": "Number {i}: ones {bits}, sum {total}."
+    }
+  }
+}

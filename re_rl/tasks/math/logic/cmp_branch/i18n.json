@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Значение начинает с {start}. Сравнений {n}. В каждом порог, прибавка если значение меньше порога, и прибавка иначе: {steps}. Равенство порогу идёт по ветке иначе. Каково значение в конце?",
+      "en": "The value starts at {start}. There are {n} comparisons. Each one gives a threshold, the addend when the value is below the threshold, and the addend otherwise: {steps}. Equality with the threshold takes the otherwise branch. What is the final value?"
+    },
+    "s1": {
+      "ru": "Значение начинает с {start}. Сравнений {n}. В каждом порог, прибавка если значение меньше порога, и прибавка иначе: {steps}. Равенство порогу идёт по ветке иначе. Сколько раз сработала ветка меньше?",
+      "en": "The value starts at {start}. There are {n} comparisons. Each one gives a threshold, the addend when the value is below the threshold, and the addend otherwise: {steps}. Equality with the threshold takes the otherwise branch. How many times did the below branch fire?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: порог {pivot}, меньше {low}, иначе {high}, значение {value}, веток меньше уже {lows}.",
+      "en": "Step {i}: threshold {pivot}, below {low}, otherwise {high}, value {value}, below branches so far {lows}."
+    }
+  }
+}

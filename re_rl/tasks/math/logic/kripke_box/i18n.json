@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Миры от 1 до {n} стоят в цепочке: из i есть переход только в i+1, из {n} переходов нет. Атом p по мирам: {bits}. Необходимость p в мире i истинна, если во всех мирах, куда из i есть переход, p истинен. В последнем мире переходов нет, поэтому необходимость истинна. В скольких мирах необходимость p истинна?",
+      "en": "Worlds from 1 to {n} form a chain: from i there is an arrow only to i+1, and world {n} has no arrow. Atom p across the worlds is {bits}. Necessity of p at world i is true when p is true in every world reached by an arrow from i. The last world has no arrow, so necessity is true there. In how many worlds is necessity of p true?"
+    },
+    "s1": {
+      "ru": "Миры от 1 до {n} стоят в цепочке: из i есть переход только в i+1, из {n} переходов нет. Атом p по мирам: {bits}. Необходимость p в мире i истинна, если во всех мирах, куда из i есть переход, p истинен. В последнем мире переходов нет, поэтому необходимость истинна. Истинна ли необходимость p в мире {k}? Ответьте 1 или 0.",
+      "en": "Worlds from 1 to {n} form a chain: from i there is an arrow only to i+1, and world {n} has no arrow. Atom p across the worlds is {bits}. Necessity of p at world i is true when p is true in every world reached by an arrow from i. The last world has no arrow, so necessity is true there. Is necessity of p true at world {k}? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Мир {i}, p = {bit}: необходимость {holds}, уже {total}.",
+      "en": "World {i}, p = {bit}: necessity {holds}, so far {total}."
+    }
+  }
+}

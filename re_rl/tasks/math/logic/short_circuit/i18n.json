@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Операндов {n}. Первый бит равен {start}. Дальше пары: код операции и бит. Код 0 — и, код 1 — или. Пары: {steps}. И не читает бит, если текущее значение уже 0. Или не читает бит, если текущее значение уже 1. Иначе новое значение — это и или или с прочитанным битом. Каково значение в конце?",
+      "en": "There are {n} operands. The first bit is {start}. Later pairs give an operation code and a bit. Code 0 is and, code 1 is or. The pairs are {steps}. And does not read the bit when the current value is already 0. Or does not read the bit when the current value is already 1. Otherwise the new value is and or or with the bit that was read. What is the final value?"
+    },
+    "s1": {
+      "ru": "Операндов {n}. Первый бит равен {start}. Дальше пары: код операции и бит. Код 0 — и, код 1 — или. Пары: {steps}. И не читает бит, если текущее значение уже 0. Или не читает бит, если текущее значение уже 1. Первый бит прочитан всегда. Сколько битов прочитано?",
+      "en": "There are {n} operands. The first bit is {start}. Later pairs give an operation code and a bit. Code 0 is and, code 1 is or. The pairs are {steps}. And does not read the bit when the current value is already 0. Or does not read the bit when the current value is already 1. The first bit is always read. How many bits are read?"
+    },
+    "s2": {
+      "ru": "Операнд 1 равен {bit}: значение {value}, прочитано {reads}.",
+      "en": "Operand 1 is {bit}: value {value}, read {reads}."
+    },
+    "s3": {
+      "ru": "Операнд {i}, код {op}, бит {bit}: значение {value}, прочитано {reads}.",
+      "en": "Operand {i}, code {op}, bit {bit}: value {value}, read {reads}."
+    }
+  }
+}

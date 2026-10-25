@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке сетка. Зелёная стрелка показывает клетку, в которую луч входит, и направление направо. Черта из левого верхнего угла клетки в правый нижний — одно зеркало. Черта из левого нижнего угла в правый верхний — другое. Луч направо первое зеркало поворачивает вниз, второе — вверх. Луч вниз первое поворачивает направо, второе — налево. Луч налево первое поворачивает вверх, второе — вниз. Луч вверх первое поворачивает налево, второе — направо. Пустая клетка направление не меняет. Сколько зеркал луч заденет до выхода из сетки?",
+      "en": "The picture shows a grid. The green arrow marks the cell the ray enters and points to the right. A stroke from the upper-left corner of a cell to the lower-right corner is one mirror. A stroke from the lower-left corner to the upper-right corner is the other. A ray going right is turned down by the first mirror and up by the second. A ray going down is turned right by the first and left by the second. A ray going left is turned up by the first and down by the second. A ray going up is turned left by the first and right by the second. An empty cell does not change the direction. How many mirrors does the ray touch before leaving the grid?"
+    },
+    "s1": {
+      "ru": "На картинке сетка. Зелёная стрелка показывает клетку, в которую луч входит, и направление направо. Черта из левого верхнего угла клетки в правый нижний — одно зеркало. Черта из левого нижнего угла в правый верхний — другое. Луч направо первое зеркало поворачивает вниз, второе — вверх. Луч вниз первое поворачивает направо, второе — налево. Луч налево первое поворачивает вверх, второе — вниз. Луч вверх первое поворачивает налево, второе — направо. Пустая клетка направление не меняет. Через какую сторону луч выходит? Ответьте 1, если через левую, 2 если через правую, 3 если через верхнюю, 4 если через нижнюю.",
+      "en": "The picture shows a grid. The green arrow marks the cell the ray enters and points to the right. A stroke from the upper-left corner of a cell to the lower-right corner is one mirror. A stroke from the lower-left corner to the upper-right corner is the other. A ray going right is turned down by the first mirror and up by the second. A ray going down is turned right by the first and left by the second. A ray going left is turned up by the first and down by the second. A ray going up is turned left by the first and right by the second. An empty cell does not change the direction. Through which side does the ray leave? Answer 1 for the left side, 2 for the right side, 3 for the top, and 4 for the bottom."
+    },
+    "s2": {
+      "ru": "Клетка строки {row}, столбца {col}: зеркал задето {hits}.",
+      "en": "Cell in row {row}, column {col}: mirrors touched {hits}."
+    },
+    "s3": {
+      "ru": "Зеркал {hits}, сторона выхода {side}.",
+      "en": "Mirrors {hits}, exit side {side}."
+    }
+  }
+}

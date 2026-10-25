@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Турникет начинает закрытым. Действий {n}: {events}. Код 0 — монета, код 1 — толчок. Монета открывает закрытый турникет. Толчок открытого турникета пропускает человека и снова закрывает его. Монета в открытый и толчок в закрытый ничего не делают. Сколько человек прошло?",
+      "en": "The turnstile starts locked. There are {n} actions: {events}. Code 0 is a coin, code 1 is a push. A coin unlocks a locked turnstile. A push of an unlocked turnstile lets one person through and locks it again. A coin while unlocked and a push while locked do nothing. How many people passed?"
+    },
+    "s1": {
+      "ru": "Турникет начинает закрытым. Действий {n}: {events}. Код 0 — монета, код 1 — толчок. Монета открывает закрытый турникет. Толчок открытого турникета пропускает человека и снова закрывает его. Монета в открытый и толчок в закрытый ничего не делают. Открыт ли турникет в конце? Ответьте 1 или 0.",
+      "en": "The turnstile starts locked. There are {n} actions: {events}. Code 0 is a coin, code 1 is a push. A coin unlocks a locked turnstile. A push of an unlocked turnstile lets one person through and locks it again. A coin while unlocked and a push while locked do nothing. Is the turnstile unlocked at the end? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Действие {i} равно {event}: открыт {state}, прошло {entries}.",
+      "en": "Action {i} is {event}: unlocked {state}, passed {entries}."
+    }
+  }
+}

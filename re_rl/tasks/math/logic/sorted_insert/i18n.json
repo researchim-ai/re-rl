@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа вставляются по порядку в ряд, который всё время остаётся отсортированным по возрастанию: {values}. Вставок {n}. Новое число встаёт после всех меньших и равных ему. Место считается с 1. Каково место последнего вставленного числа?",
+      "en": "Numbers are inserted in order into a row that stays sorted in increasing order: {values}. There are {n} insertions. A new number is placed after every number that is smaller or equal. Places are counted from 1. What is the place of the last inserted number?"
+    },
+    "s1": {
+      "ru": "Числа вставляются по порядку в ряд, который всё время остаётся отсортированным по возрастанию: {values}. Вставок {n}. Новое число встаёт после всех меньших и равных ему. Место считается с 1. Каково наибольшее число в ряду в конце?",
+      "en": "Numbers are inserted in order into a row that stays sorted in increasing order: {values}. There are {n} insertions. A new number is placed after every number that is smaller or equal. Places are counted from 1. What is the largest number in the row at the end?"
+    },
+    "s2": {
+      "ru": "Вставка {i}, число {value}: место {rank}, наибольшее {big}.",
+      "en": "Insertion {i}, number {value}: place {rank}, largest {big}."
+    }
+  }
+}

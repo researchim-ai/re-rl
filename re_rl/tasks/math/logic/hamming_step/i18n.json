@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Числа от 0 до 15, их {n} соседних пар. Сам ряд: {values}. Расстояние пары — сколько битов в двоичной записи различается. Какова сумма расстояний соседних пар?",
+      "en": "The numbers run from 0 to 15, and there are {n} neighboring pairs. The row itself is {values}. The distance of a pair is how many bits differ in the binary writing. What is the sum of the distances of neighboring pairs?"
+    },
+    "s1": {
+      "ru": "Числа от 0 до 15, их {n} соседних пар. Сам ряд: {values}. Расстояние пары — сколько битов в двоичной записи различается. Каково наибольшее расстояние среди соседних пар?",
+      "en": "The numbers run from 0 to 15, and there are {n} neighboring pairs. The row itself is {values}. The distance of a pair is how many bits differ in the binary writing. What is the largest distance among neighboring pairs?"
+    },
+    "s2": {
+      "ru": "Пара {i}: {left} и {right}, расстояние {dist}, сумма {total}, рекорд {peak}.",
+      "en": "Pair {i}: {left} and {right}, distance {dist}, sum {total}, record {peak}."
+    }
+  }
+}

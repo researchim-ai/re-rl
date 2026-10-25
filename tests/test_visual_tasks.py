@@ -125,6 +125,127 @@ def test_picture_geometry():
     assert clocks.render_image().size[0] > clocks.render_image().size[1]
 
 
+def test_picture_reasoning():
+    from re_rl.tasks.visual.blob_count.task import BlobCountTask, blob_trace
+    from re_rl.tasks.visual.ink_spread.task import InkSpreadTask, ink_trace
+    from re_rl.tasks.visual.mirror_fault.task import MirrorFaultTask, mirror_trace
+    from re_rl.tasks.visual.mirror_ray.task import MirrorRayTask, ray_trace, turn
+    from re_rl.tasks.visual.paint_order.task import PaintOrderTask, paint_trace
+    from re_rl.tasks.visual.shape_match.task import ShapeMatchTask, same_turn
+
+    assert mirror_trace([[1, 0, 1], [0, 1, 0], [1, 1, 0]]) == [(0, 0, 0), (0, 0, 0), (1, 1, 1)]
+    assert blob_trace([[1, 0], [0, 1]]) == [(1, 1), (2, 1)]
+    assert blob_trace([[1, 1], [1, 0]]) == [(1, 2), (1, 3)]
+    assert ink_trace([[0, 1], [0, 0]], (0, 0)) == [(1, 0), (3, 0)]
+    assert turn(0, 1, 1) == (1, 0)
+    assert turn(0, 1, 2) == (-1, 0)
+    trace, hits, side = ray_trace([[0, 0], [0, 0]], 0)
+    assert hits == 0 and side == 2 and trace == [(1, 1, 0), (1, 2, 0)]
+    trace, hits, side = ray_trace([[1, 0], [0, 0]], 0)
+    assert hits == 1 and side == 4
+    straight = [(0, 0), (0, 1), (0, 2), (0, 3)]
+    upright = [(0, 0), (1, 0), (2, 0), (3, 0)]
+    bend_s = [(0, 0), (0, 1), (1, 1), (1, 2)]
+    bend_z = [(0, 1), (0, 2), (1, 0), (1, 1)]
+    assert same_turn(straight, upright)
+    assert not same_turn(bend_s, bend_z)
+    assert paint_trace(2, 2, [(0, 0, 2, 2), (0, 0, 2, 1)]) == [(4, 4), (4, 2)]
+
+    random.seed(8)
+    low = MirrorFaultTask.generate_random_task(task_type="pairs", difficulty=1)
+    high = MirrorFaultTask.generate_random_task(task_type="rows", difficulty=10)
+    assert high.n > low.n
+    assert low.pairs == mirror_trace(low.grid)[-1][1]
+    assert high.render_image().size[0] > low.render_image().size[0]
+
+    random.seed(9)
+    blobs = BlobCountTask.generate_random_task(task_type="parts", difficulty=7)
+    assert blobs.parts == blob_trace(blobs.grid)[-1][0]
+    assert blobs.largest == blob_trace(blobs.grid)[-1][1]
+    assert blobs.largest >= 1
+
+    random.seed(10)
+    ink = InkSpreadTask.generate_random_task(task_type="missed", difficulty=8)
+    assert (ink.reached, ink.missed) == tuple(ink_trace(ink.grid, ink.source)[-1])
+    assert ink.grid[ink.source[0]][ink.source[1]] == 0
+
+    random.seed(11)
+    ray = MirrorRayTask.generate_random_task(task_type="side", difficulty=9)
+    again, hits, side = ray_trace(ray.grid, ray.start)
+    assert again == ray.trace and hits == ray.hits and side == ray.side
+    assert ray.render_image().size[0] > ray.render_image().size[1]
+
+    random.seed(12)
+    shapes = ShapeMatchTask.generate_random_task(task_type="matches", difficulty=6)
+    assert shapes.matches == sum(1 for cand in shapes.candidates if same_turn(shapes.target, cand))
+    assert len(shapes.candidates) == shapes.n
+
+    random.seed(13)
+    paint = PaintOrderTask.generate_random_task(task_type="first", difficulty=8)
+    assert (paint.cover, paint.first) == tuple(paint_trace(paint.side, paint.side, paint.rects)[-1])
+    assert len(paint.solution_steps) >= paint.n
+    assert paint.render_image().size[0] > 10
+
+
+def test_picture_structures():
+    from re_rl.tasks.visual.arrow_turn.task import ArrowTurnTask, arrow_trace
+    from re_rl.tasks.visual.edge_flip.task import EdgeFlipTask, edge_trace
+    from re_rl.tasks.visual.hanoi_disk.task import HanoiDiskTask, hanoi_trace
+    from re_rl.tasks.visual.nest_box.task import NestBoxTask, contains, nest_trace
+    from re_rl.tasks.visual.skyline_see.task import SkylineSeeTask, skyline_trace
+    from re_rl.tasks.visual.solid_block.task import SolidBlockTask, solid_trace
+
+    trace, moves = hanoi_trace([0, 1, 1])
+    assert moves == 3 and trace[-1][3] == 3
+    trace, moves = hanoi_trace([0, 3, 3])
+    assert moves == 0 and trace == [(1, 3, 0, 0), (2, 3, 0, 0)]
+    assert skyline_trace([1, 3, 2, 4, 4])[-1] == (3, 4, 4)
+    rows, side = solid_trace([[1, 1], [1, 1]])
+    assert side == 2 and rows[-1][1] == 1
+    rows, side = solid_trace([[1, 1], [1, 0]])
+    assert side == 1 and rows[-1][1] == 0
+    assert edge_trace([[0, 1], [0, 0]]) == [(1, 1, 0, 0), (0, 1, 1, 1)]
+    assert arrow_trace([1, 0, 0]) == [(2, 0, 0), (1, 1, 1), (1, 0, 1)]
+    assert contains((0, 0, 6, 6), (1, 1, 2, 2))
+    assert not contains((0, 0, 6, 6), (0, 1, 2, 2))
+    assert nest_trace([(0, 0, 6, 6), (1, 1, 2, 2)]) == [(1, 1, 1), (0, 1, 1)]
+
+    random.seed(14)
+    low = HanoiDiskTask.generate_random_task(task_type="moves", difficulty=1)
+    high = HanoiDiskTask.generate_random_task(task_type="home", difficulty=10)
+    assert high.n > low.n
+    assert low.moves == hanoi_trace(low.pegs)[1]
+    assert high.home == sum(peg == 3 for peg in high.pegs[1:])
+    assert len(high.solution_steps) >= high.n
+
+    random.seed(15)
+    sky = SkylineSeeTask.generate_random_task(task_type="visible", difficulty=8)
+    assert (sky.visible, sky.last) == tuple(skyline_trace(sky.heights)[-1][:2])
+    assert sky.render_image().size[0] > 10
+
+    random.seed(16)
+    block = SolidBlockTask.generate_random_task(task_type="twos", difficulty=7)
+    rows, side = solid_trace(block.grid)
+    assert block.side == side and block.twos == rows[-1][1]
+
+    random.seed(17)
+    edges = EdgeFlipTask.generate_random_task(task_type="flat", difficulty=6)
+    trace = edge_trace(edges.grid)
+    assert edges.flat == trace[-1][1] and edges.rise == trace[-1][3]
+
+    random.seed(18)
+    arrows = ArrowTurnTask.generate_random_task(task_type="lefts", difficulty=9)
+    trace = arrow_trace(arrows.directions)
+    assert arrows.lefts == trace[-1][2] and arrows.last == trace[-1][0]
+    assert arrows.render_image().size[0] > arrows.render_image().size[1]
+
+    random.seed(19)
+    boxes = NestBoxTask.generate_random_task(task_type="pairs", difficulty=8)
+    trace = nest_trace(boxes.rects)
+    assert boxes.pairs == trace[-1][1] and boxes.outers == trace[-1][2]
+    assert len(boxes.solution_steps) >= boxes.n
+
+
 def test_save_image(tmp_path):
     gen = ALL_VISUAL_TASK_GENERATORS["grid_color_count"]
     task = gen(language="ru", difficulty=5)

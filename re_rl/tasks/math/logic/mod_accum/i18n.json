@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Число начинает с {start}. Операций {n}, в каждой код и число: {ops}. Код 0 прибавляет, код 1 вычитает, код 2 умножает. После операции берётся неотрицательный остаток от деления на {mod}, от 0 до {mod} минус 1. Каково число в конце?",
+      "en": "The number starts at {start}. There are {n} operations, each a code and a number: {ops}. Code 0 adds, code 1 subtracts, and code 2 multiplies. After the operation the nonnegative remainder on division by {mod} is kept, from 0 through {mod} minus 1. What is the final number?"
+    },
+    "s1": {
+      "ru": "Число начинает с {start}. Операций {n}, в каждой код и число: {ops}. Код 0 прибавляет, код 1 вычитает, код 2 умножает. После операции берётся неотрицательный остаток от деления на {mod}, от 0 до {mod} минус 1. Сколько раз после операции число стало равно 0?",
+      "en": "The number starts at {start}. There are {n} operations, each a code and a number: {ops}. Code 0 adds, code 1 subtracts, and code 2 multiplies. After the operation the nonnegative remainder on division by {mod} is kept, from 0 through {mod} minus 1. How many times does the number become 0 after an operation?"
+    },
+    "s2": {
+      "ru": "Операция {i}, код {code}, число {arg}: значение {value}, нулей уже {zeros}.",
+      "en": "Operation {i}, code {code}, number {arg}: value {value}, zeros so far {zeros}."
+    }
+  }
+}

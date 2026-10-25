@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Автомат Мура. Состояний {n}, старт в 0. Печать записана как состояние, двоеточие и число: {outs}. У стрелки перед двоеточием стоят состояние и символ, после двоеточия — одно следующее состояние. Стрелки: {trans}. Слово из {n} символов: {word}. Сумма включает число стартового состояния ещё до первого символа. Какова сумма напечатанных чисел?",
+      "en": "A Moore machine has {n} states and starts at 0. Printing is written as a state, a colon, and a number: {outs}. In an arrow, the state and the symbol stand before the colon, and the single next state stands after it. Arrows: {trans}. The word has {n} symbols: {word}. The sum includes the number of the start state before the first symbol. What is the sum of the printed numbers?"
+    },
+    "s1": {
+      "ru": "Автомат Мура. Состояний {n}, старт в 0. Печать записана как состояние, двоеточие и число: {outs}. У стрелки перед двоеточием стоят состояние и символ, после двоеточия — одно следующее состояние. Стрелки: {trans}. Слово из {n} символов: {word}. Какое число напечатано в конечном состоянии?",
+      "en": "A Moore machine has {n} states and starts at 0. Printing is written as a state, a colon, and a number: {outs}. In an arrow, the state and the symbol stand before the colon, and the single next state stands after it. Arrows: {trans}. The word has {n} symbols: {word}. What number is printed in the final state?"
+    },
+    "s2": {
+      "ru": "Символ {i} равен {symbol}: состояние {state}, печать {out}, сумма {total}.",
+      "en": "Symbol {i} is {symbol}: state {state}, print {out}, sum {total}."
+    }
+  }
+}

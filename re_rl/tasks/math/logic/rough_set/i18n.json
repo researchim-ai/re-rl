@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Объектов {n}. У каждого два признака и решение, три числа подряд: {rows}. Объекты с одинаковыми двумя признаками неразличимы. Множество состоит из объектов с решением 1. Объект входит в нижнее приближение, если у всех неразличимых с ним решение равно 1. Сколько объектов в нижнем приближении?",
+      "en": "There are {n} objects. Each one has two attributes and a decision, written as three numbers: {rows}. Objects with the same two attributes are indiscernible. The target set contains the objects whose decision is 1. An object is in the lower approximation when every indiscernible object has decision 1. How many objects are in the lower approximation?"
+    },
+    "s1": {
+      "ru": "Объектов {n}. У каждого два признака и решение, три числа подряд: {rows}. Объекты с одинаковыми двумя признаками неразличимы. Множество состоит из объектов с решением 1. Объект входит в верхнее приближение, если хотя бы у одного неразличимого с ним решение равно 1. Сколько объектов в верхнем приближении?",
+      "en": "There are {n} objects. Each one has two attributes and a decision, written as three numbers: {rows}. Objects with the same two attributes are indiscernible. The target set contains the objects whose decision is 1. An object is in the upper approximation when at least one indiscernible object has decision 1. How many objects are in the upper approximation?"
+    },
+    "s2": {
+      "ru": "Объект {i}, признаки {a} {b}, решение {d}: нижнее {low}, верхнее {up}, размеры {lower} и {upper}.",
+      "en": "Object {i}, attributes {a} {b}, decision {d}: lower {low}, upper {up}, sizes {lower} and {upper}."
+    }
+  }
+}

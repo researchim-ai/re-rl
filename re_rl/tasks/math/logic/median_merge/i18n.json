@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два упорядоченных списка длины {n}: {left} и {right}. Сливайте их: каждый раз берите меньшую голову, при равенстве левую. Каково {n}-е число в слитом списке? Нумерация с 1.",
+      "en": "Two ordered lists of length {n}: {left} and {right}. Merge them: each time take the smaller head, and the left one when they are equal. What is number {n} in the merged list? Counting starts at 1."
+    },
+    "s1": {
+      "ru": "Два упорядоченных списка длины {n}: {left} и {right}. Сливайте их: каждый раз берите меньшую голову, при равенстве левую. Сколько чисел из левого списка вошло в первые {n} мест слитого списка?",
+      "en": "Two ordered lists of length {n}: {left} and {right}. Merge them: each time take the smaller head, and the left one when they are equal. How many numbers from the left list are among the first {n} places of the merged list?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: взяли {value}, сторона {side}, из левого списка уже {taken}. Сторона 0 — левый список.",
+      "en": "Step {i}: took {value}, side {side}, taken from the left list {taken}. Side 0 is the left list."
+    }
+  }
+}

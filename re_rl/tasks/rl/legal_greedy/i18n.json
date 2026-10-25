@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Состояний {n}. В каждом четыре числа: оценка действия 0, оценка действия 1, разрешение действия 0 и разрешение действия 1. Единица разрешает действие. Строки: {rows}. Среди разрешённых берётся действие с большей оценкой. При равенстве берётся меньший номер. Хотя бы одно действие разрешено. Чему равна сумма номеров выбранных действий?",
+      "en": "There are {n} states. Each has four numbers: the value of action 0, the value of action 1, whether action 0 is allowed, and whether action 1 is allowed. A one allows the action. The rows are {rows}. Among the allowed actions, the one with the larger value is taken. On a tie the smaller number is taken. At least one action is allowed. What is the sum of the numbers of the chosen actions?"
+    },
+    "s1": {
+      "ru": "Состояний {n}. В каждом четыре числа: оценка действия 0, оценка действия 1, разрешение действия 0 и разрешение действия 1. Единица разрешает действие. Строки: {rows}. Среди разрешённых берётся действие с большей оценкой. При равенстве берётся меньший номер. Хотя бы одно действие разрешено. Какой номер выбран в последнем состоянии?",
+      "en": "There are {n} states. Each has four numbers: the value of action 0, the value of action 1, whether action 0 is allowed, and whether action 1 is allowed. A one allows the action. The rows are {rows}. Among the allowed actions, the one with the larger value is taken. On a tie the smaller number is taken. At least one action is allowed. What number is chosen in the last state?"
+    },
+    "s2": {
+      "ru": "Состояние {i}, оценки {q0} и {q1}, разрешения {a0} и {a1}: действие {choice}, сумма номеров {total}.",
+      "en": "State {i}, values {q0} and {q1}, permissions {a0} and {a1}: action {choice}, sum of numbers {total}."
+    }
+  }
+}

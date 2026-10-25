@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Элементов {n}, номера от 0 до {n} минус 1. Сначала каждый элемент в своей группе. Связей {n}: {pairs}. Связь сливает группы двух элементов. Если они уже в одной группе, ничего не меняется. Сколько групп останется?",
+      "en": "There are {n} elements, numbered from 0 through {n} minus 1. Each element starts in its own group. There are {n} links: {pairs}. A link merges the groups of the two elements. If they are already in one group, nothing changes. How many groups remain?"
+    },
+    "s1": {
+      "ru": "Элементов {n}, номера от 0 до {n} минус 1. Сначала каждый элемент в своей группе. Связей {n}: {pairs}. Связь сливает группы двух элементов. Если они уже в одной группе, ничего не меняется. Сколько связей действительно слило две разные группы?",
+      "en": "There are {n} elements, numbered from 0 through {n} minus 1. Each element starts in its own group. There are {n} links: {pairs}. A link merges the groups of the two elements. If they are already in one group, nothing changes. How many links actually merged two different groups?"
+    },
+    "s2": {
+      "ru": "Связь {i}: {left} и {right}, групп {parts}, успешных слияний {joined}.",
+      "en": "Link {i}: {left} and {right}, groups {parts}, successful merges {joined}."
+    }
+  }
+}

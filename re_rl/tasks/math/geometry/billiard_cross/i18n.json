@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Прямоугольник ширины {width} и высоты {height} разбит на единичные клетки. Луч выходит из угла 0,0 и идёт под 45 градусов, пока не попадёт в противоположный угол. Если следующая вертикальная линия ближе горизонтальной, луч пересекает её. Если расстояния равны, он проходит через узел решётки и это один шаг, а не два. Сколько клеток он пересечёт?",
+      "en": "A rectangle of width {width} and height {height} is split into unit cells. A ray leaves the corner 0,0 at 45 degrees until it reaches the opposite corner. If the next vertical line is closer than the next horizontal line, the ray crosses it. If the distances are equal, it passes through a lattice point, and that is one step rather than two. How many cells does it cross?"
+    },
+    "s1": {
+      "ru": "Прямоугольник ширины {width} и высоты {height} разбит на единичные клетки. Луч выходит из угла 0,0 и идёт под 45 градусов, пока не попадёт в противоположный угол. Если следующая вертикальная линия ближе горизонтальной, луч пересекает её. Если расстояния равны, он проходит через узел решётки. Сколько раз он проходит через узел, считая конечный угол?",
+      "en": "A rectangle of width {width} and height {height} is split into unit cells. A ray leaves the corner 0,0 at 45 degrees until it reaches the opposite corner. If the next vertical line is closer than the next horizontal line, the ray crosses it. If the distances are equal, it passes through a lattice point. How many times does it pass through a lattice point, counting the final corner?"
+    },
+    "s2": {
+      "ru": "Клетка {i}: пройдено {squares}.",
+      "en": "Cell {i}: crossed {squares}."
+    },
+    "s3": {
+      "ru": "Узлов решётки {corners}, клеток {squares}.",
+      "en": "Lattice points {corners}, cells {squares}."
+    }
+  }
+}

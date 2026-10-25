@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Состояний {n}. В каждом две оценки действий: {rows}. Разрыв — модуль разности двух оценок. Какова сумма разрывов?",
+      "en": "There are {n} states. Each one has two action values: {rows}. The gap is the absolute difference of the two values. What is the sum of the gaps?"
+    },
+    "s1": {
+      "ru": "Состояний {n}. В каждом две оценки действий: {rows}. Разрыв — модуль разности двух оценок. В скольких состояниях разрыв равен 0?",
+      "en": "There are {n} states. Each one has two action values: {rows}. The gap is the absolute difference of the two values. In how many states is the gap 0?"
+    },
+    "s2": {
+      "ru": "Состояние {i}, оценки {left} и {right}: разрыв {gap}, сумма {total}, нулей уже {ties}.",
+      "en": "State {i}, values {left} and {right}: gap {gap}, sum {total}, zeros so far {ties}."
+    }
+  }
+}

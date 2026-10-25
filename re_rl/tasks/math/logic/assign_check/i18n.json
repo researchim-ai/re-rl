@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Атомы от 1 до {n} получают значения: {bits}. Клауза — дизъюнкция литералов: положительное число требует 1, отрицательное требует 0. Клауза истинна, если подошёл хотя бы один литерал. Клаузы через вертикальную черту: {clauses}. Сколько клауз истинны?",
+      "en": "Atoms from 1 to {n} receive the values {bits}. A clause is a disjunction of literals: a positive number requires 1, a negative number requires 0. A clause is true when at least one literal matches. The clauses, separated by vertical bars, are {clauses}. How many clauses are true?"
+    },
+    "s1": {
+      "ru": "Атомы от 1 до {n} получают значения: {bits}. Клауза — дизъюнкция литералов: положительное число требует 1, отрицательное требует 0. Клауза истинна, если подошёл хотя бы один литерал. Клаузы через вертикальную черту: {clauses}. Каков номер первой ложной клаузы? Если все истинны, ответ 0. Нумерация с 1.",
+      "en": "Atoms from 1 to {n} receive the values {bits}. A clause is a disjunction of literals: a positive number requires 1, a negative number requires 0. A clause is true when at least one literal matches. The clauses, separated by vertical bars, are {clauses}. What is the index of the first false clause? If every clause is true, the answer is 0. Counting starts at 1."
+    },
+    "s2": {
+      "ru": "Клауза {i}: истинна {ok}, истинно уже {sat}, первая ложь {fail}.",
+      "en": "Clause {i}: true {ok}, true so far {sat}, first false {fail}."
+    }
+  }
+}

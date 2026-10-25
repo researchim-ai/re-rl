@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Функция Лиувилля: для 1 равна 1. Иначе это минус единица в степени числа простых множителей с повторениями. У 12 = 2*2*3 три множителя, значение равно -1. У 4 = 2*2 два множителя, значение равно 1. Какова сумма значений от 1 до {n}?",
+      "en": "The Liouville function is 1 at 1. Otherwise it is minus one to the number of prime factors counted with multiplicity. For 12 = 2*2*3 there are three factors, so the value is -1. For 4 = 2*2 there are two factors, so the value is 1. What is the sum of the values from 1 to {n}?"
+    },
+    "s1": {
+      "ru": "Функция Лиувилля: для 1 равна 1. Иначе это минус единица в степени числа простых множителей с повторениями. У 12 = 2*2*3 три множителя, значение равно -1. У 4 = 2*2 два множителя, значение равно 1. Каково значение на числе {k}?",
+      "en": "The Liouville function is 1 at 1. Otherwise it is minus one to the number of prime factors counted with multiplicity. For 12 = 2*2*3 there are three factors, so the value is -1. For 4 = 2*2 there are two factors, so the value is 1. What is the value at {k}?"
+    },
+    "s2": {
+      "ru": "Число {i}: значение {value}, сумма {total}.",
+      "en": "Number {i}: value {value}, sum {total}."
+    }
+  }
+}

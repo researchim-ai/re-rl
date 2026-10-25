@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На картинке сетка из трёх цветов: песочного, синего и красного. Граница — общая сторона двух клеток. Горизонтальная граница соединяет клетки в одной строке. Сколько горизонтальных границ разделяет разные цвета?",
+      "en": "The picture shows a grid of three colors: sand, blue, and red. A border is a shared side of two cells. A horizontal border joins cells in the same row. How many horizontal borders separate different colors?"
+    },
+    "s1": {
+      "ru": "На картинке сетка из трёх цветов: песочного, синего и красного. Граница — общая сторона двух клеток. Вертикальная граница соединяет клетки одного столбца в соседних строках. Сколько вертикальных границ разделяет разные цвета?",
+      "en": "The picture shows a grid of three colors: sand, blue, and red. A border is a shared side of two cells. A vertical border joins cells of one column in neighboring rows. How many vertical borders separate different colors?"
+    },
+    "s2": {
+      "ru": "Строка {i}: новых горизонтальных {row_flat}, всего {flat}; новых вертикальных над строкой {row_rise}, всего {rise}.",
+      "en": "Row {i}: new horizontal borders {row_flat}, total {flat}; new vertical borders above the row {row_rise}, total {rise}."
+    }
+  }
+}
