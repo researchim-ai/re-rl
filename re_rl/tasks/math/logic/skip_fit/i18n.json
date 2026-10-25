@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Запас времени равен {budget}. Дел {n}, их цены: {costs}. Дело берётся, если цена не больше остатка. Тогда остаток уменьшается на цену. Если цена больше остатка, дело пропускается, остаток не меняется, и разбор идёт дальше. Сколько дел взято?",
+      "en": "The time budget is {budget}. There are {n} jobs, with costs {costs}. A job is taken when its cost is no greater than the remainder. Then the remainder decreases by the cost. If the cost is greater than the remainder, the job is skipped, the remainder stays the same, and the review continues. How many jobs are taken?"
+    },
+    "s1": {
+      "ru": "Запас времени равен {budget}. Дел {n}, их цены: {costs}. Дело берётся, если цена не больше остатка. Тогда остаток уменьшается на цену. Если цена больше остатка, дело пропускается, остаток не меняется, и разбор идёт дальше. Сколько времени останется?",
+      "en": "The time budget is {budget}. There are {n} jobs, with costs {costs}. A job is taken when its cost is no greater than the remainder. Then the remainder decreases by the cost. If the cost is greater than the remainder, the job is skipped, the remainder stays the same, and the review continues. How much time remains?"
+    },
+    "s2": {
+      "ru": "Дело {i}, цена {cost}: остаток {left}, взято {taken}.",
+      "en": "Job {i}, cost {cost}: remainder {left}, taken {taken}."
+    }
+  }
+}

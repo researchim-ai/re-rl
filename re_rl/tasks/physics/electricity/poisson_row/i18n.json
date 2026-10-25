@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Внутренних узлов {width}, их заряды слева направо: {rho}. Потенциал краёв равен 0, в начале внутренние узлы тоже равны 0. Итераций {n}. На итерации каждый узел становится равным целой половине суммы двух соседей и своего заряда. Сосед за краем равен 0. Каков средний узел в конце?",
+      "en": "There are {width} interior nodes, with charges from left to right {rho}. The edge potential is 0, and the interior nodes also start at 0. There are {n} iterations. On an iteration each node becomes the integer half of the sum of its two neighbors and its own charge. A neighbor beyond an edge is 0. What is the middle node at the end?"
+    },
+    "s1": {
+      "ru": "Внутренних узлов {width}, их заряды слева направо: {rho}. Потенциал краёв равен 0, в начале внутренние узлы тоже равны 0. Итераций {n}. На итерации каждый узел становится равным целой половине суммы двух соседей и своего заряда. Сосед за краем равен 0. Какова сумма внутренних узлов в конце?",
+      "en": "There are {width} interior nodes, with charges from left to right {rho}. The edge potential is 0, and the interior nodes also start at 0. There are {n} iterations. On an iteration each node becomes the integer half of the sum of its two neighbors and its own charge. A neighbor beyond an edge is 0. What is the sum of the interior nodes at the end?"
+    },
+    "s2": {
+      "ru": "Итерация {i}: средний узел {mid}, сумма {total}.",
+      "en": "Iteration {i}: middle node {mid}, sum {total}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вес начинает с {start}. Оба момента начинают с 0. Градиентов {n}: {gradients}. Первый момент становится целой половиной суммы себя и градиента. Второй момент становится целой половиной суммы себя и квадрата градиента. Затем вес уменьшается на первый момент. Каков вес в конце?",
+      "en": "The weight starts at {start}. Both moments start at 0. There are {n} gradients: {gradients}. The first moment becomes the integer half of itself plus the gradient. The second moment becomes the integer half of itself plus the square of the gradient. Then the weight decreases by the first moment. What is the final weight?"
+    },
+    "s1": {
+      "ru": "Вес начинает с {start}. Оба момента начинают с 0. Градиентов {n}: {gradients}. Первый момент становится целой половиной суммы себя и градиента. Второй момент становится целой половиной суммы себя и квадрата градиента. Затем вес уменьшается на первый момент. Каков первый момент в конце?",
+      "en": "The weight starts at {start}. Both moments start at 0. There are {n} gradients: {gradients}. The first moment becomes the integer half of itself plus the gradient. The second moment becomes the integer half of itself plus the square of the gradient. Then the weight decreases by the first moment. What is the final first moment?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, градиент {grad}: вес {weight}, первый момент {moment}, второй момент {square}.",
+      "en": "Step {i}, gradient {grad}: weight {weight}, first moment {moment}, second moment {square}."
+    }
+  }
+}

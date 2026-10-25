@@ -45,6 +45,9 @@ class UrnProbabilityTask(BaseTask):
                 color_dist.append((col, color_count))
             self.containers.append(color_dist)
 
+        self.question_kind = "at_least"
+        self.color_choice = self.colors[0]
+        self.x_val = None
         self.question_str = self._choose_question()
 
         desc = self._create_problem_text()
@@ -54,22 +57,22 @@ class UrnProbabilityTask(BaseTask):
     def _choose_question(self):
         questions_list = PROMPT_TEMPLATES["urn_probability"]["questions_pool"][self.language]
         chosen_template = random.choice(questions_list)
-        color_choice = random.choice(self.colors)
-        # Если шаблон требует x
+        self.color_choice = random.choice(self.colors)
         if "{x}" in chosen_template:
-            x_val = random.randint(1, self.draws)  # "exactly x out of draws are color"
-            return chosen_template.format(
-                draws=self.draws,
-                item_syn=self.item_syn,
-                color=color_choice,
-                x=x_val
-            )
+            self.question_kind = "exactly"
+            self.x_val = random.randint(1, self.draws)
+        elif texts.t("s1", self.language) in chosen_template:
+            self.question_kind = "all"
+            self.x_val = None
         else:
-            return chosen_template.format(
-                draws=self.draws,
-                item_syn=self.item_syn,
-                color=color_choice
-            )
+            self.question_kind = "at_least"
+            self.x_val = None
+        return chosen_template.format(
+            draws=self.draws,
+            item_syn=self.item_syn,
+            color=self.color_choice,
+            x=self.x_val if self.x_val is not None else 0,
+        )
 
     def _create_problem_text(self):
         p = PROMPT_TEMPLATES["urn_probability"]["problem"][self.language]
@@ -129,50 +132,16 @@ class UrnProbabilityTask(BaseTask):
         if total_in_container < self.draws:
             return 0.0
 
-        # Определим, какой сценарий вопроса
-        # "all draws are color" / "at least one color" / "exactly x color" ...
-        txt = self.question_str
-        # Найдём color
-        color_found = None
-        for col in self.colors:
-            if col in txt:
-                color_found = col
+        color_count = 0
+        for col, cnt in dist:
+            if col == self.color_choice:
+                color_count = cnt
                 break
-        if not color_found:
-            return 0.0
-
-        # Ищем число x
-        import re
-        x_val = None
-        match = re.search(r"exactly (\d+)", txt)
-        if match:
-            x_val = int(match.group(1))
-
-        if (texts.t('s1', self.language) in txt or "all" in txt) and "drawn" in txt:
-            # all draws are color_found
-            color_count = 0
-            for (col, cnt) in dist:
-                if col == color_found:
-                    color_count = cnt
-                    break
+        if self.question_kind == "all":
             return self._hypergeom(color_count, total_in_container, self.draws, self.draws)
-        elif (texts.t('s2', self.language) in txt or texts.t('s3', self.language) in txt):
-            color_count = 0
-            for (col, cnt) in dist:
-                if col == color_found:
-                    color_count = cnt
-                    break
-            # P(>=1 color_found) = 1 - P(0 color_found)
-            p_none = self._hypergeom_zero(color_count, total_in_container, self.draws)
-            return 1.0 - p_none
-        elif ("exactly" in txt or texts.t('s4', self.language) in txt) and x_val is not None:
-            color_count = 0
-            for (col, cnt) in dist:
-                if col == color_found:
-                    color_count = cnt
-                    break
-            return self._hypergeom(color_count, total_in_container, self.draws, x_val)
-        return 0.0
+        if self.question_kind == "at_least":
+            return 1.0 - self._hypergeom_zero(color_count, total_in_container, self.draws)
+        return self._hypergeom(color_count, total_in_container, self.draws, self.x_val)
 
     def _hypergeom(self, color_cnt, total_cnt, draws, success_needed):
         if success_needed > color_cnt:

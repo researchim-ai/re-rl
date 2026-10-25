@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ракета начинает с массой {mass} и скоростью 0. Скорость истечения равна {exhaust}. Тактов {n}. За такт к скорости прибавляется частное скорости истечения и текущей массы, затем масса уменьшается на 1. Частное — целая часть с округлением вниз. Какова скорость в конце?",
+      "en": "The rocket starts with mass {mass} and speed 0. The exhaust speed is {exhaust}. There are {n} ticks. On a tick the quotient of the exhaust speed and the current mass is added to the speed, then the mass decreases by 1. The quotient is the integer part rounded downward. What is the final speed?"
+    },
+    "s1": {
+      "ru": "Ракета начинает с массой {mass} и скоростью 0. Скорость истечения равна {exhaust}. Тактов {n}. За такт к скорости прибавляется частное скорости истечения и текущей массы, затем масса уменьшается на 1. Частное — целая часть с округлением вниз. Какова масса в конце?",
+      "en": "The rocket starts with mass {mass} and speed 0. The exhaust speed is {exhaust}. There are {n} ticks. On a tick the quotient of the exhaust speed and the current mass is added to the speed, then the mass decreases by 1. The quotient is the integer part rounded downward. What is the final mass?"
+    },
+    "s2": {
+      "ru": "Такт {i}: скорость {speed}, масса {mass}.",
+      "en": "Tick {i}: speed {speed}, mass {mass}."
+    }
+  }
+}

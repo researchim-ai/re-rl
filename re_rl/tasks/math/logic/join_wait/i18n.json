@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Событий {n}: {events}. В каждом код и число. Код 0 завершает задачу с этим номером. Повторное завершение той же задачи ничего не меняет. Код 1 — точка сбора: она успешна, если разных завершённых задач не меньше указанного числа. Неудачная точка сбора ничего не отменяет. Сколько точек сбора прошли?",
+      "en": "There are {n} events: {events}. Each event is a code and a number. Code 0 finishes the task with that number. Finishing the same task again does nothing. Code 1 is a join point: it succeeds when the number of distinct finished tasks is at least the given number. A failed join point cancels nothing. How many join points succeeded?"
+    },
+    "s1": {
+      "ru": "Событий {n}: {events}. В каждом код и число. Код 0 завершает задачу с этим номером. Повторное завершение той же задачи ничего не меняет. Код 1 — точка сбора: она успешна, если разных завершённых задач не меньше указанного числа. Неудачная точка сбора ничего не отменяет. Сколько разных задач завершено в конце?",
+      "en": "There are {n} events: {events}. Each event is a code and a number. Code 0 finishes the task with that number. Finishing the same task again does nothing. Code 1 is a join point: it succeeds when the number of distinct finished tasks is at least the given number. A failed join point cancels nothing. How many distinct tasks are finished at the end?"
+    },
+    "s2": {
+      "ru": "Событие {i}, код {code}, число {arg}: завершено {done}, успешных сборов {joins}.",
+      "en": "Event {i}, code {code}, number {arg}: finished {done}, successful joins {joins}."
+    }
+  }
+}

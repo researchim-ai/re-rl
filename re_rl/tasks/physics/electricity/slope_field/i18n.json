@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Потенциал в {n} точках: {values}. Разность точки равна правому соседу минус левый. Соседа за краем нет, он равен 0. Какова разность последней точки?",
+      "en": "The potential has {n} points: {values}. The difference at a point is the right neighbor minus the left neighbor. A neighbor beyond an edge is absent and equals 0. What is the difference at the last point?"
+    },
+    "s1": {
+      "ru": "Потенциал в {n} точках: {values}. Разность точки равна правому соседу минус левый. Соседа за краем нет, он равен 0. Какова сумма квадратов всех разностей?",
+      "en": "The potential has {n} points: {values}. The difference at a point is the right neighbor minus the left neighbor. A neighbor beyond an edge is absent and equals 0. What is the sum of the squares of all differences?"
+    },
+    "s2": {
+      "ru": "Точка {i}: разность {slope}, сумма квадратов {power}.",
+      "en": "Point {i}: difference {slope}, sum of squares {power}."
+    }
+  }
+}

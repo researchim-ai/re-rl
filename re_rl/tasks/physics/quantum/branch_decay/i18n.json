@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Родительских ядер {parent}, обе ветки начинают с 0. Тиков {n}. За тик в каждую ветку уходит целая треть текущего родителя. Остаток остаётся родителем. Ядра, только что попавшие в ветку, в этот тик не делятся. Сколько родительских ядер останется?",
+      "en": "There are {parent} parent nuclei, and both branches start at 0. There are {n} ticks. On a tick one integer third of the current parent goes to each branch. The remainder stays parent. Nuclei that have just entered a branch do not split on that tick. How many parent nuclei remain?"
+    },
+    "s1": {
+      "ru": "Родительских ядер {parent}, обе ветки начинают с 0. Тиков {n}. За тик в каждую ветку уходит целая треть текущего родителя. Остаток остаётся родителем. Ядра, только что попавшие в ветку, в этот тик не делятся. Сколько ядер в первой ветке в конце?",
+      "en": "There are {parent} parent nuclei, and both branches start at 0. There are {n} ticks. On a tick one integer third of the current parent goes to each branch. The remainder stays parent. Nuclei that have just entered a branch do not split on that tick. How many nuclei are in the first branch at the end?"
+    },
+    "s2": {
+      "ru": "Тик {i}: родитель {parent}, первая ветка {left}, вторая ветка {right}.",
+      "en": "Tick {i}: parent {parent}, first branch {left}, second branch {right}."
+    }
+  }
+}

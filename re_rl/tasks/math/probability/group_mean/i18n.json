@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Наблюдений {n}, в каждом группа и значение: {pairs}. Условная выборка — только группа {group}. Сколько наблюдений в неё попало?",
+      "en": "There are {n} observations, each a group and a value: {pairs}. The conditional sample is only group {group}. How many observations fall into it?"
+    },
+    "s1": {
+      "ru": "Наблюдений {n}, в каждом группа и значение: {pairs}. Условная выборка — только группа {group}. Какова сумма значений в этой группе?",
+      "en": "There are {n} observations, each a group and a value: {pairs}. The conditional sample is only group {group}. What is the sum of the values in this group?"
+    },
+    "s2": {
+      "ru": "Наблюдение {i}, группа {kind}, значение {value}: число {count}, сумма {total}.",
+      "en": "Observation {i}, group {kind}, value {value}: count {count}, sum {total}."
+    }
+  }
+}

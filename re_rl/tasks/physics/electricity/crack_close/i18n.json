@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Клеток {n}, 1 — проводник, 0 — щель: {bits}. Сначала щель становится проводником, если в окне из трёх клеток есть проводник. За краем щель. Потом проводник остаётся, только если все три клетки окна — проводники. Сколько щелей стали проводником?",
+      "en": "There are {n} cells, where 1 is a conductor and 0 is a gap: {bits}. First a gap becomes a conductor when the window of three cells contains a conductor. Beyond an edge there is a gap. Then a conductor remains only when all three cells of the window are conductors. How many gaps became conductors?"
+    },
+    "s1": {
+      "ru": "Клеток {n}, 1 — проводник, 0 — щель: {bits}. Сначала щель становится проводником, если в окне из трёх клеток есть проводник. За краем щель. Потом проводник остаётся, только если все три клетки окна — проводники. Сколько щелей останется в конце?",
+      "en": "There are {n} cells, where 1 is a conductor and 0 is a gap: {bits}. First a gap becomes a conductor when the window of three cells contains a conductor. Beyond an edge there is a gap. Then a conductor remains only when all three cells of the window are conductors. How many gaps remain at the end?"
+    },
+    "s2": {
+      "ru": "Клетка {i}: после зарастания {wide}, после снятия перемычек {shut}, заделанных щелей {filled}.",
+      "en": "Cell {i}: after filling {wide}, after removing bridges {shut}, filled gaps {filled}."
+    }
+  }
+}

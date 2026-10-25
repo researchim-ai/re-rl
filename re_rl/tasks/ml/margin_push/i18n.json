@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Счёт начинает с 0, запас равен {margin}. Примеров {n}, в каждом метка и признак: {examples}. Метка равна 1 или -1. Если метка, умноженная на счёт, меньше запаса, счёт прибавляет метку, умноженную на признак. Иначе счёт не меняется. Каков счёт в конце?",
+      "en": "The score starts at 0 and the margin is {margin}. There are {n} examples, each a label and a feature: {examples}. The label is 1 or -1. If the label times the score is less than the margin, the score adds the label times the feature. Otherwise the score stays the same. What is the final score?"
+    },
+    "s1": {
+      "ru": "Счёт начинает с 0, запас равен {margin}. Примеров {n}, в каждом метка и признак: {examples}. Метка равна 1 или -1. Если метка, умноженная на счёт, меньше запаса, счёт прибавляет метку, умноженную на признак. Иначе счёт не меняется. Сколько примеров не изменили счёт?",
+      "en": "The score starts at 0 and the margin is {margin}. There are {n} examples, each a label and a feature: {examples}. The label is 1 or -1. If the label times the score is less than the margin, the score adds the label times the feature. Otherwise the score stays the same. How many examples left the score unchanged?"
+    },
+    "s2": {
+      "ru": "Пример {i}, метка {label}, признак {feature}: счёт {score}, пропусков {skips}.",
+      "en": "Example {i}, label {label}, feature {feature}: score {score}, skips {skips}."
+    }
+  }
+}

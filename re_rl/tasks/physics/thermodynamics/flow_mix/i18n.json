@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Горячий поток начинает с {hot}, холодный с {cold}. Ступеней {n}, делитель равен {divisor}. На ступени целая треть разности горячего и холодного переходит от горячего к холодному. Если горячий меньше холодного, треть отрицательна и тепло идёт обратно. Частное округляется вниз. Какова температура горячего потока в конце?",
+      "en": "The hot stream starts at {hot} and the cold stream at {cold}. There are {n} stages, and the divisor is {divisor}. On a stage one integer third of the difference between hot and cold passes from the hot stream to the cold stream. If the hot stream is cooler, the third is negative and heat flows back. The quotient rounds downward. What is the final temperature of the hot stream?"
+    },
+    "s1": {
+      "ru": "Горячий поток начинает с {hot}, холодный с {cold}. Ступеней {n}, делитель равен {divisor}. На ступени целая треть разности горячего и холодного переходит от горячего к холодному. Если горячий меньше холодного, треть отрицательна и тепло идёт обратно. Частное округляется вниз. Сколько тепла перешло от горячего потока за все ступени?",
+      "en": "The hot stream starts at {hot} and the cold stream at {cold}. There are {n} stages, and the divisor is {divisor}. On a stage one integer third of the difference between hot and cold passes from the hot stream to the cold stream. If the hot stream is cooler, the third is negative and heat flows back. The quotient rounds downward. How much heat left the hot stream over all stages?"
+    },
+    "s2": {
+      "ru": "Ступень {i}: горячий {hot}, перешло всего {moved}.",
+      "en": "Stage {i}: hot {hot}, transferred so far {moved}."
+    }
+  }
+}

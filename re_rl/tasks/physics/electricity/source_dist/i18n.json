@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Клеток {n}: {mask}. Ноль — пустая клетка, единица — занятая. Расстояние клетки — число шагов до ближайшей пустой. У пустой клетки расстояние 0. Шаг идёт в соседнюю клетку. Каково наибольшее расстояние?",
+      "en": "There are {n} cells: {mask}. Zero is an empty cell and one is occupied. The distance of a cell is the number of steps to the nearest empty cell. An empty cell has distance 0. A step goes to a neighboring cell. What is the largest distance?"
+    },
+    "s1": {
+      "ru": "Клеток {n}: {mask}. Ноль — пустая клетка, единица — занятая. Расстояние клетки — число шагов до ближайшей пустой. У пустой клетки расстояние 0. Шаг идёт в соседнюю клетку. Какова сумма расстояний?",
+      "en": "There are {n} cells: {mask}. Zero is an empty cell and one is occupied. The distance of a cell is the number of steps to the nearest empty cell. An empty cell has distance 0. A step goes to a neighboring cell. What is the sum of the distances?"
+    },
+    "s2": {
+      "ru": "Клетка {i}: расстояние {dist}, сумма {total}, рекорд {peak}.",
+      "en": "Cell {i}: distance {dist}, sum {total}, record {peak}."
+    }
+  }
+}

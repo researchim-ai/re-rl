@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Отсчётов {n}: {values}. Сначала каждая клетка заменяется суммой себя и двух соседей, за краем 0. Затем то же правило применяется уже к новому ряду. Какова последняя клетка второго ряда?",
+      "en": "There are {n} readings: {values}. First each cell is replaced by the sum of itself and its two neighbors, with 0 beyond an edge. Then the same rule is applied to the new row. What is the last cell of the second row?"
+    },
+    "s1": {
+      "ru": "Отсчётов {n}: {values}. Сначала каждая клетка заменяется суммой себя и двух соседей, за краем 0. Затем то же правило применяется уже к новому ряду. Какова сумма второго ряда?",
+      "en": "There are {n} readings: {values}. First each cell is replaced by the sum of itself and its two neighbors, with 0 beyond an edge. Then the same rule is applied to the new row. What is the sum of the second row?"
+    },
+    "s2": {
+      "ru": "Клетка {i}: после первого прохода {first}, после второго {second}, сумма второго ряда {total}.",
+      "en": "Cell {i}: after the first pass {first}, after the second {second}, second-row sum {total}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Силы измерены в {count} точках через шаг 1: {forces}. Отрезков {n}. Удвоенная работа на отрезке равна сумме сил на его концах. Какова удвоенная работа всего пути?",
+      "en": "Forces are measured at {count} points spaced by 1: {forces}. There are {n} segments. Twice the work on a segment is the sum of the forces at its ends. What is twice the work of the whole path?"
+    },
+    "s1": {
+      "ru": "Силы измерены в {count} точках через шаг 1: {forces}. Отрезков {n}. Удвоенная работа на отрезке равна сумме сил на его концах. Какова удвоенная работа последнего отрезка?",
+      "en": "Forces are measured at {count} points spaced by 1: {forces}. There are {n} segments. Twice the work on a segment is the sum of the forces at its ends. What is twice the work of the last segment?"
+    },
+    "s2": {
+      "ru": "Отрезок {i}: удвоенная работа {piece}, сумма {work}.",
+      "en": "Segment {i}: twice the work {piece}, sum {work}."
+    }
+  }
+}

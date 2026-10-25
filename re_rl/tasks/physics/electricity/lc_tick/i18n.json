@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Напряжение начинает с {voltage}, ток с {current}. Тактов {n}. За такт ток прибавляет напряжение, затем напряжение теряет уже новый ток. Каков ток в конце?",
+      "en": "The voltage starts at {voltage} and the current at {current}. There are {n} ticks. On a tick the current adds the voltage, then the voltage loses the new current. What is the final current?"
+    },
+    "s1": {
+      "ru": "Напряжение начинает с {voltage}, ток с {current}. Тактов {n}. За такт ток прибавляет напряжение, затем напряжение теряет уже новый ток. Каково напряжение в конце?",
+      "en": "The voltage starts at {voltage} and the current at {current}. There are {n} ticks. On a tick the current adds the voltage, then the voltage loses the new current. What is the final voltage?"
+    },
+    "s2": {
+      "ru": "Такт {i}: ток {current}, напряжение {voltage}.",
+      "en": "Tick {i}: current {current}, voltage {voltage}."
+    }
+  }
+}

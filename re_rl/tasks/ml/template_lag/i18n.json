@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ряд из {n} плюс 1 чисел: {signal}. Шаблон из двух чисел: {pattern}. Положение 1 накрывает первые два числа ряда, следующее сдвигается на одно вправо. Счёт положения — первое число шаблона умножить на левое число куска плюс второе число шаблона умножить на правое. При равенстве остаётся более раннее положение. Каков номер лучшего положения, считая с 1?",
+      "en": "The row has {n} plus 1 numbers: {signal}. The template has two numbers: {pattern}. Position 1 covers the first two numbers of the row, and the next position shifts one step right. The score of a position is the first template number times the left number of the piece plus the second template number times the right number. On a tie the earlier position remains. What is the number of the best position, counting from 1?"
+    },
+    "s1": {
+      "ru": "Ряд из {n} плюс 1 чисел: {signal}. Шаблон из двух чисел: {pattern}. Положение 1 накрывает первые два числа ряда, следующее сдвигается на одно вправо. Счёт положения — первое число шаблона умножить на левое число куска плюс второе число шаблона умножить на правое. При равенстве остаётся более раннее положение. Каков лучший счёт?",
+      "en": "The row has {n} plus 1 numbers: {signal}. The template has two numbers: {pattern}. Position 1 covers the first two numbers of the row, and the next position shifts one step right. The score of a position is the first template number times the left number of the piece plus the second template number times the right number. On a tie the earlier position remains. What is the best score?"
+    },
+    "s2": {
+      "ru": "Положение {i}: счёт {score}, лучший счёт {best}, его номер {lag}.",
+      "en": "Position {i}: score {score}, best score {best}, its number {lag}."
+    }
+  }
+}

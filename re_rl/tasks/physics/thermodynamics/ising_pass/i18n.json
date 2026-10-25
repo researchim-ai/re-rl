@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Спинов {n}, слева направо: {spins}. Каждый спин равен 1 или -1. Проход один, слева направо. У внутреннего спина два соседа, у крайнего один. Спин переворачивается, если его знак противоположен сумме соседей. Уже перевёрнутый сосед учитывается дальше по проходу. Энергия равна минус сумме произведений соседних спинов. Сколько спинов перевернулось?",
+      "en": "There are {n} spins, from left to right: {spins}. Each spin is 1 or -1. There is one pass, from left to right. An interior spin has two neighbors, and an end spin has one. A spin flips when its sign is opposite the sum of its neighbors. A neighbor that has already flipped is used later in the pass. The energy is minus the sum of products of neighboring spins. How many spins flipped?"
+    },
+    "s1": {
+      "ru": "Спинов {n}, слева направо: {spins}. Каждый спин равен 1 или -1. Проход один, слева направо. У внутреннего спина два соседа, у крайнего один. Спин переворачивается, если его знак противоположен сумме соседей. Уже перевёрнутый сосед учитывается дальше по проходу. Энергия равна минус сумме произведений соседних спинов. Какова энергия в конце?",
+      "en": "There are {n} spins, from left to right: {spins}. Each spin is 1 or -1. There is one pass, from left to right. An interior spin has two neighbors, and an end spin has one. A spin flips when its sign is opposite the sum of its neighbors. A neighbor that has already flipped is used later in the pass. The energy is minus the sum of products of neighboring spins. What is the final energy?"
+    },
+    "s2": {
+      "ru": "Спин {i}: переворотов {flips}, энергия {energy}.",
+      "en": "Spin {i}: flips {flips}, energy {energy}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Численность начинает с {pop}, потолок равен {cap}. Тактов {n}. Прирост равен численности, умноженной на свободные места и делённой на потолок. Свободные места — потолок минус численность. Частное округляется вниз. Какова численность в конце?",
+      "en": "The count starts at {pop} and the ceiling is {cap}. There are {n} ticks. The increase is the count times the free places, divided by the ceiling. Free places are the ceiling minus the count. The quotient rounds downward. What is the final count?"
+    },
+    "s1": {
+      "ru": "Численность начинает с {pop}, потолок равен {cap}. Тактов {n}. Прирост равен численности, умноженной на свободные места и делённой на потолок. Свободные места — потолок минус численность. Частное округляется вниз. Каков суммарный прирост?",
+      "en": "The count starts at {pop} and the ceiling is {cap}. There are {n} ticks. The increase is the count times the free places, divided by the ceiling. Free places are the ceiling minus the count. The quotient rounds downward. What is the total increase?"
+    },
+    "s2": {
+      "ru": "Такт {i}: численность {pop}, прирост всего {grown}.",
+      "en": "Tick {i}: count {pop}, increase so far {grown}."
+    }
+  }
+}

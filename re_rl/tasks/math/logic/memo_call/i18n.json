@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вызовов инструментов {n}: {calls}. В каждом номер инструмента и аргумент. Инструменты имеют номера 0 и 1. Результат равен аргументу, умноженному на номер плюс 1, плюс сам номер, а затем берётся остаток от деления на {mod}. Повтор той же пары берёт сохранённый результат. Какова сумма всех выданных результатов?",
+      "en": "There are {n} tool calls: {calls}. Each call is a tool number and an argument. The tools are numbered 0 and 1. The result is the argument times the tool number plus 1, plus the tool number, and then the remainder on division by {mod} is kept. Repeating the same pair returns the stored result. What is the sum of all returned results?"
+    },
+    "s1": {
+      "ru": "Вызовов инструментов {n}: {calls}. В каждом номер инструмента и аргумент. Инструменты имеют номера 0 и 1. Результат равен аргументу, умноженному на номер плюс 1, плюс сам номер, а затем берётся остаток от деления на {mod}. Повтор той же пары берёт сохранённый результат. Сколько вызовов взяли уже сохранённый результат?",
+      "en": "There are {n} tool calls: {calls}. Each call is a tool number and an argument. The tools are numbered 0 and 1. The result is the argument times the tool number plus 1, plus the tool number, and then the remainder on division by {mod} is kept. Repeating the same pair returns the stored result. How many calls returned an already stored result?"
+    },
+    "s2": {
+      "ru": "Вызов {i}, инструмент {tool}, аргумент {arg}: результат {result}, попаданий {hits}, сумма {total}.",
+      "en": "Call {i}, tool {tool}, argument {arg}: result {result}, stored hits {hits}, sum {total}."
+    }
+  }
+}

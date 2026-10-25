@@ -59,6 +59,30 @@ from re_rl.tasks.physics.waves.pulse_meet.task import pulse_trace
 from re_rl.tasks.physics.thermodynamics.cool_ticks.task import cool_trace
 from re_rl.tasks.physics.electricity.series_cap.task import cap_trace
 from re_rl.tasks.physics.fluids.column_pressure.task import column_trace
+from re_rl.tasks.physics.mechanics.euler_drift.task import euler_trace
+from re_rl.tasks.physics.mechanics.verlet_push.task import verlet_trace
+from re_rl.tasks.physics.mechanics.drag_coast.task import drag_trace
+from re_rl.tasks.physics.mechanics.spring_pair.task import spring_trace
+from re_rl.tasks.physics.mechanics.swing_map.task import swing_trace
+from re_rl.tasks.physics.electricity.poisson_row.task import poisson_trace
+from re_rl.tasks.physics.quantum.hydro_line.task import line_trace
+from re_rl.tasks.physics.mechanics.force_work.task import work_trace
+from re_rl.tasks.physics.mechanics.rocket_burn.task import burn_trace
+from re_rl.tasks.physics.mechanics.projectile_tick.task import shot_trace
+from re_rl.tasks.physics.electricity.lc_tick.task import coil_trace
+from re_rl.tasks.physics.waves.polar_stack.task import polar_trace
+from re_rl.tasks.physics.fluids.upwind_row.task import wind_trace
+from re_rl.tasks.physics.quantum.branch_decay.task import branch_trace
+from re_rl.tasks.physics.thermodynamics.ising_pass.task import ising_trace
+from re_rl.tasks.physics.thermodynamics.flow_mix.task import flow_trace
+from re_rl.tasks.physics.measurements.box_scope.task import window_sum
+from re_rl.tasks.physics.measurements.spike_cut.task import spike_trace
+from re_rl.tasks.physics.measurements.twin_box.task import twin_trace
+from re_rl.tasks.physics.measurements.peak_hold.task import peak_trace
+from re_rl.tasks.physics.electricity.crack_close.task import crack_trace
+from re_rl.tasks.physics.electricity.source_dist.task import field_dist
+from re_rl.tasks.physics.electricity.slope_field.task import grad_trace
+from re_rl.tasks.physics.electricity.charge_run.task import coulomb_trace
 from re_rl.tasks.physics.mechanics.cradle_hit.task import cradle_trace
 from re_rl.tasks.physics.quantum.photon_eject.task import photon_trace
 from re_rl.tasks.physics.astrophysics.orbit_years.task import orbit_trace
@@ -358,6 +382,40 @@ from re_rl.tasks.math.logic.lfsr_run.task import lfsr_trace
 from re_rl.tasks.math.logic.crc_rem.task import crc_trace
 from re_rl.tasks.math.logic.feistel_run.task import feistel_trace
 from re_rl.tasks.math.logic.elgamal_enc.task import elgamal_trace
+from re_rl.tasks.math.logic.fact_base.task import fact_trace
+from re_rl.tasks.math.logic.cas_cell.task import cas_trace
+from re_rl.tasks.math.logic.memo_call.task import memo_trace
+from re_rl.tasks.math.logic.skip_fit.task import fit_trace
+from re_rl.tasks.math.logic.handoff_ask.task import hand_trace
+from re_rl.tasks.math.logic.reject_add.task import reject_trace
+from re_rl.tasks.math.logic.ref_resolve.task import deref_trace
+from re_rl.tasks.math.logic.belief_vote.task import belief_trace
+from re_rl.tasks.math.logic.join_wait.task import barrier_trace
+from re_rl.tasks.math.logic.audit_sum.task import audit_trace
+from re_rl.tasks.math.probability.draw_out.task import without_trace
+from re_rl.tasks.math.probability.die_build.task import conv_ways
+from re_rl.tasks.math.probability.rank_stop.task import secretary_trace
+from re_rl.tasks.math.probability.day_clash.task import birthday_trace
+from re_rl.tasks.math.probability.group_mean.task import cond_trace
+from re_rl.tasks.math.probability.safe_bits.task import norepeat_trace
+from re_rl.tasks.math.probability.first_to.task import firstto_trace
+from re_rl.tasks.math.probability.odds_mass.task import odds_trace
+from re_rl.tasks.ml.hard_attend.task import attend_trace
+from re_rl.tasks.ml.max_pool.task import pair_max
+from re_rl.tasks.ml.adam_tick.task import adam_trace
+from re_rl.tasks.ml.rnn_add.task import rnn_trace
+from re_rl.tasks.ml.margin_push.task import push_trace
+from re_rl.tasks.ml.template_lag.task import match_trace
+from re_rl.tasks.physics.thermodynamics.heun_cool.task import heun_trace
+from re_rl.tasks.physics.thermodynamics.log_growth.task import growth_trace
+from re_rl.tasks.physics.mechanics.energy_drift.task import osc_energy
+from re_rl.tasks.physics.mechanics.pid_track.task import pid_trace
+from re_rl.tasks.physics.mechanics.drive_osc.task import drive_trace
+from re_rl.tasks.physics.fluids.two_tank.task import tank_trace
+from re_rl.tasks.physics.measurements.dose_decay.task import dose_trace
+from re_rl.tasks.physics.measurements.wrap_ring.task import ring_sum
+from re_rl.tasks.physics.measurements.age_flow.task import leslie_trace
+from re_rl.tasks.physics.quantum.rotor_drop.task import rotor_trace
 from re_rl.tasks.ml.neighbor_vote.task import nearest_votes
 from re_rl.tasks.rl.trace_decay.task import decay_visits
 from re_rl.tasks.ml.boost_weights.task import double_weights
@@ -502,6 +560,30 @@ POOL = [
     "snell_shift",
     "heat_steps",
     "hydraulic_lift",
+    "euler_drift",
+    "verlet_push",
+    "drag_coast",
+    "spring_pair",
+    "swing_map",
+    "poisson_row",
+    "hydro_line",
+    "force_work",
+    "rocket_burn",
+    "projectile_tick",
+    "lc_tick",
+    "polar_stack",
+    "upwind_row",
+    "branch_decay",
+    "ising_pass",
+    "flow_mix",
+    "box_scope",
+    "spike_cut",
+    "twin_box",
+    "peak_hold",
+    "crack_close",
+    "source_dist",
+    "slope_field",
+    "charge_run",
     "look_say",
     "zeckendorf",
     "roman_value",
@@ -759,6 +841,40 @@ POOL = [
     "crc_rem",
     "feistel_run",
     "elgamal_enc",
+    "fact_base",
+    "cas_cell",
+    "memo_call",
+    "skip_fit",
+    "handoff_ask",
+    "reject_add",
+    "ref_resolve",
+    "belief_vote",
+    "join_wait",
+    "audit_sum",
+    "draw_out",
+    "die_build",
+    "rank_stop",
+    "day_clash",
+    "group_mean",
+    "safe_bits",
+    "first_to",
+    "odds_mass",
+    "hard_attend",
+    "max_pool",
+    "adam_tick",
+    "rnn_add",
+    "margin_push",
+    "template_lag",
+    "heun_cool",
+    "log_growth",
+    "energy_drift",
+    "pid_track",
+    "drive_osc",
+    "two_tank",
+    "dose_decay",
+    "wrap_ring",
+    "age_flow",
+    "rotor_drop",
 ]
 
 
@@ -1693,6 +1809,129 @@ def test_chain_values():
     trace = hydraulic_trace(lifted.presses)
     assert trace == lifted.trace
     assert lifted.output == trace[lifted.k - 1][0] and lifted.total == trace[-1][1]
+
+    assert euler_trace(0, 0, 2, 3) == [(2, 2, 2), (4, 6, 4), (6, 12, 6)]
+    drifted = _one("euler_drift", "en", 6, "place", seed=4)
+    trace = euler_trace(drifted.place, drifted.speed, drifted.accel, drifted.n)
+    assert trace == drifted.trace and drifted.final_place == trace[-1][1] and drifted.gap == trace[-1][2]
+
+    assert verlet_trace(0, 0, [2, 2]) == [(1, 2), (4, 4)]
+    pushed = _one("verlet_push", "en", 6, "place", seed=4)
+    trace = verlet_trace(pushed.place, pushed.speed, pushed.accels)
+    assert trace == pushed.trace and pushed.final_place == trace[-1][0] and pushed.final_speed == trace[-1][1]
+
+    assert drag_trace(0, 3, 2, 3) == [(3, 0), (5, 1), (6, 3)]
+    coasting = _one("drag_coast", "en", 6, "speed", seed=4)
+    trace = drag_trace(coasting.speed, coasting.thrust, coasting.DIVISOR, coasting.n)
+    assert trace == coasting.trace and coasting.final_speed == trace[-1][0] and coasting.lost == trace[-1][1]
+
+    assert spring_trace(0, 3, 0, 0, 1, 1) == [(-1, 2)]
+    paired = _one("spring_pair", "en", 6, "gap", seed=4)
+    trace = spring_trace(paired.left, paired.right, paired.speed_left, paired.speed_right, paired.rest, paired.n)
+    assert trace == paired.trace and paired.gap == trace[-1][0] and paired.final_speed == trace[-1][1]
+
+    assert swing_trace(4, 0, 2, 3) == [(2, -2), (-1, -3), (-3, -2)]
+    swung = _one("swing_map", "en", 6, "angle", seed=4)
+    trace = swing_trace(swung.angle, swung.rate, swung.STIFF, swung.n)
+    assert trace == swung.trace and swung.final_angle == trace[-1][0] and swung.final_rate == trace[-1][1]
+
+    assert poisson_trace([2, 0, 2], 2) == [(0, 2), (1, 3)]
+    charged = _one("poisson_row", "en", 6, "mid", seed=4)
+    trace = poisson_trace(charged.rho, charged.n)
+    assert trace == charged.trace and charged.mid == trace[-1][0] and charged.total == trace[-1][1]
+
+    assert line_trace([2, 1, 3]) == [(-3, 8), (5, 72)]
+    lines = _one("hydro_line", "en", 6, "numer", seed=4)
+    trace = line_trace(lines.levels)
+    assert trace == lines.trace and lines.numer == trace[-1][0] and lines.denom == trace[-1][1]
+
+    assert work_trace([1, 3, 5]) == [(4, 4), (8, 12)]
+    worked = _one("force_work", "en", 6, "work", seed=4)
+    trace = work_trace(worked.forces)
+    assert trace == worked.trace and worked.work == trace[-1][1] and worked.piece == trace[-1][0]
+
+    assert burn_trace(5, 12, 3) == [(2, 4), (5, 3), (9, 2)]
+    rocket = _one("rocket_burn", "en", 6, "speed", seed=4)
+    trace = burn_trace(rocket.mass, rocket.exhaust, rocket.n)
+    assert trace == rocket.trace and rocket.speed == trace[-1][0] and rocket.final_mass == trace[-1][1]
+
+    assert shot_trace(2, 3, 3) == [(2, 3, 2), (4, 5, 1), (6, 6, 0)]
+    thrown = _one("projectile_tick", "en", 6, "range", seed=4)
+    trace = shot_trace(thrown.vx, thrown.vy, thrown.n)
+    assert trace == thrown.trace and thrown.range == trace[-1][0] and thrown.height == trace[-1][1]
+
+    assert coil_trace(3, 0, 3) == [(3, 0), (3, -3), (0, -3)]
+    circuit = _one("lc_tick", "en", 6, "current", seed=4)
+    trace = coil_trace(circuit.voltage, circuit.current, circuit.n)
+    assert trace == circuit.trace and circuit.final_current == trace[-1][0] and circuit.final_voltage == trace[-1][1]
+
+    assert polar_trace(8, [1, 0, 2]) == [(4, 0), (4, 0), (0, 1)]
+    stacked = _one("polar_stack", "en", 6, "light", seed=4)
+    trace = polar_trace(stacked.light, stacked.plates)
+    assert trace == stacked.trace and stacked.final_light == trace[-1][0] and stacked.dark == trace[-1][1]
+
+    assert wind_trace([1, 0, 4], 3) == [(1, 4), (1, 4), (0, 5)]
+    blown = _one("upwind_row", "en", 6, "kept", seed=4)
+    trace = wind_trace(blown.cells, blown.n)
+    assert trace == blown.trace and blown.kept == trace[-1][0] and blown.lost == trace[-1][1]
+
+    assert branch_trace(8, 2) == [(4, 2, 2), (2, 3, 3)]
+    split = _one("branch_decay", "en", 6, "parent", seed=4)
+    trace = branch_trace(split.parent, split.n)
+    assert trace == split.trace and split.final_parent == trace[-1][0] and split.branch == trace[-1][1]
+
+    assert ising_trace([1, -1, 1]) == [(1, 0), (1, 0), (2, -2)]
+    spins = _one("ising_pass", "en", 6, "flips", seed=4)
+    trace = ising_trace(spins.spins)
+    assert trace == spins.trace and spins.flips == trace[-1][0] and spins.energy == trace[-1][1]
+
+    assert flow_trace(10, 0, 3) == [(7, 3), (6, 4), (6, 4)]
+    mixed = _one("flow_mix", "en", 6, "hot", seed=4)
+    trace = flow_trace(mixed.hot, mixed.cold, mixed.n)
+    assert trace == mixed.trace and mixed.final_hot == trace[-1][0] and mixed.moved == trace[-1][1]
+
+    assert window_sum([1, 2, 3]) == [(3, 3), (6, 9), (5, 14)]
+    scoped = _one("box_scope", "en", 6, "last", seed=4)
+    trace = window_sum(scoped.values)
+    assert trace == scoped.trace and scoped.last == trace[-1][0] and scoped.total == trace[-1][1]
+
+    assert spike_trace([1, 9, 2, 3]) == [(1, 0), (2, 1), (3, 2), (2, 3)]
+    cleaned = _one("spike_cut", "en", 6, "last", seed=4)
+    trace = spike_trace(cleaned.values)
+    assert trace == cleaned.trace and cleaned.last == trace[-1][0] and cleaned.spikes == trace[-1][1]
+
+    assert twin_trace([1, 0, 2, 0]) == [(1, 4, 4), (3, 6, 10), (2, 7, 17), (2, 4, 21)]
+    doubled = _one("twin_box", "en", 6, "last", seed=4)
+    trace = twin_trace(doubled.values)
+    assert trace == doubled.trace and doubled.last == trace[-1][1] and doubled.total == trace[-1][2]
+
+    assert peak_trace([1, 4, 2, 3]) == [(4, 1), (4, 1), (4, 2), (3, 2)]
+    held = _one("peak_hold", "en", 6, "last", seed=4)
+    trace = peak_trace(held.values)
+    assert trace == held.trace and held.last == trace[-1][0] and held.highs == trace[-1][1]
+
+    assert crack_trace([1, 0, 0, 1, 1]) == [(1, 0, 0), (1, 1, 1), (1, 1, 2), (1, 1, 2), (1, 0, 2)]
+    sealed = _one("crack_close", "en", 6, "filled", seed=4)
+    trace = crack_trace(sealed.bits)
+    assert trace == sealed.trace and sealed.filled == trace[-1][2]
+    assert sealed.open == sealed.n - sum(item[1] for item in trace)
+
+    assert field_dist([0, 1, 1, 1, 0]) == [(0, 0, 0), (1, 1, 1), (2, 3, 2), (1, 4, 2), (0, 4, 2)]
+    spaced = _one("source_dist", "en", 6, "peak", seed=4)
+    trace = field_dist(spaced.mask)
+    assert trace == spaced.trace and spaced.peak == trace[-1][2] and spaced.total == trace[-1][1]
+
+    assert grad_trace([1, 3, 2, 6]) == [(3, 9), (1, 10), (3, 19), (-2, 23)]
+    sloped = _one("slope_field", "en", 6, "last", seed=4)
+    trace = grad_trace(sloped.values)
+    assert trace == sloped.trace and sloped.last == trace[-1][0] and sloped.power == trace[-1][1]
+
+    assert coulomb_trace([1, 2, 3, 4]) == [1, 3, 6, 10]
+    stored = _one("charge_run", "en", 6, "total", seed=4)
+    trace = coulomb_trace(stored.samples)
+    half = trace[-1] // 2
+    expect_hit = next(index for index, value in enumerate(trace, 1) if value >= half)
+    assert trace == stored.trace and stored.total == trace[-1] and stored.hit == expect_hit
 
     assert look_say_once("1") == "11"
     said = _one("look_say", "en", 6, "length", seed=4)
@@ -3296,3 +3535,173 @@ def test_chain_values():
     hidden = _one("elgamal_enc", "en", 6, "hint", seed=4)
     trace = elgamal_trace(hidden.base, hidden.public, hidden.message, hidden.bits, hidden.prime)
     assert trace == hidden.trace and hidden.hint == trace[-1][0] and hidden.mask == trace[-1][1]
+
+    assert fact_trace([(0, 1), (2, 1), (1, 1), (2, 1), (0, 1)]) == [(1, 0), (1, 1), (0, 1), (0, 1), (1, 1)]
+    facts = _one("fact_base", "en", 6, "hits", seed=4)
+    trace = fact_trace(facts.commands)
+    assert trace == facts.trace and facts.hits == trace[-1][1] and facts.size == trace[-1][0]
+
+    assert cas_trace([(0, 4), (0, 9), (1, 7)]) == [(4, 1, 1), (4, 1, 1), (7, 2, 2)]
+    cell = _one("cas_cell", "en", 6, "writes", seed=4)
+    trace = cas_trace(cell.attempts)
+    assert trace == cell.trace and cell.writes == trace[-1][2] and cell.final_value == trace[-1][0]
+
+    assert memo_trace([(0, 3), (0, 3), (1, 3)]) == [(3, 0, 3), (3, 1, 6), (7, 1, 13)]
+    remembered = _one("memo_call", "en", 6, "total", seed=4)
+    trace = memo_trace(remembered.calls)
+    assert trace == remembered.trace and remembered.total == trace[-1][2] and remembered.hits == trace[-1][1]
+
+    assert fit_trace(5, [2, 4, 1]) == [(3, 1), (3, 1), (2, 2)]
+    fitted = _one("skip_fit", "en", 6, "done", seed=4)
+    trace = fit_trace(fitted.budget, fitted.costs)
+    assert trace == fitted.trace and fitted.taken == trace[-1][1] and fitted.left == trace[-1][0]
+
+    assert hand_trace([1, 0, 1], [0, 2]) == [(2, 2, 1), (3, 5, 1)]
+    asked = _one("handoff_ask", "en", 6, "found", seed=4)
+    trace = hand_trace(asked.skills, asked.queries)
+    assert trace == asked.trace and asked.found == trace[-1][2] and asked.hops == trace[-1][1]
+
+    assert reject_trace(1, 5, [3, 4, -2]) == [(4, 0), (4, 1), (2, 1)]
+    guarded = _one("reject_add", "en", 6, "rejects", seed=4)
+    trace = reject_trace(guarded.start, guarded.limit, guarded.adds)
+    assert trace == guarded.trace and guarded.rejects == trace[-1][1] and guarded.final_value == trace[-1][0]
+
+    assert deref_trace([(0, 4), (1, 0), (1, 5), (0, 2)]) == [(4, 0), (4, 1), (0, 1), (2, 1)]
+    linked = _one("ref_resolve", "en", 6, "last", seed=4)
+    trace = deref_trace(linked.cells)
+    assert trace == linked.trace and linked.last == trace[-1][0] and linked.copies == trace[-1][1]
+
+    assert belief_trace([1, 1, -1, -1, -1, -1]) == [(1, 0, 0), (2, 1, 1), (1, 1, 1), (0, 1, 1), (-1, 1, 1), (-2, 0, 2)]
+    voted = _one("belief_vote", "en", 6, "flips", seed=4)
+    trace = belief_trace(voted.evidence)
+    assert trace == voted.trace and voted.flips == trace[-1][2] and voted.belief == trace[-1][1]
+
+    assert barrier_trace([(0, 0), (1, 2), (0, 1), (1, 2), (1, 1)]) == [(1, 0), (1, 0), (2, 0), (2, 1), (2, 2)]
+    joined = _one("join_wait", "en", 6, "joins", seed=4)
+    trace = barrier_trace(joined.events)
+    assert trace == joined.trace and joined.joins == trace[-1][1] and joined.finished == trace[-1][0]
+
+    assert audit_trace([(2, 2), (3, 5), (1, 7)]) == [(2, 0), (5, 0), (6, 1)]
+    checked = _one("audit_sum", "en", 6, "misses", seed=4)
+    trace = audit_trace(checked.pairs)
+    assert trace == checked.trace and checked.misses == trace[-1][1] and checked.true_total == trace[-1][0]
+
+    assert without_trace(3, 1, [1, 1]) == [(2, 3, 4), (1, 1, 2)]
+    drawn = _one("draw_out", "en", 6, "numer", seed=4)
+    trace = without_trace(drawn.red, drawn.blue, drawn.draws)
+    assert trace == drawn.trace and drawn.numer == trace[-1][1] and drawn.left == trace[-1][0]
+
+    assert conv_ways(2, 3) == [(1, 1, 1), (2, 4, 3)]
+    rolled = _one("die_build", "en", 6, "ways", seed=4)
+    trace = conv_ways(rolled.n, rolled.target)
+    assert trace == rolled.trace and rolled.ways == trace[-1][0] and rolled.mode == trace[-1][1]
+
+    assert secretary_trace([1, 3, 2, 4], 2) == [(1, 0, 1), (3, 0, 2), (3, 0, 3), (3, 4, 4)]
+    stopped = _one("rank_stop", "en", 6, "pick", seed=4)
+    trace = secretary_trace(stopped.values, stopped.reject)
+    assert trace == stopped.trace and stopped.pick == trace[-1][1] and stopped.seen == trace[-1][2]
+
+    assert birthday_trace([1, 2, 1, 1]) == [(0, 0), (0, 0), (1, 2), (3, 3)]
+    crowded = _one("day_clash", "en", 6, "pairs", seed=4)
+    trace = birthday_trace(crowded.days)
+    assert trace == crowded.trace and crowded.pairs == trace[-1][0] and crowded.shared == trace[-1][1]
+
+    assert cond_trace([(1, 4), (2, 9), (1, 2)], 1) == [(1, 4), (1, 4), (2, 6)]
+    grouped = _one("group_mean", "en", 6, "count", seed=4)
+    trace = cond_trace(grouped.pairs, grouped.group)
+    assert trace == grouped.trace and grouped.count == trace[-1][0] and grouped.total == trace[-1][1]
+
+    assert norepeat_trace(3) == [(2, 1), (3, 1), (5, 2)]
+    safe = _one("safe_bits", "en", 6, "count", seed=4)
+    trace = norepeat_trace(safe.n)
+    assert trace == safe.trace and safe.count == trace[-1][0] and safe.tail == trace[-1][1]
+
+    assert firstto_trace(2, [1, 2, 1]) == [(1, 0, 0), (1, 0, 0), (2, 1, 3)]
+    raced = _one("first_to", "en", 6, "winner", seed=4)
+    trace = firstto_trace(raced.GOAL, raced.trials)
+    assert trace == raced.trace and raced.winner == trace[-1][1] and raced.trial == trace[-1][2]
+
+    assert odds_trace(2, 1, [(3, 1), (1, 2)]) == [(6, 7), (6, 8)]
+    weighed = _one("odds_mass", "en", 6, "favor", seed=4)
+    trace = odds_trace(weighed.favor, weighed.against, weighed.pairs)
+    assert trace == weighed.trace and weighed.final_favor == trace[-1][0] and weighed.total == trace[-1][1]
+
+    assert attend_trace([1, -1, 2], [4, 5, 6], [1, -1]) == [(3, 6, 6), (2, 5, 11)]
+    picked = _one("hard_attend", "en", 6, "total", seed=4)
+    trace = attend_trace(picked.keys, picked.values, picked.queries)
+    assert trace == picked.trace and picked.total == trace[-1][2] and picked.last == trace[-1][1]
+
+    assert pair_max([3, 1, 2, 4]) == [(3, 1), (4, 1)]
+    pooled = _one("max_pool", "en", 6, "total", seed=4)
+    trace = pair_max(pooled.values)
+    assert trace == pooled.trace and pooled.total == sum(item[0] for item in trace) and pooled.lefts == trace[-1][1]
+
+    assert adam_trace(0, [3, 1]) == [(-1, 1, 4), (-2, 1, 2)]
+    stepped = _one("adam_tick", "en", 6, "weight", seed=4)
+    trace = adam_trace(stepped.start, stepped.gradients)
+    assert trace == stepped.trace and stepped.weight == trace[-1][0] and stepped.moment == trace[-1][1]
+
+    assert rnn_trace([2, -3, 1]) == [(2, 0), (0, 1), (1, 1)]
+    recurrent = _one("rnn_add", "en", 6, "hidden", seed=4)
+    trace = rnn_trace(recurrent.inputs)
+    assert trace == recurrent.trace and recurrent.hidden == trace[-1][0] and recurrent.clips == trace[-1][1]
+
+    assert push_trace([(1, 2), (1, 2), (-1, 3)]) == [(2, 0), (2, 1), (-1, 1)]
+    pushed = _one("margin_push", "en", 6, "score", seed=4)
+    trace = push_trace(pushed.examples)
+    assert trace == pushed.trace and pushed.score == trace[-1][0] and pushed.skips == trace[-1][1]
+
+    assert match_trace([1, 2, 3, 1], [2, 3]) == [(8, 8, 1), (13, 13, 2), (9, 13, 2)]
+    matched = _one("template_lag", "en", 6, "lag", seed=4)
+    trace = match_trace(matched.signal, matched.pattern)
+    assert trace == matched.trace and matched.lag == trace[-1][2] and matched.score == trace[-1][1]
+
+    assert heun_trace(5, 0, 2) == [(2, 2), (1, 1)]
+    cooled = _one("heun_cool", "en", 6, "temp", seed=4)
+    trace = heun_trace(cooled.temp, cooled.room, cooled.n)
+    assert trace == cooled.trace and cooled.final_temp == trace[-1][0] and cooled.gap == trace[-1][1]
+
+    assert growth_trace(2, 10, 3) == [(3, 1), (5, 3), (7, 5)]
+    grown = _one("log_growth", "en", 6, "pop", seed=4)
+    trace = growth_trace(grown.pop, grown.CAP, grown.n)
+    assert trace == grown.trace and grown.final_pop == trace[-1][0] and grown.grown == trace[-1][1]
+
+    assert osc_energy(2, 0, 2) == [(8, 4), (16, 8)]
+    drifted = _one("energy_drift", "en", 6, "semi", seed=4)
+    trace = osc_energy(drifted.place, drifted.speed, drifted.n)
+    assert trace == drifted.trace and drifted.semi == trace[-1][1] and drifted.gap == trace[-1][0] - trace[-1][1]
+
+    assert pid_trace(4, 0, 2) == [(6, 4), (3, 2)]
+    steered = _one("pid_track", "en", 6, "place", seed=4)
+    trace = pid_trace(steered.target, steered.start, steered.n)
+    assert trace == steered.trace and steered.spot == trace[-1][0] and steered.memory == trace[-1][1]
+
+    assert drive_trace(0, 0, [2, 0, -1]) == [(2, 2), (2, 0), (-1, -3)]
+    driven = _one("drive_osc", "en", 6, "place", seed=4)
+    trace = drive_trace(driven.start, driven.speed, driven.drives)
+    assert trace == driven.trace and driven.place == trace[-1][0] and driven.final_speed == trace[-1][1]
+
+    assert tank_trace(8, 0, 2, 3) == [(5, 5), (6, 6), (7, 7)]
+    filled = _one("two_tank", "en", 6, "left", seed=4)
+    trace = tank_trace(filled.left, filled.right, filled.inlet, filled.n)
+    assert trace == filled.trace and filled.final_left == trace[-1][0] and filled.final_right == trace[-1][1]
+
+    assert dose_trace([4, 0, 0]) == [(2, 2), (1, 3), (1, 3)]
+    dosed = _one("dose_decay", "en", 6, "level", seed=4)
+    trace = dose_trace(dosed.doses)
+    assert trace == dosed.trace and dosed.level == trace[-1][0] and dosed.cleared == trace[-1][1]
+
+    assert ring_sum([1, 2, 3, 4]) == [(6, 6), (4, 10), (6, 16), (4, 20)]
+    ringed = _one("wrap_ring", "en", 6, "last", seed=4)
+    trace = ring_sum(ringed.values)
+    assert trace == ringed.trace and ringed.last == trace[-1][0] and ringed.total == trace[-1][1]
+
+    assert leslie_trace(1, 1, 1, 3) == [(2, 1, 1), (2, 2, 1), (3, 2, 2)]
+    aged = _one("age_flow", "en", 6, "young", seed=4)
+    trace = leslie_trace(aged.young, aged.ripe, aged.old, aged.n)
+    assert trace == aged.trace and aged.final_young == trace[-1][0] and aged.total == sum(trace[-1])
+
+    assert rotor_trace(4, 3) == [(4, 8, 8), (3, 6, 14), (2, 4, 18)]
+    dropped = _one("rotor_drop", "en", 6, "photon", seed=4)
+    trace = rotor_trace(dropped.start, dropped.n)
+    assert trace == dropped.trace and dropped.photon == trace[dropped.k - 1][1] and dropped.total == trace[-1][2]

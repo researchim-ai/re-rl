@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Номеров уровней {count}, по порядку: {levels}. Переходов {n}. Энергия уровня равна минус единице, делённой на удвоенный квадрат номера. Складываются изменения энергии от уровня к следующему, дробь сокращается. Каков числитель итоговой дроби?",
+      "en": "There are {count} level numbers, in order: {levels}. There are {n} transitions. The energy of a level is minus one divided by twice the square of the level number. The energy changes from each level to the next are added, and the fraction is reduced. What is the numerator of the final fraction?"
+    },
+    "s1": {
+      "ru": "Номеров уровней {count}, по порядку: {levels}. Переходов {n}. Энергия уровня равна минус единице, делённой на удвоенный квадрат номера. Складываются изменения энергии от уровня к следующему, дробь сокращается. Каков знаменатель итоговой дроби?",
+      "en": "There are {count} level numbers, in order: {levels}. There are {n} transitions. The energy of a level is minus one divided by twice the square of the level number. The energy changes from each level to the next are added, and the fraction is reduced. What is the denominator of the final fraction?"
+    },
+    "s2": {
+      "ru": "Переход {i}: с {start} на {end}, числитель {numer}, знаменатель {denom}.",
+      "en": "Transition {i}: from {start} to {end}, numerator {numer}, denominator {denom}."
+    }
+  }
+}

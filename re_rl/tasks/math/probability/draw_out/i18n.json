@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В урне {red} красных и {blue} синих шаров. Тянут {n} раз без возвращения: {draws}. Код 1 — красный, код 0 — синий. Вероятность последовательности — произведение долей выбранного цвета среди ещё лежащих шаров. Дробь сокращается. Каков числитель итоговой вероятности?",
+      "en": "The urn has {red} red balls and {blue} blue balls. There are {n} draws without replacement: {draws}. Code 1 is red and code 0 is blue. The probability of the sequence is the product of the shares of the chosen color among the balls still left. The fraction is reduced. What is the numerator of the final probability?"
+    },
+    "s1": {
+      "ru": "В урне {red} красных и {blue} синих шаров. Тянут {n} раз без возвращения: {draws}. Код 1 — красный, код 0 — синий. Вероятность последовательности — произведение долей выбранного цвета среди ещё лежащих шаров. Дробь сокращается. Сколько красных шаров останется?",
+      "en": "The urn has {red} red balls and {blue} blue balls. There are {n} draws without replacement: {draws}. Code 1 is red and code 0 is blue. The probability of the sequence is the product of the shares of the chosen color among the balls still left. The fraction is reduced. How many red balls remain?"
+    },
+    "s2": {
+      "ru": "Тираж {i}, код {bit}: красных осталось {left}, числитель {numer}, знаменатель {denom}.",
+      "en": "Draw {i}, code {bit}: red left {left}, numerator {numer}, denominator {denom}."
+    }
+  }
+}

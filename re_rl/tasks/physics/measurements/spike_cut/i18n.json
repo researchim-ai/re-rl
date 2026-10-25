@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Отсчётов {n}: {values}. Окно — сама клетка и два соседа, за краем стоит 0. В окно берётся число, которое окажется посередине, если три числа упорядочить. Каков последний отсчёт после замены?",
+      "en": "There are {n} readings: {values}. The window is the cell itself and its two neighbors, and beyond an edge there is 0. The window keeps the number that lands in the middle once the three numbers are ordered. What is the last reading after replacement?"
+    },
+    "s1": {
+      "ru": "Отсчётов {n}: {values}. Окно — сама клетка и два соседа, за краем стоит 0. В окно берётся число, которое окажется посередине, если три числа упорядочить. Сколько клеток изменили своё число?",
+      "en": "There are {n} readings: {values}. The window is the cell itself and its two neighbors, and beyond an edge there is 0. The window keeps the number that lands in the middle once the three numbers are ordered. How many cells changed their number?"
+    },
+    "s2": {
+      "ru": "Клетка {i}: значение {value}, изменений {spikes}.",
+      "en": "Cell {i}: value {value}, changes {spikes}."
+    }
+  }
+}

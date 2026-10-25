@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скорость начинает с {speed}, тяга равна {thrust}, делитель равен {divisor}. Тактов {n}. За такт из скорости вычитается частное скорости и делителя, затем прибавляется тяга. Частное — целая часть с округлением вниз. Какова скорость в конце?",
+      "en": "The speed starts at {speed}, the thrust is {thrust}, and the divisor is {divisor}. There are {n} ticks. On a tick the quotient of the speed and the divisor is subtracted from the speed, and then the thrust is added. The quotient is the integer part rounded downward. What is the final speed?"
+    },
+    "s1": {
+      "ru": "Скорость начинает с {speed}, тяга равна {thrust}, делитель равен {divisor}. Тактов {n}. За такт из скорости вычитается частное скорости и делителя, затем прибавляется тяга. Частное — целая часть с округлением вниз. Сколько скорости сняло сопротивление за все такты?",
+      "en": "The speed starts at {speed}, the thrust is {thrust}, and the divisor is {divisor}. There are {n} ticks. On a tick the quotient of the speed and the divisor is subtracted from the speed, and then the thrust is added. The quotient is the integer part rounded downward. How much speed did the drag remove over all ticks?"
+    },
+    "s2": {
+      "ru": "Такт {i}: скорость {speed}, снято всего {lost}.",
+      "en": "Tick {i}: speed {speed}, removed so far {lost}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две массы соединены пружиной жёсткости 1. Левая координата {left}, правая {right}, скорости {speed_left} и {speed_right}, длина покоя {rest}. Тактов {n}. Сила равна правой координате минус левая минус длина покоя. Левая скорость прибавляет силу, правая её вычитает. Затем каждая координата прибавляет свою скорость. Каково расстояние от левой массы до правой в конце?",
+      "en": "Two masses are joined by a spring of stiffness 1. The left coordinate is {left}, the right is {right}, the speeds are {speed_left} and {speed_right}, and the rest length is {rest}. There are {n} ticks. The force is the right coordinate minus the left minus the rest length. The left speed adds the force and the right speed subtracts it. Then each coordinate adds its own speed. What is the distance from the left mass to the right mass at the end?"
+    },
+    "s1": {
+      "ru": "Две массы соединены пружиной жёсткости 1. Левая координата {left}, правая {right}, скорости {speed_left} и {speed_right}, длина покоя {rest}. Тактов {n}. Сила равна правой координате минус левая минус длина покоя. Левая скорость прибавляет силу, правая её вычитает. Затем каждая координата прибавляет свою скорость. Какова скорость левой массы в конце?",
+      "en": "Two masses are joined by a spring of stiffness 1. The left coordinate is {left}, the right is {right}, the speeds are {speed_left} and {speed_right}, and the rest length is {rest}. There are {n} ticks. The force is the right coordinate minus the left minus the rest length. The left speed adds the force and the right speed subtracts it. Then each coordinate adds its own speed. What is the speed of the left mass at the end?"
+    },
+    "s2": {
+      "ru": "Такт {i}: расстояние {gap}, скорость левой массы {speed}.",
+      "en": "Tick {i}: distance {gap}, left speed {speed}."
+    }
+  }
+}

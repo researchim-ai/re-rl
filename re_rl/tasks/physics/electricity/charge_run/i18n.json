@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Отсчётов тока {n}: {samples}. Накопленный заряд после отсчёта равен этому отсчёту плюс весь предыдущий заряд. В начале заряд равен 0. Каков заряд в конце?",
+      "en": "There are {n} current readings: {samples}. The accumulated charge after a reading is that reading plus all previous charge. The charge starts at 0. What is the final charge?"
+    },
+    "s1": {
+      "ru": "Отсчётов тока {n}: {samples}. Накопленный заряд после отсчёта равен этому отсчёту плюс весь предыдущий заряд. В начале заряд равен 0. На каком отсчёте, считая с 1, накопленный заряд впервые стал не меньше половины итогового заряда?",
+      "en": "There are {n} current readings: {samples}. The accumulated charge after a reading is that reading plus all previous charge. The charge starts at 0. At which reading, counting from 1, does the accumulated charge first become at least half of the final charge?"
+    },
+    "s2": {
+      "ru": "Отсчёт {i} равен {sample}: заряд {total}.",
+      "en": "Reading {i} is {sample}: charge {total}."
+    }
+  }
+}

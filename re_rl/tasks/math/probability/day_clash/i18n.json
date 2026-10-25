@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Людей {n}, их дни: {days}. Пара — это два человека с одним днём. Когда день случается в третий раз, новый человек составляет пару с каждым, у кого этот день уже был. Сколько пар получится?",
+      "en": "There are {n} people, and their days are {days}. A pair is two people with the same day. When a day occurs a third time, the new person forms a pair with everyone who already had that day. How many pairs result?"
+    },
+    "s1": {
+      "ru": "Людей {n}, их дни: {days}. Человек входит в компанию, если его день есть ещё хотя бы у одного. При втором появлении дня в компанию входят оба. Сколько человек окажутся в такой компании?",
+      "en": "There are {n} people, and their days are {days}. A person joins the shared group when at least one other person has the same day. On the second occurrence of a day, both join. How many people end up in that group?"
+    },
+    "s2": {
+      "ru": "Человек {i}, день {day}: пар {pairs}, в компании {shared}.",
+      "en": "Person {i}, day {day}: pairs {pairs}, in the group {shared}."
+    }
+  }
+}

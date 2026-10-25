@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Значение начинает с {start}. Нижняя граница равна 0, верхняя равна {limit}. Прибавлений {n}: {adds}. Прибавление принимается, только если сумма остаётся от 0 до {limit} включительно. Иначе всё прибавление отклоняется и значение не меняется. Сколько прибавлений отклонено?",
+      "en": "The value starts at {start}. The lower bound is 0 and the upper bound is {limit}. There are {n} additions: {adds}. An addition is accepted only when the sum stays from 0 through {limit} inclusive. Otherwise the whole addition is rejected and the value does not change. How many additions are rejected?"
+    },
+    "s1": {
+      "ru": "Значение начинает с {start}. Нижняя граница равна 0, верхняя равна {limit}. Прибавлений {n}: {adds}. Прибавление принимается, только если сумма остаётся от 0 до {limit} включительно. Иначе всё прибавление отклоняется и значение не меняется. Каково значение в конце?",
+      "en": "The value starts at {start}. The lower bound is 0 and the upper bound is {limit}. There are {n} additions: {adds}. An addition is accepted only when the sum stays from 0 through {limit} inclusive. Otherwise the whole addition is rejected and the value does not change. What is the final value?"
+    },
+    "s2": {
+      "ru": "Прибавление {i} равно {add}: значение {value}, отказов {rejects}.",
+      "en": "Addition {i} is {add}: value {value}, rejections {rejects}."
+    }
+  }
+}

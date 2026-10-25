@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В кольце {n} ячеек: {values}. Каждая ячейка заменяется суммой левого и правого соседей. Сама ячейка в сумму не входит. Сосед за краем берётся с другой стороны ряда. Какова последняя ячейка после замены?",
+      "en": "A ring has {n} cells: {values}. Each cell is replaced by the sum of its left and right neighbors. The cell itself is not included in the sum. A neighbor past an end is taken from the other end of the row. What is the last cell after the replacement?"
+    },
+    "s1": {
+      "ru": "В кольце {n} ячеек: {values}. Каждая ячейка заменяется суммой левого и правого соседей. Сама ячейка в сумму не входит. Сосед за краем берётся с другой стороны ряда. Какова сумма всех ячеек после замены?",
+      "en": "A ring has {n} cells: {values}. Each cell is replaced by the sum of its left and right neighbors. The cell itself is not included in the sum. A neighbor past an end is taken from the other end of the row. What is the sum of all cells after the replacement?"
+    },
+    "s2": {
+      "ru": "Ячейка {i}: сумма соседей {value}, сумма ряда {total}.",
+      "en": "Cell {i}: neighbor sum {value}, row sum {total}."
+    }
+  }
+}

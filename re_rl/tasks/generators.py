@@ -558,6 +558,30 @@ from re_rl.tasks.math.logic.lfsr_run_task import LfsrRunTask
 from re_rl.tasks.math.logic.crc_rem_task import CrcRemTask
 from re_rl.tasks.math.logic.feistel_run_task import FeistelRunTask
 from re_rl.tasks.math.logic.elgamal_enc_task import ElgamalEncTask
+from re_rl.tasks.math.logic.fact_base_task import FactBaseTask
+from re_rl.tasks.math.logic.cas_cell_task import CasCellTask
+from re_rl.tasks.math.logic.memo_call_task import MemoCallTask
+from re_rl.tasks.math.logic.skip_fit_task import SkipFitTask
+from re_rl.tasks.math.logic.handoff_ask_task import HandoffAskTask
+from re_rl.tasks.math.logic.reject_add_task import RejectAddTask
+from re_rl.tasks.math.logic.ref_resolve_task import RefResolveTask
+from re_rl.tasks.math.logic.belief_vote_task import BeliefVoteTask
+from re_rl.tasks.math.logic.join_wait_task import JoinWaitTask
+from re_rl.tasks.math.logic.audit_sum_task import AuditSumTask
+from re_rl.tasks.math.probability.draw_out_task import DrawOutTask
+from re_rl.tasks.math.probability.die_build_task import DieBuildTask
+from re_rl.tasks.math.probability.rank_stop_task import RankStopTask
+from re_rl.tasks.math.probability.day_clash_task import DayClashTask
+from re_rl.tasks.math.probability.group_mean_task import GroupMeanTask
+from re_rl.tasks.math.probability.safe_bits_task import SafeBitsTask
+from re_rl.tasks.math.probability.first_to_task import FirstToTask
+from re_rl.tasks.math.probability.odds_mass_task import OddsMassTask
+from re_rl.tasks.ml.hard_attend_task import HardAttendTask
+from re_rl.tasks.ml.max_pool_task import MaxPoolTask
+from re_rl.tasks.ml.adam_tick_task import AdamTickTask
+from re_rl.tasks.ml.rnn_add_task import RnnAddTask
+from re_rl.tasks.ml.margin_push_task import MarginPushTask
+from re_rl.tasks.ml.template_lag_task import TemplateLagTask
 from re_rl.tasks.ml.roc_walk_task import RocWalkTask
 from re_rl.tasks.ml.ema_loss_task import EmaLossTask
 from re_rl.tasks.ml.lr_decay_task import LrDecayTask
@@ -2458,6 +2482,30 @@ generate_random_lfsr_run_task = _mk_generator(LfsrRunTask)
 generate_random_crc_rem_task = _mk_generator(CrcRemTask)
 generate_random_feistel_run_task = _mk_generator(FeistelRunTask)
 generate_random_elgamal_enc_task = _mk_generator(ElgamalEncTask)
+generate_random_fact_base_task = _mk_generator(FactBaseTask)
+generate_random_cas_cell_task = _mk_generator(CasCellTask)
+generate_random_memo_call_task = _mk_generator(MemoCallTask)
+generate_random_skip_fit_task = _mk_generator(SkipFitTask)
+generate_random_handoff_ask_task = _mk_generator(HandoffAskTask)
+generate_random_reject_add_task = _mk_generator(RejectAddTask)
+generate_random_ref_resolve_task = _mk_generator(RefResolveTask)
+generate_random_belief_vote_task = _mk_generator(BeliefVoteTask)
+generate_random_join_wait_task = _mk_generator(JoinWaitTask)
+generate_random_audit_sum_task = _mk_generator(AuditSumTask)
+generate_random_draw_out_task = _mk_generator(DrawOutTask)
+generate_random_die_build_task = _mk_generator(DieBuildTask)
+generate_random_rank_stop_task = _mk_generator(RankStopTask)
+generate_random_day_clash_task = _mk_generator(DayClashTask)
+generate_random_group_mean_task = _mk_generator(GroupMeanTask)
+generate_random_safe_bits_task = _mk_generator(SafeBitsTask)
+generate_random_first_to_task = _mk_generator(FirstToTask)
+generate_random_odds_mass_task = _mk_generator(OddsMassTask)
+generate_random_hard_attend_task = _mk_generator(HardAttendTask)
+generate_random_max_pool_task = _mk_generator(MaxPoolTask)
+generate_random_adam_tick_task = _mk_generator(AdamTickTask)
+generate_random_rnn_add_task = _mk_generator(RnnAddTask)
+generate_random_margin_push_task = _mk_generator(MarginPushTask)
+generate_random_template_lag_task = _mk_generator(TemplateLagTask)
 generate_random_roc_walk_task = _mk_generator(RocWalkTask)
 generate_random_ema_loss_task = _mk_generator(EmaLossTask)
 generate_random_lr_decay_task = _mk_generator(LrDecayTask)
@@ -3209,6 +3257,30 @@ ALL_TASK_GENERATORS = {
     "crc_rem": generate_random_crc_rem_task,
     "feistel_run": generate_random_feistel_run_task,
     "elgamal_enc": generate_random_elgamal_enc_task,
+    "fact_base": generate_random_fact_base_task,
+    "cas_cell": generate_random_cas_cell_task,
+    "memo_call": generate_random_memo_call_task,
+    "skip_fit": generate_random_skip_fit_task,
+    "handoff_ask": generate_random_handoff_ask_task,
+    "reject_add": generate_random_reject_add_task,
+    "ref_resolve": generate_random_ref_resolve_task,
+    "belief_vote": generate_random_belief_vote_task,
+    "join_wait": generate_random_join_wait_task,
+    "audit_sum": generate_random_audit_sum_task,
+    "draw_out": generate_random_draw_out_task,
+    "die_build": generate_random_die_build_task,
+    "rank_stop": generate_random_rank_stop_task,
+    "day_clash": generate_random_day_clash_task,
+    "group_mean": generate_random_group_mean_task,
+    "safe_bits": generate_random_safe_bits_task,
+    "first_to": generate_random_first_to_task,
+    "odds_mass": generate_random_odds_mass_task,
+    "hard_attend": generate_random_hard_attend_task,
+    "max_pool": generate_random_max_pool_task,
+    "adam_tick": generate_random_adam_tick_task,
+    "rnn_add": generate_random_rnn_add_task,
+    "margin_push": generate_random_margin_push_task,
+    "template_lag": generate_random_template_lag_task,
     "roc_walk": generate_random_roc_walk_task,
     "ema_loss": generate_random_ema_loss_task,
     "lr_decay": generate_random_lr_decay_task,

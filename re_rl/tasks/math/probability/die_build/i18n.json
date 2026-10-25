@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кубиков {n}, у каждого грани 1, 2 и 3. Каждая грань равновозможна. Сколько исходов дают сумму {target}?",
+      "en": "There are {n} dice, and each has faces 1, 2, and 3. Every face is equally likely. How many outcomes give the sum {target}?"
+    },
+    "s1": {
+      "ru": "Кубиков {n}, у каждого грани 1, 2 и 3. Каждая грань равновозможна. Какая сумма встречается в наибольшем числе исходов? При равенстве берётся меньшая сумма.",
+      "en": "There are {n} dice, and each has faces 1, 2, and 3. Every face is equally likely. Which sum occurs in the greatest number of outcomes? On a tie, take the smaller sum."
+    },
+    "s2": {
+      "ru": "После кубика {i}: способов набрать цель {ways}, самая частая сумма {mode}, у неё исходов {best}.",
+      "en": "After die {i}: ways to reach the target {ways}, most common sum {mode}, with {best} outcomes."
+    }
+  }
+}

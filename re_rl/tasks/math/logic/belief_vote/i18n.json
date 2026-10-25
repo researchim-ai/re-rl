@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Счёт начинает с 0, мнение равно 0. Свидетельств {n}: {evidence}. Каждое свидетельство равно 1 или -1 и прибавляется к счёту. Если счёт стал не меньше {threshold}, мнение становится 1. Если счёт стал не больше минус {threshold}, мнение становится 0. Между этими порогами мнение не меняется. Сколько раз мнение сменилось?",
+      "en": "The score starts at 0 and the belief is 0. There are {n} pieces of evidence: {evidence}. Each piece is 1 or -1 and is added to the score. If the score becomes at least {threshold}, the belief becomes 1. If the score becomes at most minus {threshold}, the belief becomes 0. Between these thresholds the belief stays as it is. How many times does the belief change?"
+    },
+    "s1": {
+      "ru": "Счёт начинает с 0, мнение равно 0. Свидетельств {n}: {evidence}. Каждое свидетельство равно 1 или -1 и прибавляется к счёту. Если счёт стал не меньше {threshold}, мнение становится 1. Если счёт стал не больше минус {threshold}, мнение становится 0. Между этими порогами мнение не меняется. Каково мнение в конце? Ответьте 1 или 0.",
+      "en": "The score starts at 0 and the belief is 0. There are {n} pieces of evidence: {evidence}. Each piece is 1 or -1 and is added to the score. If the score becomes at least {threshold}, the belief becomes 1. If the score becomes at most minus {threshold}, the belief becomes 0. Between these thresholds the belief stays as it is. What is the final belief? Answer 1 or 0."
+    },
+    "s2": {
+      "ru": "Свидетельство {i} равно {step}: счёт {score}, мнение {belief}, смен {flips}.",
+      "en": "Evidence {i} is {step}: score {score}, belief {belief}, changes {flips}."
+    }
+  }
+}

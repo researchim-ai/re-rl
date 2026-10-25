@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сколько двоичных строк длины {n} не содержат двух единиц подряд? Строка длины 1: 0 и 1. Более длинная получается так: к любой подходящей можно дописать 0, а 1 можно дописать только к строке, которая кончается нулём.",
+      "en": "How many binary strings of length {n} contain no two ones in a row? The strings of length 1 are 0 and 1. A longer string is built like this: a 0 may be added to any valid string, and a 1 may be added only to a string that ends in 0."
+    },
+    "s1": {
+      "ru": "Сколько двоичных строк длины {n} не содержат двух единиц подряд и кончаются единицей? Строка длины 1: 0 и 1. Более длинная получается так: к любой подходящей можно дописать 0, а 1 можно дописать только к строке, которая кончается нулём.",
+      "en": "How many binary strings of length {n} contain no two ones in a row and end in 1? The strings of length 1 are 0 and 1. A longer string is built like this: a 0 may be added to any valid string, and a 1 may be added only to a string that ends in 0."
+    },
+    "s2": {
+      "ru": "Длина {i}: всего строк {count}, из них кончаются единицей {tail}.",
+      "en": "Length {i}: strings in all {count}, of which {tail} end in 1."
+    }
+  }
+}

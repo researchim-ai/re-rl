@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Молодые начинают с {young}, зрелые с {ripe}, старые с {old}. Тактов {n}. Новые молодые равны прежним зрелым плюс прежним старым. Новые зрелые равны прежним молодым. Новые старые равны прежним зрелым. Все три числа берутся по прежним значениям одновременно. Сколько молодых в конце?",
+      "en": "The young start at {young}, the ripe at {ripe}, and the old at {old}. There are {n} ticks. The new young equal the previous ripe plus the previous old. The new ripe equal the previous young. The new old equal the previous ripe. All three numbers are taken from the previous values at the same time. How many young are there at the end?"
+    },
+    "s1": {
+      "ru": "Молодые начинают с {young}, зрелые с {ripe}, старые с {old}. Тактов {n}. Новые молодые равны прежним зрелым плюс прежним старым. Новые зрелые равны прежним молодым. Новые старые равны прежним зрелым. Все три числа берутся по прежним значениям одновременно. Какова сумма трёх возрастов в конце?",
+      "en": "The young start at {young}, the ripe at {ripe}, and the old at {old}. There are {n} ticks. The new young equal the previous ripe plus the previous old. The new ripe equal the previous young. The new old equal the previous ripe. All three numbers are taken from the previous values at the same time. What is the sum of the three ages at the end?"
+    },
+    "s2": {
+      "ru": "Такт {i}: молодые {young}, зрелые {ripe}, старые {old}.",
+      "en": "Tick {i}: young {young}, ripe {ripe}, old {old}."
+    }
+  }
+}

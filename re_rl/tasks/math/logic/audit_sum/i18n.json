@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Шагов {n}. В каждом прибавка и заявленная сумма: {pairs}. Истинная сумма начинает с 0 и на каждом шаге растёт на прибавку. Шаг ошибочен, если заявленная сумма не равна истинной. Сколько шагов ошибочны?",
+      "en": "There are {n} steps. Each step gives an addend and a claimed sum: {pairs}. The true sum starts at 0 and grows by the addend on every step. A step is wrong when the claimed sum is not equal to the true sum. How many steps are wrong?"
+    },
+    "s1": {
+      "ru": "Шагов {n}. В каждом прибавка и заявленная сумма: {pairs}. Истинная сумма начинает с 0 и на каждом шаге растёт на прибавку. Шаг ошибочен, если заявленная сумма не равна истинной. Какова истинная сумма в конце?",
+      "en": "There are {n} steps. Each step gives an addend and a claimed sum: {pairs}. The true sum starts at 0 and grows by the addend on every step. A step is wrong when the claimed sum is not equal to the true sum. What is the true sum at the end?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, прибавка {value}, заявлено {claimed}: истинная сумма {total}, ошибок {misses}.",
+      "en": "Step {i}, addend {value}, claimed {claimed}: true sum {total}, mistakes {misses}."
+    }
+  }
+}

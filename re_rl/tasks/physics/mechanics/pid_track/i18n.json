@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Цель равна {target}, место начинает с {start}. Тактов {n}. Ошибка равна цели минус место. Накопленная ошибка увеличивается на эту ошибку. Приращение равно ошибке минус предыдущая ошибка; перед первым тактом предыдущая ошибка равна 0. Сила равна ошибке плюс накопленная ошибка плюс приращение. К месту прибавляется целая половина силы. Частное округляется вниз, к меньшему целому, в том числе для отрицательных. Каково место в конце?",
+      "en": "The target is {target} and the place starts at {start}. There are {n} ticks. The error is the target minus the place. The accumulated error increases by this error. The change is the error minus the previous error; before the first tick the previous error is 0. The force is the error plus the accumulated error plus the change. The integer half of the force is added to the place. The quotient rounds downward, toward the smaller integer, including for negative numbers. What is the final place?"
+    },
+    "s1": {
+      "ru": "Цель равна {target}, место начинает с {start}. Тактов {n}. Ошибка равна цели минус место. Накопленная ошибка увеличивается на эту ошибку. Приращение равно ошибке минус предыдущая ошибка; перед первым тактом предыдущая ошибка равна 0. Сила равна ошибке плюс накопленная ошибка плюс приращение. К месту прибавляется целая половина силы. Частное округляется вниз, к меньшему целому, в том числе для отрицательных. Какова накопленная ошибка в конце?",
+      "en": "The target is {target} and the place starts at {start}. There are {n} ticks. The error is the target minus the place. The accumulated error increases by this error. The change is the error minus the previous error; before the first tick the previous error is 0. The force is the error plus the accumulated error plus the change. The integer half of the force is added to the place. The quotient rounds downward, toward the smaller integer, including for negative numbers. What is the accumulated error at the end?"
+    },
+    "s2": {
+      "ru": "Такт {i}: место {place}, накопленная ошибка {memory}.",
+      "en": "Tick {i}: place {place}, accumulated error {memory}."
+    }
+  }
+}

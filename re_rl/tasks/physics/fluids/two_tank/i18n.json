@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Левый уровень начинает с {left}, правый с {right}. Тактов {n}. На каждом такте в левый сосуд доливается {inlet}. Затем переток равен целой половине разности левого и правого уровней. Левый уровень уменьшается на переток, правый увеличивается на переток. Частное округляется вниз, к меньшему целому, в том числе для отрицательных. Каков левый уровень в конце?",
+      "en": "The left level starts at {left} and the right level at {right}. There are {n} ticks. On every tick {inlet} is added to the left vessel. The transfer is then the integer half of the left level minus the right level. The left level decreases by the transfer and the right level increases by the transfer. The quotient rounds downward, toward the smaller integer, including for negative numbers. What is the final left level?"
+    },
+    "s1": {
+      "ru": "Левый уровень начинает с {left}, правый с {right}. Тактов {n}. На каждом такте в левый сосуд доливается {inlet}. Затем переток равен целой половине разности левого и правого уровней. Левый уровень уменьшается на переток, правый увеличивается на переток. Частное округляется вниз, к меньшему целому, в том числе для отрицательных. Каков правый уровень в конце?",
+      "en": "The left level starts at {left} and the right level at {right}. There are {n} ticks. On every tick {inlet} is added to the left vessel. The transfer is then the integer half of the left level minus the right level. The left level decreases by the transfer and the right level increases by the transfer. The quotient rounds downward, toward the smaller integer, including for negative numbers. What is the final right level?"
+    },
+    "s2": {
+      "ru": "Такт {i}: левый уровень {left}, правый уровень {right}.",
+      "en": "Tick {i}: left level {left}, right level {right}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Доз {n}: {doses}. Уровень начинает с 0, уже выведенное равно 0. Сначала к уровню прибавляется доза. Затем снимается целая половина уровня, и снятое прибавляется к уже выведенному. Частное округляется вниз. Каков уровень в конце?",
+      "en": "There are {n} doses: {doses}. The level starts at 0 and the amount already cleared is 0. First the dose is added to the level. Then the integer half of the level is removed, and the removed part is added to the amount already cleared. The quotient rounds downward. What is the final level?"
+    },
+    "s1": {
+      "ru": "Доз {n}: {doses}. Уровень начинает с 0, уже выведенное равно 0. Сначала к уровню прибавляется доза. Затем снимается целая половина уровня, и снятое прибавляется к уже выведенному. Частное округляется вниз. Каково уже выведенное в конце?",
+      "en": "There are {n} doses: {doses}. The level starts at 0 and the amount already cleared is 0. First the dose is added to the level. Then the integer half of the level is removed, and the removed part is added to the amount already cleared. The quotient rounds downward. What is the amount already cleared at the end?"
+    },
+    "s2": {
+      "ru": "Такт {i}: уровень {level}, выведено {cleared}.",
+      "en": "Tick {i}: level {level}, cleared {cleared}."
+    }
+  }
+}

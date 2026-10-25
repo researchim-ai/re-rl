@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "База фактов начинает пустой. Команд {n}: {commands}. В каждой код и номер. Код 0 добавляет номер, код 1 удаляет его, код 2 спрашивает, есть ли он. Повторное добавление не создаёт копию. Удаление отсутствующего номера ничего не делает. Сколько вопросов получили ответ да?",
+      "en": "The fact base starts empty. There are {n} commands: {commands}. Each command is a code and a number. Code 0 adds the number, code 1 removes it, and code 2 asks whether it is present. Adding a number again does not create a copy. Removing a missing number does nothing. How many questions received the answer yes?"
+    },
+    "s1": {
+      "ru": "База фактов начинает пустой. Команд {n}: {commands}. В каждой код и номер. Код 0 добавляет номер, код 1 удаляет его, код 2 спрашивает, есть ли он. Повторное добавление не создаёт копию. Удаление отсутствующего номера ничего не делает. Сколько разных номеров останется?",
+      "en": "The fact base starts empty. There are {n} commands: {commands}. Each command is a code and a number. Code 0 adds the number, code 1 removes it, and code 2 asks whether it is present. Adding a number again does not create a copy. Removing a missing number does nothing. How many different numbers remain?"
+    },
+    "s2": {
+      "ru": "Команда {i}, код {code}, номер {item}: фактов {size}, удачных вопросов {hits}.",
+      "en": "Command {i}, code {code}, number {item}: facts {size}, successful questions {hits}."
+    }
+  }
+}

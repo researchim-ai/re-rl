@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Отсчётов {n}: {values}. Каждая клетка заменяется суммой себя и двух соседей. Клетки за краем равны 0. Какова последняя сумма?",
+      "en": "There are {n} readings: {values}. Each cell is replaced by the sum of itself and its two neighbors. Cells beyond an edge are 0. What is the last sum?"
+    },
+    "s1": {
+      "ru": "Отсчётов {n}: {values}. Каждая клетка заменяется суммой себя и двух соседей. Клетки за краем равны 0. Какова сумма всех новых клеток?",
+      "en": "There are {n} readings: {values}. Each cell is replaced by the sum of itself and its two neighbors. Cells beyond an edge are 0. What is the sum of all new cells?"
+    },
+    "s2": {
+      "ru": "Клетка {i}: сумма {value}, всего {total}.",
+      "en": "Cell {i}: sum {value}, total {total}."
+    }
+  }
+}

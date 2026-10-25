@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Координата начинает с {place}, скорость с {speed}. Ускорений {n}, все чётные: {accels}. Схема Верле на такте прибавляет к скорости половину ускорения, затем прибавляет скорость к координате, затем снова прибавляет к скорости половину ускорения. Какова координата в конце?",
+      "en": "The coordinate starts at {place} and the speed at {speed}. There are {n} accelerations, all even: {accels}. On a tick the Verlet step adds half the acceleration to the speed, then adds the speed to the coordinate, then adds half the acceleration to the speed again. What is the final coordinate?"
+    },
+    "s1": {
+      "ru": "Координата начинает с {place}, скорость с {speed}. Ускорений {n}, все чётные: {accels}. Схема Верле на такте прибавляет к скорости половину ускорения, затем прибавляет скорость к координате, затем снова прибавляет к скорости половину ускорения. Какова скорость в конце?",
+      "en": "The coordinate starts at {place} and the speed at {speed}. There are {n} accelerations, all even: {accels}. On a tick the Verlet step adds half the acceleration to the speed, then adds the speed to the coordinate, then adds half the acceleration to the speed again. What is the final speed?"
+    },
+    "s2": {
+      "ru": "Такт {i}, ускорение {accel}: координата {place}, скорость {speed}.",
+      "en": "Tick {i}, acceleration {accel}: coordinate {place}, speed {speed}."
+    }
+  }
+}

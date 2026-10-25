@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Двое набирают очки. Порог равен {goal}. Попыток {n}: {trials}. Код 1 — очко первому, код 2 — очко второму. Как только кто-то достиг порога, он победил, и дальнейшие попытки очков не дают. Если порог не взят, победителя нет и ответ 0. Кто победил?",
+      "en": "Two players collect points. The target is {goal}. There are {n} trials: {trials}. Code 1 is a point for the first player, code 2 is a point for the second. As soon as someone reaches the target, that player has won, and later trials give no points. If the target is not reached, there is no winner and the answer is 0. Who won?"
+    },
+    "s1": {
+      "ru": "Двое набирают очки. Порог равен {goal}. Попыток {n}: {trials}. Код 1 — очко первому, код 2 — очко второму. Как только кто-то достиг порога, он победил, и дальнейшие попытки очков не дают. Если порог не взят, победителя нет и ответ 0. На какой попытке, считая с 1, наступила победа?",
+      "en": "Two players collect points. The target is {goal}. There are {n} trials: {trials}. Code 1 is a point for the first player, code 2 is a point for the second. As soon as someone reaches the target, that player has won, and later trials give no points. If the target is not reached, there is no winner and the answer is 0. On which trial, counting from 1, did the win happen?"
+    },
+    "s2": {
+      "ru": "Попытка {i}, код {who}: очков у первого {score}, победитель {winner}, попытка победы {trial}.",
+      "en": "Trial {i}, code {who}: points of the first {score}, winner {winner}, winning trial {trial}."
+    }
+  }
+}

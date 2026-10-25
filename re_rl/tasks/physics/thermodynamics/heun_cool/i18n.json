@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Температура начинает с {temp}, комната равна {room}. Тактов {n}. Наклон — комната минус температура. Пробная температура равна текущей плюс этот наклон. Второй наклон — комната минус пробная температура. К температуре прибавляется целая половина суммы двух наклонов. Частное округляется вниз. Какова температура в конце?",
+      "en": "The temperature starts at {temp} and the room is {room}. There are {n} ticks. The slope is the room minus the temperature. The trial temperature is the current one plus that slope. The second slope is the room minus the trial temperature. The integer half of the sum of the two slopes is added to the temperature. The quotient rounds downward. What is the final temperature?"
+    },
+    "s1": {
+      "ru": "Температура начинает с {temp}, комната равна {room}. Тактов {n}. Наклон — комната минус температура. Пробная температура равна текущей плюс этот наклон. Второй наклон — комната минус пробная температура. К температуре прибавляется целая половина суммы двух наклонов. Частное округляется вниз. Какова разность конечной температуры и комнаты?",
+      "en": "The temperature starts at {temp} and the room is {room}. There are {n} ticks. The slope is the room minus the temperature. The trial temperature is the current one plus that slope. The second slope is the room minus the trial temperature. The integer half of the sum of the two slopes is added to the temperature. The quotient rounds downward. What is the final temperature minus the room?"
+    },
+    "s2": {
+      "ru": "Такт {i}: температура {temp}, разность с комнатой {gap}.",
+      "en": "Tick {i}: temperature {temp}, difference from the room {gap}."
+    }
+  }
+}

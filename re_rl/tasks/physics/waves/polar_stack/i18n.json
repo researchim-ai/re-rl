@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Свет начинает с яркостью {light}. Пластинок {n}: {plates}. Код 0 оставляет яркость. Код 1 оставляет целую половину. Код 2 делает яркость нулём. Если код 2 пришёл на ненулевой свет, это считается гашением. Какова яркость в конце?",
+      "en": "The light starts at brightness {light}. There are {n} plates: {plates}. Code 0 leaves the brightness. Code 1 leaves the integer half. Code 2 sets the brightness to zero. If code 2 meets nonzero light, that counts as an extinction. What is the final brightness?"
+    },
+    "s1": {
+      "ru": "Свет начинает с яркостью {light}. Пластинок {n}: {plates}. Код 0 оставляет яркость. Код 1 оставляет целую половину. Код 2 делает яркость нулём. Если код 2 пришёл на ненулевой свет, это считается гашением. Сколько раз свет был погашен?",
+      "en": "The light starts at brightness {light}. There are {n} plates: {plates}. Code 0 leaves the brightness. Code 1 leaves the integer half. Code 2 sets the brightness to zero. If code 2 meets nonzero light, that counts as an extinction. How many times was the light extinguished?"
+    },
+    "s2": {
+      "ru": "Пластинка {i}, код {plate}: яркость {light}, гашений {dark}.",
+      "en": "Plate {i}, code {plate}: brightness {light}, extinctions {dark}."
+    }
+  }
+}

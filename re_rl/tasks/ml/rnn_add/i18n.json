@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Скрытое состояние начинает с 0. Входов {n}: {inputs}. Состояние прибавляет вход. Если сумма неположительна, состояние становится 0. Каково состояние в конце?",
+      "en": "The hidden state starts at 0. There are {n} inputs: {inputs}. The state adds the input. If the sum is not positive, the state becomes 0. What is the final state?"
+    },
+    "s1": {
+      "ru": "Скрытое состояние начинает с 0. Входов {n}: {inputs}. Состояние прибавляет вход. Если сумма неположительна, состояние становится 0. Сколько раз сумма оказалась неположительной?",
+      "en": "The hidden state starts at 0. There are {n} inputs: {inputs}. The state adds the input. If the sum is not positive, the state becomes 0. How many times was the sum not positive?"
+    },
+    "s2": {
+      "ru": "Вход {i} равен {value}: состояние {hidden}, обнулений {clips}.",
+      "en": "Input {i} is {value}: state {hidden}, resets {clips}."
+    }
+  }
+}

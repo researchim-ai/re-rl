@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ячеек {n}, они заполняются слева направо: {cells}. В каждой код и число. Код 0 записывает само число. Код 1 копирует уже заполненную ячейку с этим номером, счёт с нуля. Номер вне уже заполненных ячеек даёт 0 и копией не считается. Каково значение последней ячейки?",
+      "en": "There are {n} cells, filled from left to right: {cells}. Each cell is a code and a number. Code 0 stores the number itself. Code 1 copies an already filled cell with that number, counting from zero. A number outside the already filled cells gives 0 and does not count as a copy. What is the value of the last cell?"
+    },
+    "s1": {
+      "ru": "Ячеек {n}, они заполняются слева направо: {cells}. В каждой код и число. Код 0 записывает само число. Код 1 копирует уже заполненную ячейку с этим номером, счёт с нуля. Номер вне уже заполненных ячеек даёт 0 и копией не считается. Сколько копий взяли существующую ячейку?",
+      "en": "There are {n} cells, filled from left to right: {cells}. Each cell is a code and a number. Code 0 stores the number itself. Code 1 copies an already filled cell with that number, counting from zero. A number outside the already filled cells gives 0 and does not count as a copy. How many copies read an existing cell?"
+    },
+    "s2": {
+      "ru": "Ячейка {i}, код {code}, число {arg}: значение {value}, копий {copies}.",
+      "en": "Cell {i}, code {code}, number {arg}: value {value}, copies {copies}."
+    }
+  }
+}

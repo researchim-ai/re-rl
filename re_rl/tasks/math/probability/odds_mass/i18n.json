@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вес гипотезы А начинает с {favor}, вес гипотезы Б с {against}. Свидетельств {n}: {pairs}. В каждом два множителя: первый умножает вес А, второй умножает вес Б. Каков вес А в конце?",
+      "en": "The weight of hypothesis A starts at {favor}, and the weight of hypothesis B starts at {against}. There are {n} pieces of evidence: {pairs}. Each has two factors: the first multiplies the weight of A, and the second multiplies the weight of B. What is the final weight of A?"
+    },
+    "s1": {
+      "ru": "Вес гипотезы А начинает с {favor}, вес гипотезы Б с {against}. Свидетельств {n}: {pairs}. В каждом два множителя: первый умножает вес А, второй умножает вес Б. Какова сумма весов в конце?",
+      "en": "The weight of hypothesis A starts at {favor}, and the weight of hypothesis B starts at {against}. There are {n} pieces of evidence: {pairs}. Each has two factors: the first multiplies the weight of A, and the second multiplies the weight of B. What is the sum of the weights at the end?"
+    },
+    "s2": {
+      "ru": "Свидетельство {i}, множители {yes} и {no}: вес А {favor}, сумма {total}.",
+      "en": "Evidence {i}, factors {yes} and {no}: weight of A {favor}, sum {total}."
+    }
+  }
+}

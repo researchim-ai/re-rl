@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Чисел {n} пар, подряд: {values}. Из каждой пары берётся большее. При равенстве берётся левое. Какова сумма выбранных чисел?",
+      "en": "There are {n} pairs of numbers, in order: {values}. The larger number of each pair is taken. On a tie the left number is taken. What is the sum of the chosen numbers?"
+    },
+    "s1": {
+      "ru": "Чисел {n} пар, подряд: {values}. Из каждой пары берётся большее. При равенстве берётся левое. Сколько раз победило левое число?",
+      "en": "There are {n} pairs of numbers, in order: {values}. The larger number of each pair is taken. On a tie the left number is taken. How many times did the left number win?"
+    },
+    "s2": {
+      "ru": "Пара {i}: {left} и {right}, выбрано {winner}, левых побед {lefts}.",
+      "en": "Pair {i}: {left} and {right}, chosen {winner}, left wins {lefts}."
+    }
+  }
+}

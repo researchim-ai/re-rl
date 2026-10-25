@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В ряду {n} чисел слева направо: {cells}. Тактов {n}. За такт каждое число переходит на одну клетку вправо. Правое число покидает ряд. Левая клетка становится 0. Какова сумма чисел, ещё оставшихся в ряду?",
+      "en": "The row has {n} numbers from left to right: {cells}. There are {n} ticks. On a tick each number moves one cell to the right. The rightmost number leaves the row. The leftmost cell becomes 0. What is the sum of the numbers still in the row?"
+    },
+    "s1": {
+      "ru": "В ряду {n} чисел слева направо: {cells}. Тактов {n}. За такт каждое число переходит на одну клетку вправо. Правое число покидает ряд. Левая клетка становится 0. Какова сумма чисел, уже покинувших ряд?",
+      "en": "The row has {n} numbers from left to right: {cells}. There are {n} ticks. On a tick each number moves one cell to the right. The rightmost number leaves the row. The leftmost cell becomes 0. What is the sum of the numbers that have already left the row?"
+    },
+    "s2": {
+      "ru": "Такт {i}: в ряду {kept}, ушло {lost}.",
+      "en": "Tick {i}: still in the row {kept}, left {lost}."
+    }
+  }
+}

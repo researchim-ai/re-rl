@@ -4,7 +4,7 @@
 
 ## Особенности
 
-- **803 типа задач**: 547 математических + 1 формальная (Lean 4) + 51 машинного обучения + 46 обучения с подкреплением + 158 физических
+- **861 типа задач**: 565 математических + 1 формальная (Lean 4) + 57 машинного обучения + 46 обучения с подкреплением + 192 физических
 - **Визуальные (VLM) задачи**: 57 типов с генерацией изображений — графики функций, столбчатые/круговые/линейные диаграммы, гистограммы, диаграммы размаха, диаграммы рассеяния, числовая прямая, наклон прямой, диаграммы Венна, площадь по графику, графики движения (v–t и траектории), геометрия, выпуклая оболочка, аналоговые часы и ряд циферблатов, кости, столбцы блоков, счёты, цепочка домино, клетчатые квадраты, путь по сетке, шахматная доска, цветная сетка, взвешенные/ориентированные графы (кратчайший путь, MST, раскраска, топ-сортировка, макс. поток), диаграммы ДКА, схемы логических вентилей и резисторных цепей, чашечные весы и рычаг, «Сапёр», «Мастермайнд», ферзи, «Жизнь» Конвея, магический квадрат, лабиринт, P–V диаграммы, многоугольники, а также картиночные варианты судоку/пятнашек/ARC — картинка + текстовый ответ, плюс аугментации изображений. Превью каждого типа: [`examples/previews/README.md`](examples/previews/README.md)
 - **Языки**: русский и английский
 - **Система сложности**: 10 уровней для каждого типа задач
@@ -108,25 +108,27 @@ chat_dataset = generator.generate_chat_dataset(
 
 Следом: альфа-бета отсечение, произведение многочленов, прибавления на отрезке, независимое множество дерева, число вхождений подпоследовательности, секрет Шамира, точный PageRank и серия обновлений Double Q-learning: `alpha_beta`, `polynomial_product`, `range_add`, `tree_mis`, `subsequence_count`, `secret_share`, `pagerank`, `double_q_trajectory`.
 
+Целые модели на SymPy и SciPy. Две схемы осциллятора сравниваются по энергии, регулятор сдвигает место на целую половину силы, толчок меняет скорость осциллятора, два сосуда обмениваются целой половиной разности, доза снимает целую половину уровня, кольцо заменяет ячейку суммой соседей, три возраста обновляются одновременно, ротатор испускает разность энергий соседних уровней: `energy_drift`, `pid_track`, `drive_osc`, `two_tank`, `dose_decay`, `wrap_ring`, `age_flow`, `rotor_drop`.
+
 ## Типы задач
 
 Полный перечень с примером условия и ответа открывается страницей [`examples/catalog.html`](examples/catalog.html). Ноутбук [`examples/Каталог_всех_задач.ipynb`](examples/Каталог_всех_задач.ipynb) собирает тот же реестр в Jupyter. Превью каждой визуальной задачи — [`examples/previews/README.md`](examples/previews/README.md). Таблицы ниже держат формулировку вопроса; счётчики в заголовках совпадают с реестром.
 
-### Математика (547 типов)
+### Математика (565 типов)
 
 | Категория | Задачи |
 |-----------|--------|
-| **Алгебра** | linear, quadratic, cubic, system_linear, exponential, logarithmic, inequality, symbolic_simplification, polynomial_factorization, vieta |
-| **Анализ** | calculus, limits, integral, differential_equation, series, optimization, taylor_series, partial_fractions, partial_derivatives, area_between_curves, lhopital, symbolic_regression, numerical_methods, lagrange_interpolation, euler_method |
-| **Геометрия** | geometry, trigonometry, vector_3d, coordinate_geometry, shoelace_area, triangle_solving, conic_sections, solid_volume, pick_theorem |
+| **Алгебра** | linear, quadratic, cubic, system_linear, exponential, logarithmic, inequality, symbolic_simplification, polynomial_factorization, vieta, fraction_ops, horner_eval, poly_div |
+| **Анализ** | calculus, limits, integral, differential_equation, series, optimization, taylor_series, partial_fractions, partial_derivatives, area_between_curves, lhopital, symbolic_regression, numerical_methods, lagrange_interpolation, euler_method, difference_table |
+| **Геометрия** | geometry, trigonometry, vector_3d, coordinate_geometry, shoelace_area, triangle_solving, conic_sections, solid_volume, pick_theorem, clock_hands, grid_diagonal, manhattan_paths, polygon_angles, shadow_height, triangle_sides |
 | **Линейная алгебра** | matrix, complex_number, matrix_reasoning, gaussian_elimination, matrix_multiplication, gram_schmidt, least_squares, roots_of_unity |
-| **Дискретная математика** | number_theory, combinatorics, sequence, set_logic, graph, dynamic_programming, base_conversion, modular_arithmetic, recurrence, prime_factorization, diophantine, modular_inverse, continued_fraction, generating_function, catalan, stirling_second, gray_code, euclid_gcd, josephus, collatz_steps, min_squares, integer_sqrt, secret_share |
-| **Цепочки** | stern_path, partition_count, derange_count, gauss_mul, perm_compose, cover_span, reverse_add, stream_median, totient_row, coprime_count, digit_div, tree_depth, sign_walk, perm_rank, lcm_rise, zigzag_row, record_highs, sum_kinds, fib_word, mode_track, look_say, zeckendorf, roman_value, digit_stream, deque_trace, dragon_fold, permanent, bead_count, negabase, ulam_walk, luhn_sum, kaprekar_step, morton_code, stock_span, candy_row, digit_fact, recaman, xor_basis, palindrome_radius, squarefree_row, fenwick_sum, sparse_min, z_array, selection_swaps, rho_cycle, tree_times, dutch_flag, window_distinct, stable_place, naive_find, budget_take, skip_op, retry_goal, signal_edges, plan_gate, tool_pick, diff_count, cell_patch, pred_scan, rate_limit, lateness, switch_flip, turn_signs, first_fit, plurality, floor_run, saturate_count, undo_reg, cover_point, next_fit, scope_lookup, lock_log, path_toll, backoff_wait, priority_run, inbox_take, goal_match, craft_need, checkpoint_roll, schema_check, infix_value, ballot_walk, digit_root, crt_lift, mod_order, first_repeat, coupon_cover, coin_weigh, two_color, lattice_sum, horner_mod, rational_root, geom_sum, cyclo_eval, chebyshev_row, hermite_row, series_conv, transport_cost, pochhammer, binom_build, farey_next, mobius_sum, involution_count, jacobi_row, ruler_sum, thue_count, aliquot_walk, carmichael_row, cayley_trees, factoradic, stirling_first, bell_row, andre_row, bernoulli_den, chebyshev_u, sigma_row, prime_omega, motzkin_row, primorial, rgs_rank, bernoulli_numer, genocchi_row, kronecker_row, hook_length, legendre_frac, laguerre_frac, harmonic_frac, eulerian_row, fubini_row, delannoy_row, tau_row, prime_nu, sopfr_row, pell_row, tribonacci_row, narayana_row, schroder_row, gaussian_bin, kolakoski, cantor_pair, horn_fire, carry_row, lamp_trio, parity_sheet, mux_index, jury_veto, gate_fold, exactly_one, knave_next, priority_bit, interval_merge, cycle_count, stack_perm, inversion_row, run_length, median_merge, diag_cross, billiard_cross, popcount_sum, rencontres_row, ballot_tri, dedekind_psi, jordan_tot, sylvester_row, lucas_row, liouville_row, necklace_count, hamming_smooth, menage_count, bracket_final, unit_prop, gf2_solve, resolve_proof, bool_eq, assign_check, pigeon_place, kripke_box, all_are, literal_clash, until_line, dung_ground, causal_do, lukas_fold, doctrinal, knows_line, rough_set, naf_fire, agenda_vote, short_circuit, ref_count, wrap_index, bit_prog, break_sum, bounds_step, reg_swap, elif_pick, post_inc, min_hold, jump_add, div_chain, clamp_add, ptr_walk, continue_sum, delay_line, switch_case, digit_scan, rot_nibble, buf_len, cmp_branch, bit_set, cell_write, lcg_step, two_stack, sorted_insert, brace_pair, hash_probe, part_count, fill_forward, xor_fold, bubble_pass, mtf_list, turnstile, hamming_step, row_major, union_count, trie_node, minute_add, mod_accum, nfa_run, moore_run, sync_run, meet_run, lfsr_run, crc_rem, feistel_run, elgamal_enc |
+| **Дискретная математика** | number_theory, combinatorics, sequence, set_logic, graph, dynamic_programming, base_conversion, modular_arithmetic, recurrence, prime_factorization, diophantine, modular_inverse, continued_fraction, generating_function, catalan, stirling_second, gray_code, euclid_gcd, josephus, collatz_steps, min_squares, integer_sqrt, secret_share, bit_count, carry_add, cf_expand, combinatorial_optimization, crt_chain, digital_root, divisor_sum, door_toggles, extended_euclid, frobenius_coin, gcd_chain, graph_justification, greedy_coins, mod_chain, nim_sum, odd_sum, pascal_row, recurrence_walk, sandpile_path, walk_range |
+| **Цепочки** | stern_path, partition_count, derange_count, gauss_mul, perm_compose, cover_span, reverse_add, stream_median, totient_row, coprime_count, digit_div, tree_depth, sign_walk, perm_rank, lcm_rise, zigzag_row, record_highs, sum_kinds, fib_word, mode_track, look_say, zeckendorf, roman_value, digit_stream, deque_trace, dragon_fold, permanent, bead_count, negabase, ulam_walk, luhn_sum, kaprekar_step, morton_code, stock_span, candy_row, digit_fact, recaman, xor_basis, palindrome_radius, squarefree_row, fenwick_sum, sparse_min, z_array, selection_swaps, rho_cycle, tree_times, dutch_flag, window_distinct, stable_place, naive_find, budget_take, skip_op, retry_goal, signal_edges, plan_gate, tool_pick, diff_count, cell_patch, pred_scan, rate_limit, lateness, switch_flip, turn_signs, first_fit, plurality, floor_run, saturate_count, undo_reg, cover_point, next_fit, scope_lookup, lock_log, path_toll, backoff_wait, priority_run, inbox_take, goal_match, craft_need, checkpoint_roll, schema_check, infix_value, ballot_walk, digit_root, crt_lift, mod_order, first_repeat, coupon_cover, coin_weigh, two_color, lattice_sum, horner_mod, rational_root, geom_sum, cyclo_eval, chebyshev_row, hermite_row, series_conv, transport_cost, pochhammer, binom_build, farey_next, mobius_sum, involution_count, jacobi_row, ruler_sum, thue_count, aliquot_walk, carmichael_row, cayley_trees, factoradic, stirling_first, bell_row, andre_row, bernoulli_den, chebyshev_u, sigma_row, prime_omega, motzkin_row, primorial, rgs_rank, bernoulli_numer, genocchi_row, kronecker_row, hook_length, legendre_frac, laguerre_frac, harmonic_frac, eulerian_row, fubini_row, delannoy_row, tau_row, prime_nu, sopfr_row, pell_row, tribonacci_row, narayana_row, schroder_row, gaussian_bin, kolakoski, cantor_pair, horn_fire, carry_row, lamp_trio, parity_sheet, mux_index, jury_veto, gate_fold, exactly_one, knave_next, priority_bit, interval_merge, cycle_count, stack_perm, inversion_row, run_length, median_merge, diag_cross, billiard_cross, popcount_sum, rencontres_row, ballot_tri, dedekind_psi, jordan_tot, sylvester_row, lucas_row, liouville_row, necklace_count, hamming_smooth, menage_count, bracket_final, unit_prop, gf2_solve, resolve_proof, bool_eq, assign_check, pigeon_place, kripke_box, all_are, literal_clash, until_line, dung_ground, causal_do, lukas_fold, doctrinal, knows_line, rough_set, naf_fire, agenda_vote, short_circuit, ref_count, wrap_index, bit_prog, break_sum, bounds_step, reg_swap, elif_pick, post_inc, min_hold, jump_add, div_chain, clamp_add, ptr_walk, continue_sum, delay_line, switch_case, digit_scan, rot_nibble, buf_len, cmp_branch, bit_set, cell_write, lcg_step, two_stack, sorted_insert, brace_pair, hash_probe, part_count, fill_forward, xor_fold, bubble_pass, mtf_list, turnstile, hamming_step, row_major, union_count, trie_node, minute_add, mod_accum, nfa_run, moore_run, sync_run, meet_run, lfsr_run, crc_rem, feistel_run, elgamal_enc, fact_base, cas_cell, memo_call, skip_fit, handoff_ask, reject_add, ref_resolve, belief_vote, join_wait, audit_sum, draw_out, die_build, rank_stop, day_clash, group_mean, safe_bits, first_to, odds_mass, borda_count, bound_scan, bracket_scan, claim_count, codon_scan, cooldown_schedule, corridor_keys, domino_chain, dose_schedule, fifo_cost, hat_line, johnson_span, lights_path, line_infection, melody_walk, next_greater, pancake_trace, portal_walk, quorum_rise, rally_lead, reagent_chain, shift_add, tax_brackets, turtle_walk, two_pointer_merge, window_max |
 | **Абстрактная алгебра** | group_theory, category_theory |
-| **Теория вероятностей** | urn_probability, statistics, bayesian_reasoning, expected_value, markov_chain, conditional_probability, hypothesis_testing |
-| **Прикладная** | financial_math, arithmetic |
+| **Теория вероятностей** | urn_probability, statistics, bayesian_reasoning, expected_value, markov_chain, conditional_probability, hypothesis_testing, draw_out, die_build, rank_stop, day_clash, group_mean, safe_bits, first_to, odds_mass, bayes_updates, dice_ways, markov_steps, polya_urn, sir_ticks |
+| **Прикладная** | financial_math, arithmetic, age_gap, crew_work, ledger_guard, map_scale, mix_chain, mixture_concentration, ratio_split, truck_trips, work_rates |
 | **Логика и планирование** | contradiction, knights_knaves, futoshiki, analogical, text_stats, sudoku, zebra_puzzle, csp_reasoning, sat_smt_mini, propositional_logic, regex_dfa, find_the_error, cryptarithmetic, inequality_proof, river_crossing, tower_of_hanoi, water_jug, blocks_world, nim_game |
-| **Ризонинг и дедукция** | graph_reasoning, ordering_puzzle, state_tracking, grid_navigation, interval_scheduling, set_reasoning, pattern_induction, syllogism, logical_entailment, boolean_circuit, mastermind, countdown_24, game_theory_optimal, family_tree, minesweeper_deduction |
+| **Ризонинг и дедукция** | graph_reasoning, ordering_puzzle, state_tracking, grid_navigation, interval_scheduling, set_reasoning, pattern_induction, syllogism, logical_entailment, boolean_circuit, mastermind, countdown_24, game_theory_optimal, family_tree, minesweeper_deduction, proof_cases_counterexample |
 | **CSP-головоломки (сетки)** | n_queens, magic_square, skyscrapers, kenken, kakuro, nonogram, binary_puzzle, hitori, star_battle, battleship |
 | **Графы и оптимизация** | weighted_shortest_path, topological_sort, graph_coloring, mst_weight, eulerian_path, hamiltonian_path, bipartite_matching, tsp, max_flow, dag_longest_path, knapsack, subset_sum, fractional_knapsack, dag_paths, shortest_path_count, triangle_girth, wiener_index, tree_radius, prufer_code, havel_hakimi, spanning_trees, topo_count, floyd_distance, tree_mis |
 | **Формальная логика и вычисления** | truth_table, model_counting, three_sat, logical_equivalence, qbf, dfa_simulation, turing_machine, game_of_life, elementary_ca, rpn_eval, balanced_brackets, sorting_trace |
@@ -137,7 +139,7 @@ chat_dataset = generator.generate_chat_dataset(
 | **Вычислительная геометрия** | computational_geometry (выпуклая оболочка, пересечение отрезков, точка в многоугольнике, ближайшая пара) |
 | **Алгоритмы, коды и системы** | stable_matching, hamming_code, page_replacement, tree_queries, os_scheduling, min_coins, union_find, direct_mapped_cache, knight_moves, binary_search, matrix_chain, common_substring, round_robin, deadlock, second_price, shapley_value, max_subarray, house_robber, rod_cutting, pair_sum, heap_array, weighted_interval, min_path_sum, stock_profit, jump_game, container_water, decode_ways, gas_station, trapping_rain, majority_element, histogram_area, target_sum, stock_unlimited, palindrome_subseq, subarray_sum, max_product, min_assignment, sequence_alignment, range_query, local_alignment, nussinov, optimal_bst, polynomial_product, range_add, subsequence_count |
 
-### Машинное обучение (51 тип)
+### Машинное обучение (57 типов)
 
 Считается точно: энтропия — только на кратностях-степенях двойки, расщепление — по Джини, дроби сравниваются как рациональные числа.
 
@@ -194,6 +196,12 @@ chat_dataset = generator.generate_chat_dataset(
 | `bin_tally` | верные ответы или ошибки внутри одной корзины счёта |
 | `grad_accum` | вес после вычитания суммы каждой пары градиентов или сумма последней пары |
 | `skip_add` | значение после вентилей остаточного прибавления или число открытых вентилей |
+| `hard_attend` | сумма значений по наибольшему произведению запроса и ключа или последнее выбранное значение |
+| `max_pool` | сумма максимумов неперекрывающихся пар или число побед левого числа |
+| `adam_tick` | вес после шага по первому целому моменту или сам первый момент |
+| `rnn_add` | скрытое состояние после прибавления входов с отсечением минуса или число обнулений |
+| `margin_push` | счёт после шагов внутри запаса или число примеров, которые счёт не изменили |
+| `template_lag` | номер лучшего наложения шаблона или его счёт |
 
 ### Обучение с подкреплением (46 типов)
 
@@ -248,7 +256,7 @@ chat_dataset = generator.generate_chat_dataset(
 | `greedy_gap` | сумма разрывов между двумя оценками действия или число нулевых разрывов |
 | `switch_cost` | сумма наград минус плата за смену действия или число смен |
 
-### Физика (158 типов)
+### Физика (192 типов)
 
 | Категория | Задачи |
 |-----------|--------|
@@ -264,7 +272,7 @@ chat_dataset = generator.generate_chat_dataset(
 | **Астрофизика** | astrophysics, stellar_parallax, spectral_redshift, hubble_law |
 | **Измерения и анализ** | dimensional_analysis, error_propagation, unit_conversion |
 | **Масштабируемые сети** | series_parallel_network (резисторы/конденсаторы/пружины/тепловые сопротивления) |
-| **Цепочки механики** | motion_segments, slope_run, echo_bounce, fall_ticks, friction_slide, heat_mix, heat_rod, wave_row, leak_charge, resistor_ladder, doppler_chain, float_load, melt_heat, throw_ticks, impulse_run, beam_load, mass_shift, spring_join, optic_path, pulse_meet, cool_ticks, series_cap, column_pressure, cradle_hit, photon_eject, orbit_years, grating_order, wire_force, escape_speed, harmonic_nodes, snell_shift, heat_steps, hydraulic_lift |
+| **Цепочки механики** | motion_segments, slope_run, echo_bounce, fall_ticks, friction_slide, heat_mix, heat_rod, wave_row, leak_charge, resistor_ladder, doppler_chain, float_load, melt_heat, throw_ticks, impulse_run, beam_load, mass_shift, spring_join, optic_path, pulse_meet, cool_ticks, series_cap, column_pressure, cradle_hit, photon_eject, orbit_years, grating_order, wire_force, escape_speed, harmonic_nodes, snell_shift, heat_steps, hydraulic_lift, euler_drift, verlet_push, drag_coast, spring_pair, swing_map, poisson_row, hydro_line, force_work, rocket_burn, projectile_tick, lc_tick, polar_stack, upwind_row, branch_decay, ising_pass, flow_mix, box_scope, spike_cut, twin_box, peak_hold, crack_close, source_dist, slope_field, charge_run, heun_cool, log_growth, energy_drift, pid_track, drive_osc, two_tank, dose_decay, wrap_ring, age_flow, rotor_drop, average_speed, billiard_box, block_stack, boat_current, boost_chain, bounce_heights, cascade_tanks, charge_redistribute, decay_generations, density, drop_cross, echo_delay, gear_ratio, gear_train, hooke_law, joule_heat, lens_stack, lever_balance, mirror_glance, mobile_torque, network_reduce, relay_time, siding_counter, spring_series, sticking_chain, switch_net, ternary_balance, traffic_light, voltage_divider, weighing_trace |
 
 ### Визуальные (VLM) задачи
 
@@ -323,6 +331,12 @@ chat_dataset = generator.generate_chat_dataset(
 | `edge_flip` | PIL | трёхцветная сетка: горизонтальные или вертикальные границы разных цветов |
 | `arrow_turn` | PIL | ряд стрелок: число поворотов налево или направление последней |
 | `nest_box` | PIL | рамки: число строгих вложений или число рамок, содержащих другую |
+| `abacus_read` | PIL | счёты: число по чёрным косточкам или сумма цифр |
+| `arrow_path` | PIL | ломаная на сетке: число шагов или число поворотов |
+| `block_tower` | PIL | столбцы блоков: сумма высот или высота выбранного столбца |
+| `clock_row` | PIL | ряд циферблатов: сумма часов или сумма минут |
+| `domino_image` | PIL | цепочка костей: сумма очков или место разрыва стыка |
+| `grid_squares` | PIL | клетчатый прямоугольник: число всех квадратов или число квадратов заданной стороны |
 
 Дополнительно доступна лёгкая аугментация изображений `augment_image(img, seed=...)` (небольшой поворот на белом фоне) — верификация текстовая, поэтому корректность ответа не меняется.
 
@@ -435,7 +449,7 @@ datasets:
 
 ## Formal Math: Theorem Proving в Lean 4
 
-Помимо текстовых задач, RE-RL воспроизводит pipeline генерации training data из формальных доказательств Lean 4 по подходу [LeanNavigator](https://arxiv.org/abs/2503.04772) (Yin & Gao, 2025) — BFS-обход графа состояний Mathlib4 через Pantograph с BERT+FAISS retrieval тактик.
+Помимо текстовых задач, RE-RL воспроизводит pipeline генерации training data из формальных доказательств Lean 4 по подходу [LeanNavigator](https://arxiv.org/abs/2503.04772) (Yin & Gao, 2025) — BFS-обход графа состояний Mathlib4 через Pantograph с BERT+FAISS retrieval тактик. В общем реестре этому соответствует тип `lean_proof`.
 
 ### Два источника данных
 

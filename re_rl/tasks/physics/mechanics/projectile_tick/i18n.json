@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело начинает в нуле. Горизонтальная скорость {vx} не меняется, вертикальная начинает с {vy}. Тактов {n}. За такт обе координаты прибавляют свои текущие скорости, затем вертикальная скорость уменьшается на 1. Какова горизонтальная координата в конце?",
+      "en": "The body starts at zero. The horizontal speed {vx} does not change, and the vertical speed starts at {vy}. There are {n} ticks. On a tick both coordinates add their current speeds, then the vertical speed decreases by 1. What is the final horizontal coordinate?"
+    },
+    "s1": {
+      "ru": "Тело начинает в нуле. Горизонтальная скорость {vx} не меняется, вертикальная начинает с {vy}. Тактов {n}. За такт обе координаты прибавляют свои текущие скорости, затем вертикальная скорость уменьшается на 1. Какова вертикальная координата в конце?",
+      "en": "The body starts at zero. The horizontal speed {vx} does not change, and the vertical speed starts at {vy}. There are {n} ticks. On a tick both coordinates add their current speeds, then the vertical speed decreases by 1. What is the final vertical coordinate?"
+    },
+    "s2": {
+      "ru": "Такт {i}: горизонталь {horiz}, высота {height}, вертикальная скорость {rise}.",
+      "en": "Tick {i}: horizontal {horiz}, height {height}, vertical speed {rise}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Координата начинает с {place}, скорость с {speed}, ускорение постоянно и равно {accel}. Тактов {n}. Схема Эйлера на такте сначала прибавляет ускорение к скорости, затем прибавляет скорость к координате. Точная координата равна начальной, плюс начальная скорость, умноженная на число прошедших тактов, плюс ускорение, умноженное на квадрат этого числа и делённое на 2. Какова координата схемы в конце?",
+      "en": "The coordinate starts at {place}, the speed at {speed}, and the acceleration is constant at {accel}. There are {n} ticks. On a tick the Euler step first adds the acceleration to the speed, then adds the speed to the coordinate. The exact coordinate is the start, plus the initial speed times the number of ticks so far, plus the acceleration times the square of that number divided by 2. What is the scheme coordinate at the end?"
+    },
+    "s1": {
+      "ru": "Координата начинает с {place}, скорость с {speed}, ускорение постоянно и равно {accel}. Тактов {n}. Схема Эйлера на такте сначала прибавляет ускорение к скорости, затем прибавляет скорость к координате. Точная координата равна начальной, плюс начальная скорость, умноженная на число прошедших тактов, плюс ускорение, умноженное на квадрат этого числа и делённое на 2. На сколько удвоенная координата схемы больше удвоенной точной координаты в конце?",
+      "en": "The coordinate starts at {place}, the speed at {speed}, and the acceleration is constant at {accel}. There are {n} ticks. On a tick the Euler step first adds the acceleration to the speed, then adds the speed to the coordinate. The exact coordinate is the start, plus the initial speed times the number of ticks so far, plus the acceleration times the square of that number divided by 2. By how much does twice the scheme coordinate exceed twice the exact coordinate at the end?"
+    },
+    "s2": {
+      "ru": "Такт {i}: скорость {speed}, координата схемы {place}, удвоенный разрыв {gap}.",
+      "en": "Tick {i}: speed {speed}, scheme coordinate {place}, doubled gap {gap}."
+    }
+  }
+}

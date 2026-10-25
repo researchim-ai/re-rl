@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ячейка начинает со значения 0 и версии 0. Попыток записи {n}: {attempts}. В каждой ожидаемая версия и новое значение. Запись проходит, только если ожидаемая версия совпала с текущей. Тогда значение заменяется, а версия увеличивается на 1. Иначе ячейка не меняется. Сколько записей прошло?",
+      "en": "The cell starts with value 0 and version 0. There are {n} write attempts: {attempts}. Each attempt gives an expected version and a new value. The write succeeds only when the expected version matches the current one. Then the value is replaced and the version increases by 1. Otherwise the cell stays unchanged. How many writes succeeded?"
+    },
+    "s1": {
+      "ru": "Ячейка начинает со значения 0 и версии 0. Попыток записи {n}: {attempts}. В каждой ожидаемая версия и новое значение. Запись проходит, только если ожидаемая версия совпала с текущей. Тогда значение заменяется, а версия увеличивается на 1. Иначе ячейка не меняется. Каково значение ячейки в конце?",
+      "en": "The cell starts with value 0 and version 0. There are {n} write attempts: {attempts}. Each attempt gives an expected version and a new value. The write succeeds only when the expected version matches the current one. Then the value is replaced and the version increases by 1. Otherwise the cell stays unchanged. What is the final cell value?"
+    },
+    "s2": {
+      "ru": "Попытка {i}, ждали версию {expect}, новое значение {new}: значение {value}, версия {version}, записей {writes}.",
+      "en": "Attempt {i}, expected version {expect}, new value {new}: value {value}, version {version}, writes {writes}."
+    }
+  }
+}

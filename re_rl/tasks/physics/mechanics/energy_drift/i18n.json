@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Координата начинает с {place}, скорость с {speed}. Тактов {n}. Две схемы идут отдельно из одного начала. Явная схема вычитает координату из скорости, затем прибавляет к координате прежнюю скорость. Полунеявная схема вычитает координату из скорости, затем прибавляет к координате уже новую скорость. Энергия равна квадрату координаты плюс квадрат скорости. Какова энергия полунеявной схемы в конце?",
+      "en": "The coordinate starts at {place} and the speed at {speed}. There are {n} ticks. Two schemes run separately from the same start. The explicit scheme subtracts the coordinate from the speed, then adds the old speed to the coordinate. The semi-implicit scheme subtracts the coordinate from the speed, then adds the new speed to the coordinate. Energy is the square of the coordinate plus the square of the speed. What is the semi-implicit energy at the end?"
+    },
+    "s1": {
+      "ru": "Координата начинает с {place}, скорость с {speed}. Тактов {n}. Две схемы идут отдельно из одного начала. Явная схема вычитает координату из скорости, затем прибавляет к координате прежнюю скорость. Полунеявная схема вычитает координату из скорости, затем прибавляет к координате уже новую скорость. Энергия равна квадрату координаты плюс квадрат скорости. Какова энергия явной схемы минус энергия полунеявной схемы в конце?",
+      "en": "The coordinate starts at {place} and the speed at {speed}. There are {n} ticks. Two schemes run separately from the same start. The explicit scheme subtracts the coordinate from the speed, then adds the old speed to the coordinate. The semi-implicit scheme subtracts the coordinate from the speed, then adds the new speed to the coordinate. Energy is the square of the coordinate plus the square of the speed. What is the explicit energy minus the semi-implicit energy at the end?"
+    },
+    "s2": {
+      "ru": "Такт {i}: энергия явной схемы {explicit}, энергия полунеявной схемы {semi}.",
+      "en": "Tick {i}: explicit energy {explicit}, semi-implicit energy {semi}."
+    }
+  }
+}

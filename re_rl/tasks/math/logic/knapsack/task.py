@@ -30,7 +30,9 @@ class KnapsackTask(BaseMathTask):
     def _build(self):
         self.weights = [random.randint(1, self.wmax) for _ in range(self.n)]
         self.values = [random.randint(1, self.vmax) for _ in range(self.n)]
-        self.capacity = random.randint(self.wmax, sum(self.weights))
+        total = sum(self.weights)
+        low = min(self.wmax, total)
+        self.capacity = random.randint(low, total)
         self._answer = self._solve_dp()
 
     def _solve_dp(self):

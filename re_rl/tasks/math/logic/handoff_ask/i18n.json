@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Агентов {n}, их навыки слева направо: {skills}. Вопросов {n}: {queries}. Вопрос начинают с левого агента и идут вправо, пока навык не совпадёт с вопросом. Совпавший агент тоже считается посещённым. Если совпадения нет, просматривают всех. Сколько вопросов нашли ответ?",
+      "en": "There are {n} agents, and their skills from left to right are {skills}. There are {n} questions: {queries}. A question starts at the left agent and moves right until a skill matches the question. The matching agent counts as visited too. If there is no match, every agent is visited. How many questions found an answer?"
+    },
+    "s1": {
+      "ru": "Агентов {n}, их навыки слева направо: {skills}. Вопросов {n}: {queries}. Вопрос начинают с левого агента и идут вправо, пока навык не совпадёт с вопросом. Совпавший агент тоже считается посещённым. Если совпадения нет, просматривают всех. Сколько агентов посетили за все вопросы, считая повторные просмотры?",
+      "en": "There are {n} agents, and their skills from left to right are {skills}. There are {n} questions: {queries}. A question starts at the left agent and moves right until a skill matches the question. The matching agent counts as visited too. If there is no match, every agent is visited. How many agent visits happen across all questions, counting repeated visits?"
+    },
+    "s2": {
+      "ru": "Вопрос {i} равен {query}: посетили {seen}, всего посещений {hops}, ответов {found}.",
+      "en": "Question {i} is {query}: visited {seen}, visits so far {hops}, answers {found}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кандидаты идут в порядке {values}. Первые {reject} только задают порог: это максимум среди них, их не берут. Дальше берётся первый, кто строго больше порога. Если такого нет, ответ 0. Какое число взято?",
+      "en": "The candidates arrive in the order {values}. The first {reject} only set the threshold: it is the maximum among them, and they are not taken. After that, the first candidate strictly above the threshold is taken. If there is none, the answer is 0. Which number is taken?"
+    },
+    "s1": {
+      "ru": "Кандидаты идут в порядке {values}. Первые {reject} только задают порог: это максимум среди них, их не берут. Дальше берётся первый, кто строго больше порога. Просмотр кончается на взятом кандидате. Если такого нет, просмотрены все. Сколько кандидатов просмотрено?",
+      "en": "The candidates arrive in the order {values}. The first {reject} only set the threshold: it is the maximum among them, and they are not taken. After that, the first candidate strictly above the threshold is taken. Inspection stops at the taken candidate. If there is none, everyone was inspected. How many candidates were inspected?"
+    },
+    "s2": {
+      "ru": "Кандидат {i}: порог {best}, взято {pick}, просмотрено {seen}.",
+      "en": "Candidate {i}: threshold {best}, taken {pick}, inspected {seen}."
+    }
+  }
+}

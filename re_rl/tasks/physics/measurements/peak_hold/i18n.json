@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Отсчётов {n}: {values}. Каждая клетка становится наибольшим числом среди себя и двух соседей. За краем стоит 0. Какова последняя клетка?",
+      "en": "There are {n} readings: {values}. Each cell becomes the largest number among itself and its two neighbors. Beyond an edge there is 0. What is the last cell?"
+    },
+    "s1": {
+      "ru": "Отсчётов {n}: {values}. Каждая клетка становится наибольшим числом среди себя и двух соседей. За краем стоит 0. Сколько клеток стали больше, чем были?",
+      "en": "There are {n} readings: {values}. Each cell becomes the largest number among itself and its two neighbors. Beyond an edge there is 0. How many cells became larger than they were?"
+    },
+    "s2": {
+      "ru": "Клетка {i}: значение {value}, выросших {highs}.",
+      "en": "Cell {i}: value {value}, raised cells {highs}."
+    }
+  }
+}

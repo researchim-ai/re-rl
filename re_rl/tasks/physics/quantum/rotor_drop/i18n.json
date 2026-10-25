@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Уровень начинает с {start}. Тактов {n}. Энергия уровня равна этому уровню, умноженному на него же плюс один. За такт испускается разность энергий текущего уровня и уровня на один меньше, затем уровень уменьшается на 1. Какова энергия, испущенная на такте {k}?",
+      "en": "The level starts at {start}. There are {n} ticks. The energy of a level is that level times one more than itself. On a tick the difference between the energy of the current level and the energy of the level one lower is emitted, then the level decreases by 1. What energy is emitted on tick {k}?"
+    },
+    "s1": {
+      "ru": "Уровень начинает с {start}. Тактов {n}. Энергия уровня равна этому уровню, умноженному на него же плюс один. За такт испускается разность энергий текущего уровня и уровня на один меньше, затем уровень уменьшается на 1. Какова сумма испущенных энергий?",
+      "en": "The level starts at {start}. There are {n} ticks. The energy of a level is that level times one more than itself. On a tick the difference between the energy of the current level and the energy of the level one lower is emitted, then the level decreases by 1. What is the sum of the emitted energies?"
+    },
+    "s2": {
+      "ru": "Такт {i}: уровень {level}, энергия {high}, энергия ниже {low}, фотон {photon}, сумма {total}.",
+      "en": "Tick {i}: level {level}, energy {high}, lower energy {low}, photon {photon}, sum {total}."
+    }
+  }
+}

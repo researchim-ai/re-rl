@@ -2,6 +2,7 @@
 sympy>=1.9
 networkx>=2.6
 numpy
+scipy
 rich
 tqdm
 loguru

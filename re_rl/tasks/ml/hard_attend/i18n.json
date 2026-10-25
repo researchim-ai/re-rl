@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ключи: {keys}. Значения в том же порядке: {values}. Запросов {n}: {queries}. Счёт ключа — произведение запроса и ключа. Берётся значение ключа с наибольшим счётом. При равенстве остаётся более ранний ключ. Какова сумма выбранных значений?",
+      "en": "The keys are {keys}. The values in the same order are {values}. There are {n} queries: {queries}. A key score is the product of the query and the key. The value of the key with the largest score is taken. On a tie the earlier key remains. What is the sum of the chosen values?"
+    },
+    "s1": {
+      "ru": "Ключи: {keys}. Значения в том же порядке: {values}. Запросов {n}: {queries}. Счёт ключа — произведение запроса и ключа. Берётся значение ключа с наибольшим счётом. При равенстве остаётся более ранний ключ. Каково последнее выбранное значение?",
+      "en": "The keys are {keys}. The values in the same order are {values}. There are {n} queries: {queries}. A key score is the product of the query and the key. The value of the key with the largest score is taken. On a tie the earlier key remains. What is the last chosen value?"
+    },
+    "s2": {
+      "ru": "Запрос {i} равен {query}: выбран ключ {slot}, значение {picked}, сумма {total}.",
+      "en": "Query {i} is {query}: key {slot} chosen, value {picked}, sum {total}."
+    }
+  }
+}

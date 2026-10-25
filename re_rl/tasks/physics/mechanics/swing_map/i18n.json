@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Угол начинает с {angle}, угловая скорость с {rate}, жёсткость равна {stiff}. Тактов {n}. За такт скорость теряет частное угла и жёсткости, затем угол прибавляет скорость. Частное округляется вниз, к меньшему целому, в том числе для отрицательных чисел. Каков угол в конце?",
+      "en": "The angle starts at {angle}, the angular speed at {rate}, and the stiffness is {stiff}. There are {n} ticks. On a tick the speed loses the quotient of the angle and the stiffness, then the angle adds the speed. The quotient rounds downward, toward the lesser integer, including for negative numbers. What is the final angle?"
+    },
+    "s1": {
+      "ru": "Угол начинает с {angle}, угловая скорость с {rate}, жёсткость равна {stiff}. Тактов {n}. За такт скорость теряет частное угла и жёсткости, затем угол прибавляет скорость. Частное округляется вниз, к меньшему целому, в том числе для отрицательных чисел. Какова угловая скорость в конце?",
+      "en": "The angle starts at {angle}, the angular speed at {rate}, and the stiffness is {stiff}. There are {n} ticks. On a tick the speed loses the quotient of the angle and the stiffness, then the angle adds the speed. The quotient rounds downward, toward the lesser integer, including for negative numbers. What is the final angular speed?"
+    },
+    "s2": {
+      "ru": "Такт {i}: угол {angle}, угловая скорость {rate}.",
+      "en": "Tick {i}: angle {angle}, angular speed {rate}."
+    }
+  }
+}

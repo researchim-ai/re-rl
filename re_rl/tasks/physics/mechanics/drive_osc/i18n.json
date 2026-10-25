@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Координата начинает с {place}, скорость с {speed}. Толчков {n}: {drives}. На такте скорость увеличивается на толчок минус координата, затем координата увеличивается на новую скорость. Какова координата в конце?",
+      "en": "The coordinate starts at {place} and the speed at {speed}. There are {n} kicks: {drives}. On a tick the speed increases by the kick minus the coordinate, then the coordinate increases by the new speed. What is the final coordinate?"
+    },
+    "s1": {
+      "ru": "Координата начинает с {place}, скорость с {speed}. Толчков {n}: {drives}. На такте скорость увеличивается на толчок минус координата, затем координата увеличивается на новую скорость. Какова скорость в конце?",
+      "en": "The coordinate starts at {place} and the speed at {speed}. There are {n} kicks: {drives}. On a tick the speed increases by the kick minus the coordinate, then the coordinate increases by the new speed. What is the final speed?"
+    },
+    "s2": {
+      "ru": "Такт {i}: координата {place}, скорость {speed}.",
+      "en": "Tick {i}: coordinate {place}, speed {speed}."
+    }
+  }
+}
