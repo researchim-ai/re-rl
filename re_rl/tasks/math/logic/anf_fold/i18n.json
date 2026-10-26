@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Булева функция от {n} переменных задана таблицей длины {size}. Маски идут от 0, младший бит маски — первая переменная. Значения: {listing}. Для бита с номером i, начиная с нуля, у каждой маски с этим битом значение заменяется на исключающее или со значением той же маски без этого бита. После всех битов единица означает одночлен из переменных, чьи биты стоят в маске. Степень одночлена — число единиц в маске. Если одночленов нет, степень равна 0. Сколько одночленов?",
+      "en": "A Boolean function of {n} variables is given by a table of length {size}. Masks run from 0, and the least bit of a mask is the first variable. The values are {listing}. For bit number i, starting at zero, every mask that has this bit replaces its value by the exclusive or with the value of the same mask without that bit. After every bit, a one means the monomial of the variables whose bits stand in the mask. The degree of a monomial is the number of ones in its mask. If there are no monomials, the degree is 0. How many monomials are there?"
+    },
+    "s1": {
+      "ru": "Булева функция от {n} переменных задана таблицей длины {size}. Маски идут от 0, младший бит маски — первая переменная. Значения: {listing}. Для бита с номером i, начиная с нуля, у каждой маски с этим битом значение заменяется на исключающее или со значением той же маски без этого бита. После всех битов единица означает одночлен из переменных, чьи биты стоят в маске. Степень одночлена — число единиц в маске. Если одночленов нет, степень равна 0. Какова наибольшая степень?",
+      "en": "A Boolean function of {n} variables is given by a table of length {size}. Masks run from 0, and the least bit of a mask is the first variable. The values are {listing}. For bit number i, starting at zero, every mask that has this bit replaces its value by the exclusive or with the value of the same mask without that bit. After every bit, a one means the monomial of the variables whose bits stand in the mask. The degree of a monomial is the number of ones in its mask. If there are no monomials, the degree is 0. What is the largest degree?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: одночленов {terms}, наибольшая степень {degree}.",
+      "en": "Step {i}: monomials {terms}, largest degree {degree}."
+    }
+  }
+}

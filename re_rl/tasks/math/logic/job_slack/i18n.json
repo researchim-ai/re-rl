@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Работ {n}: {listing}. Тройка — номер, длительность и номер работы, которую нужно дождаться. Ноль значит, что ждать некого. Раннее начало равно раннему концу ожидаемой работы, а если ждать некого — нулю. Ранний конец равен раннему началу плюс длительность. Конец проекта — наибольший ранний конец. У работы без продолжений поздний конец равен концу проекта. У работы с продолжениями поздний конец равен наименьшему позднему началу продолжений. Позднее начало равно позднему концу минус длительность. Запас равен позднему началу минус раннее начало. Каков запас работы {k}?",
+      "en": "There are {n} jobs: {listing}. A triple is the number, the duration, and the number of the job that must be finished first. Zero means the job waits for nobody. The earliest start equals the earliest finish of the job it waits for, or zero if it waits for nobody. The earliest finish equals the earliest start plus the duration. The project finish is the greatest earliest finish. A job with no followers has latest finish equal to the project finish. A job with followers has latest finish equal to the smallest latest start among those followers. The latest start equals the latest finish minus the duration. Slack equals the latest start minus the earliest start. What is the slack of job {k}?"
+    },
+    "s1": {
+      "ru": "Работ {n}: {listing}. Тройка — номер, длительность и номер работы, которую нужно дождаться. Ноль значит, что ждать некого. Раннее начало равно раннему концу ожидаемой работы, а если ждать некого — нулю. Ранний конец равен раннему началу плюс длительность. Конец проекта — наибольший ранний конец. У работы без продолжений поздний конец равен концу проекта. У работы с продолжениями поздний конец равен наименьшему позднему началу продолжений. Позднее начало равно позднему концу минус длительность. Запас равен позднему началу минус раннее начало. Сколько работ имеют запас 0?",
+      "en": "There are {n} jobs: {listing}. A triple is the number, the duration, and the number of the job that must be finished first. Zero means the job waits for nobody. The earliest start equals the earliest finish of the job it waits for, or zero if it waits for nobody. The earliest finish equals the earliest start plus the duration. The project finish is the greatest earliest finish. A job with no followers has latest finish equal to the project finish. A job with followers has latest finish equal to the smallest latest start among those followers. The latest start equals the latest finish minus the duration. Slack equals the latest start minus the earliest start. How many jobs have slack 0?"
+    },
+    "s2": {
+      "ru": "Работа {i}: запас {slack}, критических уже {critical}.",
+      "en": "Job {i}: slack {slack}, critical jobs so far {critical}."
+    }
+  }
+}

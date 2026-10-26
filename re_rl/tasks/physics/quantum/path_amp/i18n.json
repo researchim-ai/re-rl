@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Путей {n}, их амплитуды: {listing}. Каждая амплитуда равна 1 или -1. Полная амплитуда — сумма амплитуд. Вероятность в выбранных единицах — квадрат полной амплитуды. Какова полная амплитуда?",
+      "en": "There are {n} paths, with amplitudes: {listing}. Each amplitude is 1 or -1. The total amplitude is the sum of the amplitudes. In the chosen units the probability is the square of the total amplitude. What is the total amplitude?"
+    },
+    "s1": {
+      "ru": "Путей {n}, их амплитуды: {listing}. Каждая амплитуда равна 1 или -1. Полная амплитуда — сумма амплитуд. Вероятность в выбранных единицах — квадрат полной амплитуды. Каков квадрат полной амплитуды?",
+      "en": "There are {n} paths, with amplitudes: {listing}. Each amplitude is 1 or -1. The total amplitude is the sum of the amplitudes. In the chosen units the probability is the square of the total amplitude. What is the square of the total amplitude?"
+    },
+    "s2": {
+      "ru": "Путь {i}: полная амплитуда {amplitude}, её квадрат {chance}.",
+      "en": "Path {i}: total amplitude {amplitude}, its square {chance}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Волновая функция на {n} узлах: {psi}. Потенциал: {potential}. За краями значение равно 0. Шаг сетки и ħ²/2m равны 1. Кинетическое действие на узел: минус левый сосед, плюс удвоенное значение, минус правый сосед. Его вклад в среднюю энергию — значение узла, умноженное на это действие. Какова сумма кинетических вкладов?",
+      "en": "The wave function on {n} nodes is {psi}. The potential is {potential}. Beyond the ends the value is 0. The grid step and ħ²/2m are 1. The kinetic action on a node is minus the left neighbor, plus twice the value, minus the right neighbor. Its contribution to the mean energy is the node value times that action. What is the sum of the kinetic contributions?"
+    },
+    "s1": {
+      "ru": "Волновая функция на {n} узлах: {psi}. Потенциал: {potential}. За краями значение равно 0. Шаг сетки и ħ²/2m равны 1. Потенциальный вклад узла — потенциал, умноженный на квадрат значения. Какова сумма потенциальных вкладов?",
+      "en": "The wave function on {n} nodes is {psi}. The potential is {potential}. Beyond the ends the value is 0. The grid step and ħ²/2m are 1. The potential contribution of a node is the potential times the square of the value. What is the sum of the potential contributions?"
+    },
+    "s2": {
+      "ru": "Узел {i}: кинетическая сумма {kinetic}, потенциальная сумма {potential}.",
+      "en": "Node {i}: kinetic sum {kinetic}, potential sum {potential}."
+    }
+  }
+}

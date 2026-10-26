@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Свет входит в верхний канал с амплитудой 1, нижний канал равен 0. Приборов {n}: {ops}. Код 0 — делитель: новый верх равен верху плюс низу, новый низ равен верху минус низу. Код 1 меняет знак нижней амплитуды. Код 2 меняет знак верхней амплитуды. Каков квадрат верхней амплитуды в конце?",
+      "en": "Light enters the upper channel with amplitude 1, and the lower channel is 0. There are {n} devices: {ops}. Code 0 is a splitter: the new upper value is the upper plus the lower, and the new lower value is the upper minus the lower. Code 1 changes the sign of the lower amplitude. Code 2 changes the sign of the upper amplitude. What is the square of the upper amplitude at the end?"
+    },
+    "s1": {
+      "ru": "Свет входит в верхний канал с амплитудой 1, нижний канал равен 0. Приборов {n}: {ops}. Код 0 — делитель: новый верх равен верху плюс низу, новый низ равен верху минус низу. Код 1 меняет знак нижней амплитуды. Код 2 меняет знак верхней амплитуды. Какова нижняя амплитуда в конце?",
+      "en": "Light enters the upper channel with amplitude 1, and the lower channel is 0. There are {n} devices: {ops}. Code 0 is a splitter: the new upper value is the upper plus the lower, and the new lower value is the upper minus the lower. Code 1 changes the sign of the lower amplitude. Code 2 changes the sign of the upper amplitude. What is the lower amplitude at the end?"
+    },
+    "s2": {
+      "ru": "Прибор {i}: верх {upper}, низ {lower}.",
+      "en": "Device {i}: upper {upper}, lower {lower}."
+    }
+  }
+}

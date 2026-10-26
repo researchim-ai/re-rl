@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Волновая функция на {n} узлах: {psi}. Потенциал: {potential}. Пробная энергия {energy}. За краями значение равно 0. Шаг сетки и ħ²/2m равны 1. Действие оператора энергии на узел: минус левый сосед, плюс удвоенное значение, минус правый сосед, плюс потенциал, умноженный на значение. Невязка узла равна этому действию минус пробная энергия, умноженная на значение узла. Какова невязка узла {k}?",
+      "en": "The wave function on {n} nodes is {psi}. The potential is {potential}. The trial energy is {energy}. Beyond the ends the value is 0. The grid step and ħ²/2m are 1. The energy operator on a node is minus the left neighbor, plus twice the value, minus the right neighbor, plus the potential times the value. The residual of a node is that action minus the trial energy times the node value. What is the residual of node {k}?"
+    },
+    "s1": {
+      "ru": "Волновая функция на {n} узлах: {psi}. Потенциал: {potential}. Пробная энергия {energy}. За краями значение равно 0. Шаг сетки и ħ²/2m равны 1. Действие оператора энергии на узел: минус левый сосед, плюс удвоенное значение, минус правый сосед, плюс потенциал, умноженный на значение. Невязка узла равна этому действию минус пробная энергия, умноженная на значение узла. Какова сумма квадратов невязок?",
+      "en": "The wave function on {n} nodes is {psi}. The potential is {potential}. The trial energy is {energy}. Beyond the ends the value is 0. The grid step and ħ²/2m are 1. The energy operator on a node is minus the left neighbor, plus twice the value, minus the right neighbor, plus the potential times the value. The residual of a node is that action minus the trial energy times the node value. What is the sum of the squares of the residuals?"
+    },
+    "s2": {
+      "ru": "Узел {i}: невязка {residual}, сумма квадратов {defect}.",
+      "en": "Node {i}: residual {residual}, sum of squares {defect}."
+    }
+  }
+}

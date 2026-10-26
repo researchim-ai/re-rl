@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Четвёрок квантовых чисел {n}: {listing}. Порядок в четвёрке: n, l, m, s. Набор допустим, если n не меньше 1, l лежит от 0 до n-1 включительно, m лежит от -l до l включительно, а s равно 1 или -1. Сколько наборов допустимы?",
+      "en": "There are {n} quantum-number foursomes: {listing}. The order in a foursome is n, l, m, s. A set is allowed when n is at least 1, l runs from 0 through n-1 inclusive, m runs from -l through l inclusive, and s is 1 or -1. How many sets are allowed?"
+    },
+    "s1": {
+      "ru": "Четвёрок квантовых чисел {n}: {listing}. Порядок в четвёрке: n, l, m, s. Набор допустим, если n не меньше 1, l лежит от 0 до n-1 включительно, m лежит от -l до l включительно, а s равно 1 или -1. Каков номер первого недопустимого набора, считая с 1? Если все допустимы, ответ 0.",
+      "en": "There are {n} quantum-number foursomes: {listing}. The order in a foursome is n, l, m, s. A set is allowed when n is at least 1, l runs from 0 through n-1 inclusive, m runs from -l through l inclusive, and s is 1 or -1. What is the number of the first forbidden set, counting from 1? If every set is allowed, the answer is 0."
+    },
+    "s2": {
+      "ru": "Набор {i}: допустимых {valid}, первый недопустимый {first}.",
+      "en": "Set {i}: allowed sets {valid}, first forbidden set {first}."
+    }
+  }
+}

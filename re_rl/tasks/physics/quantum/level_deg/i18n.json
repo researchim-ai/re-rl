@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Уровней водорода {n}: {listing}. Без учёта спина уровень с главным числом n вмещает n*n орбитальных состояний. Какова сумма чисел состояний?",
+      "en": "There are {n} hydrogen levels: {listing}. Ignoring spin, the level with principal number n holds n*n orbital states. What is the sum of the numbers of states?"
+    },
+    "s1": {
+      "ru": "Уровней водорода {n}: {listing}. Без учёта спина уровень с главным числом n вмещает n*n орбитальных состояний. Каково наибольшее из этих чисел состояний?",
+      "en": "There are {n} hydrogen levels: {listing}. Ignoring spin, the level with principal number n holds n*n orbital states. What is the greatest of these numbers of states?"
+    },
+    "s2": {
+      "ru": "Уровень {i}: состояний всего {states}, наибольшее число {biggest}.",
+      "en": "Level {i}: states so far {states}, greatest number {biggest}."
+    }
+  }
+}

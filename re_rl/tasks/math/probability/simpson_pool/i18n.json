@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Групп {n}: {listing}. В каждой четвёрке сначала успехи А и число случаев А, затем успехи Б и число случаев Б. Перевес группы равен успехам А, умноженным на число случаев Б, минус успехи Б, умноженные на число случаев А. Перевес после сложения считается той же разностью, но уже по суммам всех групп. Какова сумма перевесов групп?",
+      "en": "There are {n} groups: {listing}. Each foursome lists successes of A, cases of A, successes of B, and cases of B. The group margin is successes of A times cases of B, minus successes of B times cases of A. The margin after pooling uses the same difference on the sums of all groups. What is the sum of the group margins?"
+    },
+    "s1": {
+      "ru": "Групп {n}: {listing}. В каждой четвёрке сначала успехи А и число случаев А, затем успехи Б и число случаев Б. Перевес группы равен успехам А, умноженным на число случаев Б, минус успехи Б, умноженные на число случаев А. Перевес после сложения считается той же разностью, но уже по суммам всех групп. Каков перевес после сложения?",
+      "en": "There are {n} groups: {listing}. Each foursome lists successes of A, cases of A, successes of B, and cases of B. The group margin is successes of A times cases of B, minus successes of B times cases of A. The margin after pooling uses the same difference on the sums of all groups. What is the margin after pooling?"
+    },
+    "s2": {
+      "ru": "Группа {i}: сумма перевесов {local}, перевес после сложения {pooled}.",
+      "en": "Group {i}: sum of margins {local}, margin after pooling {pooled}."
+    }
+  }
+}

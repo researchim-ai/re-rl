@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В группе вычетов по модулю {modulus} подгруппа состоит из кратных {step}. Смежный класс числа — все остатки, которые получаются из него повторным вычитанием {step} по модулю. Представитель класса — наименьший из этих остатков. Чисел {n}: {listing}. Каков представитель последнего числа?",
+      "en": "In the group of residues modulo {modulus}, the subgroup consists of the multiples of {step}. The coset of a number is every residue obtained from it by repeatedly subtracting {step} modulo the modulus. The representative of the coset is the smallest of those residues. There are {n} numbers: {listing}. What is the representative of the last number?"
+    },
+    "s1": {
+      "ru": "В группе вычетов по модулю {modulus} подгруппа состоит из кратных {step}. Смежный класс числа — все остатки, которые получаются из него повторным вычитанием {step} по модулю. Представитель класса — наименьший из этих остатков. Чисел {n}: {listing}. Сколько различных представителей встретилось?",
+      "en": "In the group of residues modulo {modulus}, the subgroup consists of the multiples of {step}. The coset of a number is every residue obtained from it by repeatedly subtracting {step} modulo the modulus. The representative of the coset is the smallest of those residues. There are {n} numbers: {listing}. How many distinct representatives occur?"
+    },
+    "s2": {
+      "ru": "Число {i}: представитель {rep}, различных уже {kinds}.",
+      "en": "Number {i}: representative {rep}, distinct representatives so far {kinds}."
+    }
+  }
+}

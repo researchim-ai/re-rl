@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлен степени {n}, коэффициенты от старшей степени: {listing}. Левый конец {left}, правый конец {right}. Значение многочлена в концах не равно нулю. Последовательность Штурма начинается с самого многочлена. Второй член — его производная. Каждый следующий член — остаток от деления предпредыдущего на предыдущий, умноженный на -1. После этого знаменатели умножаются на их положительное общее кратное, затем коэффициенты делятся на положительный общий делитель. Нулевое значение на конце пропускается и не создаёт перемену знака. Число различных вещественных корней, которые больше {left} и не больше {right}, равно числу перемен знака на левом конце минус число перемен знака на правом. Сколько таких корней?",
+      "en": "A polynomial of degree {n} has coefficients from the highest degree: {listing}. The left end is {left} and the right end is {right}. The polynomial is not zero at the ends. The Sturm sequence starts with the polynomial itself. The second term is its derivative. Each later term is -1 times the remainder of the term before the previous one divided by the previous term. Denominators are then multiplied by their positive common multiple, and the coefficients are divided by their positive common divisor. A zero value at an end is skipped and does not create a sign change. The number of distinct real roots that are greater than {left} and not greater than {right} equals the number of sign changes at the left end minus the number of sign changes at the right end. How many such roots are there?"
+    },
+    "s1": {
+      "ru": "Многочлен степени {n}, коэффициенты от старшей степени: {listing}. Левый конец {left}, правый конец {right}. Значение многочлена в концах не равно нулю. Последовательность Штурма начинается с самого многочлена. Второй член — его производная. Каждый следующий член — остаток от деления предпредыдущего на предыдущий, умноженный на -1. После этого знаменатели умножаются на их положительное общее кратное, затем коэффициенты делятся на положительный общий делитель. Нулевое значение на конце пропускается и не создаёт перемену знака. Число различных вещественных корней, которые больше {left} и не больше {right}, равно числу перемен знака на левом конце минус число перемен знака на правом. Сколько перемен знака на левом конце?",
+      "en": "A polynomial of degree {n} has coefficients from the highest degree: {listing}. The left end is {left} and the right end is {right}. The polynomial is not zero at the ends. The Sturm sequence starts with the polynomial itself. The second term is its derivative. Each later term is -1 times the remainder of the term before the previous one divided by the previous term. Denominators are then multiplied by their positive common multiple, and the coefficients are divided by their positive common divisor. A zero value at an end is skipped and does not create a sign change. The number of distinct real roots that are greater than {left} and not greater than {right} equals the number of sign changes at the left end minus the number of sign changes at the right end. How many sign changes are there at the left end?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: перемен знака слева {lefts}, справа {rights}.",
+      "en": "Step {i}: sign changes on the left {lefts}, on the right {rights}."
+    }
+  }
+}

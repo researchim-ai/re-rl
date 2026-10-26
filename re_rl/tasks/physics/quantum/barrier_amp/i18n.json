@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стационарная волна энергии 2 проходит {n} узлов барьера. Потенциал узлов: {potential}. Шаг сетки и ħ²/2m равны 1. До барьера значение в узле -1 равно 0 минус i, а в узле 0 равно 1. Здесь i — мнимая единица: дальше свободная волна идёт как степени i. Следующее значение равно потенциалу текущего узла, умноженному на текущее значение, минус предыдущее значение. Какова действительная часть в последнем узле барьера?",
+      "en": "A stationary wave of energy 2 passes {n} barrier nodes. The node potentials are {potential}. The grid step and ħ²/2m are 1. Before the barrier, the value at node -1 is 0 minus i, and the value at node 0 is 1. Here i is the imaginary unit: farther on, a free wave advances as powers of i. The next value is the potential of the current node times the current value, minus the previous value. What is the real part at the last barrier node?"
+    },
+    "s1": {
+      "ru": "Стационарная волна энергии 2 проходит {n} узлов барьера. Потенциал узлов: {potential}. Шаг сетки и ħ²/2m равны 1. До барьера значение в узле -1 равно 0 минус i, а в узле 0 равно 1. Здесь i — мнимая единица: дальше свободная волна идёт как степени i. Следующее значение равно потенциалу текущего узла, умноженному на текущее значение, минус предыдущее значение. Какова мнимая часть в последнем узле барьера?",
+      "en": "A stationary wave of energy 2 passes {n} barrier nodes. The node potentials are {potential}. The grid step and ħ²/2m are 1. Before the barrier, the value at node -1 is 0 minus i, and the value at node 0 is 1. Here i is the imaginary unit: farther on, a free wave advances as powers of i. The next value is the potential of the current node times the current value, minus the previous value. What is the imaginary part at the last barrier node?"
+    },
+    "s2": {
+      "ru": "Узел {i}: действительная часть {real}, мнимая часть {imag}.",
+      "en": "Node {i}: real part {real}, imaginary part {imag}."
+    }
+  }
+}

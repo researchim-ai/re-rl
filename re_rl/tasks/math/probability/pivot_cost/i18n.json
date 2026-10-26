@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Случайная перестановка длины m сортируется так. Опорный элемент равновероятен и сравнивается с остальными m-1 элементами, затем тем же способом сортируются левая и правая части. e(0) = 0. Для m не меньше 1 среднее число сравнений e(m) равно m-1 плюс (2/m), умноженное на сумму e(0) + ... + e(m-1). Дробь сокращается после каждого m. Здесь длина равна {n}. Чему равен числитель e({n})?",
+      "en": "A random permutation of length m is sorted as follows. The pivot is equally likely to be any element and is compared with the other m-1 elements; then the left and right parts are sorted in the same way. e(0) = 0. For m at least 1, the expected number of comparisons e(m) equals m-1 plus (2/m) times the sum e(0) + ... + e(m-1). The fraction is reduced after every m. Here the length is {n}. What is the numerator of e({n})?"
+    },
+    "s1": {
+      "ru": "Случайная перестановка длины m сортируется так. Опорный элемент равновероятен и сравнивается с остальными m-1 элементами, затем тем же способом сортируются левая и правая части. e(0) = 0. Для m не меньше 1 среднее число сравнений e(m) равно m-1 плюс (2/m), умноженное на сумму e(0) + ... + e(m-1). Дробь сокращается после каждого m. Здесь длина равна {n}. Чему равен знаменатель e({n})?",
+      "en": "A random permutation of length m is sorted as follows. The pivot is equally likely to be any element and is compared with the other m-1 elements; then the left and right parts are sorted in the same way. e(0) = 0. For m at least 1, the expected number of comparisons e(m) equals m-1 plus (2/m) times the sum e(0) + ... + e(m-1). The fraction is reduced after every m. Here the length is {n}. What is the denominator of e({n})?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: числитель {numer}, знаменатель {denom}.",
+      "en": "Step {i}: numerator {numer}, denominator {denom}."
+    }
+  }
+}

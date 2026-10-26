@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Многочлены над полем вычетов по простому модулю {prime}. Коэффициенты идут от свободного члена к старшей степени. Первый, коэффициентов {n}: {left}. Второй: {right}. Коэффициент степени k в произведении равен сумме произведений коэффициентов, чьи степени в сумме дают k, по модулю {prime}. Свободный член имеет степень 0. Каков коэффициент степени {k}?",
+      "en": "Polynomials over the field of residues modulo the prime {prime}. Coefficients run from the constant term toward the leading term. The first polynomial has {n} coefficients: {left}. The second: {right}. The coefficient of degree k in the product is the sum of products of coefficients whose degrees add to k, modulo {prime}. The constant term has degree 0. What is the coefficient of degree {k}?"
+    },
+    "s1": {
+      "ru": "Многочлены над полем вычетов по простому модулю {prime}. Коэффициенты идут от свободного члена к старшей степени. Первый, коэффициентов {n}: {left}. Второй: {right}. Коэффициент степени k в произведении равен сумме произведений коэффициентов, чьи степени в сумме дают k, по модулю {prime}. Свободный член имеет степень 0. Какова сумма всех коэффициентов произведения по модулю {prime}?",
+      "en": "Polynomials over the field of residues modulo the prime {prime}. Coefficients run from the constant term toward the leading term. The first polynomial has {n} coefficients: {left}. The second: {right}. The coefficient of degree k in the product is the sum of products of coefficients whose degrees add to k, modulo {prime}. The constant term has degree 0. What is the sum of all coefficients of the product modulo {prime}?"
+    },
+    "s2": {
+      "ru": "Степень {i}: коэффициент {coeff}, сумма по модулю {total}.",
+      "en": "Degree {i}: coefficient {coeff}, sum modulo the prime {total}."
+    }
+  }
+}

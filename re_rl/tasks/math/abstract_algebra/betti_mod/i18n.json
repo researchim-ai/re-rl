@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вершин {n}, они занумерованы с 1. Рёбра: {edges}. Треугольники: {faces}. Запись 0 вместо треугольников значит, что их нет. Сложение идёт по модулю 2. Граница ребра — две его вершины. Ребро, соединяющее разные компоненты, сливает их. Ребро внутри компоненты увеличивает число независимых циклов. Граница треугольника — его три ребра. Если эта тройка не выражается через уже учтённые треугольники, число независимых циклов уменьшается на 1. Сколько компонент связности?",
+      "en": "There are {n} vertices, numbered from 1. The edges are {edges}. The triangles are {faces}. A 0 in place of the triangles means there are none. Addition is modulo 2. The boundary of an edge is its two vertices. An edge joining different components merges them. An edge inside a component increases the number of independent cycles. The boundary of a triangle is its three edges. If that triple is not a combination of the triangles already counted, the number of independent cycles decreases by 1. How many connected components are there?"
+    },
+    "s1": {
+      "ru": "Вершин {n}, они занумерованы с 1. Рёбра: {edges}. Треугольники: {faces}. Запись 0 вместо треугольников значит, что их нет. Сложение идёт по модулю 2. Граница ребра — две его вершины. Ребро, соединяющее разные компоненты, сливает их. Ребро внутри компоненты увеличивает число независимых циклов. Граница треугольника — его три ребра. Если эта тройка не выражается через уже учтённые треугольники, число независимых циклов уменьшается на 1. Сколько независимых циклов остаётся?",
+      "en": "There are {n} vertices, numbered from 1. The edges are {edges}. The triangles are {faces}. A 0 in place of the triangles means there are none. Addition is modulo 2. The boundary of an edge is its two vertices. An edge joining different components merges them. An edge inside a component increases the number of independent cycles. The boundary of a triangle is its three edges. If that triple is not a combination of the triangles already counted, the number of independent cycles decreases by 1. How many independent cycles remain?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: компонент {b0}, независимых циклов {b1}.",
+      "en": "Step {i}: components {b0}, independent cycles {b1}."
+    }
+  }
+}

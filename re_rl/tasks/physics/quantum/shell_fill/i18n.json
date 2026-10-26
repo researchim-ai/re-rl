@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Подоболочек {n}, их ёмкости: {listing}. Электронов {electrons}. Ёмкость чётная, орбиталей в подоболочке вдвое меньше. Заполнение идёт по порядку ёмкостей. В подоболочку помещается не больше её ёмкости, лишние электроны переходят дальше. Сначала электроны садятся по одному на орбиталь, затем спариваются. Сколько электронов удалось разместить?",
+      "en": "There are {n} subshells, with capacities: {listing}. There are {electrons} electrons. A capacity is even, and the subshell has half as many orbitals. Filling follows the capacities in order. A subshell holds at most its capacity, and extra electrons continue onward. Electrons first occupy one orbital each, then pair. How many electrons can be placed?"
+    },
+    "s1": {
+      "ru": "Подоболочек {n}, их ёмкости: {listing}. Электронов {electrons}. Ёмкость чётная, орбиталей в подоболочке вдвое меньше. Заполнение идёт по порядку ёмкостей. В подоболочку помещается не больше её ёмкости, лишние электроны переходят дальше. Сначала электроны садятся по одному на орбиталь, затем спариваются. Сколько электронов остаются неспаренными?",
+      "en": "There are {n} subshells, with capacities: {listing}. There are {electrons} electrons. A capacity is even, and the subshell has half as many orbitals. Filling follows the capacities in order. A subshell holds at most its capacity, and extra electrons continue onward. Electrons first occupy one orbital each, then pair. How many electrons remain unpaired?"
+    },
+    "s2": {
+      "ru": "Подоболочка {i}: размещено {placed}, неспаренных всего {unpaired}.",
+      "en": "Subshell {i}: placed {placed}, unpaired in total {unpaired}."
+    }
+  }
+}

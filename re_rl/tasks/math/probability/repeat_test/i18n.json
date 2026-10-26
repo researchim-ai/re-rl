@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Сначала больных {sick}, здоровых {healthy}. Тестов {n}, каждый задан тремя числами: делитель, сколько долей делителя ловит больных и сколько долей помечает здоровых. Если текущие числа не делятся на делитель, оба сначала умножаются на него: доли людей те же. Затем число больных умножается на второе число и делится на делитель, а число здоровых умножается на третье и делится так же. Деление точное. Новые числа — это люди с положительным тестом, они идут в следующий тест. Тесты: {listing}. Сколько больных остаётся после всех тестов?",
+      "en": "At the start there are {sick} sick people and {healthy} healthy people. There are {n} tests, each given by three numbers: the divisor, how many parts of the divisor catch sick people, and how many parts mark healthy people. If the current counts are not divisible by the divisor, both are first multiplied by it: the shares of people stay the same. Then the sick count is multiplied by the second number and divided by the divisor, and the healthy count is multiplied by the third number and divided in the same way. The division is exact. The new counts are the people with a positive test, and they enter the next test. The tests are {listing}. How many sick people remain after every test?"
+    },
+    "s1": {
+      "ru": "Сначала больных {sick}, здоровых {healthy}. Тестов {n}, каждый задан тремя числами: делитель, сколько долей делителя ловит больных и сколько долей помечает здоровых. Если текущие числа не делятся на делитель, оба сначала умножаются на него: доли людей те же. Затем число больных умножается на второе число и делится на делитель, а число здоровых умножается на третье и делится так же. Деление точное. Новые числа — это люди с положительным тестом, они идут в следующий тест. Тесты: {listing}. Сколько людей, больных и здоровых вместе, остаётся после всех тестов?",
+      "en": "At the start there are {sick} sick people and {healthy} healthy people. There are {n} tests, each given by three numbers: the divisor, how many parts of the divisor catch sick people, and how many parts mark healthy people. If the current counts are not divisible by the divisor, both are first multiplied by it: the shares of people stay the same. Then the sick count is multiplied by the second number and divided by the divisor, and the healthy count is multiplied by the third number and divided in the same way. The division is exact. The new counts are the people with a positive test, and they enter the next test. The tests are {listing}. How many people, sick and healthy together, remain after every test?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: больных {sick}, всего с положительным тестом {positives}.",
+      "en": "Step {i}: sick people {sick}, everyone with a positive test {positives}."
+    }
+  }
+}

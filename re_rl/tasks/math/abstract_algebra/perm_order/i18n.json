@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Подстановка чисел от 1 до {n}. Образы по порядку: {images}. Цикл числа — повторное применение подстановки, пока не вернётесь в это число. Длина неподвижной точки равна 1. Если число уже встретилось в предыдущем цикле, новый цикл не открывается. Порядок подстановки — наименьшее общее кратное длин всех циклов. Каков порядок?",
+      "en": "A permutation of the numbers from 1 to {n}. The images in order are: {images}. The cycle of a number is repeated application of the permutation until that number returns. A fixed point has length 1. If a number already occurred in an earlier cycle, no new cycle opens. The order of the permutation is the least common multiple of all cycle lengths. What is the order?"
+    },
+    "s1": {
+      "ru": "Подстановка чисел от 1 до {n}. Образы по порядку: {images}. Цикл числа — повторное применение подстановки, пока не вернётесь в это число. Длина неподвижной точки равна 1. Если число уже встретилось в предыдущем цикле, новый цикл не открывается. Порядок подстановки — наименьшее общее кратное длин всех циклов. Сколько циклов длиннее 1?",
+      "en": "A permutation of the numbers from 1 to {n}. The images in order are: {images}. The cycle of a number is repeated application of the permutation until that number returns. A fixed point has length 1. If a number already occurred in an earlier cycle, no new cycle opens. The order of the permutation is the least common multiple of all cycle lengths. How many cycles are longer than 1?"
+    },
+    "s2": {
+      "ru": "Число {i}: длина нового цикла {length}, порядок {order}, циклов длиннее 1 уже {moved}.",
+      "en": "Number {i}: new cycle length {length}, order {order}, cycles longer than 1 so far {moved}."
+    }
+  }
+}

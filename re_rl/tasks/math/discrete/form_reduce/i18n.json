@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Даны {n} формы ax^2 + bxy + cy^2 тройками (a, b, c): {listing}. Дискриминант d = b^2 - 4ac отрицателен, a положительно. Пока не выполнены условия |b| <= a <= c и b >= 0 при |b| = a или a = c, делается шаг. q — ближайшее целое к b/(2a); полуцелое округляется от нуля. Новое b равно старому b минус 2aq. Новое c равно (новый b в квадрате минус d), делённое на 4a; деление точное. Если после этого a > c или одновременно a = c и b < 0, тройка заменяется на (c, -b, a). Чему равно a последней приведённой формы?",
+      "en": "There are {n} forms ax^2 + bxy + cy^2, given as triples (a, b, c): {listing}. The discriminant d = b^2 - 4ac is negative, and a is positive. Until |b| <= a <= c and b >= 0 whenever |b| = a or a = c, one step is taken. q is the integer nearest to b/(2a); a half-integer is rounded away from zero. The new b equals the old b minus 2aq. The new c equals (the square of the new b minus d) divided by 4a; the division is exact. If afterward a > c, or a = c and b < 0, the triple is replaced by (c, -b, a). What is a of the last reduced form?"
+    },
+    "s1": {
+      "ru": "Даны {n} формы ax^2 + bxy + cy^2 тройками (a, b, c): {listing}. Дискриминант d = b^2 - 4ac отрицателен, a положительно. Пока не выполнены условия |b| <= a <= c и b >= 0 при |b| = a или a = c, делается шаг. q — ближайшее целое к b/(2a); полуцелое округляется от нуля. Новое b равно старому b минус 2aq. Новое c равно (новый b в квадрате минус d), делённое на 4a; деление точное. Если после этого a > c или одновременно a = c и b < 0, тройка заменяется на (c, -b, a). Чему равна сумма чисел a всех приведённых форм?",
+      "en": "There are {n} forms ax^2 + bxy + cy^2, given as triples (a, b, c): {listing}. The discriminant d = b^2 - 4ac is negative, and a is positive. Until |b| <= a <= c and b >= 0 whenever |b| = a or a = c, one step is taken. q is the integer nearest to b/(2a); a half-integer is rounded away from zero. The new b equals the old b minus 2aq. The new c equals (the square of the new b minus d) divided by 4a; the division is exact. If afterward a > c, or a = c and b < 0, the triple is replaced by (c, -b, a). What is the sum of the numbers a of all reduced forms?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: приведённое a равно {lead}, средний коэффициент {middle}, сумма a равна {total}.",
+      "en": "Step {i}: reduced a is {lead}, middle coefficient {middle}, sum of a is {total}."
+    }
+  }
+}

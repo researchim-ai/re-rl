@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Клиник {n}: {listing}. Пара — число больных и число здоровых. Из каждых {den} больных положительный тест у {hit}. Из каждых {den} здоровых положительный тест у {miss}. Оба числа людей делятся на {den} нацело. Сколько всего больных с положительным тестом?",
+      "en": "There are {n} clinics: {listing}. A pair lists the sick and the healthy. Out of every {den} sick people, {hit} test positive. Out of every {den} healthy people, {miss} test positive. Both counts of people divide evenly by {den}. How many sick people test positive in total?"
+    },
+    "s1": {
+      "ru": "Клиник {n}: {listing}. Пара — число больных и число здоровых. Из каждых {den} больных положительный тест у {hit}. Из каждых {den} здоровых положительный тест у {miss}. Оба числа людей делятся на {den} нацело. Сколько всего здоровых с положительным тестом?",
+      "en": "There are {n} clinics: {listing}. A pair lists the sick and the healthy. Out of every {den} sick people, {hit} test positive. Out of every {den} healthy people, {miss} test positive. Both counts of people divide evenly by {den}. How many healthy people test positive in total?"
+    },
+    "s2": {
+      "ru": "Клиника {i}: больные с положительным тестом {true_pos}, здоровые с положительным тестом {false_pos}.",
+      "en": "Clinic {i}: sick people with a positive test {true_pos}, healthy people with a positive test {false_pos}."
+    }
+  }
+}

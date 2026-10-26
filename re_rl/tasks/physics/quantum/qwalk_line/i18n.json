@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Квантовое блуждание на прямой, шагов {n}. В точке 0 правая амплитуда равна {right}, левая равна {left}. В остальных точках обе амплитуды равны 0. На шаге монета заменяет правую на правую плюс левую, а левую на правую минус левую. Затем правая амплитуда сдвигается на одну точку вправо, левая на одну точку влево. Вес точки — сумма квадратов её двух амплитуд. Каков вес точки 0 в конце?",
+      "en": "A quantum walk on the line takes {n} steps. At point 0 the right-moving amplitude is {right} and the left-moving amplitude is {left}. Everywhere else both amplitudes are 0. On a step the coin replaces the right amplitude by the right plus the left, and the left amplitude by the right minus the left. The right amplitude then moves one point to the right, and the left amplitude moves one point to the left. The weight of a point is the sum of the squares of its two amplitudes. What is the weight of point 0 at the end?"
+    },
+    "s1": {
+      "ru": "Квантовое блуждание на прямой, шагов {n}. В точке 0 правая амплитуда равна {right}, левая равна {left}. В остальных точках обе амплитуды равны 0. На шаге монета заменяет правую на правую плюс левую, а левую на правую минус левую. Затем правая амплитуда сдвигается на одну точку вправо, левая на одну точку влево. Вес точки — сумма квадратов её двух амплитуд. Какова сумма весов всех точек в конце?",
+      "en": "A quantum walk on the line takes {n} steps. At point 0 the right-moving amplitude is {right} and the left-moving amplitude is {left}. Everywhere else both amplitudes are 0. On a step the coin replaces the right amplitude by the right plus the left, and the left amplitude by the right minus the left. The right amplitude then moves one point to the right, and the left amplitude moves one point to the left. The weight of a point is the sum of the squares of its two amplitudes. What is the sum of the weights of all points at the end?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: вес точки 0 равен {center}, сумма весов {mass}.",
+      "en": "Step {i}: weight of point 0 is {center}, sum of weights {mass}."
+    }
+  }
+}

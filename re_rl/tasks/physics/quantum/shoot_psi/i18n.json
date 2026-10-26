@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стационарное уравнение Шрёдингера на {n} внутренних узлах. Потенциал: {potential}. Пробная энергия {energy}. Слева от первого узла значение 0, в первом узле значение 1. Шаг сетки и величина ħ²/2m равны 1. Следующий узел равен удвоенному текущему минус предыдущий плюс разность потенциала и пробной энергии, умноженная на текущий узел. Каково значение сразу за последним внутренним узлом?",
+      "en": "The stationary Schrödinger equation on {n} interior nodes. The potential is {potential}. The trial energy is {energy}. The value left of the first node is 0, and the first node is 1. The grid step and ħ²/2m are 1. The next node is twice the current node minus the previous node, plus the potential minus the trial energy, times the current node. What is the value just past the last interior node?"
+    },
+    "s1": {
+      "ru": "Стационарное уравнение Шрёдингера на {n} внутренних узлах. Потенциал: {potential}. Пробная энергия {energy}. Слева от первого узла значение 0, в первом узле значение 1. Шаг сетки и величина ħ²/2m равны 1. Следующий узел равен удвоенному текущему минус предыдущий плюс разность потенциала и пробной энергии, умноженная на текущий узел. Каково значение в последнем внутреннем узле?",
+      "en": "The stationary Schrödinger equation on {n} interior nodes. The potential is {potential}. The trial energy is {energy}. The value left of the first node is 0, and the first node is 1. The grid step and ħ²/2m are 1. The next node is twice the current node minus the previous node, plus the potential minus the trial energy, times the current node. What is the value at the last interior node?"
+    },
+    "s2": {
+      "ru": "Узел {i}: значение {value}.",
+      "en": "Node {i}: value {value}."
+    }
+  }
+}

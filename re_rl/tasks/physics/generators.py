@@ -228,6 +228,34 @@ from re_rl.tasks.physics.measurements.dose_decay_task import DoseDecayTask
 from re_rl.tasks.physics.measurements.wrap_ring_task import WrapRingTask
 from re_rl.tasks.physics.measurements.age_flow_task import AgeFlowTask
 from re_rl.tasks.physics.quantum.rotor_drop_task import RotorDropTask
+from re_rl.tasks.physics.quantum.box_jump_task import BoxJumpTask
+from re_rl.tasks.physics.quantum.ho_jump_task import HoJumpTask
+from re_rl.tasks.physics.quantum.rovib_line_task import RovibLineTask
+from re_rl.tasks.physics.quantum.zeeman_line_task import ZeemanLineTask
+from re_rl.tasks.physics.quantum.qnum_ok_task import QnumOkTask
+from re_rl.tasks.physics.quantum.shell_fill_task import ShellFillTask
+from re_rl.tasks.physics.quantum.level_deg_task import LevelDegTask
+from re_rl.tasks.physics.quantum.path_amp_task import PathAmpTask
+from re_rl.tasks.physics.quantum.franck_hertz_task import FranckHertzTask
+from re_rl.tasks.physics.quantum.bond_order_task import BondOrderTask
+from re_rl.tasks.physics.quantum.shoot_psi_task import ShootPsiTask
+from re_rl.tasks.physics.quantum.expect_h_task import ExpectHTask
+from re_rl.tasks.physics.quantum.sch_defect_task import SchDefectTask
+from re_rl.tasks.physics.quantum.split_energy_task import SplitEnergyTask
+from re_rl.tasks.physics.quantum.tdse_step_task import TdseStepTask
+from re_rl.tasks.physics.quantum.prob_flow_task import ProbFlowTask
+from re_rl.tasks.physics.quantum.trial_gap_task import TrialGapTask
+from re_rl.tasks.physics.quantum.qwalk_line_task import QwalkLineTask
+from re_rl.tasks.physics.quantum.mz_port_task import MzPortTask
+from re_rl.tasks.physics.quantum.bound_sign_task import BoundSignTask
+from re_rl.tasks.physics.quantum.ladder_down_task import LadderDownTask
+from re_rl.tasks.physics.quantum.ground_iter_task import GroundIterTask
+from re_rl.tasks.physics.quantum.spin_add_task import SpinAddTask
+from re_rl.tasks.physics.quantum.reduce_rho_task import ReduceRhoTask
+from re_rl.tasks.physics.quantum.barrier_amp_task import BarrierAmpTask
+from re_rl.tasks.physics.quantum.perturb_sum_task import PerturbSumTask
+from re_rl.tasks.physics.electricity.yee_line_task import YeeLineTask
+from re_rl.tasks.physics.thermodynamics.shock_jump_task import ShockJumpTask
 
 
 ##################################################
@@ -1372,6 +1400,174 @@ def generate_random_rotor_drop_task(task_type: str = None, language: str = "ru",
                                               detail_level=detail_level, difficulty=difficulty,
                                               **kwargs)
 
+def generate_random_box_jump_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BoxJumpTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_ho_jump_task(task_type: str = None, language: str = "ru",
+                                 detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HoJumpTask.generate_random_task(task_type=task_type, language=language,
+                                           detail_level=detail_level, difficulty=difficulty,
+                                           **kwargs)
+
+def generate_random_rovib_line_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return RovibLineTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_zeeman_line_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ZeemanLineTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_qnum_ok_task(task_type: str = None, language: str = "ru",
+                                 detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return QnumOkTask.generate_random_task(task_type=task_type, language=language,
+                                           detail_level=detail_level, difficulty=difficulty,
+                                           **kwargs)
+
+def generate_random_shell_fill_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ShellFillTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_level_deg_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return LevelDegTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_path_amp_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return PathAmpTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_franck_hertz_task(task_type: str = None, language: str = "ru",
+                                      detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return FranckHertzTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_bond_order_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BondOrderTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_shoot_psi_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ShootPsiTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_expect_h_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ExpectHTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_sch_defect_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SchDefectTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_split_energy_task(task_type: str = None, language: str = "ru",
+                                      detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SplitEnergyTask.generate_random_task(task_type=task_type, language=language,
+                                                detail_level=detail_level, difficulty=difficulty,
+                                                **kwargs)
+
+def generate_random_tdse_step_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return TdseStepTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_prob_flow_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ProbFlowTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_trial_gap_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return TrialGapTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_qwalk_line_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return QwalkLineTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_mz_port_task(task_type: str = None, language: str = "ru",
+                                 detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return MzPortTask.generate_random_task(task_type=task_type, language=language,
+                                           detail_level=detail_level, difficulty=difficulty,
+                                           **kwargs)
+
+def generate_random_bound_sign_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BoundSignTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_ladder_down_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return LadderDownTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_ground_iter_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return GroundIterTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_spin_add_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return SpinAddTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_reduce_rho_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ReduceRhoTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_barrier_amp_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BarrierAmpTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_perturb_sum_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return PerturbSumTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_yee_line_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return YeeLineTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_shock_jump_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ShockJumpTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
 def generate_random_column_pressure_task(task_type: str = None, language: str = "ru",
                                          detail_level: int = 3, difficulty: int = 5, **kwargs):
     return ColumnPressureTask.generate_random_task(task_type=task_type, language=language,
@@ -1609,6 +1805,34 @@ ALL_PHYSICS_TASK_GENERATORS = {
     "wrap_ring": generate_random_wrap_ring_task,
     "age_flow": generate_random_age_flow_task,
     "rotor_drop": generate_random_rotor_drop_task,
+    "box_jump": generate_random_box_jump_task,
+    "ho_jump": generate_random_ho_jump_task,
+    "rovib_line": generate_random_rovib_line_task,
+    "zeeman_line": generate_random_zeeman_line_task,
+    "qnum_ok": generate_random_qnum_ok_task,
+    "shell_fill": generate_random_shell_fill_task,
+    "level_deg": generate_random_level_deg_task,
+    "path_amp": generate_random_path_amp_task,
+    "franck_hertz": generate_random_franck_hertz_task,
+    "bond_order": generate_random_bond_order_task,
+    "shoot_psi": generate_random_shoot_psi_task,
+    "expect_h": generate_random_expect_h_task,
+    "sch_defect": generate_random_sch_defect_task,
+    "split_energy": generate_random_split_energy_task,
+    "tdse_step": generate_random_tdse_step_task,
+    "prob_flow": generate_random_prob_flow_task,
+    "trial_gap": generate_random_trial_gap_task,
+    "qwalk_line": generate_random_qwalk_line_task,
+    "mz_port": generate_random_mz_port_task,
+    "bound_sign": generate_random_bound_sign_task,
+    "ladder_down": generate_random_ladder_down_task,
+    "ground_iter": generate_random_ground_iter_task,
+    "spin_add": generate_random_spin_add_task,
+    "reduce_rho": generate_random_reduce_rho_task,
+    "barrier_amp": generate_random_barrier_amp_task,
+    "perturb_sum": generate_random_perturb_sum_task,
+    "yee_line": generate_random_yee_line_task,
+    "shock_jump": generate_random_shock_jump_task,
 }
 
 

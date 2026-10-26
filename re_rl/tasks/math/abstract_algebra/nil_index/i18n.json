@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В кольце вычетов по модулю {modulus} взят элемент {base}. Степеней {n}. Первая степень равна самому элементу. Каждая следующая равна предыдущей, умноженной на элемент, с остатком по модулю. Индекс — номер первой степени, равной 0. Каков индекс?",
+      "en": "In the ring of residues modulo {modulus}, the element is {base}. There are {n} powers. The first power equals the element itself. Each next power equals the previous one times the element, reduced modulo the modulus. The index is the number of the first power equal to 0. What is the index?"
+    },
+    "s1": {
+      "ru": "В кольце вычетов по модулю {modulus} взят элемент {base}. Степеней {n}. Первая степень равна самому элементу. Каждая следующая равна предыдущей, умноженной на элемент, с остатком по модулю. Индекс — номер первой степени, равной 0. Какова последняя ненулевая степень?",
+      "en": "In the ring of residues modulo {modulus}, the element is {base}. There are {n} powers. The first power equals the element itself. Each next power equals the previous one times the element, reduced modulo the modulus. The index is the number of the first power equal to 0. What is the last nonzero power?"
+    },
+    "s2": {
+      "ru": "Степень {i}: значение {power}, индекс {index}, последняя ненулевая {last}.",
+      "en": "Power {i}: value {power}, index {index}, last nonzero power {last}."
+    }
+  }
+}

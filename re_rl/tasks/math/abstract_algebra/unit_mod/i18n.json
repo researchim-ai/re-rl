@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кольцо вычетов по модулю {n}. Рассматриваются остатки от 1 до {n} без самого модуля. Остаток является единицей, если его наибольший общий делитель с модулем равен 1. Сколько единиц?",
+      "en": "The ring of residues modulo {n}. The residues from 1 up to but not including {n} are considered. A residue is a unit when its greatest common divisor with the modulus is 1. How many units are there?"
+    },
+    "s1": {
+      "ru": "Кольцо вычетов по модулю {n}. Рассматриваются остатки от 1 до {n} без самого модуля. Остаток является единицей, если его наибольший общий делитель с модулем равен 1. Каков остаток произведения всех единиц по этому модулю? Если единиц нет, произведение равно 1.",
+      "en": "The ring of residues modulo {n}. The residues from 1 up to but not including {n} are considered. A residue is a unit when its greatest common divisor with the modulus is 1. What is the residue of the product of all units modulo this modulus? If there are no units, the product is 1."
+    },
+    "s2": {
+      "ru": "Остаток {i}: единиц {units}, произведение по модулю {product}.",
+      "en": "Residue {i}: units {units}, product modulo the modulus {product}."
+    }
+  }
+}

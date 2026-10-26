@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Узлов и шагов времени {n}. Действительная часть: {real}. Мнимая часть: {imag}. Потенциал: {potential}. За краями значение равно 0. Шаг сетки, шаг времени и ħ равны 1, ħ²/2m равно 1. Действие оператора энергии на узел: минус левый сосед, плюс удвоенное значение, минус правый сосед, плюс потенциал, умноженный на значение. Новая действительная часть равна прежней плюс это действие на мнимую часть. Новая мнимая часть равна прежней минус это действие на прежнюю действительную часть. Обе части считаются по старым значениям. Норма — сумма квадратов обеих частей. Какова норма после последнего шага?",
+      "en": "There are {n} nodes and the same number of time steps. The real part is {real}. The imaginary part is {imag}. The potential is {potential}. Beyond the ends the value is 0. The grid step, the time step, and ħ are 1, and ħ²/2m is 1. The energy operator on a node is minus the left neighbor, plus twice the value, minus the right neighbor, plus the potential times the value. The new real part is the old one plus this action on the imaginary part. The new imaginary part is the old one minus this action on the old real part. Both parts are computed from the old values. The norm is the sum of the squares of both parts. What is the norm after the last step?"
+    },
+    "s1": {
+      "ru": "Узлов и шагов времени {n}. Действительная часть: {real}. Мнимая часть: {imag}. Потенциал: {potential}. За краями значение равно 0. Шаг сетки, шаг времени и ħ равны 1, ħ²/2m равно 1. Действие оператора энергии на узел: минус левый сосед, плюс удвоенное значение, минус правый сосед, плюс потенциал, умноженный на значение. Новая действительная часть равна прежней плюс это действие на мнимую часть. Новая мнимая часть равна прежней минус это действие на прежнюю действительную часть. Обе части считаются по старым значениям. Какова сумма действительной части после последнего шага?",
+      "en": "There are {n} nodes and the same number of time steps. The real part is {real}. The imaginary part is {imag}. The potential is {potential}. Beyond the ends the value is 0. The grid step, the time step, and ħ are 1, and ħ²/2m is 1. The energy operator on a node is minus the left neighbor, plus twice the value, minus the right neighbor, plus the potential times the value. The new real part is the old one plus this action on the imaginary part. The new imaginary part is the old one minus this action on the old real part. Both parts are computed from the old values. What is the sum of the real part after the last step?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: норма {norm}, сумма действительной части {real}.",
+      "en": "Step {i}: norm {norm}, sum of the real part {real}."
+    }
+  }
+}

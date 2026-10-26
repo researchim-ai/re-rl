@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Линий {n}: {listing}. Четвёрка — колебательное и вращательное числа первого состояния, затем те же числа второго. Энергия состояния равна 2*v + 1 + J*(J+1). Линия разрешена, если колебательные числа различаются на 1 и вращательные различаются на 1. Энергия линии — модуль разности энергий. Какова сумма энергий разрешённых линий?",
+      "en": "There are {n} lines: {listing}. A foursome lists the vibrational and rotational numbers of the first state, then the same numbers of the second. The energy of a state is 2*v + 1 + J*(J+1). A line is allowed when the vibrational numbers differ by 1 and the rotational numbers differ by 1. The line energy is the absolute difference of the energies. What is the sum of the energies of the allowed lines?"
+    },
+    "s1": {
+      "ru": "Линий {n}: {listing}. Четвёрка — колебательное и вращательное числа первого состояния, затем те же числа второго. Энергия состояния равна 2*v + 1 + J*(J+1). Линия разрешена, если колебательные числа различаются на 1 и вращательные различаются на 1. Энергия линии — модуль разности энергий. Сколько линий разрешены?",
+      "en": "There are {n} lines: {listing}. A foursome lists the vibrational and rotational numbers of the first state, then the same numbers of the second. The energy of a state is 2*v + 1 + J*(J+1). A line is allowed when the vibrational numbers differ by 1 and the rotational numbers differ by 1. The line energy is the absolute difference of the energies. How many lines are allowed?"
+    },
+    "s2": {
+      "ru": "Линия {i}: разрешённых {allowed}, энергия всего {energy}.",
+      "en": "Line {i}: allowed so far {allowed}, energy so far {energy}."
+    }
+  }
+}

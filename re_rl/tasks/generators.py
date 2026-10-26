@@ -576,6 +576,35 @@ from re_rl.tasks.math.probability.group_mean_task import GroupMeanTask
 from re_rl.tasks.math.probability.safe_bits_task import SafeBitsTask
 from re_rl.tasks.math.probability.first_to_task import FirstToTask
 from re_rl.tasks.math.probability.odds_mass_task import OddsMassTask
+from re_rl.tasks.math.probability.simpson_pool_task import SimpsonPoolTask
+from re_rl.tasks.math.logic.job_slack_task import JobSlackTask
+from re_rl.tasks.math.logic.pair_vote_task import PairVoteTask
+from re_rl.tasks.math.probability.screen_count_task import ScreenCountTask
+from re_rl.tasks.math.applied.burn_balance_task import BurnBalanceTask
+from re_rl.tasks.math.discrete.h_index_task import HIndexTask
+from re_rl.tasks.math.logic.allele_fit_task import AlleleFitTask
+from re_rl.tasks.math.logic.pareto_keep_task import ParetoKeepTask
+from re_rl.tasks.math.abstract_algebra.perm_order_task import PermOrderTask
+from re_rl.tasks.math.abstract_algebra.perm_conj_task import PermConjTask
+from re_rl.tasks.math.abstract_algebra.add_orbit_task import AddOrbitTask
+from re_rl.tasks.math.abstract_algebra.unit_mod_task import UnitModTask
+from re_rl.tasks.math.abstract_algebra.nil_index_task import NilIndexTask
+from re_rl.tasks.math.abstract_algebra.mod_poly_task import ModPolyTask
+from re_rl.tasks.math.abstract_algebra.heisen_mul_task import HeisenMulTask
+from re_rl.tasks.math.abstract_algebra.coset_rep_task import CosetRepTask
+from re_rl.tasks.math.abstract_algebra.betti_mod_task import BettiModTask
+from re_rl.tasks.math.abstract_algebra.curve_add_task import CurveAddTask
+from re_rl.tasks.math.abstract_algebra.smith_inv_task import SmithInvTask
+from re_rl.tasks.math.discrete.form_reduce_task import FormReduceTask
+from re_rl.tasks.math.algebra.res_chain_task import ResChainTask
+from re_rl.tasks.math.algebra.sturm_root_task import SturmRootTask
+from re_rl.tasks.math.logic.anf_fold_task import AnfFoldTask
+from re_rl.tasks.math.probability.coin_wait_task import CoinWaitTask
+from re_rl.tasks.math.probability.ruin_time_task import RuinTimeTask
+from re_rl.tasks.math.probability.mix_count_task import MixCountTask
+from re_rl.tasks.math.probability.repeat_test_task import RepeatTestTask
+from re_rl.tasks.math.probability.group_var_task import GroupVarTask
+from re_rl.tasks.math.probability.pivot_cost_task import PivotCostTask
 from re_rl.tasks.ml.hard_attend_task import HardAttendTask
 from re_rl.tasks.ml.max_pool_task import MaxPoolTask
 from re_rl.tasks.ml.adam_tick_task import AdamTickTask
@@ -2500,6 +2529,35 @@ generate_random_group_mean_task = _mk_generator(GroupMeanTask)
 generate_random_safe_bits_task = _mk_generator(SafeBitsTask)
 generate_random_first_to_task = _mk_generator(FirstToTask)
 generate_random_odds_mass_task = _mk_generator(OddsMassTask)
+generate_random_simpson_pool_task = _mk_generator(SimpsonPoolTask)
+generate_random_job_slack_task = _mk_generator(JobSlackTask)
+generate_random_pair_vote_task = _mk_generator(PairVoteTask)
+generate_random_screen_count_task = _mk_generator(ScreenCountTask)
+generate_random_burn_balance_task = _mk_generator(BurnBalanceTask)
+generate_random_h_index_task = _mk_generator(HIndexTask)
+generate_random_allele_fit_task = _mk_generator(AlleleFitTask)
+generate_random_pareto_keep_task = _mk_generator(ParetoKeepTask)
+generate_random_perm_order_task = _mk_generator(PermOrderTask)
+generate_random_perm_conj_task = _mk_generator(PermConjTask)
+generate_random_add_orbit_task = _mk_generator(AddOrbitTask)
+generate_random_unit_mod_task = _mk_generator(UnitModTask)
+generate_random_nil_index_task = _mk_generator(NilIndexTask)
+generate_random_mod_poly_task = _mk_generator(ModPolyTask)
+generate_random_heisen_mul_task = _mk_generator(HeisenMulTask)
+generate_random_coset_rep_task = _mk_generator(CosetRepTask)
+generate_random_betti_mod_task = _mk_generator(BettiModTask)
+generate_random_curve_add_task = _mk_generator(CurveAddTask)
+generate_random_smith_inv_task = _mk_generator(SmithInvTask)
+generate_random_form_reduce_task = _mk_generator(FormReduceTask)
+generate_random_res_chain_task = _mk_generator(ResChainTask)
+generate_random_sturm_root_task = _mk_generator(SturmRootTask)
+generate_random_anf_fold_task = _mk_generator(AnfFoldTask)
+generate_random_coin_wait_task = _mk_generator(CoinWaitTask)
+generate_random_ruin_time_task = _mk_generator(RuinTimeTask)
+generate_random_mix_count_task = _mk_generator(MixCountTask)
+generate_random_repeat_test_task = _mk_generator(RepeatTestTask)
+generate_random_group_var_task = _mk_generator(GroupVarTask)
+generate_random_pivot_cost_task = _mk_generator(PivotCostTask)
 generate_random_hard_attend_task = _mk_generator(HardAttendTask)
 generate_random_max_pool_task = _mk_generator(MaxPoolTask)
 generate_random_adam_tick_task = _mk_generator(AdamTickTask)
@@ -3275,6 +3333,35 @@ ALL_TASK_GENERATORS = {
     "safe_bits": generate_random_safe_bits_task,
     "first_to": generate_random_first_to_task,
     "odds_mass": generate_random_odds_mass_task,
+    "simpson_pool": generate_random_simpson_pool_task,
+    "job_slack": generate_random_job_slack_task,
+    "pair_vote": generate_random_pair_vote_task,
+    "screen_count": generate_random_screen_count_task,
+    "burn_balance": generate_random_burn_balance_task,
+    "h_index": generate_random_h_index_task,
+    "allele_fit": generate_random_allele_fit_task,
+    "pareto_keep": generate_random_pareto_keep_task,
+    "perm_order": generate_random_perm_order_task,
+    "perm_conj": generate_random_perm_conj_task,
+    "add_orbit": generate_random_add_orbit_task,
+    "unit_mod": generate_random_unit_mod_task,
+    "nil_index": generate_random_nil_index_task,
+    "mod_poly": generate_random_mod_poly_task,
+    "heisen_mul": generate_random_heisen_mul_task,
+    "coset_rep": generate_random_coset_rep_task,
+    "betti_mod": generate_random_betti_mod_task,
+    "curve_add": generate_random_curve_add_task,
+    "smith_inv": generate_random_smith_inv_task,
+    "form_reduce": generate_random_form_reduce_task,
+    "res_chain": generate_random_res_chain_task,
+    "sturm_root": generate_random_sturm_root_task,
+    "anf_fold": generate_random_anf_fold_task,
+    "coin_wait": generate_random_coin_wait_task,
+    "ruin_time": generate_random_ruin_time_task,
+    "mix_count": generate_random_mix_count_task,
+    "repeat_test": generate_random_repeat_test_task,
+    "group_var": generate_random_group_var_task,
+    "pivot_cost": generate_random_pivot_cost_task,
     "hard_attend": generate_random_hard_attend_task,
     "max_pool": generate_random_max_pool_task,
     "adam_tick": generate_random_adam_tick_task,

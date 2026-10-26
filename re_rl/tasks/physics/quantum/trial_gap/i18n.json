@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две пробные функции на {n} узлах. Первая: {first}. Вторая: {second}. Потенциал: {potential}. За краями значение равно 0. Шаг сетки и ħ²/2m равны 1. Действие оператора энергии на узел: минус левый сосед, плюс удвоенное значение, минус правый сосед, плюс потенциал, умноженный на значение. Числитель средней энергии — сумма произведения значения на это действие. Норма — сумма квадратов. Разность сравнения равна числителю первой, умноженному на норму второй, минус числитель второй, умноженный на норму первой. Какова эта разность?",
+      "en": "Two trial functions on {n} nodes. The first is {first}. The second is {second}. The potential is {potential}. Beyond the ends the value is 0. The grid step and ħ²/2m are 1. The energy operator on a node is minus the left neighbor, plus twice the value, minus the right neighbor, plus the potential times the value. The numerator of the mean energy is the sum of the value times that action. The norm is the sum of squares. The comparison difference is the first numerator times the second norm, minus the second numerator times the first norm. What is this difference?"
+    },
+    "s1": {
+      "ru": "Две пробные функции на {n} узлах. Первая: {first}. Вторая: {second}. Потенциал: {potential}. За краями значение равно 0. Шаг сетки и ħ²/2m равны 1. Действие оператора энергии на узел: минус левый сосед, плюс удвоенное значение, минус правый сосед, плюс потенциал, умноженный на значение. Числитель средней энергии — сумма произведения значения на это действие. Каков числитель средней энергии первой функции?",
+      "en": "Two trial functions on {n} nodes. The first is {first}. The second is {second}. The potential is {potential}. Beyond the ends the value is 0. The grid step and ħ²/2m are 1. The energy operator on a node is minus the left neighbor, plus twice the value, minus the right neighbor, plus the potential times the value. The numerator of the mean energy is the sum of the value times that action. What is the mean-energy numerator of the first function?"
+    },
+    "s2": {
+      "ru": "Узел {i}: числитель первой {first}, числитель второй {second}.",
+      "en": "Node {i}: first numerator {first}, second numerator {second}."
+    }
+  }
+}

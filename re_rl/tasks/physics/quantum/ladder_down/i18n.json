@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Момент j равен {moment}. Проекция m начинает с этого же значения. Понижений {n}. Квадрат коэффициента понижения равен (j+m)*(j-m+1). После шага проекция уменьшается на 1. Каков квадрат последнего коэффициента?",
+      "en": "The angular momentum j is {moment}. The projection m starts at that same value. There are {n} lowerings. The square of the lowering coefficient is (j+m)*(j-m+1). After a step the projection decreases by 1. What is the square of the last coefficient?"
+    },
+    "s1": {
+      "ru": "Момент j равен {moment}. Проекция m начинает с этого же значения. Понижений {n}. Квадрат коэффициента понижения равен (j+m)*(j-m+1). После шага проекция уменьшается на 1. Каково произведение всех этих квадратов?",
+      "en": "The angular momentum j is {moment}. The projection m starts at that same value. There are {n} lowerings. The square of the lowering coefficient is (j+m)*(j-m+1). After a step the projection decreases by 1. What is the product of all these squares?"
+    },
+    "s2": {
+      "ru": "Понижение {i}: квадрат коэффициента {factor}, произведение {weight}.",
+      "en": "Lowering {i}: coefficient square {factor}, product {weight}."
+    }
+  }
+}

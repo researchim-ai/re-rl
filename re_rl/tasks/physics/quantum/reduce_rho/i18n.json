@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две частицы. У первой два состояния, у второй их {n}. Амплитуды первого состояния первой частицы по базису второй: {row0}. Амплитуды второго состояния: {row1}. Частичный след по второй частице: население первого состояния — сумма квадратов первой строки. Население второго — сумма квадратов второй строки. Недиагональный элемент — сумма произведений столбцов. Чистота — сумма квадратов населений плюс удвоенный квадрат недиагонального элемента. Каково население первого состояния?",
+      "en": "Two particles. The first has two states, and the second has {n}. Amplitudes of the first state of the first particle along the second particle are {row0}. Amplitudes of the second state are {row1}. The partial trace over the second particle: the population of the first state is the sum of squares of the first row. The population of the second state is the sum of squares of the second row. The off-diagonal element is the sum of products down the columns. The purity is the sum of the squares of the populations plus twice the square of the off-diagonal element. What is the population of the first state?"
+    },
+    "s1": {
+      "ru": "Две частицы. У первой два состояния, у второй их {n}. Амплитуды первого состояния первой частицы по базису второй: {row0}. Амплитуды второго состояния: {row1}. Частичный след по второй частице: население первого состояния — сумма квадратов первой строки. Население второго — сумма квадратов второй строки. Недиагональный элемент — сумма произведений столбцов. Чистота — сумма квадратов населений плюс удвоенный квадрат недиагонального элемента. Какова чистота?",
+      "en": "Two particles. The first has two states, and the second has {n}. Amplitudes of the first state of the first particle along the second particle are {row0}. Amplitudes of the second state are {row1}. The partial trace over the second particle: the population of the first state is the sum of squares of the first row. The population of the second state is the sum of squares of the second row. The off-diagonal element is the sum of products down the columns. The purity is the sum of the squares of the populations plus twice the square of the off-diagonal element. What is the purity?"
+    },
+    "s2": {
+      "ru": "Столбец {i}: население первого {pop}, недиагональный элемент {coh}, чистота {purity}.",
+      "en": "Column {i}: first population {pop}, off-diagonal element {coh}, purity {purity}."
+    }
+  }
+}

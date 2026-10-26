@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В кольце вычетов по модулю {modulus} начинаем с 0. Шагов {n}. Каждый шаг прибавляет {step} и оставляет остаток от деления на модуль. Каков остаток после последнего шага?",
+      "en": "In the ring of residues modulo {modulus}, start at 0. There are {n} steps. Each step adds {step} and keeps the remainder on division by the modulus. What is the residue after the last step?"
+    },
+    "s1": {
+      "ru": "В кольце вычетов по модулю {modulus} начинаем с 0. Шагов {n}. Каждый шаг прибавляет {step} и оставляет остаток от деления на модуль. Сколько различных остатков встретилось среди шагов?",
+      "en": "In the ring of residues modulo {modulus}, start at 0. There are {n} steps. Each step adds {step} and keeps the remainder on division by the modulus. How many distinct residues occur among the steps?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: остаток {place}, различных уже {seen}.",
+      "en": "Step {i}: residue {place}, distinct residues so far {seen}."
+    }
+  }
+}

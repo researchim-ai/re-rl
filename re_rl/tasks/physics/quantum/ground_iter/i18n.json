@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Узлов и итераций {n}. Потенциал: {potential}. В начале первый узел равен 1, остальные равны 0. За краями значение равно 0. Шаг сетки и ħ²/2m равны 1. Действие оператора энергии: минус левый сосед, плюс удвоенное значение, минус правый сосед, плюс потенциал, умноженный на значение. Сдвиг равен {shift}. Новый вектор равен сдвигу, умноженному на старый вектор, минус это действие. Затем все компоненты делятся на их наибольший общий делитель. Каково значение первого узла в конце?",
+      "en": "There are {n} nodes and the same number of iterations. The potential is {potential}. At the start the first node is 1 and the others are 0. Beyond the ends the value is 0. The grid step and ħ²/2m are 1. The energy operator is minus the left neighbor, plus twice the value, minus the right neighbor, plus the potential times the value. The shift is {shift}. The new vector is the shift times the old vector minus that action. All components are then divided by their greatest common divisor. What is the value of the first node at the end?"
+    },
+    "s1": {
+      "ru": "Узлов и итераций {n}. Потенциал: {potential}. В начале первый узел равен 1, остальные равны 0. За краями значение равно 0. Шаг сетки и ħ²/2m равны 1. Действие оператора энергии: минус левый сосед, плюс удвоенное значение, минус правый сосед, плюс потенциал, умноженный на значение. Сдвиг равен {shift}. Новый вектор равен сдвигу, умноженному на старый вектор, минус это действие. Затем все компоненты делятся на их наибольший общий делитель. Какова сумма компонент в конце?",
+      "en": "There are {n} nodes and the same number of iterations. The potential is {potential}. At the start the first node is 1 and the others are 0. Beyond the ends the value is 0. The grid step and ħ²/2m are 1. The energy operator is minus the left neighbor, plus twice the value, minus the right neighbor, plus the potential times the value. The shift is {shift}. The new vector is the shift times the old vector minus that action. All components are then divided by their greatest common divisor. What is the sum of the components at the end?"
+    },
+    "s2": {
+      "ru": "Итерация {i}: первый узел {head}, сумма компонент {total}.",
+      "en": "Iteration {i}: first node {head}, sum of components {total}."
+    }
+  }
+}

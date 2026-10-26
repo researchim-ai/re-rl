@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Проверок {n}: {listing}. Запись — два аллеля первого родителя, два аллеля второго и два аллеля ребёнка. Аллели берутся из 0, 1 и 2. Порядок внутри одного человека не важен. Ребёнок возможен, если один его аллель есть у первого родителя, а другой у второго, либо наоборот. Сколько проверок невозможны?",
+      "en": "There are {n} checks: {listing}. A record lists two alleles of the first parent, two of the second parent, and two of the child. Alleles are chosen from 0, 1, and 2. Order inside one person does not matter. A child is possible when one allele occurs in the first parent and the other occurs in the second parent, or the other way around. How many checks are impossible?"
+    },
+    "s1": {
+      "ru": "Проверок {n}: {listing}. Запись — два аллеля первого родителя, два аллеля второго и два аллеля ребёнка. Аллели берутся из 0, 1 и 2. Порядок внутри одного человека не важен. Ребёнок возможен, если один его аллель есть у первого родителя, а другой у второго, либо наоборот. Каков номер первой невозможной проверки, считая с 1? Если все возможны, ответ 0.",
+      "en": "There are {n} checks: {listing}. A record lists two alleles of the first parent, two of the second parent, and two of the child. Alleles are chosen from 0, 1, and 2. Order inside one person does not matter. A child is possible when one allele occurs in the first parent and the other occurs in the second parent, or the other way around. What is the number of the first impossible check, counting from 1? If every check is possible, the answer is 0."
+    },
+    "s2": {
+      "ru": "Проверка {i}: невозможных {bad}, первая невозможная {first}.",
+      "en": "Check {i}: impossible checks {bad}, first impossible check {first}."
+    }
+  }
+}

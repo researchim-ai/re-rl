@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "К нулевому моменту добавляются спины 1/2, всего {n}. В начале один способ иметь проекцию 0. Проекция одного спина в единицах ħ/2 равна +1 или -1. После добавления число способов получить проекцию m равно прежнему числу способов для m-1 плюс прежнее число для m+1. Каково число способов получить наименьшую неотрицательную проекцию?",
+      "en": "Spins of 1/2 are added to zero angular momentum, {n} of them in total. At the start there is one way to have projection 0. One spin has projection +1 or -1 in units of ħ/2. After a spin is added, the number of ways to obtain projection m is the previous number of ways for m-1 plus the previous number for m+1. What is the number of ways to obtain the smallest nonnegative projection?"
+    },
+    "s1": {
+      "ru": "К нулевому моменту добавляются спины 1/2, всего {n}. В начале один способ иметь проекцию 0. Проекция одного спина в единицах ħ/2 равна +1 или -1. После добавления число способов получить проекцию m равно прежнему числу способов для m-1 плюс прежнее число для m+1. Сколько всего способов?",
+      "en": "Spins of 1/2 are added to zero angular momentum, {n} of them in total. At the start there is one way to have projection 0. One spin has projection +1 or -1 in units of ħ/2. After a spin is added, the number of ways to obtain projection m is the previous number of ways for m-1 plus the previous number for m+1. How many ways are there in total?"
+    },
+    "s2": {
+      "ru": "Спин {i}: способов у наименьшей неотрицательной проекции {middle}, всего способов {states}.",
+      "en": "Spin {i}: ways for the smallest nonnegative projection {middle}, ways in total {states}."
+    }
+  }
+}

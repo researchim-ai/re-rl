@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Отрезок линии, внутренних электрических узлов {n}: {electric}. Концы электрического поля закреплены в 0. Магнитных узлов на один больше, в начале все они равны 0. Шаг сетки, шаг времени и скорость света равны 1. Сначала каждый магнитный узел уменьшается на разность электрического поля справа и слева от него. Затем каждый внутренний электрический узел уменьшается на разность нового магнитного поля справа и слева от него. Шагов {n}. Какова сумма внутреннего электрического поля в конце?",
+      "en": "A line segment has {n} interior electric nodes: {electric}. The electric field at the ends is fixed at 0. There is one more magnetic node than interior electric nodes, and every magnetic node starts at 0. The grid step, the time step, and the speed of light are 1. First each magnetic node decreases by the electric field on its right minus the electric field on its left. Then each interior electric node decreases by the new magnetic field on its right minus the new magnetic field on its left. There are {n} steps. What is the sum of the interior electric field at the end?"
+    },
+    "s1": {
+      "ru": "Отрезок линии, внутренних электрических узлов {n}: {electric}. Концы электрического поля закреплены в 0. Магнитных узлов на один больше, в начале все они равны 0. Шаг сетки, шаг времени и скорость света равны 1. Сначала каждый магнитный узел уменьшается на разность электрического поля справа и слева от него. Затем каждый внутренний электрический узел уменьшается на разность нового магнитного поля справа и слева от него. Шагов {n}. Каково электрическое поле в последнем внутреннем узле?",
+      "en": "A line segment has {n} interior electric nodes: {electric}. The electric field at the ends is fixed at 0. There is one more magnetic node than interior electric nodes, and every magnetic node starts at 0. The grid step, the time step, and the speed of light are 1. First each magnetic node decreases by the electric field on its right minus the electric field on its left. Then each interior electric node decreases by the new magnetic field on its right minus the new magnetic field on its left. There are {n} steps. What is the electric field at the last interior node?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: сумма электрического поля {field}, последний узел {end}.",
+      "en": "Step {i}: sum of the electric field {field}, last node {end}."
+    }
+  }
+}

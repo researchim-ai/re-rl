@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Уровень ямы {level}. Связанных с ним уровней {n}: {listing}. Пара — номер другого уровня и матричный элемент. Энергия уровня равна квадрату номера. Вторая поправка — сумма квадратов матричных элементов, делённых на разность квадрата этого уровня и квадрата другого. Дробь сокращается. Каков числитель суммы?",
+      "en": "The well level is {level}. There are {n} levels coupled to it: {listing}. A pair lists the other level and the matrix element. The energy of a level is the square of its number. The second-order correction is the sum of the squares of the matrix elements divided by the square of this level minus the square of the other level. The fraction is reduced. What is the numerator of the sum?"
+    },
+    "s1": {
+      "ru": "Уровень ямы {level}. Связанных с ним уровней {n}: {listing}. Пара — номер другого уровня и матричный элемент. Энергия уровня равна квадрату номера. Вторая поправка — сумма квадратов матричных элементов, делённых на разность квадрата этого уровня и квадрата другого. Дробь сокращается. Каков знаменатель суммы?",
+      "en": "The well level is {level}. There are {n} levels coupled to it: {listing}. A pair lists the other level and the matrix element. The energy of a level is the square of its number. The second-order correction is the sum of the squares of the matrix elements divided by the square of this level minus the square of the other level. The fraction is reduced. What is the denominator of the sum?"
+    },
+    "s2": {
+      "ru": "Вклад {i}: числитель {numer}, знаменатель {denom}.",
+      "en": "Term {i}: numerator {numer}, denominator {denom}."
+    }
+  }
+}

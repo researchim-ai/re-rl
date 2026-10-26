@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Бюллетеней {n}: {listing}. Кандидаты — 1, 2 и 3. Бюллетень перечисляет их от лучшего к худшему. Кандидат побеждает другого, если стоит впереди в большем числе бюллетеней. Победитель всех пар побеждает каждого из двух остальных. Кто победитель всех пар? Если такого нет, ответ 0.",
+      "en": "There are {n} ballots: {listing}. The candidates are 1, 2, and 3. A ballot lists them from best to worst. A candidate beats another when ranked ahead on more ballots. The winner of every pair beats each of the other two. Who is the winner of every pair? If there is none, the answer is 0."
+    },
+    "s1": {
+      "ru": "Бюллетеней {n}: {listing}. Кандидаты — 1, 2 и 3. Бюллетень перечисляет их от лучшего к худшему. Кандидат побеждает другого, если стоит впереди в большем числе бюллетеней. Победитель всех пар побеждает каждого из двух остальных. Сколько других кандидатов побеждает кандидат 1?",
+      "en": "There are {n} ballots: {listing}. The candidates are 1, 2, and 3. A ballot lists them from best to worst. A candidate beats another when ranked ahead on more ballots. The winner of every pair beats each of the other two. How many other candidates does candidate 1 beat?"
+    },
+    "s2": {
+      "ru": "Бюллетень {i}: победитель всех пар {winner}, побед кандидата 1 уже {wins}.",
+      "en": "Ballot {i}: winner of every pair {winner}, wins of candidate 1 so far {wins}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Статей {n}, цитирования: {listing}. Упорядочьте числа от большего к меньшему. Индекс — наибольший номер позиции, считая с 1, у которой цитирований не меньше этого номера. Граничное число — цитирования в позиции индекса. Если индекс равен 0, граничное число тоже 0. Каков индекс?",
+      "en": "There are {n} papers, with citation counts: {listing}. Sort the counts from largest to smallest. The index is the largest position, counting from 1, whose citation count is at least that position number. The boundary count is the citation count in the position of the index. If the index is 0, the boundary count is 0 too. What is the index?"
+    },
+    "s1": {
+      "ru": "Статей {n}, цитирования: {listing}. Упорядочьте числа от большего к меньшему. Индекс — наибольший номер позиции, считая с 1, у которой цитирований не меньше этого номера. Граничное число — цитирования в позиции индекса. Если индекс равен 0, граничное число тоже 0. Каково граничное число?",
+      "en": "There are {n} papers, with citation counts: {listing}. Sort the counts from largest to smallest. The index is the largest position, counting from 1, whose citation count is at least that position number. The boundary count is the citation count in the position of the index. If the index is 0, the boundary count is 0 too. What is the boundary count?"
+    },
+    "s2": {
+      "ru": "Позиция {i}: индекс {rank}, граничное число {boundary}.",
+      "en": "Position {i}: index {rank}, boundary count {boundary}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Симметричная монета даёт 0 или 1. Слово длины {n}: {listing}. Для каждой длины k от 1 до {n} конец слова этой длины сравнивается с его началом. Если они совпали, к ожиданию прибавляется 2 в степени k. Само слово всегда совпадает с собой. Ожидание числа бросков до первого появления слова равно этой сумме. Чему оно равно?",
+      "en": "A fair coin shows 0 or 1. The word of length {n} is {listing}. For every length k from 1 to {n}, the suffix of that length is compared with the prefix. If they agree, 2 to the power k is added to the expectation. The word always agrees with itself. The expected number of tosses until the word first appears is this sum. What is it?"
+    },
+    "s1": {
+      "ru": "Симметричная монета даёт 0 или 1. Слово длины {n}: {listing}. Для каждой длины k от 1 до {n} конец слова этой длины сравнивается с его началом. Если они совпали, к ожиданию прибавляется 2 в степени k. Само слово всегда совпадает с собой. Ожидание числа бросков до первого появления слова равно этой сумме. Сколько длин k дают совпадение?",
+      "en": "A fair coin shows 0 or 1. The word of length {n} is {listing}. For every length k from 1 to {n}, the suffix of that length is compared with the prefix. If they agree, 2 to the power k is added to the expectation. The word always agrees with itself. The expected number of tosses until the word first appears is this sum. How many lengths k agree?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: добавка {added}, ожидание {wait}, совпавших длин {borders}.",
+      "en": "Step {i}: addition {added}, expectation {wait}, agreeing lengths {borders}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Предложенных переходов осциллятора {n}: {listing}. Пара — номера уровней, нумерация с 0. Переход разрешён, если номера различаются ровно на 1. Сколько переходов разрешены?",
+      "en": "There are {n} proposed oscillator transitions: {listing}. A pair lists level numbers, counting from 0. A transition is allowed when the numbers differ by exactly 1. How many transitions are allowed?"
+    },
+    "s1": {
+      "ru": "Предложенных переходов осциллятора {n}: {listing}. Пара — номера уровней, нумерация с 0. Переход разрешён, если номера различаются ровно на 1. Какова сумма старших номеров по разрешённым переходам?",
+      "en": "There are {n} proposed oscillator transitions: {listing}. A pair lists level numbers, counting from 0. A transition is allowed when the numbers differ by exactly 1. What is the sum of the higher numbers over the allowed transitions?"
+    },
+    "s2": {
+      "ru": "Переход {i}: разрешённых {allowed}, сумма старших номеров {upper}.",
+      "en": "Transition {i}: allowed so far {allowed}, sum of the higher numbers {upper}."
+    }
+  }
+}

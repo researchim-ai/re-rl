@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Точек {n}: {listing}. Пара — плата и качество. Точка А вытесняет точку Б, если плата А не больше, качество А не меньше и хотя бы одна разница строгая. Одинаковые точки друг друга не вытесняют. Сколько точек никто не вытеснил?",
+      "en": "There are {n} points: {listing}. A pair lists a cost and a quality. Point A displaces point B when the cost of A is no greater, the quality of A is no smaller, and at least one comparison is strict. Equal points do not displace each other. How many points does nobody displace?"
+    },
+    "s1": {
+      "ru": "Точек {n}: {listing}. Пара — плата и качество. Точка А вытесняет точку Б, если плата А не больше, качество А не меньше и хотя бы одна разница строгая. Одинаковые точки друг друга не вытесняют. Какова сумма плат точек, которые никто не вытеснил?",
+      "en": "There are {n} points: {listing}. A pair lists a cost and a quality. Point A displaces point B when the cost of A is no greater, the quality of A is no smaller, and at least one comparison is strict. Equal points do not displace each other. What is the sum of the costs of the points that nobody displaces?"
+    },
+    "s2": {
+      "ru": "Точка {i}: невытесненных {count}, сумма их плат {cost}.",
+      "en": "Point {i}: undisplaced points {count}, sum of their costs {cost}."
+    }
+  }
+}

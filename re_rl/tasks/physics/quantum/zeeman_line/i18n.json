@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Компонент {n}: {listing}. Пара — магнитное число верхнего уровня и магнитное число нижнего. Верхний уровень имеет l = {hi}, нижний l = {lo}. Компонент разрешён, если модуль каждого магнитного числа не больше своего l и разность магнитного числа верхнего и нижнего равна -1, 0 или 1. Сколько компонент разрешены?",
+      "en": "There are {n} components: {listing}. A pair lists the magnetic number of the upper level and the magnetic number of the lower level. The upper level has l = {hi} and the lower level has l = {lo}. A component is allowed when the absolute value of each magnetic number is at most its own l and the upper magnetic number minus the lower one is -1, 0, or 1. How many components are allowed?"
+    },
+    "s1": {
+      "ru": "Компонент {n}: {listing}. Пара — магнитное число верхнего уровня и магнитное число нижнего. Верхний уровень имеет l = {hi}, нижний l = {lo}. Компонент разрешён, если модуль каждого магнитного числа не больше своего l и разность магнитного числа верхнего и нижнего равна -1, 0 или 1. Какова сумма таких разностей по разрешённым компонентам?",
+      "en": "There are {n} components: {listing}. A pair lists the magnetic number of the upper level and the magnetic number of the lower level. The upper level has l = {hi} and the lower level has l = {lo}. A component is allowed when the absolute value of each magnetic number is at most its own l and the upper magnetic number minus the lower one is -1, 0, or 1. What is the sum of those differences over the allowed components?"
+    },
+    "s2": {
+      "ru": "Компонент {i}: разрешённых {allowed}, сумма разностей {shift}.",
+      "en": "Component {i}: allowed so far {allowed}, sum of differences {shift}."
+    }
+  }
+}

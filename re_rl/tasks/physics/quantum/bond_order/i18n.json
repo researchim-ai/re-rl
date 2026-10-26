@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Молекул {n}: {listing}. Пара — электроны на связывающих орбиталях и электроны на разрыхляющих. Удвоенный порядок связи равен их разности. Какова сумма удвоенных порядков?",
+      "en": "There are {n} molecules: {listing}. A pair lists electrons in bonding orbitals and electrons in antibonding orbitals. Twice the bond order is their difference. What is the sum of these doubled orders?"
+    },
+    "s1": {
+      "ru": "Молекул {n}: {listing}. Пара — электроны на связывающих орбиталях и электроны на разрыхляющих. Удвоенный порядок связи равен их разности. Сколько молекул имеют положительный удвоенный порядок?",
+      "en": "There are {n} molecules: {listing}. A pair lists electrons in bonding orbitals and electrons in antibonding orbitals. Twice the bond order is their difference. How many molecules have a positive doubled order?"
+    },
+    "s2": {
+      "ru": "Молекула {i}: сумма удвоенных порядков {total}, положительных уже {bound}.",
+      "en": "Molecule {i}: sum of doubled orders {total}, positive ones so far {bound}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Группа троек целых по модулю {modulus}. Умножение (a, b, c) на (x, y, z) даёт (a+x, b+y+a*z, c+z), где суммы и произведение берутся по модулю. Начинаем с (0, 0, 0). Множителей {n}: {listing}. Какова вторая координата произведения?",
+      "en": "The group of integer triples modulo {modulus}. Multiplying (a, b, c) by (x, y, z) gives (a+x, b+y+a*z, c+z), with sums and the product reduced modulo the modulus. Start at (0, 0, 0). There are {n} factors: {listing}. What is the second coordinate of the product?"
+    },
+    "s1": {
+      "ru": "Группа троек целых по модулю {modulus}. Умножение (a, b, c) на (x, y, z) даёт (a+x, b+y+a*z, c+z), где суммы и произведение берутся по модулю. Начинаем с (0, 0, 0). Множителей {n}: {listing}. Какова третья координата произведения?",
+      "en": "The group of integer triples modulo {modulus}. Multiplying (a, b, c) by (x, y, z) gives (a+x, b+y+a*z, c+z), with sums and the product reduced modulo the modulus. Start at (0, 0, 0). There are {n} factors: {listing}. What is the third coordinate of the product?"
+    },
+    "s2": {
+      "ru": "Множитель {i}: тройка {left} {middle} {right}.",
+      "en": "Factor {i}: triple {left} {middle} {right}."
+    }
+  }
+}

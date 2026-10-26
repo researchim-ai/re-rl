@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Наблюдений {n}. Каждая пара — номер группы и значение: {listing}. Среднее группы равно сумме её значений, делённой на их число. Общее среднее равно сумме всех значений, делённой на число наблюдений. Оба деления точные. Каждое наблюдение добавляет квадрат разности со средним своей группы к внутригрупповой сумме и квадрат разности этого среднего с общим средним к межгрупповой сумме. Чему равна внутригрупповая сумма?",
+      "en": "There are {n} observations. Each pair is a group number and a value: {listing}. A group's mean is the sum of its values divided by how many there are. The overall mean is the sum of every value divided by the number of observations. Both divisions are exact. Each observation adds the square of its difference from its group's mean to the within-group sum, and the square of the difference between that mean and the overall mean to the between-group sum. What is the within-group sum?"
+    },
+    "s1": {
+      "ru": "Наблюдений {n}. Каждая пара — номер группы и значение: {listing}. Среднее группы равно сумме её значений, делённой на их число. Общее среднее равно сумме всех значений, делённой на число наблюдений. Оба деления точные. Каждое наблюдение добавляет квадрат разности со средним своей группы к внутригрупповой сумме и квадрат разности этого среднего с общим средним к межгрупповой сумме. Чему равна межгрупповая сумма?",
+      "en": "There are {n} observations. Each pair is a group number and a value: {listing}. A group's mean is the sum of its values divided by how many there are. The overall mean is the sum of every value divided by the number of observations. Both divisions are exact. Each observation adds the square of its difference from its group's mean to the within-group sum, and the square of the difference between that mean and the overall mean to the between-group sum. What is the between-group sum?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: внутригрупповая сумма {within}, межгрупповая сумма {between}.",
+      "en": "Step {i}: within-group sum {within}, between-group sum {between}."
+    }
+  }
+}

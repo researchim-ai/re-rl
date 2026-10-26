@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Электрон начинает с энергией {energy}. Квант возбуждения равен {quantum}. Столкновений {n}. Если оставшейся энергии хватает на квант, она уменьшается на квант. Иначе энергия не меняется. Сколько энергии осталось?",
+      "en": "An electron starts with energy {energy}. The excitation quantum is {quantum}. There are {n} collisions. If the remaining energy is enough for one quantum, it decreases by that quantum. Otherwise the energy stays the same. How much energy remains?"
+    },
+    "s1": {
+      "ru": "Электрон начинает с энергией {energy}. Квант возбуждения равен {quantum}. Столкновений {n}. Если оставшейся энергии хватает на квант, она уменьшается на квант. Иначе энергия не меняется. Сколько столкновений уменьшили энергию?",
+      "en": "An electron starts with energy {energy}. The excitation quantum is {quantum}. There are {n} collisions. If the remaining energy is enough for one quantum, it decreases by that quantum. Otherwise the energy stays the same. How many collisions decreased the energy?"
+    },
+    "s2": {
+      "ru": "Столкновение {i}: энергия {left}, неупругих уже {drops}.",
+      "en": "Collision {i}: energy {left}, inelastic collisions so far {drops}."
+    }
+  }
+}

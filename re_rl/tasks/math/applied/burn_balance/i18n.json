@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Топлив {n}: {listing}. Пара — атомы углерода и атомы водорода. Если водород делится на 4, множитель равен 1. Если водород делится на 2, но не на 4, множитель равен 2. Если водород нечётный, множитель равен 4. Кислорода нужно множитель, умноженный на углерод, плюс множитель, умноженный на водород и делённый на 4. Воды выходит множитель, умноженный на водород и делённый на 2. Деление в этих формулах даёт целое. Сколько кислорода нужно всего?",
+      "en": "There are {n} fuels: {listing}. A pair lists carbon atoms and hydrogen atoms. If the hydrogen count divides by 4, the multiplier is 1. If it divides by 2 but not by 4, the multiplier is 2. If it is odd, the multiplier is 4. Oxygen needed is the multiplier times the carbon, plus the multiplier times the hydrogen divided by 4. Water produced is the multiplier times the hydrogen divided by 2. Division in these formulas comes out even. How much oxygen is needed in total?"
+    },
+    "s1": {
+      "ru": "Топлив {n}: {listing}. Пара — атомы углерода и атомы водорода. Если водород делится на 4, множитель равен 1. Если водород делится на 2, но не на 4, множитель равен 2. Если водород нечётный, множитель равен 4. Кислорода нужно множитель, умноженный на углерод, плюс множитель, умноженный на водород и делённый на 4. Воды выходит множитель, умноженный на водород и делённый на 2. Деление в этих формулах даёт целое. Сколько воды выходит всего?",
+      "en": "There are {n} fuels: {listing}. A pair lists carbon atoms and hydrogen atoms. If the hydrogen count divides by 4, the multiplier is 1. If it divides by 2 but not by 4, the multiplier is 2. If it is odd, the multiplier is 4. Oxygen needed is the multiplier times the carbon, plus the multiplier times the hydrogen divided by 4. Water produced is the multiplier times the hydrogen divided by 2. Division in these formulas comes out even. How much water is produced in total?"
+    },
+    "s2": {
+      "ru": "Топливо {i}: кислород всего {oxygen}, вода всего {water}.",
+      "en": "Fuel {i}: oxygen so far {oxygen}, water so far {water}."
+    }
+  }
+}

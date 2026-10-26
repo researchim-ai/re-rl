@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Независимых испытаний {n}. У каждого два целых веса: неуспех и успех. Пары весов: {listing}. Сначала вес 1 стоит при нуле успехов. Испытание умножает каждый уже полученный вес на вес неуспеха, сохраняя число успехов, и на вес успеха, увеличивая это число на 1. Чему равен суммарный вес исходов ровно с {target} успехами?",
+      "en": "There are {n} independent trials. Each has two integer weights: failure and success. The weight pairs are {listing}. At the start, weight 1 sits at zero successes. A trial multiplies every weight already obtained by the failure weight, keeping the number of successes, and by the success weight, increasing that number by 1. What is the total weight of the outcomes with exactly {target} successes?"
+    },
+    "s1": {
+      "ru": "Независимых испытаний {n}. У каждого два целых веса: неуспех и успех. Пары весов: {listing}. Сначала вес 1 стоит при нуле успехов. Испытание умножает каждый уже полученный вес на вес неуспеха, сохраняя число успехов, и на вес успеха, увеличивая это число на 1. Нужное число успехов равно {target}. Чему равен наибольший вес одного числа успехов?",
+      "en": "There are {n} independent trials. Each has two integer weights: failure and success. The weight pairs are {listing}. At the start, weight 1 sits at zero successes. A trial multiplies every weight already obtained by the failure weight, keeping the number of successes, and by the success weight, increasing that number by 1. The requested number of successes is {target}. What is the largest weight of any single success count?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: вес ровно нужного числа успехов {exact}, наибольший вес {peak}.",
+      "en": "Step {i}: weight of the requested success count {exact}, largest weight {peak}."
+    }
+  }
+}

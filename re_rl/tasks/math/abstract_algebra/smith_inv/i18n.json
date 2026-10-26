@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Даны порядки {n} циклических групп: {listing}. Инвариантные множители прямой суммы строятся по одному слагаемому. В начале список пуст. Для нового порядка m каждый уже полученный множитель d заменяется на наибольший общий делитель d и текущего m, а m заменяется на произведение (d, делённое на этот делитель) и старого m. Деление здесь точное. После всех множителей оставшееся m дописывается в конец. Тогда каждый множитель делит следующий, а произведение множителей равно произведению исходных порядков. Сколько множителей больше 1?",
+      "en": "The orders of {n} cyclic groups are {listing}. The invariant factors of the direct sum are built one summand at a time. The list starts empty. For a new order m, each factor d already obtained is replaced by the greatest common divisor of d and the current m, and m is replaced by (d divided by that divisor) times the old m. That division is exact. After every factor, the remaining m is appended. Then each factor divides the next, and the product of the factors equals the product of the original orders. How many factors are greater than 1?"
+    },
+    "s1": {
+      "ru": "Даны порядки {n} циклических групп: {listing}. Инвариантные множители прямой суммы строятся по одному слагаемому. В начале список пуст. Для нового порядка m каждый уже полученный множитель d заменяется на наибольший общий делитель d и текущего m, а m заменяется на произведение (d, делённое на этот делитель) и старого m. Деление здесь точное. После всех множителей оставшееся m дописывается в конец. Тогда каждый множитель делит следующий, а произведение множителей равно произведению исходных порядков. Чему равен последний множитель?",
+      "en": "The orders of {n} cyclic groups are {listing}. The invariant factors of the direct sum are built one summand at a time. The list starts empty. For a new order m, each factor d already obtained is replaced by the greatest common divisor of d and the current m, and m is replaced by (d divided by that divisor) times the old m. That division is exact. After every factor, the remaining m is appended. Then each factor divides the next, and the product of the factors equals the product of the original orders. What is the last factor?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: первый множитель {first}, последний множитель {last}, множителей больше 1: {count}.",
+      "en": "Step {i}: first factor {first}, last factor {last}, factors greater than 1: {count}."
+    }
+  }
+}

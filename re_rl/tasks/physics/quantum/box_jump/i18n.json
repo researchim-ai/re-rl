@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Переходов частицы в бесконечной яме {n}: {listing}. Пара — номера начального и конечного уровней. Энергия уровня в выбранных единицах равна квадрату его номера. Переход разрешён, если номера различаются на нечётное число. Энергия разрешённого перехода — модуль разности квадратов. Какова сумма энергий разрешённых переходов?",
+      "en": "There are {n} transitions of a particle in an infinite well: {listing}. A pair lists the initial and final level numbers. In the chosen units the energy of a level is the square of its number. A transition is allowed when the numbers differ by an odd amount. The energy of an allowed transition is the absolute difference of the squares. What is the sum of the energies of the allowed transitions?"
+    },
+    "s1": {
+      "ru": "Переходов частицы в бесконечной яме {n}: {listing}. Пара — номера начального и конечного уровней. Энергия уровня в выбранных единицах равна квадрату его номера. Переход разрешён, если номера различаются на нечётное число. Энергия разрешённого перехода — модуль разности квадратов. Сколько переходов разрешены?",
+      "en": "There are {n} transitions of a particle in an infinite well: {listing}. A pair lists the initial and final level numbers. In the chosen units the energy of a level is the square of its number. A transition is allowed when the numbers differ by an odd amount. The energy of an allowed transition is the absolute difference of the squares. How many transitions are allowed?"
+    },
+    "s2": {
+      "ru": "Переход {i}: разрешённых {allowed}, энергия всего {energy}.",
+      "en": "Transition {i}: allowed so far {allowed}, energy so far {energy}."
+    }
+  }
+}

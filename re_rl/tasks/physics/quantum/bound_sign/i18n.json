@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Яма из 4 узлов, потенциал {potential}. Пробных энергий {n}, они идут по возрастанию: {energies}. Слева от первого узла значение 0, в первом узле значение 1. Шаг сетки и ħ²/2m равны 1. Следующий узел равен удвоенному текущему минус предыдущий плюс разность потенциала и энергии, умноженная на текущий узел. Край — значение сразу за четвёртым узлом. Край 0 отмечает стационарную энергию. Если у двух соседних проб края ненулевые и разных знаков, стационарная энергия лежит между ними. Сколько стационарных энергий так отмечено?",
+      "en": "A well has 4 nodes and potential {potential}. There are {n} trial energies, listed in increasing order: {energies}. The value left of the first node is 0, and the first node is 1. The grid step and ħ²/2m are 1. The next node is twice the current node minus the previous node, plus the potential minus the energy, times the current node. The edge is the value just past the fourth node. An edge of 0 marks a stationary energy. If two successive trials have nonzero edges of opposite sign, a stationary energy lies between them. How many stationary energies are marked this way?"
+    },
+    "s1": {
+      "ru": "Яма из 4 узлов, потенциал {potential}. Пробных энергий {n}, они идут по возрастанию: {energies}. Слева от первого узла значение 0, в первом узле значение 1. Шаг сетки и ħ²/2m равны 1. Следующий узел равен удвоенному текущему минус предыдущий плюс разность потенциала и энергии, умноженная на текущий узел. Край — значение сразу за четвёртым узлом. Край 0 отмечает стационарную энергию. Если у двух соседних проб края ненулевые и разных знаков, стационарная энергия лежит между ними. Каков край последней пробы?",
+      "en": "A well has 4 nodes and potential {potential}. There are {n} trial energies, listed in increasing order: {energies}. The value left of the first node is 0, and the first node is 1. The grid step and ħ²/2m are 1. The next node is twice the current node minus the previous node, plus the potential minus the energy, times the current node. The edge is the value just past the fourth node. An edge of 0 marks a stationary energy. If two successive trials have nonzero edges of opposite sign, a stationary energy lies between them. What is the edge of the last trial?"
+    },
+    "s2": {
+      "ru": "Проба {i}, энергия {energy}: край {edge}, отмечено {found}.",
+      "en": "Trial {i}, energy {energy}: edge {edge}, marked {found}."
+    }
+  }
+}

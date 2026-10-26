@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две подстановки чисел от 1 до {n}. Сигма, образы по порядку: {sigma}. Тау, образы по порядку: {tau}. Сопряжённая подстановка переводит сигма от x в сигма от тау от x. Чтобы найти образ числа y, возьмите его прообраз по сигме, примените тау, затем сигму. Куда сопряжённая подстановка переводит {k}?",
+      "en": "Two permutations of the numbers from 1 to {n}. Sigma, images in order: {sigma}. Tau, images in order: {tau}. The conjugate sends sigma of x to sigma of tau of x. To find the image of a number y, take its preimage under sigma, apply tau, then apply sigma. Where does the conjugate send {k}?"
+    },
+    "s1": {
+      "ru": "Две подстановки чисел от 1 до {n}. Сигма, образы по порядку: {sigma}. Тау, образы по порядку: {tau}. Сопряжённая подстановка переводит сигма от x в сигма от тау от x. Чтобы найти образ числа y, возьмите его прообраз по сигме, примените тау, затем сигму. Сколько чисел сопряжённая подстановка оставляет на месте?",
+      "en": "Two permutations of the numbers from 1 to {n}. Sigma, images in order: {sigma}. Tau, images in order: {tau}. The conjugate sends sigma of x to sigma of tau of x. To find the image of a number y, take its preimage under sigma, apply tau, then apply sigma. How many numbers does the conjugate leave fixed?"
+    },
+    "s2": {
+      "ru": "Число {i}: образ {image}, неподвижных уже {fixed}.",
+      "en": "Number {i}: image {image}, fixed numbers so far {fixed}."
+    }
+  }
+}

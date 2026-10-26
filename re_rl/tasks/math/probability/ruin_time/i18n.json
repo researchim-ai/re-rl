@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Капитал идёт от 0 до {goal}. В 0 и в {goal} игра останавливается. Из промежуточной точки i с равной вероятностью делается шаг в i-1 или в i+1. Среднее число шагов до остановки равно 0 на краях, а в промежутке удвоенное время равно 2 плюс время слева плюс время справа. Сумма разностей от 1 до {goal} равна нулю, поэтому первая разность равна {goal}-1. Каждая следующая разность меньше на 2. Время в точке — сумма её разностей. Промежуточных точек {n}. Чему равно среднее число шагов из точки {start}?",
+      "en": "Capital runs from 0 to {goal}. The game stops at 0 and at {goal}. From an interior point i, a step goes to i-1 or to i+1 with equal probability. The expected number of steps until stopping is 0 at the ends, and in the interior twice the time equals 2 plus the time on the left plus the time on the right. The sum of the differences from 1 through {goal} is 0, so the first difference is {goal}-1. Each later difference is 2 smaller. The time at a point is the sum of its differences. There are {n} interior points. What is the expected number of steps from point {start}?"
+    },
+    "s1": {
+      "ru": "Капитал идёт от 0 до {goal}. В 0 и в {goal} игра останавливается. Из промежуточной точки i с равной вероятностью делается шаг в i-1 или в i+1. Среднее число шагов до остановки равно 0 на краях, а в промежутке удвоенное время равно 2 плюс время слева плюс время справа. Сумма разностей от 1 до {goal} равна нулю, поэтому первая разность равна {goal}-1. Каждая следующая разность меньше на 2. Время в точке — сумма её разностей. Промежуточных точек {n}. Чему равна сумма средних времён по всем промежуточным точкам?",
+      "en": "Capital runs from 0 to {goal}. The game stops at 0 and at {goal}. From an interior point i, a step goes to i-1 or to i+1 with equal probability. The expected number of steps until stopping is 0 at the ends, and in the interior twice the time equals 2 plus the time on the left plus the time on the right. The sum of the differences from 1 through {goal} is 0, so the first difference is {goal}-1. Each later difference is 2 smaller. The time at a point is the sum of its differences. There are {n} interior points. What is the sum of the expected times over all interior points?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: среднее время {span}, сумма времён {total}.",
+      "en": "Step {i}: expected time {span}, sum of times {total}."
+    }
+  }
+}

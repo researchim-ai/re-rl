@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Связей между узлами {n}. Действительная часть, слева направо: {real}. Мнимая часть: {imag}. В единицах ħ = 1 и m = 1 ток через связь равен действительной части левого узла, умноженной на мнимую часть правого, минус мнимая часть левого, умноженная на действительную часть правого. Каков ток через связь {k}, считая связи с 1?",
+      "en": "There are {n} bonds between nodes. The real part, from left to right, is {real}. The imaginary part is {imag}. In units ħ = 1 and m = 1, the current across a bond is the real part of the left node times the imaginary part of the right node, minus the imaginary part of the left node times the real part of the right node. What is the current across bond {k}, counting bonds from 1?"
+    },
+    "s1": {
+      "ru": "Связей между узлами {n}. Действительная часть, слева направо: {real}. Мнимая часть: {imag}. В единицах ħ = 1 и m = 1 ток через связь равен действительной части левого узла, умноженной на мнимую часть правого, минус мнимая часть левого, умноженная на действительную часть правого. Какова сумма токов по всем связям?",
+      "en": "There are {n} bonds between nodes. The real part, from left to right, is {real}. The imaginary part is {imag}. In units ħ = 1 and m = 1, the current across a bond is the real part of the left node times the imaginary part of the right node, minus the imaginary part of the left node times the real part of the right node. What is the sum of the currents over all bonds?"
+    },
+    "s2": {
+      "ru": "Связь {i}: ток {current}, сумма токов {total}.",
+      "en": "Bond {i}: current {current}, sum of currents {total}."
+    }
+  }
+}
