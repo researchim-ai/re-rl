@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Круговая орбита начинает с радиуса {radius} и периода {period}. Квадрат периода равен кубу радиуса. Шагов {n}. Первое число 0 означает увеличение, 1 — уменьшение, второе число k не меньше 2. При увеличении радиус умножается на k в квадрате, период — на k в кубе. При уменьшении радиус делится на k в квадрате, период — на k в кубе. Деление точное. Шаги: {listing}. Какой период в конце?",
+      "en": "A circular orbit starts with radius {radius} and period {period}. The square of the period equals the cube of the radius. There are {n} steps. A first number 0 means growth and 1 means shrinkage; the second number k is at least 2. On growth the radius is multiplied by k squared and the period by k cubed. On shrinkage the radius is divided by k squared and the period by k cubed. The division is exact. The steps are {listing}. What is the final period?"
+    },
+    "s1": {
+      "ru": "Круговая орбита начинает с радиуса {radius} и периода {period}. Квадрат периода равен кубу радиуса. Шагов {n}. Первое число 0 означает увеличение, 1 — уменьшение, второе число k не меньше 2. При увеличении радиус умножается на k в квадрате, период — на k в кубе. При уменьшении радиус делится на k в квадрате, период — на k в кубе. Деление точное. Шаги: {listing}. Какой радиус в конце?",
+      "en": "A circular orbit starts with radius {radius} and period {period}. The square of the period equals the cube of the radius. There are {n} steps. A first number 0 means growth and 1 means shrinkage; the second number k is at least 2. On growth the radius is multiplied by k squared and the period by k cubed. On shrinkage the radius is divided by k squared and the period by k cubed. The division is exact. The steps are {listing}. What is the final radius?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: радиус {radius}, период {period}.",
+      "en": "Step {i}: radius {radius}, period {period}."
+    }
+  }
+}

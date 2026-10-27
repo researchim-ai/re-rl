@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тонких собирающих линз {n}. Фокусные расстояния по ходу луча: {focals}. Предмет стоит перед первой линзой на расстоянии {distance}. Расстояния между соседними линзами: {gaps}. Предмет дальше фокуса, изображение действительное и находится за линзой. Его расстояние равно произведению расстояния до предмета и фокуса, делённому на их разность; деление точное. Если за линзой есть следующая, расстояние от изображения до неё вычитается из промежутка и становится расстоянием до предмета для следующей линзы. Это расстояние положительно. На каком расстоянии от последней линзы получается её изображение?",
+      "en": "There are {n} thin converging lenses. The focal lengths along the ray are {focals}. The object stands {distance} in front of the first lens. The distances between neighboring lenses are {gaps}. The object is beyond the focus, and the image is real and lies behind the lens. Its distance equals the object distance times the focal length, divided by their difference; the division is exact. If another lens follows, the gap minus the image distance is the object distance for that next lens. That distance is positive. How far from the last lens is its image?"
+    },
+    "s1": {
+      "ru": "Тонких собирающих линз {n}. Фокусные расстояния по ходу луча: {focals}. Предмет стоит перед первой линзой на расстоянии {distance}. Расстояния между соседними линзами: {gaps}. Предмет дальше фокуса, изображение действительное и находится за линзой. Его расстояние равно произведению расстояния до предмета и фокуса, делённому на их разность; деление точное. Если за линзой есть следующая, расстояние от изображения до неё вычитается из промежутка и становится расстоянием до предмета для следующей линзы. Это расстояние положительно. Чему равна сумма расстояний до изображений всех линз?",
+      "en": "There are {n} thin converging lenses. The focal lengths along the ray are {focals}. The object stands {distance} in front of the first lens. The distances between neighboring lenses are {gaps}. The object is beyond the focus, and the image is real and lies behind the lens. Its distance equals the object distance times the focal length, divided by their difference; the division is exact. If another lens follows, the gap minus the image distance is the object distance for that next lens. That distance is positive. What is the sum of the image distances of all the lenses?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: расстояние до изображения {image}, сумма расстояний {total}.",
+      "en": "Step {i}: image distance {image}, sum of distances {total}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Наблюдений {n}. Каждое — пара битов 0 или 1: {listing}. N — число уже учтённых пар. n11 — сколько раз встретилась пара 1 1. Строка единиц — сколько раз первый бит равен 1, столбец единиц — сколько раз второй бит равен 1. Знаковый дефект равен N * n11 минус произведение строки и столбца. Модуль того же дефекта получается из любой другой клетки. Чему равен знаковый дефект в конце?",
+      "en": "There are {n} observations. Each is a pair of bits 0 or 1: {listing}. N is the number of pairs already counted. n11 is how often the pair 1 1 occurred. The ones-row is how often the first bit is 1, and the ones-column is how often the second bit is 1. The signed defect is N * n11 minus the product of that row and that column. The absolute value of the same defect comes from any other cell. What is the signed defect at the end?"
+    },
+    "s1": {
+      "ru": "Наблюдений {n}. Каждое — пара битов 0 или 1: {listing}. N — число уже учтённых пар. n11 — сколько раз встретилась пара 1 1. Строка единиц — сколько раз первый бит равен 1, столбец единиц — сколько раз второй бит равен 1. Знаковый дефект равен N * n11 минус произведение строки и столбца. Модуль того же дефекта получается из любой другой клетки. Чему равен модуль дефекта в конце?",
+      "en": "There are {n} observations. Each is a pair of bits 0 or 1: {listing}. N is the number of pairs already counted. n11 is how often the pair 1 1 occurred. The ones-row is how often the first bit is 1, and the ones-column is how often the second bit is 1. The signed defect is N * n11 minus the product of that row and that column. The absolute value of the same defect comes from any other cell. What is the absolute defect at the end?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: знаковый дефект {signed}, модуль {gap}.",
+      "en": "Step {i}: signed defect {signed}, absolute value {gap}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Уровень начинается с 1. Скачки: {listing}. Их {n}. Приращение уровня равно текущему уровню, умноженному на скачок. Квадратичная вариация прибавляет квадрат этого приращения. Новый уровень равен старому плюс приращение, то есть старому уровню, умноженному на единицу плюс скачок. Уровень равен единице плюс сумма приращений. Чему равен уровень?",
+      "en": "The level starts at 1. The jumps are {listing}. There are {n} of them. The level increment equals the current level times the jump. The quadratic variation adds the square of that increment. The new level equals the old level plus the increment, which is the old level times one plus the jump. The level equals one plus the sum of the increments. What is the level?"
+    },
+    "s1": {
+      "ru": "Уровень начинается с 1. Скачки: {listing}. Их {n}. Приращение уровня равно текущему уровню, умноженному на скачок. Квадратичная вариация прибавляет квадрат этого приращения. Новый уровень равен старому плюс приращение, то есть старому уровню, умноженному на единицу плюс скачок. Уровень равен единице плюс сумма приращений. Чему равна квадратичная вариация?",
+      "en": "The level starts at 1. The jumps are {listing}. There are {n} of them. The level increment equals the current level times the jump. The quadratic variation adds the square of that increment. The new level equals the old level plus the increment, which is the old level times one plus the jump. The level equals one plus the sum of the increments. What is the quadratic variation?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: уровень {level}, квадратичная вариация {quad}.",
+      "en": "Step {i}: level {level}, quadratic variation {quad}."
+    }
+  }
+}

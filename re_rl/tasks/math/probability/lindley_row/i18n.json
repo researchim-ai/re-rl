@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Приращения нагрузки: {listing}. Их {n}. Свободная сумма начинается с 0 и прибавляет очередное приращение. Минимум — наименьшая свободная сумма от старта, где сумма ещё равна 0, до текущего шага включительно. Ожидание равно свободной сумме минус этот минимум. Регулятор равен минус минимуму. Ожидание также равно свободной сумме плюс регулятор. Чему равно ожидание?",
+      "en": "The load increments are {listing}. There are {n} of them. The free sum starts at 0 and adds the next increment. The minimum is the smallest free sum from the start, where the sum is still 0, through the current step. The waiting time equals the free sum minus this minimum. The regulator equals minus the minimum. The waiting time also equals the free sum plus the regulator. What is the waiting time?"
+    },
+    "s1": {
+      "ru": "Приращения нагрузки: {listing}. Их {n}. Свободная сумма начинается с 0 и прибавляет очередное приращение. Минимум — наименьшая свободная сумма от старта, где сумма ещё равна 0, до текущего шага включительно. Ожидание равно свободной сумме минус этот минимум. Регулятор равен минус минимуму. Ожидание также равно свободной сумме плюс регулятор. Чему равен регулятор?",
+      "en": "The load increments are {listing}. There are {n} of them. The free sum starts at 0 and adds the next increment. The minimum is the smallest free sum from the start, where the sum is still 0, through the current step. The waiting time equals the free sum minus this minimum. The regulator equals minus the minimum. The waiting time also equals the free sum plus the regulator. What is the regulator?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: ожидание {wait}, регулятор {push}.",
+      "en": "Step {i}: waiting time {wait}, regulator {push}."
+    }
+  }
+}

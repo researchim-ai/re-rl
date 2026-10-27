@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Квадратная матрица порядка {n}. Строки разделены точкой с запятой: {listing}. Ведущие миноры не равны нулю, и исключение Гаусса идёт без перестановок строк. На каждом столбце опорный элемент — текущий диагональный. Для каждой строки ниже множитель равен её элементу в этом столбце, делённому нацело на опорный. Из строки вычитается множитель, умноженный на опорную строку, начиная с этого столбца. Сумма множителей копит все такие частные. Определитель равен произведению опорных элементов. Чему равен определитель?",
+      "en": "The square matrix has order {n}. Rows are separated by semicolons: {listing}. The leading minors are not zero, and Gaussian elimination uses no row swaps. In each column the pivot is the current diagonal entry. For every row below it, the multiplier is that row's entry in the column divided exactly by the pivot. The multiplier times the pivot row is subtracted from that row, starting at this column. The multiplier total adds every such quotient. The determinant equals the product of the pivots. What is the determinant?"
+    },
+    "s1": {
+      "ru": "Квадратная матрица порядка {n}. Строки разделены точкой с запятой: {listing}. Ведущие миноры не равны нулю, и исключение Гаусса идёт без перестановок строк. На каждом столбце опорный элемент — текущий диагональный. Для каждой строки ниже множитель равен её элементу в этом столбце, делённому нацело на опорный. Из строки вычитается множитель, умноженный на опорную строку, начиная с этого столбца. Сумма множителей копит все такие частные. Определитель равен произведению опорных элементов. Чему равна сумма множителей?",
+      "en": "The square matrix has order {n}. Rows are separated by semicolons: {listing}. The leading minors are not zero, and Gaussian elimination uses no row swaps. In each column the pivot is the current diagonal entry. For every row below it, the multiplier is that row's entry in the column divided exactly by the pivot. The multiplier times the pivot row is subtracted from that row, starting at this column. The multiplier total adds every such quotient. The determinant equals the product of the pivots. What is the multiplier total?"
+    },
+    "s2": {
+      "ru": "Столбец {i}: опорный {pivot}, сумма множителей {mult}.",
+      "en": "Column {i}: pivot {pivot}, multiplier total {mult}."
+    }
+  }
+}

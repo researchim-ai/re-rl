@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Позиция начинается с {start}. Приращения: {listing}. Их {n}. Интеграл по левому концу прибавляет текущую позицию, умноженную на приращение, и только потом позиция сдвигается на это приращение. Квадратичная вариация прибавляет квадрат приращения. Квадрат конечной позиции минус квадрат начальной равен удвоенному интегралу плюс квадратичная вариация. Чему равен интеграл?",
+      "en": "The position starts at {start}. The increments are {listing}. There are {n} of them. The left-endpoint integral adds the current position times the increment, and only then the position moves by that increment. The quadratic variation adds the square of the increment. The square of the final position minus the square of the start equals twice the integral plus the quadratic variation. What is the integral?"
+    },
+    "s1": {
+      "ru": "Позиция начинается с {start}. Приращения: {listing}. Их {n}. Интеграл по левому концу прибавляет текущую позицию, умноженную на приращение, и только потом позиция сдвигается на это приращение. Квадратичная вариация прибавляет квадрат приращения. Квадрат конечной позиции минус квадрат начальной равен удвоенному интегралу плюс квадратичная вариация. Чему равна квадратичная вариация?",
+      "en": "The position starts at {start}. The increments are {listing}. There are {n} of them. The left-endpoint integral adds the current position times the increment, and only then the position moves by that increment. The quadratic variation adds the square of the increment. The square of the final position minus the square of the start equals twice the integral plus the quadratic variation. What is the quadratic variation?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: интеграл {ito}, квадратичная вариация {quad}.",
+      "en": "Step {i}: integral {ito}, quadratic variation {quad}."
+    }
+  }
+}

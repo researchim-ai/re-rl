@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Три ячейки стержня, концы теплоизолированы. Числа — отклонение от комнаты и могут быть отрицательными: {listing}. Шагов {n}. На каждом шаге новая тройка (левая, средняя, правая) связана со старой уравнениями: удвоенная новая левая минус новая средняя равна старой левой; минус новая левая плюс утроенная новая средняя минус новая правая равна старой средней; минус новая средняя плюс удвоенная новая правая равна старой правой. Новая тройка становится старой для следующего шага. Чему равна правая ячейка в конце?",
+      "en": "A rod has three cells and insulated ends. The numbers are the deviation from room temperature and may be negative: {listing}. There are {n} steps. At every step the new triple (left, middle, right) is tied to the old one by these equations: twice the new left minus the new middle equals the old left; minus the new left plus three times the new middle minus the new right equals the old middle; minus the new middle plus twice the new right equals the old right. The new triple becomes the old one for the next step. What is the right cell at the end?"
+    },
+    "s1": {
+      "ru": "Три ячейки стержня, концы теплоизолированы. Числа — отклонение от комнаты и могут быть отрицательными: {listing}. Шагов {n}. На каждом шаге новая тройка (левая, средняя, правая) связана со старой уравнениями: удвоенная новая левая минус новая средняя равна старой левой; минус новая левая плюс утроенная новая средняя минус новая правая равна старой средней; минус новая средняя плюс удвоенная новая правая равна старой правой. Новая тройка становится старой для следующего шага. Чему равна сумма квадратов трёх ячеек в конце?",
+      "en": "A rod has three cells and insulated ends. The numbers are the deviation from room temperature and may be negative: {listing}. There are {n} steps. At every step the new triple (left, middle, right) is tied to the old one by these equations: twice the new left minus the new middle equals the old left; minus the new left plus three times the new middle minus the new right equals the old middle; minus the new middle plus twice the new right equals the old right. The new triple becomes the old one for the next step. What is the sum of the squares of the three cells at the end?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: левая {left}, средняя {mid}, правая {right}, сумма квадратов {energy}.",
+      "en": "Step {i}: left {left}, middle {mid}, right {right}, sum of squares {energy}."
+    }
+  }
+}

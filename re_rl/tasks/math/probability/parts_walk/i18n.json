@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Первая позиция начинается с {x0}, вторая с {y0}. Пары приращений: {listing}. Их {n}. Левый интеграл первой по второй прибавляет первую позицию до шага, умноженную на приращение второй. Левый интеграл второй по первой прибавляет вторую позицию до шага, умноженную на приращение первой. Ковариация прибавляет произведение приращений. Площадь прибавляет первую позицию на приращение второй минус вторую позицию на приращение первой. После этого обе позиции сдвигаются. Произведение позиций минус начальное произведение равно сумме двух левых интегралов и ковариации. Чему равна ковариация?",
+      "en": "The first position starts at {x0} and the second at {y0}. The increment pairs are {listing}. There are {n} of them. The left integral of the first against the second adds the first position before the step times the second increment. The left integral of the second against the first adds the second position before the step times the first increment. The covariation adds the product of the increments. The area adds the first position times the second increment minus the second position times the first increment. After that, both positions move. The product of the positions minus the initial product equals the two left integrals plus the covariation. What is the covariation?"
+    },
+    "s1": {
+      "ru": "Первая позиция начинается с {x0}, вторая с {y0}. Пары приращений: {listing}. Их {n}. Левый интеграл первой по второй прибавляет первую позицию до шага, умноженную на приращение второй. Левый интеграл второй по первой прибавляет вторую позицию до шага, умноженную на приращение первой. Ковариация прибавляет произведение приращений. Площадь прибавляет первую позицию на приращение второй минус вторую позицию на приращение первой. После этого обе позиции сдвигаются. Произведение позиций минус начальное произведение равно сумме двух левых интегралов и ковариации. Чему равна площадь?",
+      "en": "The first position starts at {x0} and the second at {y0}. The increment pairs are {listing}. There are {n} of them. The left integral of the first against the second adds the first position before the step times the second increment. The left integral of the second against the first adds the second position before the step times the first increment. The covariation adds the product of the increments. The area adds the first position times the second increment minus the second position times the first increment. After that, both positions move. The product of the positions minus the initial product equals the two left integrals plus the covariation. What is the area?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: ковариация {cov}, площадь {area}.",
+      "en": "Step {i}: covariation {cov}, area {area}."
+    }
+  }
+}

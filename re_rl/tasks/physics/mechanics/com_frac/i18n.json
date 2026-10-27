@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тел {n}. Пары — масса и координата, тела добавляются по порядку: {listing}. Момент равен сумме произведений массы на координату, полная масса — сумме масс. Центр масс — момент, делённый на полную массу. Дробь сокращается после каждого тела, знаменатель положителен. Чему равен числитель конечного центра масс?",
+      "en": "There are {n} bodies. The pairs are mass and coordinate, and the bodies are added in order: {listing}. The moment is the sum of mass times coordinate, and the total mass is the sum of the masses. The center of mass is the moment divided by the total mass. The fraction is reduced after every body, and the denominator is positive. What is the numerator of the final center of mass?"
+    },
+    "s1": {
+      "ru": "Тел {n}. Пары — масса и координата, тела добавляются по порядку: {listing}. Момент равен сумме произведений массы на координату, полная масса — сумме масс. Центр масс — момент, делённый на полную массу. Дробь сокращается после каждого тела, знаменатель положителен. Чему равен знаменатель конечного центра масс?",
+      "en": "There are {n} bodies. The pairs are mass and coordinate, and the bodies are added in order: {listing}. The moment is the sum of mass times coordinate, and the total mass is the sum of the masses. The center of mass is the moment divided by the total mass. The fraction is reduced after every body, and the denominator is positive. What is the denominator of the final center of mass?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: числитель {numer}, знаменатель {denom}.",
+      "en": "Step {i}: numerator {numer}, denominator {denom}."
+    }
+  }
+}

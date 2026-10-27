@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Квадратная матрица порядка {n}. Строки разделены точкой с запятой: {listing}. Рабочая матрица начинает равной исходной. Первый коэффициент равен минус следу, без деления. На шаге k, начиная с 2, предыдущий коэффициент прибавляется к диагонали рабочей матрицы, и результат умножается слева на исходную матрицу. Новый коэффициент равен минус следу этой матрицы, делённому нацело на k. После последнего шага рабочая матрица плюс последний коэффициент на диагонали равна нулю. Последний коэффициент — свободный член характеристического многочлена. При чётном порядке он равен определителю, при нечётном он равен минус определителю. Чему равен свободный член?",
+      "en": "The square matrix has order {n}. Rows are separated by semicolons: {listing}. The working matrix starts equal to the original matrix. The first coefficient is minus the trace, with no division. At step k, starting from 2, the previous coefficient is added to the diagonal of the working matrix, and the result is multiplied on the left by the original matrix. The new coefficient is minus the trace of that matrix, divided exactly by k. After the last step the working matrix plus the last coefficient on the diagonal is zero. The last coefficient is the constant term of the characteristic polynomial. For an even order it equals the determinant, and for an odd order it equals minus the determinant. What is the constant term?"
+    },
+    "s1": {
+      "ru": "Квадратная матрица порядка {n}. Строки разделены точкой с запятой: {listing}. Рабочая матрица начинает равной исходной. Первый коэффициент равен минус следу, без деления. На шаге k, начиная с 2, предыдущий коэффициент прибавляется к диагонали рабочей матрицы, и результат умножается слева на исходную матрицу. Новый коэффициент равен минус следу этой матрицы, делённому нацело на k. После последнего шага рабочая матрица плюс последний коэффициент на диагонали равна нулю. Коэффициент второго шага равен сумме главных миноров порядка 2. Минор двух индексов равен произведению двух диагональных элементов минус произведение двух элементов на перекрёстке. Чему равен коэффициент второго шага?",
+      "en": "The square matrix has order {n}. Rows are separated by semicolons: {listing}. The working matrix starts equal to the original matrix. The first coefficient is minus the trace, with no division. At step k, starting from 2, the previous coefficient is added to the diagonal of the working matrix, and the result is multiplied on the left by the original matrix. The new coefficient is minus the trace of that matrix, divided exactly by k. After the last step the working matrix plus the last coefficient on the diagonal is zero. The coefficient from the second step equals the sum of the principal minors of order 2. The minor of two indices equals the product of the two diagonal entries minus the product of the two crossing entries. What is the coefficient from the second step?"
+    },
+    "s2": {
+      "ru": "Шаг {k}: коэффициент {coef}. Матрица {grid}.",
+      "en": "Step {k}: coefficient {coef}. The matrix is {grid}."
+    }
+  }
+}

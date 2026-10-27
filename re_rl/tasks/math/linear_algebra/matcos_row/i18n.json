@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матрица 2 на 2 имеет первую строку {a} {b} и вторую строку {c} {d}. Ряд идёт до степени {n} включительно, и каждый член уже умножен на факториал числа {n}. Член степени 0 равен этому факториалу на диагонали и нулю вне диагонали. Следующий член равен произведению матрицы на предыдущий член, после чего каждый элемент делится нацело на номер степени. В косинус идут только чётные степени. Если степень равна 2m, знак плюс при чётном m и минус при нечётном m. Ноль чётен. В синус идут только нечётные степени: у степени 2m+1 тот же знак по m. Чему равен верхний левый элемент косинуса?",
+      "en": "The 2 by 2 matrix has first row {a} {b} and second row {c} {d}. The series runs through degree {n}, and every term is already multiplied by the factorial of {n}. The degree-zero term equals that factorial on the diagonal and zero off the diagonal. The next term equals the matrix times the previous term, after which every entry is divided exactly by the degree. Only even degrees go into the cosine. If the degree is 2m, the sign is plus when m is even and minus when m is odd. Zero is even. Only odd degrees go into the sine: degree 2m+1 uses the same sign in m. What is the top-left entry of the cosine?"
+    },
+    "s1": {
+      "ru": "Матрица 2 на 2 имеет первую строку {a} {b} и вторую строку {c} {d}. Ряд идёт до степени {n} включительно, и каждый член уже умножен на факториал числа {n}. Член степени 0 равен этому факториалу на диагонали и нулю вне диагонали. Следующий член равен произведению матрицы на предыдущий член, после чего каждый элемент делится нацело на номер степени. В косинус идут только чётные степени. Если степень равна 2m, знак плюс при чётном m и минус при нечётном m. Ноль чётен. В синус идут только нечётные степени: у степени 2m+1 тот же знак по m. Чему равен верхний левый элемент синуса?",
+      "en": "The 2 by 2 matrix has first row {a} {b} and second row {c} {d}. The series runs through degree {n}, and every term is already multiplied by the factorial of {n}. The degree-zero term equals that factorial on the diagonal and zero off the diagonal. The next term equals the matrix times the previous term, after which every entry is divided exactly by the degree. Only even degrees go into the cosine. If the degree is 2m, the sign is plus when m is even and minus when m is odd. Zero is even. Only odd degrees go into the sine: degree 2m+1 uses the same sign in m. What is the top-left entry of the sine?"
+    },
+    "s2": {
+      "ru": "Степень 0: косинус равен {c00} {c01}; {c10} {c11}. Синус равен {s00} {s01}; {s10} {s11}.",
+      "en": "Degree 0: the cosine is {c00} {c01}; {c10} {c11}. The sine is {s00} {s01}; {s10} {s11}."
+    },
+    "s3": {
+      "ru": "Степень {k}: косинус равен {c00} {c01}; {c10} {c11}. Синус равен {s00} {s01}; {s10} {s11}.",
+      "en": "Degree {k}: the cosine is {c00} {c01}; {c10} {c11}. The sine is {s00} {s01}; {s10} {s11}."
+    }
+  }
+}

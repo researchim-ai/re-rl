@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Позиция начинается с {start}. Шаги равны 1 или минус 1: {listing}. Их {n}. Знак положительной позиции равен 1, знак отрицательной равен минус 1, знак нуля равен 0. Интеграл знака прибавляет знак текущей позиции, умноженный на шаг, и только потом позиция сдвигается. Если шаг начинается в нуле, локальное время растёт на 1. Модуль позиции равен модулю старта плюс интеграл знака плюс локальное время. Чему равен интеграл знака?",
+      "en": "The position starts at {start}. The steps are 1 or minus 1: {listing}. There are {n} of them. The sign of a positive position is 1, the sign of a negative position is minus 1, and the sign of zero is 0. The sign integral adds the sign of the current position times the step, and only then the position moves. If a step starts at zero, the local time grows by 1. The absolute value of the position equals the absolute value of the start plus the sign integral plus the local time. What is the sign integral?"
+    },
+    "s1": {
+      "ru": "Позиция начинается с {start}. Шаги равны 1 или минус 1: {listing}. Их {n}. Знак положительной позиции равен 1, знак отрицательной равен минус 1, знак нуля равен 0. Интеграл знака прибавляет знак текущей позиции, умноженный на шаг, и только потом позиция сдвигается. Если шаг начинается в нуле, локальное время растёт на 1. Модуль позиции равен модулю старта плюс интеграл знака плюс локальное время. Чему равно локальное время?",
+      "en": "The position starts at {start}. The steps are 1 or minus 1: {listing}. There are {n} of them. The sign of a positive position is 1, the sign of a negative position is minus 1, and the sign of zero is 0. The sign integral adds the sign of the current position times the step, and only then the position moves. If a step starts at zero, the local time grows by 1. The absolute value of the position equals the absolute value of the start plus the sign integral plus the local time. What is the local time?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: интеграл знака {signed}, локальное время {local}.",
+      "en": "Step {i}: sign integral {signed}, local time {local}."
+    }
+  }
+}

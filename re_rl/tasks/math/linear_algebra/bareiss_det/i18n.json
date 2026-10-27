@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Квадратная матрица порядка {n}. Строки разделены точкой с запятой: {listing}. Ведущие миноры не равны нулю. Делитель начинается с 1. На шаге опорный элемент — текущий диагональный. Для каждой более нижней строки и каждого более правого столбца новый элемент равен опорному, умноженному на старый элемент, минус элемент строки в опорном столбце, умноженный на элемент опорной строки в этом столбце. Частное от деления этой разности нацело на текущий делитель записывается на место старого элемента. После всего нижнего блока делитель становится равен опорному элементу, взятому до этого пересчёта. Правый нижний элемент в конце равен определителю. Чему равен определитель?",
+      "en": "The square matrix has order {n}. Rows are separated by semicolons: {listing}. The leading minors are not zero. The divisor starts at 1. At a step the pivot is the current diagonal entry. For every lower row and every column to the right, the new entry equals the pivot times the old entry minus the row's pivot-column entry times the pivot row's entry in that column. The exact quotient of that difference by the current divisor replaces the old entry. After the whole lower block, the divisor becomes the pivot taken before this update. The final bottom-right entry equals the determinant. What is the determinant?"
+    },
+    "s1": {
+      "ru": "Квадратная матрица порядка {n}. Строки разделены точкой с запятой: {listing}. Ведущие миноры не равны нулю. Делитель начинается с 1. На шаге опорный элемент — текущий диагональный. Для каждой более нижней строки и каждого более правого столбца новый элемент равен опорному, умноженному на старый элемент, минус элемент строки в опорном столбце, умноженный на элемент опорной строки в этом столбце. Частное от деления этой разности нацело на текущий делитель записывается на место старого элемента. После всего нижнего блока делитель становится равен опорному элементу, взятому до этого пересчёта. Правый нижний элемент в конце равен определителю. Последний опорный элемент — ведущий минор порядка на один меньше. Чему равен этот минор?",
+      "en": "The square matrix has order {n}. Rows are separated by semicolons: {listing}. The leading minors are not zero. The divisor starts at 1. At a step the pivot is the current diagonal entry. For every lower row and every column to the right, the new entry equals the pivot times the old entry minus the row's pivot-column entry times the pivot row's entry in that column. The exact quotient of that difference by the current divisor replaces the old entry. After the whole lower block, the divisor becomes the pivot taken before this update. The final bottom-right entry equals the determinant. The last pivot is the leading minor of order one less. What is that minor?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: опорный {pivot}, правый нижний {corner}.",
+      "en": "Step {i}: pivot {pivot}, bottom-right {corner}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Симметричная трёхдиагональная матрица порядка {n}. Диагональ: {diag}. Боковые элементы, по одному между соседними диагональными: {off}. Минор пустой матрицы равен 1. Минор первого порядка равен первому диагональному элементу. Каждый следующий минор равен своему диагональному элементу, умноженному на предыдущий минор, минус квадрат своего бокового элемента, умноженный на минор ещё на шаг раньше. Чему равен определитель всей матрицы?",
+      "en": "A symmetric tridiagonal matrix has order {n}. The diagonal is {diag}. The off-diagonal entries, one between each neighboring diagonal pair, are {off}. The minor of the empty matrix is 1. The first-order minor is the first diagonal entry. Each later minor equals its diagonal entry times the previous minor, minus the square of its off-diagonal entry times the minor one step earlier. What is the determinant of the whole matrix?"
+    },
+    "s1": {
+      "ru": "Симметричная трёхдиагональная матрица порядка {n}. Диагональ: {diag}. Боковые элементы, по одному между соседними диагональными: {off}. Минор пустой матрицы равен 1. Минор первого порядка равен первому диагональному элементу. Каждый следующий минор равен своему диагональному элементу, умноженному на предыдущий минор, минус квадрат своего бокового элемента, умноженный на минор ещё на шаг раньше. Чему равен минор без последней строки и последнего столбца?",
+      "en": "A symmetric tridiagonal matrix has order {n}. The diagonal is {diag}. The off-diagonal entries, one between each neighboring diagonal pair, are {off}. The minor of the empty matrix is 1. The first-order minor is the first diagonal entry. Each later minor equals its diagonal entry times the previous minor, minus the square of its off-diagonal entry times the minor one step earlier. What is the minor with the last row and the last column removed?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: минор {det}, предыдущий минор {prev}.",
+      "en": "Step {i}: minor {det}, previous minor {prev}."
+    }
+  }
+}

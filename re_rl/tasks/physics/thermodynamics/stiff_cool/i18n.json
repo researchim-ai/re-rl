@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Температура начинает с {start}, комната равна {room}. Тактов {n}, их размеры: {listing}. Неявный шаг размера s считает наклон уже в новой температуре: (1 + s) умножить на новую температуру равно старой плюс s, умноженное на комнату. Деление точное. Явный шаг того же размера равен старой температуре плюс s, умноженное на (комната минус старая), и может оказаться по другую сторону от комнаты. Какая температура после всех неявных шагов?",
+      "en": "The temperature starts at {start} and the room is {room}. There are {n} ticks, and their sizes are {listing}. An implicit step of size s uses the slope at the new temperature: (1 + s) times the new temperature equals the old temperature plus s times the room. The division is exact. An explicit step of the same size equals the old temperature plus s times (room minus old temperature), and it can land on the other side of the room. What is the temperature after every implicit step?"
+    },
+    "s1": {
+      "ru": "Температура начинает с {start}, комната равна {room}. Тактов {n}, их размеры: {listing}. Неявный шаг размера s считает наклон уже в новой температуре: (1 + s) умножить на новую температуру равно старой плюс s, умноженное на комнату. Деление точное. Явный шаг того же размера равен старой температуре плюс s, умноженное на (комната минус старая), и может оказаться по другую сторону от комнаты. Чему равно отклонение неявной температуры от комнаты в конце?",
+      "en": "The temperature starts at {start} and the room is {room}. There are {n} ticks, and their sizes are {listing}. An implicit step of size s uses the slope at the new temperature: (1 + s) times the new temperature equals the old temperature plus s times the room. The division is exact. An explicit step of the same size equals the old temperature plus s times (room minus old temperature), and it can land on the other side of the room. What is the final implicit temperature minus the room?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: неявная температура {temp}, отклонение {gap}, явный шаг дал бы {explicit}.",
+      "en": "Step {i}: implicit temperature {temp}, deviation {gap}, the explicit step would give {explicit}."
+    }
+  }
+}

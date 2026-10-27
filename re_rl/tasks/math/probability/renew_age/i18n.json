@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Промежутки между восстановлениями: {listing}. Их {n}. Горизонт равен {horizon}. Промежуток целиком укладывается в горизонт, если сумма с предыдущими не больше горизонта: тогда число восстановлений растёт на 1, а запас — горизонт минус эта сумма. Первый промежуток, который выводит сумму за горизонт, число восстановлений не увеличивает. Возраст равен горизонту минус сумму уложившихся промежутков. Дальше и число, и возраст не меняются. Если сумма всех промежутков не больше горизонта, восстановлений столько, сколько промежутков, а возраст — горизонт минус эта сумма. Сколько восстановлений?",
+      "en": "The gaps between renewals are {listing}. There are {n} of them. The horizon is {horizon}. A gap fits inside the horizon when the sum with the earlier gaps is not greater than the horizon: then the number of renewals grows by 1, and the slack is the horizon minus that sum. The first gap that pushes the sum past the horizon does not increase the number of renewals. The age is the horizon minus the sum of the gaps that fit. After that, both the number and the age stay the same. If the sum of every gap is still within the horizon, the renewals are all the gaps and the age is the horizon minus that sum. How many renewals are there?"
+    },
+    "s1": {
+      "ru": "Промежутки между восстановлениями: {listing}. Их {n}. Горизонт равен {horizon}. Промежуток целиком укладывается в горизонт, если сумма с предыдущими не больше горизонта: тогда число восстановлений растёт на 1, а запас — горизонт минус эта сумма. Первый промежуток, который выводит сумму за горизонт, число восстановлений не увеличивает. Возраст равен горизонту минус сумму уложившихся промежутков. Дальше и число, и возраст не меняются. Если сумма всех промежутков не больше горизонта, восстановлений столько, сколько промежутков, а возраст — горизонт минус эта сумма. Чему равен возраст?",
+      "en": "The gaps between renewals are {listing}. There are {n} of them. The horizon is {horizon}. A gap fits inside the horizon when the sum with the earlier gaps is not greater than the horizon: then the number of renewals grows by 1, and the slack is the horizon minus that sum. The first gap that pushes the sum past the horizon does not increase the number of renewals. The age is the horizon minus the sum of the gaps that fit. After that, both the number and the age stay the same. If the sum of every gap is still within the horizon, the renewals are all the gaps and the age is the horizon minus that sum. What is the age?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: восстановлений {count}, возраст или запас {age}.",
+      "en": "Step {i}: renewals {count}, age or slack {age}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матриц 2 на 2 ровно {n}. Каждая записана четырьмя числами по строкам, матрицы разделены точкой с запятой: {listing}. Произведение читается слева направо. Накопитель начинает с первой матрицы. Каждая следующая матрица умножается справа: строка накопителя скалярно умножается на столбец новой матрицы. Определитель накопителя после каждого умножения равен произведению определителей всех матриц, уже вошедших в произведение. Определитель одной матрицы равен произведению диагонали минус произведение побочной диагонали. Чему равен верхний левый элемент полного произведения?",
+      "en": "There are {n} matrices of size 2 by 2. Each is four numbers in row order, and the matrices are separated by semicolons: {listing}. The product is read from left to right. The accumulator starts at the first matrix. Each next matrix is multiplied on the right: a row of the accumulator is dotted with a column of the new matrix. After every multiplication the determinant of the accumulator equals the product of the determinants of the matrices included so far. The determinant of one matrix is the product of the diagonal minus the product of the off-diagonal. What is the top-left entry of the full product?"
+    },
+    "s1": {
+      "ru": "Матриц 2 на 2 ровно {n}. Каждая записана четырьмя числами по строкам, матрицы разделены точкой с запятой: {listing}. Произведение читается слева направо. Накопитель начинает с первой матрицы. Каждая следующая матрица умножается справа: строка накопителя скалярно умножается на столбец новой матрицы. Определитель накопителя после каждого умножения равен произведению определителей всех матриц, уже вошедших в произведение. Определитель одной матрицы равен произведению диагонали минус произведение побочной диагонали. Чему равен определитель полного произведения?",
+      "en": "There are {n} matrices of size 2 by 2. Each is four numbers in row order, and the matrices are separated by semicolons: {listing}. The product is read from left to right. The accumulator starts at the first matrix. Each next matrix is multiplied on the right: a row of the accumulator is dotted with a column of the new matrix. After every multiplication the determinant of the accumulator equals the product of the determinants of the matrices included so far. The determinant of one matrix is the product of the diagonal minus the product of the off-diagonal. What is the determinant of the full product?"
+    },
+    "s2": {
+      "ru": "Матрица {k}: произведение {p00} {p01}; {p10} {p11}. Определитель {det}.",
+      "en": "Matrix {k}: the product is {p00} {p01}; {p10} {p11}. The determinant is {det}."
+    }
+  }
+}

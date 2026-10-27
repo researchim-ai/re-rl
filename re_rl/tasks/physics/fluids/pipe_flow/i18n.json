@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Труба из {n} сечений. Пары — площадь и высота: {listing}. Расход равен {flux} и один на всю трубу: скорость сечения равна расходу, делённому на площадь, деление точное. Плотность жидкости равна 2, ускорение свободного падения равно 1. Поэтому давление плюс квадрат скорости плюс удвоенная высота одно и то же во всех сечениях. В первом сечении давление равно {pressure}. Какое давление в последнем сечении?",
+      "en": "A pipe has {n} sections. The pairs are area and height: {listing}. The flow rate is {flux} and is the same along the pipe: the speed in a section is the flow rate divided by the area, and the division is exact. The liquid density is 2 and the free-fall acceleration is 1. Therefore pressure plus the square of the speed plus twice the height is the same in every section. The pressure in the first section is {pressure}. What is the pressure in the last section?"
+    },
+    "s1": {
+      "ru": "Труба из {n} сечений. Пары — площадь и высота: {listing}. Расход равен {flux} и один на всю трубу: скорость сечения равна расходу, делённому на площадь, деление точное. Плотность жидкости равна 2, ускорение свободного падения равно 1. Поэтому давление плюс квадрат скорости плюс удвоенная высота одно и то же во всех сечениях. В первом сечении давление равно {pressure}. Чему равна сумма скоростей всех сечений?",
+      "en": "A pipe has {n} sections. The pairs are area and height: {listing}. The flow rate is {flux} and is the same along the pipe: the speed in a section is the flow rate divided by the area, and the division is exact. The liquid density is 2 and the free-fall acceleration is 1. Therefore pressure plus the square of the speed plus twice the height is the same in every section. The pressure in the first section is {pressure}. What is the sum of the speeds of all sections?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: скорость {speed}, давление {pressure}, сумма скоростей {total}.",
+      "en": "Step {i}: speed {speed}, pressure {pressure}, sum of speeds {total}."
+    }
+  }
+}

@@ -473,6 +473,49 @@ from re_rl.tasks.math.probability.mix_count.task import mix_trace
 from re_rl.tasks.math.probability.repeat_test.task import confirm_trace
 from re_rl.tasks.math.probability.group_var.task import square_trace
 from re_rl.tasks.math.probability.pivot_cost.task import pivot_trace
+from re_rl.tasks.physics.thermodynamics.gas_path.task import gas_trace
+from re_rl.tasks.physics.fluids.pipe_flow.task import pipe_trace
+from re_rl.tasks.physics.thermodynamics.stiff_cool.task import stiff_trace
+from re_rl.tasks.physics.thermodynamics.heat_back.task import rod_trace
+from re_rl.tasks.physics.mechanics.knock_line.task import knock_trace
+from re_rl.tasks.physics.thermodynamics.first_heat.task import law_trace
+from re_rl.tasks.physics.waves.focus_row.task import focus_trace
+from re_rl.tasks.physics.thermodynamics.adiab_row.task import adiab_trace
+from re_rl.tasks.physics.mechanics.com_frac.task import com_trace
+from re_rl.tasks.physics.mechanics.axis_add.task import axis_trace
+from re_rl.tasks.math.linear_algebra.tri_det.task import tri_trace
+from re_rl.tasks.math.probability.cov_pair.task import cov_trace
+from re_rl.tasks.math.probability.indep_gap.task import indep_trace
+from re_rl.tasks.math.probability.sum_conv.task import conv_trace
+from re_rl.tasks.math.probability.renew_age.task import renew_trace
+from re_rl.tasks.math.probability.birth_line.task import birth_trace
+from re_rl.tasks.math.probability.hyper_ways.task import hyper_trace
+from re_rl.tasks.math.probability.ito_left.task import ito_trace
+from re_rl.tasks.math.probability.tanaka_walk.task import tanaka_trace
+from re_rl.tasks.math.probability.parts_walk.task import parts_trace
+from re_rl.tasks.math.probability.expo_mart.task import expo_trace
+from re_rl.tasks.math.probability.snell_put.task import envelope_trace
+from re_rl.tasks.math.probability.lindley_row.task import lindley_trace
+from re_rl.tasks.math.linear_algebra.lu_exact.task import lu_trace
+from re_rl.tasks.math.linear_algebra.bareiss_det.task import bareiss_trace
+from re_rl.tasks.math.linear_algebra.cayley_vec.task import apply_trace
+from re_rl.tasks.math.linear_algebra.gram_area.task import gram_trace
+from re_rl.tasks.math.linear_algebra.kron_entry.task import kron_trace
+from re_rl.tasks.math.linear_algebra.matexp_row.task import matexp_trace
+from re_rl.tasks.math.linear_algebra.matcos_row.task import matcos_trace
+from re_rl.tasks.math.linear_algebra.neumann_row.task import neumann_trace
+from re_rl.tasks.math.linear_algebra.mat_horner.task import horner_apply
+from re_rl.tasks.math.linear_algebra.reach_gram.task import reach_trace
+from re_rl.tasks.math.linear_algebra.tri_perm.task import tri_perm
+from re_rl.tasks.math.linear_algebra.mat_prod.task import prod_fold
+from re_rl.tasks.math.linear_algebra.leverrier.task import lever_trace
+from re_rl.tasks.math.linear_algebra.nil_log.task import unilog_trace
+from re_rl.tasks.physics.mechanics.stick_line.task import stick_trace
+from re_rl.tasks.physics.electricity.cap_spark.task import spark_trace
+from re_rl.tasks.physics.electricity.line_force.task import field_trace
+from re_rl.tasks.physics.astrophysics.kepler_row.task import kepler_trace
+from re_rl.tasks.physics.electricity.path_green.task import green_trace
+from re_rl.tasks.physics.mechanics.burst_split.task import burst_trace
 from re_rl.tasks.ml.neighbor_vote.task import nearest_votes
 from re_rl.tasks.rl.trace_decay.task import decay_visits
 from re_rl.tasks.ml.boost_weights.task import double_weights
@@ -989,6 +1032,49 @@ POOL = [
     "repeat_test",
     "group_var",
     "pivot_cost",
+    "gas_path",
+    "pipe_flow",
+    "stiff_cool",
+    "heat_back",
+    "knock_line",
+    "first_heat",
+    "focus_row",
+    "adiab_row",
+    "com_frac",
+    "axis_add",
+    "tri_det",
+    "stick_line",
+    "cap_spark",
+    "line_force",
+    "cov_pair",
+    "indep_gap",
+    "sum_conv",
+    "renew_age",
+    "birth_line",
+    "hyper_ways",
+    "ito_left",
+    "tanaka_walk",
+    "parts_walk",
+    "expo_mart",
+    "snell_put",
+    "lindley_row",
+    "lu_exact",
+    "bareiss_det",
+    "cayley_vec",
+    "gram_area",
+    "kron_entry",
+    "matexp_row",
+    "matcos_row",
+    "neumann_row",
+    "mat_horner",
+    "reach_gram",
+    "tri_perm",
+    "mat_prod",
+    "leverrier",
+    "nil_log",
+    "kepler_row",
+    "path_green",
+    "burst_split",
 ]
 
 
@@ -4105,3 +4191,240 @@ def test_chain_values():
     pivoted = _one("pivot_cost", "en", 6, "numer", seed=4)
     trace = pivot_trace(pivoted.n)
     assert trace == pivoted.trace and pivoted.numer == trace[-1][0] and pivoted.denom == trace[-1][1]
+
+    assert gas_trace(2, 6, 3, [(1, 6), (2, 12), (0, 8)]) == [(2, 12, 6), (4, 12, 12), (6, 8, 12)]
+    gassed = _one("gas_path", "en", 6, "pressure", seed=4)
+    trace = gas_trace(gassed.pressure, gassed.volume, gassed.temperature, gassed.steps)
+    assert trace == gassed.trace and gassed.final_pressure == trace[-1][0] and gassed.temp == trace[-1][2]
+
+    assert pipe_trace([2, 1], [0, 1], 10, 2) == [(1, 10, 1), (2, 5, 3)]
+    piped = _one("pipe_flow", "en", 6, "pressure", seed=4)
+    trace = pipe_trace(piped.areas, piped.heights, piped.pressure, piped.flux)
+    assert trace == piped.trace and piped.final_pressure == trace[-1][1] and piped.speed == trace[-1][2]
+
+    assert stiff_trace(14, 10, [3]) == [(11, 1, 2)]
+    cooled = _one("stiff_cool", "en", 6, "temp", seed=4)
+    trace = stiff_trace(cooled.start, cooled.room, cooled.factors)
+    assert trace == cooled.trace and cooled.temp == trace[-1][0] and cooled.gap == trace[-1][1]
+
+    assert rod_trace([5, -2, 3], 1) == [(3, 1, 2, 14)]
+    heated = _one("heat_back", "en", 6, "edge", seed=4)
+    trace = rod_trace(heated.cells, heated.n)
+    assert trace == heated.trace and heated.edge == trace[-1][2] and heated.energy == trace[-1][3]
+
+    assert knock_trace([1, 3, 1], 4) == [(2, -2), (3, 1)]
+    knocked = _one("knock_line", "en", 6, "passed", seed=4)
+    trace = knock_trace(knocked.masses, knocked.speed)
+    assert trace == knocked.trace and knocked.passed == trace[-1][0] and knocked.recoil == trace[-1][1]
+
+    assert law_trace(2, 6, 3, [(1, 6), (2, 12)]) == [(12, 24, 12), (0, 48, 12)]
+    heated_gas = _one("first_heat", "en", 6, "heat", seed=4)
+    trace = law_trace(heated_gas.pressure, heated_gas.volume, heated_gas.temperature, heated_gas.steps)
+    assert trace == heated_gas.trace and heated_gas.heat == trace[-1][1] and heated_gas.work == trace[-1][2]
+
+    assert focus_trace([4, 3], [14], 8) == [(8, 8), (6, 14)]
+    focused = _one("focus_row", "en", 6, "image", seed=4)
+    trace = focus_trace(focused.focals, focused.gaps, focused.distance)
+    assert trace == focused.trace and focused.image == trace[-1][0] and focused.total == trace[-1][1]
+
+    assert adiab_trace(32, 8, 4, [(0, 2), (1, 2)]) == [(1, 1, 64), (4, 32, 8)]
+    expanded = _one("adiab_row", "en", 6, "temp", seed=4)
+    trace = adiab_trace(expanded.pressure, expanded.volume, expanded.temperature, expanded.steps)
+    assert trace == expanded.trace and expanded.temp == trace[-1][0] and expanded.final_pressure == trace[-1][1]
+
+    assert com_trace([(1, 0), (2, 3)]) == [(0, 1), (2, 1)]
+    centered = _one("com_frac", "en", 6, "numer", seed=4)
+    trace = com_trace(centered.bodies)
+    assert trace == centered.trace and centered.numer == trace[-1][0] and centered.denom == trace[-1][1]
+
+    assert axis_trace([(2, 3, 2), (1, 1, 1)]) == [(12, 14, 12), (1, 16, 13)]
+    shifted = _one("axis_add", "en", 6, "inertia", seed=4)
+    trace = axis_trace(shifted.parts)
+    assert trace == shifted.trace and shifted.inertia == trace[-1][1] and shifted.shift == trace[-1][2]
+
+    assert tri_trace([2, 2, 2], [1, 1]) == [(2, 1), (3, 2), (4, 3)]
+    minor = _one("tri_det", "en", 6, "det", seed=4)
+    trace = tri_trace(minor.diag, minor.off)
+    assert trace == minor.trace and minor.det == trace[-1][0] and minor.prev == trace[-1][1]
+
+    assert stick_trace(1, 6, [1, 1]) == [(3, 18), (2, 24)]
+    stuck = _one("stick_line", "en", 6, "speed", seed=4)
+    trace = stick_trace(stuck.mass, stuck.speed, stuck.extras)
+    assert trace == stuck.trace and stuck.final_speed == trace[-1][0] and stuck.loss == trace[-1][1]
+
+    assert spark_trace(12, 2, [2, 2]) == [(3, 36), (2, 48)]
+    sparked = _one("cap_spark", "en", 6, "voltage", seed=4)
+    trace = spark_trace(sparked.charge, sparked.first, sparked.extras)
+    assert trace == sparked.trace and sparked.voltage == trace[-1][0] and sparked.loss == trace[-1][1]
+
+    assert field_trace(1, [(4, 2), (9, -3)]) == [(-1, -1, 1), (1, 0, 2)]
+    forced = _one("line_force", "en", 6, "net", seed=4)
+    trace = field_trace(forced.test, forced.sources)
+    assert trace == forced.trace and forced.net == trace[-1][1] and forced.spread == trace[-1][2]
+
+    assert cov_trace([(1, 2), (3, 4)]) == [(0, 0), (4, 8)]
+    paired = _one("cov_pair", "en", 6, "cov", seed=4)
+    trace = cov_trace(paired.pairs)
+    assert trace == paired.trace and paired.cov == trace[-1][0] and paired.cross == trace[-1][1]
+
+    assert indep_trace([(1, 1), (1, 0), (0, 1), (0, 0)]) == [(0, 0), (0, 0), (-1, 1), (0, 0)]
+    tabled = _one("indep_gap", "en", 6, "signed", seed=4)
+    trace = indep_trace(tabled.bits)
+    assert trace == tabled.trace and tabled.signed == trace[-1][0] and tabled.gap == trace[-1][1]
+
+    assert conv_trace([(0, 1), (1, 1)], [(0, 1), (2, 1)], 1) == [(1, 1), (1, 6)]
+    folded = _one("sum_conv", "en", 6, "hit", seed=4)
+    trace = conv_trace(folded.left, folded.right, folded.target)
+    assert trace == folded.trace and folded.hit == trace[-1][0] and folded.moment == trace[-1][1]
+
+    assert renew_trace([3, 1, 4], 5) == [(1, 2), (2, 1), (2, 1)]
+    renewed = _one("renew_age", "en", 6, "count", seed=4)
+    trace = renew_trace(renewed.intervals, renewed.horizon)
+    assert trace == renewed.trace and renewed.count == trace[-1][0] and renewed.age == trace[-1][1]
+
+    assert birth_trace([2, 0, 0]) == [(2, 0), (2, 0), (0, 3)]
+    born = _one("birth_line", "en", 6, "pop", seed=4)
+    trace = birth_trace(born.offspring)
+    assert trace == born.trace and born.pop == trace[-1][0] and born.extinct == trace[-1][1]
+
+    assert hyper_trace(5, 4, 2, 2) == [(4, 4), (10, 10), (30, 10), (60, 10)]
+    drawn = _one("hyper_ways", "en", 6, "ways", seed=4)
+    trace = hyper_trace(drawn.marked, drawn.plain, drawn.take_mark, drawn.take_plain)
+    assert trace == drawn.trace and drawn.ways == trace[-1][0] and drawn.choose == trace[-1][1]
+
+    assert ito_trace(0, [1, -1, 2]) == [(0, 1), (-1, 2), (-1, 6)]
+    integrated = _one("ito_left", "en", 6, "ito", seed=4)
+    trace = ito_trace(integrated.start, integrated.steps)
+    assert trace == integrated.trace and integrated.ito == trace[-1][0] and integrated.quad == trace[-1][1]
+
+    assert tanaka_trace(0, [1, -1, 1]) == [(0, 1), (-1, 1), (-1, 2)]
+    signed = _one("tanaka_walk", "en", 6, "signed", seed=4)
+    trace = tanaka_trace(signed.start, signed.steps)
+    assert trace == signed.trace and signed.signed == trace[-1][0] and signed.local == trace[-1][1]
+
+    assert parts_trace(0, 0, [(1, 0), (0, 2), (-1, 1)]) == [(0, 0), (0, 2), (-1, 5)]
+    split = _one("parts_walk", "en", 6, "cov", seed=4)
+    trace = parts_trace(split.x0, split.y0, split.pairs)
+    assert trace == split.trace and split.cov == trace[-1][0] and split.area == trace[-1][1]
+
+    assert expo_trace([1, -1, 2]) == [(2, 1), (0, 5), (0, 5)]
+    grown = _one("expo_mart", "en", 6, "level", seed=4)
+    trace = expo_trace(grown.jumps)
+    assert trace == grown.trace and grown.level == trace[-1][0] and grown.quad == trace[-1][1]
+
+    assert envelope_trace(2, 1) == [(8, 4, 8), (0, 1, 1), (16, 9, 16)]
+    stopped = _one("snell_put", "en", 6, "price", seed=4)
+    trace = envelope_trace(stopped.n, stopped.strike)
+    assert trace == stopped.trace and stopped.price == trace[-1][2]
+    assert stopped.hits == sum(exercise > cont for exercise, cont, _value in trace)
+
+    assert lindley_trace([2, -3, 1]) == [(2, 0), (0, 1), (1, 1)]
+    queued = _one("lindley_row", "en", 6, "wait", seed=4)
+    trace = lindley_trace(queued.deltas)
+    assert trace == queued.trace and queued.wait == trace[-1][0] and queued.push == trace[-1][1]
+
+    assert lu_trace([[3, 1], [6, 6]]) == [(3, 2), (4, 2)]
+    factored = _one("lu_exact", "en", 6, "det", seed=4)
+    trace = lu_trace(factored.rows)
+    product = 1
+    for pivot, _total in trace:
+        product *= pivot
+    assert trace == factored.trace and factored.det == product and factored.mult == trace[-1][1]
+
+    assert bareiss_trace([[2, 1, 0], [1, 2, 1], [0, 1, 2]]) == [(2, 4), (3, 4)]
+    cleared = _one("bareiss_det", "en", 6, "det", seed=4)
+    trace = bareiss_trace(cleared.rows)
+    assert trace == cleared.trace and cleared.det == trace[-1][1] and cleared.minor == trace[-1][0]
+
+    assert apply_trace(1, 1, 1, 0, 1, 0, 3) == [(1, 1), (2, 3), (3, 4)]
+    powered = _one("cayley_vec", "en", 6, "coord", seed=4)
+    trace = apply_trace(powered.a, powered.b, powered.c, powered.d, powered.x0, powered.y0, powered.n)
+    assert trace == powered.trace and powered.coord == trace[-1][0] and powered.power == trace[-1][1]
+
+    assert gram_trace([1, 2, 3], [0, -1, 1]) == [(0, 0), (-2, 1), (1, 27)]
+    spanned = _one("gram_area", "en", 6, "area", seed=4)
+    trace = gram_trace(spanned.left, spanned.right)
+    assert trace == spanned.trace and spanned.area == trace[-1][1] and spanned.dot == trace[-1][0]
+
+    assert kron_trace([((1, 2), (3, 4)), ((5, 6), (7, 8))], 3, 2) == [(4, 5), (28, 65)]
+    folded = _one("kron_entry", "en", 6, "entry", seed=4)
+    trace = kron_trace(folded.factors, folded.row, folded.col)
+    assert trace == folded.trace and folded.entry == trace[-1][0] and folded.span == trace[-1][1]
+
+    assert matexp_trace(1, 1, 0, 1, 2) == [
+        (2, 0, 0, 2, 2, 0, 0, 2),
+        (2, 2, 0, 2, 4, 2, 0, 4),
+        (1, 2, 0, 1, 5, 4, 0, 5),
+    ]
+    series = _one("matexp_row", "en", 6, "entry", seed=4)
+    trace = matexp_trace(series.a, series.b, series.c, series.d, series.n)
+    assert trace == series.trace and series.entry == trace[-1][4]
+    assert series.tr == trace[-1][4] + trace[-1][7]
+
+    assert matcos_trace(0, -1, 1, 0, 3)[-1] == (9, 0, 0, 9, 0, -7, 7, 0)
+    turned = _one("matcos_row", "en", 6, "cos", seed=4)
+    trace = matcos_trace(turned.a, turned.b, turned.c, turned.d, turned.n)
+    assert trace == turned.trace and turned.cos == trace[-1][0] and turned.sin == trace[-1][4]
+
+    assert neumann_trace(1, 1, 0, 1, 2) == [
+        (1, 0, 0, 1, 1, 0, 0, 1),
+        (1, 1, 0, 1, 2, 1, 0, 2),
+        (1, 2, 0, 1, 3, 3, 0, 3),
+    ]
+    summed = _one("neumann_row", "en", 6, "entry", seed=4)
+    trace = neumann_trace(summed.a, summed.b, summed.c, summed.d, summed.n)
+    assert trace == summed.trace and summed.entry == trace[-1][4]
+    assert summed.tr == trace[-1][4] + trace[-1][7]
+
+    assert horner_apply(1, 1, 0, 1, [1, 3, 2]) == [(1, 0, 0, 1), (4, 1, 0, 4), (6, 5, 0, 6)]
+    poly = _one("mat_horner", "en", 6, "entry", seed=4)
+    trace = horner_apply(poly.a, poly.b, poly.c, poly.d, poly.coefs)
+    assert trace == poly.trace and poly.entry == trace[-1][0] and poly.tr == trace[-1][0] + trace[-1][3]
+
+    assert reach_trace(1, 1, 0, 1, 1, 1, 1) == [(1, 1, 1, 1), (5, 3, 3, 2)]
+    reached = _one("reach_gram", "en", 6, "entry", seed=4)
+    trace = reach_trace(reached.a, reached.b, reached.c, reached.d, reached.q1, reached.q2, reached.n)
+    assert trace == reached.trace and reached.entry == trace[-1][0]
+    assert reached.tr == trace[-1][0] + trace[-1][3]
+
+    assert tri_perm([1, 2, 3], [1, 1], [1, 1]) == [(1, 1), (3, 1), (10, 3)]
+    assert tri_perm([2, 2, 2], [1, 0], [3, 4]) == [(2, 1), (7, 2), (14, 7)]
+    banded = _one("tri_perm", "en", 6, "perm", seed=4)
+    trace = tri_perm(banded.diag, banded.upper, banded.lower)
+    assert trace == banded.trace and banded.perm == trace[-1][0] and banded.prev == trace[-1][1]
+
+    assert prod_fold([(1, 1, 0, 1), (1, 0, 1, 1)]) == [(1, 1, 0, 1, 1), (2, 1, 1, 1, 1)]
+    multiplied = _one("mat_prod", "en", 6, "entry", seed=4)
+    trace = prod_fold(multiplied.mats)
+    assert trace == multiplied.trace and multiplied.entry == trace[-1][0] and multiplied.det == trace[-1][4]
+
+    assert lever_trace(((1, 1), (0, 1))) == [(-2, ((1, 1), (0, 1))), (1, ((-1, 0), (0, -1)))]
+    eye = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
+    assert [coef for coef, _grid in lever_trace(eye)] == [-3, 3, -1]
+    charred = _one("leverrier", "en", 6, "const", seed=4)
+    trace = lever_trace(charred.rows)
+    assert trace == charred.trace and charred.const == trace[-1][0] and charred.pair == trace[1][0]
+
+    assert unilog_trace(((0, 1, 0), (0, 0, 1), (0, 0, 0))) == [
+        ((0, 2, 0), (0, 0, 2), (0, 0, 0)),
+        ((0, 2, -1), (0, 0, 2), (0, 0, 0)),
+    ]
+    logged = _one("nil_log", "en", 6, "corner", seed=4)
+    trace = unilog_trace(logged.rows)
+    assert trace == logged.trace and logged.corner == trace[-1][0][-1]
+    assert logged.mass == sum(sum(row) for row in trace[-1])
+
+    assert kepler_trace(1, 1, [(0, 2), (1, 2)]) == [(4, 8), (1, 1)]
+    orbited = _one("kepler_row", "en", 6, "period", seed=4)
+    trace = kepler_trace(orbited.radius, orbited.period, orbited.steps)
+    assert trace == orbited.trace and orbited.final_period == trace[-1][1] and orbited.final_radius == trace[-1][0]
+
+    assert green_trace(4, 2) == [(2, 2), (4, 6), (2, 8)]
+    grounded = _one("path_green", "en", 6, "peak", seed=4)
+    trace = green_trace(grounded.length, grounded.spot)
+    assert trace == grounded.trace and grounded.peak == trace[grounded.spot - 1][0] and grounded.total == trace[-1][1]
+
+    assert burst_trace(3, 4, [(1, 6), (1, 4)]) == [(3, 6), (2, 8)]
+    burst = _one("burst_split", "en", 6, "speed", seed=4)
+    trace = burst_trace(burst.mass, burst.speed, burst.pieces)
+    assert trace == burst.trace and burst.final_speed == trace[-1][0] and burst.blast == trace[-1][1]

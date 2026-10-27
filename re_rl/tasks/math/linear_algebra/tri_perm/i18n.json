@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Трёхдиагональная матрица порядка {n}. Диагональ: {diag}. Над диагональю: {upper}. Под диагональю: {lower}. Перманент пустой матрицы равен 1. Перманент порядка 1 равен единственному диагональному элементу. Дальше перманент равен диагональному элементу, умноженному на предыдущий перманент, плюс верхний элемент уступа, умноженный на нижний элемент того же уступа и на перманент ещё на шаг раньше. В перманенте оба слагаемых берутся со знаком плюс. Чему равен перманент всей матрицы?",
+      "en": "The tridiagonal matrix has order {n}. The diagonal is {diag}. Above the diagonal: {upper}. Below the diagonal: {lower}. The permanent of the empty matrix is 1. The permanent of order 1 is the single diagonal entry. After that, the permanent equals the diagonal entry times the previous permanent, plus the upper entry of the step times the lower entry of the same step times the permanent one step earlier. In the permanent both summands are taken with a plus sign. What is the permanent of the whole matrix?"
+    },
+    "s1": {
+      "ru": "Трёхдиагональная матрица порядка {n}. Диагональ: {diag}. Над диагональю: {upper}. Под диагональю: {lower}. Перманент пустой матрицы равен 1. Перманент порядка 1 равен единственному диагональному элементу. Дальше перманент равен диагональному элементу, умноженному на предыдущий перманент, плюс верхний элемент уступа, умноженный на нижний элемент того же уступа и на перманент ещё на шаг раньше. В перманенте оба слагаемых берутся со знаком плюс. Чему равен перманент главной подматрицы на порядок меньше?",
+      "en": "The tridiagonal matrix has order {n}. The diagonal is {diag}. Above the diagonal: {upper}. Below the diagonal: {lower}. The permanent of the empty matrix is 1. The permanent of order 1 is the single diagonal entry. After that, the permanent equals the diagonal entry times the previous permanent, plus the upper entry of the step times the lower entry of the same step times the permanent one step earlier. In the permanent both summands are taken with a plus sign. What is the permanent of the leading submatrix of order one less?"
+    },
+    "s2": {
+      "ru": "Порядок {k}: перманент {perm}, предыдущий {prev}.",
+      "en": "Order {k}: permanent {perm}, previous {prev}."
+    }
+  }
+}

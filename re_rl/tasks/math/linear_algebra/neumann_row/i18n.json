@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матрица 2 на 2 имеет первую строку {a} {b} и вторую строку {c} {d}. Геометрическая сумма идёт от степени 0 до степени {n}. Член степени 0 — единичная матрица. Следующий член равен произведению матрицы на предыдущий член. Сумма начинает с единичной матрицы и прибавляет каждый новый член. Если S — эта сумма, а следующий член стоит уже за степенью {n}, то произведение разности единичной матрицы и исходной матрицы на S равно разности единичной матрицы и этого следующего члена. Чему равен верхний левый элемент суммы?",
+      "en": "The 2 by 2 matrix has first row {a} {b} and second row {c} {d}. The geometric sum runs from degree 0 through degree {n}. The degree-zero term is the identity matrix. The next term equals the matrix times the previous term. The sum starts at the identity and adds each new term. If S is that sum and the next term lies past degree {n}, the product of the identity minus the original matrix with S equals the identity minus that next term. What is the top-left entry of the sum?"
+    },
+    "s1": {
+      "ru": "Матрица 2 на 2 имеет первую строку {a} {b} и вторую строку {c} {d}. Геометрическая сумма идёт от степени 0 до степени {n}. Член степени 0 — единичная матрица. Следующий член равен произведению матрицы на предыдущий член. Сумма начинает с единичной матрицы и прибавляет каждый новый член. Если S — эта сумма, а следующий член стоит уже за степенью {n}, то произведение разности единичной матрицы и исходной матрицы на S равно разности единичной матрицы и этого следующего члена. Чему равен след суммы, то есть сумма её диагонали?",
+      "en": "The 2 by 2 matrix has first row {a} {b} and second row {c} {d}. The geometric sum runs from degree 0 through degree {n}. The degree-zero term is the identity matrix. The next term equals the matrix times the previous term. The sum starts at the identity and adds each new term. If S is that sum and the next term lies past degree {n}, the product of the identity minus the original matrix with S equals the identity minus that next term. What is the trace of the sum, that is the sum of its diagonal?"
+    },
+    "s2": {
+      "ru": "Степень 0: член и сумма равны {t00} {t01}; {t10} {t11}.",
+      "en": "Degree 0: the term and the sum are {t00} {t01}; {t10} {t11}."
+    },
+    "s3": {
+      "ru": "Степень {k}: член равен {t00} {t01}; {t10} {t11}. Сумма равна {s00} {s01}; {s10} {s11}.",
+      "en": "Degree {k}: the term is {t00} {t01}; {t10} {t11}. The sum is {s00} {s01}; {s10} {s11}."
+    }
+  }
+}

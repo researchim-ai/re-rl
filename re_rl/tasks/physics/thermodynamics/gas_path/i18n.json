@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Идеальный газ начинает с давления {pressure}, объёма {volume} и температуры {temperature}. Участков {n}. Каждый участок задан двумя числами. Первое число 0 означает изотерму, и второе число — новый объём: температура та же, произведение давления на объём то же. Первое число 1 означает изобару, и второе число — новая температура: давление то же, отношение объёма к температуре то же. Первое число 2 означает изохору, и второе число — новая температура: объём тот же, отношение давления к температуре то же. Деление точное. Участки: {listing}. Какое давление в конце?",
+      "en": "An ideal gas starts at pressure {pressure}, volume {volume} and temperature {temperature}. There are {n} stages. Each stage is two numbers. A first number 0 means an isotherm, and the second number is the new volume: the temperature stays the same and the product of pressure and volume stays the same. A first number 1 means an isobar, and the second number is the new temperature: the pressure stays the same and the ratio of volume to temperature stays the same. A first number 2 means an isochore, and the second number is the new temperature: the volume stays the same and the ratio of pressure to temperature stays the same. The division is exact. The stages are {listing}. What is the final pressure?"
+    },
+    "s1": {
+      "ru": "Идеальный газ начинает с давления {pressure}, объёма {volume} и температуры {temperature}. Участков {n}. Каждый участок задан двумя числами. Первое число 0 означает изотерму, и второе число — новый объём: температура та же, произведение давления на объём то же. Первое число 1 означает изобару, и второе число — новая температура: давление то же, отношение объёма к температуре то же. Первое число 2 означает изохору, и второе число — новая температура: объём тот же, отношение давления к температуре то же. Деление точное. Участки: {listing}. Какая температура в конце?",
+      "en": "An ideal gas starts at pressure {pressure}, volume {volume} and temperature {temperature}. There are {n} stages. Each stage is two numbers. A first number 0 means an isotherm, and the second number is the new volume: the temperature stays the same and the product of pressure and volume stays the same. A first number 1 means an isobar, and the second number is the new temperature: the pressure stays the same and the ratio of volume to temperature stays the same. A first number 2 means an isochore, and the second number is the new temperature: the volume stays the same and the ratio of pressure to temperature stays the same. The division is exact. The stages are {listing}. What is the final temperature?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: давление {pressure}, объём {volume}, температура {temperature}.",
+      "en": "Step {i}: pressure {pressure}, volume {volume}, temperature {temperature}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Дерево имеет {n} шагов. Барьер равен {strike}. Позиция равна удвоенному числу шагов вверх минус время. Платёж равен барьеру минус позицию, если позиция меньше барьера, иначе 0. На последнем времени значение равно платежу. Упражнение равно платежу, умноженному на 4 в степени числа оставшихся шагов. Шаг вниз ведёт к потомку с тем же числом шагов вверх, шаг вверх — к потомку, у которого таких шагов на 1 больше. Продолжение равно сумме значений этих двух потомков. Значение узла равно максимуму упражнения и продолжения. Чему равно значение в начале: время 0 и ни одного шага вверх?",
+      "en": "The tree has {n} steps. The strike is {strike}. At time t with j upward steps, the position is two times j minus t. The payoff is the strike minus the position when the position is below the strike, and otherwise 0. At the final time the value equals the payoff. When h steps remain, the exercise value is the payoff times 4 to the power h. A down step leads to the child with the same j, and an up step leads to the child with j larger by 1. The continuation is the sum of those two child values. The node value is the maximum of the exercise value and the continuation. What is the value at time 0 with j equal to 0?"
+    },
+    "s1": {
+      "ru": "Дерево имеет {n} шагов. Барьер равен {strike}. Позиция равна удвоенному числу шагов вверх минус время. Платёж равен барьеру минус позицию, если позиция меньше барьера, иначе 0. На последнем времени значение равно платежу. Упражнение равно платежу, умноженному на 4 в степени числа оставшихся шагов. Шаг вниз ведёт к потомку с тем же числом шагов вверх, шаг вверх — к потомку, у которого таких шагов на 1 больше. Продолжение равно сумме значений этих двух потомков. Значение узла равно максимуму упражнения и продолжения. Ранний узел — узел не на последнем времени, где упражнение строго больше продолжения. Сколько ранних узлов?",
+      "en": "The tree has {n} steps. The strike is {strike}. At time t with j upward steps, the position is two times j minus t. The payoff is the strike minus the position when the position is below the strike, and otherwise 0. At the final time the value equals the payoff. When h steps remain, the exercise value is the payoff times 4 to the power h. A down step leads to the child with the same j, and an up step leads to the child with j larger by 1. The continuation is the sum of those two child values. The node value is the maximum of the exercise value and the continuation. An early node is a node before the final time where the exercise value is strictly above the continuation. How many early nodes are there?"
+    },
+    "s2": {
+      "ru": "Время {t}, шагов вверх {j}: упражнение {ex}, продолжение {cont}, значение {value}.",
+      "en": "Time {t}, upward steps {j}: exercise {ex}, continuation {cont}, value {value}."
+    }
+  }
+}

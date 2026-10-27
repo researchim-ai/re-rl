@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Ветвящийся процесс начинает с одной особи. Список потомков из {n} чисел читается слева направо: {listing}. Текущее поколение забирает столько чисел, сколько в нём особей. Их сумма — размер следующего поколения. Пока поколение не дочитано, в следе остаётся размер текущего. Если сумма равна 0, линия вымерла: дальше размер 0, а номер вымирания — номер этого шага. Если к концу списка поколение не дочитано, размер остаётся прежним, а номер вымирания 0. Какой размер популяции в конце?",
+      "en": "A branching process starts with one individual. The offspring list of {n} numbers is read from left to right: {listing}. The current generation takes as many numbers as it has individuals. Their sum is the size of the next generation. Until the generation has been fully read, the trace keeps the current size. If the sum is 0, the line is extinct: the size stays 0 afterwards, and the extinction index is the index of that step. If the list ends in the middle of a generation, the size stays as it was and the extinction index is 0. What is the population size at the end?"
+    },
+    "s1": {
+      "ru": "Ветвящийся процесс начинает с одной особи. Список потомков из {n} чисел читается слева направо: {listing}. Текущее поколение забирает столько чисел, сколько в нём особей. Их сумма — размер следующего поколения. Пока поколение не дочитано, в следе остаётся размер текущего. Если сумма равна 0, линия вымерла: дальше размер 0, а номер вымирания — номер этого шага. Если к концу списка поколение не дочитано, размер остаётся прежним, а номер вымирания 0. На каком шаге линия вымерла? Если не вымерла, ответ 0.",
+      "en": "A branching process starts with one individual. The offspring list of {n} numbers is read from left to right: {listing}. The current generation takes as many numbers as it has individuals. Their sum is the size of the next generation. Until the generation has been fully read, the trace keeps the current size. If the sum is 0, the line is extinct: the size stays 0 afterwards, and the extinction index is the index of that step. If the list ends in the middle of a generation, the size stays as it was and the extinction index is 0. On which step did the line go extinct? If it did not, the answer is 0."
+    },
+    "s2": {
+      "ru": "Шаг {i}: размер {pop}, номер вымирания {extinct}.",
+      "en": "Step {i}: size {pop}, extinction index {extinct}."
+    }
+  }
+}

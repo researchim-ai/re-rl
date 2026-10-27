@@ -256,6 +256,22 @@ from re_rl.tasks.physics.quantum.barrier_amp_task import BarrierAmpTask
 from re_rl.tasks.physics.quantum.perturb_sum_task import PerturbSumTask
 from re_rl.tasks.physics.electricity.yee_line_task import YeeLineTask
 from re_rl.tasks.physics.thermodynamics.shock_jump_task import ShockJumpTask
+from re_rl.tasks.physics.thermodynamics.gas_path_task import GasPathTask
+from re_rl.tasks.physics.fluids.pipe_flow_task import PipeFlowTask
+from re_rl.tasks.physics.thermodynamics.stiff_cool_task import StiffCoolTask
+from re_rl.tasks.physics.thermodynamics.heat_back_task import HeatBackTask
+from re_rl.tasks.physics.thermodynamics.adiab_row_task import AdiabRowTask
+from re_rl.tasks.physics.mechanics.com_frac_task import ComFracTask
+from re_rl.tasks.physics.mechanics.axis_add_task import AxisAddTask
+from re_rl.tasks.physics.mechanics.stick_line_task import StickLineTask
+from re_rl.tasks.physics.electricity.cap_spark_task import CapSparkTask
+from re_rl.tasks.physics.electricity.line_force_task import LineForceTask
+from re_rl.tasks.physics.astrophysics.kepler_row_task import KeplerRowTask
+from re_rl.tasks.physics.electricity.path_green_task import PathGreenTask
+from re_rl.tasks.physics.mechanics.burst_split_task import BurstSplitTask
+from re_rl.tasks.physics.mechanics.knock_line_task import KnockLineTask
+from re_rl.tasks.physics.thermodynamics.first_heat_task import FirstHeatTask
+from re_rl.tasks.physics.waves.focus_row_task import FocusRowTask
 
 
 ##################################################
@@ -1568,6 +1584,102 @@ def generate_random_shock_jump_task(task_type: str = None, language: str = "ru",
                                               detail_level=detail_level, difficulty=difficulty,
                                               **kwargs)
 
+def generate_random_gas_path_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return GasPathTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_pipe_flow_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return PipeFlowTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_stiff_cool_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return StiffCoolTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_heat_back_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return HeatBackTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_adiab_row_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return AdiabRowTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_com_frac_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return ComFracTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_axis_add_task(task_type: str = None, language: str = "ru",
+                                  detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return AxisAddTask.generate_random_task(task_type=task_type, language=language,
+                                            detail_level=detail_level, difficulty=difficulty,
+                                            **kwargs)
+
+def generate_random_stick_line_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return StickLineTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_cap_spark_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return CapSparkTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
+def generate_random_line_force_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return LineForceTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_kepler_row_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return KeplerRowTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_path_green_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return PathGreenTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_burst_split_task(task_type: str = None, language: str = "ru",
+                                     detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return BurstSplitTask.generate_random_task(task_type=task_type, language=language,
+                                               detail_level=detail_level, difficulty=difficulty,
+                                               **kwargs)
+
+def generate_random_knock_line_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return KnockLineTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_first_heat_task(task_type: str = None, language: str = "ru",
+                                    detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return FirstHeatTask.generate_random_task(task_type=task_type, language=language,
+                                              detail_level=detail_level, difficulty=difficulty,
+                                              **kwargs)
+
+def generate_random_focus_row_task(task_type: str = None, language: str = "ru",
+                                   detail_level: int = 3, difficulty: int = 5, **kwargs):
+    return FocusRowTask.generate_random_task(task_type=task_type, language=language,
+                                             detail_level=detail_level, difficulty=difficulty,
+                                             **kwargs)
+
 def generate_random_column_pressure_task(task_type: str = None, language: str = "ru",
                                          detail_level: int = 3, difficulty: int = 5, **kwargs):
     return ColumnPressureTask.generate_random_task(task_type=task_type, language=language,
@@ -1833,6 +1945,22 @@ ALL_PHYSICS_TASK_GENERATORS = {
     "perturb_sum": generate_random_perturb_sum_task,
     "yee_line": generate_random_yee_line_task,
     "shock_jump": generate_random_shock_jump_task,
+    "gas_path": generate_random_gas_path_task,
+    "pipe_flow": generate_random_pipe_flow_task,
+    "stiff_cool": generate_random_stiff_cool_task,
+    "heat_back": generate_random_heat_back_task,
+    "adiab_row": generate_random_adiab_row_task,
+    "com_frac": generate_random_com_frac_task,
+    "axis_add": generate_random_axis_add_task,
+    "stick_line": generate_random_stick_line_task,
+    "cap_spark": generate_random_cap_spark_task,
+    "line_force": generate_random_line_force_task,
+    "kepler_row": generate_random_kepler_row_task,
+    "path_green": generate_random_path_green_task,
+    "burst_split": generate_random_burst_split_task,
+    "knock_line": generate_random_knock_line_task,
+    "first_heat": generate_random_first_heat_task,
+    "focus_row": generate_random_focus_row_task,
 }
 
 

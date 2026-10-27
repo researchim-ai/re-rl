@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Две независимые целые величины. Закон первой, пары значение и вес: {left}. Закон второй из {n} атомов, в том же виде: {right}. Свёртка начинается с пустого закона. Очередной атом второй величины со значением y и весом w прибавляет к каждой уже имеющейся точке x её вес, умноженный на w, в точку x + y. Полная масса равна произведению масс, ненормированное среднее суммы равно среднему первой, умноженному на массу второй, плюс масса первой, умноженная на среднее второй. Здесь средние тоже ненормированные, то есть сумма значения на вес. Чему равен вес суммы, равной {target}?",
+      "en": "Two independent integer-valued variables. The law of the first, as value and weight pairs, is {left}. The law of the second has {n} atoms, in the same form: {right}. The convolution starts empty. The next atom of the second variable, with value y and weight w, adds its weight times w at each existing point x to the point x + y. The total mass equals the product of the masses. The unnormalized mean of the sum equals the mean of the first times the mass of the second, plus the mass of the first times the mean of the second. Those means are unnormalized too: value times weight, summed. What is the weight of the sum equal to {target}?"
+    },
+    "s1": {
+      "ru": "Две независимые целые величины. Закон первой, пары значение и вес: {left}. Закон второй из {n} атомов, в том же виде: {right}. Свёртка начинается с пустого закона. Очередной атом второй величины со значением y и весом w прибавляет к каждой уже имеющейся точке x её вес, умноженный на w, в точку x + y. Полная масса равна произведению масс, ненормированное среднее суммы равно среднему первой, умноженному на массу второй, плюс масса первой, умноженная на среднее второй. Здесь средние тоже ненормированные, то есть сумма значения на вес. Нужная сумма равна {target}. Чему равно ненормированное среднее суммы в конце?",
+      "en": "Two independent integer-valued variables. The law of the first, as value and weight pairs, is {left}. The law of the second has {n} atoms, in the same form: {right}. The convolution starts empty. The next atom of the second variable, with value y and weight w, adds its weight times w at each existing point x to the point x + y. The total mass equals the product of the masses. The unnormalized mean of the sum equals the mean of the first times the mass of the second, plus the mass of the first times the mean of the second. Those means are unnormalized too: value times weight, summed. The requested sum is {target}. What is the final unnormalized mean of the sum?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: вес нужной суммы {hit}, ненормированное среднее {moment}.",
+      "en": "Step {i}: weight of the requested sum {hit}, unnormalized mean {moment}."
+    }
+  }
+}

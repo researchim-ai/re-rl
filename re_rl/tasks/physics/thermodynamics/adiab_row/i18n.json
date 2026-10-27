@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Одноатомный идеальный газ, показатель адиабаты 5/3. Давление {pressure}, объём {volume}, температура {temperature}. Шагов {n}. Первое число 0 означает расширение, 1 — сжатие, второе число k не меньше 2. При расширении температура делится на k в квадрате, объём умножается на k в кубе, давление делится на k в пятой степени. При сжатии температура умножается на k в квадрате, объём делится на k в кубе, давление умножается на k в пятой степени. Деление точное. Количество вещества P V / T и произведение куба температуры на квадрат объёма не меняются. Шаги: {listing}. Какая температура в конце?",
+      "en": "A monatomic ideal gas has adiabatic index 5/3. The pressure is {pressure}, the volume is {volume} and the temperature is {temperature}. There are {n} steps. A first number 0 means expansion and 1 means compression; the second number k is at least 2. On expansion the temperature is divided by k squared, the volume is multiplied by k cubed, and the pressure is divided by k to the fifth. On compression the temperature is multiplied by k squared, the volume is divided by k cubed, and the pressure is multiplied by k to the fifth. The division is exact. The amount of substance P V / T and the product of the cube of the temperature with the square of the volume do not change. The steps are {listing}. What is the final temperature?"
+    },
+    "s1": {
+      "ru": "Одноатомный идеальный газ, показатель адиабаты 5/3. Давление {pressure}, объём {volume}, температура {temperature}. Шагов {n}. Первое число 0 означает расширение, 1 — сжатие, второе число k не меньше 2. При расширении температура делится на k в квадрате, объём умножается на k в кубе, давление делится на k в пятой степени. При сжатии температура умножается на k в квадрате, объём делится на k в кубе, давление умножается на k в пятой степени. Деление точное. Количество вещества P V / T и произведение куба температуры на квадрат объёма не меняются. Шаги: {listing}. Какое давление в конце?",
+      "en": "A monatomic ideal gas has adiabatic index 5/3. The pressure is {pressure}, the volume is {volume} and the temperature is {temperature}. There are {n} steps. A first number 0 means expansion and 1 means compression; the second number k is at least 2. On expansion the temperature is divided by k squared, the volume is multiplied by k cubed, and the pressure is divided by k to the fifth. On compression the temperature is multiplied by k squared, the volume is divided by k cubed, and the pressure is multiplied by k to the fifth. The division is exact. The amount of substance P V / T and the product of the cube of the temperature with the square of the volume do not change. The steps are {listing}. What is the final pressure?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: температура {temperature}, давление {pressure}, объём {volume}.",
+      "en": "Step {i}: temperature {temperature}, pressure {pressure}, volume {volume}."
+    }
+  }
+}

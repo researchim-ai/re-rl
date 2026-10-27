@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Тело массы {mass} со скоростью {speed} распадается {n} раз. Каждый распад задан массой осколка и его скоростью: {listing}. Остаток продолжает движение и распадается следующим. Импульс сохраняется: масса остатка, умноженная на его скорость, равна старому импульсу минус импульс осколка. Деление точное. Удвоенная кинетическая энергия остатка и осколка больше прежней, разница — энергия взрыва. Какая скорость у последнего остатка?",
+      "en": "A body of mass {mass} and speed {speed} splits {n} times. Each split is the fragment mass and its speed: {listing}. The remainder keeps moving and splits next. Momentum is conserved: the remainder mass times its speed equals the old momentum minus the fragment momentum. The division is exact. Twice the kinetic energy of the remainder and the fragment is larger than before, and the difference is the explosion energy. What is the speed of the final remainder?"
+    },
+    "s1": {
+      "ru": "Тело массы {mass} со скоростью {speed} распадается {n} раз. Каждый распад задан массой осколка и его скоростью: {listing}. Остаток продолжает движение и распадается следующим. Импульс сохраняется: масса остатка, умноженная на его скорость, равна старому импульсу минус импульс осколка. Деление точное. Удвоенная кинетическая энергия остатка и осколка больше прежней, разница — энергия взрыва. Чему равна суммарная энергия взрывов в этих единицах?",
+      "en": "A body of mass {mass} and speed {speed} splits {n} times. Each split is the fragment mass and its speed: {listing}. The remainder keeps moving and splits next. Momentum is conserved: the remainder mass times its speed equals the old momentum minus the fragment momentum. The division is exact. Twice the kinetic energy of the remainder and the fragment is larger than before, and the difference is the explosion energy. What is the total explosion energy in these units?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: скорость остатка {speed}, суммарная энергия взрывов {blast}.",
+      "en": "Step {i}: remainder speed {speed}, total explosion energy {blast}."
+    }
+  }
+}

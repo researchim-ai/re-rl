@@ -605,6 +605,33 @@ from re_rl.tasks.math.probability.mix_count_task import MixCountTask
 from re_rl.tasks.math.probability.repeat_test_task import RepeatTestTask
 from re_rl.tasks.math.probability.group_var_task import GroupVarTask
 from re_rl.tasks.math.probability.pivot_cost_task import PivotCostTask
+from re_rl.tasks.math.linear_algebra.tri_det_task import TriDetTask
+from re_rl.tasks.math.probability.cov_pair_task import CovPairTask
+from re_rl.tasks.math.probability.indep_gap_task import IndepGapTask
+from re_rl.tasks.math.probability.sum_conv_task import SumConvTask
+from re_rl.tasks.math.probability.renew_age_task import RenewAgeTask
+from re_rl.tasks.math.probability.birth_line_task import BirthLineTask
+from re_rl.tasks.math.probability.hyper_ways_task import HyperWaysTask
+from re_rl.tasks.math.probability.ito_left_task import ItoLeftTask
+from re_rl.tasks.math.probability.tanaka_walk_task import TanakaWalkTask
+from re_rl.tasks.math.probability.parts_walk_task import PartsWalkTask
+from re_rl.tasks.math.probability.expo_mart_task import ExpoMartTask
+from re_rl.tasks.math.probability.snell_put_task import SnellPutTask
+from re_rl.tasks.math.probability.lindley_row_task import LindleyRowTask
+from re_rl.tasks.math.linear_algebra.lu_exact_task import LuExactTask
+from re_rl.tasks.math.linear_algebra.bareiss_det_task import BareissDetTask
+from re_rl.tasks.math.linear_algebra.cayley_vec_task import CayleyVecTask
+from re_rl.tasks.math.linear_algebra.gram_area_task import GramAreaTask
+from re_rl.tasks.math.linear_algebra.kron_entry_task import KronEntryTask
+from re_rl.tasks.math.linear_algebra.matexp_row_task import MatexpRowTask
+from re_rl.tasks.math.linear_algebra.matcos_row_task import MatcosRowTask
+from re_rl.tasks.math.linear_algebra.neumann_row_task import NeumannRowTask
+from re_rl.tasks.math.linear_algebra.mat_horner_task import MatHornerTask
+from re_rl.tasks.math.linear_algebra.reach_gram_task import ReachGramTask
+from re_rl.tasks.math.linear_algebra.tri_perm_task import TriPermTask
+from re_rl.tasks.math.linear_algebra.mat_prod_task import MatProdTask
+from re_rl.tasks.math.linear_algebra.leverrier_task import LeverrierTask
+from re_rl.tasks.math.linear_algebra.nil_log_task import NilLogTask
 from re_rl.tasks.ml.hard_attend_task import HardAttendTask
 from re_rl.tasks.ml.max_pool_task import MaxPoolTask
 from re_rl.tasks.ml.adam_tick_task import AdamTickTask
@@ -2558,6 +2585,33 @@ generate_random_mix_count_task = _mk_generator(MixCountTask)
 generate_random_repeat_test_task = _mk_generator(RepeatTestTask)
 generate_random_group_var_task = _mk_generator(GroupVarTask)
 generate_random_pivot_cost_task = _mk_generator(PivotCostTask)
+generate_random_tri_det_task = _mk_generator(TriDetTask)
+generate_random_cov_pair_task = _mk_generator(CovPairTask)
+generate_random_indep_gap_task = _mk_generator(IndepGapTask)
+generate_random_sum_conv_task = _mk_generator(SumConvTask)
+generate_random_renew_age_task = _mk_generator(RenewAgeTask)
+generate_random_birth_line_task = _mk_generator(BirthLineTask)
+generate_random_hyper_ways_task = _mk_generator(HyperWaysTask)
+generate_random_ito_left_task = _mk_generator(ItoLeftTask)
+generate_random_tanaka_walk_task = _mk_generator(TanakaWalkTask)
+generate_random_parts_walk_task = _mk_generator(PartsWalkTask)
+generate_random_expo_mart_task = _mk_generator(ExpoMartTask)
+generate_random_snell_put_task = _mk_generator(SnellPutTask)
+generate_random_lindley_row_task = _mk_generator(LindleyRowTask)
+generate_random_lu_exact_task = _mk_generator(LuExactTask)
+generate_random_bareiss_det_task = _mk_generator(BareissDetTask)
+generate_random_cayley_vec_task = _mk_generator(CayleyVecTask)
+generate_random_gram_area_task = _mk_generator(GramAreaTask)
+generate_random_kron_entry_task = _mk_generator(KronEntryTask)
+generate_random_matexp_row_task = _mk_generator(MatexpRowTask)
+generate_random_matcos_row_task = _mk_generator(MatcosRowTask)
+generate_random_neumann_row_task = _mk_generator(NeumannRowTask)
+generate_random_mat_horner_task = _mk_generator(MatHornerTask)
+generate_random_reach_gram_task = _mk_generator(ReachGramTask)
+generate_random_tri_perm_task = _mk_generator(TriPermTask)
+generate_random_mat_prod_task = _mk_generator(MatProdTask)
+generate_random_leverrier_task = _mk_generator(LeverrierTask)
+generate_random_nil_log_task = _mk_generator(NilLogTask)
 generate_random_hard_attend_task = _mk_generator(HardAttendTask)
 generate_random_max_pool_task = _mk_generator(MaxPoolTask)
 generate_random_adam_tick_task = _mk_generator(AdamTickTask)
@@ -3362,6 +3416,33 @@ ALL_TASK_GENERATORS = {
     "repeat_test": generate_random_repeat_test_task,
     "group_var": generate_random_group_var_task,
     "pivot_cost": generate_random_pivot_cost_task,
+    "tri_det": generate_random_tri_det_task,
+    "cov_pair": generate_random_cov_pair_task,
+    "indep_gap": generate_random_indep_gap_task,
+    "sum_conv": generate_random_sum_conv_task,
+    "renew_age": generate_random_renew_age_task,
+    "birth_line": generate_random_birth_line_task,
+    "hyper_ways": generate_random_hyper_ways_task,
+    "ito_left": generate_random_ito_left_task,
+    "tanaka_walk": generate_random_tanaka_walk_task,
+    "parts_walk": generate_random_parts_walk_task,
+    "expo_mart": generate_random_expo_mart_task,
+    "snell_put": generate_random_snell_put_task,
+    "lindley_row": generate_random_lindley_row_task,
+    "lu_exact": generate_random_lu_exact_task,
+    "bareiss_det": generate_random_bareiss_det_task,
+    "cayley_vec": generate_random_cayley_vec_task,
+    "gram_area": generate_random_gram_area_task,
+    "kron_entry": generate_random_kron_entry_task,
+    "matexp_row": generate_random_matexp_row_task,
+    "matcos_row": generate_random_matcos_row_task,
+    "neumann_row": generate_random_neumann_row_task,
+    "mat_horner": generate_random_mat_horner_task,
+    "reach_gram": generate_random_reach_gram_task,
+    "tri_perm": generate_random_tri_perm_task,
+    "mat_prod": generate_random_mat_prod_task,
+    "leverrier": generate_random_leverrier_task,
+    "nil_log": generate_random_nil_log_task,
     "hard_attend": generate_random_hard_attend_task,
     "max_pool": generate_random_max_pool_task,
     "adam_tick": generate_random_adam_tick_task,

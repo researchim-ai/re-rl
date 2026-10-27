@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матрица A имеет первую строку {a} {b} и вторую строку {c} {d}. Входной вектор равен {q1} {q2}. Матрица Q — его внешний квадрат: на диагонали квадраты координат, вне диагонали их произведение. Накопитель начинает с Q. Шагов {n}. Каждый шаг умножает накопитель слева на A и справа на транспонированную A, затем прибавляет Q. Транспонированная A меняет строки и столбцы: её первая строка равна {a} {c}, вторая равна {b} {d}. После всех шагов накопитель равен сумме A^k Q (A^k)^T от нулевой степени до степени {n}. Чему равен верхний левый элемент?",
+      "en": "The matrix A has first row {a} {b} and second row {c} {d}. The input vector is {q1} {q2}. The matrix Q is its outer square: the diagonal holds the squares of the coordinates, and the off-diagonal holds their product. The accumulator starts at Q. There are {n} steps. Each step multiplies the accumulator on the left by A and on the right by the transpose of A, then adds Q. The transpose of A swaps rows and columns: its first row is {a} {c} and its second row is {b} {d}. After every step the accumulator equals the sum of A^k Q (A^k)^T from degree zero through degree {n}. What is the top-left entry?"
+    },
+    "s1": {
+      "ru": "Матрица A имеет первую строку {a} {b} и вторую строку {c} {d}. Входной вектор равен {q1} {q2}. Матрица Q — его внешний квадрат: на диагонали квадраты координат, вне диагонали их произведение. Накопитель начинает с Q. Шагов {n}. Каждый шаг умножает накопитель слева на A и справа на транспонированную A, затем прибавляет Q. Транспонированная A меняет строки и столбцы: её первая строка равна {a} {c}, вторая равна {b} {d}. После всех шагов накопитель равен сумме A^k Q (A^k)^T от нулевой степени до степени {n}. Чему равен след накопителя, то есть сумма диагонали?",
+      "en": "The matrix A has first row {a} {b} and second row {c} {d}. The input vector is {q1} {q2}. The matrix Q is its outer square: the diagonal holds the squares of the coordinates, and the off-diagonal holds their product. The accumulator starts at Q. There are {n} steps. Each step multiplies the accumulator on the left by A and on the right by the transpose of A, then adds Q. The transpose of A swaps rows and columns: its first row is {a} {c} and its second row is {b} {d}. After every step the accumulator equals the sum of A^k Q (A^k)^T from degree zero through degree {n}. What is the trace of the accumulator, that is the sum of the diagonal?"
+    },
+    "s2": {
+      "ru": "Старт: грамиан {w00} {w01}; {w10} {w11}.",
+      "en": "Start: the Gramian is {w00} {w01}; {w10} {w11}."
+    },
+    "s3": {
+      "ru": "Шаг {k}: грамиан {w00} {w01}; {w10} {w11}.",
+      "en": "Step {k}: the Gramian is {w00} {w01}; {w10} {w11}."
+    }
+  }
+}

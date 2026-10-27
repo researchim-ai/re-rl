@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Строго верхняя треугольная матрица порядка {n}: на диагонали и ниже диагонали нули. Строки разделены точкой с запятой: {listing}. Её степень {n} равна нулю, поэтому ряд логарифма единицы плюс эта матрица обрывается на степени {last}. Общий множитель — наименьшее общее кратное чисел от 1 до {last}. Член степени k равен этой матрице в степени k, умноженной на общий множитель, делённый нацело на k, и на знак плюс при нечётном k и минус при чётном k. Сумма копит члены. Чему равен её правый верхний элемент?",
+      "en": "The strictly upper triangular matrix has order {n}: the diagonal and everything below it are zero. Rows are separated by semicolons: {listing}. Its power {n} is zero, so the logarithm series of the identity plus this matrix stops at degree {last}. The common multiplier is the least common multiple of the integers from 1 through {last}. The degree-k term equals this matrix to the power k, times the common multiplier divided exactly by k, with a plus sign when k is odd and a minus sign when k is even. The sum accumulates the terms. What is its top-right entry?"
+    },
+    "s1": {
+      "ru": "Строго верхняя треугольная матрица порядка {n}: на диагонали и ниже диагонали нули. Строки разделены точкой с запятой: {listing}. Её степень {n} равна нулю, поэтому ряд логарифма единицы плюс эта матрица обрывается на степени {last}. Общий множитель — наименьшее общее кратное чисел от 1 до {last}. Член степени k равен этой матрице в степени k, умноженной на общий множитель, делённый нацело на k, и на знак плюс при нечётном k и минус при чётном k. Сумма копит члены. Чему равна сумма всех элементов этой суммы?",
+      "en": "The strictly upper triangular matrix has order {n}: the diagonal and everything below it are zero. Rows are separated by semicolons: {listing}. Its power {n} is zero, so the logarithm series of the identity plus this matrix stops at degree {last}. The common multiplier is the least common multiple of the integers from 1 through {last}. The degree-k term equals this matrix to the power k, times the common multiplier divided exactly by k, with a plus sign when k is odd and a minus sign when k is even. The sum accumulates the terms. What is the sum of every entry of that sum?"
+    },
+    "s2": {
+      "ru": "Степень {k}: сумма ряда {grid}.",
+      "en": "Degree {k}: the series sum is {grid}."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матрица 2 на 2 имеет первую строку {a} {b} и вторую строку {c} {d}. Считается усечённая экспонента до степени {n} включительно, умноженная на факториал числа {n}. Член степени 0 равен этому факториалу на диагонали и нулю вне диагонали. Член следующей степени равен произведению матрицы на предыдущий член, после чего каждый элемент делится нацело на номер степени. Сумма начинает с члена степени 0 и прибавляет каждый новый член. Чему равен верхний левый элемент суммы?",
+      "en": "The 2 by 2 matrix has first row {a} {b} and second row {c} {d}. The exponential is truncated through degree {n} and multiplied by the factorial of {n}. The degree-zero term equals that factorial on the diagonal and zero off the diagonal. The next term equals the matrix times the previous term, after which every entry is divided exactly by the degree. The sum starts at the degree-zero term and adds each new term. What is the top-left entry of the sum?"
+    },
+    "s1": {
+      "ru": "Матрица 2 на 2 имеет первую строку {a} {b} и вторую строку {c} {d}. Считается усечённая экспонента до степени {n} включительно, умноженная на факториал числа {n}. Член степени 0 равен этому факториалу на диагонали и нулю вне диагонали. Член следующей степени равен произведению матрицы на предыдущий член, после чего каждый элемент делится нацело на номер степени. Сумма начинает с члена степени 0 и прибавляет каждый новый член. Чему равен след суммы, то есть сумма её диагонали?",
+      "en": "The 2 by 2 matrix has first row {a} {b} and second row {c} {d}. The exponential is truncated through degree {n} and multiplied by the factorial of {n}. The degree-zero term equals that factorial on the diagonal and zero off the diagonal. The next term equals the matrix times the previous term, after which every entry is divided exactly by the degree. The sum starts at the degree-zero term and adds each new term. What is the trace of the sum, that is the sum of its diagonal?"
+    },
+    "s2": {
+      "ru": "Степень 0: член и сумма равны {t00} {t01}; {t10} {t11}.",
+      "en": "Degree 0: the term and the sum are {t00} {t01}; {t10} {t11}."
+    },
+    "s3": {
+      "ru": "Степень {k}: после умножения на матрицу и деления нацело на {k} член равен {t00} {t01}; {t10} {t11}. Сумма равна {s00} {s01}; {s10} {s11}.",
+      "en": "Degree {k}: after multiplication by the matrix and exact division by {k}, the term is {t00} {t01}; {t10} {t11}. The sum is {s00} {s01}; {s10} {s11}."
+    }
+  }
+}

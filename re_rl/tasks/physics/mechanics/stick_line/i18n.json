@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Неупругих ударов {n}. Первое тело имеет массу {mass} и скорость {speed}. Дальше по порядку стоят покоящиеся тела массами {listing}. При ударе тела слипаются и летят вместе. Импульс не меняется: новая скорость равна импульсу, делённому на новую массу, деление точное. Удвоенная кинетическая энергия равна массе, умноженной на квадрат скорости. Потеря на ударе — насколько она уменьшилась. Какая скорость у слипшихся тел после всех ударов?",
+      "en": "There are {n} inelastic collisions. The cluster has mass {mass} and speed {speed}. The bodies at rest ahead have masses {listing}, in order. On impact the bodies stick and move together. Momentum does not change: the new speed is the momentum divided by the new mass, and the division is exact. Twice the kinetic energy is the mass times the square of the speed. The loss on impact is how much that quantity decreases. What is the cluster speed after every collision?"
+    },
+    "s1": {
+      "ru": "Неупругих ударов {n}. Первое тело имеет массу {mass} и скорость {speed}. Дальше по порядку стоят покоящиеся тела массами {listing}. При ударе тела слипаются и летят вместе. Импульс не меняется: новая скорость равна импульсу, делённому на новую массу, деление точное. Удвоенная кинетическая энергия равна массе, умноженной на квадрат скорости. Потеря на ударе — насколько она уменьшилась. Чему равна суммарная потеря удвоенной кинетической энергии?",
+      "en": "There are {n} inelastic collisions. The cluster has mass {mass} and speed {speed}. The bodies at rest ahead have masses {listing}, in order. On impact the bodies stick and move together. Momentum does not change: the new speed is the momentum divided by the new mass, and the division is exact. Twice the kinetic energy is the mass times the square of the speed. The loss on impact is how much that quantity decreases. What is the total loss of twice the kinetic energy?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: скорость {speed}, суммарная потеря {loss}.",
+      "en": "Step {i}: speed {speed}, total loss {loss}."
+    }
+  }
+}

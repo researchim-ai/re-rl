@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "На прямой {n} упругих ударов. Массы по порядку: {listing}. Первое тело имеет скорость {speed}, каждое следующее до удара покоится. Положительное направление — направление начальной скорости. После удара скорость бьющего равна (m1 - m2) * u / (m1 + m2), скорость ударенного равна 2 * m1 * u / (m1 + m2). Деление точное. Ударенное тело летит дальше и бьёт следующее. Какая скорость у последнего тела после удара?",
+      "en": "There are {n} elastic collisions on a line. The masses in order are {listing}. The first body has speed {speed}, and every later body is at rest before it is hit. The positive direction is the direction of the initial speed. After a collision the hitter's speed is (m1 - m2) * u / (m1 + m2), and the struck body's speed is 2 * m1 * u / (m1 + m2). The division is exact. The struck body flies on and hits the next one. What is the speed of the last body after the collision?"
+    },
+    "s1": {
+      "ru": "На прямой {n} упругих ударов. Массы по порядку: {listing}. Первое тело имеет скорость {speed}, каждое следующее до удара покоится. Положительное направление — направление начальной скорости. После удара скорость бьющего равна (m1 - m2) * u / (m1 + m2), скорость ударенного равна 2 * m1 * u / (m1 + m2). Деление точное. Ударенное тело летит дальше и бьёт следующее. Какая скорость у бьющего после последнего удара? Отрицательная скорость направлена назад.",
+      "en": "There are {n} elastic collisions on a line. The masses in order are {listing}. The first body has speed {speed}, and every later body is at rest before it is hit. The positive direction is the direction of the initial speed. After a collision the hitter's speed is (m1 - m2) * u / (m1 + m2), and the struck body's speed is 2 * m1 * u / (m1 + m2). The division is exact. The struck body flies on and hits the next one. What is the hitter's speed after the last collision? A negative speed points backward."
+    },
+    "s2": {
+      "ru": "Шаг {i}: скорость ударенного {passed}, скорость бьющего {recoil}.",
+      "en": "Step {i}: struck speed {passed}, hitter speed {recoil}."
+    }
+  }
+}

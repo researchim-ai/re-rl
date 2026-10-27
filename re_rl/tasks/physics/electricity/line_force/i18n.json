@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пробный заряд {test} стоит в нуле. Источников {n}, пары — заряд и координата: {listing}. Коэффициент в законе Кулона равен 1, сила положительна вправо. Источник с зарядом Q в точке x даёт силу минус пробный заряд, умноженный на Q и на знак x, делённый на квадрат x. Деление точное. Полная сила — сумма вкладов. Чему она равна?",
+      "en": "A test charge {test} stands at zero. There are {n} sources, given as charge and coordinate: {listing}. The constant in Coulomb's law is 1, and force is positive to the right. A source of charge Q at position x contributes minus the test charge times Q times the sign of x, divided by the square of x. The division is exact. The total force is the sum of the contributions. What is it?"
+    },
+    "s1": {
+      "ru": "Пробный заряд {test} стоит в нуле. Источников {n}, пары — заряд и координата: {listing}. Коэффициент в законе Кулона равен 1, сила положительна вправо. Источник с зарядом Q в точке x даёт силу минус пробный заряд, умноженный на Q и на знак x, делённый на квадрат x. Деление точное. Полная сила — сумма вкладов. Чему равна сумма модулей вкладов?",
+      "en": "A test charge {test} stands at zero. There are {n} sources, given as charge and coordinate: {listing}. The constant in Coulomb's law is 1, and force is positive to the right. A source of charge Q at position x contributes minus the test charge times Q times the sign of x, divided by the square of x. The division is exact. The total force is the sum of the contributions. What is the sum of the absolute values of the contributions?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: вклад {force}, полная сила {net}, сумма модулей {spread}.",
+      "en": "Step {i}: contribution {force}, total force {net}, sum of absolute values {spread}."
+    }
+  }
+}

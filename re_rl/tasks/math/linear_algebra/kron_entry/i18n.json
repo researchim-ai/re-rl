@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Кронекерово произведение матриц 2 на 2 идёт слева направо. Множителей {n}. Каждый записан четырьмя числами по строкам: {listing}. Нужны строка {row} и столбец {col}. У первого множителя бит — остаток от деления на 2 целой части номера, делённой на 2 в степени на один меньше числа множителей. У каждого следующего множителя эта степень двойки на один меньше. Элемент множителя берётся в строке бита номера строки и в столбце бита номера столбца. Элемент большого произведения равен произведению этих элементов. След большого произведения равен произведению следов множителей, а след множителя — сумма его диагонали. Чему равен элемент?",
+      "en": "The Kronecker product of 2 by 2 matrices runs from left to right. There are {n} factors. Each is four numbers in row order: {listing}. The row is {row} and the column is {col}. For the first factor, the bit is the remainder modulo 2 of the index divided by 2 to the power one less than the number of factors. For each next factor that power of two is one smaller. The factor entry is taken in the row given by the row index bit and the column given by the column index bit. The big product entry equals the product of these entries. The trace of the big product equals the product of the factor traces, and a factor trace is its diagonal sum. What is the entry?"
+    },
+    "s1": {
+      "ru": "Кронекерово произведение матриц 2 на 2 идёт слева направо. Множителей {n}. Каждый записан четырьмя числами по строкам: {listing}. Нужны строка {row} и столбец {col}. У первого множителя бит — остаток от деления на 2 целой части номера, делённой на 2 в степени на один меньше числа множителей. У каждого следующего множителя эта степень двойки на один меньше. Элемент множителя берётся в строке бита номера строки и в столбце бита номера столбца. Элемент большого произведения равен произведению этих элементов. След большого произведения равен произведению следов множителей, а след множителя — сумма его диагонали. Чему равен след?",
+      "en": "The Kronecker product of 2 by 2 matrices runs from left to right. There are {n} factors. Each is four numbers in row order: {listing}. The row is {row} and the column is {col}. For the first factor, the bit is the remainder modulo 2 of the index divided by 2 to the power one less than the number of factors. For each next factor that power of two is one smaller. The factor entry is taken in the row given by the row index bit and the column given by the column index bit. The big product entry equals the product of these entries. The trace of the big product equals the product of the factor traces, and a factor trace is its diagonal sum. What is the trace?"
+    },
+    "s2": {
+      "ru": "Множитель {i}: элемент {entry}, след {span}.",
+      "en": "Factor {i}: entry {entry}, trace {span}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "В урне меченых шаров {marked} и немеченых {plain}. Вынимают без возвращения {take_mark} меченых и {take_plain} немеченых, всего {n}. Число способов — произведение двух биномиальных коэффициентов. Коэффициент C(a, b) считается так: начать с 1 и для i от 1 до b умножить на (a - b + i) и разделить на i. Деление точное. Сначала считаются способы выбрать меченые, затем это число умножается на способы выбрать немеченые. Сколько всего способов?",
+      "en": "An urn has {marked} marked balls and {plain} unmarked balls. Without replacement one draws {take_mark} marked balls and {take_plain} unmarked balls, {n} balls in all. The number of ways is the product of two binomial coefficients. The coefficient C(a, b) is computed by starting at 1 and, for i from 1 to b, multiplying by (a - b + i) and dividing by i. The division is exact. First come the ways to choose the marked balls, then that number is multiplied by the ways to choose the unmarked balls. How many ways are there in total?"
+    },
+    "s1": {
+      "ru": "В урне меченых шаров {marked} и немеченых {plain}. Вынимают без возвращения {take_mark} меченых и {take_plain} немеченых, всего {n}. Число способов — произведение двух биномиальных коэффициентов. Коэффициент C(a, b) считается так: начать с 1 и для i от 1 до b умножить на (a - b + i) и разделить на i. Деление точное. Сначала считаются способы выбрать меченые, затем это число умножается на способы выбрать немеченые. Сколькими способами можно выбрать только меченые?",
+      "en": "An urn has {marked} marked balls and {plain} unmarked balls. Without replacement one draws {take_mark} marked balls and {take_plain} unmarked balls, {n} balls in all. The number of ways is the product of two binomial coefficients. The coefficient C(a, b) is computed by starting at 1 and, for i from 1 to b, multiplying by (a - b + i) and dividing by i. The division is exact. First come the ways to choose the marked balls, then that number is multiplied by the ways to choose the unmarked balls. In how many ways can one choose just the marked balls?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: текущее произведение {ways}, способы выбрать меченые {choose}.",
+      "en": "Step {i}: current product {ways}, ways to choose the marked balls {choose}."
+    }
+  }
+}

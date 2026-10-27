@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Узлы занумерованы от 0 до {length}. Потенциал в концах 0. Источник стоит в узле {spot}, внутренних узлов {n}. В узле i, если i не больше номера источника, потенциал равен i, умноженному на ({length} минус номер источника). Если i больше, потенциал равен номеру источника, умноженному на ({length} минус i). Левый сосед минус удвоенный узел плюс правый сосед равен нулю везде, кроме источника, где эта разность равна минус {length}. Чему равен потенциал в узле источника?",
+      "en": "The nodes are numbered from 0 to {length}. The potential at the ends is 0. The source stands at node {spot}, and there are {n} interior nodes. At node i, if i is not greater than the source index, the potential equals i times ({length} minus the source index). If i is greater, the potential equals the source index times ({length} minus i). The left neighbor minus twice the node plus the right neighbor is 0 everywhere except at the source, where that difference equals minus {length}. What is the potential at the source node?"
+    },
+    "s1": {
+      "ru": "Узлы занумерованы от 0 до {length}. Потенциал в концах 0. Источник стоит в узле {spot}, внутренних узлов {n}. В узле i, если i не больше номера источника, потенциал равен i, умноженному на ({length} минус номер источника). Если i больше, потенциал равен номеру источника, умноженному на ({length} минус i). Левый сосед минус удвоенный узел плюс правый сосед равен нулю везде, кроме источника, где эта разность равна минус {length}. Чему равна сумма потенциалов всех внутренних узлов?",
+      "en": "The nodes are numbered from 0 to {length}. The potential at the ends is 0. The source stands at node {spot}, and there are {n} interior nodes. At node i, if i is not greater than the source index, the potential equals i times ({length} minus the source index). If i is greater, the potential equals the source index times ({length} minus i). The left neighbor minus twice the node plus the right neighbor is 0 everywhere except at the source, where that difference equals minus {length}. What is the sum of the potentials of all interior nodes?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: потенциал {value}, сумма потенциалов {total}.",
+      "en": "Step {i}: potential {value}, sum of potentials {total}."
+    }
+  }
+}

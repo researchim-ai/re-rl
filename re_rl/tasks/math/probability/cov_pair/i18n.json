@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Пар чисел {n}, в каждой паре первая и вторая координаты: {listing}. После каждой пары N — число уже учтённых пар, Sx и Sy — суммы координат, Sxy — сумма произведений. Числитель ковариации равен N * Sxy - Sx * Sy. Числитель дисперсии величины равен N на сумму её квадратов минус квадрат её суммы. Разность числителя дисперсии суммы координат и числителей дисперсий координат равна удвоенному числителю ковариации. Чему равен числитель ковариации в конце?",
+      "en": "There are {n} number pairs. In each pair the two coordinates are {listing}. After every pair, N is the number of pairs already counted, Sx and Sy are the sums of the coordinates, and Sxy is the sum of the products. The covariance numerator is N * Sxy - Sx * Sy. The variance numerator of a quantity is N times the sum of its squares minus the square of its sum. The variance numerator of the sum of the coordinates, minus the variance numerators of the coordinates, equals twice the covariance numerator. What is the final covariance numerator?"
+    },
+    "s1": {
+      "ru": "Пар чисел {n}, в каждой паре первая и вторая координаты: {listing}. После каждой пары N — число уже учтённых пар, Sx и Sy — суммы координат, Sxy — сумма произведений. Числитель ковариации равен N * Sxy - Sx * Sy. Числитель дисперсии величины равен N на сумму её квадратов минус квадрат её суммы. Разность числителя дисперсии суммы координат и числителей дисперсий координат равна удвоенному числителю ковариации. Чему равна эта разность в конце?",
+      "en": "There are {n} number pairs. In each pair the two coordinates are {listing}. After every pair, N is the number of pairs already counted, Sx and Sy are the sums of the coordinates, and Sxy is the sum of the products. The covariance numerator is N * Sxy - Sx * Sy. The variance numerator of a quantity is N times the sum of its squares minus the square of its sum. The variance numerator of the sum of the coordinates, minus the variance numerators of the coordinates, equals twice the covariance numerator. What is that difference at the end?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: числитель ковариации {cov}, разность числителей дисперсий {cross}.",
+      "en": "Step {i}: covariance numerator {cov}, difference of variance numerators {cross}."
+    }
+  }
+}

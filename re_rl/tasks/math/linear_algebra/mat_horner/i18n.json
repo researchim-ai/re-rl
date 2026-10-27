@@ -1,0 +1,20 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матрица 2 на 2 имеет первую строку {a} {b} и вторую строку {c} {d}. Коэффициенты многочлена идут от старшей степени к свободному члену: {coefs}. Их {count}, умножений {n}. Накопитель начинает со старшего коэффициента на диагонали и нуля вне диагонали. Каждый следующий шаг умножает накопитель на матрицу и прибавляет очередной коэффициент к диагонали. В конце накопитель равен значению многочлена на матрице. Чему равен его верхний левый элемент?",
+      "en": "The 2 by 2 matrix has first row {a} {b} and second row {c} {d}. The polynomial coefficients run from the leading term to the constant term: {coefs}. There are {count} of them and {n} multiplications. The accumulator starts as the leading coefficient on the diagonal and zero off the diagonal. Each next step multiplies the accumulator by the matrix and adds the next coefficient to the diagonal. At the end the accumulator equals the polynomial evaluated at the matrix. What is its top-left entry?"
+    },
+    "s1": {
+      "ru": "Матрица 2 на 2 имеет первую строку {a} {b} и вторую строку {c} {d}. Коэффициенты многочлена идут от старшей степени к свободному члену: {coefs}. Их {count}, умножений {n}. Накопитель начинает со старшего коэффициента на диагонали и нуля вне диагонали. Каждый следующий шаг умножает накопитель на матрицу и прибавляет очередной коэффициент к диагонали. В конце накопитель равен значению многочлена на матрице. Чему равен его след, то есть сумма диагонали?",
+      "en": "The 2 by 2 matrix has first row {a} {b} and second row {c} {d}. The polynomial coefficients run from the leading term to the constant term: {coefs}. There are {count} of them and {n} multiplications. The accumulator starts as the leading coefficient on the diagonal and zero off the diagonal. Each next step multiplies the accumulator by the matrix and adds the next coefficient to the diagonal. At the end the accumulator equals the polynomial evaluated at the matrix. What is its trace, that is the sum of the diagonal?"
+    },
+    "s2": {
+      "ru": "Старт: накопитель {p00} {p01}; {p10} {p11}.",
+      "en": "Start: the accumulator is {p00} {p01}; {p10} {p11}."
+    },
+    "s3": {
+      "ru": "Шаг {k}: прибавлен коэффициент {coef}. Накопитель {p00} {p01}; {p10} {p11}.",
+      "en": "Step {k}: coefficient {coef} was added. The accumulator is {p00} {p01}; {p10} {p11}."
+    }
+  }
+}

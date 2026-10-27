@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Частей {n}. Тройки — собственный момент инерции, масса и расстояние до оси: {listing}. По теореме Штейнера вклад части равен собственному моменту плюс масса, умноженная на квадрат расстояния. Чему равен суммарный момент инерции?",
+      "en": "There are {n} parts. The triples are the own moment of inertia, the mass and the distance to the axis: {listing}. By the parallel-axis theorem the contribution of a part equals its own moment plus the mass times the square of the distance. What is the total moment of inertia?"
+    },
+    "s1": {
+      "ru": "Частей {n}. Тройки — собственный момент инерции, масса и расстояние до оси: {listing}. По теореме Штейнера вклад части равен собственному моменту плюс масса, умноженная на квадрат расстояния. Чему равна сумма одних только слагаемых масса на квадрат расстояния?",
+      "en": "There are {n} parts. The triples are the own moment of inertia, the mass and the distance to the axis: {listing}. By the parallel-axis theorem the contribution of a part equals its own moment plus the mass times the square of the distance. What is the sum of the mass-times-distance-squared terms alone?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: слагаемое переноса {shift}, суммарный момент {inertia}, сумма переносов {moved}.",
+      "en": "Step {i}: shift term {shift}, total moment {inertia}, sum of shift terms {moved}."
+    }
+  }
+}

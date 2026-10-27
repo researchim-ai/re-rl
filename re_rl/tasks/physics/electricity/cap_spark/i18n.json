@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Конденсатор ёмкости {first} несёт заряд {charge}. К нему по очереди параллельно подключают {n} пустых конденсаторов, их ёмкости: {listing}. Заряд остаётся прежним. Напряжение равно заряду, делённому на сумму уже соединённых ёмкостей, деление точное. Удвоенная энергия равна квадрату заряда, делённому на эту сумму. При подключении она уменьшается, разница уходит в искру. Какое напряжение после всех подключений?",
+      "en": "A capacitor of capacitance {first} carries charge {charge}. Empty capacitors are connected in parallel to it, {n} of them, with capacitances {listing}. The charge stays the same. The voltage is the charge divided by the sum of the capacitances already connected, and the division is exact. Twice the energy is the square of the charge divided by that sum. On each connection it decreases, and the difference goes into the spark. What is the voltage after every connection?"
+    },
+    "s1": {
+      "ru": "Конденсатор ёмкости {first} несёт заряд {charge}. К нему по очереди параллельно подключают {n} пустых конденсаторов, их ёмкости: {listing}. Заряд остаётся прежним. Напряжение равно заряду, делённому на сумму уже соединённых ёмкостей, деление точное. Удвоенная энергия равна квадрату заряда, делённому на эту сумму. При подключении она уменьшается, разница уходит в искру. Чему равна суммарная потеря удвоенной энергии?",
+      "en": "A capacitor of capacitance {first} carries charge {charge}. Empty capacitors are connected in parallel to it, {n} of them, with capacitances {listing}. The charge stays the same. The voltage is the charge divided by the sum of the capacitances already connected, and the division is exact. Twice the energy is the square of the charge divided by that sum. On each connection it decreases, and the difference goes into the spark. What is the total loss of twice the energy?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: напряжение {voltage}, суммарная потеря {loss}.",
+      "en": "Step {i}: voltage {voltage}, total loss {loss}."
+    }
+  }
+}

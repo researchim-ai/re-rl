@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Два вектора длины {n}: {left} и {right}. После каждой координаты скалярное произведение прибавляет произведение координат, а каждая сумма квадратов прибавляет квадрат своей координаты. Квадрат площади равен произведению двух сумм квадратов минус квадрат скалярного произведения. Он также равен сумме квадратов миноров по всем парам позиций: минор пары — первая координата на вторую другой позиции минус вторая координата на первую другой позиции. Чему равен квадрат площади?",
+      "en": "Two vectors of length {n} are {left} and {right}. After each coordinate the dot product adds the product of the coordinates, and each sum of squares adds the square of its own coordinate. The squared area equals the product of the two sums of squares minus the square of the dot product. It also equals the sum of the squared minors over every pair of positions: a pair minor is the first vector's coordinate times the second vector's other coordinate minus the second vector's coordinate times the first vector's other coordinate. What is the squared area?"
+    },
+    "s1": {
+      "ru": "Два вектора длины {n}: {left} и {right}. После каждой координаты скалярное произведение прибавляет произведение координат, а каждая сумма квадратов прибавляет квадрат своей координаты. Квадрат площади равен произведению двух сумм квадратов минус квадрат скалярного произведения. Он также равен сумме квадратов миноров по всем парам позиций: минор пары — первая координата на вторую другой позиции минус вторая координата на первую другой позиции. Чему равно скалярное произведение?",
+      "en": "Two vectors of length {n} are {left} and {right}. After each coordinate the dot product adds the product of the coordinates, and each sum of squares adds the square of its own coordinate. The squared area equals the product of the two sums of squares minus the square of the dot product. It also equals the sum of the squared minors over every pair of positions: a pair minor is the first vector's coordinate times the second vector's other coordinate minus the second vector's coordinate times the first vector's other coordinate. What is the dot product?"
+    },
+    "s2": {
+      "ru": "Шаг {i}: скалярное произведение {dot}, квадрат площади {area}.",
+      "en": "Step {i}: dot product {dot}, squared area {area}."
+    }
+  }
+}
