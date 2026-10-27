@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Стартовая матрица имеет первую строку {x00} {x01} и вторую строку {x10} {x11}. Дальше {n} матриц, каждая четырьмя числами по строкам, матрицы разделены точкой с запятой: {listing}. Коммутатор — произведение очередной матрицы на текущую минус произведение текущей на очередную. След коммутатора, сумма его диагонали, равен нулю. Текущая матрица заменяется этим коммутатором, и шаг повторяется. Чему равен верхний левый элемент в конце?",
+      "en": "The starting matrix has first row {x00} {x01} and second row {x10} {x11}. Then there are {n} matrices, each four numbers in row order, separated by semicolons: {listing}. The commutator is the next matrix times the current one minus the current one times the next matrix. The trace of the commutator, the sum of its diagonal, is zero. The current matrix is replaced by that commutator, and the step repeats. What is the final top-left entry?"
+    },
+    "s1": {
+      "ru": "Стартовая матрица имеет первую строку {x00} {x01} и вторую строку {x10} {x11}. Дальше {n} матриц, каждая четырьмя числами по строкам, матрицы разделены точкой с запятой: {listing}. Коммутатор — произведение очередной матрицы на текущую минус произведение текущей на очередную. След коммутатора, сумма его диагонали, равен нулю. Текущая матрица заменяется этим коммутатором, и шаг повторяется. Чему равна сумма квадратов всех четырёх элементов конечной матрицы?",
+      "en": "The starting matrix has first row {x00} {x01} and second row {x10} {x11}. Then there are {n} matrices, each four numbers in row order, separated by semicolons: {listing}. The commutator is the next matrix times the current one minus the current one times the next matrix. The trace of the commutator, the sum of its diagonal, is zero. The current matrix is replaced by that commutator, and the step repeats. What is the sum of the squares of all four entries of the final matrix?"
+    },
+    "s2": {
+      "ru": "Шаг {k}: коммутатор {x00} {x01}; {x10} {x11}.",
+      "en": "Step {k}: the commutator is {x00} {x01}; {x10} {x11}."
+    }
+  }
+}

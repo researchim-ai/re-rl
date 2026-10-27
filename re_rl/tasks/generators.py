@@ -632,6 +632,10 @@ from re_rl.tasks.math.linear_algebra.tri_perm_task import TriPermTask
 from re_rl.tasks.math.linear_algebra.mat_prod_task import MatProdTask
 from re_rl.tasks.math.linear_algebra.leverrier_task import LeverrierTask
 from re_rl.tasks.math.linear_algebra.nil_log_task import NilLogTask
+from re_rl.tasks.math.linear_algebra.comm_row_task import CommRowTask
+from re_rl.tasks.math.linear_algebra.bidiag_solve_task import BidiagSolveTask
+from re_rl.tasks.math.linear_algebra.sl2_conj_task import Sl2ConjTask
+from re_rl.tasks.math.linear_algebra.pascal_vec_task import PascalVecTask
 from re_rl.tasks.ml.hard_attend_task import HardAttendTask
 from re_rl.tasks.ml.max_pool_task import MaxPoolTask
 from re_rl.tasks.ml.adam_tick_task import AdamTickTask
@@ -2612,6 +2616,10 @@ generate_random_tri_perm_task = _mk_generator(TriPermTask)
 generate_random_mat_prod_task = _mk_generator(MatProdTask)
 generate_random_leverrier_task = _mk_generator(LeverrierTask)
 generate_random_nil_log_task = _mk_generator(NilLogTask)
+generate_random_comm_row_task = _mk_generator(CommRowTask)
+generate_random_bidiag_solve_task = _mk_generator(BidiagSolveTask)
+generate_random_sl2_conj_task = _mk_generator(Sl2ConjTask)
+generate_random_pascal_vec_task = _mk_generator(PascalVecTask)
 generate_random_hard_attend_task = _mk_generator(HardAttendTask)
 generate_random_max_pool_task = _mk_generator(MaxPoolTask)
 generate_random_adam_tick_task = _mk_generator(AdamTickTask)
@@ -3443,6 +3451,10 @@ ALL_TASK_GENERATORS = {
     "mat_prod": generate_random_mat_prod_task,
     "leverrier": generate_random_leverrier_task,
     "nil_log": generate_random_nil_log_task,
+    "comm_row": generate_random_comm_row_task,
+    "bidiag_solve": generate_random_bidiag_solve_task,
+    "sl2_conj": generate_random_sl2_conj_task,
+    "pascal_vec": generate_random_pascal_vec_task,
     "hard_attend": generate_random_hard_attend_task,
     "max_pool": generate_random_max_pool_task,
     "adam_tick": generate_random_adam_tick_task,

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Матрица имеет первую строку {a} {b} и вторую строку {c} {d}. Параметры сдвигов: {shifts}. Их {n}. Сдвиг с параметром k — матрица с единицами на диагонали, числом k в правом верхнем углу и нулём в левом нижнем. Обратный сдвиг имеет на этом месте минус k. Новый результат равен обратному сдвигу, умноженному на текущую матрицу, умноженную на сам сдвиг. След и определитель при этом не меняются. Чему равен правый верхний элемент в конце?",
+      "en": "The matrix has first row {a} {b} and second row {c} {d}. The shear parameters are {shifts}. There are {n} of them. A shear with parameter k is the matrix with ones on the diagonal, k in the top-right corner, and zero in the bottom-left corner. The inverse shear has minus k in that corner. The new result equals the inverse shear times the current matrix times the shear itself. The trace and the determinant stay unchanged. What is the final top-right entry?"
+    },
+    "s1": {
+      "ru": "Матрица имеет первую строку {a} {b} и вторую строку {c} {d}. Параметры сдвигов: {shifts}. Их {n}. Сдвиг с параметром k — матрица с единицами на диагонали, числом k в правом верхнем углу и нулём в левом нижнем. Обратный сдвиг имеет на этом месте минус k. Новый результат равен обратному сдвигу, умноженному на текущую матрицу, умноженную на сам сдвиг. След и определитель при этом не меняются. Чему равен определитель?",
+      "en": "The matrix has first row {a} {b} and second row {c} {d}. The shear parameters are {shifts}. There are {n} of them. A shear with parameter k is the matrix with ones on the diagonal, k in the top-right corner, and zero in the bottom-left corner. The inverse shear has minus k in that corner. The new result equals the inverse shear times the current matrix times the shear itself. The trace and the determinant stay unchanged. What is the determinant?"
+    },
+    "s2": {
+      "ru": "Шаг {i}, параметр {k}: матрица {a} {b}; {c} {d}. Определитель {det}.",
+      "en": "Step {i}, parameter {k}: the matrix is {a} {b}; {c} {d}. The determinant is {det}."
+    }
+  }
+}

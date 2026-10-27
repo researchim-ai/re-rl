@@ -510,6 +510,10 @@ from re_rl.tasks.math.linear_algebra.tri_perm.task import tri_perm
 from re_rl.tasks.math.linear_algebra.mat_prod.task import prod_fold
 from re_rl.tasks.math.linear_algebra.leverrier.task import lever_trace
 from re_rl.tasks.math.linear_algebra.nil_log.task import unilog_trace
+from re_rl.tasks.math.linear_algebra.comm_row.task import commut_trace
+from re_rl.tasks.math.linear_algebra.bidiag_solve.task import bidiag_trace
+from re_rl.tasks.math.linear_algebra.sl2_conj.task import shear_trace
+from re_rl.tasks.math.linear_algebra.pascal_vec.task import pascal_apply
 from re_rl.tasks.physics.mechanics.stick_line.task import stick_trace
 from re_rl.tasks.physics.electricity.cap_spark.task import spark_trace
 from re_rl.tasks.physics.electricity.line_force.task import field_trace
@@ -1072,6 +1076,10 @@ POOL = [
     "mat_prod",
     "leverrier",
     "nil_log",
+    "comm_row",
+    "bidiag_solve",
+    "sl2_conj",
+    "pascal_vec",
     "kepler_row",
     "path_green",
     "burst_split",
@@ -4413,6 +4421,30 @@ def test_chain_values():
     trace = unilog_trace(logged.rows)
     assert trace == logged.trace and logged.corner == trace[-1][0][-1]
     assert logged.mass == sum(sum(row) for row in trace[-1])
+
+    assert commut_trace([(0, 1, 0, 0)], (0, 0, 1, 0)) == [(1, 0, 0, -1)]
+    bracketed = _one("comm_row", "en", 6, "entry", seed=4)
+    trace = commut_trace(bracketed.mats, bracketed.start)
+    assert trace == bracketed.trace and bracketed.entry == trace[-1][0]
+    last = trace[-1]
+    assert bracketed.energy == last[0] ** 2 + last[1] ** 2 + last[2] ** 2 + last[3] ** 2
+
+    assert bidiag_trace([2, 3], [4], [2, 10]) == [(1, 2), (2, 6)]
+    forward = _one("bidiag_solve", "en", 6, "tail", seed=4)
+    trace = bidiag_trace(forward.diag, forward.sub, forward.rhs)
+    assert trace == forward.trace and forward.tail == trace[-1][0]
+    assert forward.total == sum(value for value, _numer in trace)
+
+    assert shear_trace(1, 0, 0, 2, [1, -1]) == [(1, -1, 0, 2, 2), (1, 0, 0, 2, 2)]
+    sheared = _one("sl2_conj", "en", 6, "corner", seed=4)
+    trace = shear_trace(sheared.a, sheared.b, sheared.c, sheared.d, sheared.shifts)
+    assert trace == sheared.trace and sheared.corner == trace[-1][1] and sheared.det == trace[-1][4]
+
+    assert pascal_apply([1, 2, 3]) == [(1, 1), (3, 2), (8, 3)]
+    transformed = _one("pascal_vec", "en", 6, "last", seed=4)
+    trace = pascal_apply(transformed.values)
+    assert trace == transformed.trace and transformed.last == trace[-1][0]
+    assert transformed.total == sum(image for image, _back in trace)
 
     assert kepler_trace(1, 1, [(0, 2), (1, 2)]) == [(4, 8), (1, 1)]
     orbited = _one("kepler_row", "en", 6, "period", seed=4)

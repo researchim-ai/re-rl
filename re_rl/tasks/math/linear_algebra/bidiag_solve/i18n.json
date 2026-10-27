@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Нижняя двухдиагональная система порядка {n}. Диагональ: {diag}. Под диагональю: {sub}. Правая часть: {rhs}. Первая неизвестная равна первой правой части, делённой нацело на первый диагональный элемент. Дальше числитель равен своей правой части минус элемент под диагональю, умноженный на предыдущую неизвестную. Неизвестная равна этому числителю, делённому нацело на свой диагональный элемент. Чему равна последняя неизвестная?",
+      "en": "The lower bidiagonal system has order {n}. The diagonal is {diag}. Below the diagonal: {sub}. The right-hand side is {rhs}. The first unknown equals the first right-hand entry divided exactly by the first diagonal entry. After that, the numerator equals its own right-hand entry minus the subdiagonal entry times the previous unknown. The unknown equals that numerator divided exactly by its diagonal entry. What is the last unknown?"
+    },
+    "s1": {
+      "ru": "Нижняя двухдиагональная система порядка {n}. Диагональ: {diag}. Под диагональю: {sub}. Правая часть: {rhs}. Первая неизвестная равна первой правой части, делённой нацело на первый диагональный элемент. Дальше числитель равен своей правой части минус элемент под диагональю, умноженный на предыдущую неизвестную. Неизвестная равна этому числителю, делённому нацело на свой диагональный элемент. Чему равна сумма всех неизвестных?",
+      "en": "The lower bidiagonal system has order {n}. The diagonal is {diag}. Below the diagonal: {sub}. The right-hand side is {rhs}. The first unknown equals the first right-hand entry divided exactly by the first diagonal entry. After that, the numerator equals its own right-hand entry minus the subdiagonal entry times the previous unknown. The unknown equals that numerator divided exactly by its diagonal entry. What is the sum of every unknown?"
+    },
+    "s2": {
+      "ru": "Неизвестная {k}: числитель {num}, значение {val}.",
+      "en": "Unknown {k}: numerator {num}, value {val}."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "text": {
+    "s0": {
+      "ru": "Вектор длины {n}, нумерация с нуля: {listing}. Нижняя треугольная матрица Паскаля в строке k и столбце j содержит биномиальный коэффициент, если j не больше k, и ноль иначе. Образ в позиции k — сумма по j от нуля до k биномиального коэффициента строки k по столбцу j, умноженного на координату j. Обратная матрица берёт тот же коэффициент со знаком плюс, когда k минус j чётно, и со знаком минус, когда k минус j нечётно. Умножение образа на обратную матрицу возвращает исходную координату. Чему равен последний образ?",
+      "en": "The vector has length {n}, numbered from zero: {listing}. The lower-triangular Pascal matrix has the binomial coefficient in row k and column j when j is not greater than k, and zero otherwise. The image at position k is the sum, for j from zero through k, of the binomial coefficient of row k and column j times coordinate j. The inverse matrix takes the same coefficient with a plus sign when k minus j is even, and a minus sign when k minus j is odd. Multiplying the image by the inverse matrix returns the original coordinate. What is the last image?"
+    },
+    "s1": {
+      "ru": "Вектор длины {n}, нумерация с нуля: {listing}. Нижняя треугольная матрица Паскаля в строке k и столбце j содержит биномиальный коэффициент, если j не больше k, и ноль иначе. Образ в позиции k — сумма по j от нуля до k биномиального коэффициента строки k по столбцу j, умноженного на координату j. Обратная матрица берёт тот же коэффициент со знаком плюс, когда k минус j чётно, и со знаком минус, когда k минус j нечётно. Умножение образа на обратную матрицу возвращает исходную координату. Чему равна сумма всех образов?",
+      "en": "The vector has length {n}, numbered from zero: {listing}. The lower-triangular Pascal matrix has the binomial coefficient in row k and column j when j is not greater than k, and zero otherwise. The image at position k is the sum, for j from zero through k, of the binomial coefficient of row k and column j times coordinate j. The inverse matrix takes the same coefficient with a plus sign when k minus j is even, and a minus sign when k minus j is odd. Multiplying the image by the inverse matrix returns the original coordinate. What is the sum of every image?"
+    },
+    "s2": {
+      "ru": "Индекс {k}: образ {image}, восстановление {back}.",
+      "en": "Index {k}: image {image}, recovery {back}."
+    }
+  }
+}
