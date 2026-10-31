@@ -83,15 +83,8 @@ class LISDPTask(BaseMathTask):
         return ((texts.t('s0', language, text=self.text)))
 
     def solve(self):
-        if self.task_type == "lis":
-            self.solution_steps = [
-                texts.t("literals.s2", self.language)]
-        else:
-            self.solution_steps = [
-                texts.t("literals.s3", self.language)]
-        self.solution_steps.append(
-            ((texts.common('answer_line', self.language, answer=self.answer))))
-        self.final_answer = str(self.answer)
+        from re_rl.tasks.math.algorithm_traces.solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction):
         if self.final_answer is None:

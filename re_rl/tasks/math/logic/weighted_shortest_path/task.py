@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Tuple
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import dijkstra_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
 
 class WeightedShortestPathTask(_GraphBase):
     TASK_TYPE = texts.literal('literals.s3')
@@ -51,8 +53,13 @@ class WeightedShortestPathTask(_GraphBase):
             a, b = perm[i], perm[random.randrange(i)]
             w = random.randint(1, self.wmax)
             self.edges.append((a, b, w)); adj[a].append((b, w)); adj[b].append((a, w))
+        seen = {tuple(sorted((a, b))) for a, b, _ in self.edges}
         for _ in range(n):
             a, b = random.sample(range(n), 2)
+            key = tuple(sorted((a, b)))
+            if key in seen:
+                continue
+            seen.add(key)
             w = random.randint(1, self.wmax)
             self.edges.append((a, b, w)); adj[a].append((b, w)); adj[b].append((a, w))
         self.adj = adj
@@ -73,17 +80,16 @@ class WeightedShortestPathTask(_GraphBase):
                     heapq.heappush(pq, (nd, w))
         return dist.get(self.dst, -1)
 
-    def _edges_str(self):
-        return ", ".join(texts.t('s4', self.language, a=a, b=b, w=w) for a, b, w in self.edges)
+    def _edges_str(self, language):
+        return ", ".join(texts.t('s4', language, a=a, b=b, w=w) for a, b, w in self.edges)
 
     def _descr(self, language):
-        return ((texts.t('s0', language, v0=self.n - 1, v1=self._edges_str(), src=self.src, dst=self.dst)))
+        return ((texts.t('s0', language, v0=self.n - 1, v1=self._edges_str(language), src=self.src, dst=self.dst)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language))),
-            ((texts.t('s2', self.language, _answer=self._answer))),
-        ]
+        self._answer, self.algorithm_trace = dijkstra_trace(self.n, self.edges, self.src, self.dst)
+        self.shortest_path = self.algorithm_trace[-1]['path']
+        self.solution_steps = render_trace(self.algorithm_trace, 'dijkstra', self.language)
         self.final_answer = str(self._answer)
 
     def verify(self, prediction):

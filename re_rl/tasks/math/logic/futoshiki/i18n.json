@@ -31,8 +31,8 @@
       "en": "type: structured_text_with_tags\nDescription: Futoshiki puzzle. Provide the final grid or no solution.\nExample:\n<reasoning>\n  (Check row constraints, inequalities, etc.)\n</reasoning>\n<answer>\n  (Matrix of the solution)\n</answer>"
     },
     "problem": {
-      "ru": "Задача Futoshiki на поле {size}×{size}. В каждой строке и каждом столбце нужно расставить числа от 1 до {size} без повторений. Также даны неравенства:\n{inequalities}",
-      "en": "Futoshiki puzzle on a {size}×{size} grid. Each row and column must contain the numbers 1..{size} with no repeats. Some inequalities are given:\n{inequalities}"
+      "ru": "Задача Futoshiki на поле {size}×{size}. В каждой строке и каждом столбце нужно расставить числа от 1 до {size} без повторений. Также даны неравенства:\n{inequalities}\nКоординаты клеток (строка, столбец) отсчитываются от 0.",
+      "en": "Futoshiki puzzle on a {size}×{size} grid. Each row and column must contain the numbers 1..{size} with no repeats. Some inequalities are given:\n{inequalities}\nCell coordinates (row, column) are zero-based."
     },
     "step_explanations": {
       "ru": [

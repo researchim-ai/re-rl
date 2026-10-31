@@ -35,6 +35,10 @@ class ModelCountingTask(_LogicBase):
         return ((texts.t('s0', language, v0=', '.join(self.vars), v1=_render(self.formula))))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s1', self.language, v0=2 ** len(self.vars)))),
             ((texts.t('s2', self.language, _answer=self._answer))),

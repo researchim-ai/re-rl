@@ -11,6 +11,9 @@ import random
 from typing import Any, ClassVar, Dict, List, Sequence, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import minimax_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -25,7 +28,7 @@ def minimax_tree(branches: Sequence[Sequence[int]]) -> Tuple[int, int]:
     return best, chosen
 
 
-class MinimaxTreeTask(BaseMathTask):
+class MinimaxTreeTask(_GraphBase):
     TASK_TYPE = "minimax_tree"
     TASK_TYPES = ["value", "action"]
 
@@ -72,8 +75,9 @@ class MinimaxTreeTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
-        step = ((texts.t('s1', self.language, value=self.value, choice=self.choice)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
+        self.value, self.choice, self.algorithm_trace = minimax_trace(self.branches)
+        self.answer = self.value if self.task_type == 'value' else self.choice
+        self.solution_steps = render_trace(self.algorithm_trace, 'minimax', self.language)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

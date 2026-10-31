@@ -57,10 +57,8 @@ class SarsaTask(BaseMathTask):
         return f"{rule} {data} {ask}"
 
     def solve(self):
-        shown = fmt_fraction(self.answer)
-        step = ((f"δ = {fmt_fraction(self.delta)}, Q_new = {fmt_fraction(self.q_new)}."))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
-        self.final_answer = shown
+        from re_rl.tasks.rl.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

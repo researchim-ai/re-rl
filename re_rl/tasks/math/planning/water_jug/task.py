@@ -24,6 +24,8 @@ class WaterJugTask(BaseMathTask):
       - difficulty 9-10: 3 кувшина, сложные цели
     """
     
+    TASK_TYPE = "water_jug"
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"capacities": (3, 5), "target": 4},
         2: {"capacities": (3, 5), "target": 1},
@@ -63,8 +65,8 @@ class WaterJugTask(BaseMathTask):
             if target is None:
                 target = preset.get("target", 4)
         else:
-            capacities = capacities or (3, 5)
-            target = target or 4
+            capacities = (3, 5) if capacities is None else capacities
+            target = 4 if target is None else target
         
         self.language = language.lower()
         self.detail_level = detail_level
@@ -72,7 +74,11 @@ class WaterJugTask(BaseMathTask):
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
         
-        self.capacities = capacities
+        if not isinstance(capacities,(list,tuple)) or not capacities or any(type(c) is not int or c <= 0 for c in capacities):
+            raise ValueError('invalid_capacities')
+        if type(target) is not int or target < 0:
+            raise ValueError('invalid_target')
+        self.capacities = tuple(capacities)
         self.target = target
         self.num_jugs = len(capacities)
         
@@ -175,6 +181,10 @@ class WaterJugTask(BaseMathTask):
         return []
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         """Генерирует пошаговое решение."""
         templates = PROMPT_TEMPLATES["water_jug"]
         steps = []
@@ -261,6 +271,10 @@ class WaterJugTask(BaseMathTask):
         parts = [get_template(PROMPT_TEMPLATES["inline"], texts.t('s0', self.language), self.language, augment=False, idx=i + 1, value=v)
                  for i, v in enumerate(state)]
         return ", ".join(parts)
+
+    def verify(self, prediction):
+        from re_rl.tasks.math.planning.plan_verification import jug_verify
+        return jug_verify(self,prediction)
 
     def get_task_type(self):
         return "water_jug"

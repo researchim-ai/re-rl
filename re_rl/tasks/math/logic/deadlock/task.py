@@ -11,6 +11,9 @@ import random
 from typing import Any, ClassVar, Dict, List, Set, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import scc_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -56,7 +59,7 @@ def nodes_on_cycles(n: int, edges: List[Tuple[int, int]]) -> Set[int]:
     return on_cycle
 
 
-class DeadlockTask(BaseMathTask):
+class DeadlockTask(_GraphBase):
     TASK_TYPE = "deadlock"
     TASK_TYPES = ["has_cycle", "cycle_nodes"]
 
@@ -110,15 +113,17 @@ class DeadlockTask(BaseMathTask):
         return f"{head} {ask}"
 
     def solve(self):
-        if self.task_type == "has_cycle":
-            ans = (texts.t('s3', self.language) if self.has_cycle else texts.t('s4', self.language))
-            step = ((texts.t('s5', self.language, count=self.count)))
-        else:
-            ans = str(self.count)
-            listed = ", ".join(str(v + 1) for v in sorted(self.on_cycle)) or "-"
-            step = ((texts.t('s6', self.language, listed=listed)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=ans)))]
-        self.final_answer = ans
+        _, scc = scc_trace(self.n, self.edges)
+        self.algorithm_trace = [dict(e, algorithm='scc', vertex_offset=1) for e in scc]
+        self.on_cycle = set()
+        for group in scc[-1]['groups']:
+            cyclic = len(group) > 1 or (group[0], group[0]) in self.edges
+            if cyclic: self.on_cycle.update(group)
+            self.algorithm_trace.append(dict(event='group', group=[v + 1 for v in group], cyclic=int(cyclic), nodes=[v + 1 for v in sorted(self.on_cycle)]))
+        self.count, self.has_cycle = len(self.on_cycle), bool(self.on_cycle)
+        self.algorithm_trace.append(dict(event='done', nodes=[v + 1 for v in sorted(self.on_cycle)], count=self.count))
+        self.solution_steps = render_trace(self.algorithm_trace, 'deadlock', self.language)
+        self.final_answer = (texts.t('s3', self.language) if self.has_cycle else texts.t('s4', self.language)) if self.task_type == 'has_cycle' else str(self.count)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

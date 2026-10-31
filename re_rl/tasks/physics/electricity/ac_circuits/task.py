@@ -105,6 +105,10 @@ class ACCircuitsTask(BaseMathTask):
         return problem_text
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         templates = PROMPT_TEMPLATES["ac_circuits"]
         steps = []
         

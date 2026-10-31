@@ -53,6 +53,10 @@ class RestitutionTask(BaseMathTask):
         return ((texts.t('s0', language, m1=self.m1, u=self.u, m2=self.m2, e=self.e, v4=texts.t('s3', language) if self.task_type == 'first_speed' else texts.t('s4', language))))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = ((f"v1 = (m1 - e*m2) / (m1 + m2) * u = {self.v1}, "
                  f"v2 = m1*(1 + e) / (m1 + m2) * u = {self.v2}."))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]

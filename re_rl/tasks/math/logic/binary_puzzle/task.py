@@ -42,7 +42,7 @@ class BinaryPuzzleTask(_GridBase):
                 rows = [tuple(row) for row in grid]
                 if len(set(rows)) == n and len(set(cols)) == n:
                     return grid
-        return grid  # fallback
+        raise RuntimeError('generation_failed')
 
     def _fill(self, grid, pos):
         n = self.n
@@ -73,6 +73,12 @@ class BinaryPuzzleTask(_GridBase):
             return False
         if r >= 2 and grid[r][c] == grid[r-1][c] == grid[r-2][c] != -1:
             return False
+        if -1 not in row:
+            if any(other != r and grid[other] == row for other in range(n)):
+                return False
+        if -1 not in col:
+            if any(other != c and [grid[i][other] for i in range(n)] == col for other in range(n)):
+                return False
         return True
 
     def _make_puzzle(self):
@@ -93,6 +99,10 @@ class BinaryPuzzleTask(_GridBase):
         return ((texts.t('s0', language, n=self.n, n_2=self.n, v2=self.n * self.n, v3=self._grid_str())))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         flat = " ".join(str(self.sol[i][j]) for i in range(self.n) for j in range(self.n))
         self.solution_steps = [
             ((texts.t('s1', self.language))),

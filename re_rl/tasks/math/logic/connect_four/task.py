@@ -160,6 +160,10 @@ class ConnectFourTask(BaseMathTask):
         return [c for c in moves if vals[c] == best]
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "outcome":
             if self.value == 1:
                 res = ((texts.t('s3', self.language)))

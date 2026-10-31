@@ -101,6 +101,10 @@ class DirectMappedCacheTask(BaseMathTask):
         return f"{rule} {seq_line} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "tag":
             addr = self.addrs[self.which]
             tag, index = locate(addr, self.block_size, self.n_lines)

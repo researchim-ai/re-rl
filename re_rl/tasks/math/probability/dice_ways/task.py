@@ -50,6 +50,10 @@ class DiceWaysTask(BaseMathTask):
         return texts.t("s1", language, faces=self.faces, ways=self.ways)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "ways":
             step = texts.t("s2", self.language, faces=self.faces, total=self.total, ways=self.ways)
         else:

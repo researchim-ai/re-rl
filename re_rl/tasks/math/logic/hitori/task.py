@@ -87,6 +87,10 @@ class HitoriTask(_GridBase):
         return ((texts.t('s0', language, n=self.n, n_2=self.n, rows=rows)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         coords = ", ".join(f"({i+1}, {j+1})" for (i, j) in sorted(self.shaded))
         self.solution_steps = [
             ((texts.t('s1', self.language))),
@@ -115,10 +119,6 @@ class HitoriTask(_GridBase):
     def verify(self, prediction):
         if self.final_answer is None:
             self.solve()
-        ints = U.parse_ints(prediction)
-        if len(ints) % 2 == 1:
-            ints = ints[:-1]
-        shaded = set()
-        for k in range(0, len(ints), 2):
-            shaded.add((ints[k] - 1, ints[k + 1] - 1))
-        return 1.0 if self._valid_shading(shaded) else 0.0
+        from re_rl.tasks.math.logic.grids2_shared.coordinates import parse_coordinates
+        shaded = parse_coordinates(prediction,empty_labels=(texts.t('s3',self.language),))
+        return 1.0 if shaded is not None and self._valid_shading(shaded) else 0.0

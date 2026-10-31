@@ -15,12 +15,12 @@
   },
   "prompt": {
     "instructions": {
-      "ru": "type: structured_text_with_tags\nОписание: Решите задачу 'Ханойская башня'.\nПереместите все диски с начального стержня на конечный.\nПравила:\n- Можно перемещать только один диск за раз\n- Нельзя класть больший диск на меньший\nФормат ответа:\n  <reasoning>\n    (Стратегия решения)\n  </reasoning>\n  <answer>\n    (Последовательность ходов)\n  </answer>",
-      "en": "type: structured_text_with_tags\nDescription: Solve the Tower of Hanoi puzzle.\nMove all disks from the source peg to the target peg.\nRules:\n- Only one disk can be moved at a time\n- A larger disk cannot be placed on a smaller disk\nAnswer format:\n  <reasoning>\n    (Solution strategy)\n  </reasoning>\n  <answer>\n    (Sequence of moves)\n  </answer>"
+      "ru": "type: structured_text_with_tags\nОписание: Решите задачу 'Ханойская башня'.\nПереместите все диски с начального стержня на конечный.\nПравила:\n- Можно перемещать только один диск за раз\n- Нельзя класть больший диск на меньший\nФормат ответа:\n  <reasoning>\n    (Стратегия решения)\n  </reasoning>\n  <answer>\n    (Последовательность ходов)\n  </answer>\nТакже допустим JSON-массив ходов: [[1, \"A\", \"C\"]] (диск, откуда, куда). Число дисков: целое от 0 до 12.",
+      "en": "type: structured_text_with_tags\nDescription: Solve the Tower of Hanoi puzzle.\nMove all disks from the source peg to the target peg.\nRules:\n- Only one disk can be moved at a time\n- A larger disk cannot be placed on a smaller disk\nAnswer format:\n  <reasoning>\n    (Solution strategy)\n  </reasoning>\n  <answer>\n    (Sequence of moves)\n  </answer>\nYou may also use a JSON action array: [[1, \"A\", \"C\"]] (disk, source, target). Disk count: integer from 0 to 12."
     },
     "problem": {
-      "ru": "Дано {n} дисков разного размера на стержне A.\nДиски расположены по убыванию размера снизу вверх (самый большой внизу).\nПереместите все диски на стержень {target}, используя стержень {auxiliary} как вспомогательный.\n\nНайдите оптимальную последовательность ходов.",
-      "en": "There are {n} disks of different sizes on peg A.\nDisks are stacked in decreasing size from bottom to top (largest at bottom).\nMove all disks to peg {target}, using peg {auxiliary} as auxiliary.\n\nFind the optimal sequence of moves."
+      "ru": "Дано {n} дисков разного размера на стержне {source}.\nДиски расположены по убыванию размера снизу вверх (самый большой внизу).\nПереместите все диски на стержень {target}, используя стержень {auxiliary} как вспомогательный.\n\nНайдите оптимальную последовательность ходов.",
+      "en": "There are {n} disks of different sizes on peg {source}.\nDisks are stacked in decreasing size from bottom to top (largest at bottom).\nMove all disks to peg {target}, using peg {auxiliary} as auxiliary.\n\nFind the optimal sequence of moves."
     },
     "steps": {
       "move": {

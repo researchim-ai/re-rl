@@ -68,10 +68,8 @@ class CohenKappaTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
-        shown = fmt_fraction(self.answer)
-        step = ((f"po = {fmt_fraction(self.agreement)}, κ = {fmt_fraction(self.kappa)}."))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
-        self.final_answer = shown
+        from re_rl.tasks.ml.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

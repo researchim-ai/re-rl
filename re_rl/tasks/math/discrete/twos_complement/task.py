@@ -75,6 +75,10 @@ class TwosComplementTask(BaseMathTask):
         return ((texts.t('s0', language, n=n, v1=self._lo_hi()[0], v2=self._lo_hi()[1], a=self.a, b=self.b)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "decode":
             steps = [((texts.t('s3', self.language))),
                      ((texts.common('answer_line', self.language, answer=self.value)))]

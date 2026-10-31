@@ -52,6 +52,10 @@ class BoatCurrentTask(BaseMathTask):
         return texts.t("s3", language, down=self.down, up=self.up)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         key = {"downstream": "s4", "upstream": "s5", "boat": "s6", "current": "s7"}[self.task_type]
         step = texts.t(key, self.language, vb=self.vb, vc=self.vc, down=self.down, up=self.up)
         self.solution_steps = [step, texts.common("answer_line", self.language, answer=self.answer)]

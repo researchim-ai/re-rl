@@ -42,6 +42,10 @@ class AgeGapTask(BaseMathTask):
         return texts.t(key, language, older=self.older, young=self.young)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "gap":
             step = texts.t("s2", self.language, older=self.older, young=self.young, gap=self.gap)
         else:

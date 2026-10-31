@@ -45,6 +45,10 @@ class GridDiagonalTask(BaseMathTask):
         return texts.t(key, language, m=self.m, n=self.n)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "squares":
             step = texts.t("s2", self.language, m=self.m, n=self.n, g=self.g, answer=self.squares)
         else:

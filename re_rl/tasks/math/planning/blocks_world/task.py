@@ -53,8 +53,9 @@ class BlocksWorldTask(BaseMathTask):
         num_blocks: Optional[int] = None,
     ):
         preset = self._interpolate_difficulty(difficulty)
-        self.num_blocks = int(num_blocks if num_blocks is not None else preset.get("num_blocks", 4))
-        self.num_blocks = max(2, min(6, self.num_blocks))
+        self.num_blocks = num_blocks if num_blocks is not None else preset.get("num_blocks", 4)
+        if type(self.num_blocks) is not int or not 2 <= self.num_blocks <= 6:
+            raise ValueError('invalid_num_blocks')
         self.augment = augment
 
         self.blocks = [chr(ord("A") + i) for i in range(self.num_blocks)]
@@ -140,7 +141,7 @@ class BlocksWorldTask(BaseMathTask):
                     continue
                 ns = dict(state)
                 ns[b] = c
-                succ.append((f"move {b} onto {c}", ns))
+                succ.append((texts.t('s4',self.language,b=b,c=c), ns))
         return succ
 
     def _bfs_plan(self, init: State, goal: State) -> List[str]:
@@ -165,9 +166,13 @@ class BlocksWorldTask(BaseMathTask):
 
     # ------------------------------------------------------------------
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         section = PROMPT_TEMPLATES["blocks_world"]
         plan_str = "; ".join(self._plan) if self._plan else texts.t('s0', self.language)
-        self.solution_steps.append(get_template(section, "step_plan", self.language, augment=False, plan=plan_str))
+        self.solution_steps = [get_template(section, "step_plan", self.language, augment=False, plan=plan_str)]
         self.solution_steps.append(get_template(section, "result", self.language, augment=False, plan=plan_str))
         self.final_answer = plan_str
 
@@ -175,11 +180,16 @@ class BlocksWorldTask(BaseMathTask):
     def _parse_moves(self, text: str) -> List[Tuple[str, str]]:
         moves = []
         pattern = re.compile(texts.literal('literals.s1'), re.IGNORECASE)
-        for m in pattern.finditer(text):
+        if text.strip() in (texts.t('s0','ru'),texts.t('s0','en')):
+            return []
+        for part in text.strip().rstrip('.').split(';'):
+            m = pattern.fullmatch(part.strip())
+            if m is None:
+                return None
             block = m.group(1).upper()
             target = m.group(2)
-            target = "table" if target.lower() in ("table", texts.t('s3', self.language)) else target.upper()
-            moves.append((block, target))
+            target = "table" if target.lower() in ("table", texts.t('s3','ru')) else target.upper()
+            moves.append((block,target))
         return moves
 
     def verify(self, prediction: str) -> float:
@@ -193,6 +203,8 @@ class BlocksWorldTask(BaseMathTask):
         text = answer or prediction
         moves = self._parse_moves(text)
 
+        if moves is None:
+            return 0.0
         state = dict(self._init_state)
         if not moves:
             return 1.0 if state == self._goal_state else 0.0

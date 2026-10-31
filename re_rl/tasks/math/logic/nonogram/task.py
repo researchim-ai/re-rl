@@ -42,6 +42,10 @@ class NonogramTask(_GridBase):
         return ((texts.t('s2', language, r=self.r, c=self.c, rows=rows, cols=cols, v4=self.r * self.c)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         flat = " ".join(str(self.sol[i][j]) for i in range(self.r) for j in range(self.c))
         self.solution_steps = [
             ((texts.t('s3', self.language))),

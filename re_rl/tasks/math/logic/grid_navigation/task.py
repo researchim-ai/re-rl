@@ -39,8 +39,11 @@ class GridNavigationTask(BaseMathTask):
         preset = self._interpolate_difficulty(difficulty)
         self.num_cmds = int(preset["cmds"])
         self.maze_size = int(preset["maze"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
+        if self.subtype not in self.TASK_TYPES:
+            raise ValueError("invalid_subtype")
         self.augment = augment
+        self.language = language
         self._build()
         description = self._make_description(language)
         super().__init__(description=description, language=language, detail_level=detail_level,
@@ -136,6 +139,10 @@ class GridNavigationTask(BaseMathTask):
         return ((texts.t('s1', language, v0=n - 1, v1=n - 1, grid_str=grid_str)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.subtype == "position":
             self.solution_steps = [
                 ((texts.t('s7', self.language))),

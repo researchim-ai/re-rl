@@ -44,6 +44,10 @@ class GearRatioTask(BaseMathTask):
         return texts.t("s1", language, n1=self.n1, w1=self.w1, w2=self.w2)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = texts.t("s2", self.language, n1=self.n1, w1=self.w1, n2=self.n2, w2=self.w2)
         self.solution_steps = [step, texts.common("answer_line", self.language, answer=self.answer)]
         self.final_answer = str(self.answer)

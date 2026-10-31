@@ -50,6 +50,10 @@ class LogicalEquivalenceTask(_LogicBase):
         return ((texts.t('s0', language, v0=', '.join(self.vars), v1=_render(self.f1), v2=_render(self.f2))))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s3', self.language))),
             ((texts.t('s4', self.language) if self._answer else

@@ -45,6 +45,10 @@ class LeverBalanceTask(BaseMathTask):
         return texts.t("s1", language, m1=self.m1, d1=self.d1, m2=self.m2)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = texts.t("s2", self.language, m1=self.m1, d1=self.d1, m2=self.m2, d2=self.d2)
         self.solution_steps = [step, texts.common("answer_line", self.language, answer=self.answer)]
         self.final_answer = str(self.answer)

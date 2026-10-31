@@ -58,6 +58,10 @@ class CyclotronTask(BaseMathTask):
         return f"{law} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = fmt_fraction(self.answer)
         step = ((texts.t('s1', self.language, charge=self.charge, field=self.field, mass=self.mass, v3=fmt_fraction(self.omega))))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]

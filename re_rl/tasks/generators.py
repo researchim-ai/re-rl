@@ -1044,22 +1044,12 @@ def generate_random_text_stats_task(
 # 12. GraphTask
 ##################################################
 
-def generate_random_graph_task(
-    task_type="shortest_path",
-    num_nodes=8,
-    edge_prob=0.4,
-    language="ru",
-    detail_level=3
-,
-    **kwargs
-) -> GraphTask:
-    return GraphTask(
-        task_type=task_type,
-        num_nodes=num_nodes,
-        edge_prob=edge_prob,
-        language=language,
-        detail_level=detail_level
-    )
+def generate_random_graph_task(task_type="shortest_path", num_nodes=None, edge_prob=None,
+                               language="ru", detail_level=3, difficulty=5,
+                               reasoning_mode=False, **kwargs) -> GraphTask:
+    return GraphTask.generate_random_task(task_type=task_type, num_nodes=num_nodes,
+        edge_prob=edge_prob, language=language, detail_level=detail_level,
+        difficulty=difficulty, reasoning_mode=reasoning_mode, **kwargs)
 
 
 ##################################################
@@ -1119,37 +1109,9 @@ def generate_random_analogical_task(
     :param reasoning_mode: режим рассуждений
     :return: экземпляр AnalogicalTask
     """
-    # Список предопределенных аналогий
-    analogies = [
-        # Математические аналогии
-        "2 * 3 = 6 -> 3 * 4 = 12",
-        "2^3 = 8 -> 3^2 = 9",
-        "5 + 3 = 8 -> 7 + 4 = 11",
-        
-        # Логические аналогии
-        texts.t('s0', language),
-        texts.t('s1', language),
-        texts.t('s2', language),
-        
-        # Геометрические аналогии
-        texts.t('s3', language),
-        texts.t('s4', language),
-        
-        # Числовые аналогии
-        "2 -> 4 -> 3 -> 6",  # умножение на 2
-        "3 -> 9 -> 4 -> 16",  # возведение в квадрат
-        "2 -> 8 -> 3 -> 27",  # возведение в куб
-    ]
-    
-    # Выбираем случайную аналогию
-    analogy = random.choice(analogies)
-    
-    return AnalogicalTask(
-        description=analogy,
-        language=language,
-        detail_level=detail_level,
-        reasoning_mode=reasoning_mode
-    )
+    task = AnalogicalTask(language=language,detail_level=detail_level,reasoning_mode=reasoning_mode,**kwargs)
+    task.solve()
+    return task
 
 
 ##################################################

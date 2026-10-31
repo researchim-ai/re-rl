@@ -11,6 +11,10 @@
     "s2": {
       "ru": "Подходит набор: {v0}.",
       "en": "A satisfying assignment: {v0}."
+    },
+    "unsatisfiable": {
+      "ru": "невыполнимо",
+      "en": "unsatisfiable"
     }
   }
 }

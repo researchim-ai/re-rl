@@ -40,9 +40,10 @@ class ModularArithmeticTask(BaseMathTask):
         reasoning_mode: bool = False,
         augment: bool = True,
         subtype: Optional[str] = None,
+        task_type: Optional[str] = None,
     ):
         preset = self._interpolate_difficulty(difficulty)
-        self.subtype = subtype or preset.get("subtype", "modexp")
+        self.subtype = subtype or task_type or preset.get("subtype", "modexp")
         self._preset = preset
         self.augment = augment
 
@@ -98,6 +99,10 @@ class ModularArithmeticTask(BaseMathTask):
         return -1
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         section = PROMPT_TEMPLATES["modular_arithmetic"]
         self.solution_steps.append(
             get_template(section, "step_result", self.language, augment=False, result=self._answer)

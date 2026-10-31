@@ -61,11 +61,8 @@ class DecisionStumpTask(BaseMathTask):
         return ((texts.t('s0', language, shown=shown)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language, answer=self.answer))),
-            ((texts.common('answer_line', self.language, answer=self.answer))),
-        ]
-        self.final_answer = str(self.answer)
+        from re_rl.tasks.ml.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

@@ -12,6 +12,9 @@ from fractions import Fraction
 from typing import Any, ClassVar, Dict, List, Sequence, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import expectimax_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.ml._exact import fmt_fraction, verify_fraction
 
@@ -42,7 +45,7 @@ def expectimax(actions: Sequence[Sequence[Outcome]]) -> Tuple[Fraction, int]:
     return best, chosen
 
 
-class ExpectimaxTask(BaseMathTask):
+class ExpectimaxTask(_GraphBase):
     TASK_TYPE = "expectimax"
     TASK_TYPES = ["value", "action"]
 
@@ -96,10 +99,10 @@ class ExpectimaxTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
-        shown = str(self.choice) if self.task_type == "action" else fmt_fraction(self.value)
-        step = ((texts.t('s1', self.language, v0=fmt_fraction(self.value), choice=self.choice)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
-        self.final_answer = shown
+        self.value, self.choice, self.algorithm_trace = expectimax_trace(self.actions)
+        self.answer = self.value if self.task_type == 'value' else Fraction(self.choice)
+        self.solution_steps = render_trace(self.algorithm_trace, 'expect', self.language)
+        self.final_answer = str(self.choice) if self.task_type == 'action' else fmt_fraction(self.value)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

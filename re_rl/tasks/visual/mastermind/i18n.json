@@ -1,8 +1,8 @@
 {
   "text": {
     "s0": {
-      "ru": "На рисунке — доска «Мастермайнда». Сверху легенда: цвет фишки = цифра (1..{C}). Каждая строка — догадка из {L} цветных фишек; справа колышки-подсказки: чёрные — число «точных» совпадений (верная цифра на своём месте), белые — «частичных» (верная цифра не на своём месте). Определите скрытый код — {L_2} цифр по порядку.",
-      "en": "The figure shows a Mastermind board. Top legend: peg color = digit (1..{C}). Each row is a guess of {L} colored pegs; on the right are key pegs: black = number of 'exact' matches (right digit, right place), white = 'partial' (right digit, wrong place). Determine the secret code — {L_2} digits in order."
+      "ru": "На рисунке — доска «Мастермайнда». Легенда сверху сопоставляет цвет и значение 1..{C}; значения также подписаны на фишках и могут повторяться. Каждая строка — догадка длины {L}. Справа чёрные колышки означают точные совпадения (значение и позиция), белые — частичные (значение на другой позиции). Каждая фишка учитывается не более одного раза. Определите единственный совместимый код: {L_2} значений по порядку.",
+      "en": "The figure shows a Mastermind board. The top legend maps colors to values 1..{C}; values are also printed on pegs and may repeat. Each row is a guess of length {L}. Black key pegs on the right count exact matches (value and position), white pegs count partial matches (value in another position). Each peg is counted at most once. Determine the unique compatible code: {L_2} values in order."
     },
     "s1": {
       "ru": "Легенда:",

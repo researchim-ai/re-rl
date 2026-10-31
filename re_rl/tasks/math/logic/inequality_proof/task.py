@@ -9,6 +9,7 @@ texts = TaskTexts(__file__)
 
 
 import random
+from math import isqrt
 from typing import Any, ClassVar, Dict, Optional
 
 import sympy as sp
@@ -44,13 +45,20 @@ class InequalityProofTask(BaseMathTask):
         reasoning_mode: bool = False,
         augment: bool = True,
         max_coeff: Optional[int] = None,
+        a=None, b=None, c=None,
     ):
         preset = self._interpolate_difficulty(difficulty)
-        self.max_coeff = int(max_coeff if max_coeff is not None else preset.get("max_coeff", 7))
+        self.max_coeff = max_coeff if max_coeff is not None else preset["max_coeff"]
+        if type(self.max_coeff) is not int or not 1 <= self.max_coeff <= 1_000_000:
+            raise ValueError("invalid_max_coeff")
         self.augment = augment
 
         self.x = sp.Symbol("x")
-        self.a, self.b, self.c = self._make_coeffs()
+        if all(v is None for v in (a,b,c)):
+            self.a, self.b, self.c = self._make_coeffs()
+        elif all(type(v) is int for v in (a,b,c)):
+            self.a,self.b,self.c=a,b,c
+        else:raise ValueError("invalid_coefficients")
         self._always_nonneg = self._decide()
 
         expr = self.a * self.x ** 2 + self.b * self.x + self.c
@@ -68,22 +76,14 @@ class InequalityProofTask(BaseMathTask):
         )
 
     def _make_coeffs(self):
-        # ~50% случаев конструируем заведомо неотрицательный (a>0, D<=0).
-        if random.random() < 0.5:
-            a = random.randint(1, self.max_coeff)
-            # Полный квадрат плюс неотрицательная добавка: (px+q)^2 + r, r>=0.
-            p = random.randint(1, max(1, int(self.max_coeff ** 0.5)))
-            q = random.randint(-self.max_coeff, self.max_coeff)
-            r = random.randint(0, self.max_coeff)
-            a = p * p
-            b = 2 * p * q
-            c = q * q + r
-            return a, b, c
-        # Иначе случайные коэффициенты (часто НЕ всегда неотрицательно).
-        a = random.choice([-1, 1]) * random.randint(1, self.max_coeff)
-        b = random.randint(-self.max_coeff, self.max_coeff)
-        c = random.randint(-self.max_coeff, self.max_coeff)
-        return a, b, c
+        bound=self.max_coeff
+        if random.random()<0.5:
+            a=random.randint(1,bound)
+            limit=min(bound,isqrt(4*a*bound))
+            b=random.randint(-limit,limit)
+            minimum=(b*b+4*a-1)//(4*a)
+            return a,b,random.randint(minimum,bound)
+        return tuple(random.randint(-bound,bound) for _ in range(3))
 
     def _decide(self) -> bool:
         # a x^2 + b x + c >= 0 для всех x  <=>  (a>0 и D<=0) или (a==0,b==0,c>=0)
@@ -94,34 +94,16 @@ class InequalityProofTask(BaseMathTask):
         return a > 0 and disc <= 0
 
     def solve(self):
-        section = PROMPT_TEMPLATES["inequality_proof"]
-        answer = "YES" if self._always_nonneg else "NO"
-        self.solution_steps.append(get_template(section, "step_discriminant", self.language, augment=False))
-        verdict = (texts.t('s0', self.language) if self._always_nonneg else texts.t('s1', self.language))
-        self.solution_steps.append(
-            get_template(section, "step_result", self.language, augment=False, verdict=verdict, answer=answer)
-        )
-        self.final_answer = answer
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
 
-    def verify(self, prediction: str) -> float:
-        import re
-        from re_rl.rewards import extract_reasoning_and_answer
+    def _solve_before_trace(self):
+        self.solve()
 
-        if self.final_answer is None:
-            self.solve()
-        _, answer = extract_reasoning_and_answer(prediction)
-        text = (answer or prediction).strip().lower().strip(".!? ")
-        if text in {"yes", texts.t('s2', self.language), "true", "y", "1", texts.t('s3', self.language)}:
-            pred = "YES"
-        elif text in {"no", texts.t('s4', self.language), "false", "n", "0", texts.t('s5', self.language)}:
-            pred = "NO"
-        elif re.search(texts.literal('literals.s6'), text):
-            pred = "NO"
-        elif re.search(texts.literal('literals.s7'), text):
-            pred = "YES"
-        else:
-            return 0.0
-        return 1.0 if pred == self.final_answer else 0.0
+    def verify(self, prediction):
+        from re_rl.tasks.math.logic.proof_semantics import verify_boolean
+        self.solve()
+        return verify_boolean(prediction,self.final_answer=="YES")
 
     @classmethod
     def generate_random_task(

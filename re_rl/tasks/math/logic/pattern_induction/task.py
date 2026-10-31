@@ -32,7 +32,7 @@ class PatternInductionTask(BaseMathTask):
         preset = self._interpolate_difficulty(difficulty)
         self.terms = int(preset["terms"])
         self.scale = int(preset["scale"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self._build()
         description = self._make_description(language)
@@ -85,9 +85,16 @@ class PatternInductionTask(BaseMathTask):
 
     def _make_description(self, language: str) -> str:
         shown = ", ".join(str(x) for x in self.given)
-        return ((texts.t('s0', language, shown=shown)))
+        family_key = {'arithmetic':'s3', 'geometric':'s4', 'quadratic':'s5',
+                      'fibonacci_like':'s6', 'alternating':'s8'}[self.subtype]
+        return texts.t('s0', language, shown=shown) + ' ' + texts.t(
+            'rule_hint', language, family=texts.t(family_key, language))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         names = {
             "arithmetic": (texts.t('s3', self.language), "arithmetic progression"),
             "geometric": (texts.t('s4', self.language), "geometric progression"),

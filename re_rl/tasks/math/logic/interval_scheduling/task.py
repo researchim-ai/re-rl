@@ -35,7 +35,7 @@ class IntervalSchedulingTask(BaseMathTask):
         preset = self._interpolate_difficulty(difficulty)
         self.n = int(preset["n"])
         self.span = int(preset["span"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self._build()
         description = self._make_description(language)
@@ -90,6 +90,10 @@ class IntervalSchedulingTask(BaseMathTask):
         return head + q
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.subtype == "max_activities":
             self.solution_steps = [
                 ((texts.t('s4', self.language))),

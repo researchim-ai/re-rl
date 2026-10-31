@@ -76,5 +76,15 @@
       "ru": "Решение за {n} переправ:\n{crossings}",
       "en": "Solution in {n} crossings:\n{crossings}"
     }
+  },
+  "text": {
+    "husband": {
+      "ru": "муж {index}",
+      "en": "husband {index}"
+    },
+    "wife": {
+      "ru": "жена {index}",
+      "en": "wife {index}"
+    }
   }
 }

@@ -40,6 +40,10 @@ class MirrorGlanceTask(BaseMathTask):
         return texts.t(key, language, angle=self.angle)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "glance":
             step = texts.t("s2", self.language, angle=self.angle, answer=self.glance)
         else:

@@ -9,7 +9,6 @@ texts = TaskTexts(__file__)
 
 
 import random
-from itertools import product
 from typing import Any, ClassVar, Dict, List, Optional
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
@@ -33,20 +32,14 @@ class KakuroTask(BaseMathTask):
                          output_format=output_format, reasoning_mode=reasoning_mode)
 
     def _valid(self, a, b, c, d, e) -> bool:
-        return (a != b and len({c, d, e}) == 3 and a != c and b != d and
+        return (all(1 <= value <= 9 for value in (a,b,c,d,e)) and a != b and len({c, d, e}) == 3 and a != c and b != d and
                 a + b == self.s1 and c + d + e == self.s2 and a + c == self.v1 and b + d == self.v2)
 
     def _count_solutions(self):
-        sols = []
-        for a, b, c, d, e in product(range(1, 10), repeat=5):
-            if self._valid(a, b, c, d, e):
-                sols.append((a, b, c, d, e))
-                if len(sols) > 1:
-                    return sols
-        return sols
+        from re_rl.tasks.math.logic.csp_search_traces import kakuro_solutions
+        return kakuro_solutions(self.s1,self.s2,self.v1,self.v2,limit=2)
 
     def _build(self):
-        last = None
         for _ in range(500):
             a, b = random.sample(range(1, 10), 2)
             c, d, e = random.sample(range(1, 10), 3)
@@ -54,18 +47,20 @@ class KakuroTask(BaseMathTask):
                 continue
             self.s1, self.s2 = a + b, c + d + e
             self.v1, self.v2 = a + c, b + d
-            last = (a, b, c, d, e)
             sols = self._count_solutions()
             if len(sols) == 1:
                 self.solution = sols[0]  # единственное решение
                 return
-        # если уникальный не нашли — берём любое согласованное решение
-        self.solution = last
+        raise RuntimeError('generation_failed')
 
     def _make_description(self, language: str) -> str:
         return ((texts.t('s0', language, s1=self.s1, s2=self.s2, v1=self.v1, v2=self.v2)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         nums = " ".join(str(x) for x in self.solution)
         self.solution_steps = [
             ((texts.t('s1', self.language))),

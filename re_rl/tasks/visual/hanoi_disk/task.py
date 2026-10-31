@@ -75,13 +75,14 @@ class HanoiDiskTask(VisualTaskMixin, BaseMathTask):
     def render_image(self):
         disk_h = 18
         margin = 28
-        span = 130
+        max_half = 16 + self.n * 12
+        span = 2 * max_half + 24
         height = margin + self.n * disk_h + 16
-        width = span * 2 + 80
+        width = 2 * margin + 2 * max_half + 2 * span
         image = Image.new("RGB", (width, height), (255, 255, 255))
         draw = ImageDraw.Draw(image)
         base = height - 14
-        peg_x = [40 + index * span for index in range(3)]
+        peg_x = [margin + max_half + index * span for index in range(3)]
         draw.line([(16, base), (width - 16, base)], fill=(40, 40, 40), width=6)
         for x in peg_x:
             draw.line([(x, base), (x, margin)], fill=(90, 90, 90), width=4)
@@ -102,6 +103,10 @@ class HanoiDiskTask(VisualTaskMixin, BaseMathTask):
         return image
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         steps = [
             texts.t("s2", self.language, k=disk, peg=peg, flag=flag, cost=cost)
             for disk, peg, flag, cost in self.trace

@@ -111,7 +111,8 @@ class ARCGridInductionTask(BaseMathTask):
         return [[random.randint(0, self.colors - 1) for _ in range(self.c)] for _ in range(self.r)]
 
     def _build(self):
-        for _ in range(60):
+        from re_rl.tasks.math.logic.inference_traces import unique_prediction
+        for _ in range(96):
             name, fn = self._pick_rule()
             self.rule_name = name
             self.fn = fn
@@ -126,17 +127,21 @@ class ARCGridInductionTask(BaseMathTask):
             # правило должно быть нетривиальным хотя бы на одном примере
             if any(gin != gout for gin, gout in self.train) or self.test_in != self.test_out:
                 if ok:
-                    return
-        # запасной вариант — гарантированно нетривиальный
-        self.rule_name, self.fn = "rotate180", _rotate180
-        self.train = [(self._rand_grid(), None) for _ in range(3)]
-        self.train = [(g, _rotate180(g)) for g, _ in self.train]
-        self.test_in = self._rand_grid()
-        self.test_out = _rotate180(self.test_in)
+                    try:
+                        inferred = unique_prediction(self.train,self.test_in,self.colors)
+                    except ValueError:
+                        continue
+                    if inferred == self.test_out:
+                        return
+        raise ValueError('ambiguous_examples')
 
     @staticmethod
     def _grid_str(g):
         return "\n".join(" ".join(map(str, row)) for row in g)
+
+    @staticmethod
+    def _rule_hint(language):
+        return texts.t('rule_catalog',language)
 
     def _descr(self, language):
         parts = []
@@ -145,10 +150,14 @@ class ARCGridInductionTask(BaseMathTask):
         body = "\n\n".join(parts)
         ro, co = len(self.test_out), len(self.test_out[0])
         if {"ru": True, "en": False}.get(language, False):
-            return (texts.t('s5', language, body=body, v1=self._grid_str(self.test_in), ro=ro, co=co))
-        return (texts.t('s4', language, body=body, v1=self._grid_str(self.test_in), ro=ro, co=co))
+            return (texts.t('s5', language, body=body, v1=self._grid_str(self.test_in), ro=ro, co=co)) + ' ' + self._rule_hint(language)
+        return (texts.t('s4', language, body=body, v1=self._grid_str(self.test_in), ro=ro, co=co)) + ' ' + self._rule_hint(language)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         flat = " ".join(str(v) for row in self.test_out for v in row)
         self.solution_steps = [
             ((texts.t('s1', self.language))),

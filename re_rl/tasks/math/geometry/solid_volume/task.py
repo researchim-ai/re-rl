@@ -55,6 +55,10 @@ class SolidVolumeTask(BaseMathTask):
         return f"{body} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = fmt_fraction(self.answer)
         if self.task_type == "cylinder":
             step = f"V/π = {self.r}^2 * {self.h} = {shown}."

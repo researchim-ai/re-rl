@@ -113,6 +113,10 @@ class AdiabaticTask(BaseMathTask):
         return f"{head} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "temperature":
             power = self.k ** self.p_t
             if self.expand:

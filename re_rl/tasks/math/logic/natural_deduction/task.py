@@ -29,46 +29,14 @@ def _render(f):
 
 
 def _check_line(line, prior):
-    """Проверяет одну выводимую строку по её правилу и ссылкам."""
-    rule, refs, F = line["rule"], line["refs"], line["formula"]
-    if any(r < 0 or r >= len(prior) for r in refs):
-        return False
-    forms = [prior[r] for r in refs]
-    if rule == "MP":
-        if len(forms) != 2:
-            return False
-        for a, b in ((0, 1), (1, 0)):
-            if forms[b][0] == "imp" and forms[a] == forms[b][1] and F == forms[b][2]:
-                return True
-        return False
-    if rule == "MT":
-        if len(forms) != 2:
-            return False
-        for a, b in ((0, 1), (1, 0)):
-            if forms[b][0] == "imp" and forms[a] == ("not", forms[b][2]) and F == ("not", forms[b][1]):
-                return True
-        return False
-    if rule == "AND_I":
-        if len(forms) != 2:
-            return False
-        return F == ("and", forms[0], forms[1]) or F == ("and", forms[1], forms[0])
-    if rule == "AND_E1":
-        return len(forms) == 1 and forms[0][0] == "and" and F == forms[0][1]
-    if rule == "AND_E2":
-        return len(forms) == 1 and forms[0][0] == "and" and F == forms[0][2]
-    return False
+    from re_rl.tasks.math.logic.proof_semantics import proof
+    lines = [dict(formula=f,rule='premise',refs=[]) for f in prior]
+    return proof(lines+[line],[])
 
 
 def _check_proof(lines):
-    prior = []
-    for line in lines:
-        if line["rule"] == "premise":
-            prior.append(line["formula"])
-            continue
-        if not _check_line(line, prior):
-            return False
-        prior.append(line["formula"])
-    return True
+    from re_rl.tasks.math.logic.proof_semantics import proof
+    return proof(lines,[])
 
 
 class NaturalDeductionTask(BaseMathTask):
@@ -84,6 +52,7 @@ class NaturalDeductionTask(BaseMathTask):
         p = self._interpolate_difficulty(difficulty)
         self.target_derived = int(p["derived"])
         self.augment = augment
+        self.language = language
         self._build()
         super().__init__(description=self._descr(language), language=language,
                          detail_level=detail_level, output_format=output_format,
@@ -148,13 +117,7 @@ class NaturalDeductionTask(BaseMathTask):
                 self.lines = corrupted
                 self.valid = False
             return
-        # запасной вариант — валидный минимальный вывод MP
-        prem = [("atom", "p"), ("imp", ("atom", "p"), ("atom", "q"))]
-        self.lines = [{"formula": prem[0], "rule": "premise", "refs": []},
-                      {"formula": prem[1], "rule": "premise", "refs": []},
-                      {"formula": ("atom", "q"), "rule": "MP", "refs": [0, 1]}]
-        self.n_premises = 2
-        self.valid = True
+        raise ValueError('generation_failed')
 
     def _corrupt(self, lines):
         derived_idx = [i for i, l in enumerate(lines) if l["rule"] != "premise"]
@@ -191,6 +154,10 @@ class NaturalDeductionTask(BaseMathTask):
         return (texts.t('s6', language, body=body))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s2', self.language))),
             ((texts.t('s3', self.language) if self.valid else
@@ -199,9 +166,9 @@ class NaturalDeductionTask(BaseMathTask):
         self.final_answer = (texts.t('s0', self.language) if self.valid else texts.t('s1', self.language))
 
     def verify(self, prediction):
-        if self.final_answer is None:
-            self.solve()
-        return U.verify_bool(prediction, bool(self.valid))
+        self.solve()
+        from re_rl.tasks.math.logic.proof_semantics import verify_boolean
+        return verify_boolean(prediction,bool(self.valid))
 
     @classmethod
     def generate_random_task(cls, language="ru", detail_level=3, difficulty=5,

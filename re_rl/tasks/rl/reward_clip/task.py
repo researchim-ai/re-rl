@@ -63,11 +63,8 @@ class RewardClipTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
-        shown = fmt_fraction(self.answer)
-        clipped = ", ".join(map(str, self.clipped))
-        step = ((texts.t('s1', self.language, clipped=clipped, v1=fmt_fraction(self.ret))))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
-        self.final_answer = shown
+        from re_rl.tasks.rl.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

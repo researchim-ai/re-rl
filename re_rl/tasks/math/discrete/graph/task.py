@@ -9,7 +9,12 @@ from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from typing import Dict, Any, ClassVar
 
-class GraphTask(BaseMathTask):
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import dijkstra_trace, kruskal_trace, traversal_trace, clustering_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+
+
+class GraphTask(_GraphBase):
     """
     Генерирует и решает графовые задачи.
     
@@ -25,6 +30,8 @@ class GraphTask(BaseMathTask):
     detail_level управляет количеством шагов решения.
     """
     
+    TASK_TYPE = "graph"
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"num_nodes": 4, "edge_prob": 0.4},
         2: {"num_nodes": 5, "edge_prob": 0.4},
@@ -61,8 +68,10 @@ class GraphTask(BaseMathTask):
                 edge_prob = preset.get("edge_prob", 0.5)
         else:
             num_nodes = num_nodes or 10
-            edge_prob = edge_prob or 0.5
+            edge_prob = 0.5 if edge_prob is None else edge_prob
         self.task_type = task_type.lower()
+        if num_nodes < 2 or not 0 <= edge_prob <= 1:
+            raise ValueError((num_nodes, edge_prob))
         self.num_nodes = num_nodes
         self.edge_prob = edge_prob
         self.graph = None
@@ -72,17 +81,19 @@ class GraphTask(BaseMathTask):
         self.reasoning_mode = reasoning_mode
 
     def generate_graph(self):
-        self.graph = nx.gnp_random_graph(self.num_nodes, self.edge_prob, seed=random.randint(1, 1000), directed=False)
-        if not nx.is_connected(self.graph):
-            largest_cc = max(nx.connected_components(self.graph), key=len)
-            self.graph = self.graph.subgraph(largest_cc).copy()
+        self.graph = nx.gnp_random_graph(self.num_nodes, self.edge_prob, seed=random.randint(1, 1000))
+        components = sorted((sorted(c) for c in nx.connected_components(self.graph)), key=lambda c: c[0])
+        for left, right in zip(components, components[1:]):
+            self.graph.add_edge(left[0], right[0])
+        self.n = self.num_nodes
 
     def _create_problem_description(self):
-        self.generate_graph()
+        if self.graph is None:
+            self.generate_graph()
         if self.task_type == "shortest_path":
             nodes = list(self.graph.nodes())
-            self.start = random.choice(nodes)
-            self.end = random.choice(nodes)
+            self.start = self.start if self.start is not None else random.choice(nodes)
+            self.end = self.end if self.end is not None else random.choice(nodes)
             while self.end == self.start:
                 self.end = random.choice(nodes)
             task_description = texts.t('s0', self.language, start=self.start, end=self.end)
@@ -90,7 +101,8 @@ class GraphTask(BaseMathTask):
         # Остальные типы остаются без изменений
         elif self.task_type == texts.t('s2', self.language):
             for (u, v) in self.graph.edges():
-                self.graph[u][v]['weight'] = random.randint(1, 10)
+                if 'weight' not in self.graph[u][v]:
+                    self.graph[u][v]['weight'] = random.randint(1, 10)
             task_description = texts.t('s3', self.language)
             return PROMPT_TEMPLATES["graph"]["problem"][self.language].format(task_description=task_description)
         elif self.task_type == "diameter":
@@ -104,98 +116,41 @@ class GraphTask(BaseMathTask):
 
     def solve(self):
         self.description = self._create_problem_description()
-        steps = []
-        if self.task_type == "shortest_path":
-            try:
-                # Реализуем простой алгоритм Дейкстры
-                nodes = list(self.graph.nodes())
-                dist = {v: float('inf') for v in nodes}
-                prev = {v: None for v in nodes}
-                dist[self.start] = 0
-                Q = set(nodes)
-                iteration = 1
-                while Q:
-                    u = min(Q, key=lambda v: dist[v])
-                    # Записываем шаг итерации
-                    updates = []
-                    for v in self.graph.neighbors(u):
-                        if v in Q:
-                            weight = self.graph[u][v].get('weight', 1)
-                            if dist[u] + weight < dist[v]:
-                                old_val = dist[v]
-                                dist[v] = dist[u] + weight
-                                prev[v] = u
-                                updates.append(f"{v}: {old_val}→{dist[v]}")
-                    iter_template = PROMPT_TEMPLATES["graph"][texts.t('s10', self.language)].get(self.language, texts.t('s8', self.language))
-                    steps.append(iter_template.format(iter=iteration, u=u, d=dist[u], updates=", ".join(updates) if updates else "None"))
-                    Q.remove(u)
-                    if u == self.end:
-                        break
-                    iteration += 1
-                # Восстанавливаем путь
-                path = []
-                u = self.end
-                while u is not None:
-                    path.insert(0, u)
-                    u = prev[u]
-                final_template = PROMPT_TEMPLATES["graph"][texts.t('s9', self.language)].get(self.language, texts.t('s6', self.language))
-                steps.append(final_template.format(path=path))
-                self.solution_steps.extend(steps)
-                self.final_answer = str(path)
-            except Exception as e:
-                error_msg = PROMPT_TEMPLATES["default"]["error"].get(self.language, PROMPT_TEMPLATES["default"]["error"]["en"]).format(error=str(e))
-                steps.append(error_msg)
-                self.solution_steps.extend(steps)
-                self.final_answer = error_msg
+        self.edges = [(a, b, data.get('weight', 1)) for a, b, data in sorted(self.graph.edges(data=True))]
+        self.description += texts.t('graph_data', self.language, n=self.n, edges=self.edges)
+        if self.task_type == 'shortest_path':
+            _, self.algorithm_trace = dijkstra_trace(self.n, self.edges, self.start, self.end)
+            self.solution_steps = render_trace(self.algorithm_trace, 'dijkstra', self.language)
+            self.final_answer = str(self.algorithm_trace[-1]['path'])
+        elif self.task_type == 'minimum_spanning_tree':
+            _, self.algorithm_trace = kruskal_trace(self.n, self.edges)
+            self.solution_steps = render_trace(self.algorithm_trace, 'kruskal', self.language)
+            self.final_answer = str([(a, b, {'weight': weight}) for a, b, weight in self.algorithm_trace[-1]['edges']])
+        elif self.task_type == 'diameter':
+            self.algorithm_trace, eccentricities = [], []
+            for source in range(self.n):
+                eccentricity, events = traversal_trace(self.n, [(a, b) for a, b, _ in self.edges], 'all_distances', source)
+                eccentricities.append(eccentricity)
+                self.algorithm_trace.extend(events)
+            answer = max(eccentricities)
+            self.algorithm_trace.append(dict(event='diameter', values=eccentricities, answer=answer))
+            self.solution_steps = render_trace(self.algorithm_trace, 'walk', self.language)
+            self.final_answer = str(answer)
+        elif self.task_type == 'clustering_coefficient':
+            answer, self.algorithm_trace = clustering_trace(self.n, [(a, b) for a, b, _ in self.edges])
+            self.solution_steps = render_trace(self.algorithm_trace, 'cluster', self.language)
+            self.final_answer = str(answer)
         else:
-            # Остальные типы остаются как раньше
-            if self.task_type == texts.t('s4', self.language):
-                try:
-                    mst = nx.minimum_spanning_tree(self.graph)
-                    edges = list(mst.edges(data=True))
-                    step_template = PROMPT_TEMPLATES["graph"]["mst_step"].get(self.language, "Step: {edges}")
-                    steps.append(step_template.format(edges=edges))
-                    self.final_answer = str(edges)
-                except Exception as e:
-                    error_msg = PROMPT_TEMPLATES["default"]["error"].get(self.language, PROMPT_TEMPLATES["default"]["error"]["en"]).format(error=str(e))
-                    steps.append(error_msg)
-                    self.final_answer = error_msg
-            elif self.task_type == "diameter":
-                try:
-                    diam = nx.diameter(self.graph)
-                    step_template = PROMPT_TEMPLATES["graph"]["diameter_step"].get(self.language, "Step: {diameter}")
-                    steps.append(step_template.format(diameter=diam))
-                    self.final_answer = str(diam)
-                except Exception as e:
-                    error_msg = PROMPT_TEMPLATES["default"]["error"].get(self.language, PROMPT_TEMPLATES["default"]["error"]["en"]).format(error=str(e))
-                    steps.append(error_msg)
-                    self.final_answer = error_msg
-            elif self.task_type == "clustering_coefficient":
-                try:
-                    avg_coeff = nx.average_clustering(self.graph)
-                    step_template = PROMPT_TEMPLATES["graph"]["clustering_step"].get(self.language, texts.t('s11', self.language))
-                    steps.append(step_template.format(avg_coeff=avg_coeff))
-                    self.final_answer = str(avg_coeff)
-                except Exception as e:
-                    error_msg = PROMPT_TEMPLATES["default"]["error"].get(self.language, PROMPT_TEMPLATES["default"]["error"]["en"]).format(error=str(e))
-                    steps.append(error_msg)
-                    self.final_answer = error_msg
-            else:
-                error_msg = PROMPT_TEMPLATES["default"]["no_solution"].get(self.language, PROMPT_TEMPLATES["default"]["no_solution"]["en"])
-                steps.append(error_msg)
-                self.final_answer = error_msg
-            self.solution_steps.extend(steps)
+            raise ValueError(self.task_type)
 
     def get_task_type(self):
         return "graph"
 
     @classmethod
-    def generate_random_task(cls, only_valid=False, num_nodes=10, edge_prob=0.5, language: str = "ru", detail_level: int = 3, reasoning_mode: bool = False):
-        task_types = ["shortest_path", texts.t('s1', language), "diameter", "clustering_coefficient"]
-        task_type = random.choice(task_types)
-        task = cls(task_type=task_type, num_nodes=num_nodes, edge_prob=edge_prob, language=language, detail_level=detail_level, reasoning_mode=reasoning_mode)
+    def generate_random_task(cls, only_valid=False, num_nodes=None, edge_prob=None, language='ru',
+                             detail_level=3, reasoning_mode=False, difficulty=5, task_type=None, **kwargs):
+        task_type = task_type or random.choice(['shortest_path', 'minimum_spanning_tree', 'diameter', 'clustering_coefficient'])
+        task = cls(task_type=task_type, num_nodes=num_nodes, edge_prob=edge_prob, language=language,
+                   detail_level=detail_level, reasoning_mode=reasoning_mode, difficulty=difficulty)
         task.solve()
-        no_solution_str = PROMPT_TEMPLATES["default"]["no_solution"].get(language, PROMPT_TEMPLATES["default"]["no_solution"]["en"])
-        if only_valid and task.final_answer == no_solution_str:
-            return cls.generate_random_task(only_valid=only_valid, num_nodes=num_nodes, edge_prob=edge_prob, language=language, detail_level=detail_level, reasoning_mode=reasoning_mode)
         return task

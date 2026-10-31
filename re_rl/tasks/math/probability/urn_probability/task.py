@@ -8,6 +8,7 @@ from re_rl.tasks.base_task import BaseTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
 
 class UrnProbabilityTask(BaseTask):
+    TASK_TYPE = "urn_probability"
     def __init__(self, language="en", count_containers=None, draws=None, output_format: OutputFormat = "text", reasoning_mode: bool = False):
         self.language = language.lower()
         self._output_format = output_format
@@ -16,10 +17,14 @@ class UrnProbabilityTask(BaseTask):
 
         if count_containers is None:
             count_containers = random.randint(2, 4)
+        if type(count_containers) is not int or count_containers < 1:
+            raise ValueError("invalid_count_containers")
         self.count_containers = count_containers
 
         if draws is None:
             draws = random.randint(1, 3)
+        if type(draws) is not int or draws < 1:
+            raise ValueError("invalid_draws")
         self.draws = draws
 
         self.container_syn = random.choice(syn["containers"])
@@ -32,7 +37,7 @@ class UrnProbabilityTask(BaseTask):
         # Для каждого контейнера распределяем предметы по цветам
         self.containers = []
         for _ in range(self.count_containers):
-            total_items = random.randint(4, 8)
+            total_items = random.randint(max(4,self.draws),max(8,self.draws))
             # Разобъём total_items на случайные доли
             remain = total_items
             color_dist = []
@@ -102,30 +107,13 @@ class UrnProbabilityTask(BaseTask):
         )
 
     def solve(self):
-        st = PROMPT_TEMPLATES["urn_probability"]["steps"][self.language]
-        steps_count = min(4, len(st))
-        steps_list = []
-        for i in range(steps_count):
-            # Выберем idx случайно
-            idx_val = random.randint(1, self.count_containers)
-            step_str = st[i].format(
-                container_syn=self.container_syn,
-                container_syn_2=self.container_syn,
-                count_containers=self.count_containers,
-                idx=idx_val,
-                item_syn=self.item_syn
-            )
-            steps_list.append(step_str)
-        self.solution_steps = steps_list
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
 
-        event_prob = 0.0
-        for dist in self.containers:
-            p_container = 1.0 / self.count_containers
-            p_event_in_container = self._compute_event_prob(dist)
-            event_prob += p_container * p_event_in_container
-
-        final_templ = PROMPT_TEMPLATES["urn_probability"]["final_answer"][self.language]
-        self.final_answer = final_templ.format(prob_value=f"{event_prob:.4f}")
+    def _solve_before_trace(self):
+        event_prob = sum(self._compute_event_prob(dist) for dist in self.containers)/self.count_containers
+        self.final_answer = PROMPT_TEMPLATES['urn_probability']['final_answer'][self.language].format(prob_value=format(event_prob,'.4f'))
+        self.solution_steps = []
 
     def _compute_event_prob(self, dist):
         total_in_container = sum(c for _, c in dist)
@@ -162,15 +150,12 @@ class UrnProbabilityTask(BaseTask):
         bottom = math.comb(total_cnt, draws)
         return top / bottom
 
+    def verify(self,prediction):
+        from re_rl.tasks.math.probability.inference_traces import verify_probability
+        return verify_probability(self,prediction)
+
     def get_task_type(self):
         return "urn_probability"
 
     def get_result(self):
-        if not self.solution_steps or self.final_answer is None:
-            self.solve()
-        return {
-            "problem": self.description,
-            "prompt": self.generate_prompt(),
-            "solution_steps": self.solution_steps,
-            "final_answer": self.final_answer
-        }
+        return super().get_result()

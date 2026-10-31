@@ -73,6 +73,10 @@ class PolynomialProductTask(BaseMathTask):
         return f"{data} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = " ".join(map(str, self.product))
         step = ((texts.t('s1', self.language, shown=shown, point=self.point, value=self.value)))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]

@@ -129,6 +129,10 @@ class MobileTorqueTask(BaseMathTask):
         return total
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         steps = []
         total = self._reduce(self.root, steps)
         steps.append(texts.t("s10", self.language, hidden=self.hidden_mass, load=total))

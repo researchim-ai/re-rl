@@ -43,6 +43,10 @@ class MapScaleTask(BaseMathTask):
         return texts.t("s1", language, real=self.real, scale=self.scale)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "real":
             step = texts.t("s2", self.language, cm=self.cm, scale=self.scale, real=self.real)
         else:

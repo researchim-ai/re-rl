@@ -110,6 +110,10 @@ class KenKenTask(BaseMathTask):
         return ((texts.t('s0', language, n=self.n, n_2=self.n, n_3=self.n, v3=self.n * self.n, letter_grid=letter_grid, clues=clues)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         flat = [self.solution[r][c] for r in range(self.n) for c in range(self.n)]
         nums = " ".join(str(x) for x in flat)
         self.solution_steps = [

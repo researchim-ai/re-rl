@@ -31,7 +31,7 @@ class SetReasoningTask(BaseMathTask):
                  augment: bool = True, subtype: Optional[str] = None, **kwargs):
         preset = self._interpolate_difficulty(difficulty)
         self.max = int(preset["max"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self._build()
         description = self._make_description(language)
@@ -71,6 +71,10 @@ class SetReasoningTask(BaseMathTask):
         return base + q
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.subtype == "union":
             step = ((f"|A ∪ B| = |A| + |B| − |A ∩ B| = {self.A} + {self.B} − {self.both} = {self._answer}."))
         elif self.subtype == "only_a":

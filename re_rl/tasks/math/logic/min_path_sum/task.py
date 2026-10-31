@@ -56,11 +56,8 @@ class MinPathSumTask(BaseMathTask):
         return ((texts.t('s0', language, v0=self._grid_text())))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language, answer=self.answer))),
-            ((texts.common('answer_line', self.language, answer=self.answer))),
-        ]
-        self.final_answer = str(self.answer)
+        from re_rl.tasks.math.algorithm_traces.solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

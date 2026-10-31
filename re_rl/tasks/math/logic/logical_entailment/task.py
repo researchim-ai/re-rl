@@ -95,6 +95,10 @@ class LogicalEntailmentTask(BaseMathTask):
         return head + body + concl + tail
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s5', self.language))),
             ((texts.t('s6', self.language) if self._entails else
@@ -103,9 +107,9 @@ class LogicalEntailmentTask(BaseMathTask):
         self.final_answer = (texts.t('s3', self.language) if self._entails else texts.t('s4', self.language))
 
     def verify(self, prediction: str) -> float:
-        if self.final_answer is None:
-            self.solve()
-        return U.verify_bool(prediction, bool(self._entails))
+        self.solve()
+        from re_rl.tasks.math.logic.proof_semantics import verify_boolean
+        return verify_boolean(prediction,bool(self._entails))
 
     @classmethod
     def generate_random_task(cls, language: str = "ru", detail_level: int = 3, difficulty: int = 5,

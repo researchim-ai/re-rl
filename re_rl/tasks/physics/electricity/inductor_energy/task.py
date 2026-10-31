@@ -57,6 +57,10 @@ class InductorEnergyTask(BaseMathTask):
         return f"{law} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = fmt_fraction(self.answer)
         step = ((f"U = {self.inductance} * {self.current}^2 / 2 = {fmt_fraction(self.energy)}."))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]

@@ -10,7 +10,12 @@ from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
 
 
-class GraphJustificationTask(BaseMathTask):
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import dijkstra_trace, kruskal_trace, flow_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+
+
+class GraphJustificationTask(_GraphBase):
     """Graph algorithms with explicit method justification."""
 
     TASK_TYPE = "graph_justification"
@@ -47,6 +52,7 @@ class GraphJustificationTask(BaseMathTask):
         self.num_nodes = num_nodes if num_nodes is not None else int(preset.get("num_nodes", 8))
         self.edge_prob = edge_prob if edge_prob is not None else float(preset.get("edge_prob", 0.4))
         self.augment = augment
+        self._instance_graph = None
         super().__init__("", language=language, detail_level=detail_level, output_format=output_format, reasoning_mode=reasoning_mode)
 
     def _build_weighted_graph(self) -> nx.Graph:
@@ -62,8 +68,12 @@ class GraphJustificationTask(BaseMathTask):
 
     def solve(self):
         section = PROMPT_TEMPLATES["graph_justification"]
-        g = self._build_weighted_graph()
+        if self._instance_graph is None:
+            self._instance_graph = self._build_weighted_graph()
+        g = self._instance_graph
+        self.n = self.num_nodes
         edges = [(u, v, g[u][v]["weight"]) for u, v in g.edges()]
+        self.edges = edges
 
         if self.task_type == "shortest_path":
             source = 0
@@ -71,18 +81,18 @@ class GraphJustificationTask(BaseMathTask):
             self.description = get_template(
                 section, "problem_shortest", self.language, augment=self.augment, source=source, target=target, edges=edges
             )
-            path = nx.shortest_path(g, source=source, target=target, weight="weight")
-            dist = nx.shortest_path_length(g, source=source, target=target, weight="weight")
-            self.solution_steps.append(get_template(section, "justify_dijkstra", self.language, augment=False))
+            self.src, self.dst = source, target
+            dist, self.algorithm_trace = dijkstra_trace(self.n, edges, source, target)
+            path = self.algorithm_trace[-1]["path"]
+            self.solution_steps = render_trace(self.algorithm_trace, "dijkstra", self.language)
             self.final_answer = f"distance={dist};path={'-'.join(str(x) for x in path)}"
             return
 
         if self.task_type == "mst":
             self.description = get_template(section, "problem_mst", self.language, augment=self.augment, edges=edges)
-            mst = nx.minimum_spanning_tree(g, weight="weight")
-            total_w = sum(d["weight"] for _, _, d in mst.edges(data=True))
-            tree_edges = sorted((min(u, v), max(u, v)) for u, v in mst.edges())
-            self.solution_steps.append(get_template(section, "justify_mst", self.language, augment=False))
+            total_w, self.algorithm_trace = kruskal_trace(self.n, edges)
+            tree_edges = sorted((min(u, v), max(u, v)) for u, v, _ in self.algorithm_trace[-1]['edges'])
+            self.solution_steps = render_trace(self.algorithm_trace, 'kruskal', self.language)
             self.final_answer = f"weight={total_w};edges={tree_edges}"
             return
 
@@ -96,8 +106,10 @@ class GraphJustificationTask(BaseMathTask):
         self.description = get_template(
             section, texts.t('s0', self.language), self.language, augment=self.augment, source=source, sink=sink, edges=list(dg.edges(data=True))
         )
-        value, _ = nx.maximum_flow(dg, source, sink, capacity="capacity")
-        self.solution_steps.append(get_template(section, "justify_maxflow", self.language, augment=False))
+        self.s, self.t = source, sink
+        self.cap_edges = [(a, b, d["capacity"]) for a, b, d in dg.edges(data=True)]
+        value, self.algorithm_trace = flow_trace(self.n, self.cap_edges, source, sink)
+        self.solution_steps = render_trace(self.algorithm_trace, "flow", self.language)
         self.final_answer = f"max_flow={value}"
 
     @classmethod

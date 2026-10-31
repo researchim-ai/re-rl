@@ -103,6 +103,22 @@
     "s27": {
       "ru": "momentum_elastic_note",
       "en": "momentum_elastic_note"
+    },
+    "problem_momentum": {
+      "ru": "Ньютоновская одномерная модель: масса {m} кг, проекция скорости на выбранную ось {v} м/с. Найдите проекцию импульса p. Укажите знак и единицы кг·м/с; допускается округление до 4 знаков после запятой.",
+      "en": "Newtonian one-dimensional model: mass {m} kg, signed velocity along the chosen axis {v} m/s. Find the signed momentum p in kg·m/s; rounding to 4 decimal places is accepted."
+    },
+    "problem_impulse": {
+      "ru": "Постоянная проекция силы F={F} Н действует t={t} с. Найдите знаковую проекцию импульса силы J=Δp в Н·с; округлите до 4 знаков при необходимости.",
+      "en": "A constant signed force F={F} N acts for t={t} s. Find the signed impulse J=Δp in N·s; round to 4 decimal places if needed."
+    },
+    "problem_inelastic_collision": {
+      "ru": "Изолированное одномерное полностью неупругое столкновение: m1={m1} кг, m2={m2} кг, знаковые скорости перед ударом v1={v1} м/с, v2={v2} м/с. Тела слипаются, внешним импульсом пренебречь. В ньютоновской модели найдите общую знаковую скорость после удара в м/с. Округление — до 4 знаков после запятой.",
+      "en": "Isolated one-dimensional perfectly inelastic collision: m1={m1} kg, m2={m2} kg, signed velocities just before impact v1={v1} m/s, v2={v2} m/s. Bodies stick together; external impulse is negligible. In the Newtonian model find their common signed final velocity in m/s. Round to 4 decimal places."
+    },
+    "problem_elastic_collision": {
+      "ru": "Изолированное одномерное упругое столкновение: m1={m1} кг, m2={m2} кг, знаковые скорости до удара v1={v1} м/с, v2={v2} м/с. В ньютоновской модели сохраняются импульс и кинетическая энергия. Найдите обе знаковые скорости после удара. Ответ: v1_out=<число> м/с; v2_out=<число> м/с. Округление — до 4 знаков после запятой.",
+      "en": "Isolated one-dimensional elastic collision: m1={m1} kg, m2={m2} kg, signed incoming velocities v1={v1} m/s, v2={v2} m/s. The Newtonian model conserves momentum and kinetic energy. Find both signed outgoing velocities. Answer: v1_out=<number> m/s; v2_out=<number> m/s. Round to 4 decimal places."
     }
   },
   "literals": {

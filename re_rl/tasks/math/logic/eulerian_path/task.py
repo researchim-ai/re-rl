@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Tuple
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import euler_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
 
 class EulerianPathTask(_GraphBase):
     TASK_TYPE = "eulerian_path"
@@ -79,12 +81,9 @@ class EulerianPathTask(_GraphBase):
         return ((texts.t('s0', language, v0=self.n - 1, es=es)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s3', self.language))),
-            ((texts.t('s4', self.language) if self._answer else
-               texts.t('s5', self.language))),
-        ]
-        self.final_answer = (texts.t('s1', self.language) if self._answer else texts.t('s2', self.language))
+        self._answer, self.algorithm_trace = euler_trace(self.n, self.edges)
+        self.solution_steps = render_trace(self.algorithm_trace, 'euler', self.language)
+        self.final_answer = texts.t('s1', self.language) if self._answer else texts.t('s2', self.language)
 
     def verify(self, prediction):
         if self.final_answer is None:

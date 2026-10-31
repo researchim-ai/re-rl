@@ -63,6 +63,26 @@
     "s15": {
       "ru": "f_рез = 1/(2π√(LC)) = {f_res:.4f} Гц",
       "en": "f_res = 1/(2π√(LC)) = {f_res:.4f} Hz"
+    },
+    "problem_harmonic": {
+      "ru": "Одномерный гармонический осциллятор: x(t)=A cos(ωt+φ), A={A} м, ω={omega} рад/с, φ={phi} рад. Модель ньютоновская, без затухания. Найдите период T и максимальный модуль скорости v_max. Ответ: T=<число> с; v_max=<число> м/с. Сохраните не менее 10 значащих цифр, допустима научная запись.",
+      "en": "A one-dimensional harmonic oscillator: x(t)=A cos(ωt+φ), A={A} m, ω={omega} rad/s, φ={phi} rad. Newtonian undamped model. Find period T and maximum speed v_max. Answer: T=<number> s; v_max=<number> m/s. Keep at least 10 significant digits; scientific notation is allowed."
+    },
+    "problem_pendulum": {
+      "ru": "Идеальный математический маятник длины L={L} м в однородном поле g={g} м/с². Принята линейная модель малых углов θ″+(g/L)θ=0, подвес невесом, затухания нет. Найдите период T в секундах. Сохраните не менее 10 значащих цифр, допустима научная запись.",
+      "en": "An ideal simple pendulum of length L={L} m in uniform gravity g={g} m/s². Use the small-angle linear model θ″+(g/L)θ=0, massless suspension and no damping. Find period T in seconds. Keep at least 10 significant digits; scientific notation is allowed."
+    },
+    "problem_spring": {
+      "ru": "Идеальная невесомая пружина с k={k} Н/м и точечным грузом m={m} кг: m x″+k x=0, затухания нет. Найдите период T и обычную частоту f (не угловую). Ответ: T=<число> с; f=<число> Гц. Сохраните не менее 10 значащих цифр.",
+      "en": "An ideal massless spring with k={k} N/m and point mass m={m} kg: m x″+k x=0, without damping. Find period T and ordinary frequency f (not angular frequency). Answer: T=<number> s; f=<number> Hz. Keep at least 10 significant digits."
+    },
+    "problem_lc_circuit": {
+      "ru": "Идеальный сосредоточенный LC-контур: L={L_ind} Гн, C={C} Ф, сопротивления и потерь нет, q″+q/(LC)=0. Найдите обычную частоту f свободных колебаний в Гц. Сохраните не менее 10 значащих цифр, допустима научная запись.",
+      "en": "An ideal lumped LC circuit: L={L_ind} H, C={C} F, with no resistance or losses, q″+q/(LC)=0. Find the ordinary natural frequency f in Hz. Keep at least 10 significant digits; scientific notation is allowed."
+    },
+    "problem_resonance": {
+      "ru": "Последовательный сосредоточенный RLC-контур имеет идеальные L={L_ind} Гн, C={C} Ф и постоянное R>0. Амплитуда синусоидального напряжения источника не зависит от частоты. Найдите обычную частоту f максимального установившегося тока: реактивности L и C компенсируются. Значение R для этой частоты не требуется; свободная затухающая частота и резонанс напряжения на C здесь не рассматриваются. Ответ в Гц, не менее 10 значащих цифр.",
+      "en": "A lumped series RLC circuit has ideal L={L_ind} H, C={C} F and constant R>0. The sinusoidal voltage-source amplitude is independent of frequency. Find the ordinary frequency f maximizing steady-state current: L and C reactances cancel. The value of R is unnecessary for this frequency; damped free oscillations and capacitor-voltage resonance are not being asked. Answer in Hz with at least 10 significant digits."
     }
   }
 }

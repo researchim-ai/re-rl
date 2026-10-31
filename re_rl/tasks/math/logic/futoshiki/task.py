@@ -7,7 +7,7 @@ from re_rl.tasks.prompts import PROMPT_TEMPLATES
 from typing import Dict, Any, ClassVar
 
 # Подключаем Z3
-from z3 import Solver, Int, And, Distinct, sat
+from z3 import Solver, Int, Distinct, sat
 
 class FutoshikiTask(BaseTask):
     """
@@ -21,6 +21,8 @@ class FutoshikiTask(BaseTask):
       - difficulty 9-10: поле 7x7
     """
     
+    TASK_TYPE = "futoshiki"
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"size": 3, texts.literal('literals.s0'): 0.5},
         2: {"size": 3, texts.literal('literals.s1'): 0.7},
@@ -69,15 +71,18 @@ class FutoshikiTask(BaseTask):
         
         if size is None:
             size = random.randint(4, 5)
+        if type(size) is not int or not 1 <= size <= 9:
+            raise ValueError("invalid_size")
         self.size = size
         
         if num_inequalities is None:
-            num_inequalities = random.randint(size, size * 2)
+            num_inequalities = min(random.randint(size, size * 2),size*size*(size*size-size)//2)
         
         self.inequalities = self._generate_random_inequalities(num_inequalities)
         
-        # Теперь решаем паззл через Z3
-        self.solution = self._solve_with_z3()
+        # The construction witness is a cache only; solve recomputes from inequalities.
+        self.solution = self._generation_witness
+        del self._generation_witness
         
         # Формируем текст постановки задачи
         problem_template = PROMPT_TEMPLATES["futoshiki"]["problem"][self.language]
@@ -101,18 +106,16 @@ class FutoshikiTask(BaseTask):
         (по вертикали или горизонтали). 
         Но для простоты можно делать и не только смежные.
         """
-        ineqs = set()
-        while len(ineqs) < num_ineq:
-            r1 = random.randint(0, self.size-1)
-            c1 = random.randint(0, self.size-1)
-            r2 = random.randint(0, self.size-1)
-            c2 = random.randint(0, self.size-1)
-            # Добавим условие, чтобы (r1,c1) != (r2,c2) 
-            # и не повторять зеркально
-            if (r1,c1) != (r2,c2) and (r2,c2, r1,c1) not in ineqs:
-                # (r1,c1) < (r2,c2)
-                ineqs.add((r1,c1, r2,c2))
-        return list(ineqs)
+        rows = random.sample(range(self.size),self.size)
+        cols = random.sample(range(self.size),self.size)
+        symbols = random.sample(range(1,self.size+1),self.size)
+        witness = [[symbols[(r+c)%self.size] for c in cols] for r in rows]
+        options = [(r,c,s,t) for r in range(self.size) for c in range(self.size)
+                   for s in range(self.size) for t in range(self.size) if witness[r][c] < witness[s][t]]
+        if type(num_ineq) is not int or not 0 <= num_ineq <= len(options):
+            raise ValueError('invalid_num_inequalities')
+        self._generation_witness = witness
+        return random.sample(options,num_ineq)
 
     def get_task_type(self):
         
@@ -158,7 +161,7 @@ class FutoshikiTask(BaseTask):
         # Попытаемся найти решение
         result = s.check()
         if result != sat:
-            # Нет решения (или не единственное). 
+            # Solver did not return a satisfying model.
             # Для примера: пусть возвращает None
             return None
         
@@ -171,35 +174,34 @@ class FutoshikiTask(BaseTask):
         return solution_matrix
 
     def solve(self):
-        """
-        Генерируем цепочку рассуждений (solution_steps). 
-        Псевдо: берём несколько шаблонов step_explanations.
-        """
-        steps_templates = PROMPT_TEMPLATES["futoshiki"]["step_explanations"][self.language]
-        
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = []
-        
-        for i in range(len(steps_templates)):
-            tpl = steps_templates[i]
-            row = random.randint(0, self.size-1)
-            col = random.randint(0, self.size-1)
-            # Для неравенств
-            if self.inequalities:
-                inq = random.choice(self.inequalities)
-                r1, c1, r2, c2 = inq
-            else:
-                r1, c1, r2, c2 = 0,0,1,1
-            step_str = tpl.format(row=row, col=col, r1=r1, c1=c1, r2=r2, c2=c2)
-            self.solution_steps.append(step_str)
-        
-        # Формируем final_answer
         if self.solution is None:
-            # unsat
-            self.final_answer = texts.t("s12", self.language)
+            self.final_answer = texts.t('s12',self.language)
         else:
-            final_templ = PROMPT_TEMPLATES["futoshiki"]["final_answer"][self.language]
-            grid_repr = self._format_solution()
-            self.final_answer = final_templ.format(grid_repr=grid_repr)
+            self.final_answer = PROMPT_TEMPLATES['futoshiki']['final_answer'][self.language].format(grid_repr=self._format_solution())
+
+    def verify(self,prediction):
+        from re_rl.tasks.math.logic import _logic_utils as U
+        from re_rl.tasks.math.logic.puzzle_inference import futoshiki
+        text = U.clean(prediction)
+        if text in (texts.t('s12','ru'),texts.t('s12','en')):
+            return float(futoshiki(self.size,self.inequalities,[]) is None)
+        import re
+        for language in ('ru','en'):
+            header = PROMPT_TEMPLATES['futoshiki']['final_answer'][language].split('{grid_repr}')[0]
+            if text.startswith(header):text = text[len(header):]
+        if not re.fullmatch(r'[\s\[\],0-9]+',text):return 0.0
+        values = list(map(int,re.findall(r'[0-9]+',text)))
+        if len(values) != self.size*self.size:return 0.0
+        grid = [values[r*self.size:(r+1)*self.size] for r in range(self.size)]
+        expected = set(range(1,self.size+1))
+        if any(set(row) != expected for row in grid) or any({grid[r][c] for r in range(self.size)} != expected for c in range(self.size)):
+            return 0.0
+        return float(all(grid[r][c] < grid[s][t] for r,c,s,t in self.inequalities))
 
     def _format_solution(self):
         if self.solution is None:
@@ -211,11 +213,4 @@ class FutoshikiTask(BaseTask):
         return "\n".join(lines)
 
     def get_result(self):
-        if not self.solution_steps or self.final_answer is None:
-            self.solve()
-        return {
-            "problem": self.description,
-            "prompt": self.generate_prompt(),
-            "solution_steps": self.solution_steps,
-            "final_answer": self.final_answer
-        }
+        return super().get_result()

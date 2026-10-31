@@ -1,40 +1,33 @@
-# re_rl/tasks/physics/thermodynamics/heat_transfer_task.py
-
-"""
-HeatTransferTask — задачи на теплопередачу.
-"""
-from re_rl.tasks.i18n import TaskTexts
-texts = TaskTexts(__file__)
-
-
+"""Constant-capacity, phase-change and cyclic-engine models with explicit domains."""
 import random
-from typing import Dict, Any, ClassVar
-from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES
-
+from typing import Any,ClassVar,Dict
+from re_rl.tasks.base_task import BaseMathTask,OutputFormat
+from re_rl.tasks.i18n import TaskTexts
+from re_rl.tasks.physics.conservation_models import solve_task,verify_task,validate_inputs,number
+texts=TaskTexts(__file__)
 
 # Удельные теплоёмкости (Дж/(кг·°C))
 SPECIFIC_HEAT = {
-    "water": {"c": 4186, "name_ru": texts.literal('literals.s1'), "name_en": "water"},
-    "ice": {"c": 2090, "name_ru": texts.literal('literals.s2'), "name_en": "ice"},
-    "aluminum": {"c": 897, "name_ru": texts.literal('literals.s3'), "name_en": "aluminum"},
-    "iron": {"c": 449, "name_ru": texts.literal('literals.s4'), "name_en": "iron"},
-    "copper": {"c": 385, "name_ru": texts.literal('literals.s5'), "name_en": "copper"},
-    "lead": {"c": 128, "name_ru": texts.literal('literals.s6'), "name_en": "lead"},
+    "water": {"c": 4186, "name_ru": texts.literal('literals.s1'), "name_en": texts.t("material_water","en")},
+    "ice": {"c": 2090, "name_ru": texts.literal('literals.s2'), "name_en": texts.t("material_ice","en")},
+    "aluminum": {"c": 897, "name_ru": texts.literal('literals.s3'), "name_en": texts.t("material_aluminum","en")},
+    "iron": {"c": 449, "name_ru": texts.literal('literals.s4'), "name_en": texts.t("material_iron","en")},
+    "copper": {"c": 385, "name_ru": texts.literal('literals.s5'), "name_en": texts.t("material_copper","en")},
+    "lead": {"c": 128, "name_ru": texts.literal('literals.s6'), "name_en": texts.t("material_lead","en")},
 }
 
 # Удельные теплоты (Дж/кг)
 LATENT_HEAT = {
-    "ice_melting": {"lambda": 334000, "name_ru": texts.literal('literals.s7'), "name_en": "ice melting"},
-    "water_vaporization": {"lambda": 2260000, "name_ru": texts.literal('literals.s8'), "name_en": "water vaporization"},
+    "ice_melting": {"lambda": 334000, "name_ru": texts.literal('literals.s7'), "name_en": texts.t("process_ice_melting","en")},
+    "water_vaporization": {"lambda": 2260000, "name_ru": texts.literal('literals.s8'), "name_en": texts.t("process_water_vaporization","en")},
 }
 
 
+
 class HeatTransferTask(BaseMathTask):
-    """Генератор задач на теплопередачу."""
-    
-    TASK_TYPES = ["heat_capacity", "mixing", "phase_change", "efficiency"]
-    
+    TASK_TYPE="heat_transfer"
+    TASK_TYPES=["heat_capacity","mixing","phase_change","efficiency"]
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"max_m": 2, "max_dT": 50, "max_Q": 100000},
         2: {"max_m": 5, "max_dT": 80, "max_Q": 500000},
@@ -48,125 +41,60 @@ class HeatTransferTask(BaseMathTask):
         10: {"max_m": 1000, "max_dT": 1000, "max_Q": 500000000},
     }
     
-    def __init__(
-        self,
-        task_type: str = "heat_capacity",
-        m: float = None,
-        m1: float = None,
-        m2: float = None,
-        T1: float = None,
-        T2: float = None,
-        substance: str = None,
-        Q1: float = None,
-        Q2: float = None,
-        language: str = "ru",
-        detail_level: int = 3,
-        difficulty: int = 5,
-        output_format: OutputFormat = "text",
-        reasoning_mode: bool = False,
-        **kwargs
-    ):
-        self.task_type = task_type.lower()
-        self.difficulty = difficulty
-        self._output_format = output_format
-        self._reasoning_mode = reasoning_mode
-        self.language = language
-        
-        preset = self._interpolate_difficulty(difficulty)
-        max_m = preset.get("max_m", 50)
-        max_dT = preset.get("max_dT", 200)
-        max_Q = preset.get("max_Q", 5000000)
-        
-        self.substance = substance or random.choice(list(SPECIFIC_HEAT.keys()))
-        self.c = SPECIFIC_HEAT[self.substance]["c"]
-        
-        self.m = m if m is not None else round(random.uniform(0.1, max_m), 2)
-        self.m1 = m1 if m1 is not None else round(random.uniform(0.1, max_m), 2)
-        self.m2 = m2 if m2 is not None else round(random.uniform(0.1, max_m), 2)
-        self.T1 = T1 if T1 is not None else random.randint(0, 50)
-        self.T2 = T2 if T2 is not None else random.randint(50, min(100, self.T1 + max_dT))
-        self.Q1 = Q1 if Q1 is not None else random.randint(10000, max_Q)
-        self.Q2 = Q2 if Q2 is not None else random.randint(5000, int(self.Q1 * 0.7))
-        self.lambda_ice = LATENT_HEAT["ice_melting"]["lambda"]
-        
-        description = self._create_problem_description()
-        super().__init__(description, language, detail_level, output_format)
-        self.reasoning_mode = reasoning_mode
-    
-    def _get_substance_name(self) -> str:
-        name_key = (texts.t('s0', self.language))
-        return SPECIFIC_HEAT[self.substance].get(name_key, self.substance)
-    
-    def _create_problem_description(self) -> str:
-        templates = PROMPT_TEMPLATES.get("heat_transfer", {}).get("problem", {})
-        
-        if self.task_type == "heat_capacity":
-            template = templates.get("heat_capacity", {}).get(self.language, "")
-            return template.format(
-                m=self.m,
-                substance=self._get_substance_name(),
-                T1=self.T1,
-                T2=self.T2,
-                c=self.c
-            )
-        elif self.task_type == "mixing":
-            template = templates.get("mixing", {}).get(self.language, "")
-            return template.format(m1=self.m1, T1=self.T1, m2=self.m2, T2=self.T2)
-        elif self.task_type == "phase_change":
-            template = templates.get("phase_change", {}).get(self.language, "")
-            return template.format(m=self.m, lambda_=self.lambda_ice)
-        elif self.task_type == "efficiency":
-            template = templates.get("efficiency", {}).get(self.language, "")
-            return template.format(Q1=self.Q1, Q2=self.Q2)
-        return ""
-    
-    def solve(self):
-        self.solution_steps = []
-        templates = PROMPT_TEMPLATES.get("heat_transfer", {}).get("steps", {})
-        
-        if self.task_type == "heat_capacity":
-            dT = self.T2 - self.T1
-            Q = self.c * self.m * dT
-            step1 = templates.get("heat_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"Q = {self.c} × {self.m} × ({self.T2} - {self.T1})")
-            self.solution_steps.append(texts.t('s10', self.language, c=self.c, m=self.m, dT=dT, Q=Q))
-            self.final_answer = texts.t('s9', self.language, Q=Q)
-        
-        elif self.task_type == "mixing":
-            # c*m1*(T - T1) = c*m2*(T2 - T) => T = (m1*T1 + m2*T2)/(m1+m2)
-            T_final = (self.m1 * self.T1 + self.m2 * self.T2) / (self.m1 + self.m2)
-            step1 = templates.get("mixing_equation", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(
-                f"T = (m₁T₁ + m₂T₂)/(m₁+m₂) = ({self.m1}×{self.T1} + {self.m2}×{self.T2})/({self.m1}+{self.m2})"
-            )
-            self.solution_steps.append(f"T = {T_final:.4f} °C")
-            self.final_answer = f"{T_final:.4f} °C"
-        
-        elif self.task_type == "phase_change":
-            Q = self.lambda_ice * self.m
-            step1 = templates.get("phase_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(texts.t('s12', self.language, lambda_ice=self.lambda_ice, m=self.m, Q=Q))
-            self.final_answer = texts.t('s11', self.language, Q=Q)
-        
-        elif self.task_type == "efficiency":
-            eta = (self.Q1 - self.Q2) / self.Q1 * 100
-            step1 = templates.get("efficiency_formula", {}).get(self.language, "")
-            self.solution_steps.append(step1)
-            self.solution_steps.append(f"η = (Q₁ - Q₂)/Q₁ = ({self.Q1} - {self.Q2})/{self.Q1}")
-            self.solution_steps.append(f"η = {eta:.2f}%")
-            self.final_answer = f"{eta:.2f}%"
-        
-        # НЕ обрезаем шаги — в reasoning_mode нужны все шаги
-    
-    def get_task_type(self) -> str:
-        return "heat_transfer"
-    
+    def __init__(self,task_type="heat_capacity",m=None,m1=None,m2=None,T1=None,T2=None,
+                 substance=None,Q1=None,Q2=None,language="ru",detail_level=3,difficulty=5,
+                 output_format: OutputFormat="text",reasoning_mode=False,**kwargs):
+        self.difficulty=difficulty
+        self.task_type=task_type.lower() if isinstance(task_type,str) else "heat_capacity" if task_type is None else task_type
+        if self.task_type not in self.TASK_TYPES:raise ValueError("invalid_task_type")
+        if substance is not None and (not isinstance(substance,str) or substance not in SPECIFIC_HEAT):raise ValueError("invalid_substance")
+        p=self._interpolate_difficulty(difficulty)
+        mass=lambda value: value if value is not None else round(random.uniform(0.1,p["max_m"]),2)
+        if self.task_type in ("heat_capacity","mixing"):
+            self.substance=(random.choice(list(SPECIFIC_HEAT)) if substance is None else substance) if self.task_type=="heat_capacity" else ("water" if substance is None else substance)
+            if self.substance not in SPECIFIC_HEAT or (self.task_type=="mixing" and self.substance!="water"):
+                raise ValueError("invalid_substance")
+            self.c=SPECIFIC_HEAT[self.substance]["c"]
+            if self.task_type=="heat_capacity":
+                self.m=mass(m)
+                self.T1=T1 if T1 is not None else random.randint(-min(100,p["max_dT"]),-1) if self.substance=="ice" else random.randint(0,50)
+                upper=0 if self.substance=="ice" else 100 if self.substance=="water" else 200
+                # Validate the first temperature before using it to generate another.
+                validate_inputs(self.TASK_TYPE,self.task_type,dict(m=self.m,T1=self.T1,T2=self.T1,c=self.c,substance=self.substance))
+                self.T2=T2 if T2 is not None else min(upper,self.T1+random.randint(0,p["max_dT"]))
+                inputs=dict(m=self.m,T1=self.T1,T2=self.T2,c=self.c,substance=self.substance)
+            else:
+                self.m1=mass(m1);self.m2=mass(m2)
+                self.T1=T1 if T1 is not None else random.randint(0,50)
+                self.T2=T2 if T2 is not None else random.randint(50,100)
+                inputs=dict(m1=self.m1,m2=self.m2,T1=self.T1,T2=self.T2,c=self.c)
+        elif self.task_type=="phase_change":
+            if substance not in (None,"ice"):raise ValueError("invalid_substance")
+            self.substance="ice";self.m=mass(m);self.lambda_ice=LATENT_HEAT["ice_melting"]["lambda"]
+            inputs=dict(m=self.m,lambda_ice=self.lambda_ice)
+        else:
+            self.Q1=Q1 if Q1 is not None else random.randint(10000,p["max_Q"])
+            self.Q2=Q2 if Q2 is not None else number(self.Q1)*random.randint(1,9)/10
+            inputs=dict(Q1=self.Q1,Q2=self.Q2)
+        validate_inputs(self.TASK_TYPE,self.task_type,inputs)
+        description_inputs=dict(inputs)
+        if self.task_type=="heat_capacity":
+            description_inputs['substance']=texts.t("material_"+self.substance,language)
+        description=texts.t("problem_"+self.task_type,language,**description_inputs)
+        super().__init__(description,language,detail_level,output_format,reasoning_mode)
+
+    def solve(self):return solve_task(self)
+
+    def _solve_before_trace(self):self.solve()
+
+    def verify(self,prediction):return verify_task(self,prediction)
+
+    def get_task_type(self):return self.TASK_TYPE
+
     @classmethod
-    def generate_random_task(cls, task_type: str = None, language: str = "ru",
-                            detail_level: int = 3, difficulty: int = 5, reasoning_mode: bool = False):
-        task_type = task_type or random.choice(cls.TASK_TYPES)
-        return cls(task_type=task_type, language=language,
-                  detail_level=detail_level, difficulty=difficulty, reasoning_mode=reasoning_mode)
+    def generate_random_task(cls,task_type=None,language="ru",detail_level=3,difficulty=5,
+                             reasoning_mode=False,**kwargs):
+        task=cls(task_type=task_type or random.choice(cls.TASK_TYPES),language=language,
+                 detail_level=detail_level,difficulty=difficulty,reasoning_mode=reasoning_mode,**kwargs)
+        task.solve()
+        return task

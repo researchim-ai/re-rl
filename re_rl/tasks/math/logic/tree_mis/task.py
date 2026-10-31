@@ -10,6 +10,9 @@ import random
 from typing import Any, ClassVar, Dict, List, Sequence, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import tree_mis_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -34,7 +37,7 @@ def tree_mis(n: int, edges: Sequence[Tuple[int, int]]) -> int:
     return max(skip, take)
 
 
-class TreeMisTask(BaseMathTask):
+class TreeMisTask(_GraphBase):
     TASK_TYPE = "tree_mis"
     TASK_TYPES = ["size"]
 
@@ -62,8 +65,8 @@ class TreeMisTask(BaseMathTask):
         return ((texts.t('s0', language, n=self.n, v1=self._shown())))
 
     def solve(self):
-        step = ((texts.t('s1', self.language, answer=self.answer)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
+        self.answer, self.algorithm_trace = tree_mis_trace(self.n, self.edges)
+        self.solution_steps = render_trace(self.algorithm_trace, 'mis', self.language, vertex_offset=1)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

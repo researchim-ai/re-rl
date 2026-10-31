@@ -12,10 +12,14 @@ class TestKnightsKnavesTask(unittest.TestCase):
         """
         task = KnightsKnavesTask(language="ru", detail_level=5)
         result = task.get_result()
+        for name in task.names:
+            self.assertIn(name,result["problem"])
+        for statement in task.statements:
+            self.assertIn(statement["text"],result["problem"])
         
-        # Проверяем, что в постановке задачи действительно есть фраза "У нас есть три персонажей" (из prompts.py)
-        self.assertIn("У нас есть три персонажей", result["problem"],
-                      "Постановка задачи (problem) должна содержать базовый текст на русском")
+        # Проверяем фактическое число персонажей, имена и высказывания.
+        self.assertIn(f"Персонажи ({task.num_persons})", result["problem"],
+                      "Постановка должна содержать фактическое число персонажей")
         self.assertIn("говорит:", result["problem"],
                       "Постановка задачи должна содержать высказывания персонажей")
         self.assertIn("Определите, кто из них рыцарь, а кто — лжец", result["problem"],
@@ -38,9 +42,13 @@ class TestKnightsKnavesTask(unittest.TestCase):
         """
         task = KnightsKnavesTask(language="en", detail_level=3)
         result = task.get_result()
+        for name in task.names:
+            self.assertIn(name,result["problem"])
+        for statement in task.statements:
+            self.assertIn(statement["text"],result["problem"])
         
         # Проверяем, что постановка задачи содержит английский текст
-        self.assertIn("We have three characters", result["problem"], 
+        self.assertIn(f"Characters ({task.num_persons})", result["problem"],
                       "Постановка задачи (problem) должна содержать базовый текст на английском")
         self.assertIn("says:", result["problem"],
                       "Постановка задачи должна содержать высказывания персонажей")

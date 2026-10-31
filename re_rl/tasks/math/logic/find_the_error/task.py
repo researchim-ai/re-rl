@@ -43,11 +43,18 @@ class FindTheErrorTask(BaseMathTask):
         augment: bool = True,
         num_steps: Optional[int] = None,
         max_number: Optional[int] = None,
+        ops=None,
     ):
         preset = self._interpolate_difficulty(difficulty)
-        self.num_steps = int(num_steps if num_steps is not None else preset.get("num_steps", 5))
-        self.max_number = int(max_number if max_number is not None else preset.get("max_number", 40))
-        self.ops: List[str] = list(preset.get("ops", ["+", "-", "*"]))
+        self.num_steps = num_steps if num_steps is not None else preset["num_steps"]
+        self.max_number = max_number if max_number is not None else preset["max_number"]
+        if type(self.num_steps) is not int or not 1 <= self.num_steps <= 1000:
+            raise ValueError("invalid_num_steps")
+        if type(self.max_number) is not int or not 1 <= self.max_number <= 1_000_000:
+            raise ValueError("invalid_max_number")
+        self.ops = list(preset["ops"]) if ops is None else ops
+        if not isinstance(self.ops,(list,tuple)) or not self.ops or any(op not in ("+","-","*") for op in self.ops):
+            raise ValueError("invalid_operators")
         self.augment = augment
 
         # Каждый шаг: (a, op, b, shown_value, correct_value)
@@ -77,11 +84,12 @@ class FindTheErrorTask(BaseMathTask):
             return a + b
         if op == "-":
             return a - b
-        return a * b
+        if op == "*":return a * b
+        raise ValueError("invalid_operator")
 
     def _build_steps(self):
         self._steps = []
-        for _ in range(max(2, self.num_steps)):
+        for _ in range(self.num_steps):
             op = random.choice(self.ops)
             a = random.randint(1, self.max_number)
             b = random.randint(1, self.max_number)
@@ -98,17 +106,24 @@ class FindTheErrorTask(BaseMathTask):
         self._steps[self._error_index - 1] = (a, op, b, wrong, correct)
 
     def solve(self):
-        section = PROMPT_TEMPLATES[texts.t('s2', self.language)]
-        for i, (a, op, b, shown, correct) in enumerate(self._steps, start=1):
-            if shown != correct:
-                self.solution_steps.append(
-                    get_template(section, "step_check", self.language, augment=False,
-                                 n=i, a=a, op=op, b=b, shown=shown, correct=correct)
-                )
-        self.solution_steps.append(
-            get_template(section, "step_result", self.language, augment=False, n=self._error_index)
-        )
-        self.final_answer = str(self._error_index)
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
+        self.solve()
+
+    def verify(self, prediction):
+        import re
+        from re_rl.tasks.math.logic import _logic_utils as U
+        self.solve()
+        value=U.clean(prediction).strip()
+        section=PROMPT_TEMPLATES[self.TASK_TYPE]
+        labels=[get_template(section,"step_label",lang,augment=False) for lang in ("ru","en")]
+        prefix="(?:"+"|".join(re.escape(label) for label in labels)+r")(?:\s*:\s*|\s+)"
+        match=re.fullmatch("(?:"+prefix+r")?(\d+)",value,re.IGNORECASE)
+        if not match:return 0.0
+        try:return float(int(match.group(1))==int(self.final_answer))
+        except ValueError:return 0.0
 
     @classmethod
     def generate_random_task(

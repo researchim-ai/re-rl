@@ -42,6 +42,10 @@ class EchoDelayTask(BaseMathTask):
         return texts.t("s1", language, distance=self.distance)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "distance":
             step = texts.t("s2", self.language, time=self.time, distance=self.distance)
         else:

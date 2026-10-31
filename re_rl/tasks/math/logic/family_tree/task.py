@@ -9,6 +9,7 @@ texts = TaskTexts(__file__)
 
 
 import random
+from .solver import relationship,fingerprint
 from typing import Any, ClassVar, Dict, List, Optional, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
@@ -49,7 +50,13 @@ class FamilyTreeTask(BaseMathTask):
 
     def __init__(self, language: str = "ru", detail_level: int = 3, difficulty: int = 5,
                  output_format: OutputFormat = "text", reasoning_mode: bool = False,
-                 augment: bool = True, **kwargs):
+                 augment: bool = True, relation_hops=None, **kwargs):
+        difficulty = 5 if difficulty is None else difficulty
+        if type(difficulty) is not int or not 1 <= difficulty <= 10:
+            raise ValueError("invalid_difficulty")
+        self.relation_hops = (1 if difficulty <= 2 else 2 if difficulty <= 6 else 3 if difficulty <= 8 else 4) if relation_hops is None else relation_hops
+        if type(self.relation_hops) is not int or not 1 <= self.relation_hops <= 4:
+            raise ValueError('invalid_relation_hops')
         self.augment = augment
         self.difficulty = difficulty
         self.language = language
@@ -111,7 +118,8 @@ class FamilyTreeTask(BaseMathTask):
                 if a == b:
                     continue
                 role = self._relate(a, b)
-                if role is not None:
+                hops = 1 if role in ('father','mother','son','daughter','husband','wife') else 2 if role in ('brother','sister','grandfather','grandmother','grandson','granddaughter') else 3 if role in ('uncle','aunt','nephew','niece') else 4
+                if role is not None and hops == self.relation_hops:
                     labeled.append((a, b, role))
         self.a, self.b, self.role = random.choice(labeled)
 
@@ -161,9 +169,13 @@ class FamilyTreeTask(BaseMathTask):
             lines.append(((texts.t('s5', language, v0=self.name[a], v1=self.name[b], kids_names=kids_names))))
         q = ((texts.t('s0', language, v0=self.name[self.a], v1=self.name[self.b])))
         random.shuffle(lines)
-        return "\n".join(lines) + q
+        return texts.t("relation_rules",language)+"\n".join(lines) + q
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         ru_word = _ROLE_WORDS[self.role][0]
         en_word = _ROLE_WORDS[self.role][1][-1]
         word = {"ru": ru_word, "en": en_word}.get(self.language, en_word)
@@ -174,9 +186,13 @@ class FamilyTreeTask(BaseMathTask):
         self.final_answer = word
 
     def verify(self, prediction: str) -> float:
-        if self.final_answer is None:
-            self.solve()
-        return U.verify_label(prediction, _ROLE_WORDS[self.role][1])
+        certificate = getattr(self,'_kin_certificate',None)
+        if certificate is None or certificate[0] != fingerprint(self):
+            try:self.solve()
+            except ValueError:return 0.0
+        role = self._kin_certificate[1]
+        text = U.clean(prediction).strip().rstrip('.!').strip().casefold()
+        return float(text in {word.casefold() for word in [_ROLE_WORDS[role][0]]+_ROLE_WORDS[role][1]})
 
     @classmethod
     def generate_random_task(cls, language: str = "ru", detail_level: int = 3, difficulty: int = 5,

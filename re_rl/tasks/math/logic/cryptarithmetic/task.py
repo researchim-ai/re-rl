@@ -6,6 +6,9 @@
 со «своим» решением — ребус может иметь несколько решений.
 """
 
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__)
+
 import random
 import string
 from typing import Any, ClassVar, Dict, List, Optional
@@ -43,8 +46,9 @@ class CryptarithmeticTask(BaseMathTask):
         num_digits: Optional[int] = None,
     ):
         preset = self._interpolate_difficulty(difficulty)
-        self.num_digits = int(num_digits if num_digits is not None else preset.get("num_digits", 3))
-        self.num_digits = max(2, min(6, self.num_digits))
+        self.num_digits = num_digits if num_digits is not None else preset.get("num_digits",3)
+        if type(self.num_digits) is not int or not 2 <= self.num_digits <= 6:
+            raise ValueError('invalid_num_digits')
         self.augment = augment
 
         self._word_a, self._word_b, self._word_c, self._mapping = self._build_puzzle()
@@ -83,12 +87,20 @@ class CryptarithmeticTask(BaseMathTask):
             mapping = {letter: int(d) for d, letter in digit_to_letter.items()}
             return wa, wb, wc, mapping
         # Фолбэк: тривиальный ребус.
-        return "AB", "BA", "CDC", {"A": 1, "B": 2, "C": 3, "D": 6}
+        raise ValueError('generation_failed')
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         section = PROMPT_TEMPLATES["cryptarithmetic"]
+        if self._mapping is None:
+            self.solution_steps = []
+            self.final_answer = texts.t('no_solution',self.language)
+            return
         mapping_str = ",".join(f"{k}={v}" for k, v in sorted(self._mapping.items()))
-        self.solution_steps.append(get_template(section, "step_model", self.language, augment=False))
+        self.solution_steps = [get_template(section, "step_model", self.language, augment=False)]
         self.solution_steps.append(
             get_template(section, "step_result", self.language, augment=False, mapping=mapping_str)
         )
@@ -104,15 +116,24 @@ class CryptarithmeticTask(BaseMathTask):
 
         _, answer = extract_reasoning_and_answer(prediction)
         text = answer or prediction
-        pairs = re.findall(r"([A-Za-z])\s*=\s*(\d)", text)
+        parts = text.strip().split(',')
+        from re_rl.tasks.math.logic.puzzle_inference import cryptarithm
+        if text.strip() in (texts.t('no_solution','ru'),texts.t('no_solution','en')):
+            return float(cryptarithm(self._word_a,self._word_b,self._word_c,[]) is None)
+        pairs = []
+        for part in parts:
+            match = re.fullmatch(r"\s*([A-Za-z])\s*=\s*([0-9])\s*",part)
+            if match is None:return 0.0
+            pairs.append(match.groups())
         if not pairs:
             return 0.0
         assignment: Dict[str, int] = {}
         for letter, digit in pairs:
+            if letter.upper() in assignment:return 0.0
             assignment[letter.upper()] = int(digit)
 
         letters_needed = set(self._word_a + self._word_b + self._word_c)
-        if not letters_needed.issubset(assignment.keys()):
+        if letters_needed != assignment.keys():
             return 0.0
         used = {assignment[l] for l in letters_needed}
         if len(used) != len(letters_needed):

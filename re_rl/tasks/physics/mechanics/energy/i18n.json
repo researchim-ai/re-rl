@@ -111,6 +111,30 @@
     "s31": {
       "ru": "energy_conservation_note",
       "en": "energy_conservation_note"
+    },
+    "problem_work": {
+      "ru": "Постоянная сила модуля F={F} Н направлена вдоль заданного перемещения длины s={s} м. Найдите работу этой силы W в Дж. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "A constant force of magnitude F={F} N is parallel to a prescribed displacement of length s={s} m. Find the work W done by this force in J. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_work_angle": {
+      "ru": "Постоянная сила модуля F={F} Н образует угол {angle}° с заданным перемещением длины s={s} м. Найдите знаковую работу этой силы W в Дж; другие силы не включаются в W. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "A constant force of magnitude F={F} N makes angle {angle}° with a prescribed displacement of length s={s} m. Find the signed work W of this force in J; other forces are not included in W. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_kinetic_energy": {
+      "ru": "Ньютоновское одномерное движение: масса m={m} кг, проекция скорости v={v} м/с. Найдите кинетическую энергию K в Дж; знак v задаёт направление, а не знак энергии. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "Newtonian one-dimensional motion: mass m={m} kg, signed velocity v={v} m/s. Find kinetic energy K in J; the sign of v specifies direction, not the energy sign. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_potential_energy": {
+      "ru": "В однородном поле g={g} м/с² масса m={m} кг находится на высотной координате h={h} м. Нулевой уровень потенциальной энергии U выбран при h=0; h может быть отрицательной. Найдите U в Дж. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "In uniform gravity g={g} m/s² a mass m={m} kg has height coordinate h={h} m. Potential energy U is zero at h=0; h may be negative. Find U in J. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_power": {
+      "ru": "За положительный интервал t={t} с сила совершила знаковую работу W={W} Дж. Найдите среднюю знаковую мощность P в Вт, не мгновенную мощность. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "Over a positive interval t={t} s a force performed signed work W={W} J. Find average signed power P in W, not instantaneous power. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_conservation": {
+      "ru": "В однородном поле g={g} м/с² тело массой m={m} кг стартует на высоте h={h} м над плоскостью y=0 с начальной вертикальной скоростью v0={v0} м/с (вверх положительно). Действует только тяжесть, сопротивления нет, модель ньютоновская. Найдите модуль скорости v_impact при достижении y=0 в м/с. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "In uniform gravity g={g} m/s² a mass m={m} kg starts h={h} m above plane y=0 with initial vertical velocity v0={v0} m/s (upward positive). Gravity is the only force, with no drag; use the Newtonian model. Find speed v_impact upon reaching y=0 in m/s. Keep at least 10 significant digits; write an exact zero as 0."
     }
   },
   "literals": {

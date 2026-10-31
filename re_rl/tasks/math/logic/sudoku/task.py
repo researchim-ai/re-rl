@@ -2,7 +2,7 @@
 
 import random
 from typing import Dict, Any, ClassVar, List, Optional, Tuple
-from z3 import Solver, Int, And, Distinct, sat, Or
+from re_rl.tasks.math.logic import _logic_utils as U
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
@@ -59,8 +59,8 @@ class SudokuTask(BaseMathTask):
             if hints_ratio is None:
                 hints_ratio = preset.get("hints_ratio", 0.4)
         else:
-            size = size or 9
-            hints_ratio = hints_ratio or 0.4
+            size = 9 if size is None else size
+            hints_ratio = 0.4 if hints_ratio is None else hints_ratio
         
         self.language = language.lower()
         self.detail_level = detail_level
@@ -68,6 +68,10 @@ class SudokuTask(BaseMathTask):
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
         
+        if not isinstance(size,int) or size not in (4,9):
+            raise ValueError('invalid_size')
+        if not isinstance(hints_ratio,(int,float)) or not 0 <= hints_ratio <= 1:
+            raise ValueError('invalid_hints_ratio')
         self.size = size
         self.block_size = int(size ** 0.5)  # 2 для 4x4, 3 для 9x9
         self.hints_ratio = hints_ratio
@@ -156,33 +160,8 @@ class SudokuTask(BaseMathTask):
         return puzzle
 
     def _has_unique_solution(self, puzzle: List[List[Optional[int]]]) -> bool:
-        """Проверяет, имеет ли пазл единственное решение (упрощённая проверка)."""
-        # Для скорости делаем упрощённую проверку - просто проверяем разрешимость
-        # В реальности нужно проверять на единственность, но это медленно
-        solver = Solver()
-        cells = [[Int(f"c_{r}_{c}") for c in range(self.size)] for r in range(self.size)]
-        
-        for r in range(self.size):
-            for c in range(self.size):
-                solver.add(cells[r][c] >= 1, cells[r][c] <= self.size)
-                if puzzle[r][c] is not None:
-                    solver.add(cells[r][c] == puzzle[r][c])
-        
-        for r in range(self.size):
-            solver.add(Distinct(*cells[r]))
-        
-        for c in range(self.size):
-            solver.add(Distinct(*[cells[r][c] for r in range(self.size)]))
-        
-        for block_r in range(self.block_size):
-            for block_c in range(self.block_size):
-                block_cells = []
-                for r in range(self.block_size):
-                    for c in range(self.block_size):
-                        block_cells.append(cells[block_r * self.block_size + r][block_c * self.block_size + c])
-                solver.add(Distinct(*block_cells))
-        
-        return solver.check() == sat
+        from re_rl.tasks.math.logic.board_search_traces import sudoku
+        return len(sudoku(puzzle,limit=2)) == 1
 
     def _format_grid(self, grid: List[List[Optional[int]]]) -> str:
         """Форматирует сетку для отображения."""
@@ -224,6 +203,32 @@ class SudokuTask(BaseMathTask):
         return [n for n in range(1, self.size + 1) if n not in present]
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def verify(self,prediction):
+        values = U.parse_ints(prediction)
+        n,b = self.size,self.block_size
+        if len(values) < n*n:
+            return 0.0
+        values = values[-n*n:]
+        grid = [values[r*n:(r+1)*n] for r in range(n)]
+        expected = list(range(1,n+1))
+        if any(sorted(row) != expected for row in grid):
+            return 0.0
+        if any(sorted(col) != expected for col in zip(*grid)):
+            return 0.0
+        for r in range(n):
+            for c in range(n):
+                if self.puzzle[r][c] is not None and grid[r][c] != self.puzzle[r][c]:
+                    return 0.0
+        for r in range(0,n,b):
+            for c in range(0,n,b):
+                if sorted(grid[rr][cc] for rr in range(r,r+b) for cc in range(c,c+b)) != expected:
+                    return 0.0
+        return 1.0
+
+    def _solve_before_trace(self):
         """Генерирует пошаговое решение."""
         templates = PROMPT_TEMPLATES["sudoku"]
         steps = []

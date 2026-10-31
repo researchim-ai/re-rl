@@ -24,7 +24,7 @@ class TicTacToeTask(_GameBase):
                  reasoning_mode=False, augment=True, subtype=None, **kwargs):
         p = self._interpolate_difficulty(difficulty)
         self.pre_moves = int(p["moves"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self._build()
         super().__init__(description=self._descr(language), language=language,
@@ -88,6 +88,10 @@ class TicTacToeTask(_GameBase):
         return head + q
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.subtype == "outcome":
             if self.value == 1:
                 res = ((texts.t('s3', self.language)))

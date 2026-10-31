@@ -7,8 +7,8 @@
   },
   "prompt": {
     "instructions": {
-      "ru": "type: structured_text_with_tags\nОписание: Решите задачу о кувшинах с водой.\nИспользуя кувшины заданных объёмов, отмерьте ровно нужное количество воды.\nДоступные операции: наполнить, опустошить, перелить.\nФормат ответа:\n  <reasoning>\n    (Стратегия и анализ)\n  </reasoning>\n  <answer>\n    (Последовательность действий)\n  </answer>",
-      "en": "type: structured_text_with_tags\nDescription: Solve the water jug problem.\nUsing jugs of given capacities, measure exactly the required amount of water.\nAvailable operations: fill, empty, pour.\nAnswer format:\n  <reasoning>\n    (Strategy and analysis)\n  </reasoning>\n  <answer>\n    (Sequence of actions)\n  </answer>"
+      "ru": "type: structured_text_with_tags\nОписание: Решите задачу о кувшинах с водой.\nИспользуя кувшины заданных объёмов, отмерьте ровно нужное количество воды.\nДоступные операции: наполнить, опустошить, перелить.\nФормат ответа:\n  <reasoning>\n    (Стратегия и анализ)\n  </reasoning>\n  <answer>\n    (Последовательность действий)\n  </answer>\nТакже допустим JSON-массив ходов: [[\"fill\", 0], [\"pour\", 0, 1], [\"empty\", 1]]. Индексы кувшинов от 0.",
+      "en": "type: structured_text_with_tags\nDescription: Solve the water jug problem.\nUsing jugs of given capacities, measure exactly the required amount of water.\nAvailable operations: fill, empty, pour.\nAnswer format:\n  <reasoning>\n    (Strategy and analysis)\n  </reasoning>\n  <answer>\n    (Sequence of actions)\n  </answer>\nYou may also use a JSON action array: [[\"fill\", 0], [\"pour\", 0, 1], [\"empty\", 1]]. Jug indices start at 0."
     },
     "problem": {
       "ru": "Даны кувшины объёмом {capacities} литров.\nНачальное состояние: все кувшины пусты.\nИсточник воды неограничен.\n\nЦель: отмерить ровно {target} литров воды.\n\nНайдите последовательность действий.",

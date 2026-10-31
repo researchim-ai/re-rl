@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Tuple
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import coloring_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
 
 class GraphColoringTask(_GraphBase):
     TASK_TYPE = "graph_coloring"
@@ -36,7 +38,7 @@ class GraphColoringTask(_GraphBase):
                  reasoning_mode=False, augment=True, subtype=None, **kwargs):
         p = self._interpolate_difficulty(difficulty)
         self.n = int(p["n"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self._build()
         self._finish(self._descr(language), language, detail_level, output_format, reasoning_mode)
@@ -90,18 +92,15 @@ class GraphColoringTask(_GraphBase):
         return head + q
 
     def solve(self):
-        if self.subtype == "chromatic":
-            self.solution_steps = [
-                ((texts.t('s5', self.language))),
-                ((texts.t('s6', self.language, chromatic=self.chromatic))),
-            ]
-            self.final_answer = str(self.chromatic)
+        limit = self.k if self.subtype == 'k_colorable' else None
+        chromatic, self.algorithm_trace = coloring_trace(self.n, self.edges, limit)
+        self.solution_steps = render_trace(self.algorithm_trace, 'color', self.language)
+        if self.subtype == 'chromatic':
+            self.chromatic = chromatic
+            self.final_answer = str(chromatic)
         else:
-            self.solution_steps = [
-                ((texts.t('s7', self.language, k=self.k))),
-                ((texts.t('s8', self.language, chromatic=self.chromatic, v1=texts.t('s10', self.language) if self._answer_bool else texts.t('s11', self.language)))),
-            ]
-            self.final_answer = (texts.t('s3', self.language) if self._answer_bool else texts.t('s4', self.language))
+            self._answer_bool = chromatic is not None
+            self.final_answer = texts.t('s3', self.language) if self._answer_bool else texts.t('s4', self.language)
 
     def verify(self, prediction):
         if self.final_answer is None:

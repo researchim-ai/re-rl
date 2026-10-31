@@ -27,6 +27,34 @@
     "s6": {
       "ru": "zebra_house_question",
       "en": "zebra_house_question"
+    },
+    "house_answer": {
+      "ru": "дом {position}",
+      "en": "house {position}"
+    },
+    "house_header": {
+      "ru": "Дом",
+      "en": "House"
+    },
+    "category_nationality": {
+      "ru": "Национальность",
+      "en": "Nationality"
+    },
+    "category_color": {
+      "ru": "Цвет",
+      "en": "Color"
+    },
+    "category_drink": {
+      "ru": "Напиток",
+      "en": "Drink"
+    },
+    "category_pet": {
+      "ru": "Животное",
+      "en": "Pet"
+    },
+    "category_cigarette": {
+      "ru": "Сигареты",
+      "en": "Cigarette"
     }
   },
   "prompt": {

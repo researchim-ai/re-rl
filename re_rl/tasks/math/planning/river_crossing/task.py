@@ -6,6 +6,8 @@ from collections import deque
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES
+from re_rl.tasks.i18n import TaskTexts
+texts = TaskTexts(__file__)
 
 
 class RiverCrossingTask(BaseMathTask):
@@ -24,6 +26,9 @@ class RiverCrossingTask(BaseMathTask):
       - difficulty 9-10: ревнивые мужья или большие числа
     """
     
+    TASK_TYPE = 'river_crossing'
+    TASK_TYPES = ['classic','missionaries','jealous_husbands']
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"problem_type": "classic"},
         2: {"problem_type": "classic"},
@@ -78,6 +83,8 @@ class RiverCrossingTask(BaseMathTask):
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
         
+        if problem_type not in self.TASK_TYPES:
+            raise ValueError("invalid_subtype")
         self.problem_type = problem_type
         self.missionaries = missionaries
         self.cannibals = cannibals
@@ -122,7 +129,8 @@ class RiverCrossingTask(BaseMathTask):
         elif self.problem_type == "missionaries":
             return self._solve_missionaries()
         else:
-            return self._solve_missionaries()  # Упрощённо используем тот же алгоритм
+            from .search import jealous
+            return jealous(self.num_couples,self.capacity)
 
     def _solve_classic(self) -> List[Tuple]:
         """Решает классическую задачу (волк, коза, капуста)."""
@@ -259,6 +267,10 @@ class RiverCrossingTask(BaseMathTask):
         return []
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         """Генерирует пошаговое решение."""
         templates = PROMPT_TEMPLATES["river_crossing"]
         steps = []
@@ -288,6 +300,9 @@ class RiverCrossingTask(BaseMathTask):
             if self.problem_type == "classic":
                 direction = "right" if prev_state[0] == 0 else "left"
                 items = self._get_item_name(move)
+            elif self.problem_type == 'jealous_husbands':
+                direction = 'right' if prev_state[1] == 0 else 'left'
+                items = ', '.join(self._person_name(p) for p in move)
             else:
                 boat_prev = prev_state[2]
                 direction = "right" if boat_prev == 0 else "left"
@@ -318,6 +333,11 @@ class RiverCrossingTask(BaseMathTask):
         """Форматирует состояние для отображения."""
         templates = PROMPT_TEMPLATES["river_crossing"]["items"]
         
+        if self.problem_type == 'jealous_husbands':
+            mask,boat = state
+            left = ', '.join(self._person_name(p) for p in range(2*self.num_couples) if not mask & (1 << p))
+            right = ', '.join(self._person_name(p) for p in range(2*self.num_couples) if mask & (1 << p))
+            return left or '-',right or '-'
         if self.problem_type == "classic":
             farmer, wolf, goat, cabbage = state
             left_items = []
@@ -343,6 +363,9 @@ class RiverCrossingTask(BaseMathTask):
             right = f"{m_right} {m_name}, {c_right} {c_name}"
             
             return left, right
+
+    def _person_name(self, person):
+        return texts.t('husband' if person % 2 == 0 else 'wife',self.language,index=person//2+1)
 
     def _get_item_name(self, item: str) -> str:
         """Получает название предмета на нужном языке."""

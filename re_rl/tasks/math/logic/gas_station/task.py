@@ -66,6 +66,10 @@ class GasStationTask(BaseMathTask):
         return ((texts.t('s0', language, v0=self._pairs())))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s1', self.language, answer=self.answer))),
             ((texts.common('answer_line', self.language, answer=self.answer))),

@@ -15,6 +15,9 @@ import random
 from typing import Any, ClassVar, Dict, List, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import prufer_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -44,7 +47,7 @@ def prufer_encode(n: int, edges: List[Tuple[int, int]]) -> List[int]:
     return code
 
 
-class PruferTask(BaseMathTask):
+class PruferTask(_GraphBase):
     TASK_TYPE = "prufer_code"
     TASK_TYPES = ["encode", "degree"]
 
@@ -81,14 +84,12 @@ class PruferTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
-        code = ", ".join(map(str, self.code))
-        if self.task_type == "encode":
-            step = ((texts.t('s3', self.language, code=code)))
-            self.final_answer = code
-        else:
-            step = ((texts.t('s4', self.language, vertex=self.vertex, v1=self.code.count(self.vertex), degree=self.degree)))
-            self.final_answer = str(self.degree)
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.final_answer)))]
+        self.code, self.algorithm_trace = prufer_trace(self.n, self.edges)
+        if self.task_type == 'degree':
+            self.degree = 1 + self.code.count(self.vertex)
+            self.algorithm_trace.append(dict(event='degree', vertex=self.vertex, count=self.code.count(self.vertex), answer=self.degree))
+        self.solution_steps = render_trace(self.algorithm_trace, 'prufer', self.language)
+        self.final_answer = ', '.join(map(str, self.code)) if self.task_type == 'encode' else str(self.degree)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

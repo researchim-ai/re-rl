@@ -47,6 +47,10 @@ class QBFTask(_LogicBase):
         return ((texts.t('s0', language, prefix=prefix, v1=_render(self.matrix))))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s3', self.language))),
             ((texts.t('s4', self.language) if self._answer else texts.t('s5', self.language))),

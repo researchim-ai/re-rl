@@ -52,6 +52,10 @@ class ReducedMassTask(BaseMathTask):
         return f"{data} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = fmt_fraction(self.answer)
         step = ((f"μ = {fmt_fraction(self.reduced)}, 1/μ = {fmt_fraction(self.reciprocal)}."))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]

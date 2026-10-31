@@ -68,11 +68,8 @@ class EpsilonGreedyTask(BaseMathTask):
         return f"{rule} {data} {ask}"
 
     def solve(self):
-        mode = (texts.t('s4', self.language) if self.draw >= self.epsilon or self.epsilon == 0 else texts.t('s5', self.language))
-        mode_en = ("greedy" if self.draw >= self.epsilon or self.epsilon == 0 else "explore")
-        step = ((texts.t('s3', self.language, mode=mode, answer=self.answer)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
-        self.final_answer = str(self.answer)
+        from re_rl.tasks.rl.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

@@ -44,6 +44,10 @@ class DensityTask(BaseMathTask):
         return texts.t("s2", language, density=self.density, mass=self.mass)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "density":
             step = texts.t("s3", self.language, mass=self.mass, volume=self.volume, density=self.density)
         elif self.task_type == "mass":

@@ -58,10 +58,8 @@ class PpoClipTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
-        shown = fmt_fraction(self.answer)
-        step = ((texts.t('s1', self.language, v0=fmt_fraction(self.clipped), v1=fmt_fraction(self.surrogate))))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
-        self.final_answer = shown
+        from re_rl.tasks.rl.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

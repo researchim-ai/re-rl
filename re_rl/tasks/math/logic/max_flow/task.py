@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Tuple
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import flow_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
 
 class MaxFlowTask(_GraphBase):
     TASK_TYPE = "max_flow"
@@ -92,10 +94,8 @@ class MaxFlowTask(_GraphBase):
         return ((texts.t('s0', language, v0=self.n - 1, s=self.s, t=self.t, es=es)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language))),
-            ((texts.t('s2', self.language, _answer=self._answer))),
-        ]
+        self._answer, self.algorithm_trace = flow_trace(self.n, self.cap_edges, self.s, self.t)
+        self.solution_steps = render_trace(self.algorithm_trace, 'flow', self.language)
         self.final_answer = str(self._answer)
 
     def verify(self, prediction):

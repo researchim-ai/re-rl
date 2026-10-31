@@ -24,7 +24,7 @@ class BooleanCircuitVisualTask(VisualTaskMixin, BooleanCircuitTask):
                  augment: bool = True, subtype=None, **kwargs):
         super().__init__(language=language, detail_level=detail_level, difficulty=difficulty,
                          output_format=output_format, reasoning_mode=reasoning_mode,
-                         augment=augment, subtype=subtype)
+                         augment=augment, subtype=subtype or kwargs.get("task_type"))
         self.description = self._descr_visual(language)
 
     def _layers(self):

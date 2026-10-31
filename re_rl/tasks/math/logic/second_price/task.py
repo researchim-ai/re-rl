@@ -61,6 +61,10 @@ class SecondPriceTask(BaseMathTask):
         return f"{rule} {((texts.t('s4', language)))}{bids}. {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = ((texts.t('s3', self.language, winner=self.winner, payment=self.payment)))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
         self.final_answer = str(self.answer)

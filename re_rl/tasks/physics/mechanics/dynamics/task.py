@@ -1,29 +1,17 @@
-# re_rl/tasks/physics/mechanics/dynamics_task.py
-
-"""
-DynamicsTask — задачи по динамике (законы Ньютона).
-"""
-from re_rl.tasks.i18n import TaskTexts
-texts = TaskTexts(__file__)
-
-
+"""Explicit ideal Newtonian models with signed values and executable balances."""
 import random
-import math
-from typing import Dict, Any, ClassVar
-from re_rl.tasks.base_task import BaseMathTask, OutputFormat
-from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
+from typing import Any,ClassVar,Dict
+from re_rl.tasks.base_task import BaseMathTask,OutputFormat
+from re_rl.tasks.i18n import TaskTexts
 from re_rl.tasks.physics.constants import get_constant
-from re_rl.tasks.physics.units import format_with_units
+from re_rl.tasks.physics.mechanical_models import validate,solve_task,verify_task
+texts=TaskTexts(__file__)
 
 
 class DynamicsTask(BaseMathTask):
-    """Генератор задач по динамике."""
-    
-    TASK_TYPES = [
-        "newton_second", "find_force", "weight", 
-        "friction", "inclined_plane", "tension"
-    ]
-    
+    TASK_TYPE="dynamics"
+    TASK_TYPES=["newton_second","find_force","weight","friction","inclined_plane","tension"]
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"max_m": 10, "max_F": 50, "max_a": 5},
         2: {"max_m": 20, "max_F": 100, "max_a": 10},
@@ -37,150 +25,46 @@ class DynamicsTask(BaseMathTask):
         10: {"max_m": 500, "max_F": 5000, "max_a": 30},
     }
     
-    def __init__(
-        self,
-        task_type: str = "newton_second",
-        m: float = None,
-        m1: float = None,
-        m2: float = None,
-        F: float = None,
-        a: float = None,
-        mu: float = None,
-        angle: float = None,
-        language: str = "ru",
-        detail_level: int = 3,
-        difficulty: int = 5,
-        output_format: OutputFormat = "text",
-        reasoning_mode: bool = False,
-        **kwargs
-    ):
-        self.task_type = task_type.lower()
-        self.difficulty = difficulty
-        self.language = language
-        self._output_format = output_format
-        self._reasoning_mode = reasoning_mode
-        self.g = get_constant("g")
-        
-        preset = self._interpolate_difficulty(difficulty)
-        max_m = preset.get("max_m", 50)
-        max_F = preset.get("max_F", 500)
-        max_a = preset.get("max_a", 15)
-        
-        self.m = m if m is not None else random.randint(1, max_m)
-        self.m1 = m1 if m1 is not None else random.randint(1, max_m)
-        self.m2 = m2 if m2 is not None else random.randint(1, max_m)
-        self.F = F if F is not None else random.randint(10, max_F)
-        self.a = a if a is not None else random.randint(1, max_a)
-        self.mu = mu if mu is not None else round(random.uniform(0.1, 0.5), 2)
-        self.angle = angle if angle is not None else random.choice([15, 30, 45, 60])
-        
-        description = self._create_problem_description()
-        super().__init__(description, language, detail_level, output_format)
-        self.reasoning_mode = reasoning_mode
-    
-    def _create_problem_description(self) -> str:
-        templates = PROMPT_TEMPLATES.get("dynamics", {}).get("problem", {})
-        
-        if self.task_type == "newton_second":
-            template = templates.get("newton_second", {}).get(self.language, "")
-            return template.format(m=self.m, F=self.F)
-        elif self.task_type == "find_force":
-            template = templates.get("find_force", {}).get(self.language, "")
-            return template.format(m=self.m, a=self.a)
-        elif self.task_type == "weight":
-            template = templates.get("weight", {}).get(self.language, "")
-            return template.format(m=self.m, g=self.g)
-        elif self.task_type == "friction":
-            template = templates.get("friction", {}).get(self.language, "")
-            return template.format(m=self.m, mu=self.mu, g=self.g)
-        elif self.task_type == "inclined_plane":
-            template = templates.get("inclined_plane", {}).get(self.language, "")
-            return template.format(m=self.m, angle=self.angle, g=self.g)
-        elif self.task_type == "tension":
-            template = templates.get("tension", {}).get(self.language, "")
-            return template.format(m1=self.m1, m2=self.m2, g=self.g)
-        return ""
-    
-    def solve(self):
-        self.solution_steps = []
-        
-        if self.task_type == "newton_second":
-            a = self.F / self.m
-            if self.reasoning_mode:
-                self.add_given({"F": self.F, "m": self.m}, {"F": texts.t('s3', self.language), "m": texts.t('s4', self.language)})
-                self.add_find("a", get_template(PROMPT_TEMPLATES["inline"], texts.t('s5', self.language), self.language, augment=False))
-                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], texts.t('s6', self.language), self.language, augment=False))
-            self.add_formula("F = ma → a = F/m")
-            self.add_substitution(f"a = {self.F} / {self.m}")
-            self.add_calculation(f"{self.F}/{self.m}", round(a, 4), texts.t('s0', self.language))
-            if self.reasoning_mode:
-                self.add_dimension_check(texts.literal('literals.s1'))
-            self.final_answer = format_with_units(a, "m/s^2", self.language)
-        
-        elif self.task_type == "find_force":
-            F = self.m * self.a
-            if self.reasoning_mode:
-                self.add_given({"m": self.m, "a": self.a}, {"m": texts.t('s9', self.language), "a": texts.t('s10', self.language)})
-                self.add_find("F", get_template(PROMPT_TEMPLATES["inline"], texts.t('s11', self.language), self.language, augment=False))
-            self.add_formula("F = ma")
-            self.add_substitution(f"F = {self.m} × {self.a}")
-            self.add_calculation(f"{self.m} × {self.a}", round(F, 4), texts.t('s2', self.language))
-            if self.reasoning_mode:
-                self.add_dimension_check(texts.literal('literals.s7'))
-            self.final_answer = format_with_units(F, "N", self.language)
-        
-        elif self.task_type == "weight":
-            W = self.m * self.g
-            if self.reasoning_mode:
-                self.add_given({"m": self.m, "g": self.g}, {"m": texts.t('s16', self.language), "g": texts.t('s17', self.language)})
-                self.add_find("P", get_template(PROMPT_TEMPLATES["inline"], texts.t('s18', self.language), self.language, augment=False))
-            self.add_formula("P = mg")
-            self.add_substitution(f"P = {self.m} × {self.g}")
-            self.add_calculation(f"{self.m} × {self.g}", round(W, 4), texts.t('s8', self.language))
-            self.final_answer = format_with_units(W, "N", self.language)
-        
-        elif self.task_type == "friction":
-            N = self.m * self.g
-            F_friction = self.mu * N
-            if self.reasoning_mode:
-                self.add_given({"m": self.m, "μ": self.mu, "g": self.g}, {"m": texts.t('s21', self.language), "μ": "", "g": texts.t('s22', self.language)})
-                self.add_find(texts.t('s19', self.language), get_template(PROMPT_TEMPLATES["inline"], texts.t('s23', self.language), self.language, augment=False))
-                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], texts.t('s24', self.language), self.language, augment=False))
-            self.add_formula(texts.t('s12', self.language))
-            self.add_substitution(texts.t('s13', self.language, m=self.m, g=self.g, v2=round(N, 2)))
-            self.add_substitution(texts.t('s14', self.language, mu=self.mu, v1=round(N, 2)))
-            self.add_calculation(f"{self.mu} × {round(N, 2)}", round(F_friction, 4), texts.t('s15', self.language))
-            self.final_answer = format_with_units(F_friction, "N", self.language)
-        
-        elif self.task_type == "inclined_plane":
-            angle_rad = math.radians(self.angle)
-            F_parallel = self.m * self.g * math.sin(angle_rad)
-            if self.reasoning_mode:
-                self.add_given({"m": self.m, "θ": self.angle, "g": self.g}, {"m": texts.t('s26', self.language), "θ": "°", "g": texts.t('s27', self.language)})
-                self.add_find("F", get_template(PROMPT_TEMPLATES["inline"], texts.t('s28', self.language), self.language, augment=False))
-                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], texts.t('s29', self.language), self.language, augment=False))
-            self.add_formula("F = mg·sin(θ)")
-            self.add_substitution(f"F = {self.m} × {self.g} × sin({self.angle}°)")
-            self.add_calculation(f"{self.m} × {self.g} × {round(math.sin(angle_rad), 4)}", round(F_parallel, 4), texts.t('s20', self.language))
-            self.final_answer = format_with_units(F_parallel, "N", self.language)
-        
-        elif self.task_type == "tension":
-            T = 2 * self.m1 * self.m2 * self.g / (self.m1 + self.m2)
-            if self.reasoning_mode:
-                self.add_given({"m₁": self.m1, "m₂": self.m2, "g": self.g}, {"m₁": texts.t('s30', self.language), "m₂": texts.t('s31', self.language), "g": texts.t('s32', self.language)})
-                self.add_find("T", get_template(PROMPT_TEMPLATES["inline"], texts.t('s33', self.language), self.language, augment=False))
-                self.add_analysis(get_template(PROMPT_TEMPLATES["inline"], texts.t('s34', self.language), self.language, augment=False))
-            self.add_formula("T = 2m₁m₂g/(m₁+m₂)")
-            self.add_substitution(f"T = 2 × {self.m1} × {self.m2} × {self.g} / ({self.m1} + {self.m2})")
-            self.add_calculation(f"{2*self.m1*self.m2*self.g}/{self.m1+self.m2}", round(T, 4), texts.t('s25', self.language))
-            self.final_answer = format_with_units(T, "N", self.language)
-    
-    def get_task_type(self) -> str:
-        return "dynamics"
-    
+    def __init__(self,task_type="newton_second",m=None,m1=None,m2=None,F=None,a=None,mu=None,angle=None,
+                 language="ru",detail_level=3,difficulty=5,output_format: OutputFormat="text",
+                 reasoning_mode=False,g=None,**kwargs):
+        self.task_type=task_type.lower() if isinstance(task_type,str) else "newton_second" if task_type is None else task_type
+        if self.task_type not in self.TASK_TYPES:raise ValueError("invalid_task_type")
+        self.difficulty=difficulty;p=self._interpolate_difficulty(difficulty)
+        if self.task_type=="tension":
+            self.m1=m1 if m1 is not None else random.randint(1,p["max_m"])
+            self.m2=m2 if m2 is not None else random.randint(1,p["max_m"])
+            self.g=get_constant("g") if g is None else g
+            inputs=dict(m1=self.m1,m2=self.m2,g=self.g)
+        else:
+            self.m=m if m is not None else random.randint(1,p["max_m"])
+            inputs=dict(m=self.m)
+            if self.task_type=="newton_second":
+                self.F=F if F is not None else random.randint(-p["max_F"],p["max_F"])
+                inputs['F']=self.F
+            elif self.task_type=="find_force":
+                self.a=a if a is not None else random.randint(-p["max_a"],p["max_a"])
+                inputs['a']=self.a
+            else:
+                self.g=get_constant("g") if g is None else g
+                inputs['g']=self.g
+                if self.task_type=="friction":
+                    self.mu=mu if mu is not None else round(random.uniform(0.1,0.5),2)
+                    inputs['mu']=self.mu
+                elif self.task_type=="inclined_plane":
+                    self.angle=angle if angle is not None else random.choice([0,15,30,45,60,90])
+                    inputs['angle']=self.angle
+        validate(self.TASK_TYPE,self.task_type,inputs)
+        description=texts.t("problem_"+self.task_type,language,**inputs)
+        super().__init__(description,language,detail_level,output_format,reasoning_mode)
+
+    def solve(self):return solve_task(self)
+    def _solve_before_trace(self):self.solve()
+    def verify(self,prediction):return verify_task(self,prediction)
+    def get_task_type(self):return self.TASK_TYPE
+
     @classmethod
-    def generate_random_task(cls, task_type: str = None, language: str = "ru", 
-                            detail_level: int = 3, difficulty: int = 5, reasoning_mode: bool = False):
-        task_type = task_type or random.choice(cls.TASK_TYPES)
-        return cls(task_type=task_type, language=language, 
-                  detail_level=detail_level, difficulty=difficulty, reasoning_mode=reasoning_mode)
+    def generate_random_task(cls,task_type=None,language="ru",detail_level=3,difficulty=5,reasoning_mode=False,**kwargs):
+        task=cls(task_type=task_type or random.choice(cls.TASK_TYPES),language=language,detail_level=detail_level,
+                 difficulty=difficulty,reasoning_mode=reasoning_mode,**kwargs)
+        task.solve();return task

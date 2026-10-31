@@ -35,6 +35,10 @@
     "s8": {
       "ru": "знакочередующаяся последовательность",
       "en": "alternating sequence"
+    },
+    "rule_hint": {
+      "ru": "Семейство правила: {family}. Для рекуррентного семейства используйте a[n] = p·a[n−1] + q·a[n−2], где (p,q) — одна из пар (1,1), (2,1), (1,2).",
+      "en": "Rule family: {family}. For the recurrence family use a[n] = p·a[n−1] + q·a[n−2], with (p,q) from (1,1), (2,1), (1,2)."
     }
   }
 }

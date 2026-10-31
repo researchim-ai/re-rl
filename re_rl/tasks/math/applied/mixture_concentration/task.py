@@ -52,6 +52,10 @@ class MixtureConcentrationTask(BaseMathTask):
         return texts.t("s1", language, result=self.result, v1=self.v1, c1=self.c1, v2=self.v2)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "result":
             step = texts.t("s2", self.language, c1=self.c1, v1=self.v1, c2=self.c2, v2=self.v2, result=self.result)
         else:

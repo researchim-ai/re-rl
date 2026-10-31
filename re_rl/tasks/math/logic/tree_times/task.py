@@ -10,6 +10,9 @@ import random
 from typing import Any, ClassVar, Dict, List, Sequence, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import tree_times_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -34,7 +37,7 @@ def tree_times(parents: Sequence[int]) -> Tuple[List[int], List[int]]:
     return enter, size
 
 
-class TreeTimesTask(BaseMathTask):
+class TreeTimesTask(_GraphBase):
     TASK_TYPE = "tree_times"
     TASK_TYPES = ["enter", "size"]
 
@@ -68,12 +71,11 @@ class TreeTimesTask(BaseMathTask):
         return texts.t(key, language, n=self.n, listing=listing, k=self.k)
 
     def solve(self):
-        steps = [
-            texts.t("s2", self.language, i=node, enter=self.enter[node], size=self.sizes[node])
-            for node in range(1, self.n + 1)
-        ]
-        steps.append(texts.common("answer_line", self.language, answer=self.answer))
-        self.solution_steps = steps
+        self.enter, self.sizes, self.algorithm_trace = tree_times_trace(self.parents)
+        self.enter_k, self.size = self.enter[self.k], self.sizes[self.k]
+        self.answer = self.enter_k if self.task_type == 'enter' else self.size
+        self.solution_steps = render_trace(self.algorithm_trace, 'dfstime', self.language)
+        self.solution_steps.append(texts.common('answer_line', self.language, answer=self.answer))
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

@@ -12,6 +12,9 @@ from collections import deque
 from typing import Any, ClassVar, Dict, List, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import wiener_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -37,7 +40,7 @@ def wiener_index(n: int, edges: List[Tuple[int, int]]) -> int:
     return total // 2
 
 
-class WienerTask(BaseMathTask):
+class WienerTask(_GraphBase):
     TASK_TYPE = "wiener_index"
     TASK_TYPES = ["sum"]
 
@@ -72,10 +75,8 @@ class WienerTask(BaseMathTask):
         return ((texts.t('s0', language, n=self.n, shown=shown)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language, answer=self.answer))),
-            ((texts.common('answer_line', self.language, answer=self.answer))),
-        ]
+        self.answer, self.algorithm_trace = wiener_trace(self.n, self.edges)
+        self.solution_steps = render_trace(self.algorithm_trace, 'wiener', self.language)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

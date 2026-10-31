@@ -72,6 +72,10 @@ class BinarySearchTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = ", ".join(f"mid={m} (a={self.arr[m]})" for m in self.mids)
         self.solution_steps = [
             ((texts.t('s3', self.language, shown=shown, index=self.index, comps=self.comps))),

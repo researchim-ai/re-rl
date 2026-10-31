@@ -99,17 +99,8 @@ class MinCoinsTask(BaseMathTask):
         return ((texts.t('s0', language, coins=coins, amount=self.amount)))
 
     def solve(self):
-        combo = "+".join(map(str, sorted(self.combo, reverse=True)))
-        if self.greedy == self.answer:
-            greedy = ((texts.t('s1', self.language)))
-        else:
-            greedy = ((texts.t('s2', self.language, greedy=self.greedy)))
-        self.solution_steps = [
-            ((texts.t('s3', self.language, combo=combo, answer=self.answer))),
-            greedy,
-            ((texts.common('answer_line', self.language, answer=self.answer))),
-        ]
-        self.final_answer = str(self.answer)
+        from re_rl.tasks.math.algorithm_traces.solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

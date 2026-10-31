@@ -49,11 +49,8 @@ class KnapsackTask(BaseMathTask):
         return ((texts.t('s0', language, capacity=self.capacity, items=items)))
 
     def solve(self):
-        self.solution_steps = [
-            texts.t("literals.s1", self.language),
-            ((texts.t('s2', self.language, _answer=self._answer))),
-        ]
-        self.final_answer = str(self._answer)
+        from re_rl.tasks.math.algorithm_traces.solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction):
         if self.final_answer is None:

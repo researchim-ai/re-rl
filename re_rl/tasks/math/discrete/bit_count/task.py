@@ -41,6 +41,10 @@ class BitCountTask(BaseMathTask):
         return texts.t(key, language, n=self.n)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = texts.t("s2", self.language, n=self.n, binary=self.binary, ones=self.ones, width=self.width)
         self.solution_steps = [step, texts.common("answer_line", self.language, answer=self.answer)]
         self.final_answer = str(self.answer)

@@ -22,7 +22,7 @@ class TournamentTask(_DedBase):
     def __init__(self, language="ru", detail_level=3, difficulty=5, output_format="text",
                  reasoning_mode=False, augment=True, subtype=None, **kwargs):
         p = self._interpolate_difficulty(difficulty)
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.rr = int(p["rr"])
         self.ko = int(p["ko"])
         self.augment = augment
@@ -88,6 +88,10 @@ class TournamentTask(_DedBase):
         return ((texts.t('s0', language, body=body)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.subtype == "round_robin":
             self.solution_steps = [
                 ((texts.t('s2', self.language))),

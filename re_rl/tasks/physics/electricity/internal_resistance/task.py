@@ -55,6 +55,10 @@ class InternalResistanceTask(BaseMathTask):
         return f"{data} {law} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = ((texts.t('s2', self.language, v1=self.v1, v2=self.v2, i2=self.i2, i1=self.i1, r=self.r, v1_2=self.v1, i1_2=self.i1, r_2=self.r, emf=self.emf)))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
         self.final_answer = str(self.answer)

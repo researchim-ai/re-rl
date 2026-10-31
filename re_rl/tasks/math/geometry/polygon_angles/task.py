@@ -49,6 +49,10 @@ class PolygonAnglesTask(BaseMathTask):
         return texts.t(key, language, n=self.n)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "sum":
             step = texts.t("s3", self.language, n=self.n, nm2=self.n - 2, answer=self.sum)
         elif self.task_type == "angle":

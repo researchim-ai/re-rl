@@ -60,6 +60,10 @@ class HalfLifeStepsTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = ((texts.t('s1', self.language, n0=self.n0, k=self.k, remaining=self.remaining, activity0=self.activity0, k_2=self.k, activity=self.activity)))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
         self.final_answer = str(self.answer)

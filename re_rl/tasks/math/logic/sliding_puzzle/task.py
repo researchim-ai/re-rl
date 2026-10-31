@@ -37,6 +37,8 @@ class SlidingPuzzleTask(BaseMathTask):
                  output_format="text", reasoning_mode=False, augment=True, **kwargs):
         p = self._interpolate_difficulty(difficulty)
         self.task_type = (task_type or random.choice(self.TASK_TYPES)).lower()
+        if self.task_type not in self.TASK_TYPES:
+            raise ValueError("invalid_subtype")
         self.scramble = int(p["scramble"])
         self.difficulty = difficulty if difficulty else 5
         self._build()
@@ -148,6 +150,10 @@ class SlidingPuzzleTask(BaseMathTask):
         return ((texts.t('s0', language, grid=grid, goal=goal)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "solvable":
             inv = self._inversions(self.board)
             self.solution_steps = [

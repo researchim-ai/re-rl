@@ -68,6 +68,10 @@ class BallisticPendulumTask(BaseMathTask):
         return f"{common} {g} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         momentum = ((texts.t('s2', self.language, m=self.m, v=self.v, m_2=self.m, M=self.M, V=self.V)))
         energy = ((texts.t('s3', self.language, V=self.V, h=self.h)))
         if self.task_type == "block_speed":

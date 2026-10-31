@@ -131,6 +131,30 @@
     "s34": {
       "ru": "dynamics_atwood_note",
       "en": "dynamics_atwood_note"
+    },
+    "problem_newton_second": {
+      "ru": "В инерциальной системе на тело массы m={m} кг действует суммарная проекция силы F={F} Н. Ньютоновская одномерная модель. Найдите знаковое ускорение a в м/с². Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "In an inertial frame a body of mass m={m} kg has net signed force F={F} N. Use the Newtonian one-dimensional model. Find signed acceleration a in m/s². Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_find_force": {
+      "ru": "В инерциальной системе масса m={m} кг имеет знаковое ускорение a={a} м/с². В ньютоновской модели найдите суммарную проекцию силы F в Н. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "In an inertial frame a mass m={m} kg has signed acceleration a={a} m/s². In the Newtonian model find net signed force F in N. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_weight": {
+      "ru": "Тело массы m={m} кг покоится на горизонтальной неподвижной опоре в инерциальной системе. g={g} м/с², других вертикальных сил нет. Найдите модуль веса P — силы давления тела на опору, в Н. Ускорение опоры нулевое. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "A mass m={m} kg rests on a stationary horizontal support in an inertial frame. g={g} m/s² and no other vertical forces act. Find weight magnitude P, the force exerted by the body on the support, in N. The support has zero acceleration. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_friction": {
+      "ru": "Тело массы m={m} кг скользит по горизонтальной поверхности. Коэффициент кинетического трения μ={mu}, g={g} м/с², других вертикальных сил нет. Найдите модуль силы трения F_friction в Н; она направлена против скорости. Трение покоя не рассматривается. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "A mass m={m} kg slides on a horizontal surface. The kinetic friction coefficient is μ={mu}, g={g} m/s² and no other vertical forces act. Find friction magnitude F_friction in N; it opposes velocity. Static friction is not being asked. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_inclined_plane": {
+      "ru": "Тело массы m={m} кг находится на гладкой прямой наклонной плоскости с углом {angle}° к горизонту, g={g} м/с². Трения и других внешних сил, кроме тяжести и нормальной реакции, нет. Найдите суммарную силу F_parallel вдоль плоскости, положительное направление вниз по склону, в Н. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "A mass m={m} kg is on a smooth straight plane at angle {angle}° above horizontal, g={g} m/s². No friction or external forces act except gravity and the normal reaction. Find net tangential force F_parallel in N, positive down the slope. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_tension": {
+      "ru": "Идеальная машина Атвуда: обе массы m1={m1} кг и m2={m2} кг свободно висят на концах одной невесомой нерастяжимой натянутой нити через неподвижный невесомый блок без трения. g={g} м/с², других сил нет. Пока грузы не достигли ограничителей, найдите натяжение T в Н; одинаковое с обеих сторон. Сохраните не менее 10 значащих цифр; точный ноль запишите как 0.",
+      "en": "An ideal Atwood machine: both masses m1={m1} kg and m2={m2} kg hang freely from one massless inextensible taut string over a fixed massless frictionless pulley. g={g} m/s² and no other forces act. Before either mass reaches a stop, find tension T in N, equal on both sides. Keep at least 10 significant digits; write an exact zero as 0."
     }
   },
   "literals": {

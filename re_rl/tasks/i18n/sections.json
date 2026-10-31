@@ -40,7 +40,6 @@
   "roots_of_unity": "math/linear_algebra/roots_of_unity/i18n.json#prompt",
   "analogical": "math/logic/analogical/i18n.json#prompt",
   "contradiction": "math/logic/contradiction/i18n.json#prompt.contradiction",
-  "contradiction_facts": "math/logic/contradiction/i18n.json#prompt.contradiction_facts",
   "cryptarithmetic": "math/logic/cryptarithmetic/i18n.json#prompt",
   "csp_reasoning": "math/logic/csp_reasoning/i18n.json#prompt",
   "find_the_error": "math/logic/find_the_error/i18n.json#prompt",

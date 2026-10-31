@@ -17,7 +17,7 @@ class DiceReasoningTask(_SpatialBase):
     def __init__(self, language="ru", detail_level=3, difficulty=5, output_format="text",
                  reasoning_mode=False, augment=True, subtype=None, **kwargs):
         self.augment = augment
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         if self.subtype == "opposite":
             self.v = random.randint(1, 6)
             self.answer = 7 - self.v
@@ -36,6 +36,10 @@ class DiceReasoningTask(_SpatialBase):
         return ((texts.t('s0', language, fs=fs)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s2', self.language))),
             ((texts.common('answer_line', self.language, answer=self.answer))),

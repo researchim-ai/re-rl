@@ -12,6 +12,7 @@ class BayesianReasoningTask(BaseMathTask):
     """Bayesian and base-rate reasoning tasks."""
 
     TASK_TYPE = "bayesian_reasoning"
+    TASK_TYPES = ["bayes_basic","base_rate","bayes_chain"]
 
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"task_type": "bayes_basic"},
@@ -40,10 +41,25 @@ class BayesianReasoningTask(BaseMathTask):
         self.task_type = task_type or str(preset.get("task_type", "mixed"))
         if self.task_type == "mixed":
             self.task_type = random.choice(["bayes_basic", "base_rate", "bayes_chain"])
+        if self.task_type not in self.TASK_TYPES:
+            raise ValueError("invalid_subtype")
         self.augment = augment
         super().__init__("", language=language, detail_level=detail_level, output_format=output_format, reasoning_mode=reasoning_mode)
 
+        self._generate_instance()
+        self.solution_steps = []
+        self.final_answer = None
+
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
+        label = 'P(C)' if self.task_type == 'bayes_chain' else 'P(D|+)'
+        self.solution_steps = []
+        self.final_answer = label+'='+format(float(self.probability),'.4f')
+
+    def _generate_instance(self):
         section = PROMPT_TEMPLATES["bayesian_reasoning"]
         if self.task_type == "bayes_basic":
             p_d = random.choice([0.01, 0.02, 0.05, 0.1])
@@ -52,10 +68,12 @@ class BayesianReasoningTask(BaseMathTask):
             self.description = get_template(
                 section, "problem_basic", self.language, augment=self.augment, p_d=p_d, sens=sens, spec=spec
             )
+            self.parameters = dict(p_d=p_d,sens=sens,spec=spec)
             numerator = sens * p_d
             denominator = numerator + (1 - spec) * (1 - p_d)
             posterior = numerator / denominator
             self.solution_steps.append(get_template(section, texts.t('s2', self.language), self.language, augment=False))
+            self.probability = posterior
             self.final_answer = f"P(D|+)={posterior:.4f}"
             return
 
@@ -66,10 +84,12 @@ class BayesianReasoningTask(BaseMathTask):
             self.description = get_template(
                 section, texts.t('s0', self.language), self.language, augment=self.augment, p_d=p_d, sens=sens, fpr=fpr
             )
+            self.parameters = dict(p_d=p_d,sens=sens,fpr=fpr)
             numerator = sens * p_d
             denominator = numerator + fpr * (1 - p_d)
             posterior = numerator / denominator
             self.solution_steps.append(get_template(section, texts.t('s3', self.language), self.language, augment=False))
+            self.probability = posterior
             self.final_answer = f"P(D|+)={posterior:.4f}"
             return
 
@@ -89,10 +109,16 @@ class BayesianReasoningTask(BaseMathTask):
             p_b_not_a=p_b_not_a,
             p_c_not_b=p_c_not_b,
         )
+        self.parameters = dict(p_a=p_a,p_b_a=p_b_a,p_c_b=p_c_b,p_b_not_a=p_b_not_a,p_c_not_b=p_c_not_b)
         p_b = p_b_a * p_a + p_b_not_a * (1 - p_a)
         p_c = p_c_b * p_b + p_c_not_b * (1 - p_b)
         self.solution_steps.append(get_template(section, texts.t('s1', self.language), self.language, augment=False))
+        self.probability = p_c
         self.final_answer = f"P(C)={p_c:.4f}"
+
+    def verify(self,prediction):
+        from re_rl.tasks.math.probability.inference_traces import verify_probability
+        return verify_probability(self,prediction)
 
     @classmethod
     def generate_random_task(

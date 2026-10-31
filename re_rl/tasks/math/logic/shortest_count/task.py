@@ -13,6 +13,9 @@ from collections import deque
 from typing import Any, ClassVar, Dict, List, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import path_counts_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -34,7 +37,7 @@ def bfs_ways(n: int, adj: List[List[int]], source: int):
     return dist, ways
 
 
-class ShortestCountTask(BaseMathTask):
+class ShortestCountTask(_GraphBase):
     TASK_TYPE = texts.literal('literals.s5')
     TASK_TYPES = ["path_count", "level_size"]
 
@@ -90,11 +93,12 @@ class ShortestCountTask(BaseMathTask):
         return f"{head} {ask}"
 
     def solve(self):
-        if self.task_type == "path_count":
-            step = ((texts.t('s3', self.language, v0=self.dist[self.target], path_count=self.path_count)))
-        else:
-            step = ((texts.t('s4', self.language, k=self.k, level=self.level)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
+        distances, ways, self.algorithm_trace = path_counts_trace(self.n, [(a - 1, b - 1) for a, b in self.edges], self.source - 1)
+        self.dist, self.ways = [-1] + distances, [0] + ways
+        self.path_count, self.level = ways[self.target - 1], sum(d == self.k for d in distances)
+        self.answer = self.path_count if self.task_type == 'path_count' else self.level
+        self.algorithm_trace.append(dict(event='answer', answer=self.answer))
+        self.solution_steps = render_trace(self.algorithm_trace, 'counts', self.language)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

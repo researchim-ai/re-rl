@@ -75,6 +75,22 @@
     "s21": {
       "ru": "velocity_at_height",
       "en": "velocity_at_height"
+    },
+    "problem_range": {
+      "ru": "Тело брошено из (0,0) со скоростью v0={v0} м/с под углом {angle}° выше горизонта. Однородное g={g} м/с² направлено вниз; сопротивления нет, модель ньютоновская. Посадка на той же высоте y=0. Найдите горизонтальную дальность range в метрах. Все исходные числа указаны без скрытого округления. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "A body is thrown from (0,0) at v0={v0} m/s and angle {angle}° above horizontal. Uniform gravity g={g} m/s² points downward; no drag, Newtonian model. Landing is at launch height y=0. Find horizontal range in meters. The stated numbers have no hidden rounding. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_max_height": {
+      "ru": "Тело брошено из (0,0) со скоростью v0={v0} м/с под углом {angle}° выше горизонта. Однородное g={g} м/с² направлено вниз; сопротивления нет, модель ньютоновская. Найдите максимальную высоту H над стартовой точкой в метрах. Все исходные числа указаны без скрытого округления. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "A body is thrown from (0,0) at v0={v0} m/s and angle {angle}° above horizontal. Uniform gravity g={g} m/s² points downward; no drag, Newtonian model. Find maximum height H above launch level in meters. The stated numbers have no hidden rounding. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_flight_time": {
+      "ru": "Тело брошено из (0,0) со скоростью v0={v0} м/с под углом {angle}° выше горизонта. Однородное g={g} м/с² направлено вниз; сопротивления нет, модель ньютоновская. Найдите время t_flight до возвращения на уровень y=0 в секундах; нулевое время полёта допускается как граничный случай. Все исходные числа указаны без скрытого округления. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "A body is thrown from (0,0) at v0={v0} m/s and angle {angle}° above horizontal. Uniform gravity g={g} m/s² points downward; no drag, Newtonian model. Find time t_flight to return to y=0 in seconds; zero flight time is allowed as a limiting case. The stated numbers have no hidden rounding. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_velocity_at_height": {
+      "ru": "Тело брошено из (0,0) со скоростью v0={v0} м/с под углом {angle}° выше горизонта. Однородное g={g} м/с² направлено вниз; сопротивления нет, модель ньютоновская. На высоте h={height_query} м над стартом найдите модуль скорости speed в м/с. Высота должна достигаться этой траекторией; модули скорости на восходящей и нисходящей ветвях совпадают. Все исходные числа указаны без скрытого округления. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "A body is thrown from (0,0) at v0={v0} m/s and angle {angle}° above horizontal. Uniform gravity g={g} m/s² points downward; no drag, Newtonian model. At height h={height_query} m above launch level find speed magnitude speed in m/s. The height must be reachable on this trajectory; ascending and descending speed magnitudes agree. The stated numbers have no hidden rounding. Keep at least 10 significant digits; write an exact zero as 0."
     }
   },
   "literals": {

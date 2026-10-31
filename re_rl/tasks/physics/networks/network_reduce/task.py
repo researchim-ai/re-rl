@@ -114,11 +114,8 @@ class NetworkReduceTask(BaseMathTask):
         return value
 
     def solve(self):
-        steps = []
-        self._reduce(self.tree, steps)
-        steps.append(texts.common("answer_line", self.language, answer=self.answer))
-        self.solution_steps = steps
-        self.final_answer = str(self.answer)
+        from re_rl.tasks.physics.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

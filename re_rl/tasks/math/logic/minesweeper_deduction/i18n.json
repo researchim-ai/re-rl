@@ -43,6 +43,14 @@
     "s10": {
       "ru": "свободна",
       "en": "free"
+    },
+    "not_mine": {
+      "ru": "не мина",
+      "en": "not a mine"
+    },
+    "not_mine_short": {
+      "ru": "без мины",
+      "en": "not mine"
     }
   }
 }

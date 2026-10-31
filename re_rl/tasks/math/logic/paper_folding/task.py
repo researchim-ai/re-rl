@@ -22,7 +22,7 @@ class PaperFoldingTask(_SpatialBase):
     def __init__(self, language="ru", detail_level=3, difficulty=5, output_format="text",
                  reasoning_mode=False, augment=True, subtype=None, **kwargs):
         p = self._interpolate_difficulty(difficulty)
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self.k = random.randint(1, int(p["kmax"]))
         self.h = random.randint(1, int(p["hmax"]))
@@ -40,6 +40,10 @@ class PaperFoldingTask(_SpatialBase):
         return ((texts.t('s0', language, k=self.k, h=self.h)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s2', self.language, k=self.k, v1=2 ** self.k))),
             ((texts.common('answer_line', self.language, answer=self.answer))),

@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Tuple
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import tsp_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
 
 class TSPTask(_GraphBase):
     TASK_TYPE = "tsp"
@@ -51,14 +53,7 @@ class TSPTask(_GraphBase):
         self._answer = self._best_tour()
 
     def _best_tour(self):
-        n = self.n
-        best = None
-        for perm in permutations(range(1, n)):
-            route = (0,) + perm
-            cost = sum(self.d[route[i]][route[(i + 1) % n]] for i in range(n))
-            if best is None or cost < best:
-                best = cost
-        return best
+        return tsp_trace(self.d)[0]
 
     def _descr(self, language):
         lines = []
@@ -69,10 +64,8 @@ class TSPTask(_GraphBase):
         return ((texts.t('s0', language, n=self.n, v1=self.n - 1, table=table)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language))),
-            ((texts.t('s2', self.language, _answer=self._answer))),
-        ]
+        self._answer, self.algorithm_trace = tsp_trace(self.d)
+        self.solution_steps = render_trace(self.algorithm_trace, 'heldkarp', self.language)
         self.final_answer = str(self._answer)
 
     def verify(self, prediction):

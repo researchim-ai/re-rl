@@ -45,11 +45,8 @@ class SubsetSumTask(BaseMathTask):
         return ((texts.t('s0', language, v0=', '.join(map(str, self.nums)), target=self.target)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s3', self.language))),
-            ((texts.t('s4', self.language) if self._answer else texts.t('s5', self.language))),
-        ]
-        self.final_answer = (texts.t('s1', self.language) if self._answer else texts.t('s2', self.language))
+        from re_rl.tasks.math.algorithm_traces.solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction):
         if self.final_answer is None:

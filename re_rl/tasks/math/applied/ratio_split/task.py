@@ -44,6 +44,10 @@ class RatioSplitTask(BaseMathTask):
         return texts.t(key, language, total=self.total, a=self.a, b=self.b)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = texts.t(
             "s2", self.language, a=self.a, b=self.b, sum_ab=self.a + self.b,
             total=self.total, k=self.k, first=self.first, second=self.second,

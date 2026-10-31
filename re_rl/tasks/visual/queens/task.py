@@ -112,6 +112,10 @@ class QueensCheckVisualTask(VisualTaskMixin, BaseMathTask):
         return ((texts.t('s0', language, n=self.n, n_2=self.n, n_3=self.n)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         verdict = (texts.t('s1', self.language) if self.answer_bool else texts.t('s2', self.language))
         self.solution_steps = [
             ((texts.t('s5', self.language))),

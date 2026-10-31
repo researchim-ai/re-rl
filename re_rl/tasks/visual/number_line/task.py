@@ -114,6 +114,10 @@ class NumberLineTask(VisualTaskMixin, BaseMathTask):
         return ((texts.t('s0', language)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "value":
             step = ((texts.t('s3', self.language, a=self.a)))
         elif self.task_type == "distance":

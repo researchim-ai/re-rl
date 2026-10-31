@@ -31,6 +31,26 @@
     "s7": {
       "ru": "f' = {f_perceived:.4f} Гц",
       "en": "f' = {f_perceived:.4f} Hz"
+    },
+    "problem_wavelength": {
+      "ru": "Одномерная недиспергирующая механическая волна: f={f} Гц, скорость фазы и переноса возмущений v={v} м/с в неподвижной среде. Найдите длину волны в метрах. Сохраните не менее 10 значащих цифр, допустима научная запись.",
+      "en": "A one-dimensional non-dispersive mechanical wave: f={f} Hz, phase and disturbance-propagation speed v={v} m/s in a stationary medium. Find the wavelength in meters. Keep at least 10 significant digits; scientific notation is allowed."
+    },
+    "problem_frequency": {
+      "ru": "Недиспергирующая механическая волна: λ={lambda_} м, v={v} м/с в неподвижной среде. Найдите обычную частоту f в Гц. Сохраните не менее 10 значащих цифр.",
+      "en": "A non-dispersive mechanical wave: λ={lambda_} m, v={v} m/s in a stationary medium. Find the ordinary frequency f in Hz. Keep at least 10 significant digits."
+    },
+    "problem_period": {
+      "ru": "Обычная частота механической волны f={f} Гц. Найдите период T в секундах. Сохраните не менее 10 значащих цифр; малый ненулевой период нельзя округлять до нуля, используйте научную запись.",
+      "en": "A mechanical wave has ordinary frequency f={f} Hz. Find period T in seconds. Keep at least 10 significant digits; do not round a small nonzero period to zero, use scientific notation."
+    },
+    "problem_sound_speed": {
+      "ru": "В идеализированной недиспергирующей акустической среде f={f} Гц, λ={lambda_} м. Найдите скорость звука v в м/с. Параметры относятся к одной и той же волне; материал и дисперсия не моделируются. Сохраните не менее 10 значащих цифр.",
+      "en": "In an idealized non-dispersive acoustic medium f={f} Hz and λ={lambda_} m. Find sound speed v in m/s. Both parameters describe the same wave; material properties and dispersion are not modeled. Keep at least 10 significant digits."
+    },
+    "problem_doppler": {
+      "ru": "Классический одномерный эффект Доплера в неподвижной недиспергирующей среде: скорость волны v={v} м/с, частота источника f0={f0} Гц. Знаковая скорость источника v_s={v_s} м/с положительна к наблюдателю; скорость наблюдателя v_o={v_o} м/с положительна к источнику. Оба движутся дозвуково вдоль линии между ними, ещё не прошли друг друга; отрицательные скорости означают удаление. Найдите наблюдаемую частоту в Гц. Сохраните не менее 10 значащих цифр.",
+      "en": "Classical one-dimensional Doppler effect in a stationary non-dispersive medium: wave speed v={v} m/s, source frequency f0={f0} Hz. Signed source speed v_s={v_s} m/s is positive toward the observer; observer speed v_o={v_o} m/s is positive toward the source. Both move subsonically along their connecting line and have not passed each other; negative speeds mean recession. Find observed frequency in Hz. Keep at least 10 significant digits."
     }
   }
 }

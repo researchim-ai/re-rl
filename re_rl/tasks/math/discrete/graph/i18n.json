@@ -47,6 +47,10 @@
     "s11": {
       "ru": "Step: {{avg_coeff}}",
       "en": "Step: {{avg_coeff}}"
+    },
+    "graph_data": {
+      "ru": "\nЧисло вершин: {n}; номера от 0. Рёбра (u,v,вес): {edges}.",
+      "en": "\nVertex count: {n}; IDs start at 0. Edges (u,v,weight): {edges}."
     }
   },
   "prompt": {

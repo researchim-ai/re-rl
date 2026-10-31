@@ -131,6 +131,10 @@ class BalanceScaleTask(VisualTaskMixin, BaseMathTask):
         return ((texts.t('s1', language)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         unit = (texts.t('s2', self.language))
         if self.task_type == "lever":
             step = ((texts.t('s4', self.language, m_l=self.m_l, d_l=self.d_l, d_r=self.d_r, answer=self.answer, unit=unit)))

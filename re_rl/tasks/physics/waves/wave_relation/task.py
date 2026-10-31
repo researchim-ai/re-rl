@@ -55,6 +55,10 @@ class WaveRelationTask(BaseMathTask):
         return f"{law} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = ((texts.t('s1', self.language, frequency=self.frequency, wavelength=self.wavelength, speed=self.speed)))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
         self.final_answer = str(self.answer)

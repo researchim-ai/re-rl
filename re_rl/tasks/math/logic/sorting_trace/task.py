@@ -21,7 +21,7 @@ class SortingTraceTask(_AlgoBase):
                  reasoning_mode=False, augment=True, subtype=None, **kwargs):
         p = self._interpolate_difficulty(difficulty)
         self.n = int(p["n"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self.arr = random.sample(range(1, self.n * 3), self.n)
         if self.subtype == "inversions":
@@ -49,6 +49,10 @@ class SortingTraceTask(_AlgoBase):
         return ((texts.t('s0', language, arr=arr, k=self.k)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.subtype == "inversions":
             self.solution_steps = [
                 ((texts.t('s2', self.language))),

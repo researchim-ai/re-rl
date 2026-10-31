@@ -30,7 +30,9 @@ class CalendarReasoningTask(BaseMathTask):
                  reasoning_mode=False, augment=True, subtype=None, **kwargs):
         p = self._interpolate_difficulty(difficulty)
         self.span = int(p["span"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
+        if self.subtype not in self.TASK_TYPES:
+            raise ValueError("invalid_subtype")
         self.lang = language if language in _WD else "en"
         self.augment = augment
         self._build()
@@ -65,6 +67,10 @@ class CalendarReasoningTask(BaseMathTask):
         return ((texts.t('s0', language, v0=self._fmt(self.d1), delta=self.delta)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.subtype == "date_diff":
             self.solution_steps = [
                 ((texts.t('s3', self.language))),

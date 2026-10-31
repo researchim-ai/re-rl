@@ -1,0 +1,816 @@
+{
+  "text": {
+    "call": {
+      "ru": "Вызов {function}: {inputs}.",
+      "en": "Call {function}: {inputs}."
+    },
+    "statement": {
+      "ru": "Выполняем {expression} → {changes}.",
+      "en": "Execute {expression} → {changes}."
+    },
+    "return": {
+      "ru": "Результат {function}: {result}.",
+      "en": "Return from {function}: {result}."
+    },
+    "expression": {
+      "ru": "Вычисляем {expression}; аргументы {operands} → {result}.",
+      "en": "Compute {expression}; operands {operands} → {result}."
+    },
+    "game_cache": {
+      "ru": "Позиция {board}, ход {player}: уже вычисленная оценка {value}.",
+      "en": "Position {board}, player {player}: reuse computed value {value}."
+    },
+    "game_leaf": {
+      "ru": "Терминальная позиция {board}, победитель {winner}: оценка {value}.",
+      "en": "Terminal position {board}, winner {winner}: value {value}."
+    },
+    "game_move": {
+      "ru": "Позиция {board}, игрок {player}, ход {move} → {child}: оценка потомка {value}.",
+      "en": "Position {board}, player {player}, move {move} → {child}: child value {value}."
+    },
+    "game_reduce": {
+      "ru": "Позиция {board}, игрок {player}: оценки ходов {scores}; выбираем максимум для X, минимум для O: {value}.",
+      "en": "Position {board}, player {player}: move values {scores}; select maximum for X, minimum for O: {value}."
+    },
+    "life_cell": {
+      "ru": "Поколение {generation}, клетка ({row},{col}): соседи {neighbors}, живых {count}; было {previous}, выживание {survives}, рождение {born}, станет {result}.",
+      "en": "Generation {generation}, cell ({row},{col}): neighbors {neighbors}, live count {count}; previous {previous}, survives {survives}, born {born}, next {result}."
+    },
+    "elementary_cell": {
+      "ru": "Поколение {generation}, позиция {index}: тройка {neighborhood}, индекс бита {rule_index}, правило {rule}, новый бит {result}.",
+      "en": "Generation {generation}, position {index}: neighborhood {neighborhood}, rule bit index {rule_index}, rule {rule}, next bit {result}."
+    },
+    "cellular_generation": {
+      "ru": "Поколение {generation} вычислено синхронно: {result}.",
+      "en": "Generation {generation} updated synchronously: {result}."
+    },
+    "arc_candidate": {
+      "ru": "Проверяем правило {rule}, параметры {parameters}: {checks}. Подходит всем примерам: {fits}.",
+      "en": "Test rule {rule}, parameters {parameters}: {checks}. Fits every example: {fits}."
+    },
+    "arc_prediction": {
+      "ru": "Подходящее правило {rule}, параметры {parameters}, даёт тестовый результат {result}.",
+      "en": "Matching rule {rule}, parameters {parameters}, predicts test output {result}."
+    },
+    "grid_domain": {
+      "ru": "{axis}, индекс {index} (с 0): допустимые варианты {patterns}.",
+      "en": "{axis}, index {index} (from 0): initial domain {patterns}."
+    },
+    "grid_filter": {
+      "ru": "{axis}, индекс {index} (с 0), глубина {depth}: {reason}. Исключения {removed}; остаются {remaining}.",
+      "en": "{axis}, index {index} (from 0), depth {depth}: {reason}. Eliminations {removed}; remaining {remaining}."
+    },
+    "grid_conflict": {
+      "ru": "Противоречие: {axis}, индекс {index} (с 0), глубина {depth}: {reason}.",
+      "en": "Conflict: {axis}, index {index} (from 0), depth {depth}: {reason}."
+    },
+    "grid_branch": {
+      "ru": "Ветвление на глубине {depth}: {axis}, индекс {index} (с 0), пробуем {pattern}.",
+      "en": "Branch at depth {depth}: {axis}, index {index} (from 0), try {pattern}."
+    },
+    "grid_backtrack": {
+      "ru": "Откат на глубину {depth}: {axis}, индекс {index} (с 0), вариант {pattern} не дал решения.",
+      "en": "Backtrack to depth {depth}: {axis}, index {index} (from 0), pattern {pattern} failed."
+    },
+    "grid_solution": {
+      "ru": "Все ограничения выполнены. Найденная сетка: {grid}.",
+      "en": "All constraints satisfied. Solved grid: {grid}."
+    },
+    "fleet_domain": {
+      "ru": "Корабль длины {length}: исходные размещения (координаты с 0) {placements}.",
+      "en": "Ship length {length}: initial placements (coordinates from 0) {placements}."
+    },
+    "fleet_reject": {
+      "ru": "Глубина {depth}, корабль {length}, клетки {cells} (с 0): исключаем — {reason}.",
+      "en": "Depth {depth}, ship {length}, cells {cells} (from 0): reject — {reason}."
+    },
+    "fleet_place": {
+      "ru": "Глубина {depth}: размещаем корабль {length} в {cells} (с 0). Остатки по строкам {rows}, столбцам {cols}.",
+      "en": "Depth {depth}: place ship {length} at {cells} (from 0). Remaining row quotas {rows}, column quotas {cols}."
+    },
+    "fleet_backtrack": {
+      "ru": "Глубина {depth}: убираем корабль {length} из {cells} (с 0), продолжение невозможно.",
+      "en": "Depth {depth}: remove ship {length} from {cells} (from 0); no completion exists."
+    },
+    "grid_axis_0": {
+      "ru": "Строка",
+      "en": "Row"
+    },
+    "grid_axis_1": {
+      "ru": "Столбец",
+      "en": "Column"
+    },
+    "grid_reason_crossing": {
+      "ru": "нет согласующегося варианта пересекающей линии",
+      "en": "no supporting pattern in the crossing line"
+    },
+    "grid_reason_distinct": {
+      "ru": "вариант уже занят другой полностью определённой линией",
+      "en": "pattern already used by another fully determined line"
+    },
+    "grid_reason_empty_domain": {
+      "ru": "не осталось допустимых вариантов",
+      "en": "empty domain"
+    },
+    "grid_reason_duplicate_line": {
+      "ru": "две полностью определённые линии совпадают",
+      "en": "duplicate completed lines"
+    },
+    "grid_reason_touching": {
+      "ru": "пересечение или касание другого корабля",
+      "en": "overlap or contact with another ship"
+    },
+    "grid_reason_row_quota": {
+      "ru": "превышена квота строки",
+      "en": "row quota exceeded"
+    },
+    "grid_reason_col_quota": {
+      "ru": "превышена квота столбца",
+      "en": "column quota exceeded"
+    },
+    "grid_reason_free_capacity": {
+      "ru": "оставшихся свободных клеток недостаточно для квот",
+      "en": "insufficient free cells for remaining quotas"
+    },
+    "kakuro_candidate": {
+      "ru": "Пробуем A,B,C,D,E={values}. B={s1}−A; C={v1}−A; D={v2}−B; E={s2}−C−D. Цифры в 1..9: {in_range}; различие в линиях: {distinct}; допустимо: {valid}.",
+      "en": "Try values A,B,C,D,E={values}. B={s1}−A; C={v1}−A; D={v2}−B; E={s2}−C−D. Digits in 1..9: {in_range}; distinct within runs: {distinct}; valid: {valid}."
+    },
+    "csp_domain": {
+      "ru": "Переменная {index} (с 0): начальный домен {values}.",
+      "en": "Variable {index} (from 0): initial domain {values}."
+    },
+    "csp_table_init": {
+      "ru": "Ограничение {table}: клетки {cells} (с 0), допустимые наборы {tuples}.",
+      "en": "Constraint {table}: cells {cells} (from 0), allowed tuples {tuples}."
+    },
+    "csp_filter": {
+      "ru": "Глубина {depth}, переменная {index} (с 0): правило {reason}, ограничение {constraint}; исключаем {removed}, свидетели/поддержки {supports}, остаётся {remaining}.",
+      "en": "Depth {depth}, variable {index} (from 0): rule {reason}, constraint {constraint}; eliminate {removed}, witnesses/supports {supports}, remaining {remaining}."
+    },
+    "csp_conflict": {
+      "ru": "На глубине {depth} противоречие: {reason}. Свидетель: {details}.",
+      "en": "Conflict at depth {depth}: {reason}. Witness: {details}."
+    },
+    "csp_solution": {
+      "ru": "Все ограничения выполнены. Значения: {values}.",
+      "en": "All constraints satisfied. Values: {values}."
+    },
+    "csp_branch": {
+      "ru": "Глубина {depth}: пробуем переменную {index} (с 0) = {value}.",
+      "en": "Depth {depth}: try variable {index} (from 0) = {value}."
+    },
+    "csp_backtrack": {
+      "ru": "Откат на глубину {depth}: переменная {index} (с 0) = {value} не даёт решения.",
+      "en": "Backtrack to depth {depth}: variable {index} (from 0) = {value} has no completion."
+    },
+    "cage_candidates": {
+      "ru": "Группа {cage}, клетки {cells} (с 0), операция {operator}, цель {target}: вычисления кандидатов {checks}.",
+      "en": "Cage {cage}, cells {cells} (from 0), operation {operator}, target {target}: candidate computations {checks}."
+    },
+    "sky_candidates": {
+      "ru": "Ось {axis}, линия {index} (с 0): видно {forward} с начала и {backward} с конца. Проверки высот {checks}.",
+      "en": "Axis {axis}, line {index} (from 0): visibility {forward} forward and {backward} backward. Height checks {checks}."
+    },
+    "queens_domain": {
+      "ru": "Строка {row} (с 0): маски занятых столбцов {columns}, диагоналей {down}/{up}; доступные столбцы {available}.",
+      "en": "Row {row} (from 0): occupied column mask {columns}, diagonal masks {down}/{up}; available columns {available}."
+    },
+    "queens_place": {
+      "ru": "Ставим ферзя: строка {row}, столбец {col} (с 0).",
+      "en": "Place queen: row {row}, column {col} (from 0)."
+    },
+    "queens_remove": {
+      "ru": "Возврат из ветви: снимаем ферзя ({row},{col}) (с 0).",
+      "en": "Return from branch: remove queen ({row},{col}) (from 0)."
+    },
+    "queens_dead_end": {
+      "ru": "Тупик на строке {row}: размещение {placement} (с 0), доступных клеток нет.",
+      "en": "Dead end at row {row}: placement {placement} (from 0), no available cells."
+    },
+    "queens_solution": {
+      "ru": "Найдено размещение {placement} (столбцы с 0); накопленное число решений {count}.",
+      "en": "Found placement {placement} (columns from 0); accumulated solution count {count}."
+    },
+    "queens_result": {
+      "ru": "Размер {n}: найдено {count} решений; полный перебор выполнен: {complete}.",
+      "en": "Size {n}: found {count} solutions; exhaustive search completed: {complete}."
+    },
+    "csp_reason_empty_domain": {
+      "ru": "пустой домен",
+      "en": "empty domain"
+    },
+    "csp_reason_duplicate": {
+      "ru": "повтор значения в группе различных переменных",
+      "en": "duplicate value in an all-different group"
+    },
+    "csp_reason_unsupported_table": {
+      "ru": "нет согласующегося набора для арифметического ограничения",
+      "en": "no supported tuple for the arithmetic constraint"
+    },
+    "csp_reason_distinct": {
+      "ru": "значение занято другой переменной группы",
+      "en": "value used by another variable in the group"
+    },
+    "csp_reason_table": {
+      "ru": "значение не поддерживается арифметическим ограничением",
+      "en": "value unsupported by arithmetic constraint"
+    },
+    "cage_candidate": {
+      "ru": "Группа {cage}, клетки {cells} (с 0): набор {values}, операция {operator} → {result}; цель {target}, совпадение {matches}.",
+      "en": "Cage {cage}, cells {cells} (from 0): tuple {values}, operation {operator} → {result}; target {target}, matches {matches}."
+    },
+    "sky_candidate": {
+      "ru": "Ось {axis}, линия {index} (с 0), вариант {pattern}: проход с начала {forward_steps}, с конца {backward_steps}; видно {actual_forward}/{actual_backward}, требуется {forward}/{backward}, подходит {matches}.",
+      "en": "Axis {axis}, line {index} (from 0), pattern {pattern}: forward scan {forward_steps}, backward scan {backward_steps}; visibility {actual_forward}/{actual_backward}, required {forward}/{backward}, fits {matches}."
+    },
+    "hitori_constraints": {
+      "ru": "Пары одинаковых чисел: {duplicates}; соседние по ребру клетки: {adjacent}. Индексы клеток с 0, построчно.",
+      "en": "Duplicate-number pairs: {duplicates}; edge-adjacent cells: {adjacent}. Cell indices start at 0 in row order."
+    },
+    "hitori_force": {
+      "ru": "Глубина {depth}: клетка {cell} получает {value} (0=белая, 1=закрашенная), свидетель {source}, правило {reason}.",
+      "en": "Depth {depth}: cell {cell} becomes {value} (0=white, 1=shaded), witness {source}, rule {reason}."
+    },
+    "hitori_conflict": {
+      "ru": "Глубина {depth}: конфликт {reason} в клетках {cells}.",
+      "en": "Depth {depth}: conflict {reason} at cells {cells}."
+    },
+    "hitori_connect": {
+      "ru": "Глубина {depth}: обход от {start}, достижимы {reached}, должны соединяться {required}; возможно {possible}. Проверка полного заполнения: {final}.",
+      "en": "Depth {depth}: traverse from {start}, reachable {reached}, must connect {required}; possible {possible}. Complete-board check: {final}."
+    },
+    "hitori_solution": {
+      "ru": "Оставшиеся неизвестные клетки пробуем оставить белыми. Все ограничения выполнены: {completion}; закрашенные координаты с 0: {shaded}.",
+      "en": "Try leaving the remaining unknown cells white. All constraints satisfied: {completion}; shaded coordinates from 0: {shaded}."
+    },
+    "hitori_branch": {
+      "ru": "Глубина {depth}: пробуем клетку {cell} = {value} (0=белая, 1=закрашенная).",
+      "en": "Depth {depth}: try cell {cell} = {value} (0=white, 1=shaded)."
+    },
+    "hitori_backtrack": {
+      "ru": "Откат на глубину {depth}: клетка {cell} = {value} не дала решения.",
+      "en": "Backtrack to depth {depth}: cell {cell} = {value} has no completion."
+    },
+    "star_domain": {
+      "ru": "Строка {row} (с 0): проверки столбцов {checks}; допустимы {available}.",
+      "en": "Row {row} (from 0): column checks {checks}; available {available}."
+    },
+    "star_place": {
+      "ru": "Ставим звезду ({row},{col}), область {region}; координаты с 0.",
+      "en": "Place star ({row},{col}), region {region}; coordinates from 0."
+    },
+    "star_backtrack": {
+      "ru": "Убираем звезду ({row},{col}) (с 0): продолжение не найдено.",
+      "en": "Remove star ({row},{col}) (from 0): no completion found."
+    },
+    "star_solution": {
+      "ru": "По одной звезде в строке, столбце и области; касаний нет. Координаты с 0: {stars}.",
+      "en": "One star per row, column and region; no touching. Coordinates from 0: {stars}."
+    },
+    "sudoku_start": {
+      "ru": "Поиск судоку {size}×{size}, максимум решений {limit}, запрещённое значение {forbidden}; координаты с 0. В масках бит v−1 соответствует цифре v.",
+      "en": "Search Sudoku {size}×{size}, solution limit {limit}, forbidden value {forbidden}; coordinates from 0. In masks, bit v−1 corresponds to digit v."
+    },
+    "sudoku_scan": {
+      "ru": "Глубина {depth}: кандидаты по маскам строк, столбцов и блоков: {candidates}.",
+      "en": "Depth {depth}: candidates from row, column and block masks: {candidates}."
+    },
+    "sudoku_conflict": {
+      "ru": "Противоречие в ({row},{col}) (с 0): {reason}.",
+      "en": "Conflict at ({row},{col}) (from 0): {reason}."
+    },
+    "sudoku_place": {
+      "ru": "Глубина {depth}: выбираем клетку с минимальным числом кандидатов ({row},{col}) и ставим {value}; координаты с 0.",
+      "en": "Depth {depth}: choose an MRV cell ({row},{col}) and assign {value}; coordinates from 0."
+    },
+    "sudoku_backtrack": {
+      "ru": "Глубина {depth}: возвращаемся из ветви и снимаем {value} из ({row},{col}) (с 0).",
+      "en": "Depth {depth}: return from branch and remove {value} from ({row},{col}) (from 0)."
+    },
+    "sudoku_solution": {
+      "ru": "Найдена полная сетка {grid}; накоплено решений {count}.",
+      "en": "Found completed grid {grid}; accumulated solution count {count}."
+    },
+    "sudoku_done": {
+      "ru": "Поиск завершён: найдено {count} решений; лимит достигнут: {limit_reached}.",
+      "en": "Search finished: found {count} solutions; limit reached: {limit_reached}."
+    },
+    "sudoku_target_unique": {
+      "ru": "Запрет значения {value} в ({row},{col}) сделал задачу неразрешимой: значение выделенной клетки однозначно. Координаты с 0.",
+      "en": "Forbidding {value} at ({row},{col}) made the puzzle unsatisfiable: the highlighted value is unique. Coordinates from 0."
+    },
+    "hitori_walk_start": {
+      "ru": "Обход связности: глубина {depth}, полная сетка {final}, старт {start}, закрытые клетки {blocked}.",
+      "en": "Connectivity traversal: depth {depth}, complete board {final}, start {start}, blocked cells {blocked}."
+    },
+    "hitori_visit": {
+      "ru": "Обход, глубина {depth}, полная сетка {final}: извлекаем {cell}, открываем {discovered}, очередь {queue}.",
+      "en": "Traversal, depth {depth}, complete board {final}: pop {cell}, discover {discovered}, queue {queue}."
+    },
+    "nav_inversion": {
+      "ru": "Пара позиций {i}, {j}: {a} > {b} = {inverted}; число инверсий = {total}.",
+      "en": "Positions {i}, {j}: {a} > {b} = {inverted}; inversion count = {total}."
+    },
+    "nav_parity": {
+      "ru": "Поле {n}×{n}: инверсий {inversions}, строка пустой клетки снизу (от 1) {blank_row}. Для нечётной ширины нужно чётное число инверсий, для чётной — нечётная сумма инверсий и строки. Разрешимость: {solvable}.",
+      "en": "Board {n}×{n}: inversions {inversions}, blank row from bottom (1-based) {blank_row}. Odd width requires even inversions; even width requires an odd inversion-plus-row sum. Solvable: {solvable}."
+    },
+    "nav_astar_pop": {
+      "ru": "A*: извлечено {state}, g={g}, h={h}, f=g+h={f}; устарело={stale}, в очереди {frontier}.",
+      "en": "A*: pop {state}, g={g}, Manhattan h={h}, f=g+h={f}; stale={stale}, frontier size {frontier}."
+    },
+    "nav_astar_edge": {
+      "ru": "Перемещение пустой клетки: {state} → {neighbor}; g={g}, манхэттенское h={h}, f={f}, прежнее g={old}; обновить={accepted}.",
+      "en": "Blank move: {state} → {neighbor}; g={g}, Manhattan h={h}, f={f}, previous g={old}; relax={accepted}."
+    },
+    "nav_path": {
+      "ru": "Восстановленный кратчайший путь: {path}. Длина = {distance}.",
+      "en": "Reconstructed shortest path: {path}. Length = {distance}."
+    },
+    "nav_blocked": {
+      "ru": "Старт/цель заблокированы: {start}/{goal}; пути нет.",
+      "en": "Blocked start/goal: {start}/{goal}; no path."
+    },
+    "nav_bfs_pop": {
+      "ru": "BFS: извлечена клетка (x,y)={cell}, расстояние {distance}, осталось в очереди {frontier}.",
+      "en": "BFS: pop cell (x,y)={cell}, distance {distance}, frontier size {frontier}."
+    },
+    "nav_bfs_edge": {
+      "ru": "BFS: {cell} → {neighbor}; в поле={inside}, стена={wall}, посещена={visited}; добавить={accepted}, предлагаемое расстояние={distance}.",
+      "en": "BFS: {cell} → {neighbor}; in bounds={inside}, wall={wall}, visited={visited}; enqueue={accepted}, proposed distance={distance}."
+    },
+    "nav_exhausted": {
+      "ru": "Очередь исчерпана; посещено {visited} клеток, цель недостижима, ответ {distance}.",
+      "en": "Queue exhausted; {visited} cells visited, goal unreachable, answer {distance}."
+    },
+    "nav_command": {
+      "ru": "Команда {index} (от 0): {kind}, величина {amount}; (x,y,d) {before} → {after}, направления d=0,1,2,3 соответствуют N,E,S,W.",
+      "en": "Command {index} (0-based): {kind}, amount {amount}; (x,y,d) {before} → {after}, directions d=0,1,2,3 mean N,E,S,W."
+    },
+    "nav_position": {
+      "ru": "Итоговые координаты и направление (x,y,d)={position}.",
+      "en": "Final coordinates and heading (x,y,d)={position}."
+    },
+    "river_pop": {
+      "ru": "BFS переправы: извлечено состояние {state}, осталось в очереди {frontier}.",
+      "en": "Crossing BFS: pop state {state}, frontier size {frontier}."
+    },
+    "river_edge": {
+      "ru": "Переправа: {state} → {neighbor}, пассажиры {passengers}; безопасна лодка={boat_safe}, левый берег={left_safe}, правый={right_safe}, посещено={visited}; добавить={accepted}.",
+      "en": "Crossing: {state} → {neighbor}, passengers {passengers}; safe boat={boat_safe}, left bank={left_safe}, right bank={right_safe}, visited={visited}; enqueue={accepted}."
+    },
+    "river_path": {
+      "ru": "Восстановленный путь (состояние, пассажиры): {path}; число переправ {crossings} (-1 — пути нет).",
+      "en": "Reconstructed path (state, passengers): {path}; crossings {crossings} (-1 means no path)."
+    },
+    "infer_rule": {
+      "ru": "Объект {obj}, проход {iteration}, правило {rule}: {body} → {head}. Недостающие факты: {missing}; добавить={added}; теперь известно {known}.",
+      "en": "Object {obj}, pass {iteration}, rule {rule}: {body} → {head}. Missing facts: {missing}; add={added}; now known {known}."
+    },
+    "infer_fixed": {
+      "ru": "Неподвижная точка для {obj}: {known}; целевое свойство {target} присутствует={present}.",
+      "en": "Fixed point for {obj}: {known}; target property {target} present={present}."
+    },
+    "infer_empty": {
+      "ru": "Получена пустая клауза {clause}: множество невыполнимо.",
+      "en": "Empty clause {clause}: the clause set is unsatisfiable."
+    },
+    "infer_no_pivot": {
+      "ru": "Клаузы {left} и {right}: комплементарных литералов нет.",
+      "en": "Clauses {left} and {right}: no complementary literals."
+    },
+    "infer_resolve": {
+      "ru": "Резолюция {left} и {right} по {pivot}: {result}; тавтология={tautology}; новая нетавтологичная резольвента={new}. Литерал [имя, true/false] означает положительный/отрицательный.",
+      "en": "Resolve {left} and {right} on {pivot}: {result}; tautology={tautology}; new non-tautological resolvent={new}. Literal [name, true/false] means positive/negative."
+    },
+    "infer_subsumed": {
+      "ru": "Резольвента {clause}: поглощена более сильной известной клаузой={subsumed}; иначе добавляем в очередь обработки.",
+      "en": "Resolvent {clause}: subsumed by a stronger known clause={subsumed}; otherwise append for processing."
+    },
+    "infer_saturated": {
+      "ru": "Резолюция завершена: один шаг={one_step}, результат={result}, клауз в замыкании={clauses}.",
+      "en": "Resolution complete: one step={one_step}, result={result}, clauses in closure={clauses}."
+    },
+    "plan_pop": {
+      "ru": "BFS: извлечено состояние {state}, расстояние {distance}, очередь {frontier}.",
+      "en": "BFS: pop state {state}, distance {distance}, frontier size {frontier}."
+    },
+    "plan_edge": {
+      "ru": "Переход {state} → {neighbor}, действие {action}, расстояние {distance}, уже посещено={visited}; новое состояние добавляется только при visited=False.",
+      "en": "Transition {state} → {neighbor}, action {action}, distance {distance}, already visited={visited}; enqueue only when visited=False."
+    },
+    "plan_path": {
+      "ru": "Восстановленный кратчайший план (состояние, действие): {path}; длина {distance}.",
+      "en": "Reconstructed shortest plan (state, action): {path}; length {distance}."
+    },
+    "plan_exhausted": {
+      "ru": "Поиск исчерпан: просмотрено {visited} состояний, решения нет.",
+      "en": "Search exhausted: {visited} states visited, no solution."
+    },
+    "plan_jug_gcd": {
+      "ru": "Объёмы {capacities}, цель {target}, НОД={gcd}; цель не превосходит максимального объёма и делится на НОД: {possible}.",
+      "en": "Capacities {capacities}, target {target}, GCD={gcd}; target is at most the maximum capacity and divisible by the GCD: {possible}."
+    },
+    "plan_clear": {
+      "ru": "Опоры блоков {state} (-1 — стол); свободные блоки с индексами от 0: {clear}.",
+      "en": "Block supports {state} (-1 means table); clear block indices (0-based): {clear}."
+    },
+    "plan_hanoi_call": {
+      "ru": "Вызов Ханоя на глубине {depth}: {n} дисков, {source} → {target}, вспомогательный {auxiliary}.",
+      "en": "Hanoi call at depth {depth}: {n} disks, {source} → {target}, auxiliary {auxiliary}."
+    },
+    "plan_hanoi_move": {
+      "ru": "Переместить диск {disk}: {source} → {target}. Стержни снизу вверх: {before} → {after}.",
+      "en": "Move disk {disk}: {source} → {target}. Pegs from bottom to top: {before} → {after}."
+    },
+    "plan_hanoi_return": {
+      "ru": "Возврат из вызова для {n} дисков на глубине {depth}.",
+      "en": "Return from call for {n} disks at depth {depth}."
+    },
+    "puzzle_conflict": {
+      "ru": "Противоречие: {reason}.",
+      "en": "Conflict: {reason}."
+    },
+    "puzzle_digit_domain": {
+      "ru": "Буква {letter}: заняты цифры {used}, ведущая={leading}; допустимые цифры {candidates}.",
+      "en": "Letter {letter}: used digits {used}, leading={leading}; allowed digits {candidates}."
+    },
+    "puzzle_digit_place": {
+      "ru": "Назначаем {letter}={value}.",
+      "en": "Assign {letter}={value}."
+    },
+    "puzzle_digit_remove": {
+      "ru": "Откат назначения {letter}={value}.",
+      "en": "Backtrack assignment {letter}={value}."
+    },
+    "puzzle_mapping": {
+      "ru": "Найдено согласованное назначение: {mapping}.",
+      "en": "Consistent assignment found: {mapping}."
+    },
+    "puzzle_column": {
+      "ru": "Разряд {index} справа (от 0), буквы {letters}: {x}+{y}+{carry}={total}; цифра {digit}, перенос {next_carry}, совместимо={valid}.",
+      "en": "Column {index} from the right (0-based), letters {letters}: {x}+{y}+{carry}={total}; digit {digit}, outgoing carry {next_carry}, consistent={valid}."
+    },
+    "puzzle_statement": {
+      "ru": "Роли {roles} (true — рыцарь): высказывание {index}, говорящий {speaker}; истинность {truth}, соответствует роли={consistent}.",
+      "en": "Roles {roles} (true means knight): statement {index}, speaker {speaker}; truth {truth}, consistent with speaker={consistent}."
+    },
+    "puzzle_model": {
+      "ru": "Назначение ролей {roles}: все высказывания согласованы={valid}.",
+      "en": "Role assignment {roles}: all statements consistent={valid}."
+    },
+    "deduce_mine_assume": {
+      "ru": "Предполагаем, что целевая клетка {target} имеет статус {value} (0 — безопасна, 1 — мина).",
+      "en": "Assume target cell {target} has status {value} (0 means safe, 1 means mine)."
+    },
+    "deduce_mine_witness": {
+      "ru": "Гипотеза {value}: совместимая расстановка существует={exists}, пример мин {mines}.",
+      "en": "Hypothesis {value}: a consistent placement exists={exists}, witness mines {mines}."
+    },
+    "deduce_mine_status": {
+      "ru": "Возможные статусы клетки {target} по открытым числам: {possible}.",
+      "en": "Possible statuses of cell {target} under revealed clues: {possible}."
+    },
+    "deduce_zebra_candidate": {
+      "ru": "Запрос {query}: найден кандидат ответа {answer}. Проверим, возможен ли другой ответ.",
+      "en": "Query {query}: candidate answer {answer}. Check whether a different answer is possible."
+    },
+    "deduce_zebra_unique": {
+      "ru": "Ответ {answer}: поиск с запретом этого ответа доказывает однозначность={unique}.",
+      "en": "Answer {answer}: search forbidding this answer proves uniqueness={unique}."
+    },
+    "deduce_mine_variables": {
+      "ru": "Скрытые клетки в порядке индексов переменных от 0: {cells}. Значение переменной 0/1 означает безопасную клетку/мину.",
+      "en": "Hidden cells in variable-index order, starting at 0: {cells}. Variable value 0/1 means safe/mine."
+    },
+    "deduce_zebra_variables": {
+      "ru": "Переменные позиций в порядке индексов от 0: {keys}. Значение каждой переменной — индекс дома от 0 слева направо.",
+      "en": "Position variables in index order, starting at 0: {keys}. Each variable value is a zero-based house index from left to right."
+    },
+    "claim_define": {
+      "ru": "Определение {name}: операция {op}, операнды {operands}, результат {result}.",
+      "en": "Definition {name}: operation {op}, operands {operands}, result {result}."
+    },
+    "claim_check": {
+      "ru": "Утверждение с индексом {index} (от 0): проверяем {left} {relation} {right}; истинно={truth}.",
+      "en": "Statement index {index} (0-based): check {left} {relation} {right}; true={truth}."
+    },
+    "claim_result": {
+      "ru": "Проверены все утверждения; индексы ложных (от 0): {false_indices}.",
+      "en": "All assertions checked; false statement indices (0-based): {false_indices}."
+    },
+    "kin_parent": {
+      "ru": "Факт: {parent} — родитель {child}.",
+      "en": "Fact: {parent} is a parent of {child}."
+    },
+    "kin_spouse": {
+      "ru": "Факт брака: {a}, {b}.",
+      "en": "Spouse fact: {a}, {b}."
+    },
+    "kin_witness": {
+      "ru": "Свидетельство отношения {role}: путь {path}, типы рёбер {kinds}. parent — к ребёнку, child — к родителю, spouse — к супругу. Имена и пол даны во входных данных.",
+      "en": "Witness for relation {role}: path {path}, edge types {kinds}. parent goes to a child, child to a parent, spouse to a spouse. Names and genders are listed in the inputs."
+    },
+    "logic_proof_line": {
+      "ru": "Строка {index} (от 0), правило {rule}, ссылки {refs}, формулы источников {forms}, заключение {conclusion}; корректно={valid}.",
+      "en": "Line {index} (0-based), rule {rule}, references {refs}, source formulas {forms}, conclusion {conclusion}; valid={valid}."
+    },
+    "logic_proof_complete": {
+      "ru": "Проверены все {lines} строк; корректность {valid}.",
+      "en": "All {lines} lines checked; valid={valid}."
+    },
+    "logic_assignment": {
+      "ru": "Означивание переменных: {assignment}.",
+      "en": "Variable assignment: {assignment}."
+    },
+    "logic_eval": {
+      "ru": "Подформула по пути {path}: операция {operator}, операнды {operands}, результат {value}. Первый индекс — номер формулы, остальные — индексы дочерних узлов от 0.",
+      "en": "Subformula at path {path}: operation {operator}, operands {operands}, result {value}. The first index identifies the formula; remaining indices are zero-based child indices."
+    },
+    "logic_truth_row": {
+      "ru": "Означивание {assignment}: посылки {premises}, заключение {conclusion}, контрпример={counterexample}.",
+      "en": "Assignment {assignment}: premises {premises}, conclusion {conclusion}, counterexample={counterexample}."
+    },
+    "logic_no_counterexample": {
+      "ru": "Проверены все {worlds} моделей: контрпримеров нет.",
+      "en": "All {worlds} models checked: no counterexamples."
+    },
+    "logic_regions": {
+      "ru": "Регионы диаграммы в порядке битов маски: {regions}. Координаты — принадлежность S,M,P.",
+      "en": "Venn regions in mask-bit order: {regions}. Coordinates indicate membership in S,M,P."
+    },
+    "logic_category_check": {
+      "ru": "Маска модели {mask}, утверждение {statement}: значимые занятые регионы {relevant}, истинно={holds}.",
+      "en": "Model mask {mask}, statement {statement}: relevant occupied regions {relevant}, true={holds}."
+    },
+    "logic_category_world": {
+      "ru": "Модель {mask}: заняты регионы {occupied}; значения посылок и заключения {values}; контрпример={counterexample}.",
+      "en": "Model {mask}: occupied regions {occupied}; premise and conclusion values {values}; counterexample={counterexample}."
+    },
+    "analogy_candidate": {
+      "ru": "Правило a={a}, b={b}, k={power}: вычисленные значения {calculated}, заданные {expected}, совпадают={consistent}; предсказание для вопроса {prediction}.",
+      "en": "Rule a={a}, b={b}, k={power}: calculated values {calculated}, given values {expected}, consistent={consistent}; query prediction {prediction}."
+    },
+    "analogy_predictions": {
+      "ru": "Совместимые правила (a,b,k): {fits}; множество предсказаний {predictions}.",
+      "en": "Consistent rules (a,b,k): {fits}; prediction set {predictions}."
+    },
+    "schedule_order": {
+      "ru": "Планирование {kind}: ключи (номер заявки, длительность/приход) {keys}; сортируем по ключу, затем номеру → {order}.",
+      "en": "Scheduling {kind}: keys (job id, burst/arrival) {keys}; sort by key then id → {order}."
+    },
+    "schedule_job": {
+      "ru": "Заявка {job}: приход {arrival}, длительность {burst}; часы {clock}, простой {idle}, начало {start}, конец {finish}; ожидание {wait}, сумма {total}.",
+      "en": "Job {job}: arrival {arrival}, burst {burst}; clock {clock}, idle {idle}, start {start}, finish {finish}; wait {wait}, running total {total}."
+    },
+    "schedule_seek": {
+      "ru": "Головка {position}; кандидаты (номер запроса, цилиндр, расстояние) {candidates}. Выбираем запрос {request}, цилиндр {target}; перемещение {distance}, сумма {total}.",
+      "en": "Head {position}; candidates (request id, cylinder, distance) {candidates}. Choose request {request}, cylinder {target}; distance {distance}, running total {total}."
+    },
+    "schedule_result": {
+      "ru": "Обслужены все заявки в порядке {order}; итоговая сумма {total}.",
+      "en": "All requests served in order {order}; final total {total}."
+    },
+    "sat_clause": {
+      "ru": "Глубина {depth}, дизъюнкт {clause}: присваивание {assignment}; литералы (переменная, знак, значение) {literals}; удовлетворён: {satisfied}.",
+      "en": "Depth {depth}, clause {clause}: assignment {assignment}; literals (variable, polarity, value) {literals}; satisfied: {satisfied}."
+    },
+    "sat_conflict": {
+      "ru": "Конфликт на глубине {depth}: все литералы дизъюнкта {clause} ложны.",
+      "en": "Conflict at depth {depth}: every literal in clause {clause} is false."
+    },
+    "sat_unit": {
+      "ru": "Дизъюнкт {clause} на глубине {depth} имеет единственный неоценённый литерал: вынужденно x{variable}={value}.",
+      "en": "Clause {clause} at depth {depth} has one unassigned literal: force x{variable}={value}."
+    },
+    "sat_branch": {
+      "ru": "Ветвление на глубине {depth}: пробуем x{variable}={value}.",
+      "en": "Branch at depth {depth}: try x{variable}={value}."
+    },
+    "sat_backtrack": {
+      "ru": "Ветвь x{variable}={value} на глубине {depth} противоречива; возвращаемся.",
+      "en": "Branch x{variable}={value} at depth {depth} is contradictory; backtrack."
+    },
+    "sat_model": {
+      "ru": "Все дизъюнкты удовлетворены на глубине {depth}. Модель x1,x2,...: {model}; свободные переменные дополнены False.",
+      "en": "All clauses are satisfied at depth {depth}. Model x1,x2,...: {model}; free variables are completed with False."
+    },
+    "sat_result": {
+      "ru": "DPLL завершён; выполнимость: {satisfiable}.",
+      "en": "DPLL completed; satisfiable: {satisfiable}."
+    },
+    "proof_horner": {
+      "ru": "n={n}, схема Горнера, степень {power}: ({previous})*n + ({coefficient}) = {result}.",
+      "en": "n={n}, Horner step at power {power}: ({previous})*n + ({coefficient}) = {result}."
+    },
+    "proof_product": {
+      "ru": "Раскрываем произведение: ({left})*n^{left_power} × ({right})*n^{right_power}; коэффициент степени {power} теперь {coefficient}.",
+      "en": "Expand product: ({left})*n^{left_power} × ({right})*n^{right_power}; coefficient of power {power} is now {coefficient}."
+    },
+    "proof_identity": {
+      "ru": "После вычитания n² коэффициенты левой части: {left}, правой: {right}; разность: {difference} (от свободного члена вверх).",
+      "en": "After subtracting n², left coefficients: {left}, right: {right}; difference: {difference} (constant term first)."
+    },
+    "proof_identical": {
+      "ru": "Все коэффициенты разности равны нулю: {coefficients}. Тождество верно для всех целых n.",
+      "en": "Every difference coefficient is zero: {coefficients}. The identity holds for every integer n."
+    },
+    "proof_witness": {
+      "ru": "Проверяем n={n}: левая часть минус правая равна {difference}; ненулевое значение опровергает тождество.",
+      "en": "Check n={n}: left minus right is {difference}; a nonzero value refutes the identity."
+    },
+    "proof_period": {
+      "ru": "Период L=НОК({modulus}, {premise_modulus})={period}. Для целочисленного многочлена n≡r (mod L) сохраняет остаток выражения и истинность посылки; достаточно всех классов 0..L−1.",
+      "en": "Period L=lcm({modulus}, {premise_modulus})={period}. For an integer polynomial, n≡r (mod L) preserves the expression remainder and premise truth; all classes 0..L−1 suffice."
+    },
+    "proof_case": {
+      "ru": "Класс n≡{residue}: посылка выполнена — {applicable}.",
+      "en": "Class n≡{residue}: premise applies — {applicable}."
+    },
+    "proof_remainder": {
+      "ru": "n={n}: значение {value}, остаток по модулю {modulus} равен {remainder}.",
+      "en": "n={n}: value {value}, remainder modulo {modulus} is {remainder}."
+    },
+    "proof_counterexample": {
+      "ru": "Ненулевой остаток при выполненной посылке: контрпример n={n}.",
+      "en": "Nonzero remainder with a true premise: counterexample n={n}."
+    },
+    "proof_exhausted": {
+      "ru": "Проверены все {period} классов; во всех классах с истинной посылкой остаток нулевой. Утверждение доказано для всех целых n.",
+      "en": "All {period} classes checked; every class satisfying the premise has zero remainder. The claim is proved for every integer n."
+    },
+    "opt_density": {
+      "ru": "Отношения ценность/вес по индексам: {ratios}; порядок {order}.",
+      "en": "Value/weight ratios by index: {ratios}; order {order}."
+    },
+    "opt_pack": {
+      "ru": "Предмет {item}: вес {weight}, ценность {value}, вес до выбора {before}, вместимость {capacity}; берём: {accepted}. Суммарный вес {total_weight}, ценность {total_value}.",
+      "en": "Item {item}: weight {weight}, value {value}, weight before {before}, capacity {capacity}; take: {accepted}. Total weight {total_weight}, value {total_value}."
+    },
+    "opt_knapsack_cell": {
+      "ru": "Рюкзак: предмет {item}, вместимость {capacity}; не брать → {skip}, взять → {take} (None — не помещается); максимум {best}.",
+      "en": "Knapsack: item {item}, capacity {capacity}; skip → {skip}, take → {take} (None means it does not fit); maximum {best}."
+    },
+    "opt_knapsack_backtrack": {
+      "ru": "Восстановление рюкзака: предмет {item}, вместимость {before}; выбран: {chosen}, остаток {remaining}.",
+      "en": "Knapsack backtrack: item {item}, capacity {before}; chosen: {chosen}, remaining {remaining}."
+    },
+    "opt_cover_greedy": {
+      "ru": "Не покрыты {before}; новые элементы каждого множества {gains}. Выбираем {chosen}; остаются {remaining}.",
+      "en": "Uncovered {before}; newly covered elements for each set {gains}. Choose {chosen}; remaining {remaining}."
+    },
+    "opt_cover_masks": {
+      "ru": "Элементы по позициям битов {universe}; маски множеств {masks}; цель {goal}. BFS ищет минимальное число добавлений множеств.",
+      "en": "Elements by bit position {universe}; set masks {masks}; goal {goal}. BFS finds the minimum number of set additions."
+    },
+    "opt_cover_pop": {
+      "ru": "BFS: извлекаем покрытие-маску {state}, использовано {distance} множеств.",
+      "en": "BFS: pop coverage mask {state}, using {distance} sets."
+    },
+    "opt_cover_edge": {
+      "ru": "Маска {state} OR множество {index} ({mask}) → {target}; кандидат {candidate}, прежнее расстояние {previous}; обновление: {updated}.",
+      "en": "Mask {state} OR set {index} ({mask}) → {target}; candidate {candidate}, previous distance {previous}; updated: {updated}."
+    },
+    "opt_cover_backtrack": {
+      "ru": "Восстановление покрытия: {state} получено из {previous} добавлением множества {index}.",
+      "en": "Cover backtrack: {state} came from {previous} by adding set {index}."
+    },
+    "opt_tsp_nearest": {
+      "ru": "Из вершины {current}: кандидаты (вершина, расстояние) {candidates}; выбираем {chosen}.",
+      "en": "From vertex {current}: candidates (vertex, distance) {candidates}; choose {chosen}."
+    },
+    "opt_tsp_swap": {
+      "ru": "2-opt, позиции {i}..{j}, концы рёбер {edges}: удаляем стоимость {removed}, добавляем {added}, изменение {delta}. Принято: {accepted}; маршрут {route}.",
+      "en": "2-opt, positions {i}..{j}, edge endpoints {edges}: remove cost {removed}, add {added}, delta {delta}. Accepted: {accepted}; route {route}."
+    },
+    "opt_tsp_base": {
+      "ru": "Held–Karp: маска {mask}, конец {end}; путь из 0 имеет стоимость {cost}.",
+      "en": "Held–Karp: mask {mask}, end {end}; path from 0 costs {cost}."
+    },
+    "opt_tsp_cell": {
+      "ru": "Held–Karp: маска {mask}, конец {end}, предыдущая маска {previous}. Кандидаты (предшественник, стоимость пути, ребро, сумма) {candidates}; выбираем {chosen}, стоимость {cost}.",
+      "en": "Held–Karp: mask {mask}, end {end}, previous mask {previous}. Candidates (predecessor, path cost, edge, sum) {candidates}; choose {chosen}, cost {cost}."
+    },
+    "opt_tsp_close": {
+      "ru": "Замыкаем цикл: кандидаты (конец, стоимость пути, ребро в 0, сумма) {candidates}; конец {end}, стоимость {cost}.",
+      "en": "Close the tour: candidates (end, path cost, edge to 0, total) {candidates}; end {end}, cost {cost}."
+    },
+    "opt_tsp_backtrack": {
+      "ru": "Восстановление Held–Karp: маска {mask}, конец {end}, предшественник {previous}.",
+      "en": "Held–Karp backtrack: mask {mask}, end {end}, predecessor {previous}."
+    },
+    "opt_result": {
+      "ru": "Итоговая целевая величина {value}; выбранные индексы/маршрут {chosen}.",
+      "en": "Final objective {value}; chosen indices/tour {chosen}."
+    },
+    "code_branch": {
+      "ru": "Префикс {prefix}: пробуем следующим значением {digit}.",
+      "en": "Prefix {prefix}: try next value {digit}."
+    },
+    "code_bound": {
+      "ru": "Префикс {prefix}, подсказка {clue}: точные совпадения в диапазоне [{exact_min}, {exact_max}], требуется {wanted_exact}; общее число совпадений с учётом повторов в диапазоне [{common_min}, {common_max}], требуется {wanted_common}. Границы совместимы: {valid}.",
+      "en": "Prefix {prefix}, clue {clue}: exact matches range [{exact_min}, {exact_max}], need {wanted_exact}; total multiset matches range [{common_min}, {common_max}], need {wanted_common}. Bounds compatible: {valid}."
+    },
+    "code_prune": {
+      "ru": "Отсекаем весь префикс {prefix}: границы противоречат подсказке {clue}; ни одно его продолжение не подходит.",
+      "en": "Prune the entire prefix {prefix}: bounds contradict clue {clue}; no completion can fit."
+    },
+    "code_solution": {
+      "ru": "Полный код {code} удовлетворяет всем подсказкам; найдено решений {count}.",
+      "en": "Complete code {code} satisfies every clue; solutions found {count}."
+    },
+    "code_exhausted": {
+      "ru": "Все продолжения префикса {prefix} проверены.",
+      "en": "All completions of prefix {prefix} have been explored."
+    },
+    "code_result": {
+      "ru": "Найдено совместимых кодов {count}; поиск полный: {complete}; коды {solutions}. Два найденных кода уже доказывают неоднозначность.",
+      "en": "Compatible codes found {count}; search complete: {complete}; codes {solutions}. Two codes already prove ambiguity."
+    },
+    "error_check": {
+      "ru": "Шаг {index}: заново считаем {left} {operator} {right} = {actual}; указано {claimed}, разница {delta}; равенство верно: {equal}.",
+      "en": "Step {index}: recompute {left} {operator} {right} = {actual}; claimed {claimed}, difference {delta}; equality valid: {equal}."
+    },
+    "error_result": {
+      "ru": "Проверены все равенства; номера неверных шагов: {errors}. В корректной задаче такой шаг ровно один.",
+      "en": "All equalities checked; incorrect step indices: {errors}. A valid instance has exactly one such step."
+    },
+    "quad_input": {
+      "ru": "Исследуем f(x)=({a})x²+({b})x+({c}) для всех действительных x.",
+      "en": "Analyze f(x)=({a})x²+({b})x+({c}) for every real x."
+    },
+    "quad_minimum": {
+      "ru": "a>0: b²={b_squared}, 4ac={four_ac}, D={discriminant}. Минимум в x={x}, значение −D/(4a)={minimum}; сравниваем его с нулём.",
+      "en": "a>0: b²={b_squared}, 4ac={four_ac}, D={discriminant}. Minimum at x={x}, value −D/(4a)={minimum}; compare it with zero."
+    },
+    "quad_constant": {
+      "ru": "a=b=0: функция постоянна и равна {value}; сравниваем с нулём.",
+      "en": "a=b=0: the function is constant with value {value}; compare it with zero."
+    },
+    "quad_linear": {
+      "ru": "a=0, b={b}≠0: выбираем x=−(|c|+1)/b={x}, чтобы bx+c=c−|c|−1<0 (c={c}).",
+      "en": "a=0, b={b}≠0: choose x=−(|c|+1)/b={x}, so bx+c=c−|c|−1<0 (c={c})."
+    },
+    "quad_downward": {
+      "ru": "a={a}<0: берём |x|=|c|+1 и знак, при котором bx≤0: b={b}, c={c}, x={x}. Тогда ax²+c<0.",
+      "en": "a={a}<0: take |x|=|c|+1 and a sign making bx≤0: b={b}, c={c}, x={x}. Then ax²+c<0."
+    },
+    "quad_counterexample": {
+      "ru": "Контрпример x={x}: ax²={square}, bx={linear}, c={constant}; f(x)={value}<0.",
+      "en": "Counterexample x={x}: ax²={square}, bx={linear}, c={constant}; f(x)={value}<0."
+    },
+    "quad_result": {
+      "ru": "Неотрицательность для всех действительных x: {valid}.",
+      "en": "Nonnegative for every real x: {valid}."
+    },
+    "phys_input": {
+      "ru": "Исходная величина {label}={value} [{unit}], размерность (M,L,T,Θ,I)={dimension}.",
+      "en": "Input {label}={value} [{unit}], dimensions (M,L,T,Θ,I)={dimension}."
+    },
+    "phys_calc": {
+      "ru": "{label}: ({left}) {operator} ({right}) = {value}; размерности {left_dim} {operator} {right_dim} → {dimension}. Для +/− размерности должны совпадать.",
+      "en": "{label}: ({left}) {operator} ({right}) = {value}; dimensions {left_dim} {operator} {right_dim} → {dimension}. Addition/subtraction require equal dimensions."
+    },
+    "phys_balance": {
+      "ru": "Проверка баланса {label}: {left} = {right}, остаток {residual}, размерность {dimension}.",
+      "en": "Balance check {label}: {left} = {right}, residual {residual}, dimensions {dimension}."
+    },
+    "phys_output": {
+      "ru": "Результат {label}={value} [{unit}]; вычисленная размерность {dimension} совпадает с единицами ответа.",
+      "en": "Output {label}={value} [{unit}]; computed dimensions {dimension} match the answer unit."
+    },
+    "spec_input": {
+      "ru": "Исходная величина {label}={value} [{unit}], размерность (M,L,T,Θ,I)={dimension}.",
+      "en": "Input {label}={value} [{unit}], dimensions (M,L,T,Θ,I)={dimension}."
+    },
+    "spec_constant": {
+      "ru": "Математическая безразмерная константа {label}={value}.",
+      "en": "Mathematical dimensionless constant {label}={value}."
+    },
+    "spec_calc": {
+      "ru": "{label}: операция {operator}, операнды {operands}; результат {value}. Размерности {operand_dimensions} → {dimension}.",
+      "en": "{label}: operation {operator}, operands {operands}; result {value}. Dimensions {operand_dimensions} → {dimension}."
+    },
+    "spec_identity": {
+      "ru": "Проверка {label}: {left} = {right}, точный остаток {residual}; размерность {dimension}.",
+      "en": "Check {label}: {left} = {right}, exact residual {residual}; dimensions {dimension}."
+    },
+    "spec_output": {
+      "ru": "Результат {label}={value} [{unit}]; численное значение с 40 значащими цифрами {decimal}; размерность {dimension}.",
+      "en": "Output {label}={value} [{unit}]; numerical value at 40 significant digits {decimal}; dimensions {dimension}."
+    },
+    "spec_current_peak": {
+      "ru": "При постоянной амплитуде напряжения и постоянном R>0: |I|/|V|=1/√(R²+X²)≤1/R. Здесь вычислено X=XL−XC={reactance}, X²={square}, размерность X={dimension}; достигается верхняя граница тока, значит частота резонансная.",
+      "en": "For constant voltage amplitude and constant R>0: |I|/|V|=1/√(R²+X²)≤1/R. Computed X=XL−XC={reactance}, X²={square}, dimensions of X={dimension}; the current upper bound is attained, so the frequency is resonant."
+    },
+    "traj_turn": {
+      "ru": "Кандидат времени остановки/разворота: {candidate} с (None означает a=0). Строго внутри (0,{duration}): {inside}. Границы участков {nodes} с.",
+      "en": "Candidate stopping/reversal time: {candidate} s (None means a=0). Strictly inside (0,{duration}): {inside}. Segment boundaries {nodes} s."
+    },
+    "traj_height_states": {
+      "ru": "Достижимая высота: vx={vx} м/с; вертикальные компоненты на ветвях {vy_up} и {vy_down} м/с. Времена {t_up} и {t_down} с; различных моментов {distinct_times}. Модуль скорости общий.",
+      "en": "Reachable height: vx={vx} m/s; vertical components {vy_up} and {vy_down} m/s on the two branches. Times {t_up} and {t_down} s; distinct instants {distinct_times}. Speed magnitude is shared."
+    }
+  }
+}

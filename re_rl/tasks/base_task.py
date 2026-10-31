@@ -230,6 +230,11 @@ class BaseTask(DifficultyMixin, metaclass=TaskMeta):
             "final_answer": self.final_answer,
         }
 
+        if hasattr(self, 'algorithm_trace'):
+            result['algorithm_trace'] = self.algorithm_trace
+        if hasattr(self, 'computation_inputs'):
+            result['computation_inputs'] = self.computation_inputs
+
         if self.explanation_steps:
             result["explanations"] = self.explanation_steps
         if self.validation_steps:

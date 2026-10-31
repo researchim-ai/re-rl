@@ -1,50 +1,14 @@
 {
   "text": {
-    "s0": {
-      "ru": "ru",
-      "en": "en"
-    },
-    "s1": {
-      "ru": "ru",
-      "en": "en"
-    },
-    "s2": {
-      "ru": "ru",
-      "en": "en"
-    },
-    "s3": {
-      "ru": "ru",
-      "en": "en"
+    "problem": {
+      "ru": "Числовая аналогия. Все пары получены одним правилом y = a·x^k + b, где a — ненулевое целое от −{a} до {a}, b — целое от −{b} до {b}, k — целое от 1 до {p}. Рассматривайте только этот класс правил.\nПримеры: {examples}.\nКакое число соответствует x={query}? Если подходят разные правила, их предсказания для этого x должны совпасть. Ответьте одним целым числом.",
+      "en": "Numeric analogy. Every pair follows one rule y = a·x^k + b, with nonzero integer a from −{a} to {a}, integer b from −{b} to {b}, and integer k from 1 to {p}. Consider only this rule family.\nExamples: {examples}.\nWhat number corresponds to x={query}? If several rules fit, their predictions for this x must agree. Answer with one integer."
     }
   },
   "prompt": {
-    "instructions": {
-      "ru": "type: structured_text_with_tags\nОписание: Задача на аналогию. \nПример:\n<reasoning>\n  (Сравнение исходного примера и новой ситуации)\n</reasoning>\n<answer>\n  (Итоговое решение)\n</answer>",
-      "en": "type: structured_text_with_tags\nDescription: An analogy-based puzzle.\nExample:\n<reasoning>\n  (Map the analogy to the new problem)\n</reasoning>\n<answer>\n  (Conclusions)\n</answer>"
-    },
     "problem": {
-      "ru": "Используя аналогию, решите задачу:\n{description}",
-      "en": "Using analogy, solve the following problem:\n{description}"
-    },
-    "step1": {
-      "ru": "Шаг 1: Определите соответствия...",
-      "en": "Step 1: Identify analogous elements..."
-    },
-    "step2": {
-      "ru": "Шаг 2: Проанализируйте ключевые аспекты...",
-      "en": "Step 2: Analyze the key aspects..."
-    },
-    "step3": {
-      "ru": "Шаг 3: Примените аналогию...",
-      "en": "Step 3: Apply analogy..."
-    },
-    "step4": {
-      "ru": "Шаг 4: Проверьте решение...",
-      "en": "Step 4: Test and refine..."
-    },
-    "final_answer": {
-      "ru": "Решение с использованием аналогии...",
-      "en": "An analogical solution has been generated..."
+      "ru": "Числовая аналогия. Все пары получены одним правилом y = a·x^k + b, где a — ненулевое целое от −{a} до {a}, b — целое от −{b} до {b}, k — целое от 1 до {p}. Рассматривайте только этот класс правил.\nПримеры: {examples}.\nКакое число соответствует x={query}? Если подходят разные правила, их предсказания для этого x должны совпасть. Ответьте одним целым числом.",
+      "en": "Numeric analogy. Every pair follows one rule y = a·x^k + b, with nonzero integer a from −{a} to {a}, integer b from −{b} to {b}, and integer k from 1 to {p}. Consider only this rule family.\nExamples: {examples}.\nWhat number corresponds to x={query}? If several rules fit, their predictions for this x must agree. Answer with one integer."
     }
   }
 }

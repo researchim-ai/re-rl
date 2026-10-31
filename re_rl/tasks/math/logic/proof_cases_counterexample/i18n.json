@@ -1,40 +1,16 @@
 {
   "text": {
-    "s1": {
-      "ru": "(n+1)^2 - n^2 equals 2n for every integer n",
-      "en": "(n+1)^2 - n^2 equals 2n for every integer n"
+    "problem": {
+      "ru": "Докажите утверждение для всех целых n или приведите контрпример: {claim} Ответьте TRUE или FALSE;n=<целое число>.",
+      "en": "Prove the claim for every integer n or give a counterexample: {claim} Answer TRUE or FALSE;n=<integer>."
     },
-    "s2": {
-      "ru": "proof_cases_counterexample",
-      "en": "proof_cases_counterexample"
+    "identity": {
+      "ru": "(n+{shift})² − n² = {linear}*n + ({constant}).",
+      "en": "(n+{shift})² − n² = {linear}*n + ({constant})."
     },
-    "s3": {
-      "ru": "n^2 + n + 1 is even for every integer n",
-      "en": "n^2 + n + 1 is even for every integer n"
-    },
-    "s4": {
-      "ru": "4 divides n^2 + n for every integer n",
-      "en": "4 divides n^2 + n for every integer n"
-    },
-    "s5": {
-      "ru": "If n is odd then n^2 is divisible by 8",
-      "en": "If n is odd then n^2 is divisible by 8"
-    },
-    "s6": {
-      "ru": "(n+1)^2 - n^2 equals 2n+1 for every integer n",
-      "en": "(n+1)^2 - n^2 equals 2n+1 for every integer n"
-    },
-    "s7": {
-      "ru": "n^2 + n is even for every integer n",
-      "en": "n^2 + n is even for every integer n"
-    },
-    "s8": {
-      "ru": "3 divides n^3 - n for every integer n",
-      "en": "3 divides n^3 - n for every integer n"
-    },
-    "s9": {
-      "ru": "If n is odd then n^2 is odd",
-      "en": "If n is odd then n^2 is odd"
+    "divisible": {
+      "ru": "Если n mod {premise_modulus} принадлежит {premise_residues}, то {polynomial} делится на {modulus}.",
+      "en": "If n mod {premise_modulus} belongs to {premise_residues}, then {polynomial} is divisible by {modulus}."
     }
   },
   "literals": {

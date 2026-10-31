@@ -12,6 +12,9 @@ from fractions import Fraction
 from typing import Any, ClassVar, Dict, List, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import spanning_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -57,7 +60,7 @@ def spanning_trees(n: int, edges: List[Tuple[int, int]]) -> int:
     return count
 
 
-class SpanningTreesTask(BaseMathTask):
+class SpanningTreesTask(_GraphBase):
     TASK_TYPE = "spanning_trees"
     TASK_TYPES = ["count"]
 
@@ -95,10 +98,8 @@ class SpanningTreesTask(BaseMathTask):
         return ((texts.t('s0', language, n=self.n, shown=shown)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language, answer=self.answer))),
-            ((texts.common('answer_line', self.language, answer=self.answer))),
-        ]
+        self.answer, self.algorithm_trace = spanning_trace(self.n, self.edges)
+        self.solution_steps = render_trace(self.algorithm_trace, 'spanning', self.language, vertex_offset=1)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

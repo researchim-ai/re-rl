@@ -43,7 +43,7 @@ class ARCGridVisualTask(VisualTaskMixin, ARCGridInductionTask):
         arrow_w = 28
         # размеры блоков
         rows = self.train + [(self.test_in, None)]
-        cell_h = [len(g) for g, _ in rows]
+        cell_h = [max(len(g), len(out if out is not None else self.test_out)) for g, out in rows]
         # ширина: input + arrow + output(или '?')
         def gw(g):
             return len(g[0]) * cell
@@ -51,13 +51,15 @@ class ARCGridVisualTask(VisualTaskMixin, ARCGridInductionTask):
         for gin, gout in rows:
             out = gout if gout is not None else self.test_out
             widths.append(gw(gin) + arrow_w + gw(out))
-        W = max(widths) + 2 * pad + 40
+        heading = texts.t('s2', self.language)
+        bbox = font.getbbox(heading)
+        W = max(max(widths) + 2 * pad + 40, bbox[2] - bbox[0] + 2 * pad)
         row_heights = [h * cell + pad for h in cell_h]
         H = sum(row_heights) + pad + 30
         img = Image.new("RGB", (W, H), (255, 255, 255))
         draw = ImageDraw.Draw(img)
         y = pad + 20
-        draw.text((pad, 4), texts.t('s2', self.language), fill=(0, 0, 0), font=font)
+        draw.text((pad, 4), heading, fill=(0, 0, 0), font=font)
         for i, (gin, gout) in enumerate(rows):
             is_test = gout is None
             x = pad + 30
@@ -84,11 +86,11 @@ class ARCGridVisualTask(VisualTaskMixin, ARCGridInductionTask):
             [texts.t('s5', language), texts.t('s6', language), texts.t('s7', language), texts.t('s8', language), texts.t('s9', language), texts.t('s10', language),
              texts.t('s11', language), texts.t('s12', language), texts.t('s13', language), texts.t('s14', language)][:self.colors]))
         if {"ru": True, "en": False}.get(language, False):
-            return (texts.t('s3', language, legend=legend, ro=ro, co=co))
+            return (texts.t('s3', language, legend=legend, ro=ro, co=co)) + ' ' + self._rule_hint(language)
         legend_en = "; ".join(f"{i}={name}" for i, name in enumerate(
             ["black", "blue", "red", "green", "yellow", "grey",
              "pink", "orange", "cyan", "maroon"][:self.colors]))
-        return (texts.t('s1', language, legend_en=legend_en, ro=ro, co=co))
+        return (texts.t('s1', language, legend_en=legend_en, ro=ro, co=co)) + ' ' + self._rule_hint(language)
 
     @classmethod
     def generate_random_task(cls, language: str = "ru", detail_level: int = 3, difficulty: int = 5,

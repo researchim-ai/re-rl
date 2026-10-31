@@ -68,11 +68,8 @@ class GradientStepTask(BaseMathTask):
         return f"{rule} {data} {ask}"
 
     def solve(self):
-        terms = " + ".join(f"({self.w}*{x} - {y})*{x}" for x, y in self.points)
-        step = ((texts.t('s2', self.language, terms=terms, grad=self.grad, w=self.w, grad_2=self.grad, w_new=self.w_new)))
-        ans = self.grad if self.task_type == "gradient" else self.w_new
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=ans)))]
-        self.final_answer = str(ans)
+        from re_rl.tasks.ml.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

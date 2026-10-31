@@ -171,6 +171,38 @@
     "s51": {
       "ru": "projectile_max_height",
       "en": "projectile_max_height"
+    },
+    "problem_uniform_motion": {
+      "ru": "На прямой тело имеет постоянную знаковую скорость v={v} м/с. Найдите пройденный путь distance за t={t} с, не знаковое перемещение. Модель ньютоновская. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "On a line a body has constant signed velocity v={v} m/s. Find path length distance over t={t} s, not signed displacement. Use the Newtonian model. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_find_velocity": {
+      "ru": "Равномерное движение на прямой: знаковое перемещение Δx={s} м за положительное время t={t} с. Найдите проекцию скорости v в м/с; отрицательное перемещение даёт отрицательную скорость. Модель ньютоновская. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "Uniform motion on a line: signed displacement Δx={s} m over positive time t={t} s. Find signed velocity v in m/s; negative displacement gives negative velocity. Use the Newtonian model. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_accelerated_distance": {
+      "ru": "На прямой x(0)=0, v(0)={v0} м/с, постоянное знаковое ускорение a={a} м/с². Найдите полный пройденный путь distance за t={t} с. При развороте суммируйте длины участков, а не модуль итогового перемещения. Модель ньютоновская. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "On a line x(0)=0, v(0)={v0} m/s and constant signed acceleration a={a} m/s². Find total path length distance over t={t} s. If direction reverses, add segment lengths rather than taking absolute net displacement. Use the Newtonian model. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_accelerated_velocity": {
+      "ru": "На прямой v(0)={v0} м/с и постоянное знаковое ускорение a={a} м/с². Найдите знаковую конечную скорость v_final после t={t} с. Модель ньютоновская. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "On a line v(0)={v0} m/s with constant signed acceleration a={a} m/s². Find signed final velocity v_final after t={t} s. Use the Newtonian model. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_projectile_max_height": {
+      "ru": "Из точки y=0 тело брошено вертикально вверх со скоростью v0={v0} м/с. Поле однородное, g={g} м/с² вниз, сопротивления нет. Найдите максимальный подъём H над точкой старта в метрах. При v0=0 подъём нулевой. Модель ньютоновская. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "From y=0 a body is thrown vertically upward at v0={v0} m/s. Uniform gravity g={g} m/s² points downward, with no drag. Find maximum rise H above launch level in meters. At v0=0 the rise is zero. Use the Newtonian model. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_projectile_range": {
+      "ru": "Тело брошено из (0,0) со скоростью v0={v0} м/с под углом {angle}° выше горизонта. Однородное g={g} м/с², сопротивления нет, посадка на той же высоте y=0. Найдите горизонтальную дальность range в метрах; при нулевом полёте дальность 0. Модель ньютоновская. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "A body is thrown from (0,0) at v0={v0} m/s and angle {angle}° above horizontal. Uniform gravity g={g} m/s², no drag; landing is at the same height y=0. Find horizontal range in meters; a zero-duration flight has range 0. Use the Newtonian model. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_circular_velocity": {
+      "ru": "Равномерное движение по окружности радиуса r={r} м с периодом T={T} с. Найдите модуль линейной скорости v в м/с. Модель ньютоновская. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "Uniform motion on a circle of radius r={r} m with period T={T} s. Find tangential speed magnitude v in m/s. Use the Newtonian model. Keep at least 10 significant digits; write an exact zero as 0."
+    },
+    "problem_circular_acceleration": {
+      "ru": "Равномерное движение по окружности радиуса r={r} м с модулем скорости v={v} м/с. Найдите модуль нормального ускорения a_c в м/с²; оно направлено к центру. При v=0 результат 0. Модель ньютоновская. Сохраните не менее 10 значащих цифр; точный ноль — 0.",
+      "en": "Uniform motion on a circle of radius r={r} m at speed magnitude v={v} m/s. Find normal acceleration magnitude a_c in m/s², directed toward the center. At v=0 the result is 0. Use the Newtonian model. Keep at least 10 significant digits; write an exact zero as 0."
     }
   },
   "literals": {

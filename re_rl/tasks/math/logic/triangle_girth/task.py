@@ -13,6 +13,9 @@ from collections import deque
 from typing import Any, ClassVar, Dict, List, Optional, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import triangle_girth_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -52,7 +55,7 @@ def graph_girth(n: int, edges: List[Tuple[int, int]]) -> int:
     return 0 if best is None else best
 
 
-class TriangleGirthTask(BaseMathTask):
+class TriangleGirthTask(_GraphBase):
     TASK_TYPE = "triangle_girth"
     TASK_TYPES = ["triangles", "girth"]
 
@@ -95,8 +98,10 @@ class TriangleGirthTask(BaseMathTask):
         return f"{head} {ask}"
 
     def solve(self):
-        step = ((texts.t('s1', self.language, triangles=self.triangles, girth=self.girth)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
+        self.answer, self.algorithm_trace = triangle_girth_trace(self.n, self.edges, self.task_type)
+        if self.task_type == 'triangles': self.triangles = self.answer
+        else: self.girth = self.answer
+        self.solution_steps = render_trace(self.algorithm_trace, 'cycles', self.language)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

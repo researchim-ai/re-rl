@@ -12,6 +12,9 @@ import random
 from typing import Any, ClassVar, Dict, List
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import degree_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -35,7 +38,7 @@ def is_graphic(seq: List[int]) -> bool:
     return True
 
 
-class HavelHakimiTask(BaseMathTask):
+class HavelHakimiTask(_GraphBase):
     TASK_TYPE = "havel_hakimi"
     TASK_TYPES = ["graphic"]
 
@@ -78,10 +81,9 @@ class HavelHakimiTask(BaseMathTask):
         return ((texts.t('s0', language, shown=shown)))
 
     def solve(self):
-        ans = (texts.t('s1', self.language) if self.graphic else texts.t('s2', self.language))
-        step = ((texts.t('s3', self.language, v0=texts.t('s4', self.language) if self.graphic else texts.t('s5', self.language))))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=ans)))]
-        self.final_answer = ans
+        self.graphic, self.algorithm_trace = degree_trace(self.seq)
+        self.solution_steps = render_trace(self.algorithm_trace, 'degree', self.language)
+        self.final_answer = texts.t('s1', self.language) if self.graphic else texts.t('s2', self.language)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

@@ -71,16 +71,20 @@
     "s17": {
       "ru": "at_least_one",
       "en": "at_least_one"
+    },
+    "s18": {
+      "ru": "Нет решения",
+      "en": "No solution"
     }
   },
   "prompt": {
     "instructions": {
-      "ru": "type: structured_text_with_tags\nОписание: Определите, кто из жителей острова рыцарь (всегда говорит правду), а кто лжец (всегда лжёт).\nФормат ответа:\n  <reasoning>\n    (Логические рассуждения по шагам)\n  </reasoning>\n  <answer>\n    (Роль каждого жителя: рыцарь/лжец)\n  </answer>",
-      "en": "type: structured_text_with_tags\nDescription: Determine which inhabitants are knights (always tell truth) and which are knaves (always lie).\nAnswer format:\n  <reasoning>\n    (Step-by-step logical reasoning)\n  </reasoning>\n  <answer>\n    (Role of each inhabitant: knight/knave)\n  </answer>"
+      "ru": "type: structured_text_with_tags\nОписание: Определите, кто из жителей острова рыцарь (всегда говорит правду), а кто лжец (всегда лжёт).\nФормат ответа:\n  <reasoning>\n    (Логические рассуждения по шагам)\n  </reasoning>\n  <answer>\n    (Роль каждого жителя: рыцарь/лжец)\n  </answer>\nЕсли решений несколько, достаточно любого согласованного назначения всех ролей. Слова «из нас» относятся ко всем перечисленным персонажам.",
+      "en": "type: structured_text_with_tags\nDescription: Determine which inhabitants are knights (always tell truth) and which are knaves (always lie).\nAnswer format:\n  <reasoning>\n    (Step-by-step logical reasoning)\n  </reasoning>\n  <answer>\n    (Role of each inhabitant: knight/knave)\n  </answer>\nIf multiple solutions exist, provide any consistent assignment of all roles. The words “of us” refer to all listed characters."
     },
     "intro": {
-      "ru": "У нас есть три персонажей: {names}.",
-      "en": "We have three characters: {names}."
+      "ru": "Персонажи ({num_persons}): {names}.",
+      "en": "Characters ({num_persons}): {names}."
     },
     "names_pool": {
       "ru": [
@@ -197,8 +201,8 @@
         "statement": "{name} говорит: \"{text}\"",
         "about_self": "Я {role}",
         "about_other": "{name} - {role}",
-        "and": "{name} и {other_name} оба {role}",
-        "or": "{name} или {other_name} - {role}",
+        "and": "И {name}, и {other_name} имеют роль: {role}",
+        "or": "Хотя бы один из {name} и {other_name} имеет роль: {role}",
         "same": "{name} и {other_name} одного типа",
         "different": "{name} и {other_name} разных типов",
         "at_least_one": "Хотя бы один из нас - {role}",
@@ -209,7 +213,7 @@
         "about_self": "I am a {role}",
         "about_other": "{name} is a {role}",
         "and": "Both {name} and {other_name} are {role}s",
-        "or": "Either {name} or {other_name} is a {role}",
+        "or": "At least one of {name} and {other_name} is a {role}",
         "same": "{name} and {other_name} are of the same type",
         "different": "{name} and {other_name} are of different types",
         "at_least_one": "At least one of us is a {role}",

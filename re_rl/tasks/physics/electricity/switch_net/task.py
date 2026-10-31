@@ -104,17 +104,8 @@ class SwitchNetTask(BaseMathTask):
         return value
 
     def solve(self):
-        steps = []
-        self._trace(self.tree, steps)
-        if self.task_type == "flip":
-            self._trace(self.flipped, steps)
-            steps.append(texts.t(
-                "s4", self.language, k=self.k, before=self.conducts,
-                after=self.flipped_value, changes=self.changes,
-            ))
-        steps.append(texts.common("answer_line", self.language, answer=self.answer))
-        self.solution_steps = steps
-        self.final_answer = str(self.answer)
+        from re_rl.tasks.physics.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

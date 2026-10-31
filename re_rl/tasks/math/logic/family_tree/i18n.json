@@ -23,6 +23,10 @@
     "s5": {
       "ru": "У {v0} и {v1} есть дети: {kids_names}.",
       "en": "{v0} and {v1} have children: {kids_names}."
+    },
+    "relation_rules": {
+      "ru": "Используйте только перечисленные родительские и супружеские связи. Родство через брак учитывается только для самих супругов; для братьев, сестёр, дядь, тёть и двоюродных требуется общий родитель или предок по указанным связям.\n",
+      "en": "Use only the listed parent and spouse links. Marriage defines the spouse relation itself; sibling, uncle, aunt and cousin relations require shared parents or ancestors through the listed parent links.\n"
     }
   },
   "literals": {

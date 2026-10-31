@@ -17,10 +17,13 @@ from collections import deque
 from typing import Any, ClassVar, Dict, List, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import tree_query_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
-class TreeQueriesTask(BaseMathTask):
+class TreeQueriesTask(_GraphBase):
     TASK_TYPE = "tree_queries"
     TASK_TYPES = ["diameter", "leaves", "height", "lca"]
 
@@ -118,18 +121,8 @@ class TreeQueriesTask(BaseMathTask):
         return f"{head} {ask}"
 
     def solve(self):
-        if self.task_type == "diameter":
-            u, v = self.ends
-            step = ((texts.t('s2', self.language, u=u, v=v, answer=self.answer)))
-        elif self.task_type == "leaves":
-            listed = ", ".join(map(str, self.leaf_nodes))
-            step = ((texts.t('s4', self.language, listed=listed)))
-        elif self.task_type == "height":
-            deep = max(self.depths, key=self.depths.get)
-            step = ((texts.t('s7', self.language, deep=deep, answer=self.answer)))
-        else:
-            step = ((texts.t('s8', self.language, a=self.a, b=self.b, answer=self.answer)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
+        self.answer, self.algorithm_trace = tree_query_trace(self.n, self.edges, self.task_type, getattr(self, 'a', None), getattr(self, 'b', None))
+        self.solution_steps = render_trace(self.algorithm_trace, 'query', self.language)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

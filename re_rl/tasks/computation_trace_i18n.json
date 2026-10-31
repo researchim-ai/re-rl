@@ -1,0 +1,16 @@
+{
+  "text": {
+    "operation": {
+      "ru": "Вычисляем {label}: {expression} = {result}.",
+      "en": "Compute {label}: {expression} = {result}."
+    },
+    "yes": {
+      "ru": "да",
+      "en": "yes"
+    },
+    "no": {
+      "ru": "нет",
+      "en": "no"
+    }
+  }
+}

@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Tuple
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import kahn_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
 
 class TopologicalSortTask(_GraphBase):
     TASK_TYPE = "topological_sort"
@@ -36,7 +38,7 @@ class TopologicalSortTask(_GraphBase):
                  reasoning_mode=False, augment=True, subtype=None, **kwargs):
         p = self._interpolate_difficulty(difficulty)
         self.n = int(p["n"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self._build()
         self._finish(self._descr(language), language, detail_level, output_format, reasoning_mode)
@@ -94,20 +96,12 @@ class TopologicalSortTask(_GraphBase):
         return head + q
 
     def solve(self):
-        if self.subtype == "has_cycle":
-            self.solution_steps = [
-                ((texts.t('s5', self.language))),
-                ((texts.t('s6', self.language) if self._cycle else
-                   texts.t('s7', self.language))),
-            ]
-            self.final_answer = (texts.t('s3', self.language) if self._cycle else texts.t('s4', self.language))
+        order, self._cycle, self.algorithm_trace = kahn_trace(self.n, self.edges)
+        self.solution_steps = render_trace(self.algorithm_trace, 'kahn', self.language)
+        if self.subtype == 'has_cycle':
+            self.final_answer = texts.t('s3', self.language) if self._cycle else texts.t('s4', self.language)
         else:
-            order = self._topo_order()
-            self.solution_steps = [
-                ((texts.t('s8', self.language))),
-                ((texts.t('s9', self.language, v0=', '.join(map(str, order))))),
-            ]
-            self.final_answer = " ".join(map(str, order))
+            self.final_answer = ' '.join(map(str, order))
 
     def _topo_order(self):
         adj = defaultdict(list); indeg = defaultdict(int)

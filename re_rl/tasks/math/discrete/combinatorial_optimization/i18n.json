@@ -3,6 +3,34 @@
     "s0": {
       "ru": "problem_set_cover",
       "en": "problem_set_cover"
+    },
+    "exact_rule": {
+      "ru": "Требуется оптимальное допустимое решение.",
+      "en": "An optimal feasible solution is required."
+    },
+    "approx_knapsack": {
+      "ru": "Эвристика: сортируйте по убыванию точного отношения ценности к весу, ничьи — по меньшему индексу; берите каждый помещающийся предмет. Допускается любое допустимое решение не хуже этой эвристики.",
+      "en": "Heuristic: sort by decreasing exact value/weight ratio, ties by smaller index; take each item that fits. Any feasible solution at least as good as this heuristic is accepted."
+    },
+    "approx_set_cover": {
+      "ru": "Эвристика: выбирайте множество с наибольшим числом ещё не покрытых элементов, ничьи — по меньшему индексу, до полного покрытия. Допускается любое полное покрытие не большего размера.",
+      "en": "Heuristic: choose the set covering most currently uncovered elements, ties by smaller index, until all elements are covered. Any full cover using no more sets is accepted."
+    },
+    "approx_tsp_small": {
+      "ru": "Эвристика: от 0 идите к ближайшей непосещённой вершине, ничьи — по меньшему номеру, затем вернитесь в 0. Выполните один полный проход 2-opt: i=1..n−2, j=i+1..n−1 по возрастанию; немедленно переворачивайте участок i..j при строгом уменьшении длины. Допускается любой допустимый цикл не длиннее полученного.",
+      "en": "Heuristic: start at 0, visit the nearest unvisited vertex, ties by smaller id, then return to 0. Make one full 2-opt pass: i=1..n−2, j=i+1..n−1 in increasing order; immediately reverse segment i..j on a strict length improvement. Any valid tour no longer than this result is accepted."
+    },
+    "problem_knapsack": {
+      "ru": "Рюкзак 0/1 ({mode}): предметы (вес, ценность) {items}, вместимость {capacity}. Максимизируйте ценность; каждый предмет используется не более одного раза. Индексы с 0. {rule} Ответ: value=<ценность>;items=[индексы].",
+      "en": "0/1 knapsack ({mode}): items (weight, value) {items}, capacity {capacity}. Maximize value; use each item at most once. Indices start at 0. {rule} Answer: value=<value>;items=[indices]."
+    },
+    "problem_set_cover": {
+      "ru": "Покрытие множеств ({mode}): универсум {universe}, множества {sets}, индексы с 0. Покройте весь универсум минимальным числом множеств. {rule} Ответ: size=<число множеств>;sets=[индексы].",
+      "en": "Set cover ({mode}): universe {universe}, subsets {sets}, indices start at 0. Cover the entire universe using as few sets as possible. {rule} Answer: size=<number of sets>;sets=[indices]."
+    },
+    "problem_tsp_small": {
+      "ru": "Коммивояжёр ({mode}): симметричная матрица расстояний {matrix}, вершины с 0. Найдите цикл минимальной длины из 0, посетив каждую вершину ровно один раз и вернувшись в 0. {rule} Ответ: distance=<длина>;route=[0,...,0].",
+      "en": "Traveling salesperson ({mode}): symmetric distance matrix {matrix}, vertices start at 0. Find a minimum-length tour from 0 visiting each vertex exactly once and returning to 0. {rule} Answer: distance=<length>;route=[0,...,0]."
     }
   },
   "prompt": {

@@ -37,6 +37,10 @@ class TruthTableTask(_LogicBase):
         return ((texts.t('s0', language, v0=', '.join(self.vars), v1=_render(self.formula))))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         words = {"tautology": (texts.t('s3', self.language), "tautology"),
                  "contradiction": (texts.t('s4', self.language), "contradiction"),
                  "contingent": (texts.t('s5', self.language), "contingent")}

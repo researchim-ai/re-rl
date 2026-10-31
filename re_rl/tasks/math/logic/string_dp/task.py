@@ -27,7 +27,7 @@ class EditDistanceTask(BaseMathTask):
         p = self._interpolate_difficulty(difficulty)
         self.L = int(p["L"])
         self.alpha = int(p["alpha"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         letters = string.ascii_lowercase[:self.alpha]
         self.s1 = "".join(random.choice(letters) for _ in range(self.L + random.randint(-1, 1)))
@@ -63,6 +63,10 @@ class EditDistanceTask(BaseMathTask):
         return ((texts.t('s0', language, s1=self.s1, s2=self.s2)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s2', self.language))),
             ((texts.t('s3', self.language, _answer=self._answer))),

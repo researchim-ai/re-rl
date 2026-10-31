@@ -10,8 +10,8 @@
   },
   "prompt": {
     "problem": {
-      "ru": "Определите, выполнима ли формула (SAT/UNSAT): {formula}. Если SAT — приведите пример присваивания.",
-      "en": "Determine whether this formula is SAT or UNSAT: {formula}. If SAT, provide a witness assignment."
+      "ru": "Переменные: x1..x{num_vars} (булевы). Определите, выполнима ли КНФ: {formula}. Для SAT приведите полное присваивание всем переменным в формате SAT:x1=True,x2=False,...; иначе ответьте UNSAT. ⊤ обозначает пустую конъюнкцию, которая истинна.",
+      "en": "Variables: x1..x{num_vars} (Boolean). Determine whether this CNF is satisfiable: {formula}. For SAT give a complete assignment as SAT:x1=True,x2=False,...; otherwise answer UNSAT. ⊤ denotes the empty conjunction, which is true."
     },
     "step_encode": {
       "ru": "Кодируем формулу в булевы ограничения и запускаем решатель.",

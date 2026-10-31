@@ -5,7 +5,8 @@ texts = TaskTexts(__file__)
 
 import random
 from typing import Dict, Any, ClassVar, List, Tuple, Optional
-from z3 import Solver, Int, And, Distinct, sat, Or, Abs
+from re_rl.tasks.math.logic.deduction_search import zebra_model,query_answer,zebra_answer,zebra_valid
+import json
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.prompts import PROMPT_TEMPLATES, get_template
@@ -35,6 +36,8 @@ class ZebraPuzzleTask(BaseMathTask):
         9: {"num_houses": 5, "num_categories": 5, "num_clues": 12},
         10: {"num_houses": 5, "num_categories": 5, "num_clues": 15},
     }
+
+    TASK_TYPE = "zebra_puzzle"
 
     CATEGORY_NAMES = ["nationality", "color", "drink", "pet", "cigarette"]
 
@@ -67,9 +70,9 @@ class ZebraPuzzleTask(BaseMathTask):
             if num_clues is None:
                 num_clues = preset.get("num_clues", 10)
         else:
-            num_houses = num_houses or 5
-            num_categories = num_categories or 5
-            num_clues = num_clues or 10
+            num_houses = 5 if num_houses is None else num_houses
+            num_categories = 5 if num_categories is None else num_categories
+            num_clues = 10 if num_clues is None else num_clues
         
         self.language = language.lower()
         self.detail_level = detail_level
@@ -77,13 +80,21 @@ class ZebraPuzzleTask(BaseMathTask):
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
         
+        if type(num_houses) is not int or not 2 <= num_houses <= 5:
+            raise ValueError('invalid_num_houses')
+        if type(num_categories) is not int or not 2 <= num_categories <= 5:
+            raise ValueError('invalid_num_categories')
+        if type(num_clues) is not int or not 0 <= num_clues <= 100:
+            raise ValueError('invalid_num_clues')
         self.num_houses = num_houses
-        self.num_categories = min(num_categories, len(self.CATEGORY_NAMES))
+        self.num_categories = num_categories
         self.num_clues = num_clues
         
         # Выбираем категории
         self.categories = self.CATEGORY_NAMES[:self.num_categories]
         
+        self.category_values = {cat:self._get_category_values(cat) for cat in self.categories}
+
         # Генерируем решение
         self.solution = self._generate_solution()
         
@@ -92,6 +103,7 @@ class ZebraPuzzleTask(BaseMathTask):
         
         # Генерируем вопрос
         self.question, self.answer = self._generate_question()
+        self._ensure_answer_unique()
         
         # Формируем текст задачи
         problem_text = self._create_problem_text()
@@ -163,7 +175,7 @@ class ZebraPuzzleTask(BaseMathTask):
             attr1 = self.solution[cat1][house1]
             attr2 = self.solution[cat2][house2]
             if random.random() < 0.5:
-                attr1, attr2 = attr2, attr1
+                cat1,attr1,cat2,attr2 = cat2,attr2,cat1,attr1
             text = templates["neighbor"][self.language].format(attr1=attr1, attr2=attr2)
             return {"type": clue_type, "text": text, "data": (cat1, attr1, cat2, attr2)}
         
@@ -214,25 +226,28 @@ class ZebraPuzzleTask(BaseMathTask):
         # Выбираем случайную категорию для вопроса
         if "pet" in self.categories:
             pet = random.choice(self._get_category_values("pet"))
+            self.query = ("owner","pet",pet,"nationality")
             house_idx = self.solution["pet"].index(pet) if pet in self.solution["pet"] else 0
             if "nationality" in self.categories:
                 answer = self.solution["nationality"][house_idx]
             else:
-                answer = f"house {house_idx + 1}"
+                answer = texts.t('house_answer',self.language,position=house_idx+1)
             question = templates[self.language][0].format(pet=pet)
         elif "drink" in self.categories:
             drink = random.choice(self._get_category_values("drink"))
+            self.query = ("owner","drink",drink,"nationality")
             house_idx = self.solution["drink"].index(drink) if drink in self.solution["drink"] else 0
             if "nationality" in self.categories:
                 answer = self.solution["nationality"][house_idx]
             else:
-                answer = f"house {house_idx + 1}"
+                answer = texts.t('house_answer',self.language,position=house_idx+1)
             question = templates[self.language][1].format(drink=drink)
         else:
             cat = random.choice(self.categories)
             val = random.choice(self.solution[cat])
             house_idx = self.solution[cat].index(val)
-            answer = f"house {house_idx + 1}"
+            self.query = ("position",cat,val)
+            answer = texts.t('house_answer',self.language,position=house_idx+1)
             question = get_template(
                 PROMPT_TEMPLATES["inline"],
                 texts.t('s6', self.language),
@@ -248,7 +263,7 @@ class ZebraPuzzleTask(BaseMathTask):
         templates = PROMPT_TEMPLATES["zebra_puzzle"]
         
         # Форматируем категории
-        categories_text = ", ".join(self.categories)
+        categories_text = "; ".join(texts.t("category_"+cat,self.language)+": "+", ".join(self.category_values[cat]) for cat in self.categories)
         
         # Форматируем подсказки
         clues_text = "\n".join([f"{i + 1}. {clue['text']}" for i, clue in enumerate(self.clues)])
@@ -266,7 +281,7 @@ class ZebraPuzzleTask(BaseMathTask):
     def _format_solution_table(self) -> str:
         """Форматирует решение в виде таблицы."""
         lines = []
-        header = ["House"] + self.categories
+        header = [texts.t("house_header",self.language)] + [texts.t("category_"+cat,self.language) for cat in self.categories]
         lines.append(" | ".join(header))
         lines.append("-" * len(lines[0]))
         
@@ -278,56 +293,59 @@ class ZebraPuzzleTask(BaseMathTask):
         
         return "\n".join(lines)
 
+    def _ensure_answer_unique(self):
+        expected = query_answer(self.solution,self.query)
+        for _ in range(self.num_houses*self.num_categories+1):
+            alternative = zebra_model(self.num_houses,self.category_values,self.clues,forbidden=(self.query,expected))
+            if alternative is None:return
+            differing = [(cat,value) for cat in self.categories for value in self.category_values[cat]
+                         if self.solution[cat].index(value) != alternative[cat].index(value)]
+            if not differing:raise ValueError('generation_failed')
+            cat,value = random.choice(differing)
+            position = self.solution[cat].index(value)
+            text = PROMPT_TEMPLATES['zebra_puzzle']['clue_templates']['position'][self.language].format(attr=value,pos=position+1)
+            self.clues.append(dict(type='position',data=(cat,value,position),text=text))
+        raise ValueError('generation_failed')
+
+    def _public_fingerprint(self):
+        return json.dumps([self.num_houses,self.category_values,[(c['type'],c['data']) for c in self.clues],self.query],sort_keys=True,ensure_ascii=False)
+
     def solve(self):
-        """Генерирует пошаговое решение."""
-        templates = PROMPT_TEMPLATES["zebra_puzzle"]
-        steps = []
-        
-        # Генерируем шаги на основе подсказок
-        for i, clue in enumerate(self.clues):
-            deduction = self._describe_deduction(clue)
-            step = templates["steps"]["from_clue"][self.language].format(
-                n=i + 1, deduction=deduction
-            )
-            steps.append(step)
-        
-        # Добавляем шаги с методом исключения
-        for _ in range(len(self.clues), len(self.clues) + 3):  # Добавляем несколько шагов исключения
-            deduction = self._generate_elimination_step()
-            step = templates["steps"]["elimination"][self.language].format(deduction=deduction)
-            steps.append(step)
-        
-        self.solution_steps = steps
-        self.final_answer = templates["final_answer"][self.language].format(
-            answer=self.answer,
-            table=self._format_solution_table()
-        )
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
 
-    def _describe_deduction(self, clue: Dict[str, Any]) -> str:
-        """Описывает вывод из подсказки."""
-        clue_type = clue["type"]
-        data = clue["data"]
-        
-        if clue_type == "same_house":
-            return texts.t('s0', self.language, v0=data[1], v1=data[3])
-        elif clue_type == "neighbor":
-            return texts.t('s1', self.language, v0=data[1], v1=data[3])
-        elif clue_type == "left_of":
-            return texts.t('s2', self.language, v0=data[1], v1=data[3])
-        elif clue_type == "position":
-            return texts.t('s3', self.language, v0=data[1], v1=data[2] + 1)
-        elif clue_type in ("middle", "first"):
-            return texts.t('s4', self.language, v0=data[1], v1=data[2] + 1)
-        
-        return clue["text"]
+    def _solve_before_trace(self):
+        self.solution_steps = []
+        self.final_answer = PROMPT_TEMPLATES['zebra_puzzle']['final_answer'][self.language].format(
+            answer=self.answer,table=self._format_solution_table())
 
-    def _generate_elimination_step(self) -> str:
-        """Генерирует шаг с методом исключения."""
-        cat = random.choice(self.categories)
-        house = random.randint(0, self.num_houses - 1)
-        val = self.solution[cat][house]
-        
-        return texts.t('s5', self.language, val=val, v1=house + 1)
+    def verify(self,prediction):
+        from re_rl.tasks.math.logic._logic_utils import clean
+        from re_rl.tasks.math.planning.plan_verification import match_template
+        certificate = getattr(self,'_answer_certificate',None)
+        if certificate is None or certificate[0] != self._public_fingerprint():
+            try:self.solve()
+            except (ValueError,KeyError):return 0.0
+        text = clean(prediction)
+        expected = self._answer_certificate[1]
+        aliases = [str(expected)] if self.query[0] == 'owner' else [str(expected+1)]+[
+            texts.t('house_answer',lang,position=expected+1) for lang in ('ru','en')]
+        if text in aliases:return 1.0
+        for lang in ('ru','en'):
+            fields = match_template(PROMPT_TEMPLATES['zebra_puzzle']['final_answer'][lang],text)
+            if fields is None or fields['answer'] not in aliases:continue
+            lines = fields['table'].splitlines()
+            header = [texts.t('house_header',lang)]+[texts.t('category_'+cat,lang) for cat in self.categories]
+            if len(lines) != self.num_houses+2 or [s.strip() for s in lines[0].split('|')] != header:continue
+            if not lines[1] or set(lines[1]) != {'-'}:continue
+            model = {cat:[] for cat in self.categories}
+            for index,line in enumerate(lines[2:],1):
+                row = [v.strip() for v in line.split('|')]
+                if len(row) != self.num_categories+1 or row[0] != str(index):break
+                for cat,value in zip(self.categories,row[1:]):model[cat].append(value)
+            else:
+                if zebra_valid(self.num_houses,self.category_values,self.clues,model) and query_answer(model,self.query) == expected:return 1.0
+        return 0.0
 
     def get_task_type(self):
         return "zebra_puzzle"

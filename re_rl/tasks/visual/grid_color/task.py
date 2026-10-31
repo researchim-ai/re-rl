@@ -60,6 +60,8 @@ class GridColorCountTask(VisualTaskMixin, BaseMathTask):
             top = max(counts.values())
             if list(counts.values()).count(top) == 1:  # уникальный максимум
                 break
+        else:
+            raise ValueError("generation_failed")
         if self.task_type == "count_color":
             self.target = random.choice(self.palette)
             self.answer_int = self.counts[self.target]
@@ -80,10 +82,14 @@ class GridColorCountTask(VisualTaskMixin, BaseMathTask):
     def _descr(self, language):
         if self.task_type == "count_color":
             c = COLORS[self.target]
-            return ((texts.t('s1', language, n=self.n, n_2=self.n, v2=c['gen'])))
+            return ((texts.t('s1', language, n=self.n, n_2=self.n, v2=c[texts.t('s2', language)])))
         return ((texts.t('s0', language, n=self.n, n_2=self.n)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "count_color":
             c = COLORS[self.target]
             name = (c[texts.t('s2', self.language)])

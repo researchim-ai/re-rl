@@ -19,6 +19,54 @@
     "s12": {
       "ru": "Q = λm = {lambda_ice} × {m} = {Q:.4f} Дж",
       "en": "Q = λm = {lambda_ice} × {m} = {Q:.4f} J"
+    },
+    "problem_heat_capacity": {
+      "ru": "Тело ({substance}) массой {m} кг меняет температуру с {T1} °C до {T2} °C. В модели c={c} Дж/(кг·К) постоянно, фазовых переходов нет. Найдите знаковую теплоту Q, полученную телом (охлаждение даёт Q<0), в Дж; округление до 4 знаков.",
+      "en": "A body ({substance}) of mass {m} kg changes temperature from {T1} °C to {T2} °C. The model assumes constant c={c} J/(kg·K) and no phase change. Find the signed heat Q received by the body (cooling gives Q<0), in J; round to 4 decimal places."
+    },
+    "problem_mixing": {
+      "ru": "В теплоизолированном сосуде смешивают жидкую воду: {m1} кг при {T1} °C и {m2} кг при {T2} °C. Для обеих порций c={c} Дж/(кг·К) постоянно; теплоёмкость сосуда, потери и фазовые переходы исключены. Найдите равновесную температуру в °C, округление до 4 знаков.",
+      "en": "In an insulated vessel mix liquid water: {m1} kg at {T1} °C and {m2} kg at {T2} °C. Both portions have constant c={c} J/(kg·K); vessel heat capacity, losses and phase changes are excluded. Find the equilibrium temperature in °C, rounded to 4 decimal places."
+    },
+    "problem_phase_change": {
+      "ru": "Полностью расплавьте {m} кг льда, изначально при 0 °C, до воды при 0 °C. Удельная теплота плавления λ={lambda_ice} Дж/кг; потерь нет. Найдите требуемую теплоту в Дж, округление до 4 знаков.",
+      "en": "Completely melt {m} kg of ice initially at 0 °C into water at 0 °C. Latent heat of fusion λ={lambda_ice} J/kg; no losses. Find the required heat in J, rounded to 4 decimal places."
+    },
+    "problem_efficiency": {
+      "ru": "Циклическая тепловая машина получает Q1={Q1} Дж от нагревателя и отдаёт Q2={Q2} Дж холодильнику за цикл; изменение внутренней энергии за цикл нулевое. Найдите КПД в процентах. Температуры резервуаров не заданы, обратимость не предполагается. Округление до 4 знаков.",
+      "en": "A cyclic heat engine receives Q1={Q1} J from the hot reservoir and rejects Q2={Q2} J to the cold reservoir per cycle; internal-energy change over a cycle is zero. Find efficiency as a percentage. Reservoir temperatures are unspecified; reversibility is not assumed. Round to 4 decimal places."
+    },
+    "material_water": {
+      "ru": "вода",
+      "en": "water"
+    },
+    "material_ice": {
+      "ru": "лёд",
+      "en": "ice"
+    },
+    "material_aluminum": {
+      "ru": "алюминий",
+      "en": "aluminum"
+    },
+    "material_iron": {
+      "ru": "железо",
+      "en": "iron"
+    },
+    "material_copper": {
+      "ru": "медь",
+      "en": "copper"
+    },
+    "material_lead": {
+      "ru": "свинец",
+      "en": "lead"
+    },
+    "process_ice_melting": {
+      "ru": "плавления льда",
+      "en": "ice melting"
+    },
+    "process_water_vaporization": {
+      "ru": "парообразования воды",
+      "en": "water vaporization"
     }
   },
   "literals": {

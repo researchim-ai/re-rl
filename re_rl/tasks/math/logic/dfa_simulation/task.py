@@ -55,11 +55,8 @@ class DFASimulationTask(_SimBase):
         return ((texts.t('s0', language, v0=self.m - 1, acc=acc, trans=trans, word=self.word)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s3', self.language))),
-            ((texts.t('s4', self.language) if self._answer else texts.t('s5', self.language))),
-        ]
-        self.final_answer = (texts.t('s1', self.language) if self._answer else texts.t('s2', self.language))
+        from re_rl.tasks.math.algorithm_traces.automata import solve_dfa
+        solve_dfa(self)
 
     def verify(self, prediction):
         if self.final_answer is None:

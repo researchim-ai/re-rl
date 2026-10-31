@@ -33,15 +33,21 @@ _QUANT = {
 class SyllogismTask(BaseMathTask):
     TASK_TYPE = "syllogism"
 
-    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {i: {} for i in range(1, 11)}
+    DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {i: {"figure":1 if i <= 3 else 2 if i <= 6 else 3 if i <= 8 else 4} for i in range(1, 11)}
 
     def __init__(self, language: str = "ru", detail_level: int = 3, difficulty: int = 5,
                  output_format: OutputFormat = "text", reasoning_mode: bool = False,
-                 augment: bool = True, **kwargs):
+                 augment: bool = True, figure=None, mood=None, **kwargs):
+        self.figure = self._interpolate_difficulty(difficulty)['figure'] if figure is None else figure
+        if type(self.figure) is not int or self.figure not in (1,2,3,4):raise ValueError('invalid_figure')
+        if mood is not None and (not isinstance(mood,(tuple,list)) or len(mood) != 3 or any(q not in _QUANT for q in mood)):
+            raise ValueError('invalid_mood')
+        self.mood = tuple(mood) if mood is not None else None
         self.augment = augment
         self.difficulty = difficulty
         terms = (({"ru": (_TERMS_RU), "en": (_TERMS_EN)}.get(language, (_TERMS_EN))))
         self.S, self.M, self.P = random.sample(terms, 3)
+        self.language = language
         self._build()
         description = self._make_description(language)
         super().__init__(description=description, language=language, detail_level=detail_level,
@@ -51,9 +57,12 @@ class SyllogismTask(BaseMathTask):
         # Индексы терминов в кортеже занятости региона: (S, M, P).
         idx = {"S": 0, "M": 1, "P": 2}
         # Посылки классической структуры: (M,P), (S,M); заключение (S,P).
-        self.premise1 = (random.choice(list(_QUANT)), "M", "P")
-        self.premise2 = (random.choice(list(_QUANT)), "S", "M")
-        self.conclusion = (random.choice(list(_QUANT)), "S", "P")
+        major,minor = {1:(('M','P'),('S','M')),2:(('P','M'),('S','M')),
+                       3:(('M','P'),('M','S')),4:(('P','M'),('M','S'))}[self.figure]
+        mood = self.mood if self.mood is not None else tuple(random.choice(list(_QUANT)) for _ in range(3))
+        self.premise1 = (mood[0],*major)
+        self.premise2 = (mood[1],*minor)
+        self.conclusion = (mood[2],'S','P')
         self._idx = idx
         self._valid = self._check_validity()
 
@@ -93,6 +102,10 @@ class SyllogismTask(BaseMathTask):
         return head + body + tail
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s4', self.language))),
             ((texts.t('s5', self.language) if self._valid else
@@ -101,12 +114,12 @@ class SyllogismTask(BaseMathTask):
         self.final_answer = texts.t('s0', self.language) if self._valid else texts.t('s1', self.language)
 
     def verify(self, prediction: str) -> float:
-        if self.final_answer is None:
-            self.solve()
-        valid_syn = [texts.t('s25', self.language), texts.t('s26', self.language), "valid", texts.t('s27', self.language), texts.t('s28', self.language)]
-        invalid_syn = [texts.t('s29', self.language), texts.t('s30', self.language), "invalid", texts.t('s31', self.language), texts.t('s32', self.language)]
-        found_valid = U.verify_label(prediction, valid_syn) == 1.0
-        found_invalid = U.verify_label(prediction, invalid_syn) == 1.0
+        self.solve()
+        text = U.clean(prediction).strip().rstrip('.!').strip().casefold()
+        valid_syn = {texts.t(key,lang).casefold() for key in ('s0','s25','s26','s27','s28') for lang in ('ru','en')}
+        invalid_syn = {texts.t(key,lang).casefold() for key in ('s1','s29','s30','s31','s32','not_valid') for lang in ('ru','en')}
+        found_valid = text in valid_syn
+        found_invalid = text in invalid_syn
         if found_valid == found_invalid:  # оба или ни одного — неоднозначно
             return 0.0
         predicted_valid = found_valid

@@ -60,6 +60,10 @@ class GameOfLifeTask(_SimBase):
         return ((texts.t('s0', language, r=self.r, c=self.c, v2=self._grid_str(self.grid0), k=self.k, v4=self.r * self.c)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s1', self.language))),
             ((texts.t('s2', self.language, v0=self._grid_str(self.grid)))),

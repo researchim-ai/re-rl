@@ -61,6 +61,10 @@ class GrayCodeTask(BaseMathTask):
         return ((texts.t('s0', language, bits=self.bits, width=self.width)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "encode":
             step = ((texts.t('s2', self.language, value=self.value, v1=self.value >> 1, v2=int(self.bits, 2), width=self.width, bits=self.bits)))
             self.final_answer = self.bits

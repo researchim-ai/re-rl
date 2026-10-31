@@ -202,6 +202,10 @@ class UnificationTask(BaseMathTask):
         return ((texts.t('s0', language, a=a, b=b)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "unifiable":
             self.solution_steps = [
                 ((texts.t('s4', self.language)))]

@@ -1,7 +1,7 @@
 {
   "text": {
     "s0": {
-      "ru": "no moves needed",
+      "ru": "ходы не требуются",
       "en": "no moves needed"
     },
     "s2": {
@@ -11,6 +11,10 @@
     "s3": {
       "ru": "стол",
       "en": "table"
+    },
+    "s4": {
+      "ru": "move {b} onto {c}",
+      "en": "move {b} onto {c}"
     }
   },
   "literals": {

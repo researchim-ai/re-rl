@@ -15,10 +15,13 @@ import sys
 from typing import Any, ClassVar, Dict, List, Optional, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import scc_trace, lowlink_trace, negative_cycle_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
-class GraphConnectivityTask(BaseMathTask):
+class GraphConnectivityTask(_GraphBase):
     TASK_TYPE = "graph_connectivity"
     TASK_TYPES = ["scc", "articulation_points", "bridges", "negative_cycle"]
 
@@ -193,18 +196,17 @@ class GraphConnectivityTask(BaseMathTask):
         return ((texts.t('s0', language, head_v=head_v, v1=self._edges_str())))
 
     def solve(self):
-        steps = {
-            "scc": ((texts.t('s6', self.language))),
-            "articulation_points": ((texts.t('s7', self.language))),
-            "bridges": ((texts.t('s8', self.language))),
-            "negative_cycle": ((texts.t('s9', self.language))),
-        }[self.task_type]
-        if self.task_type == "negative_cycle":
-            ans = (texts.t('s4', self.language) if self.answer else texts.t('s5', self.language))
+        if self.task_type == 'scc':
+            self.answer, self.algorithm_trace = scc_trace(self.n, self.edges)
+            algorithm = 'scc'
+        elif self.task_type == 'negative_cycle':
+            self.answer, self.algorithm_trace = negative_cycle_trace(self.n, self.wedges)
+            algorithm = 'negative'
         else:
-            ans = str(self.answer)
-        self.final_answer = ans
-        self.solution_steps = [steps, ((texts.common('answer_line', self.language, answer=ans)))]
+            self.answer, self.algorithm_trace = lowlink_trace(self.n, self.edges, self.task_type)
+            algorithm = 'low'
+        self.solution_steps = render_trace(self.algorithm_trace, algorithm, self.language)
+        self.final_answer = (texts.t('s4', self.language) if self.answer else texts.t('s5', self.language)) if self.task_type == 'negative_cycle' else str(self.answer)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

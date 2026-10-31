@@ -61,6 +61,10 @@ class HuffmanCodingTask(BaseMathTask):
         return ((texts.t('s0', language, pairs=pairs)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s1', self.language))),
             ((texts.t('s2', self.language, answer=self.answer)))]

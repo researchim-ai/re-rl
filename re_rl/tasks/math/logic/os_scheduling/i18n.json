@@ -1,8 +1,8 @@
 {
   "text": {
     "s0": {
-      "ru": "Головка диска стоит на цилиндре {start}. Очередь запросов: {desc}. Дисциплина SSTF: каждый раз едем к ближайшему оставшемуся цилиндру; при равенстве расстояний выбирается меньший номер. Найдите суммарное перемещение.",
-      "en": "The disk head is at cylinder {start}. Requests: {desc}. SSTF always moves to the nearest remaining cylinder; ties go to the smaller cylinder number. Find the total seek distance."
+      "ru": "Головка диска стоит на цилиндре {start}. Очередь запросов: {desc}. Дисциплина SSTF: каждый раз едем к ближайшему оставшемуся цилиндру; при равенстве расстояний выбирается меньший номер. Найдите суммарное перемещение. Каждый запрос обслуживается отдельно, включая повторные; одинаковые цилиндры — в порядке очереди.",
+      "en": "The disk head is at cylinder {start}. Requests: {desc}. SSTF always moves to the nearest remaining cylinder; ties go to the smaller cylinder number. Find the total seek distance. Each request is served separately, including duplicates; identical cylinders use queue order."
     },
     "s1": {
       "ru": "Невытесняющий SJF, все заявки приходят в момент 0. Пары (номер, длительность): {desc}. При равной длительности раньше обслуживается меньший номер. Найдите суммарное время ожидания.",

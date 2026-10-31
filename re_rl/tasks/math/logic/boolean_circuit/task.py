@@ -36,7 +36,7 @@ class BooleanCircuitTask(BaseMathTask):
         preset = self._interpolate_difficulty(difficulty)
         self.k = int(preset["k"])
         self.g = int(preset["g"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self._build()
         description = self._make_description(language)
@@ -95,17 +95,8 @@ class BooleanCircuitTask(BaseMathTask):
         return head + q
 
     def solve(self):
-        if self.subtype == "evaluate":
-            self.solution_steps = [
-                ((texts.t('s3', self.language))),
-                ((texts.t('s4', self.language, _answer=self._answer))),
-            ]
-        else:
-            self.solution_steps = [
-                ((texts.t('s5', self.language))),
-                ((texts.t('s6', self.language, _answer=self._answer))),
-            ]
-        self.final_answer = str(self._answer)
+        from re_rl.tasks.math.algorithm_traces.automata import solve_circuit
+        solve_circuit(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

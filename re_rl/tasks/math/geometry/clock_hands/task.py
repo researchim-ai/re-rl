@@ -51,6 +51,10 @@ class ClockHandsTask(BaseMathTask):
         return texts.t(key, language, stamp=self.stamp)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         step = texts.t(
             "s2", self.language, hour=self.hour, minute=self.minute,
             raw=self.raw, smaller=self.smaller, larger=self.larger,

@@ -34,6 +34,7 @@ class DatalogInferenceTask(BaseMathTask):
         p = self._interpolate_difficulty(difficulty)
         self.task_type = (task_type or random.choice(self.TASK_TYPES)).lower()
         self.n_objs, self.n_props, self.n_rules = int(p["objs"]), int(p["props"]), int(p["rules"])
+        self.language = language
         self._build()
         super().__init__(description=self._descr(language), language=language,
                          detail_level=detail_level, output_format=output_format,
@@ -105,6 +106,10 @@ class DatalogInferenceTask(BaseMathTask):
         return head.format(f=facts_lines, r=rules_lines, q=q)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s5', self.language)))]
         if self.task_type == "has_property":

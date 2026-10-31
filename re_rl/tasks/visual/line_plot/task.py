@@ -75,6 +75,10 @@ class LinePlotReadTask(VisualTaskMixin, BaseMathTask):
         return ((texts.t('s0', language)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "value_at":
             steps = [((texts.t('s3', self.language, k=self.k))),
                      ((f"y = {self.answer}."))]

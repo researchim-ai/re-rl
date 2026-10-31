@@ -90,18 +90,8 @@ class KMeansStepTask(BaseMathTask):
         return f"{rule} {centers} {ask}"
 
     def solve(self):
-        if self.task_type == "nearest":
-            d1, d2 = sqdist(self.query, self.c1), sqdist(self.query, self.c2)
-            step = ((texts.t('s3', self.language, d1=d1, d2=d2)))
-            self.final_answer = str(self.nearest)
-        elif self.task_type == "count":
-            step = ((texts.t('s6', self.language, count=self.count)))
-            self.final_answer = str(self.count)
-        else:
-            shown = fmt_fraction(self.mean_x)
-            step = ((texts.t('s7', self.language, shown=shown)))
-            self.final_answer = shown
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.final_answer)))]
+        from re_rl.tasks.ml.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

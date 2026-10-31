@@ -50,7 +50,12 @@ def floyd_stats(n: int, edges: Sequence[Edge]) -> Tuple[int, int]:
     return total, diameter
 
 
-class FloydDistanceTask(BaseMathTask):
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import floyd_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+
+
+class FloydDistanceTask(_GraphBase):
     TASK_TYPE = "floyd_distance"
     TASK_TYPES = ["sum", "diameter"]
 
@@ -96,8 +101,9 @@ class FloydDistanceTask(BaseMathTask):
         return f"{data} {ask}"
 
     def solve(self):
-        step = ((texts.t('s1', self.language, total=self.total, diameter=self.diameter)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
+        self.total, self.diameter, self.algorithm_trace = floyd_trace(self.n, self.edges)
+        self.answer = self.total if self.task_type == 'sum' else self.diameter
+        self.solution_steps = render_trace(self.algorithm_trace, 'floyd', self.language, vertex_offset=1)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

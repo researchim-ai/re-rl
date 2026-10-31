@@ -90,6 +90,10 @@ class BoxPlotTask(VisualTaskMixin, BaseMathTask):
         return f"{head} {asks}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         note = {
             "median": ((texts.t('s4', self.language, med=self.med))),
             "iqr": ((texts.t('s5', self.language, q1=self.q1, q3=self.q3, answer=self.answer))),

@@ -68,10 +68,8 @@ class UnivariateRegressionTask(BaseMathTask):
         return ((texts.t('s2', language, v0=self._pts(), what=what)))
 
     def solve(self):
-        step = ((f"b = {fmt_fraction(self.slope)}, a = {fmt_fraction(self.intercept)}."))
-        shown = fmt_fraction(self.answer)
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
-        self.final_answer = shown
+        from re_rl.tasks.ml.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

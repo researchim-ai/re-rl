@@ -45,6 +45,10 @@ class HookeLawTask(BaseMathTask):
         return texts.t("s2", language, force=self.force, x=self.x)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "force":
             step = texts.t("s3", self.language, k=self.k, x=self.x, force=self.force)
         elif self.task_type == "extension":

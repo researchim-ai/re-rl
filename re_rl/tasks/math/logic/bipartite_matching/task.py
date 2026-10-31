@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Tuple
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import matching_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
 
 class BipartiteMatchingTask(_GraphBase):
     TASK_TYPE = "bipartite_matching"
@@ -72,10 +74,8 @@ class BipartiteMatchingTask(_GraphBase):
         return ((texts.t('s0', language, v0=self.L - 1, v1=self.R - 1, es=es)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s2', self.language))),
-            ((texts.t('s3', self.language, _answer=self._answer))),
-        ]
+        self._answer, self.algorithm_trace = matching_trace(self.L, self.R, self.pairs)
+        self.solution_steps = render_trace(self.algorithm_trace, 'matching', self.language)
         self.final_answer = str(self._answer)
 
     def verify(self, prediction):

@@ -53,6 +53,10 @@ class JouleHeatTask(BaseMathTask):
         return texts.t("s2", language, heat=self.heat, r=self.r, t=self.t)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "heat":
             step = texts.t("s3", self.language, i=self.i, r=self.r, t=self.t, heat=self.heat)
         elif self.task_type == "time":

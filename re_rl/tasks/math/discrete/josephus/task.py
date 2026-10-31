@@ -52,6 +52,10 @@ class JosephusTask(BaseMathTask):
         return ((texts.t('s0', language, n=self.n, n_2=self.n, n_3=self.n, k=self.k)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         gone = ", ".join(map(str, self.eliminated)) if self.eliminated else ((texts.t('s2', self.language)))
         step = ((texts.t('s1', self.language, gone=gone, answer=self.answer)))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]

@@ -28,7 +28,7 @@ class MagicSquareVisualTask(VisualTaskMixin, MagicSquareTask):
         self.description = self._descr_visual(language)
 
     def render_image(self):
-        grid = [["?" if r * 3 + c in self.hidden else self.solution[r * 3 + c]
+        grid = [["?" if r * 3 + c in self.hidden else self.given[r * 3 + c]
                  for c in range(3)] for r in range(3)]
         return render_number_grid(grid, cell=64, blanks=())
 

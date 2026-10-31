@@ -120,6 +120,10 @@ class ResolutionTask(BaseMathTask):
         return ((texts.t('s0', language, cs=cs)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "unsat":
             self.solution_steps = [
                 ((texts.t('s4', self.language))),

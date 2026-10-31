@@ -82,6 +82,10 @@ class KMPMatchingTask(BaseMathTask):
         return ((texts.t('s0', language, pattern=self.pattern, text=self.text)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "failure_function":
             arr = ", ".join(map(str, self.pi))
             self.solution_steps = [

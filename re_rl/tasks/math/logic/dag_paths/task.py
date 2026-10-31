@@ -11,6 +11,9 @@ import random
 from typing import Any, ClassVar, Dict, List, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.structural_traces import path_counts_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -25,7 +28,7 @@ def count_paths(n: int, edges: List[Tuple[int, int]]) -> int:
     return ways[n]
 
 
-class DagPathsTask(BaseMathTask):
+class DagPathsTask(_GraphBase):
     TASK_TYPE = "dag_paths"
     TASK_TYPES = ["count"]
 
@@ -62,10 +65,10 @@ class DagPathsTask(BaseMathTask):
         return ((texts.t('s0', language, n=self.n, shown=shown, n_2=self.n)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language, answer=self.answer))),
-            ((texts.common('answer_line', self.language, answer=self.answer))),
-        ]
+        _, ways, self.algorithm_trace = path_counts_trace(self.n, [(a - 1, b - 1) for a, b in self.edges], 0, directed=True)
+        self.answer = ways[-1]
+        self.algorithm_trace.append(dict(event='answer', answer=self.answer))
+        self.solution_steps = render_trace(self.algorithm_trace, 'counts', self.language)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

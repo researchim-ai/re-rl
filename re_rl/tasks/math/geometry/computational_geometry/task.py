@@ -174,6 +174,10 @@ class ComputationalGeometryTask(BaseMathTask):
         return ((texts.t('s0', language, v0=self._pts_str(self.points))))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "convex_hull":
             step = ((texts.t('s4', self.language)))
             self.final_answer = str(self.answer)

@@ -12,6 +12,9 @@ from collections import deque
 from typing import Any, ClassVar, Dict, List, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import traversal_trace
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
@@ -39,7 +42,7 @@ def eccentricities(n: int, edges: List[Tuple[int, int]]) -> List[int]:
     return ecc
 
 
-class TreeRadiusTask(BaseMathTask):
+class TreeRadiusTask(_GraphBase):
     TASK_TYPE = "tree_radius"
     TASK_TYPES = ["radius", "eccentricity"]
 
@@ -74,8 +77,16 @@ class TreeRadiusTask(BaseMathTask):
         return f"{head} {ask}"
 
     def solve(self):
-        step = ((texts.t('s1', self.language, radius=self.radius, vertex=self.vertex, v2=self.ecc[self.vertex])))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=self.answer)))]
+        self.algorithm_trace, values = [], []
+        for source in range(self.n):
+            value, events = traversal_trace(self.n, [(a - 1, b - 1) for a, b in self.edges], 'all_distances', source)
+            values.append(value)
+            self.algorithm_trace.extend(dict(e, algorithm='walk', vertex_offset=1) for e in events)
+        self.ecc = [0] + values
+        self.radius = min(values)
+        self.answer = self.radius if self.task_type == 'radius' else self.ecc[self.vertex]
+        self.algorithm_trace.append(dict(event='done', values=values, radius=self.radius, vertex=self.vertex, ecc=self.ecc[self.vertex], answer=self.answer))
+        self.solution_steps = render_trace(self.algorithm_trace, 'radius', self.language)
         self.final_answer = str(self.answer)
 
     def verify(self, prediction: str) -> float:

@@ -38,7 +38,10 @@ class StarBattleTask(_GridBase):
             ok = all(abs(cols[r] - cols[r + 1]) >= 2 for r in range(n - 1))
             if ok:
                 return [(r, cols[r]) for r in range(n)]
-        return [(r, r) for r in range(n)]
+        from re_rl.tasks.math.logic.board_search_traces import star_battle
+        result = star_battle([[r]*n for r in range(n)])
+        if result is None: raise RuntimeError('generation_failed')
+        return result
 
     def _partition(self, stars):
         n = self.n
@@ -67,6 +70,10 @@ class StarBattleTask(_GridBase):
         return ((texts.t('s0', language, n=self.n, n_2=self.n, n_3=self.n, rows=rows)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         coords = ", ".join(f"({r+1}, {c+1})" for (r, c) in sorted(self.stars))
         self.solution_steps = [
             ((texts.t('s1', self.language))),
@@ -95,10 +102,6 @@ class StarBattleTask(_GridBase):
     def verify(self, prediction):
         if self.final_answer is None:
             self.solve()
-        ints = U.parse_ints(prediction)
-        if len(ints) % 2 == 1:
-            ints = ints[:-1]
-        stars = set()
-        for k in range(0, len(ints), 2):
-            stars.add((ints[k] - 1, ints[k + 1] - 1))
-        return 1.0 if self._valid_stars(stars) else 0.0
+        from re_rl.tasks.math.logic.grids2_shared.coordinates import parse_coordinates
+        stars = parse_coordinates(prediction)
+        return 1.0 if stars is not None and self._valid_stars(stars) else 0.0

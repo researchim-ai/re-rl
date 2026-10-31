@@ -111,6 +111,10 @@ class ProgramTraceTask(BaseMathTask):
         return (texts.t('s2', language, code_en=code_en, query=self.query))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         self.solution_steps = [
             ((texts.t('s0', self.language))),
             ((texts.t('s1', self.language, query=self.query, _answer=self._answer))),

@@ -1,0 +1,690 @@
+{
+  "text": {
+    "dijkstra": {
+      "init": {
+        "ru": "Дейкстра: d[{source}]=0, остальные расстояния ∞. Таблица d: {distances}. Извлекаем минимальную пару (расстояние, номер вершины).",
+        "en": "Dijkstra: d[{source}]=0, all other distances are ∞. Table d: {distances}. Extract the minimum pair (distance, vertex ID)."
+      },
+      "settle": {
+        "ru": "Фиксируем вершину {vertex}: минимальное расстояние {distance}. Таблица d: {distances}.",
+        "en": "Settle vertex {vertex}: minimum distance {distance}. Table d: {distances}."
+      },
+      "relax": {
+        "ru": "Ребро {vertex}→{neighbor}, вес {weight}: кандидат {distance}+{weight}={candidate}, прежнее d[{neighbor}]={old}. {decision} Таблица d: {distances}.",
+        "en": "Edge {vertex}→{neighbor}, weight {weight}: candidate {distance}+{weight}={candidate}, previous d[{neighbor}]={old}. {decision} Table d: {distances}."
+      },
+      "stale": {
+        "ru": "Пропускаем устаревшую запись ({distance}, {vertex}) из очереди.",
+        "en": "Skip stale queue entry ({distance}, {vertex})."
+      },
+      "path": {
+        "ru": "Маршрут: {path}. Сумма весов: {weights} = {answer}. Целевая вершина зафиксирована: более короткий путь невозможен при неотрицательных весах.",
+        "en": "Path: {path}. Sum of weights: {weights} = {answer}. The target is settled: no shorter path is possible with nonnegative weights."
+      },
+      "unreachable": {
+        "ru": "Очередь исчерпана, вершина {target} недостижима из {source}. Ответ -1.",
+        "en": "The queue is exhausted; vertex {target} is unreachable from {source}. Answer: -1."
+      }
+    },
+    "update": {
+      "ru": "Обновляем расстояние и предка.",
+      "en": "Update the distance and predecessor."
+    },
+    "keep": {
+      "ru": "Оставляем прежнее расстояние.",
+      "en": "Keep the previous distance."
+    },
+    "kruskal": {
+      "init": {
+        "ru": "Крускал: упорядочим рёбра по (весу, меньшему концу, большему концу): {edges}. Каждая вершина сначала в своей компоненте.",
+        "en": "Kruskal: sort edges by (weight, smaller endpoint, larger endpoint): {edges}. Each vertex initially forms its own component."
+      },
+      "edge": {
+        "ru": "Ребро {a}—{b}, вес {weight}: {decision} Выбрано рёбер {count}, суммарный вес {total}.",
+        "en": "Edge {a}—{b}, weight {weight}: {decision} Selected edges: {count}, total weight: {total}."
+      },
+      "tree": {
+        "ru": "Остов: {edges}; число рёбер {count}, суммарный вес {total}. Безопасный выбор Крускала даёт минимальный остов.",
+        "en": "Spanning tree: {edges}; edge count {count}, total weight {total}. Kruskal’s safe choices yield a minimum spanning tree."
+      }
+    },
+    "accept": {
+      "ru": "концы в разных компонентах; добавляем ребро и объединяем компоненты.",
+      "en": "endpoints are in different components; add the edge and merge the components."
+    },
+    "reject": {
+      "ru": "концы уже связаны; ребро создало бы цикл, отклоняем.",
+      "en": "endpoints are already connected; reject the edge because it would create a cycle."
+    },
+    "kahn": {
+      "init": {
+        "ru": "Алгоритм Кана. Входящие степени по номерам вершин: {degrees}. Доступные вершины с нулевой степенью: {queue}. При равенстве выбираем меньший номер.",
+        "en": "Kahn’s algorithm. Indegrees by vertex ID: {degrees}. Available zero-indegree vertices: {queue}. Break ties by smaller vertex ID."
+      },
+      "take": {
+        "ru": "Берём вершину {vertex}. Текущий порядок: {order}. Оставшаяся очередь: {queue}.",
+        "en": "Take vertex {vertex}. Current order: {order}. Remaining queue: {queue}."
+      },
+      "remove": {
+        "ru": "Удаляем дугу {vertex}→{neighbor}: входящая степень {neighbor} меняется {old}→{degree}. Доступная очередь: {queue}.",
+        "en": "Remove arc {vertex}→{neighbor}: indegree of {neighbor} changes {old}→{degree}. Available queue: {queue}."
+      },
+      "done": {
+        "ru": "Удалено {count} из {n} вершин. Порядок: {order}; не удалены: {blocked}. {decision}",
+        "en": "Removed {count} of {n} vertices. Order: {order}; remaining: {blocked}. {decision}"
+      }
+    },
+    "cycle": {
+      "ru": "Очередь пуста, но остались вершины: в графе есть цикл.",
+      "en": "The queue is empty but vertices remain: the graph contains a cycle."
+    },
+    "acyclic": {
+      "ru": "Все вершины удалены: цикла нет, порядок является топологическим.",
+      "en": "All vertices were removed: there is no cycle and the order is topological."
+    },
+    "flow": {
+      "init": {
+        "ru": "Эдмондс–Карп: поток 0, остаточные ёмкости равны исходным. Исток {source}, сток {target}. BFS ищет увеличивающий путь.",
+        "en": "Edmonds–Karp: flow is 0 and residual capacities equal original capacities. Source {source}, sink {target}. BFS searches for an augmenting path."
+      },
+      "augment": {
+        "ru": "BFS нашёл путь {path}. Минимальная остаточная ёмкость на пути {bottleneck}; увеличиваем поток до {total}.",
+        "en": "BFS found path {path}. The minimum residual capacity on the path is {bottleneck}; increase total flow to {total}."
+      },
+      "residual": {
+        "ru": "Для дуги {a}→{b} вычитаем {bottleneck}: остаток {old_forward}→{forward}; для обратной {b}→{a} прибавляем {bottleneck}: {old_reverse}→{reverse}.",
+        "en": "For arc {a}→{b}, subtract {bottleneck}: residual {old_forward}→{forward}; for reverse arc {b}→{a}, add {bottleneck}: {old_reverse}→{reverse}."
+      },
+      "cut": {
+        "ru": "Увеличивающих путей нет. Из истока в остаточной сети достижимы {reachable}. Рёбра разреза: {edges}, ёмкость {capacity}. Она равна потоку {total}; по теореме о потоке и разрезе поток максимален.",
+        "en": "No augmenting path remains. Residually reachable from the source: {reachable}. Cut edges: {edges}, capacity {capacity}. This equals flow {total}; the max-flow min-cut theorem certifies optimality."
+      },
+      "bfs": {
+        "ru": "Начинаем BFS при потоке {total}. Очередь: {queue}.",
+        "en": "Start BFS at flow {total}. Queue: {queue}."
+      },
+      "visit": {
+        "ru": "BFS извлекает вершину {vertex}; оставшаяся очередь {queue}.",
+        "en": "BFS removes vertex {vertex}; remaining queue {queue}."
+      },
+      "discover": {
+        "ru": "Впервые достигаем {neighbor} из {vertex}: остаточная ёмкость {capacity}>0. Запоминаем предка {vertex}; очередь {queue}.",
+        "en": "First reach {neighbor} from {vertex}: residual capacity {capacity}>0. Store predecessor {vertex}; queue {queue}."
+      }
+    },
+    "color": {
+      "init": {
+        "ru": "Точный поиск раскраски: вершины по возрастанию, цвета с 1. Новые цвета вводим по порядку: перестановки названий цветов эквивалентны. Проверяем все оставшиеся ветви.",
+        "en": "Exact coloring search: process vertices in ascending order, colors from 1. Introduce new colors in order: permutations of color labels are equivalent. Explore all remaining branches."
+      },
+      "try": {
+        "ru": "Проверяем палитру из {k} цветов, начиная с пустой раскраски.",
+        "en": "Try a palette of {k} colors, starting from an empty coloring."
+      },
+      "conflict": {
+        "ru": "Вершине {vertex} нельзя дать цвет {color}: его уже имеют соседи {neighbors}.",
+        "en": "Vertex {vertex} cannot use color {color}: neighbors {neighbors} already use it."
+      },
+      "assign": {
+        "ru": "Назначаем вершине {vertex} цвет {color}. Цвета по номерам вершин (0 — ещё не назначен): {colors}.",
+        "en": "Assign color {color} to vertex {vertex}. Colors by vertex ID (0 means unassigned): {colors}."
+      },
+      "backtrack": {
+        "ru": "Ветка не дала полной раскраски. Снимаем цвет {color} с вершины {vertex}; состояние {colors}.",
+        "en": "This branch did not yield a complete coloring. Remove color {color} from vertex {vertex}; state {colors}."
+      },
+      "success": {
+        "ru": "Найдена допустимая раскраска {k} цветами: {colors}. Для каждого ребра цвета концов различны.",
+        "en": "Found a valid coloring with {k} colors: {colors}. Every edge has differently colored endpoints."
+      },
+      "impossible": {
+        "ru": "Все неэквивалентные ветви для {k} цветов исчерпаны; допустимой раскраски нет.",
+        "en": "All inequivalent branches for {k} colors are exhausted; no valid coloring exists."
+      }
+    },
+    "walk": {
+      "init": {
+        "ru": "Обход графа из {n} вершин. Для BFS первое достижение даёт минимальное расстояние; для компонент начинаем новый обход из каждой непосещённой вершины; для двудольности соседям назначаем разные цвета.",
+        "en": "Traverse {n} vertices. BFS first discovery gives minimum distance; components start at every unvisited vertex; bipartiteness requires opposite colors across edges."
+      },
+      "root": {
+        "ru": "Начинаем обход из {vertex}, номер компоненты {component}. Расстояние 0, цвет 0; очередь {queue}.",
+        "en": "Start at {vertex}, component {component}. Distance 0, color 0; queue {queue}."
+      },
+      "visit": {
+        "ru": "Извлекаем {vertex}: расстояние {distance}, цвет {color}; очередь {queue}.",
+        "en": "Remove {vertex}: distance {distance}, color {color}; queue {queue}."
+      },
+      "discover": {
+        "ru": "По ребру {vertex}—{neighbor} впервые достигаем {neighbor}: расстояние {distance}, цвет {color}. Очередь {queue}.",
+        "en": "Edge {vertex}—{neighbor} first discovers {neighbor}: distance {distance}, color {color}. Queue {queue}."
+      },
+      "check": {
+        "ru": "Сосед {neighbor} вершины {vertex} уже посещён. Цвета концов: {left}, {right}.",
+        "en": "Neighbor {neighbor} of {vertex} was already visited. Endpoint colors: {left}, {right}."
+      },
+      "conflict": {
+        "ru": "Ребро {vertex}—{neighbor} соединяет вершины одного цвета {color}. Двудольной раскраски нет.",
+        "en": "Edge {vertex}—{neighbor} joins vertices of the same color {color}. No bipartition exists."
+      },
+      "distance": {
+        "ru": "Кратчайший путь {source}→{target}: {path}; число рёбер {answer}. Пустой маршрут и -1 означают недостижимость.",
+        "en": "Shortest path {source}→{target}: {path}; edge count {answer}. An empty route and -1 indicate unreachability."
+      },
+      "components": {
+        "ru": "Обходами посещены {visited}; число начатых компонент {answer}.",
+        "en": "Traversals visited {visited}; number of components started: {answer}."
+      },
+      "bipartite": {
+        "ru": "Все рёбра проверены, конфликтов нет. Цвета по номерам вершин: {colors}; граф двудольный.",
+        "en": "All edges checked without conflicts. Colors by vertex ID: {colors}; the graph is bipartite."
+      },
+      "table": {
+        "ru": "BFS из {source} завершён. Расстояния по вершинам: {distances}. Эксцентриситет {answer}.",
+        "en": "BFS from {source} is complete. Distances by vertex ID: {distances}. Eccentricity {answer}."
+      },
+      "diameter": {
+        "ru": "Эксцентриситеты всех вершин: {values}. Их максимум, диаметр графа: {answer}.",
+        "en": "Vertex eccentricities: {values}. Their maximum, the graph diameter: {answer}."
+      }
+    },
+    "euler": {
+      "init": {
+        "ru": "Проверим эйлеров путь: считаем степени, связность вершин с ненулевой степенью и число нечётных вершин. Затем строим маршрут по рёбрам.",
+        "en": "Check an Euler trail: count degrees, connectivity of non-isolated vertices and odd-degree vertices. Then construct an edge traversal."
+      },
+      "degree": {
+        "ru": "Ребро {a}—{b} увеличивает обе степени. Таблица степеней: {degrees}.",
+        "en": "Edge {a}—{b} increases both degrees. Degree table: {degrees}."
+      },
+      "parity": {
+        "ru": "Итоговые степени {degrees}. Нечётные вершины {odd}; допустимо 0 или 2.",
+        "en": "Final degrees {degrees}. Odd-degree vertices {odd}; the allowed count is 0 or 2."
+      },
+      "empty": {
+        "ru": "Рёбер нет; в используемой постановке непустого эйлерова пути нет.",
+        "en": "There are no edges; this task requires a nonempty Euler trail."
+      },
+      "connect": {
+        "ru": "Проверка связности: из {vertex} впервые достигнуты {discovered}; очередь {queue}.",
+        "en": "Connectivity check: from {vertex}, first reach {discovered}; queue {queue}."
+      },
+      "connected": {
+        "ru": "Ненулевые вершины, не достигнутые обходом: {missing}.",
+        "en": "Non-isolated vertices not reached by the traversal: {missing}."
+      },
+      "impossible": {
+        "ru": "Путь невозможен: недостижимые ненулевые вершины {missing}, нечётные вершины {odd}. Нужно связное множество рёбер и 0 или 2 нечётные вершины.",
+        "en": "No trail exists: unreachable non-isolated vertices {missing}, odd vertices {odd}. Edges must be connected and the odd-degree count must be 0 or 2."
+      },
+      "start": {
+        "ru": "Алгоритм Хиерхольцера. Старт {vertex}, стек {stack}. При двух нечётных вершинах начинаем с нечётной.",
+        "en": "Hierholzer’s algorithm. Start at {vertex}, stack {stack}. With two odd-degree vertices, start at an odd vertex."
+      },
+      "edge": {
+        "ru": "Используем ребро #{edge}: {a}→{b}. Стек {stack}. Каждое ребро берётся один раз.",
+        "en": "Use edge #{edge}: {a}→{b}. Stack {stack}. Each edge is used once."
+      },
+      "pop": {
+        "ru": "У {vertex} нет неиспользованных рёбер. Снимаем со стека; стек {stack}, обратный маршрут {reverse_route}.",
+        "en": "Vertex {vertex} has no unused edges. Pop it; stack {stack}, reversed route {reverse_route}."
+      },
+      "path": {
+        "ru": "Разворачиваем маршрут: {path}. Использовано {count} из {total} рёбер; эйлеров путь построен.",
+        "en": "Reverse the route: {path}. Used {count} of {total} edges; an Euler trail is constructed."
+      }
+    },
+    "hamilton": {
+      "init": {
+        "ru": "ДП по маскам: состояние (mask, v) означает путь по ровно выбранным вершинам с концом v. Бит 2^v обозначает вершину v. Начальные состояния {starts}.",
+        "en": "Subset DP: (mask, v) means a path through exactly the selected vertices, ending at v. Bit 2^v represents v. Initial states {starts}."
+      },
+      "expand": {
+        "ru": "Состояние ({mask}, {vertex}) достижимо. Соседи, ещё не входящие в маску: {choices}. Другие переходы запрещены.",
+        "en": "State ({mask}, {vertex}) is reachable. Neighbors not yet in the mask: {choices}. Other transitions are forbidden."
+      },
+      "transition": {
+        "ru": "Переход по ребру {vertex}→{neighbor}: ({mask}, {vertex}) → ({new_mask}, {neighbor}). Новое состояние: {fresh} (1 — да, 0 — уже достигнуто).",
+        "en": "Edge transition {vertex}→{neighbor}: ({mask}, {vertex}) → ({new_mask}, {neighbor}). New state: {fresh} (1 yes, 0 already reached)."
+      },
+      "path": {
+        "ru": "Достигнута полная маска {mask}. По предкам восстанавливаем гамильтонов путь {path}.",
+        "en": "Reached the full mask {mask}. Reconstruct a Hamiltonian path from predecessors: {path}."
+      },
+      "impossible": {
+        "ru": "Обработано {states} достижимых состояний; полная маска {mask} недостижима ни с каким концом. Гамильтонова пути нет.",
+        "en": "Processed {states} reachable states; the full mask {mask} is unreachable at every endpoint. No Hamiltonian path exists."
+      }
+    },
+    "matching": {
+      "init": {
+        "ru": "Ищем максимальное паросочетание: слева {left_size}, справа {right_size} вершин. Начинаем с пустого; BFS ищет чередующиеся увеличивающие пути.",
+        "en": "Find a maximum matching with {left_size} left and {right_size} right vertices. Start empty; BFS searches for alternating augmenting paths."
+      },
+      "start": {
+        "ru": "Пробуем добавить L{left}; очередь левых вершин {queue}.",
+        "en": "Try to add L{left}; left-vertex queue {queue}."
+      },
+      "visit": {
+        "ru": "BFS обрабатывает L{left}; очередь {queue}.",
+        "en": "BFS processes L{left}; queue {queue}."
+      },
+      "seen": {
+        "ru": "Пропускаем L{left}—R{right}: правая вершина уже посещена в этом поиске.",
+        "en": "Skip L{left}—R{right}: the right vertex was already visited in this search."
+      },
+      "inspect": {
+        "ru": "Проверяем L{left}—R{right}. Текущий партнёр справа: {owner} (∞ означает свободную вершину).",
+        "en": "Inspect L{left}—R{right}. Current partner of the right vertex: {owner} (∞ means unmatched)."
+      },
+      "follow": {
+        "ru": "R{right} занята L{left}; продолжаем чередующийся поиск через L{left}. Очередь {queue}.",
+        "en": "R{right} is matched to L{left}; continue alternating search through L{left}. Queue {queue}."
+      },
+      "failed": {
+        "ru": "Для L{left} увеличивающего пути нет. Достигнуты левые {reached_left}, правые {reached_right}; паросочетание не меняется.",
+        "en": "No augmenting path for L{left}. Reached left vertices {reached_left}, right vertices {reached_right}; matching unchanged."
+      },
+      "augment": {
+        "ru": "Найдена свободная правая вершина. Переназначаем пары [L,R] вдоль пути: {assignments}. Паросочетание {matching}, размер {size}.",
+        "en": "A free right vertex was found. Reassign [L,R] pairs along the path: {assignments}. Matching {matching}, size {size}."
+      },
+      "done": {
+        "ru": "Все левые вершины обработаны; увеличивающих путей нет. Максимальное паросочетание {matching}, размер {size}.",
+        "en": "All left vertices have been processed; no augmenting path remains. Maximum matching {matching}, size {size}."
+      }
+    },
+    "heldkarp": {
+      "init": {
+        "ru": "Точное ДП Хелда–Карпа для {n} вершин. dp[mask,v] — минимальная стоимость пути из 0 по вершинам mask с концом v. Начало dp[{mask},{vertex}]={cost}.",
+        "en": "Exact Held–Karp DP for {n} vertices. dp[mask,v] is the minimum cost from 0 through vertices in mask ending at v. Initially dp[{mask},{vertex}]={cost}."
+      },
+      "transition": {
+        "ru": "Из dp[{mask},{vertex}]={cost} по ребру {vertex}→{neighbor} веса {weight}: кандидат {candidate} для dp[{new_mask},{neighbor}], прежнее {old}. Обновление: {improved} (1 — да, 0 — нет).",
+        "en": "From dp[{mask},{vertex}]={cost} along {vertex}→{neighbor} of weight {weight}: candidate {candidate} for dp[{new_mask},{neighbor}], previous {old}. Update: {improved} (1 yes, 0 no)."
+      },
+      "close": {
+        "ru": "Замыкаем тур из {vertex} в 0: {cost}+{weight}={candidate}. Лучший полный тур на данный момент {best}.",
+        "en": "Close the tour from {vertex} to 0: {cost}+{weight}={candidate}. Best complete tour so far: {best}."
+      },
+      "path": {
+        "ru": "Оптимальный тур по предкам: {path}; веса {weights}, сумма {answer}. ДП сравнило все допустимые способы продолжения каждого состояния.",
+        "en": "Optimal tour reconstructed from predecessors: {path}; weights {weights}, sum {answer}. DP compared all admissible continuations of each state."
+      }
+    },
+    "dag": {
+      "init": {
+        "ru": "Топологический порядок {order}. d[v] — лучший вес пути с концом v; изначально {values}, так как путь может начинаться в любой вершине.",
+        "en": "Topological order {order}. d[v] is the best path weight ending at v; initially {values}, since a path may start at any vertex."
+      },
+      "vertex": {
+        "ru": "Обрабатываем вершину {vertex}: окончательное d[{vertex}]={value}. Все её предшественники уже обработаны.",
+        "en": "Process vertex {vertex}: final d[{vertex}]={value}. All predecessors were already processed."
+      },
+      "relax": {
+        "ru": "Дуга {vertex}→{neighbor}, вес {weight}: {value}+{weight}={candidate}, прежнее d[{neighbor}]={old}. Обновление {improved} (1 — да, 0 — нет); таблица {values}.",
+        "en": "Arc {vertex}→{neighbor}, weight {weight}: {value}+{weight}={candidate}, previous d[{neighbor}]={old}. Update {improved} (1 yes, 0 no); table {values}."
+      },
+      "path": {
+        "ru": "Итоговая таблица {values}. Максимальный вес {answer}; восстановленный путь {path}.",
+        "en": "Final table {values}. Maximum weight {answer}; reconstructed path {path}."
+      }
+    },
+    "floyd": {
+      "init": {
+        "ru": "Флойд–Уоршелл: 0 на диагонали, ∞ для неизвестных путей. Матрица {matrix}. Номера вершин начинаются с 1; на каждой фазе добавляем следующую допустимую промежуточную вершину.",
+        "en": "Floyd–Warshall: diagonal 0, unknown paths ∞. Matrix {matrix}. Vertex IDs start at 1; each phase allows the next intermediate vertex."
+      },
+      "edge": {
+        "ru": "Дуга {a}→{b}, вес {weight}: прежнее {old}, новое значение {value}; для повторных дуг берём минимум.",
+        "en": "Arc {a}→{b}, weight {weight}: previous {old}, new value {value}; parallel arcs use the minimum."
+      },
+      "via": {
+        "ru": "Добавляем промежуточную вершину {via}. Проверяем каждую упорядоченную пару.",
+        "en": "Add intermediate vertex {via}. Check every ordered pair."
+      },
+      "compare": {
+        "ru": "Пара ({a},{b}) через {via}: {left}+{right}={candidate}, прежнее {old}. Обновление {improved} (1 — да, 0 — нет); результат {value}. ∞ не образует конечного пути.",
+        "en": "Pair ({a},{b}) via {via}: {left}+{right}={candidate}, previous {old}. Update {improved} (1 yes, 0 no); result {value}. ∞ does not form a finite path."
+      },
+      "done": {
+        "ru": "Итоговая матрица расстояний {matrix}. Для различных вершин сумма конечных расстояний {total}, максимум {diameter}.",
+        "en": "Final distance matrix {matrix}. Over distinct vertices, finite distances sum to {total}, maximum {diameter}."
+      }
+    },
+    "cluster": {
+      "init": {
+        "ru": "Считаем коэффициент кластеризации каждой из {n} вершин, затем берём среднее.",
+        "en": "Compute clustering coefficients for all {n} vertices, then take the average."
+      },
+      "neighbors": {
+        "ru": "Вершина {vertex}: соседи {neighbors}, степень {degree}. Проверим рёбра между всеми парами соседей.",
+        "en": "Vertex {vertex}: neighbors {neighbors}, degree {degree}. Check edges between every pair of neighbors."
+      },
+      "pair": {
+        "ru": "Для соседей {a}, {b} вершины {vertex} наличие ребра {present} (1 — есть, 0 — нет). Всего связей между соседями {links}.",
+        "en": "Neighbors {a}, {b} of vertex {vertex}: edge present {present} (1 yes, 0 no). Neighbor links so far: {links}."
+      },
+      "local": {
+        "ru": "Вершина {vertex}: степень {degree}, связей соседей {links}; C=2×links/(degree×(degree−1))={value}. При степени меньше 2 принимаем C=0.",
+        "en": "Vertex {vertex}: degree {degree}, neighbor links {links}; C=2×links/(degree×(degree−1))={value}. For degree below 2, C=0."
+      },
+      "done": {
+        "ru": "Локальные коэффициенты {coefficients}. Делим сумму на {n}: среднее {value} ≈ {answer}.",
+        "en": "Local coefficients {coefficients}. Divide their sum by {n}: average {value} ≈ {answer}."
+      }
+    },
+    "scc": {
+      "enter": {
+        "ru": "Первый DFS: вход в вершину {vertex}.",
+        "en": "First DFS: enter vertex {vertex}."
+      },
+      "edge": {
+        "ru": "Дуга {a}→{b}: сосед уже посещён {seen} (1 — да, 0 — нет).",
+        "en": "Arc {a}→{b}: neighbor already visited {seen} (1 yes, 0 no)."
+      },
+      "finish": {
+        "ru": "Выходим из {vertex}; порядок завершения {order}.",
+        "en": "Finish {vertex}; finishing order {order}."
+      },
+      "reverse": {
+        "ru": "Обращаем все дуги. Второй обход в порядке {order}.",
+        "en": "Reverse all arcs. Second traversal order: {order}."
+      },
+      "collect": {
+        "ru": "В обращённом графе из {vertex} добавляем {added}; очередь {queue}, текущая компонента {group}.",
+        "en": "In the reversed graph, from {vertex} add {added}; queue {queue}, current component {group}."
+      },
+      "group": {
+        "ru": "Компонента {group} завершена. Всего компонент {count}.",
+        "en": "Component {group} completed. Components so far: {count}."
+      },
+      "done": {
+        "ru": "Компоненты сильной связности {groups}; ответ {answer}.",
+        "en": "Strongly connected components {groups}; answer {answer}."
+      }
+    },
+    "low": {
+      "enter": {
+        "ru": "DFS входит в {vertex}, родитель {parent} (-1 — корень). disc={disc}, low={low}.",
+        "en": "DFS enters {vertex}, parent {parent} (-1 means root). disc={disc}, low={low}."
+      },
+      "tree": {
+        "ru": "Древесное ребро {a}—{b}: рекурсивно обходим {b}.",
+        "en": "Tree edge {a}—{b}: recursively visit {b}."
+      },
+      "return": {
+        "ru": "Возврат {b}→{a}: low[{a}]=min({old},{child_low})={low}. Сравниваем low[{b}]={child_low} с disc[{a}]={disc}: мост {bridge}; точка сочленения по этому ребёнку {point} (1 — да, 0 — нет).",
+        "en": "Return {b}→{a}: low[{a}]=min({old},{child_low})={low}. Compare low[{b}]={child_low} with disc[{a}]={disc}: bridge {bridge}; articulation through this child {point} (1 yes, 0 no)."
+      },
+      "back": {
+        "ru": "Обратное ребро {a}—{b}: low[{a}]=min({old},disc[{b}]={disc})={low}.",
+        "en": "Back edge {a}—{b}: low[{a}]=min({old},disc[{b}]={disc})={low}."
+      },
+      "root": {
+        "ru": "Корень {vertex}: детей DFS {children}; точка сочленения {point} (нужно больше одного ребёнка).",
+        "en": "Root {vertex}: DFS children {children}; articulation {point} (requires more than one child)."
+      },
+      "done": {
+        "ru": "Точки сочленения {points}; мосты {bridges}; ответ для заданного запроса {answer}.",
+        "en": "Articulation points {points}; bridges {bridges}; answer to the requested query {answer}."
+      }
+    },
+    "negative": {
+      "init": {
+        "ru": "Беллман–Форд с виртуальным истоком: все {n} расстояний равны 0. Изменение на n-м проходе означает отрицательный цикл.",
+        "en": "Bellman–Ford with a virtual source: all {n} distances are 0. An update on pass n implies a negative cycle."
+      },
+      "phase": {
+        "ru": "Проход {phase}: проверяем все дуги.",
+        "en": "Pass {phase}: inspect all arcs."
+      },
+      "relax": {
+        "ru": "Дуга {a}→{b} веса {weight}: кандидат {candidate}, старое {old}, обновление {improved}. Расстояния {distances}.",
+        "en": "Arc {a}→{b}, weight {weight}: candidate {candidate}, old {old}, update {improved}. Distances {distances}."
+      },
+      "stable": {
+        "ru": "На проходе {phase} изменений нет: отрицательных циклов нет.",
+        "en": "No changes on pass {phase}: there are no negative cycles."
+      },
+      "cycle": {
+        "ru": "После n проходов обновления продолжаются. По предкам восстановлен цикл {path}, сумма весов {weight}<0.",
+        "en": "Updates continue after n passes. Predecessors reconstruct cycle {path}, total weight {weight}<0."
+      }
+    },
+    "query": {
+      "degree": {
+        "ru": "Вершина {vertex}: степень {degree}; накопленное число листьев {count}.",
+        "en": "Vertex {vertex}: degree {degree}; leaf count so far {count}."
+      },
+      "leaves": {
+        "ru": "Листья {leaves}; ответ {answer}.",
+        "en": "Leaves {leaves}; answer {answer}."
+      },
+      "parent": {
+        "ru": "BFS от корня 1: родитель {vertex} — {parent}; глубина {depth}.",
+        "en": "BFS from root 1: parent of {vertex} is {parent}; depth {depth}."
+      },
+      "height": {
+        "ru": "Глубины (вершина, глубина): {depths}. Максимум, высота дерева: {answer}.",
+        "en": "Depths (vertex, depth): {depths}. Maximum, the tree height: {answer}."
+      },
+      "lift": {
+        "ru": "Выравниваем глубины: вершину {vertex} глубины {depth} заменяем родителем {parent}.",
+        "en": "Equalize depths: replace vertex {vertex} at depth {depth} with parent {parent}."
+      },
+      "pair": {
+        "ru": "Вершины {a}, {b} различны на одной глубине. Одновременно поднимаем их к {pa}, {pb}.",
+        "en": "Vertices {a}, {b} differ at equal depth. Lift them together to {pa}, {pb}."
+      },
+      "lca": {
+        "ru": "Вершины совпали: наименьший общий предок {answer}.",
+        "en": "The vertices coincide: lowest common ancestor {answer}."
+      },
+      "diameter": {
+        "ru": "Эксцентриситеты вершин по порядку: {values}. Диаметр — максимум {answer}.",
+        "en": "Vertex eccentricities in order: {values}. Diameter is the maximum {answer}."
+      }
+    },
+    "mis": {
+      "enter": {
+        "ru": "ДП дерева: вход в {vertex}, родитель {parent}. Изначально skip={skip}, take={take}.",
+        "en": "Tree DP: enter {vertex}, parent {parent}. Initially skip={skip}, take={take}."
+      },
+      "merge": {
+        "ru": "Для {vertex} учитываем ребёнка {child}: skip ребёнка {child_skip}, take {child_take}. При включении родителя берём только skip ребёнка; при исключении — максимум. Итог skip={skip}, take={take}.",
+        "en": "At {vertex}, merge child {child}: child skip {child_skip}, take {child_take}. Taking the parent permits only child skip; skipping permits the maximum. New skip={skip}, take={take}."
+      },
+      "done": {
+        "ru": "У корня skip={skip}, take={take}; максимум {answer}. Восстановленное независимое множество {chosen}.",
+        "en": "At the root skip={skip}, take={take}; maximum {answer}. Reconstructed independent set {chosen}."
+      }
+    },
+    "dfstime": {
+      "enter": {
+        "ru": "Вход DFS в {vertex}: счётчик {clock}, начальный размер поддерева {size}.",
+        "en": "DFS enters {vertex}: clock {clock}, initial subtree size {size}."
+      },
+      "merge": {
+        "ru": "Возврат из ребёнка {child} в {vertex}: размер {old}+{child_size}={size}.",
+        "en": "Return from child {child} to {vertex}: size {old}+{child_size}={size}."
+      },
+      "exit": {
+        "ru": "Выход из {vertex}: время входа {enter}, окончательный размер {size}.",
+        "en": "Exit {vertex}: entry time {enter}, final subtree size {size}."
+      }
+    },
+    "degree": {
+      "sort": {
+        "ru": "Сортируем остаточные степени по убыванию: {values}.",
+        "en": "Sort residual degrees in descending order: {values}."
+      },
+      "negative": {
+        "ru": "Появились отрицательные степени {values}: последовательность неграфична.",
+        "en": "Negative degrees {values}: the sequence is not graphical."
+      },
+      "success": {
+        "ru": "Остались только нули (или пустой список): последовательность графична.",
+        "en": "Only zeros (or an empty list) remain: the sequence is graphical."
+      },
+      "oversize": {
+        "ru": "Нужно {degree} соседей, осталось {remaining} вершин: последовательность неграфична.",
+        "en": "Need {degree} neighbors, but only {remaining} vertices remain: not graphical."
+      },
+      "remove": {
+        "ru": "Удаляем старшую степень {degree}; уменьшим первые {degree} элементов списка {values}.",
+        "en": "Remove largest degree {degree}; decrement the first {degree} entries of {values}."
+      },
+      "subtract": {
+        "ru": "Элемент с индексом {index}: {old}−1={value}. Остаточные степени {values}.",
+        "en": "Entry at index {index}: {old}−1={value}. Residual degrees {values}."
+      }
+    },
+    "spanning": {
+      "edge": {
+        "ru": "Ребро {a}—{b}: увеличиваем диагональные элементы и уменьшаем два внедиагональных. Лапласиан {matrix}.",
+        "en": "Edge {a}—{b}: increase diagonal entries and decrease the two off-diagonal entries. Laplacian {matrix}."
+      },
+      "minor": {
+        "ru": "Удаляем последнюю строку и столбец. По теореме Кирхгофа число остовов равно определителю минора {matrix}.",
+        "en": "Delete the last row and column. Kirchhoff’s theorem gives the spanning-tree count as the determinant of minor {matrix}."
+      },
+      "zero": {
+        "ru": "В столбце {col} нет ненулевого ведущего элемента: определитель и число остовов равны {answer}.",
+        "en": "No nonzero pivot in column {col}: determinant and spanning-tree count are {answer}."
+      },
+      "swap": {
+        "ru": "Меняем строки {row}, {col}; знак {sign}. Матрица {matrix}.",
+        "en": "Swap rows {row}, {col}; sign {sign}. Matrix {matrix}."
+      },
+      "pivot": {
+        "ru": "Ведущий элемент столбца {col}: {value}.",
+        "en": "Pivot of column {col}: {value}."
+      },
+      "eliminate": {
+        "ru": "Строка {row} := строка {row} − {factor} × строка {col}. Точная матрица {matrix}.",
+        "en": "Row {row} := row {row} − {factor} × row {col}. Exact matrix {matrix}."
+      },
+      "done": {
+        "ru": "Определитель = знак {sign} × произведение диагонали {diagonal} = {answer}. Это число остовных деревьев.",
+        "en": "Determinant = sign {sign} × diagonal product {diagonal} = {answer}. This is the spanning-tree count."
+      }
+    },
+    "minimax": {
+      "leaf": {
+        "ru": "Ход {action}, лист {index}: значение {value}. Минимум ветви меняется {old}→{minimum}.",
+        "en": "Action {action}, leaf {index}: value {value}. Branch minimum changes {old}→{minimum}."
+      },
+      "root": {
+        "ru": "Ветвь {action} даёт минимум {minimum}. Корень максимизирует: {old}→{best}, выбран ход {choice}; при равенстве сохраняем меньший номер.",
+        "en": "Branch {action} gives minimum {minimum}. The root maximizes: {old}→{best}, chosen action {choice}; ties keep the smaller ID."
+      },
+      "done": {
+        "ru": "Итог минимакса: значение {value}, ход {choice}.",
+        "en": "Minimax result: value {value}, action {choice}."
+      }
+    },
+    "radius": {
+      "done": {
+        "ru": "Эксцентриситеты {values}. Радиус min={radius}; эксцентриситет запрошенной вершины {vertex}: {ecc}; ответ {answer}.",
+        "en": "Eccentricities {values}. Radius min={radius}; eccentricity of requested vertex {vertex}: {ecc}; answer {answer}."
+      }
+    },
+    "cycles": {
+      "triple": {
+        "ru": "Тройка {a},{b},{c}: рёбра (a,b),(a,c),(b,c) присутствуют {present}. Треугольников накоплено {total}.",
+        "en": "Triple {a},{b},{c}: edges (a,b),(a,c),(b,c) present {present}. Triangles so far {total}."
+      },
+      "triangles": {
+        "ru": "Все неупорядоченные тройки проверены; треугольников {answer}.",
+        "en": "All unordered triples checked; triangles {answer}."
+      },
+      "remove": {
+        "ru": "Удаляем ребро {a}—{b}; BFS ищет кратчайший обходной путь между концами.",
+        "en": "Remove edge {a}—{b}; BFS searches for the shortest alternative path between its endpoints."
+      },
+      "candidate": {
+        "ru": "Без ребра {a}—{b} расстояние {distance}; кандидат длины цикла {candidate}, лучший {best}. -1 означает отсутствие обходного пути.",
+        "en": "Without edge {a}—{b}, distance {distance}; cycle-length candidate {candidate}, best {best}. -1 means no alternative path."
+      },
+      "girth": {
+        "ru": "Проверены все рёбра. Минимальная длина цикла {answer}; 0 означает отсутствие цикла.",
+        "en": "All edges checked. Minimum cycle length {answer}; 0 means no cycle."
+      }
+    },
+    "wiener": {
+      "pair": {
+        "ru": "Для неупорядоченной пары {source},{target} расстояние {distance}. Сумма {total}.",
+        "en": "Unordered pair {source},{target}: distance {distance}. Sum {total}."
+      },
+      "done": {
+        "ru": "Каждая неупорядоченная пара учтена ровно один раз. Индекс Винера {answer}.",
+        "en": "Each unordered pair was counted exactly once. Wiener index {answer}."
+      }
+    },
+    "counts": {
+      "init": {
+        "ru": "Число путей из {source} в неё саму равно 1; остальные счётчики 0. Таблица {ways}. Для BFS считаем только переходы на следующий уровень; в DAG считаем все прямые переходы.",
+        "en": "The path count from {source} to itself is 1; other counts are 0. Table {ways}. BFS counts only next-level transitions; DAG counts all forward transitions."
+      },
+      "visit": {
+        "ru": "Обрабатываем {vertex}: путей {ways}, расстояние {distance}; очередь {queue}.",
+        "en": "Process {vertex}: paths {ways}, distance {distance}; queue {queue}."
+      },
+      "discover": {
+        "ru": "Впервые достигаем {b} из {a}: расстояние {distance}, очередь {queue}.",
+        "en": "First reach {b} from {a}: distance {distance}, queue {queue}."
+      },
+      "edge": {
+        "ru": "Переход {a}→{b}: допустим {eligible} (1 — да); прежний счётчик {old}, добавляемое число {addition}, результат {value}.",
+        "en": "Transition {a}→{b}: eligible {eligible} (1 yes); previous count {old}, potential addition {addition}, result {value}."
+      },
+      "done": {
+        "ru": "Итоговые расстояния по вершинам от 1: {distances}; числа путей {ways}. Для DAG расстояния здесь не используются.",
+        "en": "Final distances by vertex ID starting at 1: {distances}; path counts {ways}. DAG mode does not use these distances."
+      },
+      "answer": {
+        "ru": "Запрошенный ответ {answer}.",
+        "en": "Requested answer {answer}."
+      }
+    },
+    "prufer": {
+      "leaf": {
+        "ru": "Текущие листья {leaves}. Удаляем минимальный {leaf}, записываем соседа {neighbor}. Его новая степень {degree}; код {code}.",
+        "en": "Current leaves {leaves}. Remove the smallest {leaf}, append neighbor {neighbor}. Its new degree {degree}; code {code}."
+      },
+      "done": {
+        "ru": "Остались две вершины. Код Прюфера {code}.",
+        "en": "Two vertices remain. Prüfer code {code}."
+      },
+      "degree": {
+        "ru": "Вершина {vertex} встречается в коде {count} раз; степень 1+{count}={answer}.",
+        "en": "Vertex {vertex} occurs {count} times in the code; degree 1+{count}={answer}."
+      }
+    },
+    "expect": {
+      "outcome": {
+        "ru": "Действие {action}, исход {index}: вероятность {probability} × полезность {utility} = {contribution}. Накопленное ожидание {value}.",
+        "en": "Action {action}, outcome {index}: probability {probability} × utility {utility} = {contribution}. Accumulated expectation {value}."
+      },
+      "choose": {
+        "ru": "Ожидание действия {action}: {value}; прежний максимум {old}, новый {best}, выбор {choice}. При равенстве сохраняем меньший номер.",
+        "en": "Expectation of action {action}: {value}; previous maximum {old}, new {best}, choice {choice}. Ties keep the smaller ID."
+      },
+      "done": {
+        "ru": "Максимальное ожидание {value}, действие {choice}.",
+        "en": "Maximum expectation {value}, action {choice}."
+      }
+    },
+    "deadlock": {
+      "group": {
+        "ru": "Компонента {group}: циклическая {cyclic} (1 — да; размер больше 1 или есть петля). Накопленные вершины циклов {nodes}.",
+        "en": "Component {group}: cyclic {cyclic} (1 yes; size above 1 or a self-loop). Cycle vertices so far {nodes}."
+      },
+      "done": {
+        "ru": "Вершины на циклах {nodes}; число {count}.",
+        "en": "Vertices on cycles {nodes}; count {count}."
+      }
+    }
+  }
+}

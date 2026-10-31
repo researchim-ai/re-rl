@@ -19,6 +19,10 @@
     "s5": {
       "ru": "Во всех примерах вход преобразуется в выход по ОДНОМУ и тому же скрытому правилу (сетки из чисел-цветов).\n\n{body}\n\nТестовый вход:\n{v1}\nПримените то же правило и выпишите выходную сетку ({ro}×{co}) — все числа по строкам.",
       "en": "In every example the input is turned into the output by ONE hidden rule (grids of color numbers).\n\n{body}\n\nTest input:\n{v1}\nApply the same rule and write the output grid ({ro}×{co}), all numbers row by row."
+    },
+    "rule_catalog": {
+      "ru": "Рассматривайте одно правило из семейства: отражение по горизонтали/вертикали, поворот на 180°, транспонирование, повторение сетки 2×2, сдвиг строк вниз с переносом, падение ненулевых клеток вниз с сохранением порядка, обмен двух положительных цветов, замена одного положительного цвета другим или рамка положительного цвета толщиной 1. Цвета — целые числа; 0 — фон. Правило и его параметры одинаковы для всех примеров.",
+      "en": "Use one rule from this family: horizontal/vertical reflection, rotation by 180°, transpose, tiling the grid 2×2, cyclic downward row shift, stable downward gravity for nonzero cells, swapping two positive colors, replacing one positive color with another, or a uniform positive-color border of width 1. Colors are integers; 0 is background. The rule and its parameters are shared by all examples."
     }
   },
   "literals": {

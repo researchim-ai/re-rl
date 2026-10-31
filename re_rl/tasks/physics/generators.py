@@ -278,35 +278,40 @@ from re_rl.tasks.physics.waves.focus_row_task import FocusRowTask
 # Генераторы механики
 ##################################################
 
-def generate_random_kinematics_task(task_type: str = None, language: str = "ru",
-                                    detail_level: int = 3, difficulty: int = 5,
-                                    output_format: str = "text"):
-    return KinematicsTask.generate_random_task(task_type=task_type, language=language,
-                                               detail_level=detail_level, difficulty=difficulty,
-                                               output_format=output_format)
+def generate_random_kinematics_task(task_type=None,language="ru",detail_level=3,difficulty=5,
+                                  output_format="text",reasoning_mode=False,**kwargs):
+    return KinematicsTask.generate_random_task(task_type=task_type,language=language,detail_level=detail_level,
+                                     difficulty=difficulty,output_format=output_format,
+                                     reasoning_mode=reasoning_mode,**kwargs)
 
-def generate_random_dynamics_task(task_type: str = None, language: str = "ru",
-                                  detail_level: int = 3, difficulty: int = 5,
-                                  output_format: str = "text"):
-    return DynamicsTask.generate_random_task(task_type=task_type, language=language,
-                                             detail_level=detail_level, difficulty=difficulty)
 
-def generate_random_energy_task(task_type: str = None, language: str = "ru",
-                                detail_level: int = 3, difficulty: int = 5,
-                                output_format: str = "text"):
-    return EnergyTask.generate_random_task(task_type=task_type, language=language,
-                                           detail_level=detail_level, difficulty=difficulty)
+def generate_random_dynamics_task(task_type=None,language="ru",detail_level=3,difficulty=5,
+                                  output_format="text",reasoning_mode=False,**kwargs):
+    return DynamicsTask.generate_random_task(task_type=task_type,language=language,detail_level=detail_level,
+                                     difficulty=difficulty,output_format=output_format,
+                                     reasoning_mode=reasoning_mode,**kwargs)
 
-def generate_random_momentum_task(task_type: str = None, language: str = "ru",
-                                  detail_level: int = 3, difficulty: int = 5,
-                                  output_format: str = "text"):
-    return MomentumTask.generate_random_task(task_type=task_type, language=language,
-                                             detail_level=detail_level, difficulty=difficulty)
 
-def generate_random_projectile_motion_task(task_type: str = None, language: str = "ru",
-                                           detail_level: int = 3, difficulty: int = 5):
-    return ProjectileMotionTask(task_type=task_type, language=language,
-                                detail_level=detail_level, difficulty=difficulty)
+def generate_random_energy_task(task_type=None,language="ru",detail_level=3,difficulty=5,
+                                  output_format="text",reasoning_mode=False,**kwargs):
+    return EnergyTask.generate_random_task(task_type=task_type,language=language,detail_level=detail_level,
+                                     difficulty=difficulty,output_format=output_format,
+                                     reasoning_mode=reasoning_mode,**kwargs)
+
+
+def generate_random_momentum_task(task_type=None,language="ru",detail_level=3,difficulty=5,
+                                  output_format="text",reasoning_mode=False,**kwargs):
+    return MomentumTask.generate_random_task(task_type=task_type,language=language,detail_level=detail_level,
+                                             difficulty=difficulty,output_format=output_format,
+                                             reasoning_mode=reasoning_mode,**kwargs)
+
+
+def generate_random_projectile_motion_task(task_type=None,language="ru",detail_level=3,difficulty=5,
+                                  output_format="text",reasoning_mode=False,**kwargs):
+    return ProjectileMotionTask.generate_random_task(task_type=task_type,language=language,detail_level=detail_level,
+                                     difficulty=difficulty,output_format=output_format,
+                                     reasoning_mode=reasoning_mode,**kwargs)
+
 
 def generate_random_rotational_dynamics_task(task_type: str = None, language: str = "ru",
                                              detail_level: int = 3, difficulty: int = 5):
@@ -371,10 +376,12 @@ def generate_random_gas_laws_task(task_type: str = None, language: str = "ru",
     return GasLawsTask.generate_random_task(task_type=task_type, language=language,
                                             detail_level=detail_level, difficulty=difficulty)
 
-def generate_random_heat_transfer_task(task_type: str = None, language: str = "ru",
-                                       detail_level: int = 3, difficulty: int = 5):
-    return HeatTransferTask.generate_random_task(task_type=task_type, language=language,
-                                                 detail_level=detail_level, difficulty=difficulty)
+def generate_random_heat_transfer_task(task_type=None,language="ru",detail_level=3,difficulty=5,
+                                       output_format="text",reasoning_mode=False,**kwargs):
+    return HeatTransferTask.generate_random_task(task_type=task_type,language=language,detail_level=detail_level,
+                                                 difficulty=difficulty,output_format=output_format,
+                                                 reasoning_mode=reasoning_mode,**kwargs)
+
 
 def generate_random_thermodynamic_cycles_task(task_type: str = None, language: str = "ru",
                                               detail_level: int = 3, difficulty: int = 5):
@@ -396,10 +403,12 @@ def generate_random_phase_transitions_task(task_type: str = None, language: str 
 # Генераторы волн и оптики
 ##################################################
 
-def generate_random_waves_task(task_type: str = None, language: str = "ru",
-                               detail_level: int = 3, difficulty: int = 5):
-    return WavesTask.generate_random_task(task_type=task_type, language=language,
-                                          detail_level=detail_level, difficulty=difficulty)
+def generate_random_waves_task(task_type=None,language="ru",detail_level=3,difficulty=5,
+                                      output_format="text",reasoning_mode=False,**kwargs):
+    return WavesTask.generate_random_task(task_type=task_type,language=language,detail_level=detail_level,
+                                                 difficulty=difficulty,output_format=output_format,
+                                                 reasoning_mode=reasoning_mode,**kwargs)
+
 
 def generate_random_optics_task(task_type: str = None, language: str = "ru",
                                 detail_level: int = 3, difficulty: int = 5):
@@ -496,10 +505,12 @@ def generate_random_relativity_task(task_type: str = None, language: str = "ru",
 # Генераторы колебаний
 ##################################################
 
-def generate_random_oscillations_task(task_type: str = None, language: str = "ru",
-                                      detail_level: int = 3, difficulty: int = 5):
-    return OscillationsTask.generate_random_task(task_type=task_type, language=language,
-                                                 detail_level=detail_level, difficulty=difficulty)
+def generate_random_oscillations_task(task_type=None,language="ru",detail_level=3,difficulty=5,
+                                      output_format="text",reasoning_mode=False,**kwargs):
+    return OscillationsTask.generate_random_task(task_type=task_type,language=language,detail_level=detail_level,
+                                                 difficulty=difficulty,output_format=output_format,
+                                                 reasoning_mode=reasoning_mode,**kwargs)
+
 
 
 ##################################################

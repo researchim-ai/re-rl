@@ -67,10 +67,8 @@ class EligibilityTraceTask(BaseMathTask):
         return f"{rule} {data} {ask}"
 
     def solve(self):
-        shown = fmt_fraction(self.answer)
-        step = ((texts.t('s3', self.language, v0=self.index + 1, shown=shown)))
-        self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]
-        self.final_answer = shown
+        from re_rl.tasks.rl.detailed_solvers import solve_detailed
+        solve_detailed(self)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:

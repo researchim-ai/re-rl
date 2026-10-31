@@ -71,6 +71,10 @@ class SkyscrapersTask(BaseMathTask):
         return ((texts.t('s0', language, n=n, n_2=n, n_3=n, v3=n * n, grid=grid)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         flat = [self.solution[r][c] for r in range(self.n) for c in range(self.n)]
         nums = " ".join(str(x) for x in flat)
         self.solution_steps = [

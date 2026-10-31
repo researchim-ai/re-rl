@@ -55,6 +55,10 @@ class WorkRatesTask(BaseMathTask):
         return texts.t("s1", language, together=self.together, a=self.a)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "together":
             step = texts.t("s2", self.language, a=self.a, b=self.b, together=self.together)
         else:

@@ -23,6 +23,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Tuple
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import dag_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
 
 class DAGLongestPathTask(_GraphBase):
     TASK_TYPE = texts.literal('literals.s3')
@@ -70,10 +72,8 @@ class DAGLongestPathTask(_GraphBase):
         return ((texts.t('s0', language, v0=self.n - 1, es=es)))
 
     def solve(self):
-        self.solution_steps = [
-            ((texts.t('s1', self.language))),
-            ((texts.t('s2', self.language, _answer=self._answer))),
-        ]
+        self._answer, self.algorithm_trace = dag_trace(self.n, self.edges)
+        self.solution_steps = render_trace(self.algorithm_trace, 'dag', self.language)
         self.final_answer = str(self._answer)
 
     def verify(self, prediction):

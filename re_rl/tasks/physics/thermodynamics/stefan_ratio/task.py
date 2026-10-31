@@ -52,6 +52,10 @@ class StefanRatioTask(BaseMathTask):
         return f"{law} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = fmt_fraction(self.answer)
         step = ((f"T2/T1 = {self.factor}, L2/L1 = {fmt_fraction(self.ratio)}, T2 = {self.t2}."))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]

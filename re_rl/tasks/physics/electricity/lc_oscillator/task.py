@@ -48,6 +48,10 @@ class LCOscillatorTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = fmt_fraction(self.answer)
         step = ((f"ω^2 = 1 / ({self.L}*{self.C}) = {fmt_fraction(self.omega_sq)}, L = {self.L}."))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]

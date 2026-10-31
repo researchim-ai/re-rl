@@ -52,6 +52,7 @@ class MagicSquareTask(BaseMathTask):
         self.augment = augment
         self.all_squares = _all_squares()
         self._build()
+        self.given = {cell:self.solution[cell] for cell in range(9) if cell not in self.hidden}
         description = self._make_description(language)
         super().__init__(description=description, language=language, detail_level=detail_level,
                          output_format=output_format, reasoning_mode=reasoning_mode)
@@ -85,7 +86,7 @@ class MagicSquareTask(BaseMathTask):
             row = []
             for c in range(3):
                 p = r * 3 + c
-                row.append("?" if p in self.hidden else str(self.solution[p]))
+                row.append("?" if p in self.hidden else str(self.given[p]))
             rows.append(" ".join(f"{x:>1}" for x in row))
         return "\n".join(rows)
 
@@ -93,6 +94,10 @@ class MagicSquareTask(BaseMathTask):
         return ((texts.t('s0', language, v0=self._grid_str())))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         nums = " ".join(str(x) for x in self.solution)
         self.solution_steps = [
             ((texts.t('s1', self.language))),
@@ -106,7 +111,13 @@ class MagicSquareTask(BaseMathTask):
         ints = U.parse_ints(prediction)
         if len(ints) < 9:
             return 0.0
-        return 1.0 if tuple(ints[-9:]) == self.solution else 0.0
+        values = ints[-9:]
+        if sorted(values) != list(range(1,10)):
+            return 0.0
+        if any(values[cell] != value for cell,value in self.given.items()):
+            return 0.0
+        lines = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+        return 1.0 if all(sum(values[cell] for cell in line) == 15 for line in lines) else 0.0
 
     @classmethod
     def generate_random_task(cls, language: str = "ru", detail_level: int = 3, difficulty: int = 5,

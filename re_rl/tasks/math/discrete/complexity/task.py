@@ -147,6 +147,10 @@ class AlgorithmComplexityTask(BaseMathTask):
 
     # ---- решение / проверка ----
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         pretty = _PRETTY[self.answer]
         if self.task_type == "loops":
             step = ((texts.t('s2', self.language)))

@@ -53,6 +53,10 @@ class AverageSpeedTask(BaseMathTask):
         return texts.t("s1", language, average=self.average, v1=self.v1)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         if self.task_type == "average":
             step = texts.t("s2", self.language, v1=self.v1, v2=self.v2, average=self.average)
         else:

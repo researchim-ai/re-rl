@@ -29,7 +29,7 @@ class MinesweeperVisualTask(VisualTaskMixin, MinesweeperDeductionTask):
                  augment: bool = True, **kwargs):
         super().__init__(language=language, detail_level=detail_level, difficulty=difficulty,
                          output_format=output_format, reasoning_mode=reasoning_mode,
-                         augment=augment)
+                         augment=augment, **kwargs)
         self.description = self._descr_visual(language)
 
     def render_image(self):
@@ -75,6 +75,6 @@ class MinesweeperVisualTask(VisualTaskMixin, MinesweeperDeductionTask):
     def generate_random_task(cls, language: str = "ru", detail_level: int = 3, difficulty: int = 5,
                              reasoning_mode: bool = False, augment: bool = True, **kwargs):
         task = cls(language=language, detail_level=detail_level, difficulty=difficulty,
-                   reasoning_mode=reasoning_mode, augment=augment)
+                   reasoning_mode=reasoning_mode, augment=augment, **kwargs)
         task.solve()
         return task

@@ -10,7 +10,6 @@ texts = TaskTexts(__file__)
 
 
 import random
-from itertools import product
 from typing import Any, ClassVar, Dict, List, Optional, Tuple
 
 from re_rl.tasks.base_task import BaseMathTask, OutputFormat
@@ -30,11 +29,19 @@ class MinesweeperDeductionTask(BaseMathTask):
 
     def __init__(self, language: str = "ru", detail_level: int = 3, difficulty: int = 5,
                  output_format: OutputFormat = "text", reasoning_mode: bool = False,
-                 augment: bool = True, **kwargs):
+                 augment: bool = True, n=None, num_mines=None, extra_hidden=None, **kwargs):
         preset = self._interpolate_difficulty(difficulty)
-        self.n = int(preset["n"])
-        self.num_mines = int(preset["mines"])
-        self.extra_hidden = int(preset["hidden"])
+        self.n = int(preset['n']) if n is None else n
+        self.num_mines = int(preset['mines']) if num_mines is None else num_mines
+        self.extra_hidden = int(preset['hidden']) if extra_hidden is None else extra_hidden
+        if type(self.n) is not int or not 2 <= self.n <= 8:
+            raise ValueError('invalid_size')
+        if type(self.num_mines) is not int or not 0 <= self.num_mines < self.n*self.n:
+            raise ValueError('invalid_num_mines')
+        if type(self.extra_hidden) is not int or not 0 <= self.extra_hidden < self.n*self.n-self.num_mines:
+            raise ValueError('invalid_extra_hidden')
+        if not 1 <= self.num_mines+self.extra_hidden <= 14:
+            raise ValueError('invalid_hidden_count')
         self.augment = augment
         self._build()
         description = self._make_description(language)
@@ -68,27 +75,14 @@ class MinesweeperDeductionTask(BaseMathTask):
                 continue
             revealed = [c for c in cells if c not in set(hidden)]
 
-            # Перебираем совместимые расстановки мин по скрытым клеткам.
-            consistent = []
-            hidden_idx = {cell: i for i, cell in enumerate(hidden)}
-            for bits in product([0, 1], repeat=len(hidden)):
-                S = {hidden[i] for i in range(len(hidden)) if bits[i]}
-                ok = True
-                for (r, c) in revealed:  # revealed всегда безопасны
-                    cnt = sum(1 for nb in self._neighbors(r, c) if nb in S)
-                    if cnt != number[(r, c)]:
-                        ok = False
-                        break
-                if ok:
-                    consistent.append(S)
-            if not consistent:
-                continue
-            # Ищем скрытую клетку с однозначным статусом.
+            from re_rl.tasks.math.logic.deduction_search import mine_status
+            clues = {cell:number[cell] for cell in revealed}
             forced = []
-            for cell in hidden:
-                vals = {cell in S for S in consistent}
-                if len(vals) == 1:
-                    forced.append((cell, cell in mines))
+            for cell in random.sample(hidden,len(hidden)):
+                possible = mine_status(n,clues,cell)
+                if len(possible) == 1:
+                    forced.append((cell,bool(possible[0])))
+                    break
             if not forced:
                 continue
             self.mines = mines
@@ -97,14 +91,7 @@ class MinesweeperDeductionTask(BaseMathTask):
             self.hidden = set(hidden)
             self.target, self.target_is_mine = random.choice(forced)
             return
-        # Фолбэк (крайне редко): открыть всё, кроме одной мины.
-        self.mines = set(random.sample(cells, 1))
-        self.number = {c: sum(1 for nb in self._neighbors(*c) if nb in self.mines)
-                       for c in cells if c not in self.mines}
-        self.revealed = set(c for c in cells if c not in self.mines)
-        self.hidden = set(self.mines)
-        self.target = next(iter(self.mines))
-        self.target_is_mine = True
+        raise ValueError('generation_failed')
 
     def _grid_str(self) -> str:
         rows = []
@@ -125,6 +112,10 @@ class MinesweeperDeductionTask(BaseMathTask):
         return ((texts.t('s0', language, n=self.n, n_2=self.n, v2=tr + 1, v3=tc + 1, v4=self._grid_str())))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         verdict = ((texts.t('s1', self.language) if self.target_is_mine else texts.t('s2', self.language)))
         self.solution_steps = [
             ((texts.t('s3', self.language))),
@@ -133,15 +124,20 @@ class MinesweeperDeductionTask(BaseMathTask):
         self.final_answer = verdict
 
     def verify(self, prediction: str) -> float:
-        if self.final_answer is None:
-            self.solve()
-        mine_syn = [texts.t('s5', self.language), texts.t('s6', self.language), texts.t('s7', self.language), "mine"]
-        safe_syn = [texts.t('s8', self.language), texts.t('s9', self.language), texts.t('s10', self.language), "safe"]
-        found_mine = U.verify_label(prediction, mine_syn) == 1.0
-        found_safe = U.verify_label(prediction, safe_syn) == 1.0
+        fingerprint = (self.n,tuple(sorted((r,c,self.number[r,c]) for r,c in self.revealed)),tuple(self.target))
+        certificate = getattr(self,'_mine_certificate',None)
+        if certificate is None or certificate[0] != fingerprint:
+            try:self.solve()
+            except ValueError:return 0.0
+        status = self._mine_certificate[1]
+        text = U.clean(prediction).strip().rstrip('.!').strip().casefold()
+        mine_syn = {texts.t(key,lang).casefold() for key in ('s1','s5','s6','s7') for lang in ('ru','en')}
+        safe_syn = {texts.t(key,lang).casefold() for key in ('s2','s8','s9','s10','not_mine','not_mine_short') for lang in ('ru','en')}
+        found_mine = text in mine_syn
+        found_safe = text in safe_syn
         if found_mine == found_safe:
             return 0.0
-        return 1.0 if found_mine == bool(self.target_is_mine) else 0.0
+        return 1.0 if found_mine == bool(status) else 0.0
 
     @classmethod
     def generate_random_task(cls, language: str = "ru", detail_level: int = 3, difficulty: int = 5,

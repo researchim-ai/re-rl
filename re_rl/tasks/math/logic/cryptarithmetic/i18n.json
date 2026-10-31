@@ -18,5 +18,11 @@
       "ru": "Решение: {mapping}.",
       "en": "Solution: {mapping}."
     }
+  },
+  "text": {
+    "no_solution": {
+      "ru": "Нет решения",
+      "en": "No solution"
+    }
   }
 }

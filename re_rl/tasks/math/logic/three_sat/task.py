@@ -33,6 +33,7 @@ class ThreeSatTask(_LogicBase):
     def _build(self):
         hidden = [random.randint(0, 1) for _ in range(self.nv)]
         self.hidden = hidden
+        self.assignment = hidden[:]
         self.clauses: List[List[Tuple[int, bool]]] = []  # (var_index, is_positive)
         for _ in range(self.nc):
             idxs = random.sample(range(self.nv), min(3, self.nv))
@@ -57,15 +58,25 @@ class ThreeSatTask(_LogicBase):
         return True
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
+        if self.assignment is None:
+            self.final_answer = texts.t('unsatisfiable',self.language)
+            self.solution_steps = [self.final_answer]
+            return
         self.solution_steps = [
             ((texts.t('s1', self.language))),
-            ((texts.t('s2', self.language, v0=', '.join((f'{v}={b}' for v, b in zip(self.vars, self.hidden)))))),
+            ((texts.t('s2', self.language, v0=', '.join((f'{v}={b}' for v, b in zip(self.vars, self.assignment)))))),
         ]
-        self.final_answer = " ".join(str(b) for b in self.hidden)
+        self.final_answer = " ".join(str(b) for b in self.assignment)
 
     def verify(self, prediction):
         if self.final_answer is None:
             self.solve()
+        if self.assignment is None:
+            return U.verify_label(prediction,[texts.t('unsatisfiable',self.language)])
         ints = U.parse_ints(prediction)
         bits = [x for x in ints if x in (0, 1)]
         if len(bits) < self.nv:

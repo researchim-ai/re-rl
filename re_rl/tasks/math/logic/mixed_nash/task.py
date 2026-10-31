@@ -79,6 +79,10 @@ class MixedNashTask(BaseMathTask):
         return f"{rule} {ask}"
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         shown = fmt_fraction(self.answer)
         step = ((f"p = {fmt_fraction(self.row_prob)}, q = {fmt_fraction(self.col_prob)}."))
         self.solution_steps = [step, ((texts.common('answer_line', self.language, answer=shown)))]

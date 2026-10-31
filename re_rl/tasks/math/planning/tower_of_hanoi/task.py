@@ -22,6 +22,8 @@ class TowerOfHanoiTask(BaseMathTask):
       - difficulty 9-10: 6-7 дисков
     """
     
+    TASK_TYPE = "tower_of_hanoi"
+
     DIFFICULTY_PRESETS: ClassVar[Dict[int, Dict[str, Any]]] = {
         1: {"num_disks": 2},
         2: {"num_disks": 3},
@@ -62,7 +64,7 @@ class TowerOfHanoiTask(BaseMathTask):
             if num_disks is None:
                 num_disks = preset.get("num_disks", 3)
         else:
-            num_disks = num_disks or 3
+            num_disks = 3 if num_disks is None else num_disks
         
         self.language = language.lower()
         self.detail_level = detail_level
@@ -70,6 +72,10 @@ class TowerOfHanoiTask(BaseMathTask):
         self._output_format = output_format
         self._reasoning_mode = reasoning_mode
         
+        if type(num_disks) is not int or not 0 <= num_disks <= 12:
+            raise ValueError('invalid_disks')
+        if any(not isinstance(p,str) or not p.strip() or '\n' in p for p in (source,target,auxiliary)) or len({source,target,auxiliary}) != 3:
+            raise ValueError('invalid_pegs')
         self.num_disks = num_disks
         self.source = source
         self.target = target
@@ -92,6 +98,7 @@ class TowerOfHanoiTask(BaseMathTask):
         problem_text = templates["instructions"][self.language] + "\n\n"
         problem_text += templates["problem"][self.language].format(
             n=self.num_disks,
+            source=self.source,
             target=self.target,
             auxiliary=self.auxiliary
         )
@@ -113,6 +120,10 @@ class TowerOfHanoiTask(BaseMathTask):
         self._solve_hanoi(n - 1, auxiliary, target, source)
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        return solve_reviewed(self)
+
+    def _solve_before_trace(self):
         """Генерирует пошаговое решение."""
         templates = PROMPT_TEMPLATES[texts.t('s2', self.language)]
         steps = []
@@ -148,6 +159,10 @@ class TowerOfHanoiTask(BaseMathTask):
             optimal=optimal,
             moves="\n".join(moves_text)
         )
+
+    def verify(self, prediction):
+        from re_rl.tasks.math.planning.plan_verification import hanoi_verify
+        return hanoi_verify(self,prediction)
 
     def get_task_type(self):
         return texts.t('s0', self.language)

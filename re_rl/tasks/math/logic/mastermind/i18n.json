@@ -1,12 +1,12 @@
 {
   "text": {
     "s0": {
-      "ru": "Загадан код из {L} цифр (каждая от 1 до {C}). Для каждой догадки указано число «точных» (верная цифра на верном месте) и «частичных» (верная цифра не на своём месте) совпадений.\n",
-      "en": "A secret code of {L} digits (each from 1 to {C}). For each guess we give the number of 'exact' (right digit, right place) and 'partial' (right digit, wrong place) matches.\n"
+      "ru": "Загадан код длины {L} из целых значений от 1 до {C}; значения могут повторяться. Для каждой догадки указаны точные совпадения (значение и позиция) и частичные (значение на другой позиции). Каждый элемент кода учитывается не более одного раза: сумма точных и частичных равна сумме минимумов количеств каждого значения в догадке и коде.\n",
+      "en": "A code has length {L}, with integer values from 1 to {C}; repeats are allowed. Each guess has exact matches (value and position) and partial matches (value in another position). Each code entry is counted at most once: exact plus partial equals the sum of minimum counts of each value in the guess and code.\n"
     },
     "s1": {
-      "ru": "\nОпределите скрытый код (перечислите цифры).",
-      "en": "\nDetermine the secret code (list the digits)."
+      "ru": "\nОпределите единственный совместимый код, перечислив значения через пробел.",
+      "en": "\nDetermine the unique compatible code, listing values separated by spaces."
     },
     "s2": {
       "ru": "Оставляем только коды, совместимые со всеми подсказками.",

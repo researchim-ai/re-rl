@@ -42,9 +42,7 @@ class BattleshipTask(_GridBase):
                 self.row_counts = [sum(grid[i]) for i in range(n)]
                 self.col_counts = [sum(grid[i][j] for i in range(n)) for j in range(n)]
                 return
-        self.sol = [[0] * n for _ in range(n)]
-        self.row_counts = [0] * n
-        self.col_counts = [0] * n
+        raise RuntimeError('generation_failed')
 
     def _place_all(self, grid, ships):
         if not ships:
@@ -85,6 +83,10 @@ class BattleshipTask(_GridBase):
         return ((texts.t('s0', language, n=self.n, n_2=self.n, fleet=fleet, rc=rc, cc=cc, v5=self.n * self.n)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         flat = " ".join(str(self.sol[i][j]) for i in range(self.n) for j in range(self.n))
         self.solution_steps = [
             ((texts.t('s1', self.language))),

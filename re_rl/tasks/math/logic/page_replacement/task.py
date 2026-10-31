@@ -93,6 +93,10 @@ class PageReplacementTask(BaseMathTask):
         return ((texts.t('s0', language, frames_n=self.frames_n, seq=seq, rules=rules)))
 
     def solve(self):
+        from re_rl.tasks.reviewed_solvers import solve_reviewed
+        solve_reviewed(self)
+
+    def _solve_before_trace(self):
         marked = " ".join(self.trace)
         self.solution_steps = [
             (((texts.t('s4', self.language))) + " " + marked),

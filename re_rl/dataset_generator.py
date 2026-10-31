@@ -199,6 +199,7 @@ class DatasetGenerator:
             "solution_steps": result.get("solution_steps", []),
             "final_answer": result["final_answer"],
             "prompt": result.get("prompt", ""),
+            **{key: result[key] for key in ("algorithm_trace", "graph", "computation_inputs") if key in result},
         }
     
     def generate_sft_dataset(

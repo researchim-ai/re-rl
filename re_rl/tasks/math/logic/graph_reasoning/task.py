@@ -18,7 +18,12 @@ from re_rl.tasks.base_task import BaseMathTask, OutputFormat
 from re_rl.tasks.math.logic import _logic_utils as U
 
 
-class GraphReasoningTask(BaseMathTask):
+from re_rl.tasks.math.logic.graph_algorithms_shared.base import _GraphBase
+from re_rl.tasks.math.logic.graph_algorithms_shared.traces import traversal_trace
+from re_rl.tasks.math.logic.graph_algorithms_shared.render_trace import render_trace
+
+
+class GraphReasoningTask(_GraphBase):
     TASK_TYPE = "graph_reasoning"
     TASK_TYPES = ["shortest_path", "num_components", "is_bipartite"]
 
@@ -35,7 +40,7 @@ class GraphReasoningTask(BaseMathTask):
         preset = self._interpolate_difficulty(difficulty)
         self.n = int(preset["n"])
         self.extra = int(preset["extra"])
-        self.subtype = subtype or random.choice(self.TASK_TYPES)
+        self.subtype = subtype or kwargs.get("task_type") or random.choice(self.TASK_TYPES)
         self.augment = augment
         self._build()
         description = self._make_description(language)
@@ -161,25 +166,14 @@ class GraphReasoningTask(BaseMathTask):
         return head + q
 
     def solve(self):
-        if self.subtype == "shortest_path":
-            self.solution_steps = [
-                ((texts.t('s4', self.language))),
-                ((texts.t('s5', self.language, src=self.src, dst=self.dst, _answer=self._answer))),
-            ]
-            self.final_answer = str(self._answer)
-        elif self.subtype == "num_components":
-            self.solution_steps = [
-                ((texts.t('s8', self.language))),
-                ((texts.t('s9', self.language, _answer=self._answer))),
-            ]
-            self.final_answer = str(self._answer)
+        mode = {'shortest_path': 'bfs', 'num_components': 'components', 'is_bipartite': 'bipartite'}[self.subtype]
+        self._answer, self.algorithm_trace = traversal_trace(
+            self.n, self.edges, mode, getattr(self, 'src', 0), getattr(self, 'dst', None))
+        self.solution_steps = render_trace(self.algorithm_trace, 'walk', self.language)
+        if self.subtype == 'is_bipartite':
+            self.final_answer = texts.t('s6', self.language) if self._answer else texts.t('s7', self.language)
         else:
-            self.solution_steps = [
-                ((texts.t('s10', self.language))),
-                ((texts.t('s11', self.language) if self._answer else
-                  texts.t('s12', self.language))),
-            ]
-            self.final_answer = (texts.t('s6', self.language) if self._answer else texts.t('s7', self.language))
+            self.final_answer = str(self._answer)
 
     def verify(self, prediction: str) -> float:
         if self.final_answer is None:
